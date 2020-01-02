@@ -3,7 +3,7 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Цель воды
+	РџСЂРёРµРј: Р¦РµР»СЊ РІРѕРґС‹
 */
 $pvr = array();
 
@@ -20,18 +20,18 @@ if( $pvr['x5']['x'] < 5 ) {
 	if( $pvr['x5']['x'] > 0 ) {
 		$prv['eff'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `id` = "'.$pvr['x5']['id'].'" LIMIT 1'));
 		if( isset($prv['eff']['id']) ) {
-			//Разбираем дату $prv['eff']['data']
+			//Р Р°Р·Р±РёСЂР°РµРј РґР°С‚Сѓ $prv['eff']['data']
 			$prv['eda'] = $prv['eff']['data'];
 		}
 	}else{
-		//Разбираем дату $pl['date3']
+		//Р Р°Р·Р±РёСЂР°РµРј РґР°С‚Сѓ $pl['date3']
 		$prv['eda'] = $pl['date3'];
 	}
 	//
 	if( isset($prv['eda']) ) {
 		$prv['d'] = $u->lookStats($prv['eda']);
 		$prv['j'] = $u->lookStats($this->redate($prv['eda'],$u->info['id']));
-		$prv['v'] = $u->lookKeys($this->redate($prv['eda'],$u->info['id']),0); // ключи 2
+		$prv['v'] = $u->lookKeys($this->redate($prv['eda'],$u->info['id']),0); // РєР»СЋС‡Рё 2
 		$prv['i'] = 0; $prv['inf'] = '';
 		while($prv['i']<count($prv['v'])) {
 			//$prv['j'][$prv['v'][$prv['i']]] += $prv['j'][$prv['v'][$prv['i']]];
@@ -56,20 +56,20 @@ if( $pvr['x5']['x'] < 5 ) {
 	$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);	
 	$prv['text2'] = '{tm1} '.$prv['text'].'.'.$prv['effx'];
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Цель огня'.$prv['x'].'</font>',
+		'<font color^^^^#'.$prv['color2'].'>Р¦РµР»СЊ РѕРіРЅСЏ'.$prv['x'].'</font>',
 		$prv['text2'],
 		($btl->hodID + 0)
 	);
 		
-	//Добавляем прием
+	//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 	//$this->addEffPr($pl,$id);
-	//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.floor($pvr['hp']/10).'',0,77,-1,$u->info['id'],5,'цельводы',0,0,1);
+	//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.floor($pvr['hp']/10).'',0,77,-1,$u->info['id'],5,'С†РµР»СЊРІРѕРґС‹',0,0,1);
 		
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 }else{
 	$cup = true;
-	echo '<font color=red><b>На пероснаже достигнуто максиальное колличество целей</b></font>';
+	echo '<font color=red><b>РќР° РїРµСЂРѕСЃРЅР°Р¶Рµ РґРѕСЃС‚РёРіРЅСѓС‚Рѕ РјР°РєСЃРёР°Р»СЊРЅРѕРµ РєРѕР»Р»РёС‡РµСЃС‚РІРѕ С†РµР»РµР№</b></font>';
 }
 
 unset($pvr);

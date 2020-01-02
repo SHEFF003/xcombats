@@ -3,11 +3,11 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Медитация
+	РџСЂРёРµРј: РњРµРґРёС‚Р°С†РёСЏ
 */
 $pvr = array();
 
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 if( isset($pr_momental_this)) {
 	$fx_moment = function(  $uid, $enemy, $j_id, $yron, $profil, $inlog ) {
 		return round($yron);
@@ -23,10 +23,10 @@ if( isset($pr_momental_this)) {
 	};
 	unset( $pr_used_this );
 }elseif(isset($btl->info['id'])) {
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	/*
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-		'Медитация',
+		'РњРµРґРёС‚Р°С†РёСЏ',
 		'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'',
 		($btl->hodID+1)
 	);
@@ -41,7 +41,7 @@ if( isset($pr_momental_this)) {
 				//$pvr['mp'] = $btl->hphe( $u->info['id'] , $pvr['hp'] );
 				
 				if( $pvr['mpTr'] > 0 ) {
-					//Требуется хилл
+					//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 					if( $pvr['mpTr'] < $pvr['mp'] ) {
 						$pvr['mp'] = $pvr['mpTr'];
 					}
@@ -62,11 +62,11 @@ if( isset($pr_momental_this)) {
 				$btl->users[$btl->uids[$u->info['id']]]['mpNow'] = $pvr['mpNow'];				
 				mysql_query('UPDATE `stats` SET `mpNow` = "'.$u->stats['mpNow'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				//
-				$btl->priemAddLogFast( $u->info['id'], 0, "Медитация",
-					'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' на <font Color=#006699><b>'.$pvr['mpSee'].'</b></font> ['.$pvr['mpNow'].'/'.$pvr['mpAll'].'] (Мана)',
+				$btl->priemAddLogFast( $u->info['id'], 0, "РњРµРґРёС‚Р°С†РёСЏ",
+					'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' РЅР° <font Color=#006699><b>'.$pvr['mpSee'].'</b></font> ['.$pvr['mpNow'].'/'.$pvr['mpAll'].'] (РњР°РЅР°)',
 				1, time() );					
 				//
-	echo '<font color=red><b>Вы успешно использовали прием &quot;Медитация&quot;</b></font>';
+	echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё РїСЂРёРµРј &quot;РњРµРґРёС‚Р°С†РёСЏ&quot;</b></font>';
 	$this->addEffPr($pl,$id);
 }
 

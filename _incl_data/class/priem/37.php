@@ -3,11 +3,11 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Цепь Исцеления [5]
+	РџСЂРёРµРј: Р¦РµРїСЊ РСЃС†РµР»РµРЅРёСЏ [5]
 */
 $pvr = array();
 
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 if( isset($pr_momental_this)) {
 	$fx_moment = function(  $uid, $enemy, $j_id, $yron, $profil, $inlog ) {
 		return round($yron);
@@ -29,7 +29,7 @@ if( isset($pr_momental_this)) {
 	
 				//
 				$pvr['hp'] = floor(rand($pvr['hp_0'],$pvr['hp_1']));
-				$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'воздух', 0 );
+				$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'РІРѕР·РґСѓС…', 0 );
 				$pvr['promah_type'] = $pvr['hp'][3];
 				$pvr['promah'] = $pvr['hp'][2];
 				$pvr['krit'] = $pvr['hp'][1];
@@ -44,7 +44,7 @@ if( isset($pr_momental_this)) {
 				$pvr['hp'] = $btl->hphe( $this->ue['id'] , $pvr['hp'] );
 				
 				if( $pvr['hpTr'] > 0 ) {
-					//Требуется хилл
+					//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 					if( $pvr['hpTr'] < $pvr['hp'] ) {
 						$pvr['hp'] = $pvr['hpTr'];
 					}
@@ -63,16 +63,16 @@ if( isset($pr_momental_this)) {
 				$btl->users[$btl->uids[$this->ue['id']]]['hpNow'] = $pvr['hpNow'];				
 				mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->stats[$btl->uids[$this->ue['id']]]['hpNow'].'" WHERE `id` = "'.$this->ue['id'].'" LIMIT 1');
 				//
-				//Цвет приема
+				//Р¦РІРµС‚ РїСЂРёРµРјР°
 				if( $pvr['promah'] == false ) {
 					if( $pvr['krit'] == false ) {
 						$pvr['color2'] = '006699';
-						if(isset($btl->mcolor[$btl->mname['воздух']])) {
-							$pvr['color2'] = $btl->mcolor[$btl->mname['воздух']];
+						if(isset($btl->mcolor[$btl->mname['РІРѕР·РґСѓС…']])) {
+							$pvr['color2'] = $btl->mcolor[$btl->mname['РІРѕР·РґСѓС…']];
 						}
 						$pvr['color'] = '000000';
-						if(isset($btl->mncolor[$btl->mname['воздух']])) {
-							$pvr['color'] = $btl->mncolor[$btl->mname['воздух']];
+						if(isset($btl->mncolor[$btl->mname['РІРѕР·РґСѓС…']])) {
+							$pvr['color'] = $btl->mncolor[$btl->mname['РІРѕР·РґСѓС…']];
 						}
 					}else{
 						$pvr['color2'] = 'FF0000';
@@ -83,8 +83,8 @@ if( isset($pr_momental_this)) {
 					$pvr['color'] = '909090';
 				}
 				//
-				$btl->priemAddLogFast( $u->info['id'], $this->ue['id'], "<font color^^^^#".$pvr['color2'].">Цепь Исцеления [5]</font>",
-					'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' на {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+				$btl->priemAddLogFast( $u->info['id'], $this->ue['id'], "<font color^^^^#".$pvr['color2'].">Р¦РµРїСЊ РСЃС†РµР»РµРЅРёСЏ [5]</font>",
+					'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' РЅР° {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 				1, time() );					
 				//
 	$pvr['uen'] = $this->ue['id'];
@@ -96,7 +96,7 @@ if( isset($pr_momental_this)) {
 			//
 			$pvr['uid'] = $btl->users[$pvr['ix']]['id'];
 			$pvr['hp'] = floor(rand($pvr['hp_0'],$pvr['hp_1']));
-			$pvr['hp'] = $this->magatack( $u->info['id'], $pvr['uid'], $pvr['hp'], 'воздух', 0 );
+			$pvr['hp'] = $this->magatack( $u->info['id'], $pvr['uid'], $pvr['hp'], 'РІРѕР·РґСѓС…', 0 );
 			$pvr['promah_type'] = $pvr['hp'][3];
 			$pvr['promah'] = $pvr['hp'][2];
 			$pvr['krit'] = $pvr['hp'][1];
@@ -111,7 +111,7 @@ if( isset($pr_momental_this)) {
 			$pvr['hp'] = $btl->hphe( $pvr['uid'] , $pvr['hp'] );
 				
 			if( $pvr['hpTr'] > 0 ) {
-				//Требуется хилл
+				//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 				if( $pvr['hpTr'] < $pvr['hp'] ) {
 					$pvr['hp'] = $pvr['hpTr'];
 				}
@@ -128,16 +128,16 @@ if( isset($pr_momental_this)) {
 			$btl->users[$btl->uids[$pvr['uid']]]['hpNow'] = $pvr['hpNow'];				
 			mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->users[$btl->uids[$pvr['uid']]]['hpNow'].'" WHERE `id` = "'.$pvr['uid'].'" LIMIT 1');
 			//
-			//Цвет приема
+			//Р¦РІРµС‚ РїСЂРёРµРјР°
 			if( $pvr['promah'] == false ) {
 				if( $pvr['krit'] == false ) {
 					$pvr['color2'] = '006699';
-					if(isset($btl->mcolor[$btl->mname['воздух']])) {
-						$pvr['color2'] = $btl->mcolor[$btl->mname['воздух']];
+					if(isset($btl->mcolor[$btl->mname['РІРѕР·РґСѓС…']])) {
+						$pvr['color2'] = $btl->mcolor[$btl->mname['РІРѕР·РґСѓС…']];
 					}
 					$pvr['color'] = '000000';
-					if(isset($btl->mncolor[$btl->mname['воздух']])) {
-						$pvr['color'] = $btl->mncolor[$btl->mname['воздух']];
+					if(isset($btl->mncolor[$btl->mname['РІРѕР·РґСѓС…']])) {
+						$pvr['color'] = $btl->mncolor[$btl->mname['РІРѕР·РґСѓС…']];
 					}
 				}else{
 					$pvr['color2'] = 'FF0000';
@@ -148,7 +148,7 @@ if( isset($pr_momental_this)) {
 				$pvr['color'] = '909090';
 			}
 			//
-			$btl->priemAddLogFast( $u->info['id'], $pvr['uid'], "<font color^^^^#".$pvr['color2'].">Цепь Исцеления [5]</font>",
+			$btl->priemAddLogFast( $u->info['id'], $pvr['uid'], "<font color^^^^#".$pvr['color2'].">Р¦РµРїСЊ РСЃС†РµР»РµРЅРёСЏ [5]</font>",
 				'{tm1} '.$btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 			1, time() );
 			//
@@ -157,7 +157,7 @@ if( isset($pr_momental_this)) {
 		$pvr['ix']++;
 	}
 	//
-	echo '<font color=red><b>Вы успешно использовали прием &quot;Цепь Исцеления [5]&quot;</b></font>';
+	echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё РїСЂРёРµРј &quot;Р¦РµРїСЊ РСЃС†РµР»РµРЅРёСЏ [5]&quot;</b></font>';
 	//$this->addEffPr($pl,$id);
 	$this->mintr($pl);
 }

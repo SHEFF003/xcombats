@@ -3,11 +3,11 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Воля к победе 5*(лвл) + 7 НР , эффект увеличен на 25% , если НР ниже 33%
-	Игрок восстанавливает 2-5НР
+	РџСЂРёРµРј: Р’РѕР»СЏ Рє РїРѕР±РµРґРµ 5*(Р»РІР») + 7 РќР  , СЌС„С„РµРєС‚ СѓРІРµР»РёС‡РµРЅ РЅР° 25% , РµСЃР»Рё РќР  РЅРёР¶Рµ 33%
+	РРіСЂРѕРє РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ 2-5РќР 
 */
 $pvr = array();
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 
 $pvr['hp'] = round( (5 * $btl->users[$btl->uids[$u->info['id']]]['level']) + 7 );
 if( floor($btl->stats[$btl->uids[$u->info['id']]]['hpNow']) < round($btl->stats[$btl->uids[$u->info['id']]]['hpAll']*0.33) ) {
@@ -20,7 +20,7 @@ $pvr['hpAll'] = $btl->stats[$btl->uids[$u->info['id']]]['hpAll'];
 	
 $pvr['hpTr'] = $pvr['hpAll'] - $pvr['hpNow'];
 if( $pvr['hpTr'] > 0 ) {
-	//Требуется хилл
+	//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 	if( $pvr['hpTr'] < $pvr['hp'] ) {
 		$pvr['hp'] = $pvr['hpTr'];
 	}
@@ -43,12 +43,12 @@ $btl->stats[$btl->uids[$u->info['id']]]['hpNow'] = $pvr['hpNow'];
 mysql_query('UPDATE `stats` SET `last_hp` = "'.$btl->users[$btl->uids[$u->info['id']]]['last_hp'].'",`hpNow` = "'.$u->info['hpNow'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 	
 $btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-	'Воля к победе',
+	'Р’РѕР»СЏ Рє РїРѕР±РµРґРµ',
 	'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 	($btl->hodID)
 );
 
-//Отнимаем тактики
+//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 $this->mintr($pl);
 
 unset($pvr);

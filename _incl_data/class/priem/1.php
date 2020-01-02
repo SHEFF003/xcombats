@@ -3,8 +3,8 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Ïðèêðûòüñÿ
-	Ñëåäóþùèé óäàð ïðîòèâíèêà ïî âàì íàíåñåò íà 3 åä. ìåíüøå óðîíà
+	ÐŸÑ€Ð¸ÐµÐ¼: ÐŸÑ€Ð¸ÐºÑ€Ñ‹Ñ‚ÑŒÑÑ
+	Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ ÑƒÐ´Ð°Ñ€ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ° Ð¿Ð¾ Ð²Ð°Ð¼ Ð½Ð°Ð½ÐµÑÐµÑ‚ Ð½Ð° 3 ÐµÐ´. Ð¼ÐµÐ½ÑŒÑˆÐµ ÑƒÑ€Ð¾Ð½Ð°
 */
 $pvr = array();
 if( isset($pr_momental_this)) {
@@ -24,10 +24,10 @@ if( isset($pr_momental_this)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -48,19 +48,19 @@ if( isset($pr_momental_this)) {
 				$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id] = true;
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//	
-		//echo '$user::['.$uid.']->(&quot;Ïðèêðûòüñÿ&quot;);';		
+		//echo '$user::['.$uid.']->(&quot;ÐŸÑ€Ð¸ÐºÑ€Ñ‹Ñ‚ÑŒÑÑ&quot;);';		
 		$uid1 = $btl->atacks[$id]['uid1'];
 		$uid2 = $btl->atacks[$id]['uid2'];			
 		if( $uid == $uid2 ) {
@@ -105,12 +105,12 @@ if( isset($pr_momental_this)) {
 			}	
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Äåéñòâèå ïðè êëèêå
+	//Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸ ÐºÐ»Ð¸ÐºÐµ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

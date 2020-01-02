@@ -3,20 +3,20 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Ñìåíà ïðîòèâíèêà
+	ÐŸÑ€Ð¸ÐµÐ¼: Ð¡Ð¼ÐµÐ½Ð° Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ°
 */
 $pvr = array();
 if( isset($this->ue['id']) ) {
 	mysql_query('UPDATE `stats` SET `enemy` = "'.mysql_real_escape_string($this->ue['id']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 	$u->info['enemy'] = $this->ue['id'];
-	echo '<font color=red><b>Âû óñïåøíî èñïîëüçîâàëè ïðèåì &quot;Âûáîð ïðîòèâíèêà&quot; íà &quot;'.$this->ue['login'].'&quot;</b></font>';
+	echo '<font color=red><b>Ð’Ñ‹ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð»Ð¸ Ð¿Ñ€Ð¸ÐµÐ¼ &quot;Ð’Ñ‹Ð±Ð¾Ñ€ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ°&quot; Ð½Ð° &quot;'.$this->ue['login'].'&quot;</b></font>';
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-		'Âûáîð ïðîòèâíèêà',
+		'Ð’Ñ‹Ð±Ð¾Ñ€ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ°',
 		'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'',
 		($btl->hodID)
 	);
 }
-//Îòíèìàåì òàêòèêè
+//ÐžÑ‚Ð½Ð¸Ð¼Ð°ÐµÐ¼ Ñ‚Ð°ÐºÑ‚Ð¸ÐºÐ¸
 $this->mintr($pl);
 unset($pvr);
 ?>
