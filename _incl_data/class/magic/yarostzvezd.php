@@ -10,17 +10,17 @@ if( $itm['magic_inci'] == 'yarostzvezd' ) {
 	
 	$pvr = array();
 	
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	$pvr['trs7'] = 5;
 	if( $u->stats['hpNow'] < 1 ) {
-		$u->error = '<font color=red><b>Вы поглибли и не можете воспользоваться свитком...</b></font>';
+		$u->error = '<font color=red><b>Р’С‹ РїРѕРіР»РёР±Р»Рё Рё РЅРµ РјРѕР¶РµС‚Рµ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СЃРІРёС‚РєРѕРј...</b></font>';
 	}elseif( $u->info['tactic7'] < $pvr['trs7'] ) {
-		$u->error = '<font color=red><b>Недостаточно духа, необходимо '.$pvr['trs7'].'...</b></font>';
+		$u->error = '<font color=red><b>РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґСѓС…Р°, РЅРµРѕР±С…РѕРґРёРјРѕ '.$pvr['trs7'].'...</b></font>';
 	}elseif( isset($btl->info['id']) ) {
 		/*
 		$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
 			'',
-			'{tm1} {u1} использовал заклятие &quot;<b>'.$itm['name'].'</b>&quot;.',
+			'{tm1} {u1} РёСЃРїРѕР»СЊР·РѕРІР°Р» Р·Р°РєР»СЏС‚РёРµ &quot;<b>'.$itm['name'].'</b>&quot;.',
 			($btl->hodID)
 		);
 		*/
@@ -32,17 +32,17 @@ if( $itm['magic_inci'] == 'yarostzvezd' ) {
 		mysql_query('DELETE FROM `eff_users` WHERE `uid` = "'.$u->info['id'].'" AND `id_eff` = 22 AND `v1` = "priem" AND `v2` = 325');
 		mysql_query("
 			INSERT INTO `eff_users` ( `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `timeAce`, `user_use`, `delete`, `v1`, `v2`, `img2`, `x`, `hod`, `bj`, `sleeptime`, `no_Ace`, `file_finish`, `tr_life_user`, `deactiveTime`, `deactiveLast`, `mark`, `bs`) VALUES
-			( 22, '".$u->info['id']."', 'Ярость Холодных Звезд', 'add_acestar=1', 0, 77, 0, '".$u->info['id']."', 0, 'priem', 325, 'elementalcrit.gif', 1, -1, 'яростьхолодныхзвезд', 0, 0, '', 0, 0, 0, 1, 0);
+			( 22, '".$u->info['id']."', 'РЇСЂРѕСЃС‚СЊ РҐРѕР»РѕРґРЅС‹С… Р—РІРµР·Рґ', 'add_acestar=1', 0, 77, 0, '".$u->info['id']."', 0, 'priem', 325, 'elementalcrit.gif', 1, -1, 'СЏСЂРѕСЃС‚СЊС…РѕР»РѕРґРЅС‹С…Р·РІРµР·Рґ', 0, 0, '', 0, 0, 0, 1, 0);
 		");
 		
-		$u->error = '<font color=red><b>Вы почувствовали силу... </b></font>';		
+		$u->error = '<font color=red><b>Р’С‹ РїРѕС‡СѓРІСЃС‚РІРѕРІР°Р»Рё СЃРёР»Сѓ... </b></font>';		
 		mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 		
 	}else{
-		$u->error = '<font color=red><b>Свиток возможно использовать только в бою</b></font>';
+		$u->error = '<font color=red><b>РЎРІРёС‚РѕРє РІРѕР·РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РІ Р±РѕСЋ</b></font>';
 	}
 	
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 	
 	unset($pvr);

@@ -8,22 +8,22 @@ if( $itm['magic_inci'] == 'propuskpsh' ) {
 	$test = mysql_fetch_array(mysql_query('SELECT `id`,`time` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "propuskpsh" AND `time` > "'.(time()-300).'" LIMIT 1'));
 	if( $u->info['align'] != 2 ) {
 		if( isset($test['id']) ) {
-			$u->error = 'Çàäåðæêà íå ïðîøëà, åùå '.$u->timeOut($test['time']-time()+300);
+			$u->error = 'Ð—Ð°Ð´ÐµÑ€Ð¶ÐºÐ° Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð°, ÐµÑ‰Ðµ '.$u->timeOut($test['time']-time()+300);
 		}else{
 			$u->addAction(time(),'propuskpsh','');
-			$u->error = 'Âñå ïðîøëî óñïåøíî, çàäåðæêè â ïåùåðû ñíÿòà.';
+			$u->error = 'Ð’ÑÐµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¾ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾, Ð·Ð°Ð´ÐµÑ€Ð¶ÐºÐ¸ Ð² Ð¿ÐµÑ‰ÐµÑ€Ñ‹ ÑÐ½ÑÑ‚Ð°.';
 			if($itm['id'] == 4802) {
 				mysql_query('UPDATE `actions` SET `time` = "'.(time()-43200).'" WHERE `uid` = '.$u->info['id'].' AND `time` > "'.(time()-43200).'" AND `vars` LIKE "psh%" AND `vars` != "psh102" AND `vars` NOT LIKE "psh\_%"');
 			}else{
 				mysql_query('UPDATE `actions` SET `time` = "'.(time()-21600).'" WHERE `uid` = '.$u->info['id'].' AND `time` > "'.(time()-43200).'" AND `vars` LIKE "psh%" AND `vars` != "psh102" AND `vars` NOT LIKE "psh\_%"');
 			}
-			// Äåéñòâóåò òîëüêî íà:
-			// 1) ãäå òàéìåð ìåíüøå 12 ÷àñîâ. (÷òîáû î÷åíü ñòàðûå ïîõîäû íå ìåíÿëè âðåìÿ ïîõîäà 4 ñâèòêà, è ñóòêè íàçàä, èñòîðèÿ ïîõîäîâ íåêîððåêòíàÿ).
-			// 2) íå ñðàáîòàåò íà Ïåùåðó Äðàêîíîâ. 
+			// Ð”ÐµÐ¹ÑÑ‚Ð²ÑƒÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð½Ð°:
+			// 1) Ð³Ð´Ðµ Ñ‚Ð°Ð¹Ð¼ÐµÑ€ Ð¼ÐµÐ½ÑŒÑˆÐµ 12 Ñ‡Ð°ÑÐ¾Ð². (Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾Ñ‡ÐµÐ½ÑŒ ÑÑ‚Ð°Ñ€Ñ‹Ðµ Ð¿Ð¾Ñ…Ð¾Ð´Ñ‹ Ð½Ðµ Ð¼ÐµÐ½ÑÐ»Ð¸ Ð²Ñ€ÐµÐ¼Ñ Ð¿Ð¾Ñ…Ð¾Ð´Ð° 4 ÑÐ²Ð¸Ñ‚ÐºÐ°, Ð¸ ÑÑƒÑ‚ÐºÐ¸ Ð½Ð°Ð·Ð°Ð´, Ð¸ÑÑ‚Ð¾Ñ€Ð¸Ñ Ð¿Ð¾Ñ…Ð¾Ð´Ð¾Ð² Ð½ÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð°Ñ).
+			// 2) Ð½Ðµ ÑÑ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ Ð½Ð° ÐŸÐµÑ‰ÐµÑ€Ñƒ Ð”Ñ€Ð°ÐºÐ¾Ð½Ð¾Ð². 
 			mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 		}
 	}else{
-		$u->error = 'Õàîñíèêè íå ìîãóò ïîëüçîâàòüñÿ ïðîïóñêîì!';
+		$u->error = 'Ð¥Ð°Ð¾ÑÐ½Ð¸ÐºÐ¸ Ð½Ðµ Ð¼Ð¾Ð³ÑƒÑ‚ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒÑÑ Ð¿Ñ€Ð¾Ð¿ÑƒÑÐºÐ¾Ð¼!';
 	}
 }
 ?>

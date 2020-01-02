@@ -8,7 +8,7 @@ if(!defined('GAME'))
 		$io = '';
 		
 		/*
-			1. Требует 4 любых ключа
+			1. РўСЂРµР±СѓРµС‚ 4 Р»СЋР±С‹С… РєР»СЋС‡Р°
 		*/
 		$trgos = false;
 		/*
@@ -26,31 +26,31 @@ if(!defined('GAME'))
 		
 		if( $trgos == true ) {
 			//
-			$io .= '<i>Целебный пирог (х2)</i>, ';
+			$io .= '<i>Р¦РµР»РµР±РЅС‹Р№ РїРёСЂРѕРі (С…2)</i>, ';
 			$this->addItem(1028,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			$this->addItem(1028,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Запас маны (х2)</i>, ';
+			$io .= '<i>Р—Р°РїР°СЃ РјР°РЅС‹ (С…2)</i>, ';
 			$this->addItem(1029,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			$this->addItem(1029,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Восстановление энергии 900HP</i>, ';
+			$io .= '<i>Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЌРЅРµСЂРіРёРё 900HP</i>, ';
 			$this->addItem(2710,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Восстановление энергии 1000MP</i>, ';
+			$io .= '<i>Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЌРЅРµСЂРіРёРё 1000MP</i>, ';
 			$this->addItem(4030,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Зелье Жизни</i>, ';
+			$io .= '<i>Р—РµР»СЊРµ Р–РёР·РЅРё</i>, ';
 			$this->addItem(724,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			mysql_query('UPDATE `items_users` SET `iznosMAX` = 1 WHERE `id` = "'.$iidtm.'" LIMIT 1');
 			//
-			$io .= '<i>Зелье Маны</i>, ';
+			$io .= '<i>Р—РµР»СЊРµ РњР°РЅС‹</i>, ';
 			$this->addItem(1187,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			mysql_query('UPDATE `items_users` SET `iznosMAX` = 1 WHERE `id` = "'.$iidtm.'" LIMIT 1');
 			//
 		}else{
 			$no_open_itm = true;		
-			$this->error = 'Требуется 4 ключа с поля битвы.';
+			$this->error = 'РўСЂРµР±СѓРµС‚СЃСЏ 4 РєР»СЋС‡Р° СЃ РїРѕР»СЏ Р±РёС‚РІС‹.';
 		}
 		
 	}

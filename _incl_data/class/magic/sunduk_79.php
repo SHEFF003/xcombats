@@ -8,7 +8,7 @@ if(!defined('GAME'))
 		$io = '';
 		
 		/*
-			1. Требует 2 любых ключа
+			1. РўСЂРµР±СѓРµС‚ 2 Р»СЋР±С‹С… РєР»СЋС‡Р°
 		*/
 		$trgos = false;
 		/*
@@ -26,23 +26,23 @@ if(!defined('GAME'))
 		
 		if( $trgos == true ) {
 			//
-			$io .= '<i>Целебный пирог (х2)</i>, ';
+			$io .= '<i>Р¦РµР»РµР±РЅС‹Р№ РїРёСЂРѕРі (С…2)</i>, ';
 			$this->addItem(1028,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			$this->addItem(1028,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Запас маны (х2)</i>, ';
+			$io .= '<i>Р—Р°РїР°СЃ РјР°РЅС‹ (С…2)</i>, ';
 			$this->addItem(1029,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			$this->addItem(1029,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Восстановление энергии 600HP</i>, ';
+			$io .= '<i>Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЌРЅРµСЂРіРёРё 600HP</i>, ';
 			$this->addItem(4015,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Восстановление энергии 500MP</i>, ';
+			$io .= '<i>Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЌРЅРµСЂРіРёРё 500MP</i>, ';
 			$this->addItem(4024,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
 		}else{
 			$no_open_itm = true;		
-			$this->error = 'Требуется 2 ключа с поля битвы.';
+			$this->error = 'РўСЂРµР±СѓРµС‚СЃСЏ 2 РєР»СЋС‡Р° СЃ РїРѕР»СЏ Р±РёС‚РІС‹.';
 		}
 		
 	}

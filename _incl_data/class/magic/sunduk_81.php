@@ -8,7 +8,7 @@ if(!defined('GAME'))
 		$io = '';
 		
 		/*
-			1. Требует 6 любых ключа
+			1. РўСЂРµР±СѓРµС‚ 6 Р»СЋР±С‹С… РєР»СЋС‡Р°
 		*/
 		$trgos = false;
 		/*
@@ -26,37 +26,37 @@ if(!defined('GAME'))
 		
 		if( $trgos == true ) {
 			//
-			$io .= '<i>Целебный пирог (х3)</i>, ';
+			$io .= '<i>Р¦РµР»РµР±РЅС‹Р№ РїРёСЂРѕРі (С…3)</i>, ';
 			$this->addItem(1028,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			$this->addItem(1028,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Запас маны (х3)</i>, ';
+			$io .= '<i>Р—Р°РїР°СЃ РјР°РЅС‹ (С…3)</i>, ';
 			$this->addItem(1029,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			$this->addItem(1029,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Восстановление энергии 900HP</i>, ';
+			$io .= '<i>Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЌРЅРµСЂРіРёРё 900HP</i>, ';
 			$this->addItem(2711,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Восстановление энергии 1000MP</i>, ';
+			$io .= '<i>Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЌРЅРµСЂРіРёРё 1000MP</i>, ';
 			$this->addItem(4029,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Пропуск забытых</i>, ';
+			$io .= '<i>РџСЂРѕРїСѓСЃРє Р·Р°Р±С‹С‚С‹С…</i>, ';
 			$this->addItem(2412,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
-			$io .= '<i>Зелье Жизни</i>, ';
+			$io .= '<i>Р—РµР»СЊРµ Р–РёР·РЅРё</i>, ';
 			$this->addItem(724,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			mysql_query('UPDATE `items_users` SET `iznosMAX` = 5 WHERE `id` = "'.$iidtm.'" LIMIT 1');
 			//
-			$io .= '<i>Зелье Маны</i>, ';
+			$io .= '<i>Р—РµР»СЊРµ РњР°РЅС‹</i>, ';
 			$this->addItem(1187,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			mysql_query('UPDATE `items_users` SET `iznosMAX` = 1 WHERE `id` = "'.$iidtm.'" LIMIT 1');
 			//
-			$io .= '<i>Нападение</i>, ';
+			$io .= '<i>РќР°РїР°РґРµРЅРёРµ</i>, ';
 			$this->addItem(865,$this->info['id'],'|nosale=1|sudba='.$this->info['login']);
 			//
 		}else{
 			$no_open_itm = true;		
-			$this->error = 'Требуется 6 ключей с поля битвы.';
+			$this->error = 'РўСЂРµР±СѓРµС‚СЃСЏ 6 РєР»СЋС‡РµР№ СЃ РїРѕР»СЏ Р±РёС‚РІС‹.';
 		}
 		
 	}

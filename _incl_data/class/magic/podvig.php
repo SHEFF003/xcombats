@@ -8,34 +8,34 @@ if( $itm['magic_inci'] == 'podvig' ) {
 	$test = mysql_fetch_array(mysql_query('SELECT `id`,`time` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "podvig" AND `time` > "'.(time()).'" LIMIT 1'));
 	if( $u->info['align'] != 2 ) {
 		if( isset($test['id']) ) {
-			$u->error = 'Çàäåðæêà íå ïðîøëà, åùå '.$u->timeOut($test['time']-time());
+			$u->error = 'Ð—Ð°Ð´ÐµÑ€Ð¶ÐºÐ° Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð°, ÐµÑ‰Ðµ '.$u->timeOut($test['time']-time());
 		}else{
 			//
 			$dngcity = array(
-				6035 => array('angelscity','Áåçäíà'),
-				6036 => array('capitalcity','Ïåùåðà Òûñÿ÷è Ïðîêëÿòèé'),
-				6037 => array('demonscity','Êàòàêîìáû'),
-				6038 => array('mooncity','Ãîðà Ëåãèîíà'),
-				6039 => array('suncity','Ãðèáíèöà'),
-				6040 => array('sandcity','Ïåùåðà Ìãëû')
+				6035 => array('angelscity','Ð‘ÐµÐ·Ð´Ð½Ð°'),
+				6036 => array('capitalcity','ÐŸÐµÑ‰ÐµÑ€Ð° Ð¢Ñ‹ÑÑÑ‡Ð¸ ÐŸÑ€Ð¾ÐºÐ»ÑÑ‚Ð¸Ð¹'),
+				6037 => array('demonscity','ÐšÐ°Ñ‚Ð°ÐºÐ¾Ð¼Ð±Ñ‹'),
+				6038 => array('mooncity','Ð“Ð¾Ñ€Ð° Ð›ÐµÐ³Ð¸Ð¾Ð½Ð°'),
+				6039 => array('suncity','Ð“Ñ€Ð¸Ð±Ð½Ð¸Ñ†Ð°'),
+				6040 => array('sandcity','ÐŸÐµÑ‰ÐµÑ€Ð° ÐœÐ³Ð»Ñ‹')
 			);
 			//
 			$dngcity = $dngcity[$itm['item_id']];
 			//
 			$hgo1 = $u->testAction('`uid` = "'.$u->info['id'].'" AND `time` > "'.(time()-86400).'" AND `vars` = "psh_qt_'.$dngcity[0].'" LIMIT 1',1);
 			if(!isset($hgo1['id'])) {
-				$u->error = 'Íåò çàäåðæêè äëÿ ïîäçåìåëüÿ '.$dngcity[1].'.';
+				$u->error = 'ÐÐµÑ‚ Ð·Ð°Ð´ÐµÑ€Ð¶ÐºÐ¸ Ð´Ð»Ñ Ð¿Ð¾Ð´Ð·ÐµÐ¼ÐµÐ»ÑŒÑ '.$dngcity[1].'.';
 			}else{
 				//
 				$u->addAction(time(),'podvig','');
-				//$u->error = 'Âñå ïðîøëî óñïåøíî, çàäåðæêè íà ïîëó÷åíèå çàäàíèÿ â ïåùåðó '.$dngcity[1].' ñíÿòà.';
-				$u->error = 'Óñïåøíî èñïîëüçîâàí ñâèòîê Ïðàâî íà Ïîäâèã ('.$dngcity[1].')';
+				//$u->error = 'Ð’ÑÐµ Ð¿Ñ€Ð¾ÑˆÐ»Ð¾ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾, Ð·Ð°Ð´ÐµÑ€Ð¶ÐºÐ¸ Ð½Ð° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ Ð² Ð¿ÐµÑ‰ÐµÑ€Ñƒ '.$dngcity[1].' ÑÐ½ÑÑ‚Ð°.';
+				$u->error = 'Ð£ÑÐ¿ÐµÑˆÐ½Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½ ÑÐ²Ð¸Ñ‚Ð¾Ðº ÐŸÑ€Ð°Ð²Ð¾ Ð½Ð° ÐŸÐ¾Ð´Ð²Ð¸Ð³ ('.$dngcity[1].')';
 				mysql_query('UPDATE `actions` SET `time` = "'.(time()-86401).'" WHERE `id` = "'.($hgo1['id']).'" LIMIT 1');
 				mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = "'.$itm['id'].'" LIMIT 1');
 			}
 		}
 	}else{
-		$u->error = 'Õàîñíèêè íå ìîãóò ïîëüçîâàòüñÿ ýòèì ñâèòêîì!';
+		$u->error = 'Ð¥Ð°Ð¾ÑÐ½Ð¸ÐºÐ¸ Ð½Ðµ Ð¼Ð¾Ð³ÑƒÑ‚ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒÑÑ ÑÑ‚Ð¸Ð¼ ÑÐ²Ð¸Ñ‚ÐºÐ¾Ð¼!';
 	}
 }
 ?>

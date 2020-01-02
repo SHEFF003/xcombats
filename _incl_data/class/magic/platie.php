@@ -7,7 +7,7 @@ if(!defined('GAME'))
 if( $itm['magic_inci'] == 'platie' && $itm['iznosNOW'] < $itm['iznosMAX']) {
 	//
 	if( $itm['gift'] == '' || $itm['gift'] == '0' ) {
-		$u->error = '»ÒÔÓÎ¸ÁÓ‚‡Ú¸ ‚ÓÁÏÓÊÌÓ, ÚÓÎ¸ÍÓ ÂÒÎË ‚‡Ï ÔÓ‰‡ˇÚ ˝ÚÓÚ ÔÂ‰ÏÂÚ!';
+		$u->error = '–ò—Å–ø–æ–ª—å–∑–æ–≤–∞—Ç—å –≤–æ–∑–º–æ–∂–Ω–æ, —Ç–æ–ª—å–∫–æ –µ—Å–ª–∏ –≤–∞–º –ø–æ–¥–∞—Ä—è—Ç —ç—Ç–æ—Ç –ø—Ä–µ–¥–º–µ—Ç!';
 	}else{
 		//
 		$itm['tpjjj'] = 1;
@@ -22,14 +22,14 @@ if( $itm['magic_inci'] == 'platie' && $itm['iznosNOW'] < $itm['iznosMAX']) {
 		mysql_query('INSERT INTO `eff_users`
 		(`overType`,`timeUse`,`hod`,`name`,`data`,`uid`, `id_eff`, `img2`, `timeAce`, `v1`) VALUES (
 			"0","'.time().'","-1",
-			"»ÎÎ˛ÁËˇ: '.$itm['name'].'","itempl='.$itm['item_id'].'|itempltype='.$itm['tpjjj'].'","'.$u->info['id'].'",
+			"–ò–ª–ª—é–∑–∏—è: '.$itm['name'].'","itempl='.$itm['item_id'].'|itempltype='.$itm['tpjjj'].'","'.$u->info['id'].'",
 			"'.$itm['tpiii'].'", "spell_item_illusion.gif","0", "0"
 		)');
 		//
 		mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = "'.$itm['id'].'" LIMIT 1');
 		$itm['iznosNOW']--;
 		//
-		$u->error = '¬˚ ËÒÔÓÎ¸ÁÓ‚‡ÎË &quot;'.$itm['name'].'&quot; Ë Ó·Î‡˜ËÎËÒ¸ ‚ Í‡ÒË‚˚Â Ó‰ÂˇÌËˇ!';
+		$u->error = '–í—ã –∏—Å–ø–æ–ª—å–∑–æ–≤–∞–ª–∏ &quot;'.$itm['name'].'&quot; –∏ –æ–±–ª–∞—á–∏–ª–∏—Å—å –≤ –∫—Ä–∞—Å–∏–≤—ã–µ –æ–¥–µ—è–Ω–∏—è!';
 	}
 }
 ?>
