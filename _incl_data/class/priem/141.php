@@ -3,15 +3,15 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Ïðèçðà÷íàÿ çàùèòà
-	Ñëåäóþùèé óäàð ïðîòèâíèêà ïî âàì íàíåñåò íà 75% ìåíüøå óðîíà
+	ÐŸÑ€Ð¸ÐµÐ¼: ÐŸÑ€Ð¸Ð·Ñ€Ð°Ñ‡Ð½Ð°Ñ Ð·Ð°Ñ‰Ð¸Ñ‚Ð°
+	Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ ÑƒÐ´Ð°Ñ€ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ° Ð¿Ð¾ Ð²Ð°Ð¼ Ð½Ð°Ð½ÐµÑÐµÑ‚ Ð½Ð° 75% Ð¼ÐµÐ½ÑŒÑˆÐµ ÑƒÑ€Ð¾Ð½Ð°
 */
 $pvr = array();
 if( isset($pr_momental_this)) {
 	$fx_moment = function(  $uid, $enemy, $j_id, $yron, $profil ) {
 		if(!isset($btl->stats[$btl->uids[$uid]]['um_priem'][$j_id])) {
 			global $u, $btl;
-			if( $btl->stats[$btl->uids[$u2]]['effects'][$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id][0]]['name'] == 'Áåñ÷óâñòâåííîñòü' ) {
+			if( $btl->stats[$btl->uids[$u2]]['effects'][$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id][0]]['name'] == 'Ð‘ÐµÑÑ‡ÑƒÐ²ÑÑ‚Ð²ÐµÐ½Ð½Ð¾ÑÑ‚ÑŒ' ) {
 				$yron = $yron/10;
 			}else{
 				$yron = $yron/4;
@@ -28,10 +28,10 @@ if( isset($pr_momental_this)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -52,16 +52,16 @@ if( isset($pr_momental_this)) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//			
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -86,7 +86,7 @@ if( isset($pr_momental_this)) {
 				$at['p'][$a]['atack'][$j][1] == 5 )) {
 					//if( !isset($at['p'][$a]['priems']['kill'][$uid][$j_id]) ) {
 						//
-						if( $btl->stats[$btl->uids[$u2]]['effects'][$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id][0]]['name'] == 'Áåñ÷óâñòâåííîñòü' ) {
+						if( $btl->stats[$btl->uids[$u2]]['effects'][$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id][0]]['name'] == 'Ð‘ÐµÑÑ‡ÑƒÐ²ÑÑ‚Ð²ÐµÐ½Ð½Ð¾ÑÑ‚ÑŒ' ) {
 							$at['p'][$a]['atack'][$j]['yron']['y'] = round($at['p'][$a]['atack'][$j]['yron']['y']/10);
 							$at['p'][$a]['atack'][$j]['yron']['r'] = round($at['p'][$a]['atack'][$j]['yron']['r']/10);
 							$at['p'][$a]['atack'][$j]['yron']['k'] = round($at['p'][$a]['atack'][$j]['yron']['k']/10);
@@ -123,12 +123,12 @@ if( isset($pr_momental_this)) {
 				$j++;
 			}	
 		}
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Äåéñòâèå ïðè êëèêå
+	//Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸ ÐºÐ»Ð¸ÐºÐµ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

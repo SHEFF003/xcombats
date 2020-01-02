@@ -3,16 +3,16 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Хватка льда
+	РџСЂРёРµРј: РҐРІР°С‚РєР° Р»СЊРґР°
 */
 $pvr = array();
 if( isset($pr_used_this) && isset($pr_moment) ) {
-	//Каждый ход
+	//РљР°Р¶РґС‹Р№ С…РѕРґ
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl, $priem;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -30,11 +30,11 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 		}
 		if( $a > 0 ) {
 			
-			//Проверяем эффект
+			//РџСЂРѕРІРµСЂСЏРµРј СЌС„С„РµРєС‚
 			$prv['j_priem'] = $btl->stats[$btl->uids[$u1]]['u_priem'][$j_id][0];
 			$prv['priem_th'] = $btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['id'];
 			
-			//действия
+			//РґРµР№СЃС‚РІРёСЏ
 			$pvr['data'] = $priem->lookStatsArray($btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['data']);
 			$pvr['di'] = 0;
 			$pvr['dc'] = count($pvr['data']['atgm']);
@@ -45,7 +45,7 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 				//
 				$pvr['x5'] = mysql_fetch_array(mysql_query('SELECT `id`,`x`,`hod` FROM `eff_users` WHERE `uid` = "'.$u1.'" AND `v2` = 191 AND `delete` = 0 LIMIT 1'));
 				if( !isset($pvr['x5']['id']) ) {
-					$priem->addPriem($u1,191,'add_antishock=1',0,77,5,$u1,5,'иммунитеткошеломить');	
+					$priem->addPriem($u1,191,'add_antishock=1',0,77,5,$u1,5,'РёРјРјСѓРЅРёС‚РµС‚РєРѕС€РµР»РѕРјРёС‚СЊ');	
 				}
 				//
 			}
@@ -54,12 +54,12 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 			mysql_query('UPDATE `eff_users` SET `data` = "'.$pvr['redata'].'" WHERE `id` = "'.$btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['id'].'" LIMIT 1');
 			//
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	$pvr['mg'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$btl->users[$btl->uids[$u->info['enemy']]]['id'].'" AND `bj` = "оледенение" AND `user_use` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1'));
+	$pvr['mg'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$btl->users[$btl->uids[$u->info['enemy']]]['id'].'" AND `bj` = "РѕР»РµРґРµРЅРµРЅРёРµ" AND `user_use` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1'));
 	if( isset($pvr['mg']['id']) ) {	
 		//
 		$prv['color2'] = '000000';
@@ -69,25 +69,25 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 		$pvr['x5'] = mysql_fetch_array(mysql_query('SELECT `id`,`x`,`hod` FROM `eff_users` WHERE `uid` = "'.$this->ue['id'].'" AND `v2` = 191 AND `delete` = 0 LIMIT 1'));
 		if( !isset($pvr['x5']['id']) ) {
 			$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-				'<font color^^^^#'.$prv['color2'].'>Хватка Льда</font>',
+				'<font color^^^^#'.$prv['color2'].'>РҐРІР°С‚РєР° Р›СЊРґР°</font>',
 				$prv['text2'],
 				($btl->hodID + 1)
 			);
 			
-			//Добавляем прием
+			//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 			//$this->addEffPr($pl,$id);
-			$this->addPriem($this->ue['id'],$pl['id'],'',0,77,5,$u->info['id'],1,'хваткальда',0,0,1);
+			$this->addPriem($this->ue['id'],$pl['id'],'',0,77,5,$u->info['id'],1,'С…РІР°С‚РєР°Р»СЊРґР°',0,0,1);
 		}else{
 			$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-				'<font color^^^^#'.$prv['color2'].'>Хватка Льда</font>',
-				$prv['text2'].' (Цель полностью защищена от шока)',
+				'<font color^^^^#'.$prv['color2'].'>РҐРІР°С‚РєР° Р›СЊРґР°</font>',
+				$prv['text2'].' (Р¦РµР»СЊ РїРѕР»РЅРѕСЃС‚СЊСЋ Р·Р°С‰РёС‰РµРЅР° РѕС‚ С€РѕРєР°)',
 				($btl->hodID + 1)
 			);
 		}
-		//Отнимаем тактики
+		//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 		//$this->mintr($pl);
 	}else{
-		echo '<font color=red><b>На персонаже нет оледенения (Вашего заклятия)</b></font>';
+		echo '<font color=red><b>РќР° РїРµСЂСЃРѕРЅР°Р¶Рµ РЅРµС‚ РѕР»РµРґРµРЅРµРЅРёСЏ (Р’Р°С€РµРіРѕ Р·Р°РєР»СЏС‚РёСЏ)</b></font>';
 		$cup = true;
 	}
 }

@@ -3,10 +3,10 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Контузия лвл*2 - лвл противника
+	РџСЂРёРµРј: РљРѕРЅС‚СѓР·РёСЏ Р»РІР»*2 - Р»РІР» РїСЂРѕС‚РёРІРЅРёРєР°
 */
 $pvr = array();
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 
 if( $u->info['enemy'] > 0 ) {
 
@@ -17,7 +17,7 @@ if( $u->info['enemy'] > 0 ) {
 	$pvr['hpNow'] = 0+floor($btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']);
 	$pvr['hpAll'] = 0+$btl->stats[$btl->uids[$u->info['enemy']]]['hpAll'];
 		
-	//Используем проверку на урон приемов
+	//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 	$pvr['hp'] = $btl->testYronPriem( $u->info['id'], $u->info['enemy'], 12, $pvr['hp'], -1, true );
 		
 	$pvr['hpSee'] = '-'.$pvr['hp'];
@@ -42,31 +42,31 @@ if( $u->info['enemy'] > 0 ) {
 	
 	if( isset($btl->stats[$btl->uids[$u->info['enemy']]]['antishock']) ) {
 		$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-			'Контузия',
-			'{tm1} '.$prv['text'].' на {u2}. (Защита от шока) <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> (id'.$u->info['enemy'].') ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+			'РљРѕРЅС‚СѓР·РёСЏ',
+			'{tm1} '.$prv['text'].' РЅР° {u2}. (Р—Р°С‰РёС‚Р° РѕС‚ С€РѕРєР°) <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> (id'.$u->info['enemy'].') ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 			($btl->hodID + 1)
 		);
 	}else{
 		$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-			'Контузия',
-			'{tm1} '.$prv['text'].' на {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> (id'.$u->info['enemy'].') ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+			'РљРѕРЅС‚СѓР·РёСЏ',
+			'{tm1} '.$prv['text'].' РЅР° {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> (id'.$u->info['enemy'].') ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 			($btl->hodID + 1)
 		);
-		$this->addPriem($u->info['enemy'],275,'add_notactic=1|add_nousepriem=1',0,77,2,$u->info['id'],5,'ошеломить');
-		$this->addPriem($u->info['enemy'],191,'add_antishock=1',0,77,5,$u->info['id'],5,'иммунитеткошеломить');		
+		$this->addPriem($u->info['enemy'],275,'add_notactic=1|add_nousepriem=1',0,77,2,$u->info['id'],5,'РѕС€РµР»РѕРјРёС‚СЊ');
+		$this->addPriem($u->info['enemy'],191,'add_antishock=1',0,77,5,$u->info['id'],5,'РёРјРјСѓРЅРёС‚РµС‚РєРѕС€РµР»РѕРјРёС‚СЊ');		
 	}
 	
 	/*$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-		'Контузия',
-		'{tm1} '.$prv['text'].' на {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+		'РљРѕРЅС‚СѓР·РёСЏ',
+		'{tm1} '.$prv['text'].' РЅР° {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 		($btl->hodID + 1)
 	);*/
 	
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	$this->mintr($pl);
 
 }else{
-	echo 'Прием не найден.';
+	echo 'РџСЂРёРµРј РЅРµ РЅР°Р№РґРµРЅ.';
 }
 
 unset($pvr);

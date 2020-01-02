@@ -3,13 +3,13 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Каменный Дождь [11]
+	РџСЂРёРµРј: РљР°РјРµРЅРЅС‹Р№ Р”РѕР¶РґСЊ [11]
 */
 $pvr = array();
 	$pvr['hp_0'] = 23;
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	$pvr['hp'] = $pvr['hp_0'];
-	$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'земля', 1 );
+	$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'Р·РµРјР»СЏ', 1 );
 	$pvr['promah_type'] = $pvr['hp'][3];
 	$pvr['promah'] = $pvr['hp'][2];
 	$pvr['krit'] = $pvr['hp'][1];
@@ -18,7 +18,7 @@ $pvr = array();
 	$pvr['hpNow'] = floor($btl->stats[$btl->uids[$this->ue['id']]]['hpNow']);
 	$pvr['hpAll'] = $btl->stats[$btl->uids[$this->ue['id']]]['hpAll'];
 		
-	//Используем проверку на урон приемов
+	//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 	$pvr['hp'] = $btl->testYronPriem( $u->info['id'], $this->ue['id'], 21, $pvr['hp'], 8, true );
 		
 	$pvr['hpSee'] = '-'.$pvr['hp'];
@@ -37,16 +37,16 @@ $pvr = array();
 		
 	$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);
 	
-	//Цвет приема
+	//Р¦РІРµС‚ РїСЂРёРµРјР°
 	if( $pvr['promah'] == false ) {
 		if( $pvr['krit'] == false ) {
 			$prv['color2'] = '006699';
-			if(isset($btl->mcolor[$btl->mname['земля']])) {
-				$prv['color2'] = $btl->mcolor[$btl->mname['земля']];
+			if(isset($btl->mcolor[$btl->mname['Р·РµРјР»СЏ']])) {
+				$prv['color2'] = $btl->mcolor[$btl->mname['Р·РµРјР»СЏ']];
 			}
 			$prv['color'] = '000000';
-			if(isset($btl->mncolor[$btl->mname['земля']])) {
-				$prv['color'] = $btl->mncolor[$btl->mname['земля']];
+			if(isset($btl->mncolor[$btl->mname['Р·РµРјР»СЏ']])) {
+				$prv['color'] = $btl->mncolor[$btl->mname['Р·РµРјР»СЏ']];
 			}
 		}else{
 			$prv['color2'] = 'FF0000';
@@ -63,7 +63,7 @@ $pvr = array();
 		$prv['text2'] = '{tm1} '.$prv['text'].'. <font Color='.$prv['color'].'><b>--</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']';
 	}
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Каменный Дождь [11]</font>',
+		'<font color^^^^#'.$prv['color2'].'>РљР°РјРµРЅРЅС‹Р№ Р”РѕР¶РґСЊ [11]</font>',
 		$prv['text2'],
 		($btl->hodID + 1)
 	);
@@ -79,7 +79,7 @@ $pvr = array();
 			//
 			$pvr['uid'] = $btl->users[$pvr['ix']]['id'];
 			$pvr['hp'] = floor($pvr['hp_0']);
-			$pvr['hp'] = $this->magatack( $u->info['id'], $pvr['uid'], $pvr['hp'], 'земля', 0 );
+			$pvr['hp'] = $this->magatack( $u->info['id'], $pvr['uid'], $pvr['hp'], 'Р·РµРјР»СЏ', 0 );
 			$pvr['promah_type'] = $pvr['hp'][3];
 			$pvr['promah'] = $pvr['hp'][2];
 			$pvr['krit'] = $pvr['hp'][1];
@@ -88,7 +88,7 @@ $pvr = array();
 			$pvr['hpNow'] = floor($btl->stats[$btl->uids[$pvr['uid']]]['hpNow']);
 			$pvr['hpAll'] = $btl->stats[$btl->uids[$pvr['uid']]]['hpAll'];
 				
-			//Используем проверку на урон приемов
+			//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 			$pvr['hp'] = $btl->testYronPriem( $u->info['id'], $pvr['uid'], 21, $pvr['hp'], 8, true );
 				
 			$pvr['hpSee'] = '-'.$pvr['hp'];
@@ -109,12 +109,12 @@ $pvr = array();
 			if( $pvr['promah'] == false ) {
 				if( $pvr['krit'] == false ) {
 					$prv['color2'] = '006699';
-					if(isset($btl->mcolor[$btl->mname['земля']])) {
-						$prv['color2'] = $btl->mcolor[$btl->mname['земля']];
+					if(isset($btl->mcolor[$btl->mname['Р·РµРјР»СЏ']])) {
+						$prv['color2'] = $btl->mcolor[$btl->mname['Р·РµРјР»СЏ']];
 					}
 					$prv['color'] = '000000';
-					if(isset($btl->mncolor[$btl->mname['земля']])) {
-						$prv['color'] = $btl->mncolor[$btl->mname['земля']];
+					if(isset($btl->mncolor[$btl->mname['Р·РµРјР»СЏ']])) {
+						$prv['color'] = $btl->mncolor[$btl->mname['Р·РµРјР»СЏ']];
 					}
 				}else{
 					$prv['color2'] = 'FF0000';
@@ -127,7 +127,7 @@ $pvr = array();
 			//
 			
 			//
-			//$prv['color2'] = $btl->mcolor[$btl->mname['земля']];
+			//$prv['color2'] = $btl->mcolor[$btl->mname['Р·РµРјР»СЏ']];
 			$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);	
 			if( $pvr['promah_type'] == 2 ) {
 				$prv['text2'] = '{tm1} '.$prv['text'].'. <font Color='.$prv['color'].'><b>--</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']';
@@ -135,16 +135,16 @@ $pvr = array();
 				$prv['text2'] = '{tm1} '.$prv['text'].'. <font Color='.$prv['color'].'><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']';
 			}
 			$btl->priemAddLog( $id, 1, 2, $u->info['id'], $pvr['uid'],
-				'<font color^^^^#'.$prv['color2'].'>Каменный Дождь [11]</font>',
+				'<font color^^^^#'.$prv['color2'].'>РљР°РјРµРЅРЅС‹Р№ Р”РѕР¶РґСЊ [11]</font>',
 				$prv['text2'],
 				($btl->hodID + 1)
 			);
 			
-			//Добавляем прием
+			//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 			//$this->addEffPr($pl,$id);
-			//$this->addPriem($pvr['uid'],$pl['id'],'atgm='.floor($pvr['hp']/5).'',0,77,5,$u->info['id'],1,'ядовитоеоблако',0,0,1);
+			//$this->addPriem($pvr['uid'],$pl['id'],'atgm='.floor($pvr['hp']/5).'',0,77,5,$u->info['id'],1,'СЏРґРѕРІРёС‚РѕРµРѕР±Р»Р°РєРѕ',0,0,1);
 			
-			//Отнимаем тактики
+			//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 			//$this->mintr($pl);
 			//
 			$pvr['xx']++;
@@ -152,11 +152,11 @@ $pvr = array();
 		$pvr['ix']++;
 	}
 	
-	//Добавляем прием
+	//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 	//$this->addEffPr($pl,$id);
-	//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.($pvr['hp']/16).'',2,77,4,$u->info['id'],3,'оледенение',0,0,1);
+	//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.($pvr['hp']/16).'',2,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ',0,0,1);
 	
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 
 unset($pvr);

@@ -3,7 +3,7 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Энергия Воздуха
+	РџСЂРёРµРј: Р­РЅРµСЂРіРёСЏ Р’РѕР·РґСѓС…Р°
 */
 $pvr = array();
 
@@ -22,13 +22,13 @@ if( !isset($pvr['x5']['id']) ) {
 	$prv['eda'] = $pl['date3'];
 	//
 	if( isset($prv['eda']) ) {
-		$u->is['mab1'] = 'Броня головы';
-		$u->is['mab2'] = 'Броня корпуса';
-		$u->is['mab3'] = 'Броня пояса';
-		$u->is['mab4'] = 'Броня ног';
+		$u->is['mab1'] = 'Р‘СЂРѕРЅСЏ РіРѕР»РѕРІС‹';
+		$u->is['mab2'] = 'Р‘СЂРѕРЅСЏ РєРѕСЂРїСѓСЃР°';
+		$u->is['mab3'] = 'Р‘СЂРѕРЅСЏ РїРѕСЏСЃР°';
+		$u->is['mab4'] = 'Р‘СЂРѕРЅСЏ РЅРѕРі';
 		$prv['d'] = $u->lookStats($prv['eda']);
 		$prv['j'] = $u->lookStats($this->redate($prv['eda'],$this->ue['id']));
-		$prv['v'] = $u->lookKeys($this->redate($prv['eda'],$this->ue['id']),0); // ключи 2
+		$prv['v'] = $u->lookKeys($this->redate($prv['eda'],$this->ue['id']),0); // РєР»СЋС‡Рё 2
 		$prv['i'] = 0; $prv['inf'] = '';
 		while($prv['i']<count($prv['v'])) {
 			//$prv['j'][$prv['v'][$prv['i']]] += $prv['j'][$prv['v'][$prv['i']]];
@@ -51,22 +51,22 @@ if( !isset($pvr['x5']['id']) ) {
 	//
 	$prv['color2'] = '000000';
 	$prv['text'] = $btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);	
-	$prv['text2'] = '{tm1} '.$prv['text'].' на {u2}.'.$prv['effx'];
+	$prv['text2'] = '{tm1} '.$prv['text'].' РЅР° {u2}.'.$prv['effx'];
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Энергия Воздуха'.$prv['x'].'</font>',
+		'<font color^^^^#'.$prv['color2'].'>Р­РЅРµСЂРіРёСЏ Р’РѕР·РґСѓС…Р°'.$prv['x'].'</font>',
 		$prv['text2'],
 		($btl->hodID + 0)
 	);
 		
-	//Добавляем прием
+	//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 	//$this->addEffPr($pl,$id);
-	//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.floor($pvr['hp']/10).'',0,77,-1,$u->info['id'],5,'цельводы',0,0,1);
+	//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.floor($pvr['hp']/10).'',0,77,-1,$u->info['id'],5,'С†РµР»СЊРІРѕРґС‹',0,0,1);
 		
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 }else{
 	$cup = true;
-	echo '<font color=red><b>На пероснаже достигнуто максиальное колличество заклятий</b></font>';
+	echo '<font color=red><b>РќР° РїРµСЂРѕСЃРЅР°Р¶Рµ РґРѕСЃС‚РёРіРЅСѓС‚Рѕ РјР°РєСЃРёР°Р»СЊРЅРѕРµ РєРѕР»Р»РёС‡РµСЃС‚РІРѕ Р·Р°РєР»СЏС‚РёР№</b></font>';
 }
 
 unset($pvr);

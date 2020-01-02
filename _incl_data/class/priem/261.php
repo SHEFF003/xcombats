@@ -3,12 +3,12 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Заряд: Поражение
+	РџСЂРёРµРј: Р—Р°СЂСЏРґ: РџРѕСЂР°Р¶РµРЅРёРµ
 */
 $pvr = array();
 $pvr['mg'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$btl->users[$btl->uids[$this->ue['id']]]['id'].'" AND `v2` = "260" AND `user_use` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1'));
 if( isset($pvr['mg']['id']) ) {	
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	//$pvr['hp'] = floor(144/3*$pvr['mg']['x']);
 	/*$pvr['hp'] = 1;*/
 			//
@@ -16,7 +16,7 @@ if( isset($pvr['mg']['id']) ) {
 			//
 	/**/	
 	if( $pvr['data']['add_mg2static_points'][0] < 1 ) {
-		echo '<font color=red><b>Статика не собрала достаточного количества зарядов</b></font>';
+		echo '<font color=red><b>РЎС‚Р°С‚РёРєР° РЅРµ СЃРѕР±СЂР°Р»Р° РґРѕСЃС‚Р°С‚РѕС‡РЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°СЂСЏРґРѕРІ</b></font>';
 		$cup = true;
 	}else{
 		$pvr['hp'] = floor($btl->stats[$btl->uids[$this->ue['id']]]['hpAll']-floor($btl->stats[$btl->uids[$this->ue['id']]]['hpNow']));
@@ -51,13 +51,13 @@ if( isset($pvr['mg']['id']) ) {
 		$pvr['mx'] = $pvr['mx'][$u->info['level']];
 		
 		//
-		//$pvr['hp'] = floor($pvr['hp']/20*$u->stats['mg3']);//умелки
-		//$pvr['hp'] = floor($pvr['hp']/200*$u->stats['s5']);//Интелект
+		//$pvr['hp'] = floor($pvr['hp']/20*$u->stats['mg3']);//СѓРјРµР»РєРё
+		//$pvr['hp'] = floor($pvr['hp']/200*$u->stats['s5']);//РРЅС‚РµР»РµРєС‚
 		/*if( $btl->stats[$btl->uids[$u->info['enemy']]]['hpNow'] < floor($btl->stats[$btl->uids[$u->info['enemy']]]['hpAll']/100*30) ) {
 			$pvr['hp'] = floor( $pvr['hp'] + ($pvr['hp']/100*(50*$pvr['mg']['x'])) );
 		}*/
 
-		$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'воздух', 1 );
+		$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'РІРѕР·РґСѓС…', 1 );
 		$pvr['promah_type'] = $pvr['hp'][3];
 		$pvr['promah'] = $pvr['hp'][2];
 		$pvr['krit'] = $pvr['hp'][1];
@@ -76,7 +76,7 @@ if( isset($pvr['mg']['id']) ) {
 			}
 		}
 			
-		//Используем проверку на урон приемов
+		//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 		$pvr['hp'] = $btl->testYronPriem( $u->info['id'], $this->ue['id'], 21, $pvr['hp'], 6, true );
 			
 		$pvr['hpSee'] = '-'.$pvr['hp'];
@@ -95,16 +95,16 @@ if( isset($pvr['mg']['id']) ) {
 			
 		$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);
 		
-		//Цвет приема
+		//Р¦РІРµС‚ РїСЂРёРµРјР°
 		if( $pvr['promah'] == false ) {
 			if( $pvr['krit'] == false ) {
 				$prv['color2'] = '006699';
-				if(isset($btl->mcolor[$btl->mname['воздух']])) {
-					$prv['color2'] = $btl->mcolor[$btl->mname['воздух']];
+				if(isset($btl->mcolor[$btl->mname['РІРѕР·РґСѓС…']])) {
+					$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕР·РґСѓС…']];
 				}
 				$prv['color'] = '000000';
-				if(isset($btl->mncolor[$btl->mname['воздух']])) {
-					$prv['color'] = $btl->mncolor[$btl->mname['воздух']];
+				if(isset($btl->mncolor[$btl->mname['РІРѕР·РґСѓС…']])) {
+					$prv['color'] = $btl->mncolor[$btl->mname['РІРѕР·РґСѓС…']];
 				}
 			}else{
 				$prv['color2'] = 'FF0000';
@@ -121,24 +121,24 @@ if( isset($pvr['mg']['id']) ) {
 			$prv['text2'] = '{tm1} '.$prv['text'].'. <font Color='.$prv['color'].'><b>--</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']';
 		}
 		$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-			'<font color^^^^#'.$prv['color2'].'>Заряд: Поражение</font>',
+			'<font color^^^^#'.$prv['color2'].'>Р—Р°СЂСЏРґ: РџРѕСЂР°Р¶РµРЅРёРµ</font>',
 			$prv['text2'],
 			($btl->hodID + 1)
 		);
 		
-		//Добавляем прием
+		//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 		//$this->addEffPr($pl,$id);
-		//$this->addPriem($u->info['enemy'],$pl['id'],'atgm='.($pvr['hp']/16).'',2,77,4,$u->info['id'],3,'оледенение',0,0,1);
+		//$this->addPriem($u->info['enemy'],$pl['id'],'atgm='.($pvr['hp']/16).'',2,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ',0,0,1);
 		
-		//Удаляем оледенение
+		//РЈРґР°Р»СЏРµРј РѕР»РµРґРµРЅРµРЅРёРµ
 		$pvr['mg']['priem']['id'] = $pvr['mg']['id'];
 		$btl->delPriem($pvr['mg'],$btl->users[$btl->uids[$this->ue['id']]],2);
 		
-		//Отнимаем тактики
+		//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 		$this->mintr($pl);
 	}
 }else{
-	echo '<font color=red><b>На персонаже нет Статики (Вашего заклятия)</b></font>';
+	echo '<font color=red><b>РќР° РїРµСЂСЃРѕРЅР°Р¶Рµ РЅРµС‚ РЎС‚Р°С‚РёРєРё (Р’Р°С€РµРіРѕ Р·Р°РєР»СЏС‚РёСЏ)</b></font>';
 	$cup = true;
 }
 unset($pvr);

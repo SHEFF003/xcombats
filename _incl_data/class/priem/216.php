@@ -3,16 +3,16 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Ñêðûòàÿ ñèëà
-	Ñëåäóþùèé óäàð ïî ïðîòèâíèêó áóäåò êðèòè÷åñêèì
+	ÐŸÑ€Ð¸ÐµÐ¼: Ð¡ÐºÑ€Ñ‹Ñ‚Ð°Ñ ÑÐ¸Ð»Ð°
+	Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ ÑƒÐ´Ð°Ñ€ Ð¿Ð¾ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÑƒ Ð±ÑƒÐ´ÐµÑ‚ ÐºÑ€Ð¸Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¼
 */
 $pvr = array();
 if( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -33,16 +33,16 @@ if( isset($pr_tested_this) ) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -70,13 +70,13 @@ if( isset($pr_tested_this) ) {
 						//
 						if( $at['p'][$a]['atack'][$j][1] == 3 ) {
 							$at['p'][$a]['atack'][$j][1] = 4;
-							//Ïðîáèâ áëîê
+							//ÐŸÑ€Ð¾Ð±Ð¸Ð² Ð±Ð»Ð¾Ðº
 							$at['p'][$a]['atack'][$j]['yron'] = $at['p'][$a]['atack'][$j]['block'];
 							$at['p'][$a]['atack'][$j]['yron']['y'] = round(1+$at['p'][$a]['atack'][$j]['yron']['k']/2);
 							$at['p'][$a]['atack'][$j]['yron']['r'] = -round(1+$at['p'][$a]['atack'][$j]['yron']['k']/2);
 						}else{
 							$at['p'][$a]['atack'][$j][1] = 5;
-							//Ïðîñòî êðèò
+							//ÐŸÑ€Ð¾ÑÑ‚Ð¾ ÐºÑ€Ð¸Ñ‚
 							$at['p'][$a]['atack'][$j]['yron']['y'] = $at['p'][$a]['atack'][$j]['yron']['k'];
 							$at['p'][$a]['atack'][$j]['yron']['r'] = -($at['p'][$a]['atack'][$j]['yron']['k']);
 						}
@@ -84,7 +84,7 @@ if( isset($pr_tested_this) ) {
 						//
 						$at['p'][$a]['atack'][$j]['yron']['plog'][] = '$this->deleffm(216,'.(0+$uid).','.$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id][3].');
 							$this->priemAddLog( '.$id.', '.$a.', '.$b.', '.$u1.', '.$u2.',
-							"Ñêðûòàÿ ñèëà",
+							"Ð¡ÐºÑ€Ñ‹Ñ‚Ð°Ñ ÑÐ¸Ð»Ð°",
 							"{tm1} '.$btl->addlt($a , 17 , $btl->users[$btl->uids[$u1]]['sex'] , NULL).'",
 						'.($btl->hodID + 1).' );';						
 						//
@@ -101,7 +101,7 @@ if( isset($pr_tested_this) ) {
 	};
 	unset( $pr_used_this );
 }else{
-	//Äåéñòâèå ïðè êëèêå
+	//Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸ ÐºÐ»Ð¸ÐºÐµ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

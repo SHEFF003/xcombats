@@ -3,11 +3,11 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Жертва огню
+	РџСЂРёРµРј: Р–РµСЂС‚РІР° РѕРіРЅСЋ
 */
 $pvr = array();
 
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 if( isset($pr_momental_this)) {
 	$fx_moment = function(  $uid, $enemy, $j_id, $yron, $profil, $inlog ) {
 		return round($yron);
@@ -23,10 +23,10 @@ if( isset($pr_momental_this)) {
 	};
 	unset( $pr_used_this );
 }else{
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	/*
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-		'Медитация',
+		'РњРµРґРёС‚Р°С†РёСЏ',
 		'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'',
 		($btl->hodID+1)
 	);
@@ -41,7 +41,7 @@ if( isset($pr_momental_this)) {
 				//$pvr['mp'] = $btl->hphe( $u->info['id'] , $pvr['hp'] );
 				
 				if( $pvr['mpTr'] > 0 ) {
-					//Требуется хилл
+					//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 					if( $pvr['mpTr'] < $pvr['mp'] ) {
 						$pvr['mp'] = $pvr['mpTr'];
 					}
@@ -59,7 +59,7 @@ if( isset($pr_momental_this)) {
 				//
 				//$btl->users[$btl->uids[$u->info['id']]]['last_hp'] = $pvr['hp'];
 				//
-				$pvr['color2'] = $btl->mcolor[$btl->mname['земля']];
+				$pvr['color2'] = $btl->mcolor[$btl->mname['Р·РµРјР»СЏ']];
 				//
 				$u->stats['mpNow'] = $pvr['mpNow'];	
 				$u->info['mpNow'] = $pvr['mpNow'];	
@@ -85,7 +85,7 @@ if( isset($pr_momental_this)) {
 				//
 				//$btl->users[$btl->uids[$u->info['id']]]['last_hp'] = $pvr['hp'];
 				//
-				$pvr['color2'] = $btl->mcolor[$btl->mname['огонь']];
+				$pvr['color2'] = $btl->mcolor[$btl->mname['РѕРіРѕРЅСЊ']];
 				//
 				$u->stats['hpNow'] = $pvr['hpNow'];	
 				$u->info['hpNow'] = $pvr['hpNow'];	
@@ -93,14 +93,14 @@ if( isset($pr_momental_this)) {
 				$btl->users[$btl->uids[$u->info['id']]]['hpNow'] = $pvr['hpNow'];									
 				mysql_query('UPDATE `stats` SET `hpNow` = "'.$u->stats['hpNow'].'",`mpNow` = "'.$u->stats['mpNow'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				//
-				$btl->priemAddLogFast( $u->info['id'], 0, "<font color^^^^#".$pvr['color2'].">Жертва Огню</font>",
-					'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' на <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+				$btl->priemAddLogFast( $u->info['id'], 0, "<font color^^^^#".$pvr['color2'].">Р–РµСЂС‚РІР° РћРіРЅСЋ</font>",
+					'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' РЅР° <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 				1, time() );
-				$btl->priemAddLogFast( $u->info['id'], 0, "<font color^^^^#".$pvr['color2'].">Жертва Огню</font>",
-					'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' на <font Color=#006699><b>'.$pvr['mpSee'].'</b></font> ['.$pvr['mpNow'].'/'.$pvr['mpAll'].'] (Мана)',
+				$btl->priemAddLogFast( $u->info['id'], 0, "<font color^^^^#".$pvr['color2'].">Р–РµСЂС‚РІР° РћРіРЅСЋ</font>",
+					'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' РЅР° <font Color=#006699><b>'.$pvr['mpSee'].'</b></font> ['.$pvr['mpNow'].'/'.$pvr['mpAll'].'] (РњР°РЅР°)',
 				1, time() );					
 				//
-	echo '<font color=red><b>Вы успешно использовали прием &quot;Жертва Огню&quot;</b></font>';
+	echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё РїСЂРёРµРј &quot;Р–РµСЂС‚РІР° РћРіРЅСЋ&quot;</b></font>';
 	//$this->addEffPr($pl,$id);
 	$this->mintr($pl);
 }

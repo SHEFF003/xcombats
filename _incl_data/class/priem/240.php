@@ -3,16 +3,16 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Хлебнуть крови
-	Следующий критический удар и 2 удара за ним восстанавливают здоровье
+	РџСЂРёРµРј: РҐР»РµР±РЅСѓС‚СЊ РєСЂРѕРІРё
+	РЎР»РµРґСѓСЋС‰РёР№ РєСЂРёС‚РёС‡РµСЃРєРёР№ СѓРґР°СЂ Рё 2 СѓРґР°СЂР° Р·Р° РЅРёРј РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°СЋС‚ Р·РґРѕСЂРѕРІСЊРµ
 */
 $pvr = array();
 if( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -29,7 +29,7 @@ if( isset($pr_tested_this) ) {
 			$u2 = ${'uid1'};
 		}
 		//
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
@@ -37,10 +37,10 @@ if( isset($pr_tested_this) ) {
 
 }elseif( isset($pr_used_this)  ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -77,7 +77,7 @@ if( isset($pr_tested_this) ) {
 						}			
 						//
 						$at['p'][$a]['atack'][$j]['yron']['used'][] = array($j_id,$u1,$pvr['used']);
-						//обновляем параметры
+						//РѕР±РЅРѕРІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
 						//
 						//
 						$pvr['hp'] = round($pvr['hp']/2);
@@ -98,7 +98,7 @@ if( isset($pr_tested_this) ) {
 						$pvr['hpAll'] = $btl->stats[$btl->uids[$u1]]['hpAll'];
 						$pvr['hpTr'] = $pvr['hpAll'] - $pvr['hpNow'];
 						if( $pvr['hpTr'] > 0 ) {
-							//Требуется хилл
+							//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 							if( $pvr['hpTr'] < $pvr['hp'] ) {
 								$pvr['hp'] = $pvr['hpTr'];
 							}
@@ -139,8 +139,8 @@ if( isset($pr_tested_this) ) {
 						mysql_query('UPDATE `eff_users` SET `hod` = "'.$btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['hod'].'", `data` = "'.$btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['data'].'" WHERE `id` = "'.$prv['priem_th'].'" LIMIT 1');
 						//
 						$at['p'][$a]['atack'][$j]['yron']['plog'][] = '$this->priemAddLog( '.$id.', '.$a.', '.$b.', '.$u1.', '.$u2.',
-							"Хлебнуть крови",
-							"{tm1} '.$btl->addlt($a , 17 , $btl->users[$btl->uids[$u1]]['sex'] , NULL).' на <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']",
+							"РҐР»РµР±РЅСѓС‚СЊ РєСЂРѕРІРё",
+							"{tm1} '.$btl->addlt($a , 17 , $btl->users[$btl->uids[$u1]]['sex'] , NULL).' РЅР° <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']",
 						'.($btl->hodID + 1).' );';	
 						//
 						//$at['p'][$a]['priems']['kill'][$u1][$j_id] = true;
@@ -149,12 +149,12 @@ if( isset($pr_tested_this) ) {
 				$j++;
 			}	
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	if( !isset($this->uids) ) {
 		$this->addEffPr($pl,$id);
 	}

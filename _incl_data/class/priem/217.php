@@ -3,16 +3,16 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Ðàçãàäàòü òàêòèêó
-	Ñíèìàåò âñå àêòèâíûå ïðèåìû íà ïðîòèâíèêå
+	ÐŸÑ€Ð¸ÐµÐ¼: Ð Ð°Ð·Ð³Ð°Ð´Ð°Ñ‚ÑŒ Ñ‚Ð°ÐºÑ‚Ð¸ÐºÑƒ
+	Ð¡Ð½Ð¸Ð¼Ð°ÐµÑ‚ Ð²ÑÐµ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ðµ Ð¿Ñ€Ð¸ÐµÐ¼Ñ‹ Ð½Ð° Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐµ
 */
 $pvr = array();
 if( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -33,16 +33,16 @@ if( isset($pr_tested_this) ) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) && isset($pr_moment) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -62,22 +62,22 @@ if( isset($pr_tested_this) ) {
 
 			if( $pvr['used'] == 0 && !isset($at['p'][$a]['priems']['kill'][$u1][$j_id]) ) {
 				//
-				$pvr['nouse'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u2.'" AND `name` LIKE "%Àãðåññèâíàÿ çàùèòà%" AND `delete` = "0" LIMIT 1'));
+				$pvr['nouse'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u2.'" AND `name` LIKE "%ÐÐ³Ñ€ÐµÑÑÐ¸Ð²Ð½Ð°Ñ Ð·Ð°Ñ‰Ð¸Ñ‚Ð°%" AND `delete` = "0" LIMIT 1'));
 				if(isset($pvr['nouse']['id'])) {
 					//
-					$btl->priemAddLogFast( $u1, 0, "Ðàçãàäàòü òàêòèêó",
-						'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u1]]['sex'] , NULL).' (Ïðîòèâíèê çàùèùåí)',
+					$btl->priemAddLogFast( $u1, 0, "Ð Ð°Ð·Ð³Ð°Ð´Ð°Ñ‚ÑŒ Ñ‚Ð°ÐºÑ‚Ð¸ÐºÑƒ",
+						'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u1]]['sex'] , NULL).' (ÐŸÑ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸Ðº Ð·Ð°Ñ‰Ð¸Ñ‰ÐµÐ½)',
 					1, time() );					
 					//
 				}else{
 					//
-					$btl->priemAddLogFast( $u1, 0, "Ðàçãàäàòü òàêòèêó",
+					$btl->priemAddLogFast( $u1, 0, "Ð Ð°Ð·Ð³Ð°Ð´Ð°Ñ‚ÑŒ Ñ‚Ð°ÐºÑ‚Ð¸ÐºÑƒ",
 						'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u1]]['sex'] , NULL).'',
 					1, time() );					
 					//
 					mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `id` = "'.$btl->stats[$btl->uids[$u1]]['u_priem'][$j_id][3].'" AND `uid` = "'.$u1.'" LIMIT 1');
 					unset($btl->stats[$btl->uids[$u1]]['u_priem'][$j_id]);
-					//Çàêàí÷èâàåì ïðèåìû íà èãðîêå
+					//Ð—Ð°ÐºÐ°Ð½Ñ‡Ð¸Ð²Ð°ÐµÐ¼ Ð¿Ñ€Ð¸ÐµÐ¼Ñ‹ Ð½Ð° Ð¸Ð³Ñ€Ð¾ÐºÐµ
 					/*$pvr['sp'] = mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u2.'" AND `delete` = 0 AND `v1` = "priem" AND
 						`v2` != 201 AND `v2` != 211 AND `v2` != 217 AND `v2` != 233 AND `v2` != 188 AND `v2` != 139
 						AND `v2` != 191 AND `v2` != 229
@@ -133,7 +133,7 @@ if( isset($pr_tested_this) ) {
 						AND `a`.`v2` != 235
 						AND `a`.`v2` != 236
 						
-						AND `name` NOT LIKE "%Èììóíèòåò%"
+						AND `name` NOT LIKE "%Ð˜Ð¼Ð¼ÑƒÐ½Ð¸Ñ‚ÐµÑ‚%"
 					
 					AND ( SELECT `b`.`neg` FROM `priems` AS `b` WHERE `b`.`id` = `a`.`v2` ORDER BY `b`.`neg` DESC LIMIT 1 ) = 1 LIMIT 20');
 					while($pvr['pl'] = mysql_fetch_array($pvr['sp'])) {
@@ -146,12 +146,12 @@ if( isset($pr_tested_this) ) {
 				}
 			}	
 		}
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Äåéñòâèå ïðè êëèêå
+	//Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸ ÐºÐ»Ð¸ÐºÐµ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

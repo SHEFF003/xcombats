@@ -3,17 +3,17 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Иней 9
-	Следующий удар противника по вам нанесет на 25% меньше урона
+	РџСЂРёРµРј: РРЅРµР№ 9
+	РЎР»РµРґСѓСЋС‰РёР№ СѓРґР°СЂ РїСЂРѕС‚РёРІРЅРёРєР° РїРѕ РІР°Рј РЅР°РЅРµСЃРµС‚ РЅР° 25% РјРµРЅСЊС€Рµ СѓСЂРѕРЅР°
 */
 $pvr = array();
 if( isset($pr_momental_this)) {
 	$fx_moment = function(  $uid, $enemy, $j_id, $yron, $profil ) {
 		if(!isset($btl->stats[$btl->uids[$uid]]['um_priem'][$j_id])) {
 			global $u, $btl;
-			$prv['color2'] = $btl->mcolor[$btl->mname['вода']];
+			$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];
 			$yron = ($yron*0.75)*0.75;
-			$btl->priemAddLogFast( $uid, 0, "<font color^^^^#".$prv['color2'].">Иней [9]</font>",
+			$btl->priemAddLogFast( $uid, 0, "<font color^^^^#".$prv['color2'].">РРЅРµР№ [9]</font>",
 				'{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).'',
 			0, time() );
 			if( $yron < 0 ) {
@@ -25,11 +25,11 @@ if( isset($pr_momental_this)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;
-		$prv['color2'] = $btl->mcolor[$btl->mname['вода']];	
+		$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -50,17 +50,17 @@ if( isset($pr_momental_this)) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl, $priem;
-		$prv['color2'] = $btl->mcolor[$btl->mname['вода']];	
+		$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//$prv['j_priem'] = $btl->stats[$btl->uids[$u1]]['u_priem'][$j_id][0];
 		//$prv['priem_th'] = $btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['id'];
@@ -108,7 +108,7 @@ if( isset($pr_momental_this)) {
 							}
 							
 			
-							//Используем проверку на урон приемов
+							//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 							$pvr['hp'] = $btl->testYronPriem( $u2, $u1, 12, $pvr['hp'], -1, true );
 							
 							$pvr['hpNow'] = floor($btl->stats[$btl->uids[$u1]]['hpNow']);
@@ -128,12 +128,12 @@ if( isset($pr_momental_this)) {
 							$btl->stats[$btl->uids[$u1]]['hpNow'] = $pvr['hpNow'];					
 							mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->stats[$btl->uids[$u1]]['hpNow'].'" WHERE `id` = "'.$u1.'" LIMIT 1');
 							$at['p'][$a]['atack'][$j]['yron']['plog'][] = '$this->priemAddLog( '.$id.', '.$b.', '.$a.', '.$u2.', '.$u1.',
-								"<font color^^^^#'.$prv['color2'].'>Иней [9]</font>",
-								"{tm1} {u2} получил урон от эффекта &quot;{pr}&quot;. <font Color='.$prv['color'].'><b>'.$pvr['hpSee'].'</b></font> ('.$pvr['hppovar'].') ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']",
+								"<font color^^^^#'.$prv['color2'].'>РРЅРµР№ [9]</font>",
+								"{tm1} {u2} РїРѕР»СѓС‡РёР» СѓСЂРѕРЅ РѕС‚ СЌС„С„РµРєС‚Р° &quot;{pr}&quot;. <font Color='.$prv['color'].'><b>'.$pvr['hpSee'].'</b></font> ('.$pvr['hppovar'].') ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']",
 							'.($btl->hodID + 1).' );';
 						}
 						//
-						$priem->addPriem($u1,279,'|add_yzm3=-'.floor($btl->users[$btl->uids[$u2]]['level']*1.25).'',2,77,2,$u2,100,'инейкасание',0,0,1);
+						$priem->addPriem($u1,279,'|add_yzm3=-'.floor($btl->users[$btl->uids[$u2]]['level']*1.25).'',2,77,2,$u2,100,'РёРЅРµР№РєР°СЃР°РЅРёРµ',0,0,1);
 						//
 						$at['p'][$a]['atack'][$j]['yron']['used'][] = array($j_id,$uid,$pvr['used']);
 						$at['p'][$a]['atack'][$j]['yron']['kill'][] = array($j_id,$uid,$pvr['kill']);
@@ -144,17 +144,17 @@ if( isset($pr_momental_this)) {
 				$j++;
 			}	
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	$prv['color2'] = $btl->mcolor[$btl->mname['вода']];
-	//Действие при клике
+	$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	$this->addEffPr($pl,$id);
 	$prv['text'] = '{tm1}'.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'.';
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['id'],
-		'<font color^^^^#'.$prv['color2'].'>Иней [9]</font>',
+		'<font color^^^^#'.$prv['color2'].'>РРЅРµР№ [9]</font>',
 		$prv['text'],
 		($btl->hodID + 1)
 	);

@@ -3,9 +3,9 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	œËÂÏ: ¿„ÂÒÒË‚Ì‡ˇ Á‡˘ËÚ‡
-	—ÎÂ‰Û˛˘ËÈ Û‰‡ ÔÓÚË‚ÌËÍ‡ ÔÓ ‚‡Ï ·Û‰ÂÚ ‡‚ÂÌ 1 Â‰.
-	+ Ì‡ÌÓÒËÚ ÛÓÌ ÔÓÚË‚ÌËÍÛ Ì‡ 3*(Î‚Î ÔÓÚË‚ÌËÍ‡) Â‰. ÛÓÌ‡
+	–ü—Ä–∏–µ–º: –ê–≥—Ä–µ—Å—Å–∏–≤–Ω–∞—è –∑–∞—â–∏—Ç–∞
+	–°–ª–µ–¥—É—é—â–∏–π —É–¥–∞—Ä –ø—Ä–æ—Ç–∏–≤–Ω–∏–∫–∞ –ø–æ –≤–∞–º –±—É–¥–µ—Ç —Ä–∞–≤–µ–Ω 1 –µ–¥.
+	+ –Ω–∞–Ω–æ—Å–∏—Ç —É—Ä–æ–Ω –ø—Ä–æ—Ç–∏–≤–Ω–∏–∫—É –Ω–∞ 3*(–ª–≤–ª –ø—Ä–æ—Ç–∏–≤–Ω–∏–∫–∞) –µ–¥. —É—Ä–æ–Ω–∞
 */
 $pvr = array();
 if( isset($pr_momental_this)) {
@@ -14,13 +14,13 @@ if( isset($pr_momental_this)) {
 		if(!isset($btl->stats[$btl->uids[$uid]]['um_priem'][$j_id]) && isset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id])) {
 			$btl->stats[$btl->uids[$uid]]['um_priem'][$j_id] = true;
 			$yron = 1;
-							//ŒÚ‚ÂÚÍ‡
+							//–û—Ç–≤–µ—Ç–∫–∞
 							$pvr['hp'] = 3*$btl->users[$btl->uids[$uid]]['level'];
 							$pvr['hpSee'] = '--';
 							$pvr['hpNow'] = floor($btl->stats[$btl->uids[$enemy]]['hpNow']);
 							$pvr['hpAll'] = $btl->stats[$btl->uids[$enemy]]['hpAll'];
 								
-							//»ÒÔÓÎ¸ÁÛÂÏ ÔÓ‚ÂÍÛ Ì‡ ÛÓÌ ÔËÂÏÓ‚
+							//–ò—Å–ø–æ–ª—å–∑—É–µ–º –ø—Ä–æ–≤–µ—Ä–∫—É –Ω–∞ —É—Ä–æ–Ω –ø—Ä–∏–µ–º–æ–≤
 							$pvr['hp'] = $btl->testYronPriem( $uid, $enemy, 12, $pvr['hp'], -1, true, true, 1 );							
 							$pvr['hpSee'] = '-'.$pvr['hp'];
 							$pvr['hpNow'] -= $pvr['hp'];
@@ -34,13 +34,13 @@ if( isset($pr_momental_this)) {
 							$btl->stats[$btl->uids[$enemy]]['hpNow'] = $pvr['hpNow'];							
 							mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->stats[$btl->uids[$enemy]]['hpNow'].'" WHERE `id` = "'.$enemy.'" LIMIT 1');
 							//
-			//”‰‡ÎˇÂÏ ÔËÂÏ
+			//–£–¥–∞–ª—è–µ–º –ø—Ä–∏–µ–º
 			//
 			mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `id` = "'.$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id][3].'" AND `uid` = "'.$uid.'" LIMIT 1');
 			unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 			//
-			$btl->priemAddLogFast( $uid, $enemy, "¿„ÂÒÒË‚Ì‡ˇ Á‡˘ËÚ‡",
-				'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).' Ì‡ {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+			$btl->priemAddLogFast( $uid, $enemy, "–ê–≥—Ä–µ—Å—Å–∏–≤–Ω–∞—è –∑–∞—â–∏—Ç–∞",
+				'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).' –Ω–∞ {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 			1, time() );
 			if( $yron < 0 ) {
 				$yron = 1;
@@ -50,10 +50,10 @@ if( isset($pr_momental_this)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- Ì‡˜‡ÎÓ ÔËÂÏ‡
+		// -- –Ω–∞—á–∞–ª–æ –ø—Ä–∏–µ–º–∞
 		global $u, $btl;	
 		//
-		//œ‡‡ÏÂÚ˚ ÔËÂÏ‡
+		//–ü–∞—Ä–∞–º–µ—Ç—Ä—ã –ø—Ä–∏–µ–º–∞
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -74,16 +74,16 @@ if( isset($pr_momental_this)) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- ÍÓÌÂˆ ÔËÂÏ‡
+		// -- –∫–æ–Ω–µ—Ü –ø—Ä–∏–µ–º–∞
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- Ì‡˜‡ÎÓ ÔËÂÏ‡
+		// -- –Ω–∞—á–∞–ª–æ –ø—Ä–∏–µ–º–∞
 		global $u, $btl;	
 		//
-		//œ‡‡ÏÂÚ˚ ÔËÂÏ‡
+		//–ü–∞—Ä–∞–º–µ—Ç—Ä—ã –ø—Ä–∏–µ–º–∞
 		$pvr['used'] = 0;
 		//			
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -117,7 +117,7 @@ if( isset($pr_momental_this)) {
 						$pvr['hpNow'] = floor($btl->stats[$btl->uids[$u1]]['hpNow']);
 						$pvr['hpAll'] = $btl->stats[$btl->uids[$u1]]['hpAll'];
 							
-						//»ÒÔÓÎ¸ÁÛÂÏ ÔÓ‚ÂÍÛ Ì‡ ÛÓÌ ÔËÂÏÓ‚
+						//–ò—Å–ø–æ–ª—å–∑—É–µ–º –ø—Ä–æ–≤–µ—Ä–∫—É –Ω–∞ —É—Ä–æ–Ω –ø—Ä–∏–µ–º–æ–≤
 						$pvr['hp'] = $btl->testYronPriem( $u2, $u1, 12, $pvr['hp'], -1, true );							
 						$pvr['hpSee'] = '-'.$pvr['hp'];
 						$pvr['hpNow'] -= $pvr['hp'];
@@ -139,8 +139,8 @@ if( isset($pr_momental_this)) {
 						//					
 						$at['p'][$a]['atack'][$j]['yron']['plog'][] = '$this->deleffm(211,'.(0+$uid).','.$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id][3].');
 							$this->priemAddLog( '.$id.', '.$b.', '.$a.', '.$u2.', '.$u1.',
-							"¿„ÂÒÒË‚Ì‡ˇ Á‡˘ËÚ‡",
-							"{tm1} '.$btl->addlt($b , 17 , $btl->users[$btl->uids[$u2]]['sex'] , NULL).' Ì‡ {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']",
+							"–ê–≥—Ä–µ—Å—Å–∏–≤–Ω–∞—è –∑–∞—â–∏—Ç–∞",
+							"{tm1} '.$btl->addlt($b , 17 , $btl->users[$btl->uids[$u2]]['sex'] , NULL).' –Ω–∞ {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']",
 						'.($btl->hodID + 1).' );';
 						//
 						$at['p'][$a]['atack'][$j]['yron']['used'][] = array($j_id,$uid,$pvr['used']);
@@ -151,12 +151,12 @@ if( isset($pr_momental_this)) {
 				$j++;
 			}	
 		}
-		// -- ÍÓÌÂˆ ÔËÂÏ‡
+		// -- –∫–æ–Ω–µ—Ü –ø—Ä–∏–µ–º–∞
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//ƒÂÈÒÚ‚ËÂ ÔË ÍÎËÍÂ
+	//–î–µ–π—Å—Ç–≤–∏–µ –ø—Ä–∏ –∫–ª–∏–∫–µ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

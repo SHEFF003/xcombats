@@ -3,10 +3,10 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Прорыв
+	РџСЂРёРµРј: РџСЂРѕСЂС‹РІ
 */
 $pvr = array();
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 
 $pvr['uid1'] = $u->info['id'];
 $pvr['uid2'] = $u->info['enemy'];
@@ -22,7 +22,7 @@ $pvr['hpSee'] = '--';
 $pvr['hpNow'] = floor($btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']);
 $pvr['hpAll'] = $btl->stats[$btl->uids[$u->info['enemy']]]['hpAll'];
 	
-//Используем проверку на урон приемов
+//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 $pvr['hp'] = $btl->testYronPriem( $u->info['id'], $u->info['enemy'], 12, $pvr['hp'], -1, true );
 	
 $pvr['hpSee'] = '-'.$pvr['hp'];
@@ -41,12 +41,12 @@ mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->stats[$btl->uids[$u->info['en
 $prv['text'] = $btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);
 
 $btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-	'Прорыв',
-	'{tm1} '.$prv['text'].' на {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+	'РџСЂРѕСЂС‹РІ',
+	'{tm1} '.$prv['text'].' РЅР° {u2}. <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 	($btl->hodID + 1)
 );
 
-//Отнимаем тактики
+//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 $this->mintr($pl);
 
 unset($pvr);

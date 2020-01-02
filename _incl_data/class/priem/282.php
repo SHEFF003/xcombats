@@ -3,8 +3,8 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Ледяное спасение
-	Маг восстанавливает здоровье, но за 5 ходов теряет 50% восстановленного НР
+	РџСЂРёРµРј: Р›РµРґСЏРЅРѕРµ СЃРїР°СЃРµРЅРёРµ
+	РњР°Рі РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РґРѕСЂРѕРІСЊРµ, РЅРѕ Р·Р° 5 С…РѕРґРѕРІ С‚РµСЂСЏРµС‚ 50% РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРЅРѕРіРѕ РќР 
 */
 $pvr = array();
 if( isset($pr_momental_this)) {
@@ -18,11 +18,11 @@ if( isset($pr_momental_this)) {
 	unset( $pr_used_this );
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;
-		$prv['color2'] = $btl->mcolor[$btl->mname['вода']];	
+		$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -43,17 +43,17 @@ if( isset($pr_momental_this)) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl, $priem;
-		$prv['color2'] = $btl->mcolor[$btl->mname['вода']];	
+		$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//			
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -86,7 +86,7 @@ if( isset($pr_momental_this)) {
 			$pvr['hpAll'] = floor($btl->stats[$btl->uids[$u2]]['hpAll']);
 			$pvr['hpNow'] -= $pvr['hp'];
 			//
-			//Используем проверку на урон приемов
+			//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 			//$pvr['hp'] = $btl->testYronPriem( $u1, $u2, 12, $pvr['hp'], 7, true );
 			$pvr['hp'] = -($btl->hphe($u2,-($pvr['hp'])));
 			//			
@@ -104,23 +104,23 @@ if( isset($pr_momental_this)) {
 			mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->stats[$btl->uids[$u2]]['hpNow'].'" WHERE `id` = "'.$u2.'" LIMIT 1');
 
 			$btl->priemAddLog( $id, $a, $b, $u1, $u2,
-				"Ледяное Спасение",
-				"{tm1} {u2} утратил здоровье от эффекта &quot;{pr}&quot;. <font color^^^^#006699><b>".$pvr['hpSee']."</b></font> [".$pvr['hpNow']."/".$pvr['hpAll']."] ",
+				"Р›РµРґСЏРЅРѕРµ РЎРїР°СЃРµРЅРёРµ",
+				"{tm1} {u2} СѓС‚СЂР°С‚РёР» Р·РґРѕСЂРѕРІСЊРµ РѕС‚ СЌС„С„РµРєС‚Р° &quot;{pr}&quot;. <font color^^^^#006699><b>".$pvr['hpSee']."</b></font> [".$pvr['hpNow']."/".$pvr['hpAll']."] ",
 			($btl->hodID + 1) );
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	$pvr['color2'] = $btl->mcolor[$btl->mname['вода']];
-	//Действие при клике
+	$pvr['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	//$this->addEffPr($pl,$id);
 	//
 	$pvr['color'] = '006699';
 	//
 	$pvr['hp'] = 245;
-	$pvr['hp'] = $this->magatack( $u->info['id'], $u->info['id'], $pvr['hp'], 'вода', 0 );
+	$pvr['hp'] = $this->magatack( $u->info['id'], $u->info['id'], $pvr['hp'], 'РІРѕРґР°', 0 );
 	$pvr['promah_type'] = $pvr['hp'][3];
 	$pvr['promah'] = $pvr['hp'][2];
 	$pvr['krit'] = $pvr['hp'][1];
@@ -146,11 +146,11 @@ if( isset($pr_momental_this)) {
 		$pvr['hpSee'] = '+'.$pvr['hp'];
 	}
 	//
-	$this->addPriem($u->info['id'],$pl['id'],'add_atgm='.floor($pvr['hp']/10).'',0,77,5,$u->info['id'],1,'ледяноеспасение',0,0,1);
+	$this->addPriem($u->info['id'],$pl['id'],'add_atgm='.floor($pvr['hp']/10).'',0,77,5,$u->info['id'],1,'Р»РµРґСЏРЅРѕРµСЃРїР°СЃРµРЅРёРµ',0,0,1);
 	//
 	$prv['text'] = '{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'. <font color='.$pvr['color'].'><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']';
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['id'],
-		'<font color^^^^#'.$pvr['color2'].'>Ледяное Спасение</font>',
+		'<font color^^^^#'.$pvr['color2'].'>Р›РµРґСЏРЅРѕРµ РЎРїР°СЃРµРЅРёРµ</font>',
 		$prv['text'],
 		($btl->hodID + 1)
 	);

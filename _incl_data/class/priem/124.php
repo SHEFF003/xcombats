@@ -3,16 +3,16 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Метеорит [10]
+	РџСЂРёРµРј: РњРµС‚РµРѕСЂРёС‚ [10]
 */
 $pvr = array();
 if( isset($pr_used_this) && isset($pr_moment) ) {
-	//Каждый ход
+	//РљР°Р¶РґС‹Р№ С…РѕРґ
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl, $priem;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -30,14 +30,14 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 		}
 		if( $a > 0 ) {
 			
-			//Проверяем эффект
+			//РџСЂРѕРІРµСЂСЏРµРј СЌС„С„РµРєС‚
 			$prv['j_priem'] = $btl->stats[$btl->uids[$u1]]['u_priem'][$j_id][0];
 			$prv['priem_th'] = $btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['id'];
 			
 			if( $btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['hod'] == 1 ) {
 				
 				$pvr['user_use'] = $btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['user_use'];
-				//действия
+				//РґРµР№СЃС‚РІРёСЏ
 				$pvr['hp'] = 1;
 				//
 				$pvr['data'] = $priem->lookStatsArray($btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['data']);
@@ -60,7 +60,7 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 				mysql_query('UPDATE `eff_users` SET `data` = "'.$pvr['redata'].'" WHERE `id` = "'.$btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['id'].'" LIMIT 1');
 				//
 				$pvr['hp'] = floor($pvr['hp']);
-				/*$pvr['hp'] = $priem->magatack( $u2, $u1, $pvr['hp'], 'вода', 0 );
+				/*$pvr['hp'] = $priem->magatack( $u2, $u1, $pvr['hp'], 'РІРѕРґР°', 0 );
 				$pvr['promah_type'] = $pvr['hp'][3];
 				$pvr['promah'] = $pvr['hp'][2];
 				$pvr['krit'] = $pvr['hp'][1];
@@ -69,7 +69,7 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 				$pvr['hpNow'] = floor($btl->stats[$btl->uids[$u1]]['hpNow']);
 				$pvr['hpAll'] = $btl->stats[$btl->uids[$u1]]['hpAll'];
 				
-				//Используем проверку на урон приемов
+				//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 				$pvr['hp'] = $btl->testYronPriem( $pvr['user_use'], $u1, 11, $pvr['hp'], 8, true, false, 1 );
 				
 				$pvr['hpSee'] = '-'.$pvr['hp'];
@@ -86,9 +86,9 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 					
 				mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->stats[$btl->uids[$u1]]['hpNow'].'" WHERE `id` = "'.$u1.'" LIMIT 1');
 				//$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u2]]['sex'] , NULL);
-				$prv['text'] = '{u2} утратил здоровье от &quot;{pr}&quot;';
+				$prv['text'] = '{u2} СѓС‚СЂР°С‚РёР» Р·РґРѕСЂРѕРІСЊРµ РѕС‚ &quot;{pr}&quot;';
 				
-				//Цвет приема
+				//Р¦РІРµС‚ РїСЂРёРµРјР°
 				if( $pvr['promah'] == false ) {
 					if( $pvr['krit'] == false ) {
 						$prv['color2'] = '000000';
@@ -112,26 +112,26 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 					//$prv['xx'] = ' x'.$btl->stats[$btl->uids[$u1]]['effects'][$prv['j_priem']]['x'].'';
 				}
 				$btl->priemAddLog( $id, 1, 2, $pvr['user_use'], $u1,
-					'<font color^^^^#'.$prv['color2'].'>Метеорит [10]'.$prv['xx'].'</font>',
+					'<font color^^^^#'.$prv['color2'].'>РњРµС‚РµРѕСЂРёС‚ [10]'.$prv['xx'].'</font>',
 					$prv['text2'],
 					($btl->hodID)
 				);
 			}
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
 	$pvr['hp'] = floor(rand(93,103));
-	$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'земля', 1 );
+	$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'Р·РµРјР»СЏ', 1 );
 	$pvr['promah_type'] = $pvr['hp'][3];
 	$pvr['promah'] = $pvr['hp'][2];
 	$pvr['krit'] = $pvr['hp'][1];
 	$pvr['hp']   = $pvr['hp'][0];
 	//
 	$prv['color2'] = '000000';
-	//Цвет приема
+	//Р¦РІРµС‚ РїСЂРёРµРјР°
 	if( $pvr['promah'] == false ) {
 		if( $pvr['krit'] == false ) {
 			$prv['color2'] = '000000';
@@ -147,16 +147,16 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 	$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);	
 	$prv['text2'] = '{tm1} '.$prv['text'].'.';
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Метеорит [10]</font>',
+		'<font color^^^^#'.$prv['color2'].'>РњРµС‚РµРѕСЂРёС‚ [10]</font>',
 		$prv['text2'],
 		($btl->hodID + 1)
 	);
 	
-	//Добавляем прием
+	//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 	//$this->addEffPr($pl,$id);
-	$this->addPriem($this->ue['id'],$pl['id'],'atgm='.floor($pvr['hp']).'',0,77,4,$u->info['id'],1,'метеорит',0,0,1);
+	$this->addPriem($this->ue['id'],$pl['id'],'atgm='.floor($pvr['hp']).'',0,77,4,$u->info['id'],1,'РјРµС‚РµРѕСЂРёС‚',0,0,1);
 	
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 }
 

@@ -3,16 +3,16 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Ðàçâåäêà áîåì
-	Ïîêàçûâàåò âñå àêòèâíûå ïðèåìû íà ïðîòèâíèêå 5 õîäîâ
+	ÐŸÑ€Ð¸ÐµÐ¼: Ð Ð°Ð·Ð²ÐµÐ´ÐºÐ° Ð±Ð¾ÐµÐ¼
+	ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÑ‚ Ð²ÑÐµ Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ðµ Ð¿Ñ€Ð¸ÐµÐ¼Ñ‹ Ð½Ð° Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐµ 5 Ñ…Ð¾Ð´Ð¾Ð²
 */
 $pvr = array();
 if( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -33,16 +33,16 @@ if( isset($pr_tested_this) ) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) && isset($pr_moment) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl, $priem;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid2'];
@@ -74,13 +74,13 @@ if( isset($pr_tested_this) ) {
 				{*/
 					if( $pvr['used'] == 0 && !isset($at['p'][$a]['priems']['kill'][$uid][$j_id]) ) {
 						//
-						$btl->priemAddLogFast( $uid2, 0, "Ðàçâåäêà áîåì",
+						$btl->priemAddLogFast( $uid2, 0, "Ð Ð°Ð·Ð²ÐµÐ´ÐºÐ° Ð±Ð¾ÐµÐ¼",
 							'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid2]]['sex'] , NULL).'',
 						1, time() );					
 						//
 						mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `id` = "'.$btl->stats[$btl->uids[$uid2]]['u_priem'][$j_id][3].'" AND `uid` = "'.$uid2.'" LIMIT 1');
 						unset($btl->stats[$btl->uids[$uid2]]['u_priem'][$j_id]);
-						$priem->addPriem($uid1,238,'add_seeAllEff=1',0,77,4,$uid2,5,'ðàçâåäêàáîåì');
+						$priem->addPriem($uid1,238,'add_seeAllEff=1',0,77,4,$uid2,5,'Ñ€Ð°Ð·Ð²ÐµÐ´ÐºÐ°Ð±Ð¾ÐµÐ¼');
 						$at['p'][$a]['priems']['kill'][$uid][$j_id] = true;
 						//
 					}
@@ -88,12 +88,12 @@ if( isset($pr_tested_this) ) {
 				$j++;
 			}*/
 		}
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Äåéñòâèå ïðè êëèêå
+	//Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸ ÐºÐ»Ð¸ÐºÐµ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

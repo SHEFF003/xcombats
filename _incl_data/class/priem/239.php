@@ -3,18 +3,18 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Ïîñòóïü ñìåðòè
-	Óâåëè÷èâàåò óðîí çà êàæäîå ïîïàäàíèå íà 1*(ëâë) íå áîëåå 10*(ëâë)
+	ÐŸÑ€Ð¸ÐµÐ¼: ÐŸÐ¾ÑÑ‚ÑƒÐ¿ÑŒ ÑÐ¼ÐµÑ€Ñ‚Ð¸
+	Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°ÐµÑ‚ ÑƒÑ€Ð¾Ð½ Ð·Ð° ÐºÐ°Ð¶Ð´Ð¾Ðµ Ð¿Ð¾Ð¿Ð°Ð´Ð°Ð½Ð¸Ðµ Ð½Ð° 1*(Ð»Ð²Ð») Ð½Ðµ Ð±Ð¾Ð»ÐµÐµ 10*(Ð»Ð²Ð»)
 */
 $pvr = array();
 if( isset($pr_used_this) && isset($pr_moment) && !isset($btl->info['id']) ) {
 		
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -53,7 +53,7 @@ if( isset($pr_used_this) && isset($pr_moment) && !isset($btl->info['id']) ) {
 			}
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
@@ -61,10 +61,10 @@ if( isset($pr_used_this) && isset($pr_moment) && !isset($btl->info['id']) ) {
 	
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -98,7 +98,7 @@ if( isset($pr_used_this) && isset($pr_moment) && !isset($btl->info['id']) ) {
 						//
 						if( $btl->stats[$btl->uids[$uid]]['effects'][$prv['j_priem']]['x'] < 2 ) {
 							$at['p'][$a]['atack'][$j]['yron']['plog'][] = '$this->priemAddLog( '.$id.', '.$a.', '.$b.', '.$u1.', '.$u2.',
-								"Ïîñòóïü ñìåðòè",
+								"ÐŸÐ¾ÑÑ‚ÑƒÐ¿ÑŒ ÑÐ¼ÐµÑ€Ñ‚Ð¸",
 								"{tm1} '.$btl->addlt($a , 17 , $btl->users[$btl->uids[$u1]]['sex'] , NULL).'",
 							'.($btl->hodID + 1).' );';	
 						}
@@ -115,13 +115,13 @@ if( isset($pr_used_this) && isset($pr_moment) && !isset($btl->info['id']) ) {
 				$j++;
 			}	
 		}
-		//Óäàëÿåì ïðèåì
-		// -- êîíåö ïðèåìà
+		//Ð£Ð´Ð°Ð»ÑÐµÐ¼ Ð¿Ñ€Ð¸ÐµÐ¼
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Äåéñòâèå ïðè êëèêå
+	//Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸ ÐºÐ»Ð¸ÐºÐµ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

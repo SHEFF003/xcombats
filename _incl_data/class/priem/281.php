@@ -1,8 +1,8 @@
 <?
 if(!defined('GAME')) { die(); }
 /*
-	Прием: Жертва Воде
-	Маг теряет 10% НР на протяжении 5 ходов, но заклятия стоят на 50% дешевле
+	РџСЂРёРµРј: Р–РµСЂС‚РІР° Р’РѕРґРµ
+	РњР°Рі С‚РµСЂСЏРµС‚ 10% РќР  РЅР° РїСЂРѕС‚СЏР¶РµРЅРёРё 5 С…РѕРґРѕРІ, РЅРѕ Р·Р°РєР»СЏС‚РёСЏ СЃС‚РѕСЏС‚ РЅР° 50% РґРµС€РµРІР»Рµ
 */
 $pvr = array();
 if(isset($pr_momental_this)) {
@@ -11,11 +11,11 @@ if(isset($pr_momental_this)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;
-		$prv['color2'] = $btl->mcolor[$btl->mname['вода']];	
+		$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -36,7 +36,7 @@ if(isset($pr_momental_this)) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
@@ -50,11 +50,11 @@ if(isset($pr_momental_this)) {
 
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;
-		$prv['color2'] = $btl->mcolor[$btl->mname['вода']];	
+		$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//			
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -80,7 +80,7 @@ if(isset($pr_momental_this)) {
 			$pvr['hpAll'] = floor($btl->stats[$btl->uids[$u2]]['hpAll']);
 			$pvr['hpNow'] -= $pvr['hp'];
 			//
-			//Используем проверку на урон приемов
+			//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 			$pvr['hp'] = $btl->testYronPriem( $u1, $u2, 12, $pvr['hp'], 7, true );
 			//			
 			if( $pvr['hpNow'] < 0 ) {
@@ -97,21 +97,21 @@ if(isset($pr_momental_this)) {
 			mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->stats[$btl->uids[$u2]]['hpNow'].'" WHERE `id` = "'.$u2.'" LIMIT 1');
 
 			$btl->priemAddLog( $id, $a, $b, $u2, $u1,
-				"Жертва Воде",
-				"{tm1} {u1} утратил здоровье от эффекта &quot;{pr}&quot;. <font color^^^^#006699><b>".$pvr['hpSee']."</b></font> [".$pvr['hpNow']."/".$pvr['hpAll']."] ",
+				"Р–РµСЂС‚РІР° Р’РѕРґРµ",
+				"{tm1} {u1} СѓС‚СЂР°С‚РёР» Р·РґРѕСЂРѕРІСЊРµ РѕС‚ СЌС„С„РµРєС‚Р° &quot;{pr}&quot;. <font color^^^^#006699><b>".$pvr['hpSee']."</b></font> [".$pvr['hpNow']."/".$pvr['hpAll']."] ",
 			($btl->hodID + 1) );
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	$prv['color2'] = $btl->mcolor[$btl->mname['вода']];
-	//Действие при клике
+	$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	$this->addEffPr($pl,$id);
 	$prv['text'] = '{tm1} '.$btl->addlt(1 , 21 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'.';
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['id'],
-		'<font color^^^^#'.$prv['color2'].'>Жертва Воде</font>',
+		'<font color^^^^#'.$prv['color2'].'>Р–РµСЂС‚РІР° Р’РѕРґРµ</font>',
 		$prv['text'],
 		($btl->hodID + 1)
 	);

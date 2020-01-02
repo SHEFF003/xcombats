@@ -3,14 +3,14 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Îãðàíè÷åííûé ìàíåâð
+	ÐŸÑ€Ð¸ÐµÐ¼: ÐžÐ³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð½Ñ‹Ð¹ Ð¼Ð°Ð½ÐµÐ²Ñ€
 */
 $pvr = array();
 if(isset($btl->users[$btl->uids[$u->info['enemy']]]['login'])) {
-	echo '<font color=red><b>Âû óñïåøíî èñïîëüçîâàëè ïðèåì &quot;Îãðàíè÷åííûé ìàíåâð&quot; íà &quot;'.$btl->users[$btl->uids[$u->info['enemy']]]['login'].'&quot;</b></font>';
+	echo '<font color=red><b>Ð’Ñ‹ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð»Ð¸ Ð¿Ñ€Ð¸ÐµÐ¼ &quot;ÐžÐ³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð½Ñ‹Ð¹ Ð¼Ð°Ð½ÐµÐ²Ñ€&quot; Ð½Ð° &quot;'.$btl->users[$btl->uids[$u->info['enemy']]]['login'].'&quot;</b></font>';
 	mysql_query('UPDATE `stats` SET `smena` = 0 WHERE `id` = "'.mysql_real_escape_string($u->info['id']).'" LIMIT 1');
-	$btl->priemAddLogFast( $u->info['id'], $u->info['enemy'], "Îãðàíè÷åííûé ìàíåâð",
-		'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).' íà {u2}.',
+	$btl->priemAddLogFast( $u->info['id'], $u->info['enemy'], "ÐžÐ³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð½Ñ‹Ð¹ Ð¼Ð°Ð½ÐµÐ²Ñ€",
+		'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).' Ð½Ð° {u2}.',
 	1, time() );
 }
 unset($pvr);

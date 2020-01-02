@@ -3,8 +3,8 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Àáñîëþòíàÿ çàùèòà
-	Ñëåäóþùèé óäàð ïðîòèâíèêà ïî âàì áóäåò ðàâåí 1 åä.
+	ÐŸÑ€Ð¸ÐµÐ¼: ÐÐ±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð°Ñ Ð·Ð°Ñ‰Ð¸Ñ‚Ð°
+	Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ ÑƒÐ´Ð°Ñ€ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ° Ð¿Ð¾ Ð²Ð°Ð¼ Ð±ÑƒÐ´ÐµÑ‚ Ñ€Ð°Ð²ÐµÐ½ 1 ÐµÐ´.
 */
 $pvr = array();
 if( isset($pr_momental_this)) {
@@ -12,7 +12,7 @@ if( isset($pr_momental_this)) {
 		if(!isset($btl->stats[$btl->uids[$uid]]['um_priem'][$j_id])) {
 			global $u, $btl;
 			$yron = 1;
-			$btl->priemAddLogFast( $uid, 0, "Àáñîëþòíàÿ çàùèòà",
+			$btl->priemAddLogFast( $uid, 0, "ÐÐ±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð°Ñ Ð·Ð°Ñ‰Ð¸Ñ‚Ð°",
 				'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).'',
 			1, time() );
 			if( $yron < 0 ) {
@@ -24,10 +24,10 @@ if( isset($pr_momental_this)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -48,16 +48,16 @@ if( isset($pr_momental_this)) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//			
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -90,7 +90,7 @@ if( isset($pr_momental_this)) {
 						//					
 						$at['p'][$a]['atack'][$j]['yron']['plog'][] = '$this->deleffm(140,'.(0+$uid).','.$btl->stats[$btl->uids[$uid]]['u_priem'][$j_id][3].');
 						$this->priemAddLog( '.$id.', '.$b.', '.$a.', '.$u2.', '.$u1.',
-							"Àáñîëþòíàÿ çàùèòà",
+							"ÐÐ±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð°Ñ Ð·Ð°Ñ‰Ð¸Ñ‚Ð°",
 							"{tm1} '.$btl->addlt($b , 17 , $btl->users[$btl->uids[$u2]]['sex'] , NULL).'",
 						'.($btl->hodID + 1).' );';
 						//
@@ -103,12 +103,12 @@ if( isset($pr_momental_this)) {
 				$j++;
 			}	
 		}
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Äåéñòâèå ïðè êëèêå
+	//Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸ ÐºÐ»Ð¸ÐºÐµ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

@@ -10,7 +10,7 @@ if(!defined('GAME')) {
 				}
 */
 /*
-	Прием: Туманный Образ [8]
+	РџСЂРёРµРј: РўСѓРјР°РЅРЅС‹Р№ РћР±СЂР°Р· [8]
 */
 $pvr = array();
 if( isset($pr_momental_this)) {
@@ -19,10 +19,10 @@ if( isset($pr_momental_this)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -43,19 +43,19 @@ if( isset($pr_momental_this)) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//	
-		//echo '$user::['.$uid.']->(&quot;Прикрыться&quot;);';		
+		//echo '$user::['.$uid.']->(&quot;РџСЂРёРєСЂС‹С‚СЊСЃСЏ&quot;);';		
 		$uid1 = $btl->atacks[$id]['uid1'];
 		$uid2 = $btl->atacks[$id]['uid2'];			
 		if( $uid == $uid2 ) {
@@ -73,7 +73,7 @@ if( isset($pr_momental_this)) {
 			if( $pvr['used'] == 0 && !isset($at['p'][$a]['priems']['kill'][$uid][$j_id]) ) {
 				//						
 				$at['p'][$a]['atack'][$j]['yron']['plog'][] = '$this->priemAddLog( '.$id.', '.$b.', '.$a.', '.$u2.', '.$u1.',
-					"Туманный Образ [8]",
+					"РўСѓРјР°РЅРЅС‹Р№ РћР±СЂР°Р· [8]",
 					"{tm1} '.$btl->addlt($b , 17 , $btl->users[$btl->uids[$u2]]['sex'] , NULL).'",
 				'.($btl->hodID + 1).' );';
 				//
@@ -84,18 +84,18 @@ if( isset($pr_momental_this)) {
 			}
 		}
 		//
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	$this->addEffPr($pl,$id);
 	$prv['color2'] = '000000';
 	$prv['text'] = $btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);	
 	$prv['text2'] = '{tm1} '.$prv['text'].'.'.$prv['effx'];
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Туманный образ [8]</font>',
+		'<font color^^^^#'.$prv['color2'].'>РўСѓРјР°РЅРЅС‹Р№ РѕР±СЂР°Р· [8]</font>',
 		$prv['text2'],
 		($btl->hodID + 0)
 	);

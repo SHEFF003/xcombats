@@ -3,12 +3,12 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Пылающий Ужас
+	РџСЂРёРµРј: РџС‹Р»Р°СЋС‰РёР№ РЈР¶Р°СЃ
 */
 $pvr = array();
-$pvr['mg'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$btl->users[$btl->uids[$this->ue['id']]]['id'].'" AND `bj` = "пожирающеепламя" AND `user_use` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1'));
+$pvr['mg'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$btl->users[$btl->uids[$this->ue['id']]]['id'].'" AND `bj` = "РїРѕР¶РёСЂР°СЋС‰РµРµРїР»Р°РјСЏ" AND `user_use` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1'));
 if( isset($pvr['mg']['id']) ) {	
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	$pvr['hp'] = 0;
 	$pvr['data'] = $this->lookStatsArray($pvr['mg']['data']);
 	$pvr['di'] = 0;
@@ -31,8 +31,8 @@ if( isset($pvr['mg']['id']) ) {
 	$pvr['hp'] = round(5*($pvr['hp']/100*75));
 	
 	/*
-	$pvr['hp'] = floor($pvr['hp']/20*1+$u->stats['mg3']);//умелки
-	$pvr['hp'] = floor($pvr['hp']/200*$u->stats['s5']);//Интелект
+	$pvr['hp'] = floor($pvr['hp']/20*1+$u->stats['mg3']);//СѓРјРµР»РєРё
+	$pvr['hp'] = floor($pvr['hp']/200*$u->stats['s5']);//РРЅС‚РµР»РµРєС‚
 	if( $btl->stats[$btl->uids[$this->ue['id']]]['hpNow'] < floor($btl->stats[$btl->uids[$this->ue['id']]]['hpAll']/100*30) ) {
 		$pvr['hp'] = floor( $pvr['hp'] + ($pvr['hp']/100*(50*$pvr['mg']['x'])) );
 	}
@@ -40,7 +40,7 @@ if( isset($pvr['mg']['id']) ) {
 	
 	$pvr['hp24'] = $pvr['hp'];
 	
-	$pvr['hp_test'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'огонь', 1 );
+	$pvr['hp_test'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'РѕРіРѕРЅСЊ', 1 );
 	$pvr['promah_type'] = 0;
 	$pvr['promah'] = false;
 	$pvr['krit'] = $pvr['hp_test'][1];
@@ -51,7 +51,7 @@ if( isset($pvr['mg']['id']) ) {
 	$pvr['hpNow'] = floor($btl->stats[$btl->uids[$this->ue['id']]]['hpNow']);
 	$pvr['hpAll'] = $btl->stats[$btl->uids[$this->ue['id']]]['hpAll'];
 		
-	//Используем проверку на урон приемов
+	//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 	$pvr['hp'] = $btl->testYronPriem( $u->info['id'], $this->ue['id'], 21, $pvr['hp'], 7, true );
 		
 	$pvr['hp25'] = $pvr['hp'];
@@ -74,16 +74,16 @@ if( isset($pvr['mg']['id']) ) {
 		
 	$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);
 	
-	//Цвет приема
+	//Р¦РІРµС‚ РїСЂРёРµРјР°
 	if( $pvr['promah'] == false ) {
 		if( $pvr['krit'] == false ) {
 			$prv['color2'] = '006699';
-			if(isset($btl->mcolor[$btl->mname['огонь']])) {
-				$prv['color2'] = $btl->mcolor[$btl->mname['огонь']];
+			if(isset($btl->mcolor[$btl->mname['РѕРіРѕРЅСЊ']])) {
+				$prv['color2'] = $btl->mcolor[$btl->mname['РѕРіРѕРЅСЊ']];
 			}
 			$prv['color'] = '000000';
-			if(isset($btl->mncolor[$btl->mname['огонь']])) {
-				$prv['color'] = $btl->mncolor[$btl->mname['огонь']];
+			if(isset($btl->mncolor[$btl->mname['РѕРіРѕРЅСЊ']])) {
+				$prv['color'] = $btl->mncolor[$btl->mname['РѕРіРѕРЅСЊ']];
 			}
 		}else{
 			$prv['color2'] = 'FF0000';
@@ -100,23 +100,23 @@ if( isset($pvr['mg']['id']) ) {
 		$prv['text2'] = '{tm1} '.$prv['text'].'. <font Color='.$prv['color'].'><b>--</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']';
 	}
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Пылающий Ужас</font>',
+		'<font color^^^^#'.$prv['color2'].'>РџС‹Р»Р°СЋС‰РёР№ РЈР¶Р°СЃ</font>',
 		$prv['text2'],
 		($btl->hodID + 1)
 	);
 	
-	//Добавляем прием
+	//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 	//$this->addEffPr($pl,$id);
-	$this->addPriem($this->ue['id'],242,'add_notactic=1|add_nousepriem=1',2,77,2,$u->info['id'],3,'пылающийужас',0,0,1);
+	$this->addPriem($this->ue['id'],242,'add_notactic=1|add_nousepriem=1',2,77,2,$u->info['id'],3,'РїС‹Р»Р°СЋС‰РёР№СѓР¶Р°СЃ',0,0,1);
 	
-	//Удаляем оледенение
+	//РЈРґР°Р»СЏРµРј РѕР»РµРґРµРЅРµРЅРёРµ
 	$pvr['mg']['priem']['id'] = $pvr['mg']['id'];
 	$btl->delPriem($pvr['mg'],$btl->users[$btl->uids[$this->ue['id']]],2);
 	
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	$this->mintr($pl);
 }else{
-	echo '<font color=red><b>На персонаже нет пожирающего пламени (Вашего заклятия)</b></font>';
+	echo '<font color=red><b>РќР° РїРµСЂСЃРѕРЅР°Р¶Рµ РЅРµС‚ РїРѕР¶РёСЂР°СЋС‰РµРіРѕ РїР»Р°РјРµРЅРё (Р’Р°С€РµРіРѕ Р·Р°РєР»СЏС‚РёСЏ)</b></font>';
 	$cup = true;
 }
 unset($pvr);

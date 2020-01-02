@@ -3,23 +3,23 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Рывок
+	РџСЂРёРµРј: Р С‹РІРѕРє
 */
 $pvr = array();
 	
-	echo '<font color=red><b>Вы успешно использовали прием &quot;Рывок&quot;</b></font>';
+	echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё РїСЂРёРµРј &quot;Р С‹РІРѕРє&quot;</b></font>';
 	
 	$this->maxtr(1,3);
 	$this->addEffPr($pl,$id);
 	//
 	$prv['effx'] = '';
-	//Разбираем дату $pl['date3']
+	//Р Р°Р·Р±РёСЂР°РµРј РґР°С‚Сѓ $pl['date3']
 	$prv['eda'] = $pl['date3'];
 	//
 	if( isset($prv['eda']) ) {
 		$prv['d'] = $u->lookStats($prv['eda']);
 		$prv['j'] = $u->lookStats($this->redate($prv['eda'],$u->info['id']));
-		$prv['v'] = $u->lookKeys($this->redate($prv['eda'],$u->info['id']),0); // ключи 2
+		$prv['v'] = $u->lookKeys($this->redate($prv['eda'],$u->info['id']),0); // РєР»СЋС‡Рё 2
 		$prv['i'] = 0; $prv['inf'] = '';
 		while($prv['i']<count($prv['v'])) {
 			//$prv['j'][$prv['v'][$prv['i']]] += $prv['j'][$prv['v'][$prv['i']]];
@@ -44,7 +44,7 @@ $pvr = array();
 	$prv['text'] = $btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);	
 	$prv['text2'] = '{tm1} '.$prv['text'].'.'.$prv['effx'];
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Рывок</font>',
+		'<font color^^^^#'.$prv['color2'].'>Р С‹РІРѕРє</font>',
 		$prv['text2'],
 		($btl->hodID + 0)
 	);

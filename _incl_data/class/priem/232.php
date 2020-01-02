@@ -3,10 +3,10 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Выжить, сжирает все тактики, за сердца 0.5 ед. за остальное 1 ед. НР
+	РџСЂРёРµРј: Р’С‹Р¶РёС‚СЊ, СЃР¶РёСЂР°РµС‚ РІСЃРµ С‚Р°РєС‚РёРєРё, Р·Р° СЃРµСЂРґС†Р° 0.5 РµРґ. Р·Р° РѕСЃС‚Р°Р»СЊРЅРѕРµ 1 РµРґ. РќР 
 */
 $pvr = array();
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 
 $pvr['hp'] = round( 1+$btl->users[$btl->uids[$u->info['id']]]['tactic1']+$btl->users[$btl->uids[$u->info['id']]]['tactic2']+$btl->users[$btl->uids[$u->info['id']]]['tactic3']+$btl->users[$btl->uids[$u->info['id']]]['tactic4']+$btl->users[$btl->uids[$u->info['id']]]['tactic5']+$btl->users[$btl->uids[$u->info['id']]]['tactic6']*0.5 );
 if( $pvr['hp'] > 25 ) {
@@ -19,7 +19,7 @@ $pvr['hpAll'] = $btl->stats[$btl->uids[$u->info['id']]]['hpAll'];
 $pvr['hp'] = $btl->hphe( $u->info['id'] , $pvr['hp'] , true );
 $pvr['hpTr'] = $pvr['hpAll'] - $pvr['hpNow'];
 if( $pvr['hpTr'] > 0 ) {
-	//Требуется хилл
+	//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 	if( $pvr['hpTr'] < $pvr['hp'] ) {
 		$pvr['hp'] = $pvr['hpTr'];
 	}
@@ -59,12 +59,12 @@ mysql_query('UPDATE `stats` SET
 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 	
 $btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-	'Выжить',
+	'Р’С‹Р¶РёС‚СЊ',
 	'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 	($btl->hodID)
 );
 
-//Отнимаем тактики
+//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 $this->mintr($pl);
 
 unset($pvr);

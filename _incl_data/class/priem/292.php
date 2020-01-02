@@ -3,7 +3,7 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Искалечить
+	РџСЂРёРµРј: РСЃРєР°Р»РµС‡РёС‚СЊ
 */
 $pvr = array();
 $pvr['x5'] = mysql_fetch_array(mysql_query('SELECT `id`,`x` FROM `eff_users` WHERE `uid` = "'.$this->ue['id'].'" AND `v2` = 292 AND `delete` = 0 LIMIT 1'));
@@ -19,18 +19,18 @@ if( $pvr['x5']['x'] < 1 ) {
 	if( $pvr['x5']['x'] > 0 ) {
 		$prv['eff'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `id` = "'.$pvr['x5']['id'].'" LIMIT 1'));
 		if( isset($prv['eff']['id']) ) {
-			//Разбираем дату $prv['eff']['data']
+			//Р Р°Р·Р±РёСЂР°РµРј РґР°С‚Сѓ $prv['eff']['data']
 			$prv['eda'] = $prv['eff']['data'];
 		}
 	}else{
-		//Разбираем дату $pl['date3']
+		//Р Р°Р·Р±РёСЂР°РµРј РґР°С‚Сѓ $pl['date3']
 		$prv['eda'] = $pl['date3'];
 	}
 	//
 	if( isset($prv['eda']) ) {
 		$prv['d'] = $u->lookStats($prv['eda']);
 		$prv['j'] = $u->lookStats($this->redate($prv['eda'],$u->info['id']));
-		$prv['v'] = $u->lookKeys($this->redate($prv['eda'],$u->info['id']),0); // ключи 2
+		$prv['v'] = $u->lookKeys($this->redate($prv['eda'],$u->info['id']),0); // РєР»СЋС‡Рё 2
 		$prv['i'] = 0; $prv['inf'] = '';
 		while($prv['i']<count($prv['v'])) {
 			//$prv['j'][$prv['v'][$prv['i']]] += $prv['j'][$prv['v'][$prv['i']]];
@@ -55,20 +55,20 @@ if( $pvr['x5']['x'] < 1 ) {
 	$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);	
 	$prv['text2'] = '{tm1} '.$prv['text'].'.'.$prv['effx'];
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Искалечить</font>',
+		'<font color^^^^#'.$prv['color2'].'>РСЃРєР°Р»РµС‡РёС‚СЊ</font>',
 		$prv['text2'],
 		($btl->hodID + 0)
 	);
 		
-	//Добавляем прием
+	//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 	//$this->addEffPr($pl,$id);
-	//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.floor($pvr['hp']/10).'',0,77,-1,$u->info['id'],5,'цельводы',0,0,1);
+	//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.floor($pvr['hp']/10).'',0,77,-1,$u->info['id'],5,'С†РµР»СЊРІРѕРґС‹',0,0,1);
 		
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 }else{
 	$cup = true;
-	echo '<font color=red><b>На персонаже уже есть эффект &quot;Искалечить&quot;</b></font>';
+	echo '<font color=red><b>РќР° РїРµСЂСЃРѕРЅР°Р¶Рµ СѓР¶Рµ РµСЃС‚СЊ СЌС„С„РµРєС‚ &quot;РСЃРєР°Р»РµС‡РёС‚СЊ&quot;</b></font>';
 }
 
 unset($pvr);

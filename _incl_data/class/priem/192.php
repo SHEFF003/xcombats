@@ -3,15 +3,15 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Очиститься кровью
+	РџСЂРёРµРј: РћС‡РёСЃС‚РёС‚СЊСЃСЏ РєСЂРѕРІСЊСЋ
 */
 $pvr = array();
 
-//Действие при клике
-echo '<font color=red><b>Вы успешно использовали прием &quot;Очиститься кровью&quot;</b></font>';
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
+echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё РїСЂРёРµРј &quot;РћС‡РёСЃС‚РёС‚СЊСЃСЏ РєСЂРѕРІСЊСЋ&quot;</b></font>';
 
 $btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-	'Очиститься кровью',
+	'РћС‡РёСЃС‚РёС‚СЊСЃСЏ РєСЂРѕРІСЊСЋ',
 	'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'',
 	($btl->hodID)
 );
@@ -27,7 +27,7 @@ $pvr['no'] .= ' AND `a`.`v2` != 186 AND `a`.`v2` != 246 AND `a`.`v2` != 257 AND 
 $pvr['no'] .= ' AND `a`.`v2` != 282';
 $pvr['no'] .= ' AND `a`.`v2` != 21 AND `a`.`v2` != 73 AND `a`.`v2` != 74 AND `a`.`v2` != 75 AND `a`.`v2` != 76 AND `a`.`v2` != 77 AND `a`.`v2` != 78 AND `a`.`v2` != 79';
 
-$pvr['no'] .= ' AND `a`.`name` NOT LIKE "Цель%" ';
+$pvr['no'] .= ' AND `a`.`name` NOT LIKE "Р¦РµР»СЊ%" ';
 
 $pvr['sp'] = mysql_query('SELECT `a`.* FROM `eff_users` AS `a` LEFT JOIN `priems` AS `b` ON `b`.`id` = `a`.`v2` WHERE `a`.`uid` = "'.$u->info['id'].'" AND `a`.`delete` = 0 AND `a`.`v1` = "priem" '.$pvr['no'].' AND ( `b`.`neg` > 0 OR `a`.`v2` = 191 ) ORDER BY `a`.`id` DESC LIMIT 1');
 $pvr['pl'] = mysql_fetch_array($pvr['sp']);
@@ -36,7 +36,7 @@ if( isset($pvr['pl']['priem']) ) {
 	$btl->delPriem($pvr['pl'],$btl->users[$btl->uids[$u->info['id']]],100);		
 }
 
-//Отнимаем тактики
+//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 //$this->mintr($pl);
 
 unset($pvr);

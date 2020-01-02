@@ -3,17 +3,17 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Глухая защита
+	РџСЂРёРµРј: Р“Р»СѓС…Р°СЏ Р·Р°С‰РёС‚Р°
 */
 $pvr = array();
 
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 if( isset($pr_used_this) && isset($pr_moment) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;			
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -41,7 +41,7 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 				$pvr['hp'] = $btl->hphe( $uid , $pvr['hp'] , true );
 				
 				if( $pvr['hpTr'] > 0 ) {
-					//Требуется хилл
+					//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 					if( $pvr['hpTr'] < $pvr['hp'] ) {
 						$pvr['hp'] = $pvr['hpTr'];
 					}
@@ -63,28 +63,28 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 					$pvr['hpSee'] = '--';
 				}
 				//
-				$btl->priemAddLogFast( $uid, 0, "Глухая защита",
-					'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).' на <font Color=green><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+				$btl->priemAddLogFast( $uid, 0, "Р“Р»СѓС…Р°СЏ Р·Р°С‰РёС‚Р°",
+					'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).' РЅР° <font Color=green><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 				1, time() );					
 				//
 			}	
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
 	if( $u->stats['items'][$u->stats['wp14id']]['type'] == 13 ) {
-		//Действие при клике
+		//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 		$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-			'Глухая защита',
+			'Р“Р»СѓС…Р°СЏ Р·Р°С‰РёС‚Р°',
 			'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'',
 			($btl->hodID)
 		);
-		echo '<font color=red><b>Вы успешно использовали прием &quot;Глухая защита&quot;</b></font>';
+		echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё РїСЂРёРµРј &quot;Р“Р»СѓС…Р°СЏ Р·Р°С‰РёС‚Р°&quot;</b></font>';
 		$this->addEffPr($pl,$id);
 	}else{
-		echo '<font color=red><b>Для использования &quot;Глухая защита&quot; требуется наличие щита</b></font>';	
+		echo '<font color=red><b>Р”Р»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ &quot;Р“Р»СѓС…Р°СЏ Р·Р°С‰РёС‚Р°&quot; С‚СЂРµР±СѓРµС‚СЃСЏ РЅР°Р»РёС‡РёРµ С‰РёС‚Р°</b></font>';	
 	}
 }
 

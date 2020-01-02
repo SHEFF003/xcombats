@@ -3,8 +3,8 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïðèåì: Ìàãè÷åñêàÿ çàùèòà
-	Ñëåäóþùèé çàêëèíàíèå íàíåñåò íå áîëåå 1 åä. óðîíà
+	ÐŸÑ€Ð¸ÐµÐ¼: ÐœÐ°Ð³Ð¸Ñ‡ÐµÑÐºÐ°Ñ Ð·Ð°Ñ‰Ð¸Ñ‚Ð°
+	Ð¡Ð»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ðµ Ð½Ð°Ð½ÐµÑÐµÑ‚ Ð½Ðµ Ð±Ð¾Ð»ÐµÐµ 1 ÐµÐ´. ÑƒÑ€Ð¾Ð½Ð°
 */
 $pvr = array();
 if( isset($pr_momental_this)) {
@@ -13,7 +13,7 @@ if( isset($pr_momental_this)) {
 			if( $profil > 4 && $profil < 12 ) {
 				global $u, $btl;
 				$yron = 1;
-				$btl->priemAddLogFast( $uid, 0, "Ìàãè÷åñêàÿ çàùèòà",
+				$btl->priemAddLogFast( $uid, 0, "ÐœÐ°Ð³Ð¸Ñ‡ÐµÑÐºÐ°Ñ Ð·Ð°Ñ‰Ð¸Ñ‚Ð°",
 					'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).'',
 				1, time() );
 				if( $yron < 0 ) {
@@ -28,10 +28,10 @@ if( isset($pr_momental_this)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- íà÷àëî ïðèåìà
+		// -- Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		global $u, $btl;	
 		//
-		//Ïàðàìåòðû ïðèåìà
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -52,12 +52,12 @@ if( isset($pr_momental_this)) {
 				unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}
 		//
-		// -- êîíåö ïðèåìà
+		// -- ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÐµÐ¼Ð°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Äåéñòâèå ïðè êëèêå
+	//Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð¿Ñ€Ð¸ ÐºÐ»Ð¸ÐºÐµ
 	if( !isset($this->uids) ) {
 		$this->addEffPr($pl,$id);
 	}

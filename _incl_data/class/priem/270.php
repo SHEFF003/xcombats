@@ -3,7 +3,7 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Духи льда
+	РџСЂРёРµРј: Р”СѓС…Рё Р»СЊРґР°
 */
 $pvr = array();
 if( isset($pr_momental_this_seven)) {
@@ -14,8 +14,8 @@ if( isset($pr_momental_this_seven)) {
 		}else{
 			$pvr['test1'] = 0;
 		}
-		$btl->priemAddLogFast( $uid, 0, "Духи Льда",
-			'{tm1} {u1} увидел бабочку и побежал за ней... ['.$yron.']',
+		$btl->priemAddLogFast( $uid, 0, "Р”СѓС…Рё Р›СЊРґР°",
+			'{tm1} {u1} СѓРІРёРґРµР» Р±Р°Р±РѕС‡РєСѓ Рё РїРѕР±РµР¶Р°Р» Р·Р° РЅРµР№... ['.$yron.']',
 		$pvr['test1'], time() );*/
 		return $yron;	
 	};
@@ -51,8 +51,8 @@ if( isset($pr_momental_this_seven)) {
 			$btl->stats[$btl->uids[$uid]]['mpNow'] = $pvr['mpNow'];					
 			mysql_query('UPDATE `stats` SET `mpNow` = "'.$btl->stats[$btl->uids[$uid]]['mpNow'].'" WHERE `id` = "'.$uid.'" LIMIT 1');
 			//
-			$btl->priemAddLogFast( $uid, 0, "Духи Льда",
-				'{tm1} {u1} восстановил ману заклятием &quot;{pr}&quot;. <font color=green><b>'.$pvr['mpSee'].'</b></font> ['.$pvr['mpNow'].'/'.$pvr['mpAll'].'] (Мана)',
+			$btl->priemAddLogFast( $uid, 0, "Р”СѓС…Рё Р›СЊРґР°",
+				'{tm1} {u1} РІРѕСЃСЃС‚Р°РЅРѕРІРёР» РјР°РЅСѓ Р·Р°РєР»СЏС‚РёРµРј &quot;{pr}&quot;. <font color=green><b>'.$pvr['mpSee'].'</b></font> ['.$pvr['mpNow'].'/'.$pvr['mpAll'].'] (РњР°РЅР°)',
 			$pvr['test1'], time() );
 			if( $yron < 0 ) {
 				$yron = 1;
@@ -63,10 +63,10 @@ if( isset($pr_momental_this_seven)) {
 	};
 }elseif( isset($pr_tested_this) ) {
 		$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		/*global $u, $btl;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -87,16 +87,16 @@ if( isset($pr_momental_this_seven)) {
 				//unset($btl->stats[$btl->uids[$uid]]['u_priem'][$j_id]);
 		}*/
 		//
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }elseif( isset($pr_used_this) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -150,8 +150,8 @@ if( isset($pr_momental_this_seven)) {
 						mysql_query('UPDATE `stats` SET `mpNow` = "'.$btl->stats[$btl->uids[$u1]]['mpNow'].'" WHERE `id` = "'.$u1.'" LIMIT 1');
 						//
 						$at['p'][$a]['atack'][$j]['yron']['plog'][] = '$this->priemAddLog( '.$id.', '.$a.', '.$b.', '.$u1.', '.$u2.',
-							"Духи Льда",
-							"{tm1} {u1} восстановил ману заклятием &quot;{pr}&quot;. <font color=green><b>'.$pvr['mpSee'].'</b></font> ['.$pvr['mpNow'].'/'.$pvr['mpAll'].'] (Мана)",
+							"Р”СѓС…Рё Р›СЊРґР°",
+							"{tm1} {u1} РІРѕСЃСЃС‚Р°РЅРѕРІРёР» РјР°РЅСѓ Р·Р°РєР»СЏС‚РёРµРј &quot;{pr}&quot;. <font color=green><b>'.$pvr['mpSee'].'</b></font> ['.$pvr['mpNow'].'/'.$pvr['mpAll'].'] (РњР°РЅР°)",
 						'.($btl->hodID + 1).' );';						
 						//
 						$at['p'][$a]['atack'][$j]['yron']['used'][] = array($j_id,$uid,$pvr['used']);
@@ -163,12 +163,12 @@ if( isset($pr_momental_this_seven)) {
 				$j++;
 			}	
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	$this->addEffPr($pl,$id);
 }
 unset($pvr);

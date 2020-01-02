@@ -3,17 +3,17 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Собраться
+	РџСЂРёРµРј: РЎРѕР±СЂР°С‚СЊСЃСЏ
 */
 $pvr = array();
 
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 if( isset($pr_used_this) && isset($pr_moment) ) { 
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl;	
 		//
-		//Параметры приема
+		//РџР°СЂР°РјРµС‚СЂС‹ РїСЂРёРµРјР°
 		$pvr['used'] = 0;			
 		//		
 		$uid1 = $btl->atacks[$id]['uid1'];
@@ -41,7 +41,7 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 				$pvr['hp'] = $btl->hphe( $uid , $pvr['hp'] , true );
 				
 				if( $pvr['hpTr'] > 0 ) {
-					//Требуется хилл
+					//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 					if( $pvr['hpTr'] < $pvr['hp'] ) {
 						$pvr['hp'] = $pvr['hpTr'];
 					}
@@ -60,28 +60,28 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 				mysql_query('UPDATE `stats` SET `last_hp` = "'.$btl->users[$btl->uids[$uid]]['last_hp'].'",`hpNow` = "'.$btl->stats[$btl->uids[$uid]]['hpNow'].'" WHERE `id` = "'.$uid.'" LIMIT 1');
 				//
 				
-				$btl->priemAddLogFast( $uid, 0, "Собраться",
-					'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).' на <font Color=green><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
+				$btl->priemAddLogFast( $uid, 0, "РЎРѕР±СЂР°С‚СЊСЃСЏ",
+					'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$uid]]['sex'] , NULL).' РЅР° <font Color=green><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 				1, time() );					
 				//
 			}	
 		}
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
 	if( $u->stats['items'][$u->stats['wp14id']]['type'] == 13 ) {
-		//Действие при клике
+		//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 		$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-			'Собраться',
+			'РЎРѕР±СЂР°С‚СЊСЃСЏ',
 			'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'',
 			($btl->hodID)
 		);
-		echo '<font color=red><b>Вы успешно использовали прием &quot;Собраться&quot;</b></font>';
+		echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё РїСЂРёРµРј &quot;РЎРѕР±СЂР°С‚СЊСЃСЏ&quot;</b></font>';
 		$this->addEffPr($pl,$id);
 	}else{
-		echo '<font color=red><b>Для использования &quot;Собраться&quot; требуется наличие щита</b></font>';	
+		echo '<font color=red><b>Р”Р»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ &quot;РЎРѕР±СЂР°С‚СЊСЃСЏ&quot; С‚СЂРµР±СѓРµС‚СЃСЏ РЅР°Р»РёС‡РёРµ С‰РёС‚Р°</b></font>';	
 	}
 }
 

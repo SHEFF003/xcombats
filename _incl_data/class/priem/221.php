@@ -3,11 +3,11 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Отменить
-	Отменяет последнее изменение НР
+	РџСЂРёРµРј: РћС‚РјРµРЅРёС‚СЊ
+	РћС‚РјРµРЅСЏРµС‚ РїРѕСЃР»РµРґРЅРµРµ РёР·РјРµРЅРµРЅРёРµ РќР 
 */
 $pvr = array();
-//Действие при клике
+//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 
 $pvr['hp'] = -floor($btl->users[$btl->uids[$u->info['id']]]['last_hp']);
 $pvr['hpSee'] = '--';
@@ -16,7 +16,7 @@ $pvr['hpAll'] = $btl->stats[$btl->uids[$u->info['id']]]['hpAll'];
 	
 $pvr['hpTr'] = $pvr['hpAll'] - $pvr['hpNow'];
 if( $pvr['hpTr'] > 0 ) {
-	//Требуется хилл
+	//РўСЂРµР±СѓРµС‚СЃСЏ С…РёР»Р»
 	if( $pvr['hpTr'] < $pvr['hp'] ) {
 		$pvr['hp'] = $pvr['hpTr'];
 	}
@@ -27,7 +27,7 @@ if( $pvr['hpTr'] > 0 ) {
 	}
 	$pvr['hpNow'] += $pvr['hp'];
 }else{
-	//Требуется откат НР
+	//РўСЂРµР±СѓРµС‚СЃСЏ РѕС‚РєР°С‚ РќР 
 	$pvr['hpSee'] = $pvr['hp'];
 	$pvr['hpNow'] += $pvr['hp'];
 }
@@ -47,12 +47,12 @@ $btl->stats[$btl->uids[$u->info['id']]]['hpNow'] = $pvr['hpNow'];
 mysql_query('UPDATE `stats` SET `last_hp` = "'.$btl->users[$btl->uids[$u->info['id']]]['last_hp'].'",`hpNow` = "'.$u->info['hpNow'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 	
 $btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-	'Отменить',
+	'РћС‚РјРµРЅРёС‚СЊ',
 	'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).' <font Color=#006699><b>'.$pvr['hpSee'].'</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']',
 	($btl->hodID)
 );
 
-//Отнимаем тактики
+//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 $this->mintr($pl);
 
 unset($pvr);

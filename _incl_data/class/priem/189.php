@@ -3,28 +3,28 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Ïğèåì: Îøåëîìèòü
+	ĞŸÑ€Ğ¸ĞµĞ¼: ĞÑˆĞµĞ»Ğ¾Ğ¼Ğ¸Ñ‚ÑŒ
 	
 */
 $pvr = array();
-//Äåéñòâèå ïğè êëèêå
+//Ğ”ĞµĞ¹ÑÑ‚Ğ²Ğ¸Ğµ Ğ¿Ñ€Ğ¸ ĞºĞ»Ğ¸ĞºĞµ
 
 $prv['text'] = $btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);
 $pvr['x5'] = mysql_fetch_array(mysql_query('SELECT `id`,`x`,`hod` FROM `eff_users` WHERE `uid` = "'.$u->info['enemy'].'" AND `v2` = 191 AND `delete` = 0 LIMIT 1'));
 
 if( $pvr['x5']['x'] > 0 ) {
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-		'Îøåëîìèòü',
-		'{tm1} '.$prv['text'].' íà {u2}.',
+		'ĞÑˆĞµĞ»Ğ¾Ğ¼Ğ¸Ñ‚ÑŒ',
+		'{tm1} '.$prv['text'].' Ğ½Ğ° {u2}.',
 		($btl->hodID + 1)
 	);	
-	//Îòíèìàåì òàêòèêè
+	//ĞÑ‚Ğ½Ğ¸Ğ¼Ğ°ĞµĞ¼ Ñ‚Ğ°ĞºÑ‚Ğ¸ĞºĞ¸
 	$this->mintr($pl);
 }else{
 	if( isset($btl->stats[$btl->uids[$u->info['enemy']]]['antishock']) && $btl->stats[$btl->uids[$u->info['enemy']]]['antishock'] > 0 && $pvr['x5']['x'] >= 2 ) {
 		$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-			'Îøåëîìèòü',
-			'{tm1} '.$prv['text'].' íà {u2}. (Öåëü ïîëíîñòüş çàùèùåíà îò øîêà)',
+			'ĞÑˆĞµĞ»Ğ¾Ğ¼Ğ¸Ñ‚ÑŒ',
+			'{tm1} '.$prv['text'].' Ğ½Ğ° {u2}. (Ğ¦ĞµĞ»ÑŒ Ğ¿Ğ¾Ğ»Ğ½Ğ¾ÑÑ‚ÑŒÑ Ğ·Ğ°Ñ‰Ğ¸Ñ‰ĞµĞ½Ğ° Ğ¾Ñ‚ ÑˆĞ¾ĞºĞ°)',
 			($btl->hodID + 1)
 		);
 		if( isset($pvr['x5']['id']) ) {
@@ -32,21 +32,21 @@ if( $pvr['x5']['x'] > 0 ) {
 		}
 	}else{
 		$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
-			'Îøåëîìèòü',
-			'{tm1} '.$prv['text'].' íà {u2}.',
+			'ĞÑˆĞµĞ»Ğ¾Ğ¼Ğ¸Ñ‚ÑŒ',
+			'{tm1} '.$prv['text'].' Ğ½Ğ° {u2}.',
 			($btl->hodID + 1)
 		);
 		$pvr['x4'] = mysql_fetch_array(mysql_query('SELECT `id`,`x`,`hod` FROM `eff_users` WHERE `uid` = "'.$u->info['enemy'].'" AND `v2` = 275 AND `delete` = 0 LIMIT 1'));
 		mysql_query('DELETE FROM `eff_users` WHERE `id` = "'.$pvr['x4']['id'].'" LIMIT 1');
-		$this->addPriem($u->info['enemy'],275,'add_notactic=1|add_nousepriem=1',0,77,(2-$pvr['x5']['x']),$u->info['id'],5,'îøåëîìèòü');
+		$this->addPriem($u->info['enemy'],275,'add_notactic=1|add_nousepriem=1',0,77,(2-$pvr['x5']['x']),$u->info['id'],5,'Ğ¾ÑˆĞµĞ»Ğ¾Ğ¼Ğ¸Ñ‚ÑŒ');
 		if( !isset($pvr['x5']['id']) ) {
-			$this->addPriem($u->info['enemy'],191,'add_antishock=1',0,77,5,$u->info['id'],5,'èììóíèòåòêîøåëîìèòü');	
+			$this->addPriem($u->info['enemy'],191,'add_antishock=1',0,77,5,$u->info['id'],5,'Ğ¸Ğ¼Ğ¼ÑƒĞ½Ğ¸Ñ‚ĞµÑ‚ĞºĞ¾ÑˆĞµĞ»Ğ¾Ğ¼Ğ¸Ñ‚ÑŒ');	
 		}else{
 			mysql_query('UPDATE `eff_users` SET `hod` = 5,`x` = ( `x` + 1 ) WHERE `id` = "'.$pvr['x5']['id'].'" LIMIT 1');
 		}
 	}
 	
-	//Îòíèìàåì òàêòèêè
+	//ĞÑ‚Ğ½Ğ¸Ğ¼Ğ°ĞµĞ¼ Ñ‚Ğ°ĞºÑ‚Ğ¸ĞºĞ¸
 	$this->mintr($pl);
 }
 

@@ -3,22 +3,22 @@ if(!defined('GAME')) {
 	die();
 }
 /*
-	Прием: Кристаллизация
+	РџСЂРёРµРј: РљСЂРёСЃС‚Р°Р»Р»РёР·Р°С†РёСЏ
 */
 $pvr = array();
 if( isset($pr_used_this) && isset($pr_moment) ) {
-	//Каждый ход
+	//РљР°Р¶РґС‹Р№ С…РѕРґ
 	$fx_priem = function(  $id , $at , $uid, $j_id ) {
-		// -- начало приема
+		// -- РЅР°С‡Р°Р»Рѕ РїСЂРёРµРјР°
 		global $u, $btl, $priem;	
 		
-		// -- конец приема
+		// -- РєРѕРЅРµС† РїСЂРёРµРјР°
 		return $at;
 	};
 	unset( $pr_used_this );
 }else{
-	//Действие при клике
-	//$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'вода', 1 );
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
+	//$pvr['hp'] = $this->magatack( $u->info['id'], $this->ue['id'], $pvr['hp'], 'РІРѕРґР°', 1 );
 	$pvr['promah_type'] = 0;
 	$pvr['promah'] = false;
 	$pvr['krit'] = false;
@@ -30,7 +30,7 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 	$pvr['hpNow'] = floor($btl->stats[$btl->uids[$this->ue['id']]]['hpNow']);
 	$pvr['hpAll'] = $btl->stats[$btl->uids[$this->ue['id']]]['hpAll'];
 		
-	//Используем проверку на урон приемов
+	//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 	$pvr['hp'] = $btl->testYronPriem( $u->info['id'], $this->ue['id'], 21, $pvr['hp'], 7, true );
 		
 	$pvr['hpSee'] = '-'.$pvr['hp'];
@@ -49,16 +49,16 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 		
 	$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);
 	
-	//Цвет приема
+	//Р¦РІРµС‚ РїСЂРёРµРјР°
 	if( $pvr['promah'] == false ) {
 		if( $pvr['krit'] == false ) {
 			$prv['color2'] = '006699';
-			if(isset($btl->mcolor[$btl->mname['вода']])) {
-				$prv['color2'] = $btl->mcolor[$btl->mname['вода']];
+			if(isset($btl->mcolor[$btl->mname['РІРѕРґР°']])) {
+				$prv['color2'] = $btl->mcolor[$btl->mname['РІРѕРґР°']];
 			}
 			$prv['color'] = '000000';
-			if(isset($btl->mncolor[$btl->mname['вода']])) {
-				$prv['color'] = $btl->mncolor[$btl->mname['вода']];
+			if(isset($btl->mncolor[$btl->mname['РІРѕРґР°']])) {
+				$prv['color'] = $btl->mncolor[$btl->mname['РІРѕРґР°']];
 			}
 		}else{
 			$prv['color2'] = 'FF0000';
@@ -75,16 +75,16 @@ if( isset($pr_used_this) && isset($pr_moment) ) {
 		$prv['text2'] = '{tm1} '.$prv['text'].'. <font Color='.$prv['color'].'><b>--</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']';
 	}
 	$btl->priemAddLog( $id, 1, 2, $u->info['id'], $this->ue['id'],
-		'<font color^^^^#'.$prv['color2'].'>Кристаллизация</font>',
+		'<font color^^^^#'.$prv['color2'].'>РљСЂРёСЃС‚Р°Р»Р»РёР·Р°С†РёСЏ</font>',
 		$prv['text2'],
 		($btl->hodID + 1)
 	);
 	
-	//Добавляем прием
+	//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 	//$this->addEffPr($pl,$id);
-	$this->addPriem($this->ue['id'],268,'|add_s1=-'.$btl->stats[$btl->uids[$u->info['id']]]['mg3'].'|add_s2=-'.$btl->stats[$btl->uids[$u->info['id']]]['mg3'].'',2,77,3,$u->info['id'],3,'кристаллизация',0,0,1);
+	$this->addPriem($this->ue['id'],268,'|add_s1=-'.$btl->stats[$btl->uids[$u->info['id']]]['mg3'].'|add_s2=-'.$btl->stats[$btl->uids[$u->info['id']]]['mg3'].'',2,77,3,$u->info['id'],3,'РєСЂРёСЃС‚Р°Р»Р»РёР·Р°С†РёСЏ',0,0,1);
 	
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 }
 
