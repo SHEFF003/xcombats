@@ -10,22 +10,22 @@ if( $itm['magic_inci'] == 'exitbtl' ) {
 	
 	$pvr = array();
 	
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	if( $u->stats['hpNow'] < 1 ) {
-		$u->error = '<font color=red><b>Вы поглибли и не можете воспользоваться свитком...</b></font>';
+		$u->error = '<font color=red><b>Р’С‹ РїРѕРіР»РёР±Р»Рё Рё РЅРµ РјРѕР¶РµС‚Рµ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СЃРІРёС‚РєРѕРј...</b></font>';
 	}elseif( isset($btl->info['id']) ) {
 		
 		if( $btl->info['dn_id'] > 0 || $btl->info['izlom'] > 0 ) {
-			$u->error = '<font color=red><b>Магия не действует в пещерах и подобных локациях...</b></font>';	
+			$u->error = '<font color=red><b>РњР°РіРёСЏ РЅРµ РґРµР№СЃС‚РІСѓРµС‚ РІ РїРµС‰РµСЂР°С… Рё РїРѕРґРѕР±РЅС‹С… Р»РѕРєР°С†РёСЏС…...</b></font>';	
 		}elseif( $btl->info['noinc'] > 0 ) {
-			$u->error = '<font color=red><b>Бой изолирован и вы не можете его покинуть</b></font>';	
+			$u->error = '<font color=red><b>Р‘РѕР№ РёР·РѕР»РёСЂРѕРІР°РЅ Рё РІС‹ РЅРµ РјРѕР¶РµС‚Рµ РµРіРѕ РїРѕРєРёРЅСѓС‚СЊ</b></font>';	
 		}else{			
 			$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
 				'',
-				'{tm1} {u1} сбежал с поля боя... ',
+				'{tm1} {u1} СЃР±РµР¶Р°Р» СЃ РїРѕР»СЏ Р±РѕСЏ... ',
 				($btl->hodID)
 			);			
-			$u->error = '<font color=red><b>Вы сбежали с поля боя и потеряли всю энергию...</b></font>';
+			$u->error = '<font color=red><b>Р’С‹ СЃР±РµР¶Р°Р»Рё СЃ РїРѕР»СЏ Р±РѕСЏ Рё РїРѕС‚РµСЂСЏР»Рё РІСЃСЋ СЌРЅРµСЂРіРёСЋ...</b></font>';
 			//		
 			mysql_query('UPDATE `stats` SET `battle_yron` = 0, `battle_exp` = 0, `hpNow` = 0, `mpNow` = 0 , `tactic1` = 0 , `tactic2` = 0 , `tactic3` = 0 , `tactic4` = 0 , `tactic5` = 0 , `tactic6` = 0 , `tactic7` = -1 , `last_pr` = 0 , `last_hp` = -1 WHERE `id` = '.$u->info['id'].' LIMIT 1');
 			mysql_query('UPDATE `users` SET `battle` = 0, `lose` = `lose` + 1 WHERE `id` = '.$u->info['id'].' LIMIT 1');
@@ -36,10 +36,10 @@ if( $itm['magic_inci'] == 'exitbtl' ) {
 		}
 		
 	}else{
-		$u->error = '<font color=red><b>Свиток возможно использовать только в бою</b></font>';
+		$u->error = '<font color=red><b>РЎРІРёС‚РѕРє РІРѕР·РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РІ Р±РѕСЋ</b></font>';
 	}
 	
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 	
 	unset($pvr);

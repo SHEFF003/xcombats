@@ -3,7 +3,7 @@ if(isset($s[1]) && $s[1] == '12/s1') {
   $vad = array('go' => true);
   $vad['test1'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `vars` = "obj_act'.$obj['id'].'" AND `dn` = "'.$u->info['dnow'].'" LIMIT 1'));
   if($vad['test1'][0] > 0) {
-	$r = 'Кто-то обыскал &quot;'.$obj['name'].'&quot; раньше вас...';
+	$r = 'РљС‚Рѕ-С‚Рѕ РѕР±С‹СЃРєР°Р» &quot;'.$obj['name'].'&quot; СЂР°РЅСЊС€Рµ РІР°СЃ...';
 	$vad['go'] = false;
   }
   if($vad['go'] == true) {
@@ -14,7 +14,7 @@ if(isset($s[1]) && $s[1] == '12/s1') {
 	  $vad['i'] = 0;
 	  $vad['items'] = array(array(888, 15), array(4759, 15), array(4523, 8), array(4524, 8), array(4525, 8), array(4526, 8), array(4527, 8), array(4528, 8), array(4529, 8), array(4530, 8), array(4531, 8));
 	  if(rand(0,100) < 50) {
-		$r = 'Вы ничего не нашли...';
+		$r = 'Р’С‹ РЅРёС‡РµРіРѕ РЅРµ РЅР°С€Р»Рё...';
 	  } else {
 		while($vad['i'] < count($vad['items'])) {
 		  $vad['j'] = $vad['items'][$vad['i']];
@@ -30,10 +30,10 @@ if(isset($s[1]) && $s[1] == '12/s1') {
 		  $vad['itm'] = $vad['items'][rand(0, count(($vad['items']))-1)];
 		  $this->pickitem($obj, $vad['itm'][0], 0);
 		}
-		$r = 'Вы обнаружили предметы...';
+		$r = 'Р’С‹ РѕР±РЅР°СЂСѓР¶РёР»Рё РїСЂРµРґРјРµС‚С‹...';
 	  }		
 	} else {
-	  $r = 'Вы не нашли ничего полезного...';
+	  $r = 'Р’С‹ РЅРµ РЅР°С€Р»Рё РЅРёС‡РµРіРѕ РїРѕР»РµР·РЅРѕРіРѕ...';
 	}
   }
   unset($vad);

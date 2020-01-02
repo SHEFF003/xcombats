@@ -1,15 +1,15 @@
 <?
 if( isset($s[1]) && $s[1] == '101/sunduk4' ) {
 	/*
-		Сундук: Сундук
+		РЎСѓРЅРґСѓРє: РЎСѓРЅРґСѓРє
 	*/
-	//Все переменные сохранять в массиве $vad !
+	//Р’СЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏС‚СЊ РІ РјР°СЃСЃРёРІРµ $vad !
 	$vad = array(
 		'go' => true
 	);
 	$vad['test1'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `dn` = "'.$u->info['dnow'].'" AND `vars` = "obj_act'.$obj['id'].'" LIMIT 1'));
 	if( $vad['test1'][0] > 0 ) {
-		$r = 'Кто-то обыскал &quot;'.$obj['name'].'&quot; до вас...';
+		$r = 'РљС‚Рѕ-С‚Рѕ РѕР±С‹СЃРєР°Р» &quot;'.$obj['name'].'&quot; РґРѕ РІР°СЃ...';
 		$vad['go'] = false;
 	}
 	
@@ -18,7 +18,7 @@ if( isset($s[1]) && $s[1] == '101/sunduk4' ) {
 			"'.$u->info['dnow'].'","'.time().'","'.$obj['x'].'","'.$obj['y'].'","'.$u->info['id'].'","obj_act'.$obj['id'].'","'.$vad['bad'].'"
 		)');
 		if( rand(1,100) > 50 ) {
-			$r = 'Обыскав &quot;'.$obj['name'].'&quot; вы ничего не обнаружили...';
+			$r = 'РћР±С‹СЃРєР°РІ &quot;'.$obj['name'].'&quot; РІС‹ РЅРёС‡РµРіРѕ РЅРµ РѕР±РЅР°СЂСѓР¶РёР»Рё...';
 		}else{
 			$vad['items'] = array(882);
 			if( rand(1,40) < 16 ) {
@@ -28,7 +28,7 @@ if( isset($s[1]) && $s[1] == '101/sunduk4' ) {
 			if( !isset($vad['dn_delete'][$vad['items']['id']]) ) {
 				$vad['dn_delete'][$vad['items']['id']] = false;
 			}
-			$r = 'Обыскав &quot;'.$obj['name'].'&quot; вы обнаружили &quot;'.$vad['items']['name'].'&quot;';
+			$r = 'РћР±С‹СЃРєР°РІ &quot;'.$obj['name'].'&quot; РІС‹ РѕР±РЅР°СЂСѓР¶РёР»Рё &quot;'.$vad['items']['name'].'&quot;';
 			$this->pickitem($obj,$vad['items']['id'],0,'',$vad['dn_delete'][$vad['items']['id']]);
 		}
 	}

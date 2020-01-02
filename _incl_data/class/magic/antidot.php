@@ -6,7 +6,7 @@ if(!defined('GAME'))
 
 if( $itm['magic_inci'] == 'antidot' ) {	
 	mysql_query('DELETE FROM `laba_act` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "trap1"');
-	$u->error = 'Âû èñöåëèëèñü îò ÿäîâ...';
+	$u->error = 'Ð’Ñ‹ Ð¸ÑÑ†ÐµÐ»Ð¸Ð»Ð¸ÑÑŒ Ð¾Ñ‚ ÑÐ´Ð¾Ð²...';
 	mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 }
 ?>

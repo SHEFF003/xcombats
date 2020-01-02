@@ -20,24 +20,24 @@ if(isset($_POST['clip76_'])) {
                 $u->deleteItemID(903, $u->info['id'], 1);
                 $u->deleteItemID(881, $u->info['id'], 1);
                 $u->deleteItemID(878, $u->info['id'], 1);
-                $err = 'Вы получили Черная Метка';
+                $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё Р§РµСЂРЅР°СЏ РњРµС‚РєР°';
             } else {
-              $err = "Не хватает ресурсов &quot;Лучистый топаз&quot;"; 
+              $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р›СѓС‡РёСЃС‚С‹Р№ С‚РѕРїР°Р·&quot;"; 
             }
           } else {
-            $err = "Не хватает ресурсов &quot;Лучистый рубин&quot;"; 
+            $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р›СѓС‡РёСЃС‚С‹Р№ СЂСѓР±РёРЅ&quot;"; 
           }
         } else {
-          $err = "Не хватает ресурсов &quot;Тысячелетний камень&quot;"; 
+          $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РўС‹СЃСЏС‡РµР»РµС‚РЅРёР№ РєР°РјРµРЅСЊ&quot;"; 
         }
       } else {
-        $err = "Не хватает ресурсов &quot;Плод змеиного дерева&quot;"; 
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РџР»РѕРґ Р·РјРµРёРЅРѕРіРѕ РґРµСЂРµРІР°&quot;"; 
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Глубинный камень&quot;"; 
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р“Р»СѓР±РёРЅРЅС‹Р№ РєР°РјРµРЅСЊ&quot;"; 
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Сталь&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎС‚Р°Р»СЊ&quot;";
   }
 } elseif(isset($_POST['clip80_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4678" LIMIT 1'));
@@ -57,27 +57,27 @@ if(isset($_POST['clip76_'])) {
                 $u->deleteItemID(888, $u->info['id'], 1);
                 $u->deleteItemID(909, $u->info['id'], 1);
                 $u->deleteItemID(905, $u->info['id'], 1);
-                $err = 'Вы получили Красная Метка';
+                $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РљСЂР°СЃРЅР°СЏ РњРµС‚РєР°';
               } else {
-                $err = "Не хватает ресурсов &quot;Стихиалия&quot;"; 
+                $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎС‚РёС…РёР°Р»РёСЏ&quot;"; 
               }
             } else {
-              $err = "Не хватает ресурсов &quot;Эссенция праведного гнева&quot;"; 
+              $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р­СЃСЃРµРЅС†РёСЏ РїСЂР°РІРµРґРЅРѕРіРѕ РіРЅРµРІР°&quot;"; 
             }
           } else {
-            $err = "Не хватает ресурсов &quot;Шепот гор&quot;"; 
+            $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЁРµРїРѕС‚ РіРѕСЂ&quot;"; 
           }
         } else {
-          $err = "Не хватает ресурсов &quot;Камень затаенного солнца&quot;"; 
+          $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљР°РјРµРЅСЊ Р·Р°С‚Р°РµРЅРЅРѕРіРѕ СЃРѕР»РЅС†Р°&quot;"; 
         }
       } else {
-        $err = "Не хватает ресурсов &quot;Кристалл голоса предков&quot;"; 
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљСЂРёСЃС‚Р°Р»Р» РіРѕР»РѕСЃР° РїСЂРµРґРєРѕРІ&quot;"; 
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Сгусток эфира&quot;"; 
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎРіСѓСЃС‚РѕРє СЌС„РёСЂР°&quot;"; 
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Лучистое Серебро&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р›СѓС‡РёСЃС‚РѕРµ РЎРµСЂРµР±СЂРѕ&quot;";
   }
 } elseif(isset($_POST['clip81_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4679" LIMIT 1'));
@@ -87,12 +87,12 @@ if(isset($_POST['clip76_'])) {
       $u->addItem(4679, $u->info['id'], $data, $obj);
       $u->deleteItemID(906, $u->info['id'], 1);
       $u->deleteItemID(907, $u->info['id'], 1);
-      $err = 'Вы получили Проклятье Умирающей Земли';
+      $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РџСЂРѕРєР»СЏС‚СЊРµ РЈРјРёСЂР°СЋС‰РµР№ Р—РµРјР»Рё';
     } else {
-      $err = "Не хватает ресурсов &quot;Кристалл стабильности&quot;";
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљСЂРёСЃС‚Р°Р»Р» СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚Рё&quot;";
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Кристалл голоса предков&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљСЂРёСЃС‚Р°Р»Р» РіРѕР»РѕСЃР° РїСЂРµРґРєРѕРІ&quot;";
   }
 } elseif(isset($_POST['clip82_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4680" LIMIT 1'));
@@ -108,21 +108,21 @@ if(isset($_POST['clip76_'])) {
             $u->deleteItemID(902, $u->info['id'], 1);
             $u->deleteItemID(903, $u->info['id'], 1);
             $u->deleteItemID(888, $u->info['id'], 1);
-            $err = 'Вы получили Проклятье Стихающего Ветра';
+            $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РџСЂРѕРєР»СЏС‚СЊРµ РЎС‚РёС…Р°СЋС‰РµРіРѕ Р’РµС‚СЂР°';
           } else {
-            $err = "Не хватает ресурсов &quot;Шепот гор&quot;"; 
+            $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЁРµРїРѕС‚ РіРѕСЂ&quot;"; 
           }
         } else {
-          $err = "Не хватает ресурсов &quot;Тысячелетний камень&quot;"; 
+          $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РўС‹СЃСЏС‡РµР»РµС‚РЅРёР№ РєР°РјРµРЅСЊ&quot;"; 
         }
       } else {
-        $err = "Не хватает ресурсов &quot;Плод змеиного дерева&quot;"; 
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РџР»РѕРґ Р·РјРµРёРЅРѕРіРѕ РґРµСЂРµРІР°&quot;"; 
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Сгусток астрала&quot;"; 
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎРіСѓСЃС‚РѕРє Р°СЃС‚СЂР°Р»Р°&quot;"; 
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Сталь&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎС‚Р°Р»СЊ&quot;";
   }
 } elseif(isset($_POST['clip89_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4681" LIMIT 1'));
@@ -138,21 +138,21 @@ if(isset($_POST['clip76_'])) {
             $u->deleteItemID(903, $u->info['id'], 1);
             $u->deleteItemID(904, $u->info['id'], 1);
             $u->deleteItemID(908, $u->info['id'], 1);
-            $err = 'Вы получили Проклятье Замерзающей Воды';
+            $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РџСЂРѕРєР»СЏС‚СЊРµ Р—Р°РјРµСЂР·Р°СЋС‰РµР№ Р’РѕРґС‹';
           } else {
-            $err = "Не хватает ресурсов &quot;Камень затаенного солнца&quot;"; 
+            $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљР°РјРµРЅСЊ Р·Р°С‚Р°РµРЅРЅРѕРіРѕ СЃРѕР»РЅС†Р°&quot;"; 
           }
         } else {
-          $err = "Не хватает ресурсов &quot;Кристалл времен&quot;"; 
+          $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљСЂРёСЃС‚Р°Р»Р» РІСЂРµРјРµРЅ&quot;"; 
         }
       } else {
-        $err = "Не хватает ресурсов &quot;Тысячелетний камень&quot;"; 
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РўС‹СЃСЏС‡РµР»РµС‚РЅРёР№ РєР°РјРµРЅСЊ&quot;"; 
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Глубинный камень&quot;"; 
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р“Р»СѓР±РёРЅРЅС‹Р№ РєР°РјРµРЅСЊ&quot;"; 
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Кожа змеиного дерева&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљРѕР¶Р° Р·РјРµРёРЅРѕРіРѕ РґРµСЂРµРІР°&quot;";
   }
 } elseif(isset($_POST['clip90_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4682" LIMIT 1'));
@@ -168,21 +168,21 @@ if(isset($_POST['clip76_'])) {
             $u->deleteItemID(902, $u->info['id'], 1);
             $u->deleteItemID(906, $u->info['id'], 1);
             $u->deleteItemID(878, $u->info['id'], 1);
-            $err = 'Вы получили Проклятье Угасающего Огня';
+            $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РџСЂРѕРєР»СЏС‚СЊРµ РЈРіР°СЃР°СЋС‰РµРіРѕ РћРіРЅСЏ';
           } else {
-            $err = "Не хватает ресурсов &quot;Лучистый топаз&quot;"; 
+            $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р›СѓС‡РёСЃС‚С‹Р№ С‚РѕРїР°Р·&quot;"; 
           }
         } else {
-          $err = "Не хватает ресурсов &quot;Тысячелетний камень&quot;"; 
+          $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РўС‹СЃСЏС‡РµР»РµС‚РЅРёР№ РєР°РјРµРЅСЊ&quot;"; 
         }
       } else {
-        $err = "Не хватает ресурсов &quot;Плод змеиного дерева&quot;"; 
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РџР»РѕРґ Р·РјРµРёРЅРѕРіРѕ РґРµСЂРµРІР°&quot;"; 
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Сгусток эфира&quot;"; 
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎРіСѓСЃС‚РѕРє СЌС„РёСЂР°&quot;"; 
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Кожа Общего Врага&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљРѕР¶Р° РћР±С‰РµРіРѕ Р’СЂР°РіР°&quot;";
   }
 } elseif(isset($_POST['clip91_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4683" LIMIT 1'));
@@ -194,15 +194,15 @@ if(isset($_POST['clip76_'])) {
         $u->deleteItemID(907, $u->info['id'], 1);
         $u->deleteItemID(881, $u->info['id'], 1);
         $u->deleteItemID(905, $u->info['id'], 1);
-        $err = 'Вы получили Проклятье Легкого Отупления';
+        $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РџСЂРѕРєР»СЏС‚СЊРµ Р›РµРіРєРѕРіРѕ РћС‚СѓРїР»РµРЅРёСЏ';
       } else {
-        $err = "Не хватает ресурсов &quot;Стихиалия&quot;";
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎС‚РёС…РёР°Р»РёСЏ&quot;";
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Лучистый рубин&quot;";
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р›СѓС‡РёСЃС‚С‹Р№ СЂСѓР±РёРЅ&quot;";
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Кристалл стабильности&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљСЂРёСЃС‚Р°Р»Р» СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚Рё&quot;";
   }
 } elseif(isset($_POST['clip92_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4684" LIMIT 1'));
@@ -214,15 +214,15 @@ if(isset($_POST['clip76_'])) {
         $u->deleteItemID(907, $u->info['id'], 1);
         $u->deleteItemID(881, $u->info['id'], 1);
         $u->deleteItemID(905, $u->info['id'], 1);
-        $err = 'Вы получили Проклятье Уязвимости';
+        $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РџСЂРѕРєР»СЏС‚СЊРµ РЈСЏР·РІРёРјРѕСЃС‚Рё';
       } else {
-        $err = "Не хватает ресурсов &quot;Стихиалия&quot;";
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎС‚РёС…РёР°Р»РёСЏ&quot;";
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Лучистый рубин&quot;";
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р›СѓС‡РёСЃС‚С‹Р№ СЂСѓР±РёРЅ&quot;";
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Кристалл стабильности&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљСЂРёСЃС‚Р°Р»Р» СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚Рё&quot;";
   }
 } elseif(isset($_POST['clip93_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4685" LIMIT 1'));
@@ -234,15 +234,15 @@ if(isset($_POST['clip76_'])) {
         $u->deleteItemID(901, $u->info['id'], 1);
         $u->deleteItemID(889, $u->info['id'], 1);
         $u->deleteItemID(890, $u->info['id'], 1);
-        $err = 'Вы получили Зачаровать кольцо: Вытягивание души [1]';
+        $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё Р—Р°С‡Р°СЂРѕРІР°С‚СЊ РєРѕР»СЊС†Рѕ: Р’С‹С‚СЏРіРёРІР°РЅРёРµ РґСѓС€Рё [1]';
       } else {
-        $err = "Не хватает ресурсов &quot;Сгусток астрала&quot;";
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎРіСѓСЃС‚РѕРє Р°СЃС‚СЂР°Р»Р°&quot;";
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Сгусток эфира&quot;";
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎРіСѓСЃС‚РѕРє СЌС„РёСЂР°&quot;";
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Кристалл тысячи ответов&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РљСЂРёСЃС‚Р°Р»Р» С‚С‹СЃСЏС‡Рё РѕС‚РІРµС‚РѕРІ&quot;";
   }
 } elseif(isset($_POST['clip94_'])) {
   $obj = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "4686" LIMIT 1'));
@@ -256,18 +256,18 @@ if(isset($_POST['clip76_'])) {
           $u->deleteItemID(4688, $u->info['id'], 1);
           $u->deleteItemID(4689, $u->info['id'], 1);
           $u->deleteItemID(4690, $u->info['id'], 1);
-          $err = 'Вы получили Зачаровать кольцо: Вытягивание души [2]';
+          $err = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё Р—Р°С‡Р°СЂРѕРІР°С‚СЊ РєРѕР»СЊС†Рѕ: Р’С‹С‚СЏРіРёРІР°РЅРёРµ РґСѓС€Рё [2]';
         } else {
-          $err = "Не хватает ресурсов &quot;Ускоритель для Големов&quot;";
+          $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЈСЃРєРѕСЂРёС‚РµР»СЊ РґР»СЏ Р“РѕР»РµРјРѕРІ&quot;";
         }
       } else {
-        $err = "Не хватает ресурсов &quot;Смазка для Големов&quot;";
+        $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РЎРјР°Р·РєР° РґР»СЏ Р“РѕР»РµРјРѕРІ&quot;";
       }
     } else {
-      $err = "Не хватает ресурсов &quot;Топливо для Големов&quot;";
+      $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;РўРѕРїР»РёРІРѕ РґР»СЏ Р“РѕР»РµРјРѕРІ&quot;";
     }
   } else {
-    $err = "Не хватает ресурсов &quot;Зачаровать кольцо: Вытягивание души [1]&quot;";
+    $err = "РќРµ С…РІР°С‚Р°РµС‚ СЂРµСЃСѓСЂСЃРѕРІ &quot;Р—Р°С‡Р°СЂРѕРІР°С‚СЊ РєРѕР»СЊС†Рѕ: Р’С‹С‚СЏРіРёРІР°РЅРёРµ РґСѓС€Рё [1]&quot;";
   }
 }
 
@@ -328,7 +328,7 @@ function OpenDiv(vr) {
 <TABLE cellspacing=0 cellpadding=2 width=100%>
 <TD style="width: 40%; vertical-align: top; ">
 <TABLE cellspacing=0 cellpadding=2 style="width: 100%; ">
-<tr><TD align=center><h4>Мастерская Забытых Мастеров</h4></TD></tr>
+<tr><TD align=center><h4>РњР°СЃС‚РµСЂСЃРєР°СЏ Р—Р°Р±С‹С‚С‹С… РњР°СЃС‚РµСЂРѕРІ</h4></TD></tr>
 <TR>
 </TABLE>
 </TD>
@@ -349,122 +349,122 @@ function OpenDiv(vr) {
 <tr>
 <td>
 <div id="answer1">
-• <a href="#" onClick="OpenDiv('clip76')">Черная метка</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip76')">Р§РµСЂРЅР°СЏ РјРµС‚РєР°</a><br />
 <div id="clip76" style="display: none; color: black;">
- <p style="color:<?=getColor(877, 1)?>"> Cталь <img src="http://img.xcombats.com/<?=getImg(877, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(882, 1)?>"> Глубинный камень <img src="http://img.xcombats.com/<?=getImg(882, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(902, 1)?>"> Плод змеиного дерева <img src="http://img.xcombats.com/<?=getImg(902, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(903, 1)?>"> Тысячелетний камень <img src="http://img.xcombats.com/<?=getImg(903, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(881, 1)?>"> Лучистый рубин <img src="http://img.xcombats.com/<?=getImg(881, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(878, 1)?>"> Лучистый топаз <img src="http://img.xcombats.com/<?=getImg(878, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(877, 1)?>"> CС‚Р°Р»СЊ <img src="http://img.xcombats.com/<?=getImg(877, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(882, 1)?>"> Р“Р»СѓР±РёРЅРЅС‹Р№ РєР°РјРµРЅСЊ <img src="http://img.xcombats.com/<?=getImg(882, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(902, 1)?>"> РџР»РѕРґ Р·РјРµРёРЅРѕРіРѕ РґРµСЂРµРІР° <img src="http://img.xcombats.com/<?=getImg(902, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(903, 1)?>"> РўС‹СЃСЏС‡РµР»РµС‚РЅРёР№ РєР°РјРµРЅСЊ <img src="http://img.xcombats.com/<?=getImg(903, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(881, 1)?>"> Р›СѓС‡РёСЃС‚С‹Р№ СЂСѓР±РёРЅ <img src="http://img.xcombats.com/<?=getImg(881, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(878, 1)?>"> Р›СѓС‡РёСЃС‚С‹Р№ С‚РѕРїР°Р· <img src="http://img.xcombats.com/<?=getImg(878, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip76_" value="Собрать" />
+<input type="submit" name="clip76_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
     
-• <a href="#" onClick="OpenDiv('clip80')">Красная метка</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip80')">РљСЂР°СЃРЅР°СЏ РјРµС‚РєР°</a><br />
 <div id="clip80" style="display: none; color: black;">
- <p style="color:<?=getColor(895, 1)?>"> Лучистое серебро <img src="http://img.xcombats.com/<?=getImg(895, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(889, 3)?>"> Сгусток эфира (3 шт.) <img src="http://img.xcombats.com/<?=getImg(889, 3)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(906, 1)?>"> Кристалл голоса предков <img src="http://img.xcombats.com/<?=getImg(906, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(908, 1)?>"> Камень затаенного солнца <img src="http://img.xcombats.com/<?=getImg(908, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(888, 1)?>"> Шепот гор <img src="http://img.xcombats.com/<?=getImg(888, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(909, 1)?>"> Эссенция праведного гнева <img src="http://img.xcombats.com/<?=getImg(909, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(905, 1)?>"> Стихиалия <img src="http://img.xcombats.com/<?=getImg(905, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(895, 1)?>"> Р›СѓС‡РёСЃС‚РѕРµ СЃРµСЂРµР±СЂРѕ <img src="http://img.xcombats.com/<?=getImg(895, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(889, 3)?>"> РЎРіСѓСЃС‚РѕРє СЌС„РёСЂР° (3 С€С‚.) <img src="http://img.xcombats.com/<?=getImg(889, 3)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(906, 1)?>"> РљСЂРёСЃС‚Р°Р»Р» РіРѕР»РѕСЃР° РїСЂРµРґРєРѕРІ <img src="http://img.xcombats.com/<?=getImg(906, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(908, 1)?>"> РљР°РјРµРЅСЊ Р·Р°С‚Р°РµРЅРЅРѕРіРѕ СЃРѕР»РЅС†Р° <img src="http://img.xcombats.com/<?=getImg(908, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(888, 1)?>"> РЁРµРїРѕС‚ РіРѕСЂ <img src="http://img.xcombats.com/<?=getImg(888, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(909, 1)?>"> Р­СЃСЃРµРЅС†РёСЏ РїСЂР°РІРµРґРЅРѕРіРѕ РіРЅРµРІР° <img src="http://img.xcombats.com/<?=getImg(909, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(905, 1)?>"> РЎС‚РёС…РёР°Р»РёСЏ <img src="http://img.xcombats.com/<?=getImg(905, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip80_" value="Собрать" />
+<input type="submit" name="clip80_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
 
-• <a href="#" onClick="OpenDiv('clip81')">Проклятье Умирающей Земли</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip81')">РџСЂРѕРєР»СЏС‚СЊРµ РЈРјРёСЂР°СЋС‰РµР№ Р—РµРјР»Рё</a><br />
 <div id="clip81"  style="display: none; color: black;">
- <p style="color:<?=getColor(906, 1)?>"> Кристалл голоса предков <img src="http://img.xcombats.com/<?=getImg(906, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(907, 1)?>"> Кристалл стабильности <img src="http://img.xcombats.com/<?=getImg(907, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(906, 1)?>"> РљСЂРёСЃС‚Р°Р»Р» РіРѕР»РѕСЃР° РїСЂРµРґРєРѕРІ <img src="http://img.xcombats.com/<?=getImg(906, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(907, 1)?>"> РљСЂРёСЃС‚Р°Р»Р» СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚Рё <img src="http://img.xcombats.com/<?=getImg(907, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip81_" value="Собрать" />
+<input type="submit" name="clip81_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
 
-• <a href="#" onClick="OpenDiv('clip82')">Проклятье Стихающего Ветра</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip82')">РџСЂРѕРєР»СЏС‚СЊРµ РЎС‚РёС…Р°СЋС‰РµРіРѕ Р’РµС‚СЂР°</a><br />
 <div id="clip82" style="display: none; color: black;">
- <p style="color:<?=getColor(877, 1)?>"> Сталь <img src="http://img.xcombats.com/<?=getImg(877, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(890, 1)?>"> Сгусток астрала <img src="http://img.xcombats.com/<?=getImg(890, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(902, 1)?>"> Плод змеиного дерева <img src="http://img.xcombats.com/<?=getImg(902, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(903, 1)?>"> Тысячелетний камень <img src="http://img.xcombats.com/<?=getImg(903, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(888, 1)?>"> Шепот гор <img src="http://img.xcombats.com/<?=getImg(888, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(877, 1)?>"> РЎС‚Р°Р»СЊ <img src="http://img.xcombats.com/<?=getImg(877, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(890, 1)?>"> РЎРіСѓСЃС‚РѕРє Р°СЃС‚СЂР°Р»Р° <img src="http://img.xcombats.com/<?=getImg(890, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(902, 1)?>"> РџР»РѕРґ Р·РјРµРёРЅРѕРіРѕ РґРµСЂРµРІР° <img src="http://img.xcombats.com/<?=getImg(902, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(903, 1)?>"> РўС‹СЃСЏС‡РµР»РµС‚РЅРёР№ РєР°РјРµРЅСЊ <img src="http://img.xcombats.com/<?=getImg(903, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(888, 1)?>"> РЁРµРїРѕС‚ РіРѕСЂ <img src="http://img.xcombats.com/<?=getImg(888, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip82_" value="Собрать" />
+<input type="submit" name="clip82_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
 
-• <a href="#" onClick="OpenDiv('clip89')">Проклятье Замерзающей Воды</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip89')">РџСЂРѕРєР»СЏС‚СЊРµ Р—Р°РјРµСЂР·Р°СЋС‰РµР№ Р’РѕРґС‹</a><br />
 <div id="clip89" style="display: none; color: black;">
- <p style="color:<?=getColor(900, 1)?>"> Кора змеиного дерева <img src="http://img.xcombats.com/<?=getImg(900, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(882, 1)?>"> Глубинный камень <img src="http://img.xcombats.com/<?=getImg(882, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(903, 1)?>"> Тысячелетний камень <img src="http://img.xcombats.com/<?=getImg(903, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(904, 1)?>"> Кристалл времен <img src="http://img.xcombats.com/<?=getImg(904, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(908, 1)?>"> Камень затаенного солнца <img src="http://img.xcombats.com/<?=getImg(908, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(900, 1)?>"> РљРѕСЂР° Р·РјРµРёРЅРѕРіРѕ РґРµСЂРµРІР° <img src="http://img.xcombats.com/<?=getImg(900, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(882, 1)?>"> Р“Р»СѓР±РёРЅРЅС‹Р№ РєР°РјРµРЅСЊ <img src="http://img.xcombats.com/<?=getImg(882, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(903, 1)?>"> РўС‹СЃСЏС‡РµР»РµС‚РЅРёР№ РєР°РјРµРЅСЊ <img src="http://img.xcombats.com/<?=getImg(903, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(904, 1)?>"> РљСЂРёСЃС‚Р°Р»Р» РІСЂРµРјРµРЅ <img src="http://img.xcombats.com/<?=getImg(904, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(908, 1)?>"> РљР°РјРµРЅСЊ Р·Р°С‚Р°РµРЅРЅРѕРіРѕ СЃРѕР»РЅС†Р° <img src="http://img.xcombats.com/<?=getImg(908, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
- <input type="submit" name="clip89_" value="Собрать" />
+ <input type="submit" name="clip89_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
 
-• <a href="#" onClick="OpenDiv('clip90')">Проклятье Угасающего Огня</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip90')">РџСЂРѕРєР»СЏС‚СЊРµ РЈРіР°СЃР°СЋС‰РµРіРѕ РћРіРЅСЏ</a><br />
 <div id="clip90" style="display: none; color: black;">
- <p style="color:<?=getColor(950, 1)?>"> Кожа Общего Врага <img src="http://img.xcombats.com/<?=getImg(950, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(889, 1)?>"> Сгусток эфира <img src="http://img.xcombats.com/<?=getImg(889, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(902, 1)?>"> Плод змеиного дерева <img src="http://img.xcombats.com/<?=getImg(902, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(903, 1)?>"> Тысячелетний камень <img src="http://img.xcombats.com/<?=getImg(903, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(878, 1)?>"> Лучистый топаз <img src="http://img.xcombats.com/<?=getImg(878, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(950, 1)?>"> РљРѕР¶Р° РћР±С‰РµРіРѕ Р’СЂР°РіР° <img src="http://img.xcombats.com/<?=getImg(950, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(889, 1)?>"> РЎРіСѓСЃС‚РѕРє СЌС„РёСЂР° <img src="http://img.xcombats.com/<?=getImg(889, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(902, 1)?>"> РџР»РѕРґ Р·РјРµРёРЅРѕРіРѕ РґРµСЂРµРІР° <img src="http://img.xcombats.com/<?=getImg(902, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(903, 1)?>"> РўС‹СЃСЏС‡РµР»РµС‚РЅРёР№ РєР°РјРµРЅСЊ <img src="http://img.xcombats.com/<?=getImg(903, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(878, 1)?>"> Р›СѓС‡РёСЃС‚С‹Р№ С‚РѕРїР°Р· <img src="http://img.xcombats.com/<?=getImg(878, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip90_" value="Собрать" />
+<input type="submit" name="clip90_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
 
-• <a href="#" onClick="OpenDiv('clip91')">Проклятье Легкого Отупления</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip91')">РџСЂРѕРєР»СЏС‚СЊРµ Р›РµРіРєРѕРіРѕ РћС‚СѓРїР»РµРЅРёСЏ</a><br />
 <div id="clip91" style="display: none; color: black;">
- <p style="color:<?=getColor(907, 1)?>"> Кристалл стабильности <img src="http://img.xcombats.com/<?=getImg(907, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(881, 1)?>"> Лучистый рубин <img src="http://img.xcombats.com/<?=getImg(881, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(905, 1)?>"> Стихиалия <img src="http://img.xcombats.com/<?=getImg(905, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(907, 1)?>"> РљСЂРёСЃС‚Р°Р»Р» СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚Рё <img src="http://img.xcombats.com/<?=getImg(907, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(881, 1)?>"> Р›СѓС‡РёСЃС‚С‹Р№ СЂСѓР±РёРЅ <img src="http://img.xcombats.com/<?=getImg(881, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(905, 1)?>"> РЎС‚РёС…РёР°Р»РёСЏ <img src="http://img.xcombats.com/<?=getImg(905, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip91_" value="Собрать" />
+<input type="submit" name="clip91_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
 
 
-• <a href="#" onClick="OpenDiv('clip92')">Проклятье Уязвимости</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip92')">РџСЂРѕРєР»СЏС‚СЊРµ РЈСЏР·РІРёРјРѕСЃС‚Рё</a><br />
 <div id="clip92" style="display: none; color: black;">
- <p style="color:<?=getColor(907, 1)?>"> Кристалл стабильности <img src="http://img.xcombats.com/<?=getImg(907, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(881, 1)?>"> Лучистый рубин <img src="http://img.xcombats.com/<?=getImg(881, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(905, 1)?>"> Стихиалия <img src="http://img.xcombats.com/<?=getImg(905, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(907, 1)?>"> РљСЂРёСЃС‚Р°Р»Р» СЃС‚Р°Р±РёР»СЊРЅРѕСЃС‚Рё <img src="http://img.xcombats.com/<?=getImg(907, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(881, 1)?>"> Р›СѓС‡РёСЃС‚С‹Р№ СЂСѓР±РёРЅ <img src="http://img.xcombats.com/<?=getImg(881, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(905, 1)?>"> РЎС‚РёС…РёР°Р»РёСЏ <img src="http://img.xcombats.com/<?=getImg(905, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip92_" value="Собрать" />
+<input type="submit" name="clip92_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
 
-• <a href="#" onClick="OpenDiv('clip93')">Зачаровать кольцо: Вытягивание души [1]</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip93')">Р—Р°С‡Р°СЂРѕРІР°С‚СЊ РєРѕР»СЊС†Рѕ: Р’С‹С‚СЏРіРёРІР°РЅРёРµ РґСѓС€Рё [1]</a><br />
 <div id="clip93" style="display: none; color: black;">
- <p style="color:<?=getColor(901, 1)?>"> Кристалл тысячи ответов <img src="http://img.xcombats.com/<?=getImg(901, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(889, 1)?>"> Сгусток эфира <img src="http://img.xcombats.com/<?=getImg(889, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(890, 1)?>"> Сгусток астрала <img src="http://img.xcombats.com/<?=getImg(890, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(901, 1)?>"> РљСЂРёСЃС‚Р°Р»Р» С‚С‹СЃСЏС‡Рё РѕС‚РІРµС‚РѕРІ <img src="http://img.xcombats.com/<?=getImg(901, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(889, 1)?>"> РЎРіСѓСЃС‚РѕРє СЌС„РёСЂР° <img src="http://img.xcombats.com/<?=getImg(889, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(890, 1)?>"> РЎРіСѓСЃС‚РѕРє Р°СЃС‚СЂР°Р»Р° <img src="http://img.xcombats.com/<?=getImg(890, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip93_" value="Собрать" />
+<input type="submit" name="clip93_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
 
 
-• <a href="#" onClick="OpenDiv('clip94')">Зачаровать кольцо: Вытягивание души [2]</a><br />
+вЂў <a href="#" onClick="OpenDiv('clip94')">Р—Р°С‡Р°СЂРѕРІР°С‚СЊ РєРѕР»СЊС†Рѕ: Р’С‹С‚СЏРіРёРІР°РЅРёРµ РґСѓС€Рё [2]</a><br />
 <div id="clip94" style="display: none; color: black;">
- <p style="color:<?=getColor(4685, 1)?>"> Зачаровать кольцо: Вытягивание души [1] <img src="http://img.xcombats.com/<?=getImg(4685, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(4688, 1)?>"> Топливо для Големов <img src="http://img.xcombats.com/<?=getImg(4688, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(4689, 1)?>"> Смазка для Големов <img src="http://img.xcombats.com/<?=getImg(4689, 1)?>" width="13" height="13" /></p>
- <p style="color:<?=getColor(4690, 1)?>"> Ускоритель для Големов <img src="http://img.xcombats.com/<?=getImg(4690, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(4685, 1)?>"> Р—Р°С‡Р°СЂРѕРІР°С‚СЊ РєРѕР»СЊС†Рѕ: Р’С‹С‚СЏРіРёРІР°РЅРёРµ РґСѓС€Рё [1] <img src="http://img.xcombats.com/<?=getImg(4685, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(4688, 1)?>"> РўРѕРїР»РёРІРѕ РґР»СЏ Р“РѕР»РµРјРѕРІ <img src="http://img.xcombats.com/<?=getImg(4688, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(4689, 1)?>"> РЎРјР°Р·РєР° РґР»СЏ Р“РѕР»РµРјРѕРІ <img src="http://img.xcombats.com/<?=getImg(4689, 1)?>" width="13" height="13" /></p>
+ <p style="color:<?=getColor(4690, 1)?>"> РЈСЃРєРѕСЂРёС‚РµР»СЊ РґР»СЏ Р“РѕР»РµРјРѕРІ <img src="http://img.xcombats.com/<?=getImg(4690, 1)?>" width="13" height="13" /></p>
 <form action="" method="POST">
-<input type="submit" name="clip94_" value="Собрать" />
+<input type="submit" name="clip94_" value="РЎРѕР±СЂР°С‚СЊ" />
 </form>
 </div>
     
-• <a href="?go_away=1">Уйти. (Выход)</a>
+вЂў <a href="?go_away=1">РЈР№С‚Рё. (Р’С‹С…РѕРґ)</a>
 
 </div>
                             </td>

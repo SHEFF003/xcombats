@@ -7,14 +7,14 @@ if(!defined('GAME'))
 if( $itm['magic_inci'] == 'chains' && $itm['iznosNOW'] < $itm['iznosMAX']) {
 	$usr = mysql_fetch_array(mysql_query('SELECT `st`.`x`,`st`.`y`,`st`.`timeGo`,`st`.`clone`,`u`.`bot_id`,`u`.`type_pers`,`u`.`inTurnir`,`st`.`zv`,`st`.`bot`,`st`.`hpNow`,`u`.`login`,`st`.`dnow`,`u`.`id`,`u`.`align`,`u`.`admin`,`u`.`clan`,`u`.`level`,`u`.`room`,`u`.`online`,`u`.`battle`,`st`.`team` FROM `users` AS `u` LEFT JOIN `stats` AS `st` ON (`u`.`id` = `st`.`id`) WHERE `u`.`city` = "'.$u->info['city'].'" AND (`u`.`login`="'.mysql_real_escape_string($_GET['login']).'" OR `u`.`login`="'.mysql_real_escape_string($jl).'") LIMIT 1'));
 	if(isset($usr['id']) && $usr['online'] > time()-520 ) {
-		//œÛÚ˚ Ì‡ 1-10 ÏËÌ
+		//–ü—É—Ç—ã –Ω–∞ 1-10 –º–∏–Ω
 		if( $u->info['room'] != $usr['room'] ) {
-			$u->error = 'œÂÒÓÌ‡Ê Ì‡ıÓ‰ËÚÒˇ ‚ ‰Û„ÓÈ ÍÓÏÌ‡ÚÂ';
+			$u->error = '–ü–µ—Ä—Å–æ–Ω–∞–∂ –Ω–∞—Ö–æ–¥–∏—Ç—Å—è –≤ –¥—Ä—É–≥–æ–π –∫–æ–º–Ω–∞—Ç–µ';
 		}else{
 			if( $u->info['room'] >= 362 && $u->info['room'] <= 366 && ( $u->info['x'] != $usr['x'] || $u->info['y'] != $usr['y'] ) ) {
-				$u->error = 'œÂÒÓÌ‡Ê Ì‡ıÓ‰ËÚÒˇ ‚ ‰Û„ÓÈ ÍÓÏÌ‡ÚÂ';
+				$u->error = '–ü–µ—Ä—Å–æ–Ω–∞–∂ –Ω–∞—Ö–æ–¥–∏—Ç—Å—è –≤ –¥—Ä—É–≥–æ–π –∫–æ–º–Ω–∞—Ç–µ';
 			}elseif( $usr['timeGo'] > time()+120 ) {
-				$u->error = 'œÂÒÓÌ‡Ê &quot;'.$usr['login'].'&quot; ÛÊÂ Ó·ÂÁ‰‚ËÊÂÌ';
+				$u->error = '–ü–µ—Ä—Å–æ–Ω–∞–∂ &quot;'.$usr['login'].'&quot; —É–∂–µ –æ–±–µ–∑–¥–≤–∏–∂–µ–Ω';
 			}else{
 				$rmin = rand(1,10);
 				if( $usr['timeGo'] < time() ) {
@@ -24,7 +24,7 @@ if( $itm['magic_inci'] == 'chains' && $itm['iznosNOW'] < $itm['iznosMAX']) {
 				$putu = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `img2` = "chains.gif" AND `delete` = "0" AND `uid` = "'.$usr['id'].'" LIMIT 1'));
 				if(!isset($putu['id'])) {
 					mysql_query('INSERT INTO `eff_users` (`user_use`,`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`,`img2`) VALUES (
-						"'.$u->info['login'].'","2","'.$usr['id'].'","œÛÚ˚","puti='.$usr['timeGo'].'","1","'.$usr['timeGo'].'","chains.gif"
+						"'.$u->info['login'].'","2","'.$usr['id'].'","–ü—É—Ç—ã","puti='.$usr['timeGo'].'","1","'.$usr['timeGo'].'","chains.gif"
 					) ');
 				}else{
 					mysql_query('UPDATE `eff_users` SET `timeUse` = "'.$usr['timeGo'].'" WHERE `id` = "'.$putu['id'].'" LIMIT 1');
@@ -32,14 +32,14 @@ if( $itm['magic_inci'] == 'chains' && $itm['iznosNOW'] < $itm['iznosMAX']) {
 				mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 				mysql_query('UPDATE `stats` SET `timeGo` = "'.$usr['timeGo'].'",`timeGoL` = "'.$usr['timeGo'].'" WHERE `id` = "'.$usr['id'].'" LIMIT 1');
 				if( $u->info['id'] != $usr['id'] ) {
-					$rtxt = '[img[items/chains.gif]] œÂÒÓÌ‡Ê &quot;'.$u->info['login'].'&quot; ËÒÔÓÎ¸ÁÓ‚‡Î &quot;'.$itm['name'].'&quot; Ì‡ &quot;'.$usr['login'].'&quot; Ë Ó·ÂÊ‰‚ËÊËÎ Â˘Â Ì‡ '.$rmin.' ÏËÌ.';
+					$rtxt = '[img[items/chains.gif]] –ü–µ—Ä—Å–æ–Ω–∞–∂ &quot;'.$u->info['login'].'&quot; –∏—Å–ø–æ–ª—å–∑–æ–≤–∞–ª &quot;'.$itm['name'].'&quot; –Ω–∞ &quot;'.$usr['login'].'&quot; –∏ –æ–±–µ–∂–¥–≤–∏–∂–∏–ª –µ—â–µ –Ω–∞ '.$rmin.' –º–∏–Ω.';
 					mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1','1')");	
 				}
-				$u->error = '¬˚ ÛÒÔÂ¯ÌÓ ËÒÔÓÎ¸ÁÓ‚‡ÎË &quot;'.$itm['name'].'&quot; Ì‡ '.$usr['login'].', Ì‡ '.$rmin.' ÏËÌ.';
+				$u->error = '–í—ã —É—Å–ø–µ—à–Ω–æ –∏—Å–ø–æ–ª—å–∑–æ–≤–∞–ª–∏ &quot;'.$itm['name'].'&quot; –Ω–∞ '.$usr['login'].', –Ω–∞ '.$rmin.' –º–∏–Ω.';
 			}
 		}
 	}else{
-		$u->error = 'œÂÒÓÌ‡Ê ÌÂ Ì‡È‰ÂÌ ‚ ˝ÚÓÏ „ÓÓ‰Â';
+		$u->error = '–ü–µ—Ä—Å–æ–Ω–∞–∂ –Ω–µ –Ω–∞–π–¥–µ–Ω –≤ —ç—Ç–æ–º –≥–æ—Ä–æ–¥–µ';
 	}
 }
 ?>

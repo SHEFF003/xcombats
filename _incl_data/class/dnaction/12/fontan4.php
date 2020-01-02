@@ -5,37 +5,37 @@ if(isset($s[1]) && $s[1] == '12/fontan4') {
   if(!isset($vad['use_fontan']['id'])) {
     $vad['all_uses'] = mysql_num_rows(mysql_query('SELECT * FROM `dungeon_actions` WHERE  `dn` = "'.$u->info['dnow'].'" AND `vars` = "use_fontan" AND `vals` = "4" LIMIT 5'));
     if($vad['all_uses'] >= 3) {
-	  $r = 'Íè÷åãî íå îñòàëîñü, êòî-òî ïîáûâàë çäåñü ðàíüøå.';
+	  $r = 'ÐÐ¸Ñ‡ÐµÐ³Ð¾ Ð½Ðµ Ð¾ÑÑ‚Ð°Ð»Ð¾ÑÑŒ, ÐºÑ‚Ð¾-Ñ‚Ð¾ Ð¿Ð¾Ð±Ñ‹Ð²Ð°Ð» Ð·Ð´ÐµÑÑŒ Ñ€Ð°Ð½ÑŒÑˆÐµ.';
     } else {
 	  $vad['kill_monsters'] = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_bots` WHERE ((`id_bot` = "121" && `x` = "-5" && `y` = "30") OR (`id_bot` = "118" && `x` = "-6" && `y` = "30") OR (`id_bot` = "114" && `x` = "-5" && `y` = "29") OR (`id_bot` = "112" && `x` = "-7" && `y` = "29") OR (`id_bot` = "122" && `x` = "-7" && `y` = "30")) AND `delete` = "0" AND `dn` = "'.$u->info['dnow'].'" AND `for_dn` = "0" LIMIT 10'));
       if(!isset($vad['kill_monsters']['id2'])) {
 	    $vad['bottle'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `item_id` = "2" AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" AND `inTransfer` = "0" ORDER BY `id` DESC LIMIT 1'));
         if(isset($vad['bottle']['id'])) {
 		  if($vad['bottle']['inGroup'] > 0) {
-		    $r = 'Ïóñòàÿ áóòûëêà íå äîëæåíà íàõîäèòüñÿ â ãðóïïå...';
+		    $r = 'ÐŸÑƒÑÑ‚Ð°Ñ Ð±ÑƒÑ‚Ñ‹Ð»ÐºÐ° Ð½Ðµ Ð´Ð¾Ð»Ð¶ÐµÐ½Ð° Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒÑÑ Ð² Ð³Ñ€ÑƒÐ¿Ð¿Ðµ...';
 		  } else {
 		    $vad['gems']['query'] = mysql_query('SELECT `id`, `inGroup` FROM `items_users` WHERE (`item_id` = "908" OR `item_id` = "906" OR `item_id` = "907" OR `item_id` = "881" OR `item_id` = "878" OR `item_id` = "888") AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" AND `inTransfer` = "0" LIMIT 99'); 
 		    $vad['gems']['query'] = mysql_result($vad['gems']['query'], (rand(0, (mysql_num_rows($vad['gems']['query'])-1))),0);
             if($vad['gems']['query'] != '') {
 			  $vad['go'] = true;
 		    } else {
-			  $r = 'Ó âàñ íåò äðàãîöåííûõ êàìíåé...';
+			  $r = 'Ð£ Ð²Ð°Ñ Ð½ÐµÑ‚ Ð´Ñ€Ð°Ð³Ð¾Ñ†ÐµÐ½Ð½Ñ‹Ñ… ÐºÐ°Ð¼Ð½ÐµÐ¹...';
 		    }
 		  }
 	    } else {
-		  $r = 'Ó âàñ íåò ïóñòîé áóòûëêè.';
+		  $r = 'Ð£ Ð²Ð°Ñ Ð½ÐµÑ‚ Ð¿ÑƒÑÑ‚Ð¾Ð¹ Ð±ÑƒÑ‚Ñ‹Ð»ÐºÐ¸.';
 	    }
 	  } else {
-	    $r = 'Âû óâåðåíû ÷òî óáèëè âñþ ãðóïïó ìîíñòðîâ?';
+	    $r = 'Ð’Ñ‹ ÑƒÐ²ÐµÑ€ÐµÐ½Ñ‹ Ñ‡Ñ‚Ð¾ ÑƒÐ±Ð¸Ð»Ð¸ Ð²ÑÑŽ Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ Ð¼Ð¾Ð½ÑÑ‚Ñ€Ð¾Ð²?';
       }
     }
   } else {
-	if($u->info['sex'] == 1) { $a = 'à'; } else { $a = ''; }
-	$r = 'Ìíå êàæåòñÿ, ÷òî çäåñü ÿ óæå áûë'.$a.'..';
+	if($u->info['sex'] == 1) { $a = 'Ð°'; } else { $a = ''; }
+	$r = 'ÐœÐ½Ðµ ÐºÐ°Ð¶ÐµÑ‚ÑÑ, Ñ‡Ñ‚Ð¾ Ð·Ð´ÐµÑÑŒ Ñ ÑƒÐ¶Ðµ Ð±Ñ‹Ð»'.$a.'..';
   }
   if($vad['go'] == true) {
 	mysql_query('INSERT INTO `dungeon_actions` (`uid`, `dn`, `x`, `y`, `time`, `vars`, `vals`) VALUES ( "'.$u->info['id'].'", "'.$u->info['dnow'].'", "'.$u->info['x'].'", "'.$u->info['y'].'", "'.time().'", "use_fontan", "4" )');
-	$r = 'Îïóñòèâ ïóñòóþ áóòûëêó â ôîíòàí âû íàïîëíèëè å¸.';
+	$r = 'ÐžÐ¿ÑƒÑÑ‚Ð¸Ð² Ð¿ÑƒÑÑ‚ÑƒÑŽ Ð±ÑƒÑ‚Ñ‹Ð»ÐºÑƒ Ð² Ñ„Ð¾Ð½Ñ‚Ð°Ð½ Ð²Ñ‹ Ð½Ð°Ð¿Ð¾Ð»Ð½Ð¸Ð»Ð¸ ÐµÑ‘.';
 	$vad['drug'] = array(0 => 2588, 1 => 2590, 2 => 2589, 3 => 2145);
 	$u->deleteItem(intval($vad['gems']['query']), $u->info['id'], 1);
 	$u->deleteItem(intval($vad['bottle']['id']), $u->info['id'], 1);

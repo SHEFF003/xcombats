@@ -1,55 +1,55 @@
 <?
 if( isset($s[1]) && $s[1] == '12/fontan3' ) {
-	//Все переменные сохранять в массиве $vad !
+	//Р’СЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏС‚СЊ РІ РјР°СЃСЃРёРІРµ $vad !
 	$vad = array(
 		'go' => false
 	);
 
-	// Требуется добавить проверку Не больше 2 игроков из группы. 
+	// РўСЂРµР±СѓРµС‚СЃСЏ РґРѕР±Р°РІРёС‚СЊ РїСЂРѕРІРµСЂРєСѓ РќРµ Р±РѕР»СЊС€Рµ 2 РёРіСЂРѕРєРѕРІ РёР· РіСЂСѓРїРїС‹. 
 	
-		$vad['use_fontan'] = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$u->info['dnow'].'" AND `vars` = "use_fontan" AND `vals` = "3" LIMIT 1')); // Проверка на использованее ранее. 
+		$vad['use_fontan'] = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$u->info['dnow'].'" AND `vars` = "use_fontan" AND `vals` = "3" LIMIT 1')); // РџСЂРѕРІРµСЂРєР° РЅР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРµРµ СЂР°РЅРµРµ. 
 		if(!isset($vad['use_fontan']['id'])) {
 				$vad['all_uses'] = mysql_num_rows(mysql_query('SELECT * FROM `dungeon_actions` WHERE  `dn` = "'.$u->info['dnow'].'" AND `vars` = "use_fontan" AND `vals` = "3" LIMIT 5'));
 				if($vad['all_uses']>=2){
-						$r = 'Ничего не осталось, кто-то побывал здесь раньше.';
+						$r = 'РќРёС‡РµРіРѕ РЅРµ РѕСЃС‚Р°Р»РѕСЃСЊ, РєС‚Рѕ-С‚Рѕ РїРѕР±С‹РІР°Р» Р·РґРµСЃСЊ СЂР°РЅСЊС€Рµ.';
 				} else {
-						$vad['kill_monsters'] = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_bots` WHERE ((`id_bot` = "370" && `x` = "-2" && `y` = "31") OR (`id_bot` = "374" && `x` = "-2" && `y` = "31") OR (`id_bot` = "375" && `x` = "-3" && `y` = "32") OR (`id_bot` = "375" && `x` = "-3" && `y` = "32") OR (`id_bot` = "373" && `x` = "-1" && `y` = "32") OR (`id_bot` = "373" && `x` = "-3" && `y` = "32") OR (`id_bot` = "373" && `x` = "-3" && `y` = "31")) AND `delete` = "0" AND `dn` = "'.$u->info['dnow'].'" AND `for_dn` = "0" LIMIT 10')); //Проверяем убита ли группа монстров
+						$vad['kill_monsters'] = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_bots` WHERE ((`id_bot` = "370" && `x` = "-2" && `y` = "31") OR (`id_bot` = "374" && `x` = "-2" && `y` = "31") OR (`id_bot` = "375" && `x` = "-3" && `y` = "32") OR (`id_bot` = "375" && `x` = "-3" && `y` = "32") OR (`id_bot` = "373" && `x` = "-1" && `y` = "32") OR (`id_bot` = "373" && `x` = "-3" && `y` = "32") OR (`id_bot` = "373" && `x` = "-3" && `y` = "31")) AND `delete` = "0" AND `dn` = "'.$u->info['dnow'].'" AND `for_dn` = "0" LIMIT 10')); //РџСЂРѕРІРµСЂСЏРµРј СѓР±РёС‚Р° Р»Рё РіСЂСѓРїРїР° РјРѕРЅСЃС‚СЂРѕРІ
 						if( !isset($vad['kill_monsters']['0']['id2']) ) {
 							$vad['bt'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `item_id` = "2" AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" AND `inTransfer` = "0" LIMIT 1'));
 							if( isset($vad['bt']['id']) ) {
 								if( $vad['bt']['inGroup'] > 0 ) {
-									$r = 'Предмет не должен находиться в группе';
+									$r = 'РџСЂРµРґРјРµС‚ РЅРµ РґРѕР»Р¶РµРЅ РЅР°С…РѕРґРёС‚СЊСЃСЏ РІ РіСЂСѓРїРїРµ';
 								}else{
-									// Выбираем камни 
+									// Р’С‹Р±РёСЂР°РµРј РєР°РјРЅРё 
 									$vad['gems']['query'] = mysql_query('SELECT `id`,`inGroup` FROM `items_users` WHERE (`item_id` = "908" OR `item_id` = "906" OR `item_id` = "907" OR `item_id` = "881" OR `item_id` = "878" OR `item_id` = "888") AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" AND `inTransfer` = "0" LIMIT 99'); 
-									// Выбираем рандомный камень из...
+									// Р’С‹Р±РёСЂР°РµРј СЂР°РЅРґРѕРјРЅС‹Р№ РєР°РјРµРЅСЊ РёР·...
 									$vad['gems']['query'] = mysql_result($vad['gems']['query'], (rand(0, (mysql_num_rows($vad['gems']['query'])-1))),0); 
 									 
 									if( $vad['gems']['query'] != "" ) {
 										$vad['go'] = true;
 									} else {
-										$r = 'Что-то пошло не так, необходим драгоценный камень...';
+										$r = 'Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє, РЅРµРѕР±С…РѕРґРёРј РґСЂР°РіРѕС†РµРЅРЅС‹Р№ РєР°РјРµРЅСЊ...';
 									}
 								}
 							} else {
-								$r = 'У вас нет пустой бутылки.';
+								$r = 'РЈ РІР°СЃ РЅРµС‚ РїСѓСЃС‚РѕР№ Р±СѓС‚С‹Р»РєРё.';
 							}
 						} else {
-							$r = 'Вы уверены что убили всю группу монстров?';
+							$r = 'Р’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ СѓР±РёР»Рё РІСЃСЋ РіСЂСѓРїРїСѓ РјРѕРЅСЃС‚СЂРѕРІ?';
 						}
 				}
 		} else {
-			if($u->info['sex']==1)$a='а'; else $a='';
-			$r = 'Мне кажется, что здесь я уже был'.$a.'..';
+			if($u->info['sex']==1)$a='Р°'; else $a='';
+			$r = 'РњРЅРµ РєР°Р¶РµС‚СЃСЏ, С‡С‚Рѕ Р·РґРµСЃСЊ СЏ СѓР¶Рµ Р±С‹Р»'.$a.'..';
 		}
 	
 	if( $vad['go'] == true ) {
-		mysql_query('INSERT INTO `dungeon_actions` (`uid`,`dn`,`x`,`y`,`time`,`vars`,`vals`) VALUES ( "'.$u->info['id'].'","'.$u->info['dnow'].'","'.$u->info['x'].'","'.$u->info['y'].'","'.time().'", "use_fontan","3" )'); // Выпили раз, вот и хватит с вас!
-		$r = 'Опустив пустую бутылку в фонтан вы наполнили её.';
+		mysql_query('INSERT INTO `dungeon_actions` (`uid`,`dn`,`x`,`y`,`time`,`vars`,`vals`) VALUES ( "'.$u->info['id'].'","'.$u->info['dnow'].'","'.$u->info['x'].'","'.$u->info['y'].'","'.time().'", "use_fontan","3" )'); // Р’С‹РїРёР»Рё СЂР°Р·, РІРѕС‚ Рё С…РІР°С‚РёС‚ СЃ РІР°СЃ!
+		$r = 'РћРїСѓСЃС‚РёРІ РїСѓСЃС‚СѓСЋ Р±СѓС‚С‹Р»РєСѓ РІ С„РѕРЅС‚Р°РЅ РІС‹ РЅР°РїРѕР»РЅРёР»Рё РµС‘.';
 		
-		$u->deleteItem(intval($vad['gems']['query']),$u->info['id'],1); // Удаляем Камень.
-		$u->deleteItem(intval($vad['bt']['id']),$u->info['id'],1); // Удаляем Пустая Бутылка = 2.
-		$u->addItem(round(1188),$u->info['id'],'|musor=2|noremont=1|nosale=1',12, 3); // Великое зелье Отрицания 1188
+		$u->deleteItem(intval($vad['gems']['query']),$u->info['id'],1); // РЈРґР°Р»СЏРµРј РљР°РјРµРЅСЊ.
+		$u->deleteItem(intval($vad['bt']['id']),$u->info['id'],1); // РЈРґР°Р»СЏРµРј РџСѓСЃС‚Р°СЏ Р‘СѓС‚С‹Р»РєР° = 2.
+		$u->addItem(round(1188),$u->info['id'],'|musor=2|noremont=1|nosale=1',12, 3); // Р’РµР»РёРєРѕРµ Р·РµР»СЊРµ РћС‚СЂРёС†Р°РЅРёСЏ 1188
 	}
 	unset($vad);
 }

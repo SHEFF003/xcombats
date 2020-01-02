@@ -1,16 +1,16 @@
 <?
 if( isset($s[1]) && $s[1] == '3/chest_trap' ) {
 	/*
-		Ñóíäóê:
-		* Ìîæíî ïîëó÷èòü Ğàíäîìíî âåùü 4-8 ëâë
+		Ğ¡ÑƒĞ½Ğ´ÑƒĞº:
+		* ĞœĞ¾Ğ¶Ğ½Ğ¾ Ğ¿Ğ¾Ğ»ÑƒÑ‡Ğ¸Ñ‚ÑŒ Ğ Ğ°Ğ½Ğ´Ğ¾Ğ¼Ğ½Ğ¾ Ğ²ĞµÑ‰ÑŒ 4-8 Ğ»Ğ²Ğ»
 	*/
-	//Âñå ïåğåìåííûå ñîõğàíÿòü â ìàññèâå $vad !
+	//Ğ’ÑĞµ Ğ¿ĞµÑ€ĞµĞ¼ĞµĞ½Ğ½Ñ‹Ğµ ÑĞ¾Ñ…Ñ€Ğ°Ğ½ÑÑ‚ÑŒ Ğ² Ğ¼Ğ°ÑÑĞ¸Ğ²Ğµ $vad !
 	$vad = array(
 		'go' => true
 	);
 	$vad['test1'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `dn` = "'.$u->info['dnow'].'" AND `vars` = "obj_act'.$obj['id'].'" LIMIT 1'));
 	if( $vad['test1'][0] > 0 ) {
-		$r = 'Êòî-òî îáûñêàë &quot;'.$obj['name'].'&quot; äî âàñ...';
+		$r = 'ĞšÑ‚Ğ¾-Ñ‚Ğ¾ Ğ¾Ğ±Ñ‹ÑĞºĞ°Ğ» &quot;'.$obj['name'].'&quot; Ğ´Ğ¾ Ğ²Ğ°Ñ...';
 		$vad['go'] = false;
 	}
 	if( $vad['go'] == true ) {
@@ -23,7 +23,7 @@ if( isset($s[1]) && $s[1] == '3/chest_trap' ) {
 			$vad['items'][] = $vad['pl']['id'];
 		}
 		$vad['items'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.mysql_real_escape_string($vad['items'][rand(0,count($vad['items'])-1)]).'" LIMIT 1'));
-		$r = 'Îáûñêàâ &quot;'.$obj['name'].'&quot; âû îáíàğóæèëè &quot;'.$vad['items']['name'].'&quot;';
+		$r = 'ĞĞ±Ñ‹ÑĞºĞ°Ğ² &quot;'.$obj['name'].'&quot; Ğ²Ñ‹ Ğ¾Ğ±Ğ½Ğ°Ñ€ÑƒĞ¶Ğ¸Ğ»Ğ¸ &quot;'.$vad['items']['name'].'&quot;';
 		$this->pickitem($obj,$vad['items']['id'],$u->info['id'],'');
 	}
 	unset($vad);

@@ -1,25 +1,25 @@
 <?
 if( isset($s[1]) && $s[1] == '3/fontan' ) {
 	/*
-		Алтарь
-		* Телепортирует на необходимую клетку х -3 ,  у 7
-		* Для прохода требуется 1 камень типа 881 или 878
+		РђР»С‚Р°СЂСЊ
+		* РўРµР»РµРїРѕСЂС‚РёСЂСѓРµС‚ РЅР° РЅРµРѕР±С…РѕРґРёРјСѓСЋ РєР»РµС‚РєСѓ С… -3 ,  Сѓ 7
+		* Р”Р»СЏ РїСЂРѕС…РѕРґР° С‚СЂРµР±СѓРµС‚СЃСЏ 1 РєР°РјРµРЅСЊ С‚РёРїР° 881 РёР»Рё 878
 	*/
-	//Все переменные сохранять в массиве $vad !
+	//Р’СЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏС‚СЊ РІ РјР°СЃСЃРёРІРµ $vad !
 	$vad = array(
 		'go' => true
 	);
 	$vad['test1'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `dn` = "'.$u->info['dnow'].'" AND `vars` = "obj_act'.$obj['id'].'" LIMIT 1'));
 	if( $vad['test1'][0] > 0 ) {
-		$r = 'Ничего не произошло...';
+		$r = 'РќРёС‡РµРіРѕ РЅРµ РїСЂРѕРёР·РѕС€Р»Рѕ...';
 		$vad['go'] = false;
 	}
 	
-	//Проверяем камни
+	//РџСЂРѕРІРµСЂСЏРµРј РєР°РјРЅРё
 	if( $vad['go'] == true ) {
 	$vad['sp'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE (`item_id` = "881" OR `item_id` = "878" OR `item_id` = "907" OR `item_id` = "908" OR `item_id` = "909") AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" AND `inTransfer` = "0" LIMIT 1'));
 	if( isset($vad['sp']['id']) ) {
-		// Удалена проверка на группировку предметов 13.10.2015
+		// РЈРґР°Р»РµРЅР° РїСЂРѕРІРµСЂРєР° РЅР° РіСЂСѓРїРїРёСЂРѕРІРєСѓ РїСЂРµРґРјРµС‚РѕРІ 13.10.2015
 		$vad['pl'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$vad['sp']['item_id'].'" LIMIT 1'));
 		$vad['go'] = true;
 	}
@@ -30,11 +30,11 @@ if( isset($s[1]) && $s[1] == '3/fontan' ) {
 		$vad['items'] = array(2413,2414,2415,2416);
 		$upd = mysql_query('UPDATE `items_users` SET `lastUPD`="'.time().'",`delete`="'.time().'" WHERE `id`="'.$vad['sp']['id'].'" LIMIT 1');
 		$vad['items'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.mysql_real_escape_string($vad['items'][rand(0,count($vad['items'])-1)]).'" LIMIT 1'));
-		$r = 'Обыскав &quot;'.$obj['name'].'&quot; вы обнаружили &quot;'.$vad['items']['name'].'&quot;';
-		$r = 'Вы пожертвовали ресурс &quot;'.$vad['pl']['name'].'&quot;';
+		$r = 'РћР±С‹СЃРєР°РІ &quot;'.$obj['name'].'&quot; РІС‹ РѕР±РЅР°СЂСѓР¶РёР»Рё &quot;'.$vad['items']['name'].'&quot;';
+		$r = 'Р’С‹ РїРѕР¶РµСЂС‚РІРѕРІР°Р»Рё СЂРµСЃСѓСЂСЃ &quot;'.$vad['pl']['name'].'&quot;';
 		$this->pickitem($obj,$vad['items']['id'],$u->info['id'],'');
 	}elseif( !isset($vad['sp']['id']) ) {
-		$r = 'У вас нету ни одного из драгоценных камней';
+		$r = 'РЈ РІР°СЃ РЅРµС‚Сѓ РЅРё РѕРґРЅРѕРіРѕ РёР· РґСЂР°РіРѕС†РµРЅРЅС‹С… РєР°РјРЅРµР№';
 	}
 	unset($vad);
 }

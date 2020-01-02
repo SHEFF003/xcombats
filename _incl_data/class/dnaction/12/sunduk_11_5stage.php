@@ -1,10 +1,10 @@
 <?
 if( isset($s[1]) && $s[1] == '12/sunduk_11_5stage' ) {
 	/*
-		Сундук: Сундук Стража, можно найти
-		"Первая часть руны"  - 4517
+		РЎСѓРЅРґСѓРє: РЎСѓРЅРґСѓРє РЎС‚СЂР°Р¶Р°, РјРѕР¶РЅРѕ РЅР°Р№С‚Рё
+		"РџРµСЂРІР°СЏ С‡Р°СЃС‚СЊ СЂСѓРЅС‹"  - 4517
 	*/
-	//Все переменные сохранять в массиве $vad !
+	//Р’СЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏС‚СЊ РІ РјР°СЃСЃРёРІРµ $vad !
 	$vad = array(
 		'go' => true
 	);
@@ -12,10 +12,10 @@ if( isset($s[1]) && $s[1] == '12/sunduk_11_5stage' ) {
 	$vad['test1'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `vars` = "obj_act'.$obj['id'].'" AND `dn` = "'.$u->info['dnow'].'" LIMIT 5'));
 	$vad['test2'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `vars` = "obj_act'.$obj['id'].'" AND `dn` = "'.$u->info['dnow'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1'));
 	if( $vad['test2'][0] > 0 ) {
-		$r = 'Вы уже обыскали &quot;'.$obj['name'].'&quot;...';
+		$r = 'Р’С‹ СѓР¶Рµ РѕР±С‹СЃРєР°Р»Рё &quot;'.$obj['name'].'&quot;...';
 		$vad['go'] = false;
 	} elseif( $vad['test1'][0] > 5 ) {
-		$r = 'Кто-то обыскал &quot;'.$obj['name'].'&quot; раньше вас...';
+		$r = 'РљС‚Рѕ-С‚Рѕ РѕР±С‹СЃРєР°Р» &quot;'.$obj['name'].'&quot; СЂР°РЅСЊС€Рµ РІР°СЃ...';
 		$vad['go'] = false;
 	}
 	
@@ -24,17 +24,17 @@ if( isset($s[1]) && $s[1] == '12/sunduk_11_5stage' ) {
 		
 		$vad['items'] = $vad['items'][rand(0,count($vad['items'])-1)];
 		if( $vad['items'] != 0 ) {
-			# Выбрасываем предмет
+			# Р’С‹Р±СЂР°СЃС‹РІР°РµРј РїСЂРµРґРјРµС‚
 			mysql_query('INSERT INTO `dungeon_actions` (`dn`,`time`,`x`,`y`,`uid`,`vars`,`vals`) VALUES (
 				"'.$u->info['dnow'].'","'.time().'","'.$obj['x'].'","'.$obj['y'].'","'.$u->info['id'].'","obj_act'.$obj['id'].'",""
 			)');
 			if( $this->pickitem($obj,$vad['items'],$u->info['id'],'', true) ) {
-				$r = 'Вы обнаружили предметы...';
+				$r = 'Р’С‹ РѕР±РЅР°СЂСѓР¶РёР»Рё РїСЂРµРґРјРµС‚С‹...';
 			}else{
-				$r = 'Что-то пошло не так, предметы растворились...';
+				$r = 'Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє, РїСЂРµРґРјРµС‚С‹ СЂР°СЃС‚РІРѕСЂРёР»РёСЃСЊ...';
 			}
 		}else{
-			$r = 'Вы не нашли ничего полезного...';
+			$r = 'Р’С‹ РЅРµ РЅР°С€Р»Рё РЅРёС‡РµРіРѕ РїРѕР»РµР·РЅРѕРіРѕ...';
 		}
 	}
 	

@@ -9,10 +9,10 @@ class Magic
 	
 	public $youuse = 0;
 	
-	//Ослабление после боя
+	//РћСЃР»Р°Р±Р»РµРЅРёРµ РїРѕСЃР»Рµ Р±РѕСЏ
 	public function oslablenie($uid)
 	{
-		$ins = mysql_query('INSERT INTO `eff_users` (`id_eff`,`uid`,`name`,`data`,`timeUse`) VALUES ("5","'.$uid.'","Ослабление после боя","add_m10=-1000|add_m11=-1000","'.time().'")');
+		$ins = mysql_query('INSERT INTO `eff_users` (`id_eff`,`uid`,`name`,`data`,`timeUse`) VALUES ("5","'.$uid.'","РћСЃР»Р°Р±Р»РµРЅРёРµ РїРѕСЃР»Рµ Р±РѕСЏ","add_m10=-1000|add_m11=-1000","'.time().'")');
 		if($ins)
 		{
 			return true;
@@ -21,7 +21,7 @@ class Magic
 		}
 	}
 	
-	//Использование предмета
+	//РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РїСЂРµРґРјРµС‚Р°
 	public function useItems($id)
 	{
 		global $u,$c,$code;
@@ -35,18 +35,18 @@ class Magic
 				{
 					require('_incl_data/class/magic/'.$itm['magic_inci'].'.php');
 				}else{
-					$u->error = '7Не удалось использовать ('.$itm['magic_inci'].')';
+					$u->error = '7РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ ('.$itm['magic_inci'].')';
 				}
 			}elseif($itm['type']==30)
 			{
-				//Эликсиры
+				//Р­Р»РёРєСЃРёСЂС‹
 				$goodUse = 0; $use = array();
 				if(isset($st['moment']))
 				{
-					//Эликсир используется моментально (Восстановление НР или МР)
+					//Р­Р»РёРєСЃРёСЂ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РјРѕРјРµРЅС‚Р°Р»СЊРЅРѕ (Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РќР  РёР»Рё РњР )
 					if(isset($st['moment_hp']))
 					{
-						//Восстанавливаем здоровье
+						//Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РґРѕСЂРѕРІСЊРµ
 						if($u->stats['hpNow']<$u->stats['hpAll'])
 						{
 							$goodUse = 1;
@@ -57,16 +57,16 @@ class Magic
 								$use['moment_hp'] = ceil($u->stats['hpAll']-$u->stats['hpNow']);							
 							}
 							
-							$u->error .= 'Вы восстановили '.($use['moment_hp']).' HP.<br>';
+							$u->error .= 'Р’С‹ РІРѕСЃСЃС‚Р°РЅРѕРІРёР»Рё '.($use['moment_hp']).' HP.<br>';
 						}else{
-							$u->error = 'Ваше здоровье и так полностью восстановлено';
+							$u->error = 'Р’Р°С€Рµ Р·РґРѕСЂРѕРІСЊРµ Рё С‚Р°Рє РїРѕР»РЅРѕСЃС‚СЊСЋ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРѕ';
 							$goodUse = 0;
 						}
 					}	
 					
 					if(isset($st['moment_mp']))
 					{
-						//Восстанавливаем здоровье
+						//Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РґРѕСЂРѕРІСЊРµ
 						if($u->stats['mpNow']<$u->stats['mpAll'])
 						{
 							$goodUse = 1;
@@ -77,26 +77,26 @@ class Magic
 								$use['moment_mp'] = ceil($u->stats['mpAll']-$u->stats['mpNow']);							
 							}
 							
-							$u->error .= 'Вы восстановили '.($use['moment_mp']).' MP.<br>';
+							$u->error .= 'Р’С‹ РІРѕСЃСЃС‚Р°РЅРѕРІРёР»Рё '.($use['moment_mp']).' MP.<br>';
 						}else{
-							$u->error = 'Ваша манна и так полностью восстановлена';
+							$u->error = 'Р’Р°С€Р° РјР°РЅРЅР° Рё С‚Р°Рє РїРѕР»РЅРѕСЃС‚СЊСЋ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅР°';
 							$goodUse = 0;
 						}
 					}	
 					
 					if($itm['iznosNOW']>=$itm['iznosMAX'])
 					{
-						$u->error = 'Эликсир был испорчен...';
+						$u->error = 'Р­Р»РёРєСЃРёСЂ Р±С‹Р» РёСЃРїРѕСЂС‡РµРЅ...';
 						$goodUse = 0;
 					}
 						
 					if(($u->info['align']==2 || $u->info['haos']>time()) && isset($st['nohaos']))
 					{
 						$goodUse = 0;
-						$u->error = 'Хаосники не могут использовать данный эликсир';
+						$u->error = 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅС‹Р№ СЌР»РёРєСЃРёСЂ';
 					}
 								
-					//Заносим данные в БД
+					//Р—Р°РЅРѕСЃРёРј РґР°РЅРЅС‹Рµ РІ Р‘Р”
 					if($goodUse==1)
 					{
 						$itm['iznosNOW']++;
@@ -106,29 +106,29 @@ class Magic
 							$u->stats['hpNow'] += $use['moment_hp'];
 							$u->info['hpNow'] += $use['moment_hp'];
 							mysql_query('UPDATE `stats` SET `hpNow` = "'.$u->info['hpNow'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-							$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: Персонаж использовал эликсир &quot;'.$itm['name'].'&quot; (+'.$use['moment_hp'].' HP) [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
+							$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: РџРµСЂСЃРѕРЅР°Р¶ РёСЃРїРѕР»СЊР·РѕРІР°Р» СЌР»РёРєСЃРёСЂ &quot;'.$itm['name'].'&quot; (+'.$use['moment_hp'].' HP) [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
 							$this->youuse++;
-							$u->error = 'Вы успешно использовали эликсир &quot;'.$itm['name'].'&quot;<br>'.$u->error.'';
+							$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё СЌР»РёРєСЃРёСЂ &quot;'.$itm['name'].'&quot;<br>'.$u->error.'';
 						}else{
-							$u->error = 'Не удалось использовать эликсир...';
+							$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌР»РёРєСЃРёСЂ...';
 						}
 					}
 				}else{
-					//Эликсиры с продолжительным эффектом
+					//Р­Р»РёРєСЃРёСЂС‹ СЃ РїСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅС‹Рј СЌС„С„РµРєС‚РѕРј
 					$goodUse = 1;
 					if(($u->info['align']==2 || $u->info['haos']>time()) && isset($st['nohaos']))
 					{
 						$goodUse = 0;
-						$u->error = 'Хаосники не могут использовать данный эликсир';
+						$u->error = 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅС‹Р№ СЌР»РёРєСЃРёСЂ';
 					}
 					if($goodUse==1)
 					{
 						$upd1 = 1;
 						$upd2 = 1;
-						//добавляем эффект персонажу
+						//РґРѕР±Р°РІР»СЏРµРј СЌС„С„РµРєС‚ РїРµСЂСЃРѕРЅР°Р¶Сѓ
 						if(isset($st['onlyOne']))
 						{
-							//убираем прошлые эффекты
+							//СѓР±РёСЂР°РµРј РїСЂРѕС€Р»С‹Рµ СЌС„С„РµРєС‚С‹
 							$goodUse = 0;
 							$upd1 = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `id_eff` = "'.$itm['magic_inc'].'"');
 							if($upd1)
@@ -138,7 +138,7 @@ class Magic
 						}
 						if(isset($st['oneType']))
 						{
-							//убираем прошлые эффекты
+							//СѓР±РёСЂР°РµРј РїСЂРѕС€Р»С‹Рµ СЌС„С„РµРєС‚С‹
 							$goodUse = 0;
 							$upd2 = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `overType` = "'.$itm['overType'].'"');
 							if($upd1)
@@ -153,25 +153,25 @@ class Magic
 							{
 								$itm['iznosNOW']++;
 								mysql_query('UPDATE `items_users` SET `iznosNOW` = "'.$itm['iznosNOW'].'" WHERE `id` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
-								$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: Персонаж использовал эликсир &quot;'.$itm['name'].'&quot; ('.$us[1].') [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
+								$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: РџРµСЂСЃРѕРЅР°Р¶ РёСЃРїРѕР»СЊР·РѕРІР°Р» СЌР»РёРєСЃРёСЂ &quot;'.$itm['name'].'&quot; ('.$us[1].') [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
 								$this->youuse++;
-								$u->error = 'Вы успешно использовали эликсир &quot;'.$itm['name'].'&quot;<br>'.$us[1].'';
+								$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё СЌР»РёРєСЃРёСЂ &quot;'.$itm['name'].'&quot;<br>'.$us[1].'';
 							}else{
-								$u->error = '6Не удалось использовать "'.$itm['name'].'"';
+								$u->error = '6РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ "'.$itm['name'].'"';
 							}
 						}else{
-							$u->error = '5Не удалось использовать "'.$itm['name'].'"';
+							$u->error = '5РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ "'.$itm['name'].'"';
 						}
 					}
 				}
 				//---------------
 			}elseif($itm['type']==29)
 			{
-				//используем заклятие
+				//РёСЃРїРѕР»СЊР·СѓРµРј Р·Р°РєР»СЏС‚РёРµ
 				$st = $u->lookStats($itm['data']);
 				$jl = $_GET['login'];
 				$_GET['login'] = urlencode($_GET['login']);
-				//используем на персонажа (все кроме себя)	
+				//РёСЃРїРѕР»СЊР·СѓРµРј РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° (РІСЃРµ РєСЂРѕРјРµ СЃРµР±СЏ)	
 				$_GET['login'] = str_replace('%',' ',$_GET['login']);
 				$_GET['login'] = str_replace('25','',$_GET['login']);
 				$jl = str_replace('%',' ',$jl);
@@ -183,24 +183,24 @@ class Magic
 					{
 						if($itm['iznosNOW']>=$itm['iznosMAX'])
 						{
-							$u->error = 'Свиток был исполчен...';
+							$u->error = 'РЎРІРёС‚РѕРє Р±С‹Р» РёСЃРїРѕР»С‡РµРЅ...';
 						}elseif($itm['magic_inci']=='snowball')
 						{
 							 if($usr['id']==$u->info['id'])
 							{
-								$u->error = 'Нельзя кидаться в самого себя';
+								$u->error = 'РќРµР»СЊР·СЏ РєРёРґР°С‚СЊСЃСЏ РІ СЃР°РјРѕРіРѕ СЃРµР±СЏ';
 							}elseif($usr['online']<time()-120)
 							{
-								$u->error = 'Персонаж находится в реальном мире ;)';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ СЂРµР°Р»СЊРЅРѕРј РјРёСЂРµ ;)';
 							}elseif($usr['room']!=$u->info['room'])
 							{
-								$u->error = 'Персонаж находится в другой комнате ['.$usr['room'].' '.$u->info['room'].']';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ ['.$usr['room'].' '.$u->info['room'].']';
 							}elseif($usr['admin']>0 && $u->info['admin']==0)
 							{
-								$u->error = 'Нельзя кидаться в Ангелов';
+								$u->error = 'РќРµР»СЊР·СЏ РєРёРґР°С‚СЊСЃСЏ РІ РђРЅРіРµР»РѕРІ';
 							}elseif($usr['battle']>0 && $u->info['battle']!=$usr['battle'])
 							{
-								$u->error = 'Персонаж находится в бою';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ Р±РѕСЋ';
 							}else{
 								$usr['hpNow'] -= 10;
 								if($usr['hpNow']<0)
@@ -210,88 +210,88 @@ class Magic
 								$upd = mysql_query('UPDATE `stats` SET `hpNow` = "'.$usr['hpNow'].'" WHERE `id` = "'.$usr['id'].'" LIMIT 1');
 								if($upd)
 								{
-									$sx = 'ый'; $sx2 = '';
+									$sx = 'С‹Р№'; $sx2 = '';
 									if($u->info['sex']==1)
 									{
-										$sx = 'ая'; $sx2 = 'а';
+										$sx = 'Р°СЏ'; $sx2 = 'Р°';
 									}
 									$itm['iznosNOW']++;
 									mysql_query('UPDATE `items_users` SET `iznosNOW` = "'.$itm['iznosNOW'].'" WHERE `id` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
-									$rtxt = '[img[items/snowball1.gif]] Удачлив'.$sx.' &quot;'.$u->info['login'].'&quot; бросил'.$sx2.' кусок снега в &quot;'.$usr['login'].'&quot;. <font color=red><b>-10</b></font> ['.$usr['hpNow'].'/??]';
+									$rtxt = '[img[items/snowball1.gif]] РЈРґР°С‡Р»РёРІ'.$sx.' &quot;'.$u->info['login'].'&quot; Р±СЂРѕСЃРёР»'.$sx2.' РєСѓСЃРѕРє СЃРЅРµРіР° РІ &quot;'.$usr['login'].'&quot;. <font color=red><b>-10</b></font> ['.$usr['hpNow'].'/??]';
 									mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES ('".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','11','0','1')");	
 									unset($sx,$sx2);
 								}else{
-									$u->error = 'Не удалось кинуть снежок...';
+									$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РєРёРЅСѓС‚СЊ СЃРЅРµР¶РѕРє...';
 								}								
 							}
 						}elseif($itm['magic_inci']=='atack')
 						{
-						//заклятье нападения
-						$usta = $u->getStats($usr['id'],0); // статы цели
-		                $minHp = $usta['hpAll']/100*33; // минимальный запас здоровья цели при котором можно напасть
+						//Р·Р°РєР»СЏС‚СЊРµ РЅР°РїР°РґРµРЅРёСЏ
+						$usta = $u->getStats($usr['id'],0); // СЃС‚Р°С‚С‹ С†РµР»Рё
+		                $minHp = $usta['hpAll']/100*33; // РјРёРЅРёРјР°Р»СЊРЅС‹Р№ Р·Р°РїР°СЃ Р·РґРѕСЂРѕРІСЊСЏ С†РµР»Рё РїСЂРё РєРѕС‚РѕСЂРѕРј РјРѕР¶РЅРѕ РЅР°РїР°СЃС‚СЊ
 
 							if($u->info['dnow']!=$usr['dnow']){
-								$u->error = 'Персонаж находится в другой комнате [пещера]';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ [РїРµС‰РµСЂР°]';
 							}elseif($u->info['battle']>0){
-								$u->error = 'Вы уже находитесь в бою';
+								$u->error = 'Р’С‹ СѓР¶Рµ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ Р±РѕСЋ';
 							}elseif($usr['id']==$u->info['id']){
-								$u->error = 'Нельзя нападать на самого себя';
+								$u->error = 'РќРµР»СЊР·СЏ РЅР°РїР°РґР°С‚СЊ РЅР° СЃР°РјРѕРіРѕ СЃРµР±СЏ';
 							}elseif($usr['online']<time()-120){
-								$u->error = 'Персонаж находится в реальном мире';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ СЂРµР°Р»СЊРЅРѕРј РјРёСЂРµ';
 							}elseif($usr['room']!=$u->info['room']){
-								$u->error = 'Персонаж находится в другой комнате ['.$usr['room'].' '.$u->info['room'].']';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ ['.$usr['room'].' '.$u->info['room'].']';
 							}elseif($usr['admin']>0 && $u->info['admin']==0){
-								$u->error = 'Нельзя нападать на Ангелов';
+								$u->error = 'РќРµР»СЊР·СЏ РЅР°РїР°РґР°С‚СЊ РЅР° РђРЅРіРµР»РѕРІ';
 							}elseif($minHp>$usta['hpNow']){
-							//мало хп
-								$u->error = 'Персонаж имеет слишком малый уровень жизней.';
+							//РјР°Р»Рѕ С…Рї
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РёРјРµРµС‚ СЃР»РёС€РєРѕРј РјР°Р»С‹Р№ СѓСЂРѕРІРµРЅСЊ Р¶РёР·РЅРµР№.';
 							}else{
 								$atc = $this->atackUser($u->info['id'],$usr['id'],$usr['team'],$usr['battle']);
 								if($atc==1 && $u->info['align'] != 2){
-									//отправляем системку в чат
+									//РѕС‚РїСЂР°РІР»СЏРµРј СЃРёСЃС‚РµРјРєСѓ РІ С‡Р°С‚
 									$sx = '';
 									if($u->info['sex']==1){
-										$sx = 'а';
+										$sx = 'Р°';
 									}
 									$itm['iznosNOW']++;
 									mysql_query('UPDATE `items_users` SET `iznosNOW` = "'.$itm['iznosNOW'].'" WHERE `id` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
-									$rtxt = '[img[items/pal_button8.gif]] &quot;'.$u->info['login'].'&quot; использовал'.$sx.' магию нападения на персонажа &quot;'.$usr['login'].'&quot;.';
+									$rtxt = '[img[items/pal_button8.gif]] &quot;'.$u->info['login'].'&quot; РёСЃРїРѕР»СЊР·РѕРІР°Р»'.$sx.' РјР°РіРёСЋ РЅР°РїР°РґРµРЅРёСЏ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$usr['login'].'&quot;.';
 									mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES ('".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','11','0','1')");	
-									//напали, обновляем экран
+									//РЅР°РїР°Р»Рё, РѕР±РЅРѕРІР»СЏРµРј СЌРєСЂР°РЅ
 									die('<script>top.frames[\'main\'].location = "main.php";</script>');
 								}else{
-									$u->error = 'Не удалось напасть на персонажа...';
+									$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°РїР°СЃС‚СЊ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°...';
 								}
 							}
 						}else{
-							//просто используем на персонажа
+							//РїСЂРѕСЃС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°
 							if($u->info['dnow']!=$usr['dnow'])
 							{
-								$u->error = 'Персонаж находится в другой комнате [пещера]';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ [РїРµС‰РµСЂР°]';
 							}elseif($usr['id']==$u->info['id'] && isset($st['useOnlyUser']))
 							{
-								$u->error = 'Нельзя использовать это заклятие на самого себя';
+								$u->error = 'РќРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС‚Рѕ Р·Р°РєР»СЏС‚РёРµ РЅР° СЃР°РјРѕРіРѕ СЃРµР±СЏ';
 							}elseif($usr['online']<time()-120)
 							{
-								$u->error = 'Персонаж находится в реальном мире ;)';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ СЂРµР°Р»СЊРЅРѕРј РјРёСЂРµ ;)';
 							}elseif($usr['room']!=$u->info['room'])
 							{
-								$u->error = 'Персонаж находится в другой комнате ['.$usr['room'].' '.$u->info['room'].']';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ ['.$usr['room'].' '.$u->info['room'].']';
 							}elseif($usr['admin']>0 && $u->info['admin']==0 && isset($st['useNoAdmin']))
 							{
-								$u->error = 'Нельзя использовать данное заклятие на Ангелов';
+								$u->error = 'РќРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ РЅР° РђРЅРіРµР»РѕРІ';
 							}elseif($usr['battle']>0 && $u->info['battle']!=$usr['battle'])
 							{
-								$u->error = 'Персонаж находится в бою';
+								$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ Р±РѕСЋ';
 							}elseif(($u->info['align']==2 || $u->info['haos']>time()) && isset($st['nohaos']))
 							{
-								$u->error = 'Хаосники не могут использовать данное заклятие';
+								$u->error = 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ';
 							}else{
-								//добавляем эффект персонажу
+								//РґРѕР±Р°РІР»СЏРµРј СЌС„С„РµРєС‚ РїРµСЂСЃРѕРЅР°Р¶Сѓ
 								$goodUse = 1;
 								if(isset($st['onlyOne']))
 								{
-									//убираем прошлые эффекты
+									//СѓР±РёСЂР°РµРј РїСЂРѕС€Р»С‹Рµ СЌС„С„РµРєС‚С‹
 									$goodUse = 0;
 									$upd1 = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$usr['id'].'" AND `delete` = "0" AND `id_eff` = "'.$itm['magic_inc'].'"');
 									if($upd1)
@@ -301,7 +301,7 @@ class Magic
 								}
 								if(isset($st['oneType']))
 								{
-									//убираем прошлые эффекты									
+									//СѓР±РёСЂР°РµРј РїСЂРѕС€Р»С‹Рµ СЌС„С„РµРєС‚С‹									
 									$goodUse = 0;
 									$upd2 = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$usr['id'].'" AND `delete` = "0" AND `overType` = "'.$itm['overType'].'"');
 									if($upd1)
@@ -318,49 +318,49 @@ class Magic
 										mysql_query('UPDATE `items_users` SET `iznosNOW` = "'.$itm['iznosNOW'].'" WHERE `id` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
 										if($u->info['id']!=$usr['id'])
 										{
-											$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: Персонаж использовал заклинание &quot;'.$itm['name'].'&quot; ('.$us[1].') на персонажа &quot;'.$usr['login'].'&quot; (id'.$usr['id'].') [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
-											$u->addDelo(1,$usr['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: Персонаж &quot;'.$u->info['login'].'&quot; (id'.$u->info['id'].') использовал заклинание &quot;'.$itm['name'].'&quot; ('.$us[1].') на персонажа [itm:'.$itm['id'].'].',time(),$usr['city'],'System.inventory',0,0);
-											$u->error = 'Вы успешно использовали заклинание &quot;'.$itm['name'].'&quot; на персонажа &quot;'.$usr['login'].'&quot;<br>'.$us[1].'';
-											$rtxt = '[img[items/'.$itm['img'].']] &quot;'.$u->info['login'].'&quot; использовал'.$sx.' заклинание &quot;'.$itm['name'].'&quot; на персонажа &quot;'.$usr['login'].'&quot;.';
+											$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: РџРµСЂСЃРѕРЅР°Р¶ РёСЃРїРѕР»СЊР·РѕРІР°Р» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; ('.$us[1].') РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$usr['login'].'&quot; (id'.$usr['id'].') [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
+											$u->addDelo(1,$usr['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$u->info['login'].'&quot; (id'.$u->info['id'].') РёСЃРїРѕР»СЊР·РѕРІР°Р» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; ('.$us[1].') РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° [itm:'.$itm['id'].'].',time(),$usr['city'],'System.inventory',0,0);
+											$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$usr['login'].'&quot;<br>'.$us[1].'';
+											$rtxt = '[img[items/'.$itm['img'].']] &quot;'.$u->info['login'].'&quot; РёСЃРїРѕР»СЊР·РѕРІР°Р»'.$sx.' Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$usr['login'].'&quot;.';
 											mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES ('".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','11','0','1')");	
 										}else{
-											$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: Персонаж использовал заклинание &quot;'.$itm['name'].'&quot; ('.$us[1].') на персонажа самого себя [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
-											$u->error = 'Вы успешно использовали заклинание &quot;'.$itm['name'].'&quot; на самого себя<br>'.$us[1].'';
-											$rtxt = '[img[items/'.$itm['img'].']] &quot;'.$u->info['login'].'&quot; использовал'.$sx.' заклинание &quot;'.$itm['name'].'&quot; на себя.';
+											$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: РџРµСЂСЃРѕРЅР°Р¶ РёСЃРїРѕР»СЊР·РѕРІР°Р» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; ('.$us[1].') РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° СЃР°РјРѕРіРѕ СЃРµР±СЏ [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
+											$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; РЅР° СЃР°РјРѕРіРѕ СЃРµР±СЏ<br>'.$us[1].'';
+											$rtxt = '[img[items/'.$itm['img'].']] &quot;'.$u->info['login'].'&quot; РёСЃРїРѕР»СЊР·РѕРІР°Р»'.$sx.' Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; РЅР° СЃРµР±СЏ.';
 											mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES ('".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','11','0','1')");	
 										}
 										$this->youuse++;
 									}else{
-										$u->error = '1Не удалось использовать "'.$itm['name'].'"';
+										$u->error = '1РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ "'.$itm['name'].'"';
 									}
 								}else{
-									$u->error = '2Не удалось использовать "'.$itm['name'].'"';
+									$u->error = '2РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ "'.$itm['name'].'"';
 								}
 							}
 						}
 					}else{
-						$u->error = 'Персонаж "'.$jl.'" не найден в этом городе ('.$u->info['city'].')';
+						$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ "'.$jl.'" РЅРµ РЅР°Р№РґРµРЅ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ ('.$u->info['city'].')';
 					}
 				}elseif(isset($st['useOnItem']) && $st['useOnItem']==1)
 				{
-					//используем на предмет
+					//РёСЃРїРѕР»СЊР·СѓРµРј РЅР° РїСЂРµРґРјРµС‚
 					
 				}else{
-					//на себя
+					//РЅР° СЃРµР±СЏ
 					$goodUse = 1;
 					if(($u->info['align']==2 || $u->info['haos']>time()) && isset($st['nohaos']))
 					{
 						$goodUse = 0;
-						$u->error = 'Хаосники не могут использовать данное заклятие';
+						$u->error = 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ';
 					}
 					if($goodUse==1)
 					{
 						$upd1 = 1;
 						$upd2 = 1;
-						//добавляем эффект персонажу
+						//РґРѕР±Р°РІР»СЏРµРј СЌС„С„РµРєС‚ РїРµСЂСЃРѕРЅР°Р¶Сѓ
 						if(isset($st['onlyOne']))
 						{
-							//убираем прошлые эффекты
+							//СѓР±РёСЂР°РµРј РїСЂРѕС€Р»С‹Рµ СЌС„С„РµРєС‚С‹
 							$goodUse = 0;
 							$upd1 = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `id_eff` = "'.$itm['magic_inc'].'"');
 							if($upd1)
@@ -370,7 +370,7 @@ class Magic
 						}
 						if(isset($st['oneType']))
 						{
-							//убираем прошлые эффекты
+							//СѓР±РёСЂР°РµРј РїСЂРѕС€Р»С‹Рµ СЌС„С„РµРєС‚С‹
 							$goodUse = 0;
 							$upd2 = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `overType` = "'.$itm['overType'].'"');
 							if($upd1)
@@ -383,12 +383,12 @@ class Magic
 						{
 							if($u->info['animal']>0)
 							{
-								$u->error = 'Не удалось использовать "'.$itm['name'].'", у Вас уже есть зверь.';
+								$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ "'.$itm['name'].'", Сѓ Р’Р°СЃ СѓР¶Рµ РµСЃС‚СЊ Р·РІРµСЂСЊ.';
 							}else{
 								$anm = array('type'=>1,'name'=>'','obraz'=>'','stats'=>'','sex'=>0);
 								if($anm['type']==1)
 								{
-									$anm['name'] = 'Кот';
+									$anm['name'] = 'РљРѕС‚';
 									$anm['sex'] = 0;
 									$anm['obraz'] = array(1=>'20132.gif',2=>'21139.gif',3=>'20864.gif',4=>'21301.gif');
 									$anm['stats'] = 's1=2|s2=2|s3=2|s4=5|rinv=40|m9=5|m6=10';									
@@ -400,12 +400,12 @@ class Magic
 									
 									$u->info['animal'] = mysql_insert_id();
 									mysql_query('UPDATE `users` SET `animal` = "'.$u->info['animal'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-									$u->error = 'Вы успешно использовали "'.$itm['name'].'" и помните - &quot;Мы в ответе за тех, кого приручили&quot;.';
+									$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё "'.$itm['name'].'" Рё РїРѕРјРЅРёС‚Рµ - &quot;РњС‹ РІ РѕС‚РІРµС‚Рµ Р·Р° С‚РµС…, РєРѕРіРѕ РїСЂРёСЂСѓС‡РёР»Рё&quot;.';
 									$itm['iznosNOW']++;
 									mysql_query('UPDATE `items_users` SET `iznosNOW` = "'.$itm['iznosNOW'].'" WHERE `id` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
-									$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: Персонаж использовал заклинание &quot;'.$itm['name'].'&quot; ('.$us[1].') [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
+									$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: РџРµСЂСЃРѕРЅР°Р¶ РёСЃРїРѕР»СЊР·РѕРІР°Р» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; ('.$us[1].') [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
 								}else{
-									$u->error = 'Не удалось использовать "'.$itm['name'].'", что-то здесь не так ...';
+									$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ "'.$itm['name'].'", С‡С‚Рѕ-С‚Рѕ Р·РґРµСЃСЊ РЅРµ С‚Р°Рє ...';
 								}
 							}
 						}elseif($goodUse == 1)
@@ -415,23 +415,23 @@ class Magic
 							{
 								$itm['iznosNOW']++;
 								mysql_query('UPDATE `items_users` SET `iznosNOW` = "'.$itm['iznosNOW'].'" WHERE `id` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
-								$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: Персонаж использовал заклинание &quot;'.$itm['name'].'&quot; ('.$us[1].') [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
+								$u->addDelo(1,$u->info['id'],'&quot;<font color="maroon">System.inventory</font>&quot;: РџРµСЂСЃРѕРЅР°Р¶ РёСЃРїРѕР»СЊР·РѕРІР°Р» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; ('.$us[1].') [itm:'.$itm['id'].'].',time(),$u->info['city'],'System.inventory',0,0);
 								$this->youuse++;
-								$u->error = 'Вы успешно использовали заклинание &quot;'.$itm['name'].'&quot;<br>'.$us[1].'';
-								$rtxt = '[img[items/'.$itm['img'].']] &quot;'.$u->info['login'].'&quot; использовал'.$sx.' заклинание &quot;'.$itm['name'].'&quot; на себя.';
+								$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot;<br>'.$us[1].'';
+								$rtxt = '[img[items/'.$itm['img'].']] &quot;'.$u->info['login'].'&quot; РёСЃРїРѕР»СЊР·РѕРІР°Р»'.$sx.' Р·Р°РєР»РёРЅР°РЅРёРµ &quot;'.$itm['name'].'&quot; РЅР° СЃРµР±СЏ.';
 								mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES ('".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','11','0','1')");	
 							}else{
-								$u->error = '3Не удалось использовать "'.$itm['name'].'"';
+								$u->error = '3РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ "'.$itm['name'].'"';
 							}
 						}else{
-							$u->error = '4Не удалось использовать "'.$itm['name'].'"';
+							$u->error = '4РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ "'.$itm['name'].'"';
 						}
 					}
 				 //------------------------------
 				}				
 			}		
 		}else{
-			$u->error = 'Предмет не найден в инвентаре';
+			$u->error = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ';
 		}
 	}
 
@@ -454,13 +454,13 @@ class Magic
 		return $g;
 	}
 	
-	//создаем нападение на персонажа
+	//СЃРѕР·РґР°РµРј РЅР°РїР°РґРµРЅРёРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°
 	public function atackUser($uid1,$uid2,$tm,$btl,$addExp = 0)
 	{
 		$good = 0;
 		if($btl==0)
 		{
-			//нападаем на персонажа
+			//РЅР°РїР°РґР°РµРј РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°
 			$ins = mysql_query('INSERT INTO `battle` (`city`,`time_start`,`players`,`timeout`,`type`,`invis`,`noinc`,`travmChance`,`typeBattle`,`addExp`,`money`) VALUES (
 				"'.$u->info['city'].'",
 				"'.time().'",
@@ -482,7 +482,7 @@ class Magic
 				$good = 1;
 			}
 		}else{
-			//вмешиваемся в бой
+			//РІРјРµС€РёРІР°РµРјСЃСЏ РІ Р±РѕР№
 			$upd = mysql_query('UPDATE `users` SET `battle`="'.$btl.'" WHERE `id` = "'.$uid1.'" LIMIT 1');
 			if($upd)
 			{
@@ -494,7 +494,7 @@ class Magic
 		return $good;
 	}
 	
-	//Нападение на центральной площади
+	//РќР°РїР°РґРµРЅРёРµ РЅР° С†РµРЅС‚СЂР°Р»СЊРЅРѕР№ РїР»РѕС‰Р°РґРё
 	public function magicCentralAttack()
 	{
 		global $c,$code,$u,$re;

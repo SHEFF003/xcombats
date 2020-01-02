@@ -5,7 +5,7 @@ if(!defined('GAME'))
 }
 
 if( $itm['magic_inci'] == 'aniname' ) {	
-	$u->error = 'Òåïåðü âû ìîæåòå ïåðåèìåíîâàòü ñâîåãî çâåðÿ';
+	$u->error = 'Ð¢ÐµÐ¿ÐµÑ€ÑŒ Ð²Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð¿ÐµÑ€ÐµÐ¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ²Ð¾ÐµÐ³Ð¾ Ð·Ð²ÐµÑ€Ñ';
 	mysql_query('UPDATE `users_animal` SET `rename` = 0 WHERE `uid` = '.$u->info['id'].' AND `delete` = 0 AND `pet_in_cage` = 0 LIMIT 1');
 	mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 }

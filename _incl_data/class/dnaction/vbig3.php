@@ -1,15 +1,15 @@
 <?
 if( isset($s[1]) && $s[1] == 'vbig3' ) {
 	/*
-		Ñóíäóê: Êğîâàâûé ïîäçåìíèê (4561)
+		Ğ¡ÑƒĞ½Ğ´ÑƒĞº: ĞšÑ€Ğ¾Ğ²Ğ°Ğ²Ñ‹Ğ¹ Ğ¿Ğ¾Ğ´Ğ·ĞµĞ¼Ğ½Ğ¸Ğº (4561)
 	*/
-	//Âñå ïåğåìåííûå ñîõğàíÿòü â ìàññèâå $vad !
+	//Ğ’ÑĞµ Ğ¿ĞµÑ€ĞµĞ¼ĞµĞ½Ğ½Ñ‹Ğµ ÑĞ¾Ñ…Ñ€Ğ°Ğ½ÑÑ‚ÑŒ Ğ² Ğ¼Ğ°ÑÑĞ¸Ğ²Ğµ $vad !
 	$vad = array(
 		'go' => true
 	);
 	$vad['test1'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `dn` = "'.$u->info['dnow'].'" AND `vars` = "obj_act'.$obj['id'].'" LIMIT 1'));
 	if( $vad['test1'][0] > 0 ) {
-		$r = 'Êòî-òî ñîğâàë &quot;'.$obj['name'].'&quot; äî âàñ...';
+		$r = 'ĞšÑ‚Ğ¾-Ñ‚Ğ¾ ÑĞ¾Ñ€Ğ²Ğ°Ğ» &quot;'.$obj['name'].'&quot; Ğ´Ğ¾ Ğ²Ğ°Ñ...';
 		$vad['go'] = false;
 	}
 	
@@ -18,14 +18,14 @@ if( isset($s[1]) && $s[1] == 'vbig3' ) {
 			"'.$u->info['dnow'].'","'.time().'","'.$obj['x'].'","'.$obj['y'].'","'.$u->info['id'].'","obj_act'.$obj['id'].'","'.$vad['bad'].'"
 		)');
 		if( rand(0,100) > 25 ) {
-			$r = 'Îáûñêàâ &quot;'.$obj['name'].'&quot; âû íè÷åãî íå îáíàğóæèëè...';
+			$r = 'ĞĞ±Ñ‹ÑĞºĞ°Ğ² &quot;'.$obj['name'].'&quot; Ğ²Ñ‹ Ğ½Ğ¸Ñ‡ĞµĞ³Ğ¾ Ğ½Ğµ Ğ¾Ğ±Ğ½Ğ°Ñ€ÑƒĞ¶Ğ¸Ğ»Ğ¸...';
 		}else{
 			$vad['items'] = array(4561);
 			$vad['items'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.mysql_real_escape_string($vad['items'][rand(0,count($vad['items'])-1)]).'" LIMIT 1'));
 			if( !isset($vad['dn_delete'][$vad['items']['id']]) ) {
 				$vad['dn_delete'][$vad['items']['id']] = false;
 			}
-			$r = 'Îáûñêàâ &quot;'.$obj['name'].'&quot; âû îáíàğóæèëè &quot;'.$vad['items']['name'].'&quot;';
+			$r = 'ĞĞ±Ñ‹ÑĞºĞ°Ğ² &quot;'.$obj['name'].'&quot; Ğ²Ñ‹ Ğ¾Ğ±Ğ½Ğ°Ñ€ÑƒĞ¶Ğ¸Ğ»Ğ¸ &quot;'.$vad['items']['name'].'&quot;';
 			$this->pickitem($obj,$vad['items']['id'],0,'',$vad['dn_delete'][$vad['items']['id']]);
 		}
 	}

@@ -10,29 +10,29 @@ if( $itm['magic_inci'] == 'esfer' ) {
 	
 	$pvr = array();
 	
-	//Действие при клике
+	//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 	if( $u->stats['hpNow'] < 1 ) {
-		$u->error = '<font color=red><b>Вы поглибли и не можете воспользоваться свитком...</b></font>';
+		$u->error = '<font color=red><b>Р’С‹ РїРѕРіР»РёР±Р»Рё Рё РЅРµ РјРѕР¶РµС‚Рµ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СЃРІРёС‚РєРѕРј...</b></font>';
 	}elseif( isset($btl->info['id']) ) {
 		
 		if( $btl->info['noinc'] > 0 ) {
-			$u->error = '<font color=red><b>Бой был изолирован ранее</b></font>';	
+			$u->error = '<font color=red><b>Р‘РѕР№ Р±С‹Р» РёР·РѕР»РёСЂРѕРІР°РЅ СЂР°РЅРµРµ</b></font>';	
 		}else{			
 			$btl->priemAddLog( $id, 1, 2, $u->info['id'], $u->info['enemy'],
 				'',
-				'{tm1} {u1} изолировал бой от внешнего физического мира... ',
+				'{tm1} {u1} РёР·РѕР»РёСЂРѕРІР°Р» Р±РѕР№ РѕС‚ РІРЅРµС€РЅРµРіРѕ С„РёР·РёС‡РµСЃРєРѕРіРѕ РјРёСЂР°... ',
 				($btl->hodID)
 			);			
-			$u->error = '<font color=red><b>Мерцающая сфера отделила всех вас от остального мира...  </b></font>';		
+			$u->error = '<font color=red><b>РњРµСЂС†Р°СЋС‰Р°СЏ СЃС„РµСЂР° РѕС‚РґРµР»РёР»Р° РІСЃРµС… РІР°СЃ РѕС‚ РѕСЃС‚Р°Р»СЊРЅРѕРіРѕ РјРёСЂР°...  </b></font>';		
 			mysql_query('UPDATE `battle` SET `noinc` = 1 WHERE `id` = '.$btl->info['id'].' LIMIT 1');
 			mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 		}
 		
 	}else{
-		$u->error = '<font color=red><b>Свиток возможно использовать только в бою</b></font>';
+		$u->error = '<font color=red><b>РЎРІРёС‚РѕРє РІРѕР·РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РІ Р±РѕСЋ</b></font>';
 	}
 	
-	//Отнимаем тактики
+	//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 	//$this->mintr($pl);
 	
 	unset($pvr);

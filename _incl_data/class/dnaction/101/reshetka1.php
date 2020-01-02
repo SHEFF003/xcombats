@@ -1,18 +1,18 @@
 <?
 if( isset($s[1]) && $s[1] == '101/reshetka1' ) {
 	/*
-		Решетка
-		* Телепортирует на необходимую клетку
+		Р РµС€РµС‚РєР°
+		* РўРµР»РµРїРѕСЂС‚РёСЂСѓРµС‚ РЅР° РЅРµРѕР±С…РѕРґРёРјСѓСЋ РєР»РµС‚РєСѓ
 	*/
-	//Все переменные сохранять в массиве $vad !
+	//Р’СЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏС‚СЊ РІ РјР°СЃСЃРёРІРµ $vad !
 	$vad = array(
 		'go' => false
 	);
 	
-	//Проверяем камни
+	//РџСЂРѕРІРµСЂСЏРµРј РєР°РјРЅРё
 	$vad['sp'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `item_id` = "1189" AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" AND `inTransfer` = "0" LIMIT 1'));
 	if( isset($vad['sp']['id']) ) {
-		// Удалена проверка на группировку предметов 14.10.2015
+		// РЈРґР°Р»РµРЅР° РїСЂРѕРІРµСЂРєР° РЅР° РіСЂСѓРїРїРёСЂРѕРІРєСѓ РїСЂРµРґРјРµС‚РѕРІ 14.10.2015
 		// $vad['pl'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$vad['sp']['item_id'].'" LIMIT 1'));
 		$vad['go'] = true;
 	}
@@ -21,7 +21,7 @@ if( isset($s[1]) && $s[1] == '101/reshetka1' ) {
 		//$u->deleteItem($vad['sp']['id'],$u->info['id'],1);
 		echo '<script>location.href="main.php"</script>';
 	}elseif( !isset($vad['sp']['id']) ) {
-		$r = 'Для прохода требуется предмет &quot;Мерцающий ключ №3&quot;';
+		$r = 'Р”Р»СЏ РїСЂРѕС…РѕРґР° С‚СЂРµР±СѓРµС‚СЃСЏ РїСЂРµРґРјРµС‚ &quot;РњРµСЂС†Р°СЋС‰РёР№ РєР»СЋС‡ в„–3&quot;';
 	}
 	unset($vad);
 }

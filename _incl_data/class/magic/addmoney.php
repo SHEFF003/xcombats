@@ -17,21 +17,21 @@ if( $itm['magic_inci'] == 'addmoney' ) {
 			mysql_query('UPDATE `bank` SET `money2` = `money2` + "'.$itm['price2'].'" WHERE `id` = "'.$bnki['id'].'" LIMIT 1');	
 		}
 		if( $itm['price4'] > 0 ) {
-			$u->error = 'Âû óñïåøíî îáíàëè÷èëè ÷åê íà '.$u->zuby($itm['price4'],1).'';
+			$u->error = 'Ð’Ñ‹ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ð±Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð»Ð¸ Ñ‡ÐµÐº Ð½Ð° '.$u->zuby($itm['price4'],1).'';
 			mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 		}elseif( $itm['price2'] == 0 ) {
-			$u->error = 'Âû óñïåøíî îáíàëè÷èëè ÷åê íà '.$itm['price1'].' êð.';
+			$u->error = 'Ð’Ñ‹ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ð±Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð»Ð¸ Ñ‡ÐµÐº Ð½Ð° '.$itm['price1'].' ÐºÑ€.';
 			mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 		}else{
 			if( isset($bnki['id']) ) {
-				$u->error = 'Âû óñïåøíî îáíàëè÷èëè ÷åê íà '.$itm['price2'].' åêð. (Áàíê: ¹'.$bnki['id'].' )';
+				$u->error = 'Ð’Ñ‹ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ð±Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð»Ð¸ Ñ‡ÐµÐº Ð½Ð° '.$itm['price2'].' ÐµÐºÑ€. (Ð‘Ð°Ð½Ðº: â„–'.$bnki['id'].' )';
 				mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');	
 			}else{
-				$u->error = '×åê íà '.$itm['price2'].' åêð. íåëüçÿ îáíàëè÷èòü! Ó Âàñ íåò áàíêîâñêîãî ñ÷åòà!';	
+				$u->error = 'Ð§ÐµÐº Ð½Ð° '.$itm['price2'].' ÐµÐºÑ€. Ð½ÐµÐ»ÑŒÐ·Ñ Ð¾Ð±Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ñ‚ÑŒ! Ð£ Ð’Ð°Ñ Ð½ÐµÑ‚ Ð±Ð°Ð½ÐºÐ¾Ð²ÑÐºÐ¾Ð³Ð¾ ÑÑ‡ÐµÑ‚Ð°!';	
 			}
 		}
 	}else{
-		$u->error = 'Õàîñíèêè íå ìîãóò îáíàëè÷èâàòü ÷åê!';
+		$u->error = 'Ð¥Ð°Ð¾ÑÐ½Ð¸ÐºÐ¸ Ð½Ðµ Ð¼Ð¾Ð³ÑƒÑ‚ Ð¾Ð±Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð²Ð°Ñ‚ÑŒ Ñ‡ÐµÐº!';
 	}
 }
 ?>

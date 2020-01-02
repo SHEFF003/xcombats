@@ -4,62 +4,62 @@ if(!defined('GAME'))
 	die();
 }
 
-//Âûäàåì ïðåäìåòû, íî íå ðàíüøå 00:00:00 01-01-2013
+//Ð’Ñ‹Ð´Ð°ÐµÐ¼ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ñ‹, Ð½Ð¾ Ð½Ðµ Ñ€Ð°Ð½ÑŒÑˆÐµ 00:00:00 01-01-2013
 if(date('Y')==2017) {
 	/*
 
-2. Íîâîãîäíèé Øîêîëàä (ïîëíîå âîñò. õï) 
-3. Íîâîãîäíÿÿ Îòêðûòêà 
-4. Çåëüå -Áîéöîâñêèé Äóõ- (ìîù óðîíà/ìàãèè +10, õï +60) 
+2. ÐÐ¾Ð²Ð¾Ð³Ð¾Ð´Ð½Ð¸Ð¹ Ð¨Ð¾ÐºÐ¾Ð»Ð°Ð´ (Ð¿Ð¾Ð»Ð½Ð¾Ðµ Ð²Ð¾ÑÑ‚. Ñ…Ð¿) 
+3. ÐÐ¾Ð²Ð¾Ð³Ð¾Ð´Ð½ÑÑ ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÐºÐ° 
+4. Ð—ÐµÐ»ÑŒÐµ -Ð‘Ð¾Ð¹Ñ†Ð¾Ð²ÑÐºÐ¸Ð¹ Ð”ÑƒÑ…- (Ð¼Ð¾Ñ‰ ÑƒÑ€Ð¾Ð½Ð°/Ð¼Ð°Ð³Ð¸Ð¸ +10, Ñ…Ð¿ +60) 
 
-7. Íîâîãîäíèé Ýëèêñèð
+7. ÐÐ¾Ð²Ð¾Ð³Ð¾Ð´Ð½Ð¸Ð¹ Ð­Ð»Ð¸ÐºÑÐ¸Ñ€
 	*/	
-	//Ñíåæîê 0/13 (x1)
+	//Ð¡Ð½ÐµÐ¶Ð¾Ðº 0/13 (x1)
 	$idit = $u->addItem(1000,$u->info['id']);
 	if($idit > 0) {
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä",`iznosMAX` = "15" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´",`iznosMAX` = "15" WHERE `id` = "'.$idit.'" LIMIT 1');
 		
-		//Íîâîãîäíèé ýëèêñèð (x1)
+		//ÐÐ¾Ð²Ð¾Ð³Ð¾Ð´Ð½Ð¸Ð¹ ÑÐ»Ð¸ÐºÑÐ¸Ñ€ (x1)
 		$idit = $u->addItem(997,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä",`iznosMAX` = "7" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´",`iznosMAX` = "7" WHERE `id` = "'.$idit.'" LIMIT 1');
 		
-		//Íîâîãîäíèé ýëèêñèð (x1)
+		//ÐÐ¾Ð²Ð¾Ð³Ð¾Ð´Ð½Ð¸Ð¹ ÑÐ»Ð¸ÐºÑÐ¸Ñ€ (x1)
 		$idit = $u->addItem(2870,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä",`iznosMAX` = "7" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´",`iznosMAX` = "7" WHERE `id` = "'.$idit.'" LIMIT 1');
 		
-		//Çâåçäíîå ñèÿíèå (x1)
+		//Ð—Ð²ÐµÐ·Ð´Ð½Ð¾Ðµ ÑÐ¸ÑÐ½Ð¸Ðµ (x1)
 		$idit = $u->addItem(1462,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä",`iznosMAX` = "7" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´",`iznosMAX` = "7" WHERE `id` = "'.$idit.'" LIMIT 1');
 				
-		//Îòêðûòêà (x1)
+		//ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÐºÐ° (x1)
 		$idit = $u->addItem(996,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Íîâûé Ãîä" , `gtxt1` = "Àäìèíèñòðàöèÿ ïðîåêòà ïîçäðàâëÿåò Âàñ ñ Íîâûì, 2017, Ãîäîì!" WHERE `id` = "'.$idit.'" LIMIT 1');	
+		mysql_query('UPDATE `items_users` SET `gift` = "ÐÐ¾Ð²Ñ‹Ð¹ Ð“Ð¾Ð´" , `gtxt1` = "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° Ð¿Ð¾Ð·Ð´Ñ€Ð°Ð²Ð»ÑÐµÑ‚ Ð’Ð°Ñ Ñ ÐÐ¾Ð²Ñ‹Ð¼, 2017, Ð“Ð¾Ð´Ð¾Ð¼!" WHERE `id` = "'.$idit.'" LIMIT 1');	
 		
-		//Íàïàäàëêà 0/13 (x1)
+		//ÐÐ°Ð¿Ð°Ð´Ð°Ð»ÐºÐ° 0/13 (x1)
 		$idit = $u->addItem(874,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä",`iznosMAX` = "15" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´",`iznosMAX` = "15" WHERE `id` = "'.$idit.'" LIMIT 1');
 		
-		//Ôåéðâåðê 0/25 , 4055
+		//Ð¤ÐµÐ¹Ñ€Ð²ÐµÑ€Ðº 0/25 , 4055
 		$idit = $u->addItem(4055,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä",`iznosMAX` = "25" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´",`iznosMAX` = "25" WHERE `id` = "'.$idit.'" LIMIT 1');
 		
-		//Êîëüöî æèçíè (x1)
+		//ÐšÐ¾Ð»ÑŒÑ†Ð¾ Ð¶Ð¸Ð·Ð½Ð¸ (x1)
 		//$idit = $u->addItem(2101,$u->info['id'],'|noremont=1|srok=2419200|sudba='.$u->info['login']);
-		//mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä",`iznosMAX` = "10" WHERE `id` = "'.$idit.'" LIMIT 1');
+		//mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´",`iznosMAX` = "10" WHERE `id` = "'.$idit.'" LIMIT 1');
 		
-		//Âîññòàíîâëåíèå Ýíåðãèè 900ÍÐ (x3)
+		//Ð’Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ðµ Ð­Ð½ÐµÑ€Ð³Ð¸Ð¸ 900ÐÐ  (x3)
 		$idit = $u->addItem(2710,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´" WHERE `id` = "'.$idit.'" LIMIT 1');
 		$idit = $u->addItem(2710,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´" WHERE `id` = "'.$idit.'" LIMIT 1');
 		$idit = $u->addItem(2710,$u->info['id']);
-		mysql_query('UPDATE `items_users` SET `gift` = "Ñòàðûé Ãîä" WHERE `id` = "'.$idit.'" LIMIT 1');
+		mysql_query('UPDATE `items_users` SET `gift` = "Ð¡Ñ‚Ð°Ñ€Ñ‹Ð¹ Ð“Ð¾Ð´" WHERE `id` = "'.$idit.'" LIMIT 1');
 		
-		$u->error = 'Âû óñïåøíî èñïîëüçîâàëè &quot;'.$itm['name'].'&quot;. Â èíâåíòàðü äîáàâëåíû ïîäàðêè. Ñ Íîâûì, 2017, Ãîäîì!';
+		$u->error = 'Ð’Ñ‹ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð»Ð¸ &quot;'.$itm['name'].'&quot;. Ð’ Ð¸Ð½Ð²ÐµÐ½Ñ‚Ð°Ñ€ÑŒ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ñ‹ Ð¿Ð¾Ð´Ð°Ñ€ÐºÐ¸. Ð¡ ÐÐ¾Ð²Ñ‹Ð¼, 2017, Ð“Ð¾Ð´Ð¾Ð¼!';
 		mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE (`item_id` = "2763" OR `id` = "'.$itm['id'].'") AND `uid` = "'.$u->info['id'].'" LIMIT 10');
 	}
 }else{
-	$u->error = 'Ïîäàðîê âîçìîæíî èñïîëüçîâàòü íå ðàíüøå 01.01.2017';
+	$u->error = 'ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ Ð½Ðµ Ñ€Ð°Ð½ÑŒÑˆÐµ 01.01.2017';
 }
 
 ?>

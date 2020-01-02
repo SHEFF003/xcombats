@@ -1,16 +1,16 @@
 <?
 if( isset($s[1]) && $s[1] == '1/podogrevatel' ) {
 	/*
-		Сундук: Обогреватель
-		* падает гайка
+		РЎСѓРЅРґСѓРє: РћР±РѕРіСЂРµРІР°С‚РµР»СЊ
+		* РїР°РґР°РµС‚ РіР°Р№РєР°
 	*/
-	//Все переменные сохранять в массиве $vad !
+	//Р’СЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏС‚СЊ РІ РјР°СЃСЃРёРІРµ $vad !
 	$vad = array(
 		'go' => true
 	);
 	$vad['test1'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `dn` = "'.$u->info['dnow'].'" AND `vars` = "obj_act'.$obj['id'].'" LIMIT 1'));
 	if( $vad['test1'][0] > 0 ) {
-		$r = 'Кто-то обыскал &quot;'.$obj['name'].'&quot; до вас...';
+		$r = 'РљС‚Рѕ-С‚Рѕ РѕР±С‹СЃРєР°Р» &quot;'.$obj['name'].'&quot; РґРѕ РІР°СЃ...';
 		$vad['go'] = false;
 	}
 		
@@ -23,7 +23,7 @@ if( isset($s[1]) && $s[1] == '1/podogrevatel' ) {
 		$vad['itm'] = $vad['itm'][rand(0,count($vad['itm'])-1)];
 		$vad['itm'] = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$vad['itm'].'" LIMIT 1'));
 		$this->pickitem($obj,$vad['itm']['id'],0,'',false);
-		$r = 'Вы обнаружили предмет &quot;'.$vad['itm']['name'].'&quot;.';
+		$r = 'Р’С‹ РѕР±РЅР°СЂСѓР¶РёР»Рё РїСЂРµРґРјРµС‚ &quot;'.$vad['itm']['name'].'&quot;.';
 	}
 	
 	unset($vad);

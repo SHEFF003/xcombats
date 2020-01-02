@@ -6,14 +6,14 @@ if(!defined('GAME'))
 
 if( $itm['magic_inci'] == 'arhmoney' ) {
 	if( $u->info['inTurnir'] == 0 ) {
-		$u->error = 'Необходимо участвовать в турнире Башни Смерти';
+		$u->error = 'РќРµРѕР±С…РѕРґРёРјРѕ СѓС‡Р°СЃС‚РІРѕРІР°С‚СЊ РІ С‚СѓСЂРЅРёСЂРµ Р‘Р°С€РЅРё РЎРјРµСЂС‚Рё';
 	}else{
 		$noarh = true;
 		$bsd = mysql_fetch_array(mysql_query('SELECT `id`,`users`,`arhiv`,`count`,`city`,`money` FROM `bs_turnirs` WHERE `id` = "'.$u->info['inTurnir'].'" LIMIT 1'));
 		if( isset($bsd['id']) ) {
-			$bsd_arh = mysql_fetch_array(mysql_query('SELECT `u`.`id`,`u`.`battle`,`s`.`x`,`s`.`y` FROM `users` AS `u` LEFT JOIN `stats` AS `s` ON `s`.`id` = `u`.`id` WHERE `u`.`inTurnir` = "'.$u->info['inTurnir'].'" AND `u`.`login` = "Архивариус" AND `u`.`pass` = "bstowerbot" LIMIT 1'));
+			$bsd_arh = mysql_fetch_array(mysql_query('SELECT `u`.`id`,`u`.`battle`,`s`.`x`,`s`.`y` FROM `users` AS `u` LEFT JOIN `stats` AS `s` ON `s`.`id` = `u`.`id` WHERE `u`.`inTurnir` = "'.$u->info['inTurnir'].'" AND `u`.`login` = "РђСЂС…РёРІР°СЂРёСѓСЃ" AND `u`.`pass` = "bstowerbot" LIMIT 1'));
 			if( $bsd['users'] > 1 && $noarh == false && true == false ) {
-				$u->error = 'Вы должны остаться единственным участником Башни Смерти';
+				$u->error = 'Р’С‹ РґРѕР»Р¶РЅС‹ РѕСЃС‚Р°С‚СЊСЃСЏ РµРґРёРЅСЃС‚РІРµРЅРЅС‹Рј СѓС‡Р°СЃС‚РЅРёРєРѕРј Р‘Р°С€РЅРё РЎРјРµСЂС‚Рё';
 			}else{
 				if( $u->info['inUser'] == 0 ) {
 					$usr_tk = mysql_fetch_array(mysql_query('SELECT `level`,`id`,`money`,`login`,`align`,`clan`,`sex` FROM `users` WHERE `inUser` = "'.$u->info['id'].'" LIMIT 1'));
@@ -28,26 +28,26 @@ if( $itm['magic_inci'] == 'arhmoney' ) {
 						}
 						mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = '.$itm['id'].' LIMIT 1');
 						if( $itm['price2'] == 0 ) {
-							$u->error = 'Вы успешно обналичил чек на '.$itm['price1'].' кр.';
+							$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕР±РЅР°Р»РёС‡РёР» С‡РµРє РЅР° '.$itm['price1'].' РєСЂ.';
 						}else{
 							if( isset($bnki['id']) ) {
-								$u->error = 'Вы успешно обналичил чек на '.$itm['price2'].' екр. (Банк: №'.$bnki['id'].' )';	
+								$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕР±РЅР°Р»РёС‡РёР» С‡РµРє РЅР° '.$itm['price2'].' РµРєСЂ. (Р‘Р°РЅРє: в„–'.$bnki['id'].' )';	
 							}else{
-								$u->error = 'Чек на '.$itm['price2'].' екр. был обналичен, но у Вас нет подходящего банковского счета! Деньги сгорели!';	
+								$u->error = 'Р§РµРє РЅР° '.$itm['price2'].' РµРєСЂ. Р±С‹Р» РѕР±РЅР°Р»РёС‡РµРЅ, РЅРѕ Сѓ Р’Р°СЃ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РµРіРѕ Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р°! Р”РµРЅСЊРіРё СЃРіРѕСЂРµР»Рё!';	
 							}
 						}
-						//Добавляем в лог БС
+						//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
 						if( $itm['price2'] == 0 ) {
 							if( $u->info['sex'] == 0 ) {
-								$text = '{u1} обналичил чек на <b>'.$itm['price1'].' кр.</b>';
+								$text = '{u1} РѕР±РЅР°Р»РёС‡РёР» С‡РµРє РЅР° <b>'.$itm['price1'].' РєСЂ.</b>';
 							}else{
-								$text = '{u1} обналичила чек на <b>'.$itm['price1'].' кр.</b>';
+								$text = '{u1} РѕР±РЅР°Р»РёС‡РёР»Р° С‡РµРє РЅР° <b>'.$itm['price1'].' РєСЂ.</b>';
 							}
 						}else{
 							if( $u->info['sex'] == 0 ) {
-								$text = '{u1} обналичил чек на <b>'.$itm['price2'].' екр.</b>';
+								$text = '{u1} РѕР±РЅР°Р»РёС‡РёР» С‡РµРє РЅР° <b>'.$itm['price2'].' РµРєСЂ.</b>';
 							}else{
-								$text = '{u1} обналичила чек на <b>'.$itm['price2'].' екр.</b>';
+								$text = '{u1} РѕР±РЅР°Р»РёС‡РёР»Р° С‡РµРє РЅР° <b>'.$itm['price2'].' РµРєСЂ.</b>';
 							}
 						}
 						if( isset($usr_tk['id']) ) {
@@ -60,24 +60,24 @@ if( $itm['magic_inci'] == 'arhmoney' ) {
 							}
 							$mereal .= '<b>'.$usr_tk['login'].'</b> ['.$usr_tk['level'].']<a target=_blank href=http://xcombats.com/info/'.$usr_tk['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 						}else{
-							$mereal = '<i>Невидимка</i>[??]';
+							$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 						}
 						$text = str_replace('{u1}',$mereal,$text);
-						//Добавляем в лог БС
+						//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
 						mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 							"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$bsd['id'].'", "'.$bsd['count'].'", "'.$bsd['city'].'",
 							"'.round($bsd['money']*0.85,2).'","'.$i.'"
 						)');
 						//
 					}else{
-						$u->error = 'Что-то здесь не так...';
+						$u->error = 'Р§С‚Рѕ-С‚Рѕ Р·РґРµСЃСЊ РЅРµ С‚Р°Рє...';
 					}
 				}else{
-					$u->error = 'Вы должны участвовать в турнире Башни Смерти';	
+					$u->error = 'Р’С‹ РґРѕР»Р¶РЅС‹ СѓС‡Р°СЃС‚РІРѕРІР°С‚СЊ РІ С‚СѓСЂРЅРёСЂРµ Р‘Р°С€РЅРё РЎРјРµСЂС‚Рё';	
 				}
 			}
 		}else{
-			$u->error = 'Необходимо участвовать в турнире Башни Смерти';
+			$u->error = 'РќРµРѕР±С…РѕРґРёРјРѕ СѓС‡Р°СЃС‚РІРѕРІР°С‚СЊ РІ С‚СѓСЂРЅРёСЂРµ Р‘Р°С€РЅРё РЎРјРµСЂС‚Рё';
 		}
 	}
 }

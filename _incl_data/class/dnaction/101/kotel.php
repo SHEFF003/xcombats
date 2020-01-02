@@ -1,17 +1,17 @@
 <?
 if( isset($s[1]) && $s[1] == '101/kotel' ) {
 	/*
-		Сундук: Котел
-		* Можно найти Сущность щита
-		* Может отнять 100-1000 НР
+		РЎСѓРЅРґСѓРє: РљРѕС‚РµР»
+		* РњРѕР¶РЅРѕ РЅР°Р№С‚Рё РЎСѓС‰РЅРѕСЃС‚СЊ С‰РёС‚Р°
+		* РњРѕР¶РµС‚ РѕС‚РЅСЏС‚СЊ 100-1000 РќР 
 	*/
-	//Все переменные сохранять в массиве $vad !
+	//Р’СЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ СЃРѕС…СЂР°РЅСЏС‚СЊ РІ РјР°СЃСЃРёРІРµ $vad !
 	$vad = array(
 		'go' => true
 	);
 	$vad['test1'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `dn` = "'.$u->info['dnow'].'" AND `vars` = "obj_act'.$obj['id'].'" LIMIT 1'));
 	if( $vad['test1'][0] > 0 ) {
-		$r = 'Кто-то перевернул котел...';
+		$r = 'РљС‚Рѕ-С‚Рѕ РїРµСЂРµРІРµСЂРЅСѓР» РєРѕС‚РµР»...';
 		$vad['go'] = false;
 	}
 	
@@ -20,14 +20,14 @@ if( isset($s[1]) && $s[1] == '101/kotel' ) {
 			"'.$u->info['dnow'].'","'.time().'","'.$obj['x'].'","'.$obj['y'].'","'.$u->info['id'].'","obj_act'.$obj['id'].'","'.$vad['bad'].'"
 		)');
 		if( rand(0,100) > 11 ) {
-			//Ловушка
-			$r = 'Вы получили сильнейший ожог от котла!';
+			//Р›РѕРІСѓС€РєР°
+			$r = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё СЃРёР»СЊРЅРµР№С€РёР№ РѕР¶РѕРі РѕС‚ РєРѕС‚Р»Р°!';
 			$vad['min_hp'] = round($u->stats['hpNow']);
 			$u->stats['hpNow'] = 0;
 			if($u->info['sex'] == 0) {
-				$vad['text'] = '[img[items/trap.gif]] <b>'.$u->info['login'].'</b> получил сильнейший ожог от &quot;'.$obj['name'].'&quot;. <b>-'.$vad['min_hp'].'</b> ['.floor($u->stats['hpNow']).'/'.round($u->stats['hpAll']).']';
+				$vad['text'] = '[img[items/trap.gif]] <b>'.$u->info['login'].'</b> РїРѕР»СѓС‡РёР» СЃРёР»СЊРЅРµР№С€РёР№ РѕР¶РѕРі РѕС‚ &quot;'.$obj['name'].'&quot;. <b>-'.$vad['min_hp'].'</b> ['.floor($u->stats['hpNow']).'/'.round($u->stats['hpAll']).']';
 			}else{
-				$vad['text'] = '[img[items/trap.gif]] <b>'.$u->info['login'].'</b> получила сильнейший ожог от &quot;'.$obj['name'].'&quot;. <b>-'.$vad['min_hp'].'</b> ['.floor($u->stats['hpNow']).'/'.round($u->stats['hpAll']).']';
+				$vad['text'] = '[img[items/trap.gif]] <b>'.$u->info['login'].'</b> РїРѕР»СѓС‡РёР»Р° СЃРёР»СЊРЅРµР№С€РёР№ РѕР¶РѕРі РѕС‚ &quot;'.$obj['name'].'&quot;. <b>-'.$vad['min_hp'].'</b> ['.floor($u->stats['hpNow']).'/'.round($u->stats['hpAll']).']';
 			}
 			$this->sys_chat($vad['text']);
 			$u->info['hpNow'] = $u->stats['hpNow'];
@@ -35,9 +35,9 @@ if( isset($s[1]) && $s[1] == '101/kotel' ) {
 			//
 			$this->testDie();
 		}else{
-			//Награда
+			//РќР°РіСЂР°РґР°
 			$this->pickitem($obj,4269,$u->info['id']);
-			$r = 'Обыскав &quot;'.$obj['name'].'&quot; вы обнаружили предмет &quot;Сущность Щита&quot;';
+			$r = 'РћР±С‹СЃРєР°РІ &quot;'.$obj['name'].'&quot; РІС‹ РѕР±РЅР°СЂСѓР¶РёР»Рё РїСЂРµРґРјРµС‚ &quot;РЎСѓС‰РЅРѕСЃС‚СЊ Р©РёС‚Р°&quot;';
 		}
 	}
 	
