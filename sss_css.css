@@ -1,0 +1,86 @@
+.sss_bg12 {
+	background-image:url(http://img.xcombats.com/game_seasons12.jpg);
+	background-repeat:no-repeat;
+	min-height:489px;
+}
+
+.sss_block_m {
+	background-repeat:no-repeat;
+	width:212px;
+	height:395px;
+	display:inline-block;
+	cursor:pointer;
+	margin:5px;
+	position:relative;
+}
+
+.sss_block_m:hover {
+	margin-top:0px;
+	padding-top:5px;
+}
+
+.sss_block_m_in {
+	position:absolute;
+	top:334px;
+	width:212px;
+	font-size:20px;
+	color:#C90;
+}
+
+.sss_block_m_in2 {
+	position:absolute;
+	top:330px;
+	width:212px;
+	font-size:16px;
+	color:#aeaeae;
+}
+
+.sss_block_m_in3 {
+	position:absolute;
+	top:328px;
+	width:212px;
+	font-size:16px;
+	color:#efefef;
+}
+
+.sss_mis_div {
+	width:675px;
+	/*background-color:#53606d;*/
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	background-image:url(http://img.xcombats.com/ss_bg1.png);
+}
+
+.graysc {
+    -webkit-filter: grayscale(100%);
+       -moz-filter: grayscale(100%);
+         -o-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+            filter: grayscale(100%); 	
+}
+
+.sss_line1 {
+	display:inline-block;
+	width:300px;
+	height:10px;
+	border:1px solid #efefef;
+	background-color:#e2e0e0;
+}
+
+.sss_line2 {
+	display:inline-block;
+	height:10px;
+	background-color:#5da327;
+}
+
+.sss_btn1 {
+	border:1px solid #CCC;
+	background-color:#efefef;
+	color:#333;
+	padding:3px 10px 3px 10px;
+}
+
+.sss_btn1:hover {
+	background-color:#cfcfcf;
+}

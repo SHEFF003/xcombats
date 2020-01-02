@@ -1,0 +1,132 @@
+@charset "windows-1251";
+/* CSS Document */
+
+.wrapper {
+	width: 100%;
+	min-width: 800px;
+	position: relative;
+}
+
+.maroontext {
+	font-weight: bolder;
+	color: #8f0000;
+	font-size:12pt;
+}
+
+.asel {
+	background-color:#e5e1e2;
+	padding:5px 10px 5px 10px;
+	color:#000;
+}
+
+.cp { cursor:pointer; }
+
+.asel a {
+	color:#000;
+}
+
+.unasel {
+	padding:5px 10px 5px 10px;
+}
+
+
+/* Middle
+-----------------------------------------------------------------------------*/
+.middle {
+	width: 100%;
+	position: relative;
+}
+.middle:after {
+	display: table;
+	clear: both;
+	content: '';
+}
+.container {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+}
+.content {
+	padding: 0 170px 0 0;
+	display:block;
+}
+.borderandpadding5px {
+	padding:5px;
+	/*border:solid 1px #a5a5a5;*/
+}
+.borderitem {
+	border-right:solid 1px #a5a5a5;
+}
+.borderandpadding0px {
+	padding:0px;
+	border:solid 1px #a5a5a5;
+}
+.px3px {
+	padding:3px;
+}
+.brd1top {
+	border-top:solid 1px #a5a5a5;
+}
+
+
+/* Right Sidebar
+-----------------------------------------------------------------------------*/
+.right-sidebar {
+	float: left;
+	width: 150px;
+	margin-left: -150px;
+	position: relative;
+}
+
+/* All Styles
+-----------------------------------------------------------------------------*/
+
+#error {
+	color:red;
+	padding:5px;
+	display:none;
+}
+
+#auction_title {
+	background-color:#d2d2d2;
+	text-align:center;
+	padding:5px 5px 0 5px;
+	display:block;
+}
+
+#auction_content {
+	/*background-color:#c8c8c8;*/
+	display:block;
+}
+
+.auction_menu_point {
+	padding:1px 10px 1px 0;
+	border-bottom:1px solid #E2E0E0;
+}
+
+.auction_menu_point:hover {
+	cursor:pointer;
+	background-color:#c7c7c7;
+}
+
+.auction_unhide {
+	background-color:#c7c7c7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

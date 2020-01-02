@@ -1,0 +1,321 @@
+.pm {
+	background-color: #719AC8;
+	margin-left: 6px;
+	margin-right: 26px;
+	padding: 10px;
+	color: #000;
+	height:14px;
+}
+
+.hr0 {
+	border:0;
+	border-bottom:1px solid #aabacc;
+}
+
+img { border:0; }
+
+.pm2 {
+	background-color:#bccfe5;
+	margin-left:6px;
+	margin-right:26px;
+	padding:10px;
+}
+
+.pm2 a {
+	color:#871813;
+}
+
+
+.cp {
+	cursor:pointer;
+}
+
+.psi_main {
+	background-color:#0e0e0e;
+}
+
+.psi_btn {
+	width:179px;
+	height:50px;
+	background-image:url(../images/psi_btn1.png);
+	background-position:0 -50px;
+	display:inline-block;
+}
+
+.psi_btn:hover {
+	background-position:0 0px;
+	cursor:pointer;
+}
+
+.psi_btn:active {
+	background-position:0 1px;
+	cursor:pointer;
+}
+
+.psi_logo {
+	background-image:url(../images/combats_logo.png);
+	width:790px;
+	height:263px;
+	position:absolute;
+	top:20px;
+	left:-160px;
+}
+
+.psi_fix {
+	position:relative;
+	height:263px;
+}
+
+.psi_main_reg {
+	background-color:#0e0e0e;
+	font-family:Minion Pro;
+	font-size:14px;
+	color:#daad5e;
+	background-image:url(../images/reg_bg.png);
+}
+
+.psi_mainin {
+	padding-left:22px;
+	padding-right:22px;
+}
+
+.psi_mleft {
+	background-image:url(../images/leftl.png);
+}
+
+.psi_mright {
+	background-image:url(../images/rightl.png);
+}
+
+.psi_tline {
+	background-image:url(../images/top_line.png);
+	background-repeat:repeat-x;
+	background-position:bottom;
+}
+
+.psi_dline {
+	background-image:url(../images/bottom_line.png);
+}
+
+.psi_dlimg {
+	background-image:url(../images/leftd.png);
+}
+
+.psi_drimg {
+	background-image:url(../images/rightd.png);
+}
+
+.psi_tlimg {
+	background-image:url(../images/left.png);
+	background-repeat:repeat-x;
+	background-position:bottom;
+}
+
+.psi_trimg {
+	background-image:url(../images/right.png);
+	background-repeat:repeat-x;
+	background-position:bottom;
+}
+
+/* psi_check1 */
+.psi_check1 {
+	width:19px;
+	height:19px;
+	background-image:url(../images/psi_checkbox.png);
+	background-position:0 0;
+	position:relative;
+	vertical-align:bottom;
+	cursor:pointer;
+}
+
+.psi_check1s {
+	width:19px;
+	height:19px;
+	background-image:url(../images/psi_checkbox.png);
+	background-position:0 -19px;
+	position:relative;
+	vertical-align:bottom;
+	cursor:pointer;
+}
+
+/* input 1 */
+.psi_input1_none {
+	background-color:#232323;
+	border:solid 1px #3e3e3e;
+	padding:5px;
+	color:#cccccc;
+}
+
+.psi_input1_green {
+	background-color:#232323;
+	border:solid 1px #5d8d00;
+	padding:5px;
+	color:#cccccc;
+}
+
+.psi_input1_red {
+	background-color:#232323;
+	border:solid 1px #ae1313;
+	padding:5px;
+	color:#cccccc;
+}
+
+.psi_list {
+	display:inline-block;
+}
+
+.psi_list select {
+	background-color:#3e3e3e;
+	border:solid 1px #3e3e3e;
+	color:#cccccc;
+}
+
+/* radio 1 */
+.radio1txt {
+	color: #515860;
+}
+
+.radio1txt:hover {
+	color: #5A636B;
+}
+
+.psi_radio1 {
+	height:19px;
+	background-image:url(../images/pri_radio.png);
+	background-position:0 0px;
+	background-repeat:no-repeat;
+	position:relative;
+	vertical-align:bottom;
+	cursor:pointer;
+	display:inline-block;
+	width:680px;
+}
+
+.psi_radio1s {
+	height:19px;
+	background-image:url(../images/pri_radio.png);
+	background-position:0 -19px;
+	background-repeat:no-repeat;
+	position:relative;
+	vertical-align:bottom;
+	cursor:pointer;
+	display:inline-block;
+	color:#0d101a;
+	background-color:#a9c0db;
+	padding-right:10px;
+	width:680px;
+}
+
+.tip {
+  display: inline-block;
+  position: relative;
+}
+/*—тиль дл€ кнопки, если она есть*/
+.tip em,
+.linktip em {
+  background:#FD6E00;
+  text-align:center;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  color: #fff;
+  font: normal bold 12px Arial;
+  text-decoration: none;
+  cursor:pointer;
+  padding: 0 4px;
+}
+/*—тиль дл€ изображени€ в подсказке*/
+.tip>span>img {
+  max-width: 50%;
+  max-height: auto;
+  margin: 3px;
+  float: left;
+}
+/*—тиль дл€ кнопки закрыти€ подсказки(кристик)*/
+.answer>b,
+.answer-left>b {
+  position:absolute;
+  font: normal bold 14px Comic Sans MS;
+  color:#999;
+  cursor:pointer;
+  padding: 4px;
+}
+.answer>b {
+  top:0;
+  right:0;
+}
+.answer-left>b {
+  top:0;
+  left:0;
+}
+.answer>b:hover,
+.answer-left>b:hover {color:#000;} /*при наведении*/
+
+/*—тиль дл€ блока подсказки*/
+.answer, 
+.answer-left { 
+  display:none; /*скрываем*/
+  position:absolute; /*позиционируем абсолютно*/
+  z-index:9999; /*отображаем поверх всех элементов на странице*/
+  background: #EDEDED; /*цвет фона*/
+  border-radius: 3px; 
+  border: 1px solid #ccc;
+  color: #000; /*цвет текста*/
+  font: normal 500 14px Trebuchet MS;
+  text-align:left;
+  text-shadow: 0 1px 2px #fff, 0 0 10px #E0F1FF; /*тень текста*/
+  text-decoration: none;
+  opacity: 1; /*прозрачность*/
+  cursor:default;
+  margin-top:-30px; /*смещение вверх*/
+  width: 200px; /*ширина !значение*/
+  min-height: 50px; /*минимальна€ высота (если текста мало)*/
+  max-height: auto; /*высота в зависимости от количества текста*/
+  white-space: normal; /*переносы слов*/
+}
+.answer {
+  box-shadow: 5px 5px 0.5em -0.1em rgba(0,0,6,0.5); /*тень справа*/
+  right: -240px; /*!смещение = ширина + отступы*/
+  padding: 5px 20px 7px 7px; /*отступы внутри*/
+}
+.answer-left {
+  box-shadow: -5px 5px 0.5em -0.1em rgba(0,0,6,0.5); /*тень слева*/
+  left: -240px; /*!смещение*/
+  padding: 5px 7px 7px 20px;
+}
+.a-top {
+  bottom: -10px; /*!смещение, положение подсказки вверх */
+}
+/*—тили дл€ уголка*/
+.a-top:before,
+.answer:before, 
+.answer-left:before {
+  content:"";
+  position:absolute;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAQAAACR313BAAAAaElEQVR4XoWQMQ6AMAwDna6wMXTjB/x/7E4i9SV9AwgxuJKDcKfqrlVizInrObwLHLng9sKhgm8nIQV4eWAFJig/EIogUATCTPh7zZUUuqHXOL4m7waglViyvVthNXvaGhNr2jnTLQTenE8VKUp0n4sAAAAASUVORK5CYII=) no-repeat;
+  width: 9px;
+  height: 15px;
+}
+.answer:before {
+  left: -9px;
+  margin-top: 10px;
+  background-position: 0 0;
+}
+.answer-left:before {
+  right: -9px;
+  margin-top: 10px;
+  background-position: -9px 0;
+}
+.a-top:before {
+  bottom: 10px;
+}
+/*ƒл€ отображени€ клик-подсказки без скрипта, только на CSS*/
+.tip>a:focus~span.answer,
+.tip>a:focus~span.answer-left {
+  display:block;
+}
+.tip>a[tabindex="1"]:focus {
+  outline: none;
+}
+.tip>a[tabindex="1"]:focus>em {
+  background:#FF4F19;
+}

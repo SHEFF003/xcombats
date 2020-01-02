@@ -1,0 +1,114 @@
+@charset "windows-1251";
+/* CSS Document */
+
+.wrapper {
+	width: 100%;
+	min-width: 800px;
+	position: relative;
+}
+
+
+/* Middle
+-----------------------------------------------------------------------------*/
+.middle {
+	width: 100%;
+	position: relative;
+}
+.middle:after {
+	display: table;
+	clear: both;
+	content: '';
+}
+.container {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+}
+.content {
+	padding: 0 290px 0 0;
+	display:block;
+}
+.borderandpadding5px {
+	padding:5px;
+	/*border:solid 1px #a5a5a5;*/
+}
+.borderitem {
+	border-right:solid 1px #a5a5a5;
+}
+.borderandpadding0px {
+	padding:0px;
+	border:solid 1px #a5a5a5;
+}
+.px3px {
+	padding:3px;
+}
+.brd1top {
+	border-top:solid 1px #a5a5a5;
+}
+
+
+/* Right Sidebar
+-----------------------------------------------------------------------------*/
+.right-sidebar {
+	float: left;
+	width: 270px;
+	margin-left: -270px;
+	position: relative;
+}
+
+/* All Styles
+-----------------------------------------------------------------------------*/
+
+#error {
+	color:red;
+	padding:5px;
+	display:none;
+}
+
+#comission_title {
+	background-color:#a5a5a5;
+	font-weight:bold;
+	text-align:center;
+	padding:5px;
+	display:block;
+}
+
+#comission_content {
+	background-color:#c8c8c8;
+	display:block;
+}
+
+.comission_menu_point {
+	padding:1px 10px 1px 0;
+	border-bottom:1px solid #E2E0E0;
+}
+
+.comission_menu_point:hover {
+	cursor:pointer;
+	background-color:#c7c7c7;
+}
+
+.comission_unhide {
+	background-color:#c7c7c7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

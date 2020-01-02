@@ -1,0 +1,75 @@
+.w1 {
+	position:absolute;
+	z-index:1102;
+}
+
+.1x1 {
+	width:1px;
+	height:1px;
+	display:block;
+}
+
+/* First style */ 
+.wi1s0 {
+	width:5px;
+	height:6px;
+	background:url(http://img.xcombats.com/i/bneitral_03.gif) 1px 0px no-repeat;
+}
+.wi1s1 {
+	height:6px;
+	background:url(http://img.xcombats.com/i/bneitral_05.gif);
+}
+.wi1s2 {
+	width:5px;
+	height:6px;
+	background:url(http://img.xcombats.com/i/bneitral_03.gif) -2px 0px no-repeat;
+}
+.wi1s3 {
+	width:5px;
+	background:url(http://img.xcombats.com/i/bneitral_17.gif) 1px 0px repeat-y;
+}
+.wi1s4 {
+	width:5px;
+	background:url(http://img.xcombats.com/i/bneitral_19.gif) -1px 0px repeat-y;
+	background-position:right;
+	background-color:#675600;
+}
+.wi1s5 {
+	width:5px;
+	background:url(http://img.xcombats.com/i/bneitral_19.gif) 0px 0px repeat-y;
+}
+.wi1s6 {
+	height:6px;
+	background:url(http://img.xcombats.com/i/bneitral_05.gif);
+}
+.wi1s7 {
+	background:#ddd5bf;
+}
+
+.wi1s8 {
+	background:url(http://img.xcombats.com/i/bneitral_05.gif);
+}
+.wi1s9 {
+	width:5px;
+	height:6px;
+	background:url(http://img.xcombats.com/i/bneitral_19.gif);
+}
+.wi1s10 {
+	background-color:#b1a993;
+	white-space:nowrap;
+	color:#003388;
+	padding:2px 2px 2px 7px;
+	min-width:140px;
+}
+.wi1s10 text {
+	cursor:move;
+}
+.wi1s10 img {
+	cursor:pointer;
+}
+.wi1s11 {
+
+}
+.wi1s12 {
+
+}

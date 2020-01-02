@@ -1,0 +1,250 @@
+#ione{
+	position:relative;
+	cursor:pointer;
+	height:240px;
+	width:500px;
+}
+.navig{
+	background:url('http://img.xcombats.com/i/images/300x225/club/navig.jpg') no-repeat left top;
+}
+.navig1{
+	background:url('http://img.xcombats.com/i/images/300x225/club/navig1.jpg') no-repeat left top;
+}
+.navig2{
+	background:url('http://img.xcombats.com/i/images/300x225/club/navig.jpg') no-repeat left top;
+}
+.navig3{
+	background:url('http://img.xcombats.com/i/images/300x225/club/navig3.jpg') no-repeat left top;
+}
+.fl1{
+	background:url('http://img.xcombats.com/i/images/300x225/fl1.gif') no-repeat center;
+	position:absolute;
+	width:16px;
+	height:16px;
+	z-index:90;
+}
+.map_bk{
+	background:url('http://img.xcombats.com/i/images/300x225/map_bk.gif') no-repeat center;
+	position:absolute;
+	width:120px;
+	height:35px;
+	z-index:90;
+	left:184px;
+	top:94px;
+}
+.map_halls{
+	background:url('http://img.xcombats.com/i/images/300x225/map_halls.gif') no-repeat center;
+	position:absolute;
+	width:120px;
+	height:35px;
+	z-index:90;
+	left:354px;
+	top:115px;
+}
+.map_demon2{
+	background:url('http://img.xcombats.com/i/images/300x225/map_demon2.gif') no-repeat center;
+	position:absolute;
+	width:107px;
+	height:15px;
+	z-index:90;
+	left:329px;
+	top:111px;
+}
+.map_2stair{
+	background:url('http://img.xcombats.com/i/images/300x225/map_2stair.gif') no-repeat center;
+	position:absolute;
+	width:120px;
+	height:35px;
+	z-index:90;
+	left:23px;
+	top:116px;
+}
+.map_klub1{
+	background:url('http://img.xcombats.com/i/images/300x225/map_klub1.gif') no-repeat center;
+	position:absolute;
+	width:56px;
+	height:13px;
+	z-index:90;
+	left:66px;
+	top:114px;
+}
+.map_klub2{
+	background:url('http://img.xcombats.com/i/images/300x225/map_klub2.gif') no-repeat center;
+	position:absolute;
+	width:58px;
+	height:49px;
+	z-index:90;
+	left:216px;
+	top:41px;
+}
+.map_klub3{
+	background:url('http://img.xcombats.com/i/images/300x225/map_klub3.gif') no-repeat center;
+	position:absolute;
+	width:123px;
+	height:31px;
+	z-index:90;
+	left:312px;
+	top:168px;
+}
+.map_klub4{
+	background:url('http://img.xcombats.com/i/images/300x225/map_klub4.gif') no-repeat center;
+	position:absolute;
+	width:123px;
+	height:31px;
+	z-index:90;
+	left:59px;
+	top:169px;
+}
+.map_klub5{
+	background:url('http://img.xcombats.com/i/images/300x225/map_klub5.gif') no-repeat center;
+	position:absolute;
+	width:123px;
+	height:30px;
+	z-index:90;
+	left:312px;
+	top:48px;
+}
+.map_klub6{
+	background:url('http://img.xcombats.com/i/images/300x225/map_klub6.gif') no-repeat center;
+	position:absolute;
+	width:123px;
+	height:30px;
+	z-index:90;
+	left:52px;
+	top:47px;
+}
+.map_klub7{
+	background:url('http://img.xcombats.com/i/images/300x225/map_klub7.gif') no-repeat center;
+	position:absolute;
+	width:103px;
+	height:47px;
+	z-index:90;
+	left:196px;
+	top:148px;
+}
+.map_zal2{
+	background:url('http://img.xcombats.com/i/images/300x225/map_zal2.gif') no-repeat center;
+	position:absolute;
+	width:175px;
+	height:37px;
+	z-index:90;
+	left:264px;
+	top:106px;
+}
+.map_zal3{
+	background:url('http://img.xcombats.com/i/images/300x225/map_zal3.gif') no-repeat center;
+	position:absolute;
+	width:135px;
+	height:29px;
+	z-index:90;
+	left:47px;
+	top:120px;
+}
+.map_zal3{
+	background:url('http://img.xcombats.com/i/images/300x225/map_zal3.gif') no-repeat center;
+	position:absolute;
+	width:135px;
+	height:29px;
+	z-index:90;
+	left:47px;
+	top:120px;
+}
+.map_zalu3{
+	background:url('http://img.xcombats.com/i/images/300x225/map_zalu3.gif') no-repeat center;
+	position:absolute;
+	width:79px;
+	height:32px;
+	z-index:90;
+	left:17px;
+	top:122px;
+}
+.map_zalu4{
+	background:url('http://img.xcombats.com/i/images/300x225/map_zalu4.gif') no-repeat center;
+	position:absolute;
+	width:122px;
+	height:31px;
+	z-index:90;
+	left:52px;
+	top:47px;
+}
+.map_zalu6{
+	background:url('http://img.xcombats.com/i/images/300x225/map_zalu6.gif') no-repeat center;
+	position:absolute;
+	width:76px;
+	height:18px;
+	z-index:90;
+	left:78px;
+	top:24px;
+}
+.map_zalu7{
+	background:url('http://img.xcombats.com/i/images/300x225/map_zalu7.gif') no-repeat center;
+	position:absolute;
+	width:100px;
+	height:35px;
+	z-index:90;
+	left:393px;
+	top:170px;
+}
+.map_sec1{
+	background:url('http://img.xcombats.com/i/images/300x225/map_sec1.gif') no-repeat center;
+	position:absolute;
+	width:91px;
+	height:43px;
+	z-index:90;
+	left:24px;
+	top:180px;
+}
+.map_sec2{
+	background:url('http://img.xcombats.com/i/images/300x225/map_sec2.gif') no-repeat center;
+	position:absolute;
+	width:63px;
+	height:40px;
+	z-index:90;
+	left:36px;
+	top:41px;
+}
+.map_sec3{
+	background:url('http://img.xcombats.com/i/images/300x225/map_sec3.gif') no-repeat center;
+	position:absolute;
+	width:101px;
+	height:37px;
+	z-index:90;
+	left:119px;
+	top:175px;
+}
+.map_sec4{
+	background:url('http://img.xcombats.com/i/images/300x225/map_sec4.gif') no-repeat center;
+	position:absolute;
+	width:89px;
+	height:32px;
+	z-index:90;
+	left:391px;
+	top:120px;
+}
+.map_sec5{
+	background:url('http://img.xcombats.com/i/images/300x225/map_sec5.gif') no-repeat center;
+	position:absolute;
+	width:122px;
+	height:31px;
+	z-index:90;
+	left:281px;
+	top:173px;
+}
+.map_sec6{
+	background:url('http://img.xcombats.com/i/images/300x225/map_sec6.gif') no-repeat center;
+	position:absolute;
+	width:123px;
+	height:30px;
+	z-index:90;
+	left:305px;
+	top:51px;
+}
+.map_sec7{
+	background:url('http://img.xcombats.com/i/images/300x225/map_sec7.gif') no-repeat center;
+	position:absolute;
+	width:123px;
+	height:39px;
+	z-index:90;
+	left:122px;
+	top:52px;
+}

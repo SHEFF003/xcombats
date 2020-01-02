@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link href="http://img.xcombats.com/css/main.css?v={{ ver }}" rel="stylesheet" type="text/css">
+<link href="/core/static/styles/location/comission.css?v={{ ver }}" rel="stylesheet" type="text/css">
+<link href="/core/static/styles/location.line.css?v={{ ver }}" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/core/static/scripts/location/comission.js?v={{ ver }}"></script>
+<script type="text/javascript" src="/core/static/scripts/location.line.js?v={{ ver }}"></script>
+<script type="text/javascript" src="/core/static/scripts/item.js?v={{ ver }}"></script>
+<script>
+locjs.data.user = {
+	'id':{{ (0+user.id) }},
+	'login':'{{ user.login }}',
+	'align':{{ (0+user.align) }},
+	'level':{{ (0+user.level) }},
+	'money':{{ (0+user.money) }},
+	'massaNow':{{ (0+user.massaNow) }},
+	'massaMax':{{ (0+user.massaMax) }},
+	
+	'timeGo':{{ (0+stats.timeGo) }},
+	'timeGoL':{{ (0+stats.timeGoL) }},
+	'timeNow':{{ OK }}
+};
+locjs.data.menu = [
+	["Оружие: кастеты,ножи",1,0],
+	["топоры",2,1],
+	["дубины,булавы",3,1],
+	["мечи",4,1],
+	["магические посохи",5,1],
+	["Одежда: сапоги",6,0],
+	["перчатки",7,1],
+	["рубахи",8,1],
+	["легкая броня",9,1],
+	["тяжелая броня",10,1],
+	["шлемы",11,1],
+	["наручи",12,1],
+	["пояса",13,1],
+	["поножи",14,1],
+	["Щиты",15,1],
+	["Ювелирные товары: серьги",16,0],
+	["ожерелья",17,1],
+	["кольца",18,1],
+	["Прочее: Заклинания",19,0],
+	["Эликсиры",20,1],
+	["Чарки",21,1],
+	["Руны",22,1],
+	["Ресурсы",23,1],
+	["Корм для зверей",24,1],
+	["Остальное",25,0]
+];
+
+locjs.data.locations = [
+	{% if user.city == 'capitalcity' %}['1.180.0.9' , 9 , 'Центральная площадь' , 0]{% endif %}
+	{% if user.city == 'angelscity' %}['2.180.0.234' , 234 , 'Центральная площадь' , 0]{% endif %}
+];
+</script>
+<!--
+Сегодня мы проверим кто слабак, а кто воин |
+Лучшая браузерная онлайн игра!
+-->
+<title>{{ title }}</title>
+</head>
+<body onLoad="locjs.start();" style="padding-top:0px; margin-top:7px; height:100%; background-color:#E2E0E0;">
+<!-- -->
+	<div id="comission_body" class="middle">
+		<div class="container">
+			<div class="content">
+				<!-- -->
+                <div id="error"></div>
+                <div id="comission_main">
+                	<div id="comission_title"></div>
+                    <div id="comission_content" class="borderandpadding0px"></div>
+                </div>
+                <!-- -->
+			</div>
+		</div>
+		<div id="comission_menu" class="right-sidebar">
+
+        </div>
+	</div>
+<!-- -->
+</body>
+</html>

@@ -1,0 +1,339 @@
+html,body {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	font-size: 10pt;
+	font-family:Verdana, Arial, Helvetica, Tahoma, sans-serif;
+}
+.m0c1 { display:block;margin-top:0px; }
+.m0c2 { display:block;margin-top:2px; }
+.text {
+  FONT-SIZE: 10pt; COLOR: #000000; FONT-WEIGHT: normal;
+  FONT-FAMILY: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+}
+.h4			{ COLOR: #8f0000;  FONT-FAMILY: Arial;  FONT-SIZE: 11pt;  FONT-WEIGHT: bold; MARGIN-BOTTOM: 5px;}
+H3			{ COLOR: #8f0000;  FONT-FAMILY: Arial;  FONT-SIZE: 12pt;  FONT-WEIGHT: bold; TEXT-ALIGN: center }
+H4			{ COLOR: #8f0000;  FONT-FAMILY: Arial;  FONT-SIZE: 11pt;  FONT-WEIGHT: bold; MARGIN-BOTTOM: 5px;}
+H5			{ COLOR: #4f0000;  FONT-FAMILY: Arial;  FONT-SIZE: 11pt;  FONT-WEIGHT: bold; MARGIN-BOTTOM: 0px; MARGIN-TOP: 0px;}
+a,a:visited { text-decoration: none; FONT-WEIGHT: bold; color: #003388; }
+a:active	{ color: #6F0000}
+a:hover		{ color: #0066FF}
+.date		{ font-family: Courier; font-size: 8pt; text-decoration:none; font-weight:normal; color: #007000}
+.date2		{ font-family: Courier; font-size: 8pt; text-decoration:none; font-weight:normal; color: #007000; background-color: #00FFAA}
+.sysdate	{ font-family: Courier; font-size: 8pt; text-decoration:none; font-weight:normal; color: #B00000}
+.private	{ font-weight:bold; color: red; background-color: #FAE0E0}
+.number		{ font-size: 11pt; font-weight: bold; color: #6F0000}
+.dsc		{ color: #606060; font-weight:normal; }
+select,textarea,input	{ border: solid 1pt #B0B0B0; font-family: MS Sans Serif; font-size: 10px; color: #191970; MARGIN-BOTTOM: 2px; MARGIN-TOP: 1px;}
+/*button	{ border: solid 1pt #B0B0B0; font-family: MS Sans Serif; font-size: 11px; color: #191970; padding:2px 7px 2px 7px;}
+button:active { padding:3px 6px 1px 8px; }*/
+.ahint		{font-family: MS Sans Serif; font-size:8px; text-decoration:none; color:#000080;z-index: 99;}
+#hint2		{position:absolute; width:140; background-color:#FFF6DD; layer-background-color:#FFF6DD; visibility:hidden}
+#hint3		{position:absolute; width:240; background-color:#FFF6DD; layer-background-color:#FFF6DD; visibility:hidden}
+#hint4		{position:absolute; width:240; visibility:hidden}
+.ttl_css{	position:absolute;	padding-left:3px;	padding-right:3px;	padding-top:2px;	padding-bottom:2px;	background-color: #ffffcc;	border: 1px solid #6F6B5E;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;	
+	box-shadow: 0 0 1px #6F6B5E;
+	-webkit-box-shadow: 0 0 1px #6F6B5E;
+	-moz-box-shadow: 0 0 1px #6F6B5E;
+}
+.foryou1 .date {
+	font-family: Courier; font-size: 8pt; text-decoration:none; font-weight:normal; color: #007000; background-color: #00FFAA;
+}
+.foryou2 .date {
+	font-family: Courier; font-size: 8pt; text-decoration:none; font-weight:normal; color: #007000; background-color: #00FFAA;
+}
+.B1			{ font-weight: bold; color: #6666CC}
+.B2			{ font-weight: bold; color: #B06A00}
+.B3                     { font-weight: bold; color: #269088}
+.B4                     { font-weight: bold; color: #A0AF20}
+.B5                     { font-weight: bold; color: #0F79D3}
+.B6                     { font-weight: bold; color: #D85E23}
+.B7                     { font-weight: bold; color: #5C832F}
+.B8                     { font-weight: bold; color: #842B61}
+.B9                     { font-weight: bold; color: navy}
+.Bs1			{ font-size: 8pt; font-weight:bold; color: #6666CC}
+.Bs2			{ font-weight:bold; color: #B06A00}
+img,table	{border:0}
+
+*[onselectstart="return false"] {  
+	-moz-user-select: none;  
+	-o-user-select:none;  
+	-khtml-user-select: none;  
+	-webkit-user-select: none;  
+	-ms-user-select: none;  
+	user-select: none; 
+}
+
+#main {
+	overflow:auto;
+	white-space:nowrap;
+	height:100%;
+	padding:5px 0px 0px 0px;
+}
+
+#chat_list {
+	overflow:auto;
+	height:100%;
+	padding:2px;
+}
+
+#online_list {
+	overflow:auto;
+	white-space:nowrap;
+	width:100%;
+	height:100%;
+	padding-left:5px;
+}
+
+#ttSmiles {
+	position:absolute;
+	right:16px;
+	bottom:16px;
+	width:355px;
+	height:162px;
+	border:1px solid #717171;
+	filter: alpha(opacity=57);
+    opacity:0.57;
+    -moz-opacity:0.57;
+    -khtml-opacity:0.57;
+	background-color:#dedede;
+}
+
+#ttSmiles:hover {
+	filter: alpha(opacity=90);
+    opacity:0.90;
+    -moz-opacity:0.90;
+    -khtml-opacity:0.90;
+}
+
+#smilesDiv {
+	padding:0px;
+	height:125px;
+	overflow:auto;
+}
+
+.radiobtn {
+	background-image:url(http://xcombats.com/radio_btn.png);
+	cursor:pointer;
+}
+
+.radioblock {
+	background-color:red;
+	width:350px;
+	height:30px;
+	position:absolute;
+	left:350px;
+	top:0px;
+	z-index:10;
+}
+
+.radiobtn2 {
+	background-image:url(http://xcombats.com/radio_btn.png);
+	background-position:bottom;
+	cursor:pointer;
+}
+
+#reline1 {
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	background-color: #9E9C9E;
+	/*
+	background-color:#CCCCCC;
+	border-bottom:1px solid #797779;
+	*/
+	border-bottom: 1px solid #010101;
+	cursor: n-resize;
+	top: 60%;
+	z-index: 1001;
+}
+
+#reline1:hover {
+	background-color:#757575;
+	cursor:n-resize;
+}
+
+#reline1:active {
+	background-color:#757575;
+	cursor:n-resize;
+}
+
+#reline2 {
+	position:absolute;
+	width:2px;
+	background-color:#9E9C9E;
+	border-right:1px solid #010101;
+	cursor:e-resize;
+	top:60%;
+	z-index:1000;
+}
+
+#reline2:hover {
+	background-color:#757575;
+	cursor:e-resize;
+}
+
+#reline2:active {
+	background-color:#757575;
+	cursor:e-resize;
+}
+
+#upbox {
+	z-index:1002;
+	position:absolute;
+	width:100%;
+	height:100%;
+	display:none;
+	cursor:default;
+	top:0px; left:0px;
+}
+
+#wupbox {
+	z-index:2000;
+	position:absolute;
+	width:100%;
+	height:100%;
+	display:none;
+	cursor:default;
+	top:0px; left:0px;
+}
+
+#chconfig {
+	position:absolute;
+	bottom:36px;
+	background-color:#E1E1E1;
+	left:11px;
+	width:215px;
+	z-index:1005;
+	display:none;
+	border:1px solid #979797;
+	padding:5px;
+	color:#333333;
+}
+
+#ChatColor {
+	width:100%;
+}
+
+.eLine {
+	background-image:url(../expicLine.gif);
+	background-repeat:repeat-x;
+	height:7px;
+	width:100%;
+}
+
+#counters {
+	position:absolute;
+	bottom:52px;
+	right:27px;
+	width:88px;
+	height:31px;
+	filter: alpha(opacity=35);
+    opacity:0.35;
+    -moz-opacity:0.35;
+    -khtml-opacity:0.35;
+	z-index:1006;
+}
+
+#globalMode {
+	
+}
+
+#counters:hover {
+    filter: Glow(strength=2,color=#DDDDDD);
+	filter: alpha(opacity=100);
+    opacity:1.0;
+    -moz-opacity:1.0;
+    -khtml-opacity:1.0;
+}
+
+.cp{ cursor:pointer; }
+
+.fl{ float:left; }
+
+.fr{ float:right; }
+
+.db{ display:block; }
+
+.main_text {	font-weight: bold;	font-size: 10px;	text-decoration: none;	color:#f0f0f0;	cursor:pointer;	}
+
+.menutop, a.menutop:visited,  a.menutop:active {	font-weight: bold; 	font-size: 10px;	text-decoration: none; 	color: #3B3936;}
+a.menutop:hover { color: #76726b;}
+
+.my_clip_button { cursor:pointer; }
+
+.chatBtn1_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn1.gif')  0px 0px repeat-x;}
+.chatBtn1_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn1.gif')  0px -30px repeat-x;}
+.chatBtn18_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn18.gif')  0px 0px repeat-x;}
+.chatBtn18_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn18.gif')  0px -30px repeat-x;}
+.chatBtn2_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn2.gif')  0px 0px repeat-x;}
+.chatBtn2_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn2.gif')  0px -30px repeat-x;}
+.chatBtn4_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn4.gif')  0px 0px repeat-x;}
+.chatBtn4_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn4.gif')  0px -30px repeat-x;}
+.chatBtn5_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn5.gif')  0px 0px repeat-x;}
+.chatBtn5_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn5.gif')  0px -30px repeat-x;}
+.chatBtn5_3 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn5.gif')  0px -59px repeat-x;}
+.chatBtn6_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn6.gif')  0px 0px repeat-x;}
+.chatBtn6_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn6.gif')  0px -30px repeat-x;}
+.chatBtn7_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn7.gif')  0px 0px repeat-x;}
+.chatBtn7_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn7.gif')  0px -30px repeat-x;}
+.chatBtn7_3 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn7.gif')  0px -60px repeat-x;}
+.chatBtn8_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn8.gif')  0px 0px repeat-x;}
+.chatBtn8_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn8.gif')  0px -30px repeat-x;}
+
+.chatBtn21_1 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn21.gif')  0px 0px repeat-x;}
+.chatBtn21_2 {	width:30px;	height:30px; 	background: url('http://img.xcombats.com/i/buttons/chatBtn21.gif')  0px -30px repeat-x;}
+
+
+.topusermenu{	font-family: Verdana, Helvetica, Arial, Tahoma, sans-serif; 	z-index:1000;	position:absolute;	background-color:#d2d0d0;	font-size:13px;	border-top-width: 1px;	border-right-width: 1px;	border-bottom-width: 1px;	border-left-width: 1px;	border-top-style: solid;	border-right-style: solid;	border-bottom-style: solid;	border-left-style: solid;	border-top-color: #929090;	border-right-color: #626060;	border-bottom-color: #626060;	border-left-color: #929090;}.inviseMen1{	filter: alpha(opacity=90);    -moz-opacity: 0.90;    -khtml-opacity: 0.90;    opacity: 0.90; 	}.inviseMen2{	filter: alpha(opacity=60);    -moz-opacity: 0.60;    -khtml-opacity: 0.60;    opacity: 0.60; 	}.inviseMen3{	filter: alpha(opacity=30);    -moz-opacity: 0.30;    -khtml-opacity: 0.30;    opacity: 0.30; 	}.inviseMen4{	filter: alpha(opacity=10);    -moz-opacity: 0.10;    -khtml-opacity: 0.10;    opacity: 0.10; 	}
+.topusermenuBtn:hover{	background-color:#a2a2a2;	color: #0066FF;}
+.topusermenuBtn{	text-decoration: none;	FONT-WEIGHT: bold;	color: #003388;	padding-left:7px;	padding-right:7px;	cursor:pointer;}
+
+.crop {
+	display:inline-block;
+	overflow:hidden;
+	height: 18px;
+	width: 18px;
+	vertical-align:text-bottom;	
+}
+
+.crop img {
+	display:inline-block;
+	height: 18px;
+	vertical-align:text-bottom;	
+}
+
+.crop2 {
+	display:inline-block;
+	overflow:hidden;
+	height: 16px;
+	width: 14px;
+	vertical-align:text-bottom;	
+}
+
+.crop2 img {
+	display:inline-block;
+	height: 14px;
+	vertical-align:text-bottom;	
+}
+
+.check_gloff {
+	margin-left:0px;
+}
+
+.check_glon {
+	margin-left:-19px;
+}
+
+.radio_gloff {
+	margin-left:0px;
+}
+
+.radio_glon {
+	margin-left:-18px;
+}

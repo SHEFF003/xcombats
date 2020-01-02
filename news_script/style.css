@@ -1,0 +1,489 @@
+/*=Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html=*/
+@charset "windows-1251";
+body, html {
+	height: 100%;
+}
+
+body {
+	background-color: #CCCCCC;
+	height: 100%;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	FONT-FAMILY: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+}
+
+#footer {
+	width: 96%;
+	clear: both;
+	height: 17px;
+	border-left: 1px black solid;
+	border-right: 1px black solid;
+	margin: -17px auto;
+	background: url('http://events.originalcombats.com/events/down_line.gif'); 
+	border-bottom: 1px black solid;
+}
+
+#page {
+	width: 96%;
+	min-height: 97%;
+	margin: 0 auto;
+	border-left: 1px #000 solid;
+	border-right: 1px #000 solid;
+	background: #FFF url('http://events.originalcombats.com/events/rmenu_bagr.gif') repeat-y right top;
+}
+
+.normaltextm {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; color: #003C70;}
+.smalltextm {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	color: #800000;
+	margin: 3px;
+}
+.headerm { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12pt; color: #31659C; margin-left: 7px ; margin-right: 7px}
+
+TABLE, TR, TD, DIV { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000;   }
+
+.normaltext {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; color: #000000;}
+.smalltext { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; }
+.header { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12pt; color: #31659C;}
+
+.button{font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt;  background-color : #DDDDDD;  border : 1px solid #DDDDDD;  border-bottom : 2px solid #333333;  border-right : 2px solid #333333;  color : Black;                                                               }
+.check{font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000;}
+.input{font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: Black; border: 1px solid #000000; background-color: White;      }
+.inup{font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #CCCCCC; border: 1px solid #AA0000; background-color: #550000;      }
+
+
+BODY{	
+	background-image: url(../news/images/bagr.gif);
+}
+
+
+
+a:link, a:visited, a:active  { text-decoration:none; color:#800000;}
+a:hover                      { text-decoration:underline;color:#580000;}
+
+.NEWS { border: 1px dotted #DDDDDD;}
+
+.button_enter {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #E9EBE2;
+	background-color: #960000;
+	border: none;
+	height: 21px;
+	width: 75px;
+}
+	
+.page-title,
+.page_title {
+	text-align: right; 
+	font-weight: bold; 
+	margin-right: 12px; 
+	font-size: 12pt;
+}
+
+
+
+
+#primary {
+	display:table-cell;
+	width: 100%;
+/*
+	float: left;
+	margin: 0 -230px 0 0;
+	min-height: 100%;	*/
+}
+#content {
+	/*margin: 0 34% 0 2%;
+	margin: 0 -220px 0 2%;
+	width: 78%;
+	*/
+	background-color: #FFF;
+}
+#secondary {
+	display:table-cell;
+	padding: 0px 20px;
+	/*
+	float: right;
+	margin-right: 3px;
+	width: 205px;
+	height: 100%;*/
+	
+}
+
+#access div {
+	margin: 0 2%;
+	padding-top: 2px;
+}
+
+/* =Menu
+-------------------------------------------------------------- */
+
+#access {
+	background: #F40000; /* Show a solid color for older browsers */
+	height: 36px;
+	clear: both;
+	display: block;
+	float: left;
+	width: 100%;
+	background: url('http://events.originalcombats.com/events/menu1at1.gif');
+}
+#access ul {
+	font-size: 13px;
+	list-style: none;
+	padding-left: 0;
+}
+#access li {
+	margin-left: 30px;
+	float: left;
+	position: relative;
+	height: 30px;
+	top: -6px;
+	FONT-SIZE: 10pt;
+	FONT-FAMILY: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+}
+#access a {
+	color: #eee;
+	display: block;
+	font-weight: bold;
+	text-decoration: none;
+}
+#access ul ul {
+	display: none;
+	float: left;
+	margin: 0;
+	position: absolute;
+	left: 0;
+	width: 188px;
+	z-index: 99999;
+}
+#access ul ul ul {
+	left: 100%;
+	top: 0;
+}
+#access ul ul a {
+	background: #f9f9f9;
+	border-bottom: 1px dotted #ddd;
+	color: #444;
+	font-size: 13px;
+	font-weight: normal;
+	height: auto;
+	line-height: 1.4em;
+	padding: 10px 10px;
+	width: 168px;
+}
+#access li:hover > a,
+#access ul ul :hover > a,
+#access a:focus {
+	color: #FFC689;
+}
+#access li:hover > a,
+#access a:focus {
+	color: #FFC689;
+}
+#access ul li:hover > ul {
+	display: block;
+}
+#access .current_page_item > a,
+#access .current_page_ancestor > a {
+	color: #FFC689;
+
+}
+
+.entry-date {
+	color: #FFFF80;
+}
+
+.widget {
+	border: 1px #E7DFC4 solid;
+	background-color: #fbfaf6;
+	margin-bottom: 15px;
+}
+
+.widget-title {
+	background: #e7dfc4 url('http://events.originalcombats.com/events/lmenu_2.gif');
+	height: 22px;
+	line-height: 22px;
+	border-bottom: 1px #E7DFC4 solid;
+	font-weight: bold;
+	padding-left: 10px;
+	FONT-SIZE: 10pt;
+	FONT-FAMILY: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+}
+
+.tagcloud {
+	FONT-FAMILY: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+	margin: 7px;
+}
+
+.widget_archive ul {
+	margin: 7px;
+	padding: 0;
+	list-style: none;
+}
+
+#search_box {
+	margin-bottom: 10px;
+}
+
+#search_box .field{
+	border: 1px gray solid;
+}
+
+#search_box .submit {
+	border: 1px gray solid;
+	font-weight: bold;
+}
+
+.cat-links a {
+	color: #FFF;
+}
+
+
+/* =Navigation
+-------------------------------------------------------------- */
+
+#content nav {
+	clear: both;
+	overflow: hidden;
+	padding: 0 0 1.625em;
+}
+#content nav a {
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 2.2em;
+}
+#nav-above {
+	padding: 0 0 1.625em;
+}
+#nav-above {
+	display: none;
+}
+.paged #nav-above {
+	display: block;
+}
+.nav-previous {
+	float: left;
+	width: 50%;
+}
+.nav-next {
+	float: right;
+	text-align: right;
+	width: 50%;
+}
+#content nav .meta-nav {
+	font-weight: normal;
+}
+
+/* Singular navigation */
+#nav-single {
+	float: right;
+	position: relative;
+	top: -0.3em;
+	text-align: right;
+	width: 100%;
+	z-index: 1;
+}
+#nav-single .nav-previous,
+#nav-single .nav-next {
+	float: none;
+	width: auto;
+}
+#nav-single .nav-next {
+	padding-left: .5em;
+}
+
+#comments ul {
+	list-style: none;
+}
+
+#nav-single .assistive-text {
+	font-size: 12pt; 
+	font-weight: bold
+}
+
+/* Comment Form */
+#respond {
+	background: #fbfaf6;
+	border: 1px solid #E7DFC4;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin: 0 auto 1.625em;
+	padding: 10px;
+	position: relative;
+	width: 68.9%;
+}
+#respond input[type="text"],
+#respond textarea {
+	background: #fff;
+	border: 4px solid #eee;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 1px 3px rgba(204,204,204,0.95);
+	-moz-box-shadow: inset 0 1px 3px rgba(204,204,204,0.95);
+	box-shadow: inset 0 1px 3px rgba(204,204,204,0.95);
+	position: relative;
+	padding: 10px;
+	top: -30px;
+	text-indent: 80px;
+}
+#respond .comment-form-author,
+#respond .comment-form-email,
+#respond .comment-form-url,
+#respond .comment-form-comment {
+	position: relative;
+}
+#respond .comment-form-author label,
+#respond .comment-form-email label,
+#respond .comment-form-url label,
+#respond .comment-form-comment label {
+	background: #eee;
+	-webkit-box-shadow: 1px 2px 2px rgba(204,204,204,0.8);
+	-moz-box-shadow: 1px 2px 2px rgba(204,204,204,0.8);
+	box-shadow: 1px 2px 2px rgba(204,204,204,0.8);
+	color: #555;
+	display: inline-block;
+	font-size: 13px;
+	left: 4px;
+	min-width: 60px;
+	padding: 4px 10px;
+	position: relative;
+	top: 12px;
+	z-index: 1;
+}
+#respond input[type="text"]:focus,
+#respond textarea:focus {
+	text-indent: 0;
+	z-index: 1;
+}
+#respond textarea {
+	resize: vertical;
+	width: 95%;
+}
+#respond .comment-form-author .required,
+#respond .comment-form-email .required {
+	color: #bd3500;
+	font-size: 22px;
+	font-weight: bold;
+	left: 75%;
+	position: absolute;
+	top: 45px;
+	z-index: 1;
+}
+#respond .comment-notes,
+#respond .logged-in-as {
+	font-size: 13px;
+}
+
+#respond .form-submit {
+	float: right;
+	margin: -46px 0 10px;
+}
+#respond input#submit {
+	background: #D9D4C5;
+	border: none;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	color: #000;
+	cursor: pointer;
+	font-size: 15px;
+	margin: 20px 0;
+	padding: 5px 42px 5px 22px;
+	position: relative;
+	left: 30px;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+}
+#respond input#submit:active {
+	background: #1982d1;
+	color: #bfddf3;
+}
+#respond #cancel-comment-reply-link {
+	color: #666;
+	margin-left: 10px;
+	text-decoration: none;
+}
+#respond .logged-in-as a:hover,
+#respond #cancel-comment-reply-link:hover {
+	text-decoration: underline;
+}
+.commentlist #respond {
+	margin: 1.625em 0 0;
+	width: auto;
+}
+#reply-title {
+	color: #373737;
+	margin: 0;
+	font-weight: bold;
+}
+#cancel-comment-reply-link {
+	color: #888;
+	font-weight: normal;
+	position: absolute;
+	right: 1.625em;
+	text-transform: uppercase;
+}
+#cancel-comment-reply-link:focus,
+#cancel-comment-reply-link:active,
+#cancel-comment-reply-link:hover {
+	color: #ff4b33;
+}
+#respond label {
+	line-height: 2.2em;
+}
+#respond input[type=text] {
+	display: block;
+	height: 24px;
+	width: 75%;
+}
+#respond p {
+	font-size: 12px;
+}
+p.comment-form-comment {
+	margin: 0;
+}
+.form-allowed-tags {
+	display: none;
+}
+
+
+.edit-link  {
+	font-weight: normal;
+	font-size: 8pt;
+}
+
+
+/* One column */
+.one-column #page {
+	max-width: 690px;
+}
+.one-column #content {
+	margin: 0 7.6%;
+	width: auto;
+}
+.one-column #nav-below {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 1.625em;
+}
+.one-column #secondary {
+	float: none;
+	margin: 0 7.6%;
+	width: auto;
+}
+
+#colophon {
+	margin-bottom: 17px;
+}
+
+.normaltext {
+	padding-left: 10px;
+}
+
+.cw_url {
+	font-weight: bold;
+}

@@ -1,0 +1,72 @@
+body {
+	background-color: #000000;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	color: #FFF;
+	height:100%;
+	width:100%;
+}
+html {
+	height:100%;
+	width:100%;
+}
+.testro {
+	font-size: 10px; letter-spacing: normal; font-style: normal; font-family: verdana; color: rgb(186, 186, 186); height: 20px;
+}
+A:link {
+	COLOR: #F9F7EA;
+	TEXT-DECORATION: none;
+	font-weight: normal;
+}
+A:visited {
+	COLOR: #F9F7EA;
+	TEXT-DECORATION: none;
+	font-weight: normal;
+}
+A:active {
+	COLOR: #77684D;
+	TEXT-DECORATION: none;
+	font-weight: normal;
+}
+A:hover {
+	COLOR: #7E7765; TEXT-DECORATION: underline
+}
+
+.inup {	FONT-SIZE: 8pt;
+	COLOR: #DFDDD3;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	BACKGROUND-COLOR: #151616;
+	border: 1px double #817A63;
+}
+.style2 {color: #A7A495}
+
+.btn {	FONT-SIZE: 7.5pt;
+	COLOR: #DFDDD3;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	BACKGROUND-COLOR: #2B2B18;
+	border: 1px double #817A63;
+}
+
+
+.btkey {
+	display: block; text-align: center;
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px;
+	FONT-SIZE: 7.5pt; FONT-FAMILY: verdana,sans-serif,arial;
+	width: 20;
+	cursor:pointer;
+	border: 1px solid #D6D3CE;
+	COLOR: #DFDDD3; BACKGROUND-COLOR: #2B2B18;
+}
+
+.message {
+	FONT-SIZE: 7.5pt;
+	FONT-FAMILY: verdana, sans-serif, arial;
+	COLOR: white;
+}
+
+.menu {
+	FONT-SIZE: 10pt; FONT-FAMILY: verdana;
+	COLOR: white;
+}

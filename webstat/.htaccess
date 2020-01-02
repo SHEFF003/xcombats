@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/xcombats.com/webstat"
+AuthUserFile /var/www/xcombats/data/etc/524387.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>

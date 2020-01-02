@@ -1,0 +1,219 @@
+Server date & time: 14.11.2015 01:48:38
+Error code: 10001
+Error message: SQLSTATE[28000] [1045] Access denied for user 'oribk'@'localhost' (using password: YES)
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 16
+Client IP: 178.137.24.87
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '16';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '10';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 14.11.2015 01:48:38
+Error code: 10002
+Error message: [Internal Error] Could not establish DB connection
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 37
+Client IP: 178.137.24.87
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '37';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/user.php', LINE: '29';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/comission.php', LINE: '18';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/route.php', LINE: '32';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '11';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 14.11.2015 01:48:43
+Error code: 10001
+Error message: SQLSTATE[28000] [1045] Access denied for user 'oribk'@'localhost' (using password: YES)
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 16
+Client IP: 178.137.24.87
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '16';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '10';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 14.11.2015 01:48:43
+Error code: 10002
+Error message: [Internal Error] Could not establish DB connection
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 37
+Client IP: 178.137.24.87
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '37';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/user.php', LINE: '29';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/comission.php', LINE: '18';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/route.php', LINE: '32';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '11';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 14.11.2015 01:48:47
+Error code: 10001
+Error message: SQLSTATE[28000] [1045] Access denied for user 'oribk'@'localhost' (using password: YES)
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 16
+Client IP: 178.137.24.87
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '16';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '10';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 14.11.2015 01:48:47
+Error code: 10002
+Error message: [Internal Error] Could not establish DB connection
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 37
+Client IP: 178.137.24.87
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '37';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/user.php', LINE: '29';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/comission.php', LINE: '18';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/route.php', LINE: '32';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '11';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 15.11.2015 21:55:28
+Error code: 10001
+Error message: SQLSTATE[28000] [1045] Access denied for user 'oribk'@'localhost' (using password: YES)
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 16
+Client IP: 37.204.54.70
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '16';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '10';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 15.11.2015 21:55:28
+Error code: 10002
+Error message: [Internal Error] Could not establish DB connection
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 37
+Client IP: 37.204.54.70
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '37';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/user.php', LINE: '29';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/comission.php', LINE: '18';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/route.php', LINE: '32';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '11';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 15.11.2015 21:55:44
+Error code: 10001
+Error message: SQLSTATE[28000] [1045] Access denied for user 'oribk'@'localhost' (using password: YES)
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 16
+Client IP: 37.204.54.70
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '16';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '10';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 15.11.2015 21:55:44
+Error code: 10002
+Error message: [Internal Error] Could not establish DB connection
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 37
+Client IP: 37.204.54.70
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '37';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/user.php', LINE: '29';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/comission.php', LINE: '18';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/route.php', LINE: '32';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '11';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 15.11.2015 21:56:01
+Error code: 10001
+Error message: SQLSTATE[28000] [1045] Access denied for user 'oribk'@'localhost' (using password: YES)
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 16
+Client IP: 37.204.54.70
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '16';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '10';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 15.11.2015 21:56:01
+Error code: 10002
+Error message: [Internal Error] Could not establish DB connection
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 37
+Client IP: 37.204.54.70
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '37';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/user.php', LINE: '29';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/comission.php', LINE: '18';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/route.php', LINE: '32';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '11';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 15.11.2015 21:57:38
+Error code: 10001
+Error message: SQLSTATE[28000] [1045] Access denied for user 'oribk'@'localhost' (using password: YES)
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 16
+Client IP: 37.204.54.70
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '16';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '10';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 15.11.2015 21:57:38
+Error code: 10002
+Error message: [Internal Error] Could not establish DB connection
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 37
+Client IP: 37.204.54.70
+GET Data: a:0:{}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '37';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/user.php', LINE: '29';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/comission.php', LINE: '18';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/route.php', LINE: '32';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '11';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '26';
+
+Server date & time: 13.01.2016 00:41:44
+Error code: 10002
+Error message: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'money' cannot be null
+In file: /var/www/kombats/data/www/legbk.net/core/app/core/database.php
+In line: 37
+Client IP: 37.26.32.29
+GET Data: a:3:{s:8:"buy_item";s:2:"83";s:2:"kr";s:4:"1.02";s:4:"page";s:1:"1";}
+POST Data: a:0:{}
+Call Stack Trace: 
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/database.php', LINE: '37';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/auction.php', LINE: '128';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/logic/auction.php', LINE: '30';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/core/route.php', LINE: '33';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/app/init.php', LINE: '11';
+	FILE: '/var/www/kombats/data/www/legbk.net/core/index.php', LINE: '29';
+

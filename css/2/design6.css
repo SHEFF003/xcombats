@@ -1,0 +1,207 @@
+body {
+
+	margin: 0px;
+
+	height: 100%;
+
+	width: 100%;
+
+	background-color: #dedede;
+
+	font-size:10px;
+
+	color: #000000;
+
+}
+
+
+
+.main_text {
+
+	font-weight: bold;
+
+	font-size: 10px;
+
+	text-decoration: none;
+
+	color:#f0f0f0;
+
+	cursor:hand;	
+
+}
+
+
+
+.menutop, a.menutop:visited,  a.menutop:active {
+
+	font-weight: bold; 
+
+	font-size: 10px;
+
+	text-decoration: none; 
+
+	color: #3B3936;
+
+}
+
+
+
+a.menutop:hover {
+
+	color: #76726b;
+
+}
+
+
+
+.name {
+
+	font-weight: bold; 
+
+	font-size: 12px;
+
+}
+
+
+
+.parametr_title {
+
+	font-weight: bold; 
+
+	font-size: 11px;
+
+	color: #777773;
+
+}
+
+
+
+.prname {
+
+	padding-left: 4px;
+
+	font-size: 11px;
+
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+.prvalue {
+
+	font-size: 11px;
+
+	font-family: Arial, Helvetica, sans-serif;	
+
+}
+
+
+
+.btn {
+
+	border: 1px double #9a9996;
+
+	background-image: url(i/move/beg_butt.gif);
+
+	font-size: 7.5pt;
+
+	color: #dfdfdf;
+
+	background-color:#504F4C;
+
+}
+
+
+
+.mainmenu {
+
+	color: #23292C;
+
+	border-top-width: 1px;
+
+	border-right-width: 1px;
+
+	border-bottom-width: 1px;
+
+	border-left-width: 1px;
+
+	border-top-style: solid;
+
+	border-right-style: none;
+
+	border-bottom-style: solid;
+
+	border-left-style: solid;
+
+	border-top-color: #969697;
+
+	border-right-color: #969697;
+
+	border-bottom-color: #000000;
+
+	border-left-color: #969697;
+
+	background-color: #BABABB;
+
+	cursor:hand;
+
+}
+
+
+
+.maptext {
+
+	font-weight: bold; 
+
+	font-size: 12px;
+
+	color: #000000;
+
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.posit {
+
+	border-top-width: 1px;
+
+	border-right-width: 1px;
+
+	border-bottom-width: 1px;
+
+	border-left-width: 1px;
+
+	border-top-style: solid;
+
+	border-right-style: solid;
+
+	border-bottom-style: solid;
+
+	border-left-style: solid;
+
+	border-top-color: #FFFFFF;
+
+	border-right-color: #666666;
+
+	border-bottom-color: #666666;
+
+	border-left-color: #FFFFFF;
+
+	padding: 2px;
+
+}
+
+
+
+td {
+
+  font-size: 10pt;
+
+  font-family: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+
+}
+
+
+
+

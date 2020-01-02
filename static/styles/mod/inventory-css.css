@@ -1,0 +1,37 @@
+#userInformation {
+	width:250px;
+}
+
+#userStats {
+	width:200px;
+}
+
+#incentoryMain {
+	width:100%;
+}
+
+.invb1 {
+	color: #003388;
+	font-weight: bold;
+	cursor:pointer;
+}
+
+.invb1:hover {
+	color: #0066ff;
+	background-color:#bfbfbf;
+}
+
+.invb2 {
+	color: #003388;
+	background-color:#a5a5a5;
+	font-weight: bold;
+	cursor:pointer;
+}
+
+.invb2:hover {
+	color: #0066ff;
+}
+
+.itmInv {
+	
+}

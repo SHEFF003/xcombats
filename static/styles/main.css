@@ -1,0 +1,69 @@
+html, body {
+	width:100%;
+	height:100%;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color:#000000;
+	font-size:10pt;
+	font-family:Verdana, Times, Helvetica, Tahoma;
+}
+
+.input_base {
+	outline: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	width: 132px;
+	border: 0;
+	padding: 0;
+	padding-left:5px;
+	margin: 0;
+	background-color: #c7c7c7;
+	color: #231609;
+	/*font-weight: bold;*/
+	font-size:10pt;
+	font-family:Verdana, Times, Helvetica, Tahoma;
+}
+
+.input_btn {
+	padding-top:0px;
+	padding-bottom:1px;
+}
+
+.input_btn:active {
+	padding-top:1px;
+	padding-bottom:0px;
+}
+
+input {
+	outline: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+a, a:active {
+	color: #a9a9a9;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #f9f9f9;
+	text-decoration: underline;
+}
+
+/*горизонтальное меню*/
+.topmenu { height: 39px; margin-bottom: 10px; margin-right:100px; margin-left:100px;}
+.topmenu, .topmenu div { height: 41px; background: url("../images/index_page/topmenu.png") repeat-x 0 -118px; }
+.topmenu div {margin-left:-100px; margin-right:-50px; background: url("../images/index_page/topmenu.png") no-repeat; padding: 0 0 0 2px; }
+.topmenu div div { overflow: hidden; background-position: 100% -59px; padding: 0 15px 0 0; }	
+.topmenu .lcolomn li, .topmenu .lcolomn li a, .topmenu .lcolomn li a b { cursor: pointer; float: left; height: 42px;}
+.topmenu .lcolomn li a { padding: 0 0 0 17px; color: #9d9c9a; font-size: 1.1em; line-height: 48px; }
+.topmenu .lcolomn li a b { padding-right: 17px; }
+.topmenu .lcolomn li a:hover { color: #ba8a20; }
+.topmenu .lcolomn li.active a { color: #ba8a20; }
+.header h1, .lcolomn, .rcolomn { display: inline; }
+.lcolomn { float: left;}
+.reset, .reset li { list-style: none; padding: 0; margin: 0; }

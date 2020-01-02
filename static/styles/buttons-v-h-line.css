@@ -1,0 +1,93 @@
+#hline {
+	width:100%;
+	height:2px;
+	position:absolute;
+	top:100px;
+	left:0px;
+	cursor:row-resize;
+	background-color:#a0a0a0;
+	border-bottom:1px solid #808080;
+	border-top:1px solid #c0c0c0;
+	z-index:1003;
+}
+
+#vline {
+	width:1px;
+	height:50%;
+	position:absolute;
+	top:120px;
+	left:100px;
+	cursor:col-resize;
+	background-color:#a0a0a0;
+	border-left:1px solid #c0c0c0;
+	/*border-right:1px solid #808080;*/
+	z-index:1001;
+}
+
+.hlinelz {
+	position:absolute;
+	left:0px;
+	top:-1px;
+	background-image:url(/static/images/design/lite/_top_24.gif);
+	height:5px;
+	width:8px;
+}
+
+.hlinerz {
+	position:absolute;
+	right:0px;
+	top:-1px;
+	background-image:url(/static/images/design/lite/_top_28.gif);
+	height:5px;
+	width:10px;
+}
+
+.hline_mini {
+	width:100%;
+	height:1px;
+	cursor:row-resize;
+	background-color:red;
+}
+
+.vline_mini {
+	width:1px;
+	height:100%;
+	cursor:col-resize;
+	background-color:red;
+}
+
+#vline:hover {
+	cursor:col-resize;
+}
+
+#hline:hover {
+	cursor:row-resize;
+}
+
+#vline img {
+	height:100%;
+	width:2px;
+	background-color:red;
+	border:0px;
+}
+
+/*#hline img {
+	width:100%;
+	height:2px;
+	background-color:red;
+	border:0px;
+}*/
+
+#bline {
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0px;
+	height:0p;
+	display:none;
+	z-index:1005;
+}
+
+#bline:hover {
+	cursor:default;
+}

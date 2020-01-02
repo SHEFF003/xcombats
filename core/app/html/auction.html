@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link href="http://img.xcombats.com/css/main.css?v={{ ver }}" rel="stylesheet" type="text/css">
+<link href="/core/static/styles/location/auction.css?v={{ ver }}" rel="stylesheet" type="text/css">
+<link href="/core/static/styles/location.line.css?v={{ ver }}" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/core/static/scripts/location/auction.js?v={{ ver }}"></script>
+<script type="text/javascript" src="/core/static/scripts/location.line.js?v={{ ver }}"></script>
+<script type="text/javascript" src="/core/static/scripts/item.js?v={{ ver }}"></script>
+<script>
+locjs.data.user = {
+	'id':{{ (0+user.id) }},
+	'login':'{{ user.login }}',
+	'align':{{ (0+user.align) }},
+	'level':{{ (0+user.level) }},
+	'money':{{ (0+user.money) }},
+	'massaNow':{{ (0+user.massaNow) }},
+	'massaMax':{{ (0+user.massaMax) }},
+	
+	'silver':{{ (0+stats.st.silver) }},
+	
+	'timeGo':{{ (0+stats.timeGo) }},
+	'timeGoL':{{ (0+stats.timeGoL) }},
+	'timeNow':{{ OK }}
+};
+
+locjs.data.locations = [
+	{% if user.city == 'capitalcity' %}['1.180.0.226' , 226 , 'Почтовое отделение' , 0]{% endif %}
+	{% if user.city == 'angelscity' %}['2.180.0.262' , 262 , 'Почтовое отделение' , 0]{% endif %}
+];
+</script>
+<!--
+Сегодня мы проверим кто слабак, а кто воин |
+Лучшая браузерная онлайн игра!
+-->
+<title>{{ title }}</title>
+</head>
+<body onLoad="locjs.start();" style="padding-top:0px; margin-top:7px; height:100%; background-color:#E2E0E0;">
+<!-- -->
+	<div id="error"></div>
+	<div id="auction_body" class="middle">
+		<div class="container">
+			<div class="content">
+				<!-- -->
+                <div id="error"></div>
+                <div id="auction_main">
+                	<div id="auction_title"></div>
+                    <div id="auction_content"></div>
+                </div>
+                <!-- -->
+			</div>
+		</div>
+		<div id="auction_menu" class="right-sidebar">
+
+        </div>
+	</div>
+<!-- -->
+</body>
+</html>

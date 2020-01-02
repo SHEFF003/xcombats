@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+<title>Всё о Подземельях - Армада</title>
+<link rel="stylesheet" type="text/css" href="i/css/dungeon.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="i/css/vstyle1.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="i/css/dungeon4ie.css" media="screen" />
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta name="Distribution" content="Global" />
+<meta name="Classification" content="non-profit" />
+<meta name="Resource-type" content="application" />
+<meta name="Rating" content="Safe for Kids" />
+<meta name="Author" content="ландыши" />
+<meta name="Author" content="Proshka" />
+<meta name="Language" content="ru" />
+<meta name="save" content="favorite" />
+<meta name="keywords" content="Канализация, Подземелья, Диггер, Карта, БК, Бойцовский Клуб, Пещера Тысячи Проклятий, Бездна, Катакомбы, Пещеры Мглы, Алтарь Крови" />
+<script src="head/ahtmlv.js" language="javascript" type="text/javascript"></script>
+<script src="head/dcacommon.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div id="popupDiv" style="position: absolute; left: 0px; top: 1px; border: solid 1px infotext; background-color: infobackground; color: infotext; padding: 2px; z-index: 20; visibility: hidden; filter: alpha(opacity = 85, style = 4), blendtrans(duration = 0.3) progid:DXImageTransform.Microsoft.Shadow(color='#666666', Direction=135, Strength=1); font-size: 8pt; opacity: 0.85; -moz-opacity: 0.85; KhtmlOpacity: 0.85;"></div>
+<div id="menuDiv" onclick="onMenuClick()" onlosecapture="hideMenuCore()" style="position: absolute; border: solid 1px black; background-color: white; color: black; padding: 2px; z-index: 9; visibility: hidden; filter: alpha(opacity = 92, style = 4), blendtrans(duration = 0.2) progid:DXImageTransform.Microsoft.Shadow(color='#666666', Direction=135, Strength=2); font-size: 12pt"></div>
+<div id="header" class="unselectable" unselectable="on">
+<table background="i/ugetc/header_texture.gif" class="unselectable" unselectable="on" width="100%" height="180" border="0" cellspacing="0" cellpadding="0">
+<tr><td>
+<div class="unselectable" style="float: right;" unselectable="on">
+<img id="header_rightpart" class="unselectable" src="i/blank.gif" border="0" width="1" height="1" alt="" unselectable="on" /></div>
+<div class="unselectable" style="position: absolute; left: 30px; top: 20px;" unselectable="on">
+<img id="header_dungeontitle" class="unselectable" src="i/blank.gif" width="1" height="1" border="0" alt="" unselectable="on" /></div>
+<div id="header_progress" class="unselectable" style="position: absolute; left: 0px; top: 165px;width:100%;text-align:center;" unselectable="on">
+<img class="unselectable" src="i/ugetc/progress.gif" width="287" height="15" border="0" alt="" unselectable="on" /></div>
+</td></tr></table></div><div id="menu">
+  <ul id="nav">
+   <li class="activeLink"><a href="javascript:;">Подземелья</a></li>
+   <li><a target="_self" href="/">Домой</a></li>
+  </ul>
+</div>
+<div id="content">
+<input class="userdata" type="hidden" id="du_historystore" name="du_historystore" value="" />
+<div id="right">
+<div id="dsurface">
+<div style="width: 100%; font-weight: bold; text-align: center; padding: 8px 8px 8px 8px">
+<img src="i/loading.gif" style="width:60px;height:60px;padding:20px;border:0 none transparent;float:right;" />
+<div class="hintview" style="padding: 4px;font-weight: normal;">Первоначальная загрузка каждого Подземелья кэширует все необходимые файлы, и вторичное их открытие будет очень быстрым.</div>
+Пожалуйста, подождите, пока загружается ресурс &quot;Всё о Подземельях&quot;...<br /><br /><small>Если ресурс не загружается, нажмите <kbd>Ctrl+F5</kbd>, или почистите кэш временных файлов Вашего браузера Internet.</small></div>
+<div style="width: 100%; text-align: center; padding: 8px 8px 8px 8px"><a href="javascript:;" class="TLink" onclick="doClean()">Очистить все данные</a></div>
+</div>
+<hr size="1" noshade="noshade" />
+<div>
+<div id="ads" style="float:right;z-index:1;border:2px outset #aaa;background-color:#fff;padding:2px;">
+</div>
+</div>
+
+<script language="javascript" type="text/javascript">
+function doNothing() {
+}
+
+function doClean() {
+  window.onunload = doNothing;
+  DeleteCookie('du_Options');
+  var historystore = document.getElementById('du_historystore');
+  historystore.value = '';
+  historystore.setAttribute("du_sPersistAttr", historystore.value);
+  historystore.save('du_historystore');
+  window.location.href = window.location.href;
+}
+</script>
+</div><div id="left">
+<center>
+<img src="i/ugetc/arm_logo_little.png" class="objectImage" width="44" height="56" border="0" align="right" />
+<br />
+<iframe id="offline_frame" align="center" width="200" height="50" frameborder="no" scrolling="no" src="http://tarmans.kombats.ru/counters.php?from=offline_dungeons"></iframe>
+</center>
+</div>
+</div>
+<script src="head/dungeonengine.js" language="javascript" type="text/javascript"></script>
+<script src="dungeonoffline.js" language="javascript" type="text/javascript"></script>
+<script src="head/dungeon.offlinedata.js" language="javascript" type="text/javascript"></script>
+<script src="head/dungeon.constructor.js" language="javascript" type="text/javascript"></script>
+<script src="head/dungeon.all.js" language="javascript" type="text/javascript"></script>
+</body>
+</html>

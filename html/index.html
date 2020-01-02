@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Старый Бойцовский Клуб</title>
+</head>
+<link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://xcombats.com/js/jquery.js"></script>
+<style>
+html, body {
+	width:100%;
+	height:100%;
+	padding:0;
+	margin:0;
+}
+
+.log_input:hover, .log_input:focus, .log_input:active, .log_input:-webkit-autofill {
+        border: 0px !important;outline:none!important;
+        background: none!important;
+        background-color: transparent!important;
+}
+
+.mainbackground {
+	background-image:url("index_img/bg2_center.jpg");
+	background-position:center;
+	width:100%;
+	min-height:100%;
+	text-align:center;
+	position:relative;
+}
+
+.mainback {
+	background-image:url("index_img/bg2_top.jpg");
+	background-repeat:no-repeat;
+	background-position:center top;
+	width:100%;
+	min-height:100%;
+	text-align:center;
+	position:relative;
+}
+
+.mainback-top-logo {
+	background-image:url("index_img/bg2_top1.jpg");
+	background-repeat:no-repeat;
+	width:1056px;
+	min-height:660px;
+	display:inline-block;
+}
+
+.mainback-top-back {
+	background-image:url("index_img/bg2_center2.jpg");
+	width:1056px;
+	min-height:100%;
+	display:inline-block;
+	margin-left:1px;
+}
+
+.main-class {
+	width:928px;
+	height:100%;
+	margin-left:65px;
+}
+
+.main-class-glob {
+	width:940px;
+	margin-top:490px;
+}
+
+.menu-left {
+	float:left;
+	width:285px;
+}
+
+.menu-right {
+	float:right;
+	width:654px;
+	padding-right:1px;
+	padding-bottom:10px;
+}
+
+.flag-one {
+	background-image:url("index_img/f2.png");
+	width:283px;
+}
+
+.flag-two {
+	background-image:url("index_img/f1.png");
+	background-repeat:no-repeat;
+	background-position:top;
+	width:283px;
+	min-height:189px;
+}
+
+.flag-three {
+	background-image:url("index_img/f3.png");
+	background-repeat:no-repeat;
+	background-position:bottom;
+	width:283px;
+	min-height:372px;
+	padding-bottom:50px;
+}
+
+.flag-zero {
+	width:283px;
+	min-height:183px;
+	color:#FFF;
+}
+
+.flag-home {
+	padding:10px;
+}
+
+.flag-home hr {
+	border-bottom:#500 solid 1px;
+	border-top:#400 solid 1px;
+	margin-left:10px;
+	margin-right:15px;
+}
+
+.perg-one {
+	background-image:url("index_img/p2.png");
+	width:654px;
+}
+
+.perg-two {
+	background-image:url("index_img/p1.png");
+	background-repeat:no-repeat;
+	background-position:top;
+	width:654px;
+	min-height:189px;
+}
+
+.perg-three {
+	background-image:url("index_img/p3.png");
+	background-repeat:no-repeat;
+	background-position:bottom;
+	width:654px;
+	min-height:372px;
+	padding-bottom:5px;
+}
+
+.perg-zero {
+	width:654px;
+	min-height:183px;
+}
+
+.perg-home {
+	padding:10px;
+}
+
+.news-one {
+	background-image:url("index_img/n2.png");
+	width:618px;
+}
+
+.news-two {
+	background-image:url("index_img/n1.png");
+	background-repeat:no-repeat;
+	background-position:top;
+	width:618px;
+	min-height:10px;
+}
+
+.news-three {
+	background-image:url("index_img/n3.png");
+	background-repeat:no-repeat;
+	background-position:bottom;
+	width:618px;
+	min-height:72px;
+	padding-bottom:5px;
+}
+
+.news-zero {
+	width:618px;
+	min-height:10px;
+	margin-left:6px;
+	margin-bottom:2px;
+}
+
+.news-home {
+	padding:10px 14px 10px 10px;
+}
+
+.news-home-title {
+	display: block;
+	padding: 8px;
+	color: #900;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bolder;
+	border-left:10px #990000 solid;
+	margin-left:4px;
+	text-align:center;
+}
+
+.news-home-text {
+	display: block;
+	padding: 20px;
+	color:#452d0e;
+}
+
+.top-btn {
+	background-image:url("index_img/bk2_top1_btn.jpg");
+	width:639px;
+	height:81px;
+	padding-top:1px;
+}
+
+.top-btn a {
+	text-decoration: none;	
+	display:inline-block;
+	height:65px;
+	width:104px;
+	background-image:url("index_img/btn_css2.jpg");
+	float:left;
+}
+
+.top-btn a:hover {
+	background-position-y: -65px;
+}
+
+.top-btn a:active {
+	background-position-y: -129px;
+}
+
+.top-btn1 {
+	background-position:0px 0px;
+	margin-left:10px;
+}
+.top-btn2 {
+	background-position:-104px 0px;
+}
+.top-btn3 {
+	background-position:-208px 0px;
+}
+.top-btn4 {
+	background-position:-312px 0px;
+}
+.top-btn5 {
+	background-position:-416px 0px;
+}
+.top-btn6 {
+	background-position:-520px 0px;
+}
+
+.enter-post {
+	width:222px;
+	height:92px;
+	background-image:url("index_img/en.png");
+	background-repeat:no-repeat;
+	margin-left:20px;
+}
+
+.enter-btn {
+	width:186px;
+	height:74px;
+	display:inline-block;
+	background-image:url("index_img/bn1.png");
+	background-repeat:no-repeat;
+	margin-left:35px;
+}
+
+.enter-btn:hover {
+	background-position:0 -71px;
+}
+
+.enter-btn:active {
+	background-position:0 -69px;
+}
+
+.enter-post-f1 {
+	padding:14px 14px 14px 37px;
+}
+
+.enter-post-f1 input {
+	width: 144px;
+	height: 20px;
+	margin: 8px;
+	border: 0;
+	background-color: transparent;
+	padding-left: 5px;
+	padding-bottom: 2px;
+	font-size: 12px;
+	font-weight: bolder;
+	color:#630;
+}
+
+.register-btn {
+	width:222px;
+	height:104px;
+	display:inline-block;
+	background-image:url("index_img/reg.png");
+	background-repeat:no-repeat;
+	margin-left:24px;
+}
+
+.register-btn:hover {
+	background-position:0 -105px;
+}
+
+.register-btn:active {
+	background-position:0 -104px;
+}
+</style>
+<body>
+
+<div align="center" class="mainbackground">
+	<div align="center" class="mainback">
+        <div class="mainback-top-back">
+            <div class="mainback-top-logo">
+            	<div class="main-class">
+                	<div align="left" class="main-class-glob">
+<div class="menu-left">
+	<!-- -->
+    <div class="flag-zero">
+        <div class="flag-one">
+            <div class="flag-two">
+                <div class="flag-three">
+                	<div class="flag-home">
+                	  <!-- -->
+                      <br />
+                      <a href="#" class="register-btn">&nbsp;</a>
+                      <hr />
+                      <!-- -->
+                      <form method="post" name="F1" id="F1" action="http://xcombats.com/enter.php">
+                	  <p>
+                          <div class="enter-post">
+                            <div class="enter-post-f1">
+                            <input autocomplete="off" class="log_input" type="text" name="login" onfocus="if ( 'Логин' == value ) { value = ''; } " onblur="if ( '' == value ) { value = 'Логин'; } " value="Логин" /><br />
+                            <input autocomplete="off" class="log_input" type="password" name="pass" onfocus="if ( 'Пароль' == value ) { value = ''; } " onblur="if ( '' == value ) { value = 'Пароль'; } " value="Пароль" />
+                            </div>
+                          </div>
+                          <a href="javascript:void(0)" onclick="$('#F1').submit();" class="enter-btn">&nbsp;</a>
+                      </p>
+                      </form>
+                      <!-- -->
+                      <br />
+                      <br />
+                      <br />
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+</div>
+<!-- -->
+
+<div class="menu-right">
+	<!-- -->
+    <div class="top-btn">
+    	<a href="#" class="top-btn1">&nbsp;</a>
+        <a href="#" class="top-btn2">&nbsp;</a>
+        <a href="#" class="top-btn3">&nbsp;</a>
+        <a href="#" class="top-btn4">&nbsp;</a>
+        <a href="#" class="top-btn5">&nbsp;</a>
+        <a href="#" class="top-btn6">&nbsp;</a>
+    </div>
+	<!-- -->
+    <div class="perg-zero">
+        <div class="perg-one">
+            <div class="perg-two">
+                <div class="perg-three">
+                	<div class="perg-home">
+<!-- -->
+<div class="news-zero">
+	<div class="news-one">
+		<div class="news-two">
+			<div class="news-three">
+				<div class="news-home">
+<span class="news-home-title">
+	Обновление информационной части проекта
+</span>
+<span class="news-home-text">
+	<b>Уважаемые игроки!</b> В настоящий момент мы работаем над установкой нового дизайна
+    для <b>следующих разделов</b>: главной страницы, библиотеки, рейтинга, услуг, а так-же событий.<br /><br />
+    Данные работы займут все выходные.
+    <span style="float:right"><b>04.04.2014</b></span>
+</span>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -->
+<div class="news-zero">
+	<div class="news-one">
+		<div class="news-two">
+			<div class="news-three">
+				<div class="news-home">
+<span class="news-home-title">
+	Обновление информационной части проекта
+</span>
+<span class="news-home-text">
+	<b>Уважаемые игроки!</b> В настоящий момент мы работаем над установкой нового дизайна
+    для <b>следующих разделов</b>: главной страницы, библиотеки, рейтинга, услуг, а так-же событий.<br /><br />
+    Данные работы займут все выходные.
+    <span style="float:right"><b>04.04.2014</b></span>
+</span>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -->
+<div class="news-zero">
+	<div class="news-one">
+		<div class="news-two">
+			<div class="news-three">
+				<div class="news-home">
+<span class="news-home-title">
+	Обновление информационной части проекта
+</span>
+<span class="news-home-text">
+	<b>Уважаемые игроки!</b> В настоящий момент мы работаем над установкой нового дизайна
+    для <b>следующих разделов</b>: главной страницы, библиотеки, рейтинга, услуг, а так-же событий.<br /><br />
+    Данные работы займут все выходные.
+    <span style="float:right"><b>04.04.2014</b></span>
+</span>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -->
+<div class="news-zero">
+	<div class="news-one">
+		<div class="news-two">
+			<div class="news-three">
+				<div class="news-home">
+<span class="news-home-title">
+	Обновление информационной части проекта
+</span>
+<span class="news-home-text">
+	<b>Уважаемые игроки!</b> В настоящий момент мы работаем над установкой нового дизайна
+    для <b>следующих разделов</b>: главной страницы, библиотеки, рейтинга, услуг, а так-же событий.<br /><br />
+    Данные работы займут все выходные.
+    <span style="float:right"><b>04.04.2014</b></span>
+</span>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -->	 
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

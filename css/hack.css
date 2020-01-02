@@ -1,0 +1,6 @@
+.fire-text {
+  fill: url("#p-fire");
+  font-size:120px;
+}
+
+svg { display: inline-block; }

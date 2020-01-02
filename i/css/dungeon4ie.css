@@ -1,0 +1,50 @@
+div#dsurface
+{
+filter:progid:DXImageTransform.Microsoft.Fade(duration=0.3);
+}
+div#header
+{
+filter:progid:DXImageTransform.Microsoft.Fade(duration=1);
+}
+.savefav
+{
+	behavior: url(#default#savefavorite);
+}
+.userdata
+{
+	behavior: url(#default#userdata);
+}
+td.ABLink2
+{
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#70f5f5f5', EndColorStr='#70666666');
+}
+
+div.dungeonPage, div.dright
+{
+filter: progid:DXImageTransform.Microsoft.Shadow(color='#666666', Direction=135, Strength=2);
+}
+
+div.xaxisline
+{
+height: 6px;
+}
+
+
+div.yaxisline
+{
+width: 6px;
+}
+
+img.objectImage
+{
+behavior: url(i/htc/pngbehavior.htc);
+}
+
+
+div.hintviewcaption
+{
+border-bottom: 1px solid infotext;
+background: window;
+color: infotext;
+font-weight: bolder;
+}

@@ -1,0 +1,154 @@
+<!--
+.pimg {
+	display:inline-block;
+	position:relative;
+	width:38px;
+	height:24px;
+	margin:1px;
+	float:left;
+}
+.nopriemuse {
+	filter: alpha(opacity=70); -moz-opacity: 0.65; -khtml-opacity: 0.65; opacity: 0.65;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+	cursor:default;
+}
+.pimg img {
+	width:38px;
+	height:24px;
+}
+.pimg div {
+	position:absolute;
+	font-size:12px;
+	right:0px;
+	bottom:-2px;
+	color:#FEFEFE;
+	cursor:default;	
+	text-shadow: black 1px 0px, black 1px 1px, black 0px 1px, black -1px 1px, black -1px 0px, black -1px -1px, black 0px -1px, black 1px -1px, black 0 0 3px, black 0 0 3px, black 0 0 3px, black 0 0 3px, black 0 0 3px;
+}
+
+.sp1 {
+	position:absolute;
+	font-size:12px;
+	right:0px;
+	bottom:-3px;
+	color:#000000;
+	cursor:default;
+	font-weight:900;
+}
+
+.sp2 {
+	position:absolute;
+	font-size:12px;
+	right:1px;
+	bottom:-2px;
+	color:#000000;
+	cursor:default;
+	font-weight:900;
+}
+
+.sp3 {
+	position:absolute;
+	font-size:12px;
+	right:-1px;
+	bottom:-2px;
+	color:#000000;
+	cursor:default;
+	font-weight:900;
+}
+
+.sp4 {
+	position:absolute;
+	font-size:12px;
+	right:0px;
+	bottom:-1px;
+	color:#000000;
+	cursor:default;
+	font-weight:900;
+}
+
+.st1222 {
+	font-size: 18px;
+	color: #990000;
+	font-weight: bold;
+}
+.crop {
+	float:left;
+	overflow:hidden;
+	height: 18px;
+	width: 18px;
+}
+
+.radio_off {
+    margin-left:0px;
+}
+
+.radio_on {
+    margin-left:-18px;
+}
+
+.battle_hod_style {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #b1b1b1;
+}
+
+.date21	{
+	font-family: Courier;
+	font-size: 8pt;
+	text-decoration:underline;
+	font-weight:normal;
+	color: #007000;
+	background-color: #00FFAA
+}
+
+
+.zoneCh_no {
+	float:left;
+	overflow:hidden;
+	height: 18px;
+	width: 18px;
+}
+
+.inpBtl {
+	color: #000000;
+	text-decoration: none;
+	background-color: #ECE9D8;
+	border: 1px solid #000000;    
+}
+
+.zoneCh_yes {
+	float:left;
+	overflow:hidden;
+	height: 18px;
+	width: 18px;
+	background-color: #cdcdcd;
+}
+	
+body {
+	background-color: #e8e8e8;
+}
+.redColor {
+	color: #FF0000;
+	font-weight: bold;
+}
+.borderWhite {
+	border: 1px solid #f2f0f0;
+}
+
+/* цвета команд */
+.CSSteam0	{ font-weight: bold; cursor:pointer; }
+.CSSteam1	{ font-weight: bold; color: #6666CC; cursor:pointer; }
+.CSSteam2	{ font-weight: bold; color: #B06A00; cursor:pointer; }
+.CSSteam3 	{ font-weight: bold; color: #269088; cursor:pointer; }
+.CSSteam4 	{ font-weight: bold; color: #A0AF20; cursor:pointer; }
+.CSSteam5 	{ font-weight: bold; color: #0F79D3; cursor:pointer; }
+.CSSteam6 	{ font-weight: bold; color: #D85E23; cursor:pointer; }
+.CSSteam7 	{ font-weight: bold; color: #5C832F; cursor:pointer; }
+.CSSteam8 	{ font-weight: bold; color: #842B61; cursor:pointer; }
+.CSSteam9 	{ font-weight: bold; color: navy; cursor:pointer; }
+.CSSvs 		{ font-weight: bold; }
+.buttons:hover { background-color:#EFEFEF; }
+.buttons:active { color:#777777; }
+.buttons { background-color:#E9E9E9; }

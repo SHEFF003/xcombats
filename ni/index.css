@@ -1,0 +1,578 @@
+@charset "windows-1251";
+@font-face {
+	font-family: GothicRus;
+	src:url("http://xcombats.com/fonts/GothicRus.ttf");
+}
+   
+/* CSS Document */
+
+html, body {
+	margin:0;
+	padding:0;
+	border:0;
+	background-color:#000;
+	height:100%;
+	width:100%;
+	font-size: 10pt;
+	font-family:Verdana, Times, Helvetica, Tahoma;
+}
+
+.upper {
+	background-image:url(http://xcombats.com/ni/upper.jpg);
+	background-repeat:no-repeat;
+}
+
+.upper_menub {
+	position:absolute;
+	background-image:url(http://xcombats.com/ni/upper_menu.png);
+	background-repeat:no-repeat;
+	height:113px;
+	top:-113px;
+	z-index:10000;
+}
+
+#index_flash {
+	position:absolute;
+	top:-441px;
+	z-index:9000;	
+}
+
+.upper_menu {
+	height:86px;
+	padding-top:25px;
+}
+
+.lower {
+	background-image:url(http://xcombats.com/ni/lower.jpg);
+	background-repeat:no-repeat;
+}
+
+.middle {
+	background-image:url(http://xcombats.com/ni/middle.jpg);
+	background-repeat:repeat-y;
+	padding-left:6px;
+}
+
+.upper_menu_btn {
+	background-image:url(http://xcombats.com/ni/upper_menu_btn.jpg);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+.upper_menu_btn:hover {
+	background-image:url(http://xcombats.com/ni/upper_menu_btn_hover.jpg);
+	cursor:pointer;
+}
+
+.upper_menu_btn:active {
+	background-image:url(http://xcombats.com/ni/upper_menu_btn_click.jpg);
+	cursor:pointer;
+}
+
+.upper_menu_btn img {
+	display:inline-block;
+	border:0;
+	padding:0;
+	margin:0;
+}
+
+.umb1 {
+	width:43px;
+}
+
+.umb2 {
+	width:122px;
+	background-position:-43px;	
+}
+
+.umb3 {
+	width:121px;
+	background-position:-165px;	
+}
+
+.umb4 {
+	width:121px;
+	background-position:-286px;	
+}
+
+.umb5 {
+	width:121px;
+	background-position:-407px;	
+}
+
+.umb6 {
+	width:121px;
+	background-position:-528px;	
+}
+
+.umb7 {
+	width:121px;
+	background-position:-649px;	
+}
+
+/* IMG A */
+
+.umb1 img {
+	width:42px;
+	height:53px;
+}
+
+.umb2 img {
+	width:120px;
+	height:53px;
+}
+
+.umb3 img {
+	width:119px;
+	height:53px;
+}
+
+.umb4 img {
+	width:119px;
+	height:53px;
+}
+
+.umb5 img {
+	width:119px;
+	height:53px;
+}
+
+.umb6 img {
+	width:119px;
+	height:53px;
+}
+
+.umb7 img {
+	width:119px;
+	height:53px;	
+}
+
+.form_enter {
+	background-image:url(http://xcombats.com/ni/form_enter.png);
+	background-repeat:no-repeat;
+	width:263px;
+	height:224px;
+	position:relative;
+}
+
+.form_enter_inpur1 {
+	position:absolute;
+	top:50px;
+	left:27px;
+}
+
+.form_enter_inpur1 input {
+	background-color:transparent;
+	border:0;
+	width:205px;
+	height:28px;
+	padding-left:5px;
+	font-size:16px;
+}
+
+.form_enter_inpur2 {
+	position:absolute;
+	top:99px;
+	left:27px;
+}
+
+.form_enter_inpur2 input {
+	background-color:transparent;
+	border:0;
+	width:205px;
+	height:28px;
+	padding-left:5px;
+	font-size:16px;
+}
+
+.form_enter_inpur3 {
+	position:absolute;
+	top:142px;
+	left:17px;
+}
+
+.form_enter_inpur3 input {
+	background-color:transparent;
+	border:0;
+	background-image:url(http://xcombats.com/ni/enter_btns.png);
+	width:90px;
+	height:30px;
+	cursor:pointer;
+	outline:none;
+}
+
+
+.form_enter_inpur3 input:hover {
+	background-position:0 -33px;
+	cursor:pointer;
+}
+
+.form_enter_inpur3 input:active {
+	background-position:0 -67px;
+	cursor:pointer;
+}
+
+.form_enter_inpur4 {
+	position:absolute;
+	top:142px;
+	left:107px;
+}
+
+.form_enter_inpur4 input {
+	background-color:transparent;
+	border:0;
+	background-image:url(http://xcombats.com/ni/enter_btns.png);
+	background-position:141px 0px;
+	width:135px;
+	height:30px;
+	cursor:pointer;
+	outline:none;
+}
+
+
+.form_enter_inpur4 input:hover {
+	background-position:141px -33px;
+	cursor:pointer;
+}
+
+.form_enter_inpur4 input:active {
+	background-position:141px -67px;
+	cursor:pointer;
+}
+
+.form_enter_inpur5 {
+	position:absolute;
+	top:192px;
+	width:263px;
+	text-align:center;
+}
+
+.form_enter_inpur5 a {
+	color: #B90004;
+	text-decoration: underline;
+}
+
+.form_enter_inpur5 a:hover {
+	color: #972225;
+	text-decoration: none;
+}
+
+.ni_top {
+	background-image:url(http://xcombats.com/ni/news_top.png);
+	background-repeat:no-repeat;
+	height:41px;	
+	padding-top:13px;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+.gtext {
+	color:#852000;
+	font-family:GothicRus;
+	font-size:18px;
+}
+
+.ni_mid {
+	background-image:url(http://xcombats.com/ni/news_bg.png);
+	background-repeat:repeat-y;
+	padding-left:23px;
+	padding-right:15px;
+	padding-bottom:10px;
+}
+
+.ni_footer {
+	background-image:url(http://xcombats.com/ni/news_footer.png);
+	background-repeat:no-repeat;
+	height:36px;
+	padding-left:25px;
+	padding-right:25px;
+	padding-top:7px;
+}
+
+.ni_footer a {
+	color: #1466a5;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.ni_footer a:hover {
+	color: #1A86D7;
+}
+
+.ni_tt1 {
+	float:left;
+}
+
+.ni_tt2 {
+	float:right;
+}
+
+.reting_div {
+	padding-left:8px;
+}
+
+.reting_bg {
+	background-image:url(http://xcombats.com/ni/reting_bg.jpg);
+	background-repeat:repeat-y;
+	width:248px;
+}
+
+.reting_footer {
+	background-image:url(http://xcombats.com/ni/reting_footer.jpg);
+	background-repeat:no-repeat;
+	background-position:0px -38px;
+	width:248px;
+	height:50px;
+}
+
+.reting_up {
+	background-image:url(http://xcombats.com/ni/reting_up.png);
+	background-repeat:no-repeat;
+	height:16px;
+	width:237px;
+	padding-top:39px;
+	padding-left:11px;
+	position:relative;
+}
+
+.reting_menu {
+	position:absolute;
+}
+
+.reting_m1 {
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	background-position:-2px -3px;
+	width:57px;
+	height:36px;
+	cursor:pointer;
+	float:left;
+}
+
+.reting_m1:hover {
+	background-position:-2px -39px;
+	cursor:pointer;
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	width:57px;
+	height:36px;
+	float:left;
+}
+
+.reting_m1sel {
+	background-position:-2px -39px;
+	cursor:pointer;
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	width:57px;
+	height:36px;
+	float:left;
+}
+
+.reting_m1:active {
+	background-position:-2px 38px;
+	cursor:pointer;
+}
+
+.reting_m2 {
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	background-position:-58px -3px;
+	width:57px;
+	height:36px;
+	cursor:pointer;
+	float:left;
+}
+
+.reting_m2:hover {
+	background-position:-58px -39px;
+	cursor:pointer;
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	width:57px;
+	height:36px;
+	float:left;
+}
+
+.reting_m2sel {
+	background-position:-58px -39px;
+	cursor:pointer;
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	width:57px;
+	height:36px;
+	float:left;
+}
+
+.reting_m2:active {
+	background-position:-58px 38px;
+	cursor:pointer;
+}
+
+.reting_m3 {
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	background-position:-115px -3px;
+	width:57px;
+	height:36px;
+	cursor:pointer;
+	float:left;
+}
+
+.reting_m3:hover {
+	background-position:-115px -39px;
+	cursor:pointer;
+}
+
+.reting_m3sel {
+	background-position:-115px -39px;
+	cursor:pointer;
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	width:57px;
+	height:36px;
+	float:left;
+}
+
+.reting_m3:active {
+	background-position:-115px 38px;
+	cursor:pointer;
+}
+
+.reting_m4 {
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	background-position:-171px -3px;
+	width:57px;
+	height:36px;
+	cursor:pointer;
+	float:left;
+}
+
+.reting_m4:hover {
+	background-position:-171px -39px;
+	cursor:pointer;
+}
+
+.reting_m4sel {
+	background-position:-171px -39px;
+	cursor:pointer;
+	display:inline-block;
+	background-image:url(http://xcombats.com/ni/reting_btns.png);
+	width:57px;
+	height:36px;
+	float:left;
+}
+
+.reting_m4:active {
+	background-position:-171px 38px;
+	cursor:pointer;
+}
+
+.rating_main {
+	width:220px;
+	padding-left:14px;
+	padding-top:25px;
+}
+
+.reting_user {
+	background-color: #979797;
+	color: #000;
+	padding: 2px;
+	margin: 1px;
+	cursor: pointer;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	display: block;
+	text-decoration: none;
+}
+
+.reting_user:hover {
+	background-color:#853309;
+	color:#ebcd73;
+	cursor:pointer;
+}
+
+.reting_user:active {
+	background-color:#6f6f6f;
+	color:#000;
+}
+
+
+.reting_user_num {
+	display:inline-block;
+	width:25px;
+	text-align:center;
+	border-right:1px solid #2f3135;
+}
+
+.lib_up {
+	background-image:url(http://xcombats.com/ni/lib.png);
+	background-repeat:no-repeat;
+	height:16px;
+	width:237px;
+	padding-top:19px;
+	padding-left:11px;
+	position:relative;
+}
+
+.lib-title {
+	display: block;
+	color: #D55842;
+	padding-top:20px;
+	font-size:14px;
+}
+
+.lib-rgo {
+	display: block;
+	color: #d7ccb2;
+	text-decoration: none;
+}
+
+.lib-rgo:hover {
+	color: #E1D9C6;
+	text-decoration: underline;
+}
+
+.lib-menu {
+	padding-left:15px;
+	padding-right:20px;
+}
+
+.lib-main {
+	padding-right:20px;
+	padding-bottom:20px;
+}
+
+.lib-txt-title {
+	text-align:center;
+	color:#650b04;
+}
+
+.lib-main a {
+	color:#4c6e00;
+}
+
+.lib-main a:hover {
+	color:#73a12d;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

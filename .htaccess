@@ -1,0 +1,74 @@
+php_value error_reporting E_ALL
+
+#CharsetDisable On
+
+DefaultLanguage ru
+AddDefaultCharset windows-1251
+php_value default_charset "cp1251"
+
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{ENV:REDIRECT} !^yes$
+RewriteRule ruletka.pl ruletka.php [L]
+RewriteRule bandit.pl bandit.php [L]
+RewriteRule blackjack.pl blackjack.php [L]
+RewriteRule casino/SWFP.pl casino/SWFP.php [L]
+RewriteCond %{ENV:REDIRECT} !^yes$
+RewriteRule ^r([0-9]+)/?$ /register.php?ref=$1 [L]
+
+RewriteRule ^info/(.*)/?$ /inf.php?$1 [L] 
+
+RewriteRule ^clan/(.*)/?$ /clans_inf.php?$1 [L] 
+RewriteRule ^clan/?$ /clans_inf.php [L]
+
+RewriteRule ^ruins/(.*)/?$ /ruins.php?$1 [L] 
+RewriteRule ^ruins/?$ /ruins.php [L]
+#
+#
+#
+#
+#
+
+RewriteRule ^news/(.*)/?$ /news_script/index.php?$1 [L] 
+RewriteRule ^news/?$ /news_script/index.php [L]
+
+RewriteRule ^forum/(.*)/?$ /forum_script/index.php?$1 [L]
+RewriteRule ^forum/?$ /forum_script/index.php [L] 
+
+RewriteRule ^library/(.*)/?$ /library.php?$1 [L]
+RewriteRule ^library/?$ /library.php [L] 
+
+RewriteRule ^shadow/(.*)/?$ /obraz.php?$1 [L]
+RewriteRule ^shadow/?$ /obraz.php [L] 
+
+RewriteRule ^dress/(.*)/?$ /dress.php?$1 [L]
+RewriteRule ^dress/?$ /dress.php [L] 
+
+RewriteRule ^rating/(.*)/?$ /rating_script/index.php?$1 [L]
+RewriteRule ^rating/?$ /rating_script/index.php [L]
+
+RewriteRule ^item/(.*)/?$ /items_info.php?$1 [L]
+RewriteRule ^item/?$ /items_info.php [L]
+RewriteRule ^repass/?$ /repass.php [L]
+#
+#
+#
+#
+RewriteRule ^mail/(.*)/?$ /mailconf.php?$1 [L] 
+
+RewriteRule ^register/?$ /register.php [L]
+RewriteRule ^reg/?$ /register.php [L]
+
+RewriteRule ^enter/?$ /enter.php [L]
+
+RewriteRule ^bk/?$ /buttons.php [L]
+
+RewriteRule ^mobile/?$ /main_mobile.php [L]
+
+RewriteRule ^btl([0-9]+)/?$ /jx/battle/refresh$1.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]

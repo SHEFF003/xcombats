@@ -1,0 +1,45 @@
+.w_l {
+	display:inline-block;
+	width:60px;
+	height:200px;
+	margin-bottom:9px;
+	float:left;
+}
+
+.w_c {
+	display:inline-block;
+	width:76px;
+	height:209px;
+	float:left;
+}
+
+.ws_border {
+	display:inline-block;
+	/*
+	border-top:1px solid #FFF;
+	border-bottom:1px solid #000;
+	border-left:1px solid #FFF;
+	border-right:1px solid #000;
+	*/
+	text-align:center;
+}
+
+.hpblock {
+	width:196px;
+}
+
+.wi {
+	display:inline-block;
+	border:0;
+	padding:0;
+	margin:0;
+	vertical-align:top;
+}
+
+.wib {
+	display:inline-block;
+	border:0;
+	padding:0;
+	margin:0;
+	vertical-align:baseline;
+}

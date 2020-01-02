@@ -1,0 +1,57 @@
+DIV.Dungeon{
+	width:		372px;
+	height:		260px;
+	padding:	10px;
+	position:	relative;
+	overflow:	hidden;
+	background:	black;
+}
+.Dungeon BUTTON {
+	border:		0px solid;
+	background:	transparent;
+	padding:	0px;
+	margin:		0px;
+	position:	absolute;
+	filter:		Alpha(opacity=100),Chroma( Color=#c1cacf );
+}
+
+.Dungeon DIV {
+	width:		352px;
+	height:		240px;
+	overflow:	hidden;
+	position:	relative;
+}
+
+DIV.Life{position:absolute;background:#008000;height:2px;}
+DIV.Life2{position:absolute;background:#00FF00;height:2px;}
+.Dungeon .Floor0{ background: url( http://img.combats.ru/i/sprites/kn4/bg0.gif ) black }
+.Dungeon .Floor1{ background: url( http://img.combats.ru/i/sprites/kn4/bg1.gif ) black }
+
+.Dungeon .LeftSide4_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/4_1.gif ) }
+.Dungeon .RightSide4_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/4_1.gif ) }
+.Dungeon .LeftSide4_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/4_0.gif ) }
+.Dungeon .RightSide4_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/4_0.gif ) }
+.Dungeon .LeftFront3_2	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/4_2.gif ) }
+.Dungeon .RightFront3_2	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/Front/4_2.gif ) }
+.Dungeon .LeftFront3_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/4_1.gif ) }
+.Dungeon .RightFront3_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/Front/4_1.gif ) }
+.Dungeon .LeftFront3_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/4_0.gif ) }
+.Dungeon .LeftSide3_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/3_1.gif ) }
+.Dungeon .RightSide3_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/3_1.gif ) }
+.Dungeon .LeftSide3_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/3_0.gif ) }
+.Dungeon .RightSide3_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/3_0.gif ) }
+.Dungeon .LeftFront2_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/3_1.gif ) }
+.Dungeon .RightFront2_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/Front/3_1.gif ) }
+.Dungeon .LeftFront2_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/3_0.gif ) }
+.Dungeon .LeftSide2_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/2_0.gif ) }
+.Dungeon .RightSide2_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/2_0.gif ) }
+.Dungeon .LeftFront1_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/2_1.gif ) }
+.Dungeon .RightFront1_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/Front/2_1.gif ) }
+.Dungeon .LeftFront1_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/2_0.gif ) }
+.Dungeon .LeftSide1_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/1_0.gif ) }
+.Dungeon .RightSide1_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/1_0.gif ) }
+.Dungeon .LeftFront0_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/1_1.gif ) }
+.Dungeon .RightFront0_1	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/Front/1_1.gif ) }
+.Dungeon .LeftFront0_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/Front/1_0.gif ) }
+.Dungeon .LeftSide0_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Left/0_0.gif ) }
+.Dungeon .RightSide0_0	{ background: url( http://img.combats.ru/i/sprites/kn4/Right/0_0.gif ) }

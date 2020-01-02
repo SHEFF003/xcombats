@@ -1,0 +1,13 @@
+html,body {
+	overflow: auto;
+}
+#lib_menu {
+	width:250px;
+	padding:10px;
+}
+
+#lib_content {
+	width:700px;
+	margin-right:-290px;
+	padding:10px;
+}
