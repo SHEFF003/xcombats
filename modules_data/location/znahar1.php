@@ -16,19 +16,19 @@ function ghideshow() { top.fullhideshow(mmoves3); }
 <div id="mmoves3" style="background-color:#FFFFCC; visibility:hidden; z-index: 101; overflow:visible; position:absolute; border-color:#666666; border-style:solid; border-width: 1px; padding: 2px;"></div>
 <SCRIPT src='http://img.combats.ru/i/commoninf.js'></SCRIPT>
 <TABLE width=100%>
-<TR><TD><DIV class='H3' align=center>Комната Знахаря</DIV>
+<TR><TD><DIV class='H3' align=center>РљРѕРјРЅР°С‚Р° Р—РЅР°С…Р°СЂСЏ</DIV>
 <BR>
 <BR>
-<b><i>Запахи трав наполняют помещение, непонятные и пугающие предметы скрываются в пляшущих тенях...<BR>
-Говорят, здесь можно изменить свою судьбу.
-Стать кем-то иным... кем раньше был лишь в мечтах...</i></b><BR><BR>
-Деньги: <B><?=$u->info['money'];?></B> кр.<BR>
-Бесплатных перераспределений: Сегодня - неограничено!<BR>
+<b><i>Р—Р°РїР°С…Рё С‚СЂР°РІ РЅР°РїРѕР»РЅСЏСЋС‚ РїРѕРјРµС‰РµРЅРёРµ, РЅРµРїРѕРЅСЏС‚РЅС‹Рµ Рё РїСѓРіР°СЋС‰РёРµ РїСЂРµРґРјРµС‚С‹ СЃРєСЂС‹РІР°СЋС‚СЃСЏ РІ РїР»СЏС€СѓС‰РёС… С‚РµРЅСЏС…...<BR>
+Р“РѕРІРѕСЂСЏС‚, Р·РґРµСЃСЊ РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ СЃРІРѕСЋ СЃСѓРґСЊР±Сѓ.
+РЎС‚Р°С‚СЊ РєРµРј-С‚Рѕ РёРЅС‹Рј... РєРµРј СЂР°РЅСЊС€Рµ Р±С‹Р» Р»РёС€СЊ РІ РјРµС‡С‚Р°С…...</i></b><BR><BR>
+Р”РµРЅСЊРіРё: <B><?=$u->info['money'];?></B> РєСЂ.<BR>
+Р‘РµСЃРїР»Р°С‚РЅС‹С… РїРµСЂРµСЂР°СЃРїСЂРµРґРµР»РµРЅРёР№: РЎРµРіРѕРґРЅСЏ - РЅРµРѕРіСЂР°РЅРёС‡РµРЅРѕ!<BR>
 </TD>
 <TD width=1 valign=top>
 <?
 if($c['znahar']==1){$raspst=99999;}else{$raspst=0;}
-#------------------Запросы и прочее
+#------------------Р—Р°РїСЂРѕСЃС‹ Рё РїСЂРѕС‡РµРµ
 $st = $u->lookStats($u->info['stats']);
 $vinos = array(
 	/*   level,summvinos*/
@@ -47,7 +47,7 @@ $vinos = array(
 	"12" => 41,
 	"21" => 41
 );
-#------------------Запросы и прочее
+#------------------Р—Р°РїСЂРѕСЃС‹ Рё РїСЂРѕС‡РµРµ
 ?>
 <table  border="0" cellpadding="0" cellspacing="0">
 <tr align="right" valign="top">
@@ -62,19 +62,19 @@ $vinos = array(
 
 <tr>
 <td bgcolor="#D3D3D3"><img src="http://img.combats.ru/i/move/links.gif" width="9" height="7" /></td>
-<td bgcolor="#D3D3D3" nowrap><a href="?rnd=0.454008319854562&path=1.100.1.6.5" onclick="return check_access();" class="menutop" title="Время перехода: 20 сек.
-Сейчас в комнате 0 чел.">Этаж 2</a></td>
+<td bgcolor="#D3D3D3" nowrap><a href="?rnd=0.454008319854562&path=1.100.1.6.5" onclick="return check_access();" class="menutop" title="Р’СЂРµРјСЏ РїРµСЂРµС…РѕРґР°: 20 СЃРµРє.
+РЎРµР№С‡Р°СЃ РІ РєРѕРјРЅР°С‚Рµ 0 С‡РµР».">Р­С‚Р°Р¶ 2</a></td>
 </tr>
 
 <tr>
 <td bgcolor="#D3D3D3"><img src="http://img.combats.ru/i/move/links.gif" width="9" height="7" /></td>
-<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.221&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.221',1); ?>">Торговый Зал</a></td>
+<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.221&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.221',1); ?>">РўРѕСЂРіРѕРІС‹Р№ Р—Р°Р»</a></td>
 </tr>
 </table>
 </td>
 </tr>
 </table>
-<!-- <br /><span class="menutop"><nobr>Комната Знахаря</nobr></span>-->
+<!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° Р—РЅР°С…Р°СЂСЏ</nobr></span>-->
 </td>
 </tr>
 </table>
@@ -85,30 +85,30 @@ $vinos = array(
 </TABLE>
 <TABLE>
 <TR bgcolor=#D8D8D8>
-<TD><IMG width=20 height=20 src='http://img.combats.ru/i/misc/strsmall.gif'> Характеристики</TD>
-<TD><IMG width=20 height=20 src='http://img.combats.ru/i/misc/cureelixirsmall.gif'> Пристрастия</TD>
-<TD><IMG width=20 height=20 src='http://img.combats.ru/i/misc/weaponsmall.gif'> Прочее</TD>
+<TD><IMG width=20 height=20 src='http://img.combats.ru/i/misc/strsmall.gif'> РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё</TD>
+<TD><IMG width=20 height=20 src='http://img.combats.ru/i/misc/cureelixirsmall.gif'> РџСЂРёСЃС‚СЂР°СЃС‚РёСЏ</TD>
+<TD><IMG width=20 height=20 src='http://img.combats.ru/i/misc/weaponsmall.gif'> РџСЂРѕС‡РµРµ</TD>
 <TR>
 <TD width=270 valign=top>
 <SCRIPT>
-//////////////Название,параметр,всего, +сколько, до скольки сбросить(макс возможное),сколько сбрасывать/прибавлять
+//////////////РќР°Р·РІР°РЅРёРµ,РїР°СЂР°РјРµС‚СЂ,РІСЃРµРіРѕ, +СЃРєРѕР»СЊРєРѕ, РґРѕ СЃРєРѕР»СЊРєРё СЃР±СЂРѕСЃРёС‚СЊ(РјР°РєСЃ РІРѕР·РјРѕР¶РЅРѕРµ),СЃРєРѕР»СЊРєРѕ СЃР±СЂР°СЃС‹РІР°С‚СЊ/РїСЂРёР±Р°РІР»СЏС‚СЊ
 var pr = new Array(
-'Сила', 's1', <?=$st['s1'];?>, <?=$u->stats['s1']-$st['s1'];?>, 3, 0,
-'Ловкость', 's2', <?=$st['s2'];?>, <?=$u->stats['s2']-$st['s2'];?>, 3, 0,
-'Интуиция', 's3', <?=$st['s3'];?>, <?=$u->stats['s3']-$st['s3'];?>, 3, 0,
-'Выносливость', 's4', <?=$st['s4'];?>, 0, <?=$vinos[$u->info['level']]?>, 0
+'РЎРёР»Р°', 's1', <?=$st['s1'];?>, <?=$u->stats['s1']-$st['s1'];?>, 3, 0,
+'Р›РѕРІРєРѕСЃС‚СЊ', 's2', <?=$st['s2'];?>, <?=$u->stats['s2']-$st['s2'];?>, 3, 0,
+'РРЅС‚СѓРёС†РёСЏ', 's3', <?=$st['s3'];?>, <?=$u->stats['s3']-$st['s3'];?>, 3, 0,
+'Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ', 's4', <?=$st['s4'];?>, 0, <?=$vinos[$u->info['level']]?>, 0
 <?if ($u->info['level'] > 3) {?>
-,'Интеллект', 's5', <?=$st['s5'];?>, <?=$u->stats['s5']-$st['s5'];?>, 0, 0
+,'РРЅС‚РµР»Р»РµРєС‚', 's5', <?=$st['s5'];?>, <?=$u->stats['s5']-$st['s5'];?>, 0, 0
 <?}if ($u->info['level'] > 6) {?>
-,'Мудрость', 's6', <?=$st['s6'];?>, 0, 0, 0
+,'РњСѓРґСЂРѕСЃС‚СЊ', 's6', <?=$st['s6'];?>, 0, 0, 0
 <?}if ($u->info['level'] > 9) {?>
-,'Духовность', 's7',  <?=$st['s7'];?>, 0, 0, 0
+,'Р”СѓС…РѕРІРЅРѕСЃС‚СЊ', 's7',  <?=$st['s7'];?>, 0, 0, 0
 <?}if ($u->info['level'] > 12) {?>
-,'Воля', 's8', <?=$st['s8'];?>, 0, 0, 0
+,'Р’РѕР»СЏ', 's8', <?=$st['s8'];?>, 0, 0, 0
 <?}if ($u->info['level'] > 15) {?>
-,'Свобода Духа', 's9', <?=$st['s9'];?>, 0, 0, 0
+,'РЎРІРѕР±РѕРґР° Р”СѓС…Р°', 's9', <?=$st['s9'];?>, 0, 0, 0
 <?}if ($u->info['level'] > 18) {?>
-,'Божественность', 's10', <?=$st['s10'];?>, 0, 0, 0
+,'Р‘РѕР¶РµСЃС‚РІРµРЅРЅРѕСЃС‚СЊ', 's10', <?=$st['s10'];?>, 0, 0, 0
 <?}?>
 );
 function getprstr(i) {
@@ -147,7 +147,7 @@ for (j=0; j<pr.length; j+=6) {
 if (pr[j+5] > 0) {moves+=pr[j+5]};
 }
 movedonebutton.disabled=(freepr || moves==0?true:false);
-document.all["prmoves"].innerHTML = moves+((freemoves < moves)?" за "+(movecost*(moves - freemoves))+" кр.":(moves?" / бесплатно":""));
+document.all["prmoves"].innerHTML = moves+((freemoves < moves)?" Р·Р° "+(movecost*(moves - freemoves))+" РєСЂ.":(moves?" / Р±РµСЃРїР»Р°С‚РЅРѕ":""));
 }
 function movedone() {
 if (freepr) {
@@ -171,32 +171,32 @@ s+='<img src=http://img.combats.com/i/plus.gif  border=0 onclick="modpr('+i+',1)
 }
 }
 s+="</TABLE>";
-s+="<small>(осталось: <span id='prfree'>0</span>, распределений: <span id='prmoves'>0</span>)<BR>";
+s+="<small>(РѕСЃС‚Р°Р»РѕСЃСЊ: <span id='prfree'>0</span>, СЂР°СЃРїСЂРµРґРµР»РµРЅРёР№: <span id='prmoves'>0</span>)<BR>";
 document.write(s);
 </SCRIPT>
-<input type=button onclick="movedone();" id='movedonebutton' value="Применить" disabled>
+<input type=button onclick="movedone();" id='movedonebutton' value="РџСЂРёРјРµРЅРёС‚СЊ" disabled>
 </TD>
 <TD width=270 valign=top>
 <BR><BR><BR>
-<small><center>У вас нет пристрастий</center></small>
+<small><center>РЈ РІР°СЃ РЅРµС‚ РїСЂРёСЃС‚СЂР°СЃС‚РёР№</center></small>
 </TD>
 <TD valign=top><BR>
-Навыки владения оружием и магией<BR>
+РќР°РІС‹РєРё РІР»Р°РґРµРЅРёСЏ РѕСЂСѓР¶РёРµРј Рё РјР°РіРёРµР№<BR>
 
-<form method=post><input type=hidden value='<?=$u->info['id'];?>' name='dropmastery'><INPUT type=submit value='Сбросить <?echo $c['znahar']==1? "бесплатно":"(32кр.)"?>' onclick="return confirm('Вы действительно хотите сбросить умения?')"><HR color=black></form>
-Особенности персонажа<BR>
-<form method=post><input type=hidden value='<?=$u->info['id'];?>' name='dropperks'> <INPUT type=submit  value='Сбросить <?echo $c['znahar']==1? "бесплатно":"(300кр.)"?>' onclick="return confirm('Вы действительно хотите сбросить особенности?')"><HR color=black></form>
-Характеристики<BR>
-<form method=post><input type=hidden value='<?=$u->info['id'];?>' name='dropstats'><INPUT type=submit value='Сбросить <?echo $c['znahar']==1? "бесплатно":"(500кр.)"?>' onclick="return confirm('Вы действительно хотите сбросить все характеристики до минимального уровня?')"></form>
+<form method=post><input type=hidden value='<?=$u->info['id'];?>' name='dropmastery'><INPUT type=submit value='РЎР±СЂРѕСЃРёС‚СЊ <?echo $c['znahar']==1? "Р±РµСЃРїР»Р°С‚РЅРѕ":"(32РєСЂ.)"?>' onclick="return confirm('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃР±СЂРѕСЃРёС‚СЊ СѓРјРµРЅРёСЏ?')"><HR color=black></form>
+РћСЃРѕР±РµРЅРЅРѕСЃС‚Рё РїРµСЂСЃРѕРЅР°Р¶Р°<BR>
+<form method=post><input type=hidden value='<?=$u->info['id'];?>' name='dropperks'> <INPUT type=submit  value='РЎР±СЂРѕСЃРёС‚СЊ <?echo $c['znahar']==1? "Р±РµСЃРїР»Р°С‚РЅРѕ":"(300РєСЂ.)"?>' onclick="return confirm('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃР±СЂРѕСЃРёС‚СЊ РѕСЃРѕР±РµРЅРЅРѕСЃС‚Рё?')"><HR color=black></form>
+РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё<BR>
+<form method=post><input type=hidden value='<?=$u->info['id'];?>' name='dropstats'><INPUT type=submit value='РЎР±СЂРѕСЃРёС‚СЊ <?echo $c['znahar']==1? "Р±РµСЃРїР»Р°С‚РЅРѕ":"(500РєСЂ.)"?>' onclick="return confirm('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃР±СЂРѕСЃРёС‚СЊ РІСЃРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РґРѕ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ?')"></form>
 </TABLE>
-<small>Каждые 7 дней после последнего использования комнаты знахаря вы получаете 1 бесплатное перераспределение, но не более 15<BR>
-Исцеление пристрастия, cброс умений или особенностей стоят 5 перераспределений<BR>
-Изменение Характеристик досрочно завершает некоторые эффекты, например эффект свитка <B>Жажда Жизни</B>
+<small>РљР°Р¶РґС‹Рµ 7 РґРЅРµР№ РїРѕСЃР»Рµ РїРѕСЃР»РµРґРЅРµРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РєРѕРјРЅР°С‚С‹ Р·РЅР°С…Р°СЂСЏ РІС‹ РїРѕР»СѓС‡Р°РµС‚Рµ 1 Р±РµСЃРїР»Р°С‚РЅРѕРµ РїРµСЂРµСЂР°СЃРїСЂРµРґРµР»РµРЅРёРµ, РЅРѕ РЅРµ Р±РѕР»РµРµ 15<BR>
+РСЃС†РµР»РµРЅРёРµ РїСЂРёСЃС‚СЂР°СЃС‚РёСЏ, cР±СЂРѕСЃ СѓРјРµРЅРёР№ РёР»Рё РѕСЃРѕР±РµРЅРЅРѕСЃС‚РµР№ СЃС‚РѕСЏС‚ 5 РїРµСЂРµСЂР°СЃРїСЂРµРґРµР»РµРЅРёР№<BR>
+РР·РјРµРЅРµРЅРёРµ РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРє РґРѕСЃСЂРѕС‡РЅРѕ Р·Р°РІРµСЂС€Р°РµС‚ РЅРµРєРѕС‚РѕСЂС‹Рµ СЌС„С„РµРєС‚С‹, РЅР°РїСЂРёРјРµСЂ СЌС„С„РµРєС‚ СЃРІРёС‚РєР° <B>Р–Р°Р¶РґР° Р–РёР·РЅРё</B>
 </small>
 <BR>
 </TABLE>
 <div>
-<?//рейтинг?>
+<?//СЂРµР№С‚РёРЅРі?>
 </div>
 </BODY>
 </HTML>

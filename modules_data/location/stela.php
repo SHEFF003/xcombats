@@ -11,7 +11,7 @@ if($u->room['file']=='stela')
 	if(isset($_GET['godate'])) {
 		$dt = $_GET['godate'];
 	}
-	$dt = strtotime($dt); // сегодня
+	$dt = strtotime($dt); // СЃРµРіРѕРґРЅСЏ
 	
 	if($re!=''){ echo '<div align="right"><font color="red"><b>'.$re.'</b></font></div>'; } ?>
 	<style type="text/css"> 
@@ -55,7 +55,7 @@ if($u->room['file']=='stela')
 	</style>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
 	<tr><td valign="top"><br /><br />
-	<div align="center" class="pH3">Стелла Выбора</div>
+	<div align="center" class="pH3">РЎС‚РµР»Р»Р° Р’С‹Р±РѕСЂР°</div>
 	<?php
 	echo '<b style="color:red">'.$error.'</b>';
 	?>
@@ -65,17 +65,17 @@ if($u->room['file']=='stela')
 	<form name="F1" method="post">
 	<TD valign="top" align="left">
     	<div align="center">
-        	Здесь решается вопрос об исправлении ошибок, какую ошибку исправляем сегодня или что вводим новое. Каждый день, каждый персонаж может голосовать по одному разу, либо предложить свой вариант.
+        	Р—РґРµСЃСЊ СЂРµС€Р°РµС‚СЃСЏ РІРѕРїСЂРѕСЃ РѕР± РёСЃРїСЂР°РІР»РµРЅРёРё РѕС€РёР±РѕРє, РєР°РєСѓСЋ РѕС€РёР±РєСѓ РёСЃРїСЂР°РІР»СЏРµРј СЃРµРіРѕРґРЅСЏ РёР»Рё С‡С‚Рѕ РІРІРѕРґРёРј РЅРѕРІРѕРµ. РљР°Р¶РґС‹Р№ РґРµРЅСЊ, РєР°Р¶РґС‹Р№ РїРµСЂСЃРѕРЅР°Р¶ РјРѕР¶РµС‚ РіРѕР»РѕСЃРѕРІР°С‚СЊ РїРѕ РѕРґРЅРѕРјСѓ СЂР°Р·Сѓ, Р»РёР±Рѕ РїСЂРµРґР»РѕР¶РёС‚СЊ СЃРІРѕР№ РІР°СЂРёР°РЅС‚.
         </div>
         <div align="center">
         	<hr>
-        	<a href="main.php?godate=<?=date('d.m.Y',($dt-86400))?>">&laquo; <?=date('d.m.Y',($dt-86400))?> &laquo;</a> &nbsp; &nbsp; Голосование за <B><?=date('d.m.Y',$dt)?></B> &nbsp; &nbsp; <? if( $dt+86400 > time() ) { echo '<font color="grey"><b>&raquo; '.date('d.m.Y',($dt+86400)).' &raquo;</b></font>'; }else{ ?><a href="main.php?godate=<?=date('d.m.Y',($dt+86400))?>">&raquo; <?=date('d.m.Y',($dt+86400))?> &raquo;</a><? } ?>
+        	<a href="main.php?godate=<?=date('d.m.Y',($dt-86400))?>">&laquo; <?=date('d.m.Y',($dt-86400))?> &laquo;</a> &nbsp; &nbsp; Р“РѕР»РѕСЃРѕРІР°РЅРёРµ Р·Р° <B><?=date('d.m.Y',$dt)?></B> &nbsp; &nbsp; <? if( $dt+86400 > time() ) { echo '<font color="grey"><b>&raquo; '.date('d.m.Y',($dt+86400)).' &raquo;</b></font>'; }else{ ?><a href="main.php?godate=<?=date('d.m.Y',($dt+86400))?>">&raquo; <?=date('d.m.Y',($dt+86400))?> &raquo;</a><? } ?>
         </div>
         <?
 		$html = '';
 		
 		if( $html == '' ) {
-			echo '<hr><br><br><center>За этот день записи не найдены</center>';
+			echo '<hr><br><br><center>Р—Р° СЌС‚РѕС‚ РґРµРЅСЊ Р·Р°РїРёСЃРё РЅРµ РЅР°Р№РґРµРЅС‹</center>';
 		}
 		?>
     </TD>
@@ -96,7 +96,7 @@ if($u->room['file']=='stela')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.9&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Центральная площадь</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.9&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РїР»РѕС‰Р°РґСЊ</a></td>
 	</tr>
 	</table>
 	</td>

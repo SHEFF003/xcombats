@@ -6,15 +6,15 @@ if(!defined('GAME'))
 
 if($pl['id']==3)
 {
-	//прием собрать зубы
+	//РїСЂРёРµРј СЃРѕР±СЂР°С‚СЊ Р·СѓР±С‹
 	$hpadd = rand(2,5); $trduh = 1;
 }elseif($pl['id']==5)
 {
-	//прием утереть пот
+	//РїСЂРёРµРј СѓС‚РµСЂРµС‚СЊ РїРѕС‚
 	$hpadd = $u->info['level']*2;
 }elseif($pl['id']==6)
 {
-	//прием воля к победе
+	//РїСЂРёРµРј РІРѕР»СЏ Рє РїРѕР±РµРґРµ
 	$hpadd = round($u->info['level']*5+7);
 	if($btl->stats[$btl->uids[$u->info['id']]]['hpNow']<($btl->stats[$btl->uids[$u->info['id']]]['hpAll']*0.33))
 	{
@@ -24,21 +24,21 @@ if($pl['id']==3)
 {
 	if($btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']>=1)
 	{
-		//ошеломить
-		$this->addPriem($u->info['enemy'],$pl['id'],'',0,77,2,$u->info['id'],5,'ошеломить');
-		$this->addPriem($u->info['enemy'],191,'',0,77,5,$u->info['id'],5,'иммунтитеошеломить');
+		//РѕС€РµР»РѕРјРёС‚СЊ
+		$this->addPriem($u->info['enemy'],$pl['id'],'',0,77,2,$u->info['id'],5,'РѕС€РµР»РѕРјРёС‚СЊ');
+		$this->addPriem($u->info['enemy'],191,'',0,77,5,$u->info['id'],5,'РёРјРјСѓРЅС‚РёС‚РµРѕС€РµР»РѕРјРёС‚СЊ');
 		if($re==false)
 		{
-			echo '[Er::Ошеломить[xX]]';
+			echo '[Er::РћС€РµР»РѕРјРёС‚СЊ[xX]]';
 		}
 		$sx = '';
 		if($u->info['sex']==1)
 		{
-			$sx = 'а';
+			$sx = 'Р°';
 		}
 		$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'||s2='.$btl->users[$btl->uids[$u->info['enemy']]]['sex'].'||t2='.$btl->users[$btl->uids[$u->info['enemy']]]['team'].'||login2='.$btl->users[$btl->uids[$u->info['enemy']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>$btl->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и ошеломил'.$sx.' {u2} на два хода.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё РѕС€РµР»РѕРјРёР»'.$sx.' {u2} РЅР° РґРІР° С…РѕРґР°.';	
 		$pz = $btl->users[$btl->uids[$u->info['enemy']]]['priems_z'];
 		$pz = explode('|',$pz);
 		$i = 0;
@@ -83,7 +83,7 @@ if(isset($hpadd))
 		}else{
 			$hpadd = '--';
 		}
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и {1x17x0} здоровье. <b><font color=#006699>'.$hpadd.'</font></b> ['.ceil($u->info['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['id']]]['hpAll'].']';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё {1x17x0} Р·РґРѕСЂРѕРІСЊРµ. <b><font color=#006699>'.$hpadd.'</font></b> ['.ceil($u->info['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['id']]]['hpAll'].']';	
 		$btl->add_log($mas1);
 		$pz[(int)$id] = 1;
 	}else{

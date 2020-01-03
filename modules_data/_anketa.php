@@ -7,9 +7,9 @@ if(!defined('GAME'))
 <TABLE width=99% cellspacing=0 cellpadding=0 align=center>
 <FORM METHOD=POST ACTION="main.php?anketa=1" name='FORM1' id="FORM1"><INPUT type=hidden name="sd4" value="<?=$u->info['id']?>">
 <TR>
-<TD width=100%><h3>Анкета персонажа "<?=$u->info['login']?>"</TD>
+<TD width=100%><h3>РђРЅРєРµС‚Р° РїРµСЂСЃРѕРЅР°Р¶Р° "<?=$u->info['login']?>"</TD>
 <TD valign=top>
-<!-- <INPUT TYPE=button value="Подсказка" style="background-color:#A9AFC0" onclick="window.open('/encicl/help/psw.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')">&nbsp;--><INPUT TYPE=button value="Вернуться" style='width: 75px' onclick='location="/main.php"'>
+<!-- <INPUT TYPE=button value="РџРѕРґСЃРєР°Р·РєР°" style="background-color:#A9AFC0" onclick="window.open('/encicl/help/psw.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')">&nbsp;--><INPUT TYPE=button value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" style='width: 75px' onclick='location="/main.php"'>
 </TD>
 </TR></TABLE>
 <?
@@ -41,7 +41,7 @@ if(isset($_POST['name']))
 	$_POST['hobby']= str_replace("&lt;BR&gt;","<BR>",$_POST['hobby']);
 	$simbolcount = strlen($_POST['hobby']);
 	if (isset($_POST['ChatColor']) && $u->info['admin']=='0' && !($_POST['ChatColor'] == "Black" || $_POST['ChatColor'] == "Blue" || $_POST['ChatColor'] == "Lilac" ||  $_POST['ChatColor'] == "Fuchsia" || $_POST['ChatColor'] == "Gray" || $_POST['ChatColor'] == "Green" || $_POST['ChatColor'] == "Maroon" || $_POST['ChatColor'] == "Navy" || $_POST['ChatColor'] == "Olive" || $_POST['ChatColor'] == "Purple" || $_POST['ChatColor'] == "Teal" ||  $_POST['ChatColor'] == "Orange" ||  $_POST['ChatColor'] == "Chocolate" || $_POST['ChatColor'] == "DarkKhaki" || $_POST['ChatColor'] == "SandyBrown")) {
-						echo "<div align=\"left\" style=\"color:#FF0000 \">Возможно использовать цвета указанные только в меню анкеты ! </div>";
+						echo "<div align=\"left\" style=\"color:#FF0000 \">Р’РѕР·РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С†РІРµС‚Р° СѓРєР°Р·Р°РЅРЅС‹Рµ С‚РѕР»СЊРєРѕ РІ РјРµРЅСЋ Р°РЅРєРµС‚С‹ ! </div>";
 						$_POST['ChatColor'] = "Black";
 	}
 	if(!$_POST['city']){$city=$_POST['city2'];}
@@ -74,7 +74,7 @@ if( $u->info['level'] <= 1 ) {
 			$_POST['0day'] = $dt[0].'.'.$dt[1].'.'.$dt[2];
 			$dateofbirth = "`bithday` = '".mysql_real_escape_string($_POST['0day'])."',";
 		}else{
-			//ошибка
+			//РѕС€РёР±РєР°
 			
 		}
 	}
@@ -89,7 +89,7 @@ $maxsimbols = 1024+($st['os6']*200);
 		$_POST['mat'] = 0;
 	}
 	if($simbolcount>$maxsimbols && $u->info['admin'] == 0) {
-		echo '<div align="left" style="color:#FF0000 ">Максимальный размер поля "Увлечения / хобби" - '.$maxsimbols.' символов.</div>';
+		echo '<div align="left" style="color:#FF0000 ">РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РїРѕР»СЏ "РЈРІР»РµС‡РµРЅРёСЏ / С…РѕР±Р±Рё" - '.$maxsimbols.' СЃРёРјРІРѕР»РѕРІ.</div>';
 	}elseif(mysql_query("UPDATE 
 						`users` 
 					SET 
@@ -107,7 +107,7 @@ $maxsimbols = 1024+($st['os6']*200);
 						`mat` = '".mysql_real_escape_string((int)$_POST['mat'])."'
 					WHERE 
 						`id` = '".mysql_real_escape_string($u->info['id'])."' LIMIT 1;"))
-{echo '<div align="left" style="color:#FF0000 ">Все прошло удачно...</div>';
+{echo '<div align="left" style="color:#FF0000 ">Р’СЃРµ РїСЂРѕС€Р»Рѕ СѓРґР°С‡РЅРѕ...</div>';
 $u->info['name'] = $_POST['name'];
 $u->info['city_real'] = $city;
 $u->info['icq'] = $_POST['icq'];
@@ -120,24 +120,24 @@ $u->info['hobby'] = $_POST['hobby'];
 $u->info['chatColor'] = $_POST['ChatColor'];
 $u->info['mat'] = $_POST['mat'];
 }
-else{echo 'что-то не так...';}
+else{echo 'С‡С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє...';}
 }
 ?>
 
 <table width="95%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#B2B2B2" name="F1">
 <tr bgcolor="#D3D2D0">
-<td>Ваше реальное имя: </td>
+<td>Р’Р°С€Рµ СЂРµР°Р»СЊРЅРѕРµ РёРјСЏ: </td>
 <td><table border=0 cellpadding=0 cellspacing=0 width=100%>
 <tr>
 <td><input name="name" value="<?=$u->info['name']?>" class="inup" size="45" maxlength="90" />
-<div style="float:right"><font color="#999999">ID Персонажа:</font> <?=$u->info['id']?>&nbsp;</div>
+<div style="float:right"><font color="#999999">ID РџРµСЂСЃРѕРЅР°Р¶Р°:</font> <?=$u->info['id']?>&nbsp;</div>
 </td>
 </tr>
 </table></td>
 </tr>
 <? if($u->info['level']<=1) { ?>
 <tr bgcolor="#D3D2D0">
-<td>День рождения:</td>
+<td>Р”РµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ:</td>
 <td><script language="JavaScript" type="text/javascript">
 function procdays (month) {
 var selected = document.getElementById('dd').value;
@@ -167,7 +167,7 @@ document.getElementById('nhya').value = str;
 return true;
 }
 </script>
-День:
+Р”РµРЅСЊ:
 <select name="DD" id="dd" class="inup" onchange="genZerodate();">
 <script>
 var s="";
@@ -177,22 +177,22 @@ s+='<option value="'+i+'">'+i+'</option>';
 document.write(s);
 </script>
 </select>
-Месяц:
+РњРµСЃСЏС†:
 <select name="MM" onchange="procdays(this);"  class="inup" id="mm">
-<option value="01" selected="selected">Январь</option>
-<option value="02">Февраль</option>
-<option value="03">Март</option>
-<option value="04">Апрель</option>
-<option value="05">Май</option>
-<option value="06">Июнь</option>
-<option value="07">Июль</option>
-<option value="08">Август</option>
-<option value="09">Сентябрь</option>
-<option value="10">Октябрь</option>
-<option value="11">Ноябрь</option>
-<option value="12">Декабрь</option>
+<option value="01" selected="selected">РЇРЅРІР°СЂСЊ</option>
+<option value="02">Р¤РµРІСЂР°Р»СЊ</option>
+<option value="03">РњР°СЂС‚</option>
+<option value="04">РђРїСЂРµР»СЊ</option>
+<option value="05">РњР°Р№</option>
+<option value="06">РСЋРЅСЊ</option>
+<option value="07">РСЋР»СЊ</option>
+<option value="08">РђРІРіСѓСЃС‚</option>
+<option value="09">РЎРµРЅС‚СЏР±СЂСЊ</option>
+<option value="10">РћРєС‚СЏР±СЂСЊ</option>
+<option value="11">РќРѕСЏР±СЂСЊ</option>
+<option value="12">Р”РµРєР°Р±СЂСЊ</option>
 </select>
-Год:
+Р“РѕРґ:
 <select name="YYYY" class="inup" onchange="procdays(document.getElementById('mm'));" id="yyyy">
 <script>
 var s="";
@@ -224,308 +224,308 @@ FORM1.YYYY.value=s[2];
 }
 procdays(document.getElementById('mm'));
 </script>
-<small><BR><span class="style5">Внимание! </span><span class="style7">Дата рождения должна быть правильной, она используется в игровом процессе. Анкеты с неправильной датой будут удаляться без предупреждения.</span></small>
+<small><BR><span class="style5">Р’РЅРёРјР°РЅРёРµ! </span><span class="style7">Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїСЂР°РІРёР»СЊРЅРѕР№, РѕРЅР° РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ РёРіСЂРѕРІРѕРј РїСЂРѕС†РµСЃСЃРµ. РђРЅРєРµС‚С‹ СЃ РЅРµРїСЂР°РІРёР»СЊРЅРѕР№ РґР°С‚РѕР№ Р±СѓРґСѓС‚ СѓРґР°Р»СЏС‚СЊСЃСЏ Р±РµР· РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ.</span></small>
 </td>
 </tr>
 
 <?}?>
 <tr bgcolor="#D3D2D0">
-  <td>Город: </td>
+  <td>Р“РѕСЂРѕРґ: </td>
   <td><select name="city" class="inup">
     <option selected="selected"></option>
-    <option>Москва</option>
-    <option>Санкт-Петербург</option>
-    <option>Абакан (Хакасия)</option>
-    <option>Азов</option>
-    <option>Аксай (Ростовская обл.)</option>
-    <option>Алания</option>
-    <option>Альметьевск</option>
-    <option>Амурск</option>
-    <option>Анадырь</option>
-    <option>Анапа</option>
-    <option>Ангарск (Иркутская обл.)</option>
-    <option>Апатиты</option>
-    <option>Армавир</option>
-    <option>Архангельск</option>
-    <option>Асбест</option>
-    <option>Астрахань</option>
-    <option>Балашиха</option>
-    <option>Барнаул</option>
-    <option>Белгород</option>
-    <option>Беломорск (Карелия)</option>
-    <option>Березники (Пермская обл.)</option>
-    <option>Бийск</option>
-    <option>Биробиджан</option>
-    <option>Благовещенск</option>
-    <option>Большой камень</option>
-    <option>Борисоглебск</option>
-    <option>Братск</option>
-    <option>Бронницы</option>
-    <option>Брянск</option>
-    <option>Ванино</option>
-    <option>Великие Луки</option>
-    <option>Великий Устюг</option>
-    <option>Верхняя Салда</option>
-    <option>Владивосток</option>
-    <option>Владикавказ</option>
-    <option>Владимир</option>
-    <option>Волгоград</option>
-    <option>Волгодонск</option>
-    <option>Волжск</option>
-    <option>Вологда</option>
-    <option>Волхов (С.Птрбрг обл.)</option>
-    <option>Воронеж</option>
-    <option>Воскресенск</option>
-    <option>Воткинск</option>
-    <option>Выборг</option>
-    <option>Вязьма (Смоленская обл.)</option>
-    <option>Вятские Поляны</option>
-    <option>Гаврилов-Ям</option>
-    <option>Геленджик</option>
-    <option>Георгиевск</option>
-    <option>Голицино (Московская обл.)</option>
-    <option>Губкин</option>
-    <option>Гусь-Хрустальный</option>
-    <option>Дзержинск (Нижгрдск обл.)</option>
-    <option>Димитровград</option>
-    <option>Долгопрудный</option>
-    <option>Дубна</option>
-    <option>Дудинка (Эвенкская АО)</option>
-    <option>Ейск</option>
-    <option>Екатеринбург</option>
-    <option>Елабуга (Татарстан)</option>
-    <option>Елец (Липецкая обл.)</option>
-    <option>Елизово</option>
-    <option>Железногорск</option>
-    <option>Жуков (Калужской обл.)</option>
-    <option>Жуковский</option>
-    <option>Заречный</option>
-    <option>Звенигород</option>
-    <option>Зеленогорск</option>
-    <option>Зеленоград</option>
-    <option>Зеленодольск</option>
-    <option>Златоуст</option>
-    <option>Иваново</option>
-    <option>Ивантеевка (Мсквск обл.)</option>
-    <option>Ижевск</option>
-    <option>Иркутск</option>
-    <option>Ишим</option>
-    <option>Йошкар-Ола</option>
-    <option>Казань</option>
-    <option>Калининград</option>
-    <option>Калуга</option>
-    <option>Каменск-Уральский</option>
-    <option>Карталы</option>
-    <option>Кемерово</option>
-    <option>Кинешма (Ивановская обл.)</option>
-    <option>Кириши ( С.Птрбрг обл.)</option>
-    <option>Киров</option>
-    <option>Кирово-Чепецк</option>
-    <option>Кисловодск</option>
-    <option>Ковров</option>
-    <option>Когалым</option>
-    <option>Коломна</option>
-    <option>Комсомольск-на-Амуре</option>
-    <option>Королев</option>
-    <option>Костомукша</option>
-    <option>Кострома</option>
-    <option>Красногорск</option>
-    <option>Краснодар</option>
-    <option>Красноярск</option>
-    <option>Кронштадт</option>
-    <option>Кропоткин</option>
-    <option>Кумертау (Башкортостан)</option>
-    <option>Курган</option>
-    <option>Курск</option>
-    <option>Кустанай</option>
-    <option>Кызыл</option>
-    <option>Липецк</option>
-    <option>Лыткарино (Московская обл.)</option>
-    <option>Люберцы</option>
-    <option>Магадан</option>
-    <option>Магнитогорск</option>
-    <option>Майкоп</option>
-    <option>Малоярославец</option>
-    <option>Махачкала</option>
-    <option>Медвежьегорск</option>
-    <option>Междуреченск (Кмрвск обл.)</option>
-    <option>Менделеевск</option>
-    <option>Миасс</option>
-    <option>Миллерово (Ростовская обл.)</option>
-    <option>Минеральные Воды</option>
-    <option>Мичуринск (Тамбовская обл.)</option>
-    <option>Мурманск</option>
-    <option>Муром</option>
-    <option>Мытищи</option>
-    <option>Набережные Челны</option>
-    <option>Надым</option>
-    <option>Нальчик</option>
-    <option>Находка</option>
-    <option>Невинномысск</option>
-    <option>Нефтекамск</option>
-    <option>Нефтеюганск</option>
-    <option>Нижневартовс</option>
-    <option>Нижнекамск</option>
-    <option>Нижний Новгород</option>
-    <option>Нижний Тагил</option>
-    <option>Николаевск-на-Амуре</option>
-    <option>Николаевск</option>
-    <option>Новгород</option>
-    <option>Новокузнецк</option>
-    <option>Новомосковск</option>
-    <option>Новороссийск</option>
-    <option>Новосибирск</option>
-    <option>Новоуральск</option>
-    <option>Новочеркасск</option>
-    <option>Новый Уренгой</option>
-    <option>Норильск</option>
-    <option>Ноябрьск</option>
-    <option>Нягань</option>
-    <option>Обнинск</option>
-    <option>Одинцово</option>
-    <option>Омск</option>
-    <option>Онега</option>
-    <option>Орел</option>
-    <option>Оренбург</option>
-    <option>Орск</option>
-    <option>Пенза</option>
-    <option>Первоуральск</option>
-    <option>Переславль-Залесский</option>
-    <option>Пермь</option>
-    <option>Петрозаводск</option>
-    <option>Петропавловск-Камч.</option>
-    <option>Пластун (Приморский край)</option>
-    <option>Подольск</option>
-    <option>Полевской</option>
-    <option>Полярные Зори</option>
-    <option>Протвино</option>
-    <option>Псков</option>
-    <option>Пущино</option>
-    <option>Пятигорск</option>
-    <option>Радужный (Тюменская обл.)</option>
-    <option>Ревда</option>
-    <option>Ржев</option>
-    <option>Ростов-на-Дону</option>
-    <option>Ростов-Ярославский</option>
-    <option>Рубцовск</option>
-    <option>Рязань</option>
-    <option>Салехард</option>
-    <option>Самара</option>
-    <option>Саранск</option>
-    <option>Саратов</option>
-    <option>Саров</option>
-    <option>Сасово</option>
-    <option>Себеж (Псковская обл.)</option>
-    <option>Северодвинск</option>
-    <option>Северск (Томская обл.)</option>
-    <option>Сегежа</option>
-    <option>Семикаракорск</option>
-    <option>Сергиев Посад</option>
-    <option>Серов</option>
-    <option>Серпухов</option>
-    <option>Сестрорецк (С.Птрбрг обл.)</option>
-    <option>Смоленск</option>
-    <option>Снежинск</option>
-    <option>Советская Гавань</option>
-    <option>Советский (Тюменская обл.)</option>
-    <option>Солнечногорск</option>
-    <option>Сосновый Бор</option>
-    <option>Сосновый Бор (С.Птрбрг обл.)</option>
-    <option>Сочи</option>
-    <option>Ставрополь</option>
-    <option>Старая Русса</option>
-    <option>Старый Оскол</option>
-    <option>Стерлитамак (Башкортостан)</option>
-    <option>Стрежевой (Томская обл.)</option>
-    <option>Строгино</option>
-    <option>Сургут</option>
-    <option>Сызрань</option>
-    <option>Сыктывкар</option>
-    <option>Таганрог</option>
-    <option>Тамбов</option>
-    <option>Таруса</option>
-    <option>Тверь</option>
-    <option>Тольятти</option>
-    <option>Томск</option>
-    <option>Трехгорный</option>
-    <option>Троицк</option>
-    <option>Туапсе</option>
-    <option>Тула</option>
-    <option>Тюмень</option>
-    <option>Удомля (Тверская обл.)</option>
-    <option>Улан-Удэ</option>
-    <option>Ульяновск</option>
-    <option>Уссурийск</option>
-    <option>Усть-Лабинск (Крсндрскй край)</option>
-    <option>Уфа</option>
-    <option>Ухта</option>
-    <option>Фрязино</option>
-    <option>Хабаровск</option>
-    <option>Ханты-Мансийск</option>
-    <option>Химки</option>
-    <option>Холмск</option>
-    <option>Чебаркуль</option>
-    <option>Чебоксары</option>
-    <option>Челябинск</option>
-    <option>Череповец</option>
-    <option>Черкесск</option>
-    <option>Черноголовка</option>
-    <option>Чернушка (Пермская обл.)</option>
-    <option>Черняховск (Клннгрдск обл.)</option>
-    <option>Чита</option>
-    <option>Шадринск (Курганская обл.)</option>
-    <option>Шатура</option>
-    <option>Шахты</option>
-    <option>Щелково (Московская обл.)</option>
-    <option>Электросталь</option>
-    <option>Элиста</option>
-    <option>Энгельс</option>
-    <option>Южно-Сахалинск</option>
-    <option>Южноуральск</option>
-    <option>Юрга</option>
-    <option>Якутск</option>
-    <option>Ярославль</option>
-    <option>Азербайджан</option>
-    <option>Беларусь</option>
-    <option>Грузия</option>
-    <option>Казахстан</option>
-    <option>Кыргызстан</option>
-    <option>Армения</option>
-    <option>Латвия</option>
-    <option>Литва</option>
-    <option>Таджикистан</option>
-    <option>Туркменистан</option>
-    <option>Узбекистан</option>
-    <option>Украина</option>
-    <option>Эстония</option>
-    <option>Германия/Germany</option>
-    <option>Израиль/Israel</option>
-    <option>Канада/Canada</option>
-    <option>США/USA</option>
+    <option>РњРѕСЃРєРІР°</option>
+    <option>РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі</option>
+    <option>РђР±Р°РєР°РЅ (РҐР°РєР°СЃРёСЏ)</option>
+    <option>РђР·РѕРІ</option>
+    <option>РђРєСЃР°Р№ (Р РѕСЃС‚РѕРІСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РђР»Р°РЅРёСЏ</option>
+    <option>РђР»СЊРјРµС‚СЊРµРІСЃРє</option>
+    <option>РђРјСѓСЂСЃРє</option>
+    <option>РђРЅР°РґС‹СЂСЊ</option>
+    <option>РђРЅР°РїР°</option>
+    <option>РђРЅРіР°СЂСЃРє (РСЂРєСѓС‚СЃРєР°СЏ РѕР±Р».)</option>
+    <option>РђРїР°С‚РёС‚С‹</option>
+    <option>РђСЂРјР°РІРёСЂ</option>
+    <option>РђСЂС…Р°РЅРіРµР»СЊСЃРє</option>
+    <option>РђСЃР±РµСЃС‚</option>
+    <option>РђСЃС‚СЂР°С…Р°РЅСЊ</option>
+    <option>Р‘Р°Р»Р°С€РёС…Р°</option>
+    <option>Р‘Р°СЂРЅР°СѓР»</option>
+    <option>Р‘РµР»РіРѕСЂРѕРґ</option>
+    <option>Р‘РµР»РѕРјРѕСЂСЃРє (РљР°СЂРµР»РёСЏ)</option>
+    <option>Р‘РµСЂРµР·РЅРёРєРё (РџРµСЂРјСЃРєР°СЏ РѕР±Р».)</option>
+    <option>Р‘РёР№СЃРє</option>
+    <option>Р‘РёСЂРѕР±РёРґР¶Р°РЅ</option>
+    <option>Р‘Р»Р°РіРѕРІРµС‰РµРЅСЃРє</option>
+    <option>Р‘РѕР»СЊС€РѕР№ РєР°РјРµРЅСЊ</option>
+    <option>Р‘РѕСЂРёСЃРѕРіР»РµР±СЃРє</option>
+    <option>Р‘СЂР°С‚СЃРє</option>
+    <option>Р‘СЂРѕРЅРЅРёС†С‹</option>
+    <option>Р‘СЂСЏРЅСЃРє</option>
+    <option>Р’Р°РЅРёРЅРѕ</option>
+    <option>Р’РµР»РёРєРёРµ Р›СѓРєРё</option>
+    <option>Р’РµР»РёРєРёР№ РЈСЃС‚СЋРі</option>
+    <option>Р’РµСЂС…РЅСЏСЏ РЎР°Р»РґР°</option>
+    <option>Р’Р»Р°РґРёРІРѕСЃС‚РѕРє</option>
+    <option>Р’Р»Р°РґРёРєР°РІРєР°Р·</option>
+    <option>Р’Р»Р°РґРёРјРёСЂ</option>
+    <option>Р’РѕР»РіРѕРіСЂР°Рґ</option>
+    <option>Р’РѕР»РіРѕРґРѕРЅСЃРє</option>
+    <option>Р’РѕР»Р¶СЃРє</option>
+    <option>Р’РѕР»РѕРіРґР°</option>
+    <option>Р’РѕР»С…РѕРІ (РЎ.РџС‚СЂР±СЂРі РѕР±Р».)</option>
+    <option>Р’РѕСЂРѕРЅРµР¶</option>
+    <option>Р’РѕСЃРєСЂРµСЃРµРЅСЃРє</option>
+    <option>Р’РѕС‚РєРёРЅСЃРє</option>
+    <option>Р’С‹Р±РѕСЂРі</option>
+    <option>Р’СЏР·СЊРјР° (РЎРјРѕР»РµРЅСЃРєР°СЏ РѕР±Р».)</option>
+    <option>Р’СЏС‚СЃРєРёРµ РџРѕР»СЏРЅС‹</option>
+    <option>Р“Р°РІСЂРёР»РѕРІ-РЇРј</option>
+    <option>Р“РµР»РµРЅРґР¶РёРє</option>
+    <option>Р“РµРѕСЂРіРёРµРІСЃРє</option>
+    <option>Р“РѕР»РёС†РёРЅРѕ (РњРѕСЃРєРѕРІСЃРєР°СЏ РѕР±Р».)</option>
+    <option>Р“СѓР±РєРёРЅ</option>
+    <option>Р“СѓСЃСЊ-РҐСЂСѓСЃС‚Р°Р»СЊРЅС‹Р№</option>
+    <option>Р”Р·РµСЂР¶РёРЅСЃРє (РќРёР¶РіСЂРґСЃРє РѕР±Р».)</option>
+    <option>Р”РёРјРёС‚СЂРѕРІРіСЂР°Рґ</option>
+    <option>Р”РѕР»РіРѕРїСЂСѓРґРЅС‹Р№</option>
+    <option>Р”СѓР±РЅР°</option>
+    <option>Р”СѓРґРёРЅРєР° (Р­РІРµРЅРєСЃРєР°СЏ РђРћ)</option>
+    <option>Р•Р№СЃРє</option>
+    <option>Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі</option>
+    <option>Р•Р»Р°Р±СѓРіР° (РўР°С‚Р°СЂСЃС‚Р°РЅ)</option>
+    <option>Р•Р»РµС† (Р›РёРїРµС†РєР°СЏ РѕР±Р».)</option>
+    <option>Р•Р»РёР·РѕРІРѕ</option>
+    <option>Р–РµР»РµР·РЅРѕРіРѕСЂСЃРє</option>
+    <option>Р–СѓРєРѕРІ (РљР°Р»СѓР¶СЃРєРѕР№ РѕР±Р».)</option>
+    <option>Р–СѓРєРѕРІСЃРєРёР№</option>
+    <option>Р—Р°СЂРµС‡РЅС‹Р№</option>
+    <option>Р—РІРµРЅРёРіРѕСЂРѕРґ</option>
+    <option>Р—РµР»РµРЅРѕРіРѕСЂСЃРє</option>
+    <option>Р—РµР»РµРЅРѕРіСЂР°Рґ</option>
+    <option>Р—РµР»РµРЅРѕРґРѕР»СЊСЃРє</option>
+    <option>Р—Р»Р°С‚РѕСѓСЃС‚</option>
+    <option>РРІР°РЅРѕРІРѕ</option>
+    <option>РРІР°РЅС‚РµРµРІРєР° (РњСЃРєРІСЃРє РѕР±Р».)</option>
+    <option>РР¶РµРІСЃРє</option>
+    <option>РСЂРєСѓС‚СЃРє</option>
+    <option>РС€РёРј</option>
+    <option>Р™РѕС€РєР°СЂ-РћР»Р°</option>
+    <option>РљР°Р·Р°РЅСЊ</option>
+    <option>РљР°Р»РёРЅРёРЅРіСЂР°Рґ</option>
+    <option>РљР°Р»СѓРіР°</option>
+    <option>РљР°РјРµРЅСЃРє-РЈСЂР°Р»СЊСЃРєРёР№</option>
+    <option>РљР°СЂС‚Р°Р»С‹</option>
+    <option>РљРµРјРµСЂРѕРІРѕ</option>
+    <option>РљРёРЅРµС€РјР° (РРІР°РЅРѕРІСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РљРёСЂРёС€Рё ( РЎ.РџС‚СЂР±СЂРі РѕР±Р».)</option>
+    <option>РљРёСЂРѕРІ</option>
+    <option>РљРёСЂРѕРІРѕ-Р§РµРїРµС†Рє</option>
+    <option>РљРёСЃР»РѕРІРѕРґСЃРє</option>
+    <option>РљРѕРІСЂРѕРІ</option>
+    <option>РљРѕРіР°Р»С‹Рј</option>
+    <option>РљРѕР»РѕРјРЅР°</option>
+    <option>РљРѕРјСЃРѕРјРѕР»СЊСЃРє-РЅР°-РђРјСѓСЂРµ</option>
+    <option>РљРѕСЂРѕР»РµРІ</option>
+    <option>РљРѕСЃС‚РѕРјСѓРєС€Р°</option>
+    <option>РљРѕСЃС‚СЂРѕРјР°</option>
+    <option>РљСЂР°СЃРЅРѕРіРѕСЂСЃРє</option>
+    <option>РљСЂР°СЃРЅРѕРґР°СЂ</option>
+    <option>РљСЂР°СЃРЅРѕСЏСЂСЃРє</option>
+    <option>РљСЂРѕРЅС€С‚Р°РґС‚</option>
+    <option>РљСЂРѕРїРѕС‚РєРёРЅ</option>
+    <option>РљСѓРјРµСЂС‚Р°Сѓ (Р‘Р°С€РєРѕСЂС‚РѕСЃС‚Р°РЅ)</option>
+    <option>РљСѓСЂРіР°РЅ</option>
+    <option>РљСѓСЂСЃРє</option>
+    <option>РљСѓСЃС‚Р°РЅР°Р№</option>
+    <option>РљС‹Р·С‹Р»</option>
+    <option>Р›РёРїРµС†Рє</option>
+    <option>Р›С‹С‚РєР°СЂРёРЅРѕ (РњРѕСЃРєРѕРІСЃРєР°СЏ РѕР±Р».)</option>
+    <option>Р›СЋР±РµСЂС†С‹</option>
+    <option>РњР°РіР°РґР°РЅ</option>
+    <option>РњР°РіРЅРёС‚РѕРіРѕСЂСЃРє</option>
+    <option>РњР°Р№РєРѕРї</option>
+    <option>РњР°Р»РѕСЏСЂРѕСЃР»Р°РІРµС†</option>
+    <option>РњР°С…Р°С‡РєР°Р»Р°</option>
+    <option>РњРµРґРІРµР¶СЊРµРіРѕСЂСЃРє</option>
+    <option>РњРµР¶РґСѓСЂРµС‡РµРЅСЃРє (РљРјСЂРІСЃРє РѕР±Р».)</option>
+    <option>РњРµРЅРґРµР»РµРµРІСЃРє</option>
+    <option>РњРёР°СЃСЃ</option>
+    <option>РњРёР»Р»РµСЂРѕРІРѕ (Р РѕСЃС‚РѕРІСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РњРёРЅРµСЂР°Р»СЊРЅС‹Рµ Р’РѕРґС‹</option>
+    <option>РњРёС‡СѓСЂРёРЅСЃРє (РўР°РјР±РѕРІСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РњСѓСЂРјР°РЅСЃРє</option>
+    <option>РњСѓСЂРѕРј</option>
+    <option>РњС‹С‚РёС‰Рё</option>
+    <option>РќР°Р±РµСЂРµР¶РЅС‹Рµ Р§РµР»РЅС‹</option>
+    <option>РќР°РґС‹Рј</option>
+    <option>РќР°Р»СЊС‡РёРє</option>
+    <option>РќР°С…РѕРґРєР°</option>
+    <option>РќРµРІРёРЅРЅРѕРјС‹СЃСЃРє</option>
+    <option>РќРµС„С‚РµРєР°РјСЃРє</option>
+    <option>РќРµС„С‚РµСЋРіР°РЅСЃРє</option>
+    <option>РќРёР¶РЅРµРІР°СЂС‚РѕРІСЃ</option>
+    <option>РќРёР¶РЅРµРєР°РјСЃРє</option>
+    <option>РќРёР¶РЅРёР№ РќРѕРІРіРѕСЂРѕРґ</option>
+    <option>РќРёР¶РЅРёР№ РўР°РіРёР»</option>
+    <option>РќРёРєРѕР»Р°РµРІСЃРє-РЅР°-РђРјСѓСЂРµ</option>
+    <option>РќРёРєРѕР»Р°РµРІСЃРє</option>
+    <option>РќРѕРІРіРѕСЂРѕРґ</option>
+    <option>РќРѕРІРѕРєСѓР·РЅРµС†Рє</option>
+    <option>РќРѕРІРѕРјРѕСЃРєРѕРІСЃРє</option>
+    <option>РќРѕРІРѕСЂРѕСЃСЃРёР№СЃРє</option>
+    <option>РќРѕРІРѕСЃРёР±РёСЂСЃРє</option>
+    <option>РќРѕРІРѕСѓСЂР°Р»СЊСЃРє</option>
+    <option>РќРѕРІРѕС‡РµСЂРєР°СЃСЃРє</option>
+    <option>РќРѕРІС‹Р№ РЈСЂРµРЅРіРѕР№</option>
+    <option>РќРѕСЂРёР»СЊСЃРє</option>
+    <option>РќРѕСЏР±СЂСЊСЃРє</option>
+    <option>РќСЏРіР°РЅСЊ</option>
+    <option>РћР±РЅРёРЅСЃРє</option>
+    <option>РћРґРёРЅС†РѕРІРѕ</option>
+    <option>РћРјСЃРє</option>
+    <option>РћРЅРµРіР°</option>
+    <option>РћСЂРµР»</option>
+    <option>РћСЂРµРЅР±СѓСЂРі</option>
+    <option>РћСЂСЃРє</option>
+    <option>РџРµРЅР·Р°</option>
+    <option>РџРµСЂРІРѕСѓСЂР°Р»СЊСЃРє</option>
+    <option>РџРµСЂРµСЃР»Р°РІР»СЊ-Р—Р°Р»РµСЃСЃРєРёР№</option>
+    <option>РџРµСЂРјСЊ</option>
+    <option>РџРµС‚СЂРѕР·Р°РІРѕРґСЃРє</option>
+    <option>РџРµС‚СЂРѕРїР°РІР»РѕРІСЃРє-РљР°РјС‡.</option>
+    <option>РџР»Р°СЃС‚СѓРЅ (РџСЂРёРјРѕСЂСЃРєРёР№ РєСЂР°Р№)</option>
+    <option>РџРѕРґРѕР»СЊСЃРє</option>
+    <option>РџРѕР»РµРІСЃРєРѕР№</option>
+    <option>РџРѕР»СЏСЂРЅС‹Рµ Р—РѕСЂРё</option>
+    <option>РџСЂРѕС‚РІРёРЅРѕ</option>
+    <option>РџСЃРєРѕРІ</option>
+    <option>РџСѓС‰РёРЅРѕ</option>
+    <option>РџСЏС‚РёРіРѕСЂСЃРє</option>
+    <option>Р Р°РґСѓР¶РЅС‹Р№ (РўСЋРјРµРЅСЃРєР°СЏ РѕР±Р».)</option>
+    <option>Р РµРІРґР°</option>
+    <option>Р Р¶РµРІ</option>
+    <option>Р РѕСЃС‚РѕРІ-РЅР°-Р”РѕРЅСѓ</option>
+    <option>Р РѕСЃС‚РѕРІ-РЇСЂРѕСЃР»Р°РІСЃРєРёР№</option>
+    <option>Р СѓР±С†РѕРІСЃРє</option>
+    <option>Р СЏР·Р°РЅСЊ</option>
+    <option>РЎР°Р»РµС…Р°СЂРґ</option>
+    <option>РЎР°РјР°СЂР°</option>
+    <option>РЎР°СЂР°РЅСЃРє</option>
+    <option>РЎР°СЂР°С‚РѕРІ</option>
+    <option>РЎР°СЂРѕРІ</option>
+    <option>РЎР°СЃРѕРІРѕ</option>
+    <option>РЎРµР±РµР¶ (РџСЃРєРѕРІСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РЎРµРІРµСЂРѕРґРІРёРЅСЃРє</option>
+    <option>РЎРµРІРµСЂСЃРє (РўРѕРјСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РЎРµРіРµР¶Р°</option>
+    <option>РЎРµРјРёРєР°СЂР°РєРѕСЂСЃРє</option>
+    <option>РЎРµСЂРіРёРµРІ РџРѕСЃР°Рґ</option>
+    <option>РЎРµСЂРѕРІ</option>
+    <option>РЎРµСЂРїСѓС…РѕРІ</option>
+    <option>РЎРµСЃС‚СЂРѕСЂРµС†Рє (РЎ.РџС‚СЂР±СЂРі РѕР±Р».)</option>
+    <option>РЎРјРѕР»РµРЅСЃРє</option>
+    <option>РЎРЅРµР¶РёРЅСЃРє</option>
+    <option>РЎРѕРІРµС‚СЃРєР°СЏ Р“Р°РІР°РЅСЊ</option>
+    <option>РЎРѕРІРµС‚СЃРєРёР№ (РўСЋРјРµРЅСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РЎРѕР»РЅРµС‡РЅРѕРіРѕСЂСЃРє</option>
+    <option>РЎРѕСЃРЅРѕРІС‹Р№ Р‘РѕСЂ</option>
+    <option>РЎРѕСЃРЅРѕРІС‹Р№ Р‘РѕСЂ (РЎ.РџС‚СЂР±СЂРі РѕР±Р».)</option>
+    <option>РЎРѕС‡Рё</option>
+    <option>РЎС‚Р°РІСЂРѕРїРѕР»СЊ</option>
+    <option>РЎС‚Р°СЂР°СЏ Р СѓСЃСЃР°</option>
+    <option>РЎС‚Р°СЂС‹Р№ РћСЃРєРѕР»</option>
+    <option>РЎС‚РµСЂР»РёС‚Р°РјР°Рє (Р‘Р°С€РєРѕСЂС‚РѕСЃС‚Р°РЅ)</option>
+    <option>РЎС‚СЂРµР¶РµРІРѕР№ (РўРѕРјСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РЎС‚СЂРѕРіРёРЅРѕ</option>
+    <option>РЎСѓСЂРіСѓС‚</option>
+    <option>РЎС‹Р·СЂР°РЅСЊ</option>
+    <option>РЎС‹РєС‚С‹РІРєР°СЂ</option>
+    <option>РўР°РіР°РЅСЂРѕРі</option>
+    <option>РўР°РјР±РѕРІ</option>
+    <option>РўР°СЂСѓСЃР°</option>
+    <option>РўРІРµСЂСЊ</option>
+    <option>РўРѕР»СЊСЏС‚С‚Рё</option>
+    <option>РўРѕРјСЃРє</option>
+    <option>РўСЂРµС…РіРѕСЂРЅС‹Р№</option>
+    <option>РўСЂРѕРёС†Рє</option>
+    <option>РўСѓР°РїСЃРµ</option>
+    <option>РўСѓР»Р°</option>
+    <option>РўСЋРјРµРЅСЊ</option>
+    <option>РЈРґРѕРјР»СЏ (РўРІРµСЂСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РЈР»Р°РЅ-РЈРґСЌ</option>
+    <option>РЈР»СЊСЏРЅРѕРІСЃРє</option>
+    <option>РЈСЃСЃСѓСЂРёР№СЃРє</option>
+    <option>РЈСЃС‚СЊ-Р›Р°Р±РёРЅСЃРє (РљСЂСЃРЅРґСЂСЃРєР№ РєСЂР°Р№)</option>
+    <option>РЈС„Р°</option>
+    <option>РЈС…С‚Р°</option>
+    <option>Р¤СЂСЏР·РёРЅРѕ</option>
+    <option>РҐР°Р±Р°СЂРѕРІСЃРє</option>
+    <option>РҐР°РЅС‚С‹-РњР°РЅСЃРёР№СЃРє</option>
+    <option>РҐРёРјРєРё</option>
+    <option>РҐРѕР»РјСЃРє</option>
+    <option>Р§РµР±Р°СЂРєСѓР»СЊ</option>
+    <option>Р§РµР±РѕРєСЃР°СЂС‹</option>
+    <option>Р§РµР»СЏР±РёРЅСЃРє</option>
+    <option>Р§РµСЂРµРїРѕРІРµС†</option>
+    <option>Р§РµСЂРєРµСЃСЃРє</option>
+    <option>Р§РµСЂРЅРѕРіРѕР»РѕРІРєР°</option>
+    <option>Р§РµСЂРЅСѓС€РєР° (РџРµСЂРјСЃРєР°СЏ РѕР±Р».)</option>
+    <option>Р§РµСЂРЅСЏС…РѕРІСЃРє (РљР»РЅРЅРіСЂРґСЃРє РѕР±Р».)</option>
+    <option>Р§РёС‚Р°</option>
+    <option>РЁР°РґСЂРёРЅСЃРє (РљСѓСЂРіР°РЅСЃРєР°СЏ РѕР±Р».)</option>
+    <option>РЁР°С‚СѓСЂР°</option>
+    <option>РЁР°С…С‚С‹</option>
+    <option>Р©РµР»РєРѕРІРѕ (РњРѕСЃРєРѕРІСЃРєР°СЏ РѕР±Р».)</option>
+    <option>Р­Р»РµРєС‚СЂРѕСЃС‚Р°Р»СЊ</option>
+    <option>Р­Р»РёСЃС‚Р°</option>
+    <option>Р­РЅРіРµР»СЊСЃ</option>
+    <option>Р®Р¶РЅРѕ-РЎР°С…Р°Р»РёРЅСЃРє</option>
+    <option>Р®Р¶РЅРѕСѓСЂР°Р»СЊСЃРє</option>
+    <option>Р®СЂРіР°</option>
+    <option>РЇРєСѓС‚СЃРє</option>
+    <option>РЇСЂРѕСЃР»Р°РІР»СЊ</option>
+    <option>РђР·РµСЂР±Р°Р№РґР¶Р°РЅ</option>
+    <option>Р‘РµР»Р°СЂСѓСЃСЊ</option>
+    <option>Р“СЂСѓР·РёСЏ</option>
+    <option>РљР°Р·Р°С…СЃС‚Р°РЅ</option>
+    <option>РљС‹СЂРіС‹Р·СЃС‚Р°РЅ</option>
+    <option>РђСЂРјРµРЅРёСЏ</option>
+    <option>Р›Р°С‚РІРёСЏ</option>
+    <option>Р›РёС‚РІР°</option>
+    <option>РўР°РґР¶РёРєРёСЃС‚Р°РЅ</option>
+    <option>РўСѓСЂРєРјРµРЅРёСЃС‚Р°РЅ</option>
+    <option>РЈР·Р±РµРєРёСЃС‚Р°РЅ</option>
+    <option>РЈРєСЂР°РёРЅР°</option>
+    <option>Р­СЃС‚РѕРЅРёСЏ</option>
+    <option>Р“РµСЂРјР°РЅРёСЏ/Germany</option>
+    <option>РР·СЂР°РёР»СЊ/Israel</option>
+    <option>РљР°РЅР°РґР°/Canada</option>
+    <option>РЎРЁРђ/USA</option>
     </select>
-    &nbsp;&nbsp;&nbsp;другой&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;РґСЂСѓРіРѕР№&nbsp;&nbsp;&nbsp;
     <input type="text" value="<?=$u->info['city_real']?>" name="city2" size="20" maxlength="40" class="inup" /></td>
 </tr>
 <tr bgcolor="#D3D2D0">
   <td>ICQ:</td>
   <td><input value="<? if($u->info['icq']>0) {echo $u->info['icq'];}?>" name="icq" class="inup" size="9" maxlength="20" />
     <input type="checkbox" name='hide_icq' value="1" <?if($u->info['icq_hide']==1){echo'checked';}?> />
-    не отображать в инф. о персонаже.</td>
+    РЅРµ РѕС‚РѕР±СЂР°Р¶Р°С‚СЊ РІ РёРЅС„. Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ.</td>
 </tr>
 <tr bgcolor="#D3D2D0">
-  <td>Домашняя страница:</td>
+  <td>Р”РѕРјР°С€РЅСЏСЏ СЃС‚СЂР°РЅРёС†Р°:</td>
   <td><input value="<?=$u->info['homepage']?>" name="homepage" class="inup" size="35" maxlength="60" /></td>
 </tr>
 <tr bgcolor="#D3D2D0">
-<td>Девиз:</td>
+<td>Р”РµРІРёР·:</td>
 <td><input value="<?=$u->info['deviz']?>" name="about" class="inup" size="60" maxlength="160" /></td>
 </tr>
 <tr bgcolor="#D3D2D0">
-<td colspan="2" align="left">Увлечения / хобби <small>(не более 60 слов)</small><BR>
+<td colspan="2" align="left">РЈРІР»РµС‡РµРЅРёСЏ / С…РѕР±Р±Рё <small>(РЅРµ Р±РѕР»РµРµ 60 СЃР»РѕРІ)</small><BR>
 <textarea name="hobby" cols="60" rows="7" class="inup" style='width:95%'><?=$u->info['hobby']?></textarea></td>
 </tr>
 <tr bgcolor="#D3D2D0">
-<td>Цвет сообщений в чате:</td>
+<td>Р¦РІРµС‚ СЃРѕРѕР±С‰РµРЅРёР№ РІ С‡Р°С‚Рµ:</td>
 <td><select name="ChatColor" class="inup">
 
 <option
@@ -582,10 +582,10 @@ value="Red">Red</option>';
 </tr>
 <tr bgcolor="#D3D2D0">
   <td colspan="2" align="center"><p align="center">
-  <input name="saveanketa" type="submit" value="Сохранить изменения" />
+  <input name="saveanketa" type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ" />
   </p>
 </tr>
 </form>
 </table>
-<DIV><!--тут рейтинг--></DIV>
+<DIV><!--С‚СѓС‚ СЂРµР№С‚РёРЅРі--></DIV>
 </body>

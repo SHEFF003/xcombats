@@ -6,12 +6,12 @@ if(!defined('GAME'))
 
 class zayvki
 {
-	public $zv_see,$error,$z1n = array(4=>'групповые',5=>'хаотичные'),$z2n = array(4=>'группового',5=>'хаотичного');
+	public $zv_see,$error,$z1n = array(4=>'РіСЂСѓРїРїРѕРІС‹Рµ',5=>'С…Р°РѕС‚РёС‡РЅС‹Рµ'),$z2n = array(4=>'РіСЂСѓРїРїРѕРІРѕРіРѕ',5=>'С…Р°РѕС‚РёС‡РЅРѕРіРѕ');
 	
 	public function test()
 	{
 		global $code,$c,$u;
-		//Проверяем хаотичные и групповые бои в этом городе		
+		//РџСЂРѕРІРµСЂСЏРµРј С…Р°РѕС‚РёС‡РЅС‹Рµ Рё РіСЂСѓРїРїРѕРІС‹Рµ Р±РѕРё РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ		
 		$sp = mysql_query('SELECT * FROM `zayvki` AS `z` WHERE `z`.`city` = "'.$u->info['city'].'" AND `z`.`btl_id` = "0" AND `z`.`cancel` = "0"  AND `z`.`start` = "0" AND (`z`.`razdel` = 4 OR `z`.`razdel` = 5) ORDER BY `z`.`id` DESC LIMIT 11');
 		while($pl = mysql_fetch_array($sp))
 		{
@@ -36,24 +36,24 @@ class zayvki
 				$toWhere = ltrim($toWhere,'OR ');
 				if($pl['razdel']==4)
 				{
-					//группы
+					//РіСЂСѓРїРїС‹
 					if(!isset($i[1]) || !isset($i[2]))
 					{
-						//группа не набрана
+						//РіСЂСѓРїРїР° РЅРµ РЅР°Р±СЂР°РЅР°
 						$this->cancelGroup($pl,$toChat);
 					}else{
-						//Начинаем поединок
+						//РќР°С‡РёРЅР°РµРј РїРѕРµРґРёРЅРѕРє
 						$this->startBattle($pl['id'],$toChat.'|-|'.$toWhere);
 					}
 				}elseif($pl['razdel']==5)
 				{
-					//хаоты
+					//С…Р°РѕС‚С‹
 					if($i[1]+$i[2]<4)
 					{
-						//группа не набрана
+						//РіСЂСѓРїРїР° РЅРµ РЅР°Р±СЂР°РЅР°
 						$this->cancelGroup($pl,$toChat);
 					}else{
-						//Начинаем поединок
+						//РќР°С‡РёРЅР°РµРј РїРѕРµРґРёРЅРѕРє
 						$this->startBattle($pl['id'],$toChat.'|-|'.$toWhere);
 					}
 				}
@@ -78,17 +78,17 @@ class zayvki
 			$r .= '<table border="0" cellspacing="0" cellpadding="0" height="20">
 <tr><td valign="middle"> &nbsp; <font>'.$u->microLogin($u->info['id'],1).'</font> &nbsp; </td>
 <td valign="middle" width="120">
-<div style="position:relative;'.$dp.'"><div id="vhp'.($u->info['id']).'" title="Уровень жизни" align="left" class="seehp" style="position:absolute; top:-10px; width:120px; height:10px; z-index:12;"> '.floor($u->stats['hpNow']).'/'.$u->stats['hpAll'].'</div>
-<div title="Уровень жизни" class="hpborder" style="position:absolute; top:-10px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
+<div style="position:relative;'.$dp.'"><div id="vhp'.($u->info['id']).'" title="РЈСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё" align="left" class="seehp" style="position:absolute; top:-10px; width:120px; height:10px; z-index:12;"> '.floor($u->stats['hpNow']).'/'.$u->stats['hpAll'].'</div>
+<div title="РЈСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё" class="hpborder" style="position:absolute; top:-10px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
 <div class="hp_3 senohp" style="height:9px; width:'.floor(120/100*$ph).'px; position:absolute; top:-10px; z-index:11;" id="lhp'.($u->info['id']).'"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
-<div title="Уровень жизни" class="hp_none" style="position:absolute; top:-10px; width:120px; height:10px; z-index:10;"><img src="http://img.xcombats.com/1x1.gif" height="10"></div>
+<div title="РЈСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё" class="hp_none" style="position:absolute; top:-10px; width:120px; height:10px; z-index:10;"><img src="http://img.xcombats.com/1x1.gif" height="10"></div>
 ';
 if($u->stats['mpAll']>0)
 {
-	$r .= '<div id="vmp'.($u->info['id']).'" title="Уровень маны" align="left" class="seemp" style="position:absolute; top:0px; width:120px; height:10px; z-index:12;"> '.floor($u->stats['mpNow']).'/'.$u->stats['mpAll'].'</div>
-<div title="Уровень маны" class="hpborder" style="position:absolute; top:0px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
+	$r .= '<div id="vmp'.($u->info['id']).'" title="РЈСЂРѕРІРµРЅСЊ РјР°РЅС‹" align="left" class="seemp" style="position:absolute; top:0px; width:120px; height:10px; z-index:12;"> '.floor($u->stats['mpNow']).'/'.$u->stats['mpAll'].'</div>
+<div title="РЈСЂРѕРІРµРЅСЊ РјР°РЅС‹" class="hpborder" style="position:absolute; top:0px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
 <div class="hp_mp senohp" style="height:9px; position:absolute; top:0px; width:'.floor(120/100*$pm).'px; z-index:11;" id="lmp'.($u->info['id']).'"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
-<div title="Уровень маны" class="hp_none" style="position:absolute; top:0px; width:120px; height:10px; z-index:10;"></div>';
+<div title="РЈСЂРѕРІРµРЅСЊ РјР°РЅС‹" class="hp_none" style="position:absolute; top:0px; width:120px; height:10px; z-index:10;"></div>';
 }
 $r .= '</div></td></tr></table>';
 		unset($stt,$ph,$pm);
@@ -103,7 +103,7 @@ $r .= '</div></td></tr></table>';
 			$upd = mysql_query('UPDATE `zayvki` SET `cancel` = "'.time().'" WHERE `id` = "'.$zv['id'].'"');
 			if($upd)
 			{
-				$text = ' Не удалось начать поединок по причине: Группа не набрана.';
+				$text = ' РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°С‡Р°С‚СЊ РїРѕРµРґРёРЅРѕРє РїРѕ РїСЂРёС‡РёРЅРµ: Р“СЂСѓРїРїР° РЅРµ РЅР°Р±СЂР°РЅР°.';
 				mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('".$zv['city']."','','','".$uids."','".$text."','".time()."','11','0')");
 			}
 		}
@@ -118,34 +118,34 @@ $r .= '</div></td></tr></table>';
 			if($r>=1 && $r<=5)
 			{
 				$az = 1;
-				if($r==1 && $u->info['level']>0){	$az = 0; $this->error = 'Вы уже выросли из ползунков ;)';	}
-				if(($r==2 || $r==3)  && $u->info['level']<1){	$az = 0; $this->error = 'Вы еще не выросли из ползунков ;)';	}
-				if(($r==4 || $r==5)  && $u->info['level']<2){	$az = 0; $this->error = 'В '.$this->z1n[$r].' бои только с второго уровня.';	}
+				if($r==1 && $u->info['level']>0){	$az = 0; $this->error = 'Р’С‹ СѓР¶Рµ РІС‹СЂРѕСЃР»Рё РёР· РїРѕР»Р·СѓРЅРєРѕРІ ;)';	}
+				if(($r==2 || $r==3)  && $u->info['level']<1){	$az = 0; $this->error = 'Р’С‹ РµС‰Рµ РЅРµ РІС‹СЂРѕСЃР»Рё РёР· РїРѕР»Р·СѓРЅРєРѕРІ ;)';	}
+				if(($r==4 || $r==5)  && $u->info['level']<2){	$az = 0; $this->error = 'Р’ '.$this->z1n[$r].' Р±РѕРё С‚РѕР»СЊРєРѕ СЃ РІС‚РѕСЂРѕРіРѕ СѓСЂРѕРІРЅСЏ.';	}
 				if(!isset($_POST['stavkakredit'])){ $_POST['stavkakredit'] = 0; }
 				$money = (int)($_POST['stavkakredit']*100);
 				$money = round(($money/100),2);
 				if($u->info['hpNow']<$u->stats['hpAll']/100*30 && ($r>=1 || $r<=3))
 				{
-					$this->error = 'Вы еще слишком ослаблены чтобы начать новый бой';
+					$this->error = 'Р’С‹ РµС‰Рµ СЃР»РёС€РєРѕРј РѕСЃР»Р°Р±Р»РµРЅС‹ С‡С‚РѕР±С‹ РЅР°С‡Р°С‚СЊ РЅРѕРІС‹Р№ Р±РѕР№';
 					$az = 0;
 				}elseif($r==3 && $money>0 && $u->info['level']<4)
 				{
-					$this->error = 'Бои на деньги проводятся с 4-го уровня';
+					$this->error = 'Р‘РѕРё РЅР° РґРµРЅСЊРіРё РїСЂРѕРІРѕРґСЏС‚СЃСЏ СЃ 4-РіРѕ СѓСЂРѕРІРЅСЏ';
 					$az = 0;
 				}elseif($r==3 && $money<0.5 && $money>0)
 				{
-					$this->error = 'Минимальная ставка 0.50 кр.';
+					$this->error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃС‚Р°РІРєР° 0.50 РєСЂ.';
 					$az = 0;
 				}elseif($r==3 && $money>30)
 				{
-					$this->error = 'Максимальная ставка 30.00 кр.';
+					$this->error = 'РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃС‚Р°РІРєР° 30.00 РєСЂ.';
 					$az = 0;
 				}elseif($r==3 && $money>$u->info['money'])
 				{
-					$this->error = 'У Вас недостаточно денег, чтобы подать заявку';
+					$this->error = 'РЈ Р’Р°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі, С‡С‚РѕР±С‹ РїРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ';
 					$az = 0;
 				}
-				if($u->info['zv']>0){ $az = 0; $this->error = 'Вы уже находите в заявке.'; }
+				if($u->info['zv']>0){ $az = 0; $this->error = 'Р’С‹ СѓР¶Рµ РЅР°С…РѕРґРёС‚Рµ РІ Р·Р°СЏРІРєРµ.'; }
 				if($az==1)
 				{
 					$nz = array();
@@ -188,7 +188,7 @@ $r .= '</div></td></tr></table>';
 					}
 					if($r==5 && $u->info['level']>1)
 					{
-						//хаотичный бой
+						//С…Р°РѕС‚РёС‡РЅС‹Р№ Р±РѕР№
 						if($_POST['startime2'])
 						{
 							$nz['time_start'] = (int)$_POST['startime2'];
@@ -210,7 +210,7 @@ $r .= '</div></td></tr></table>';
 								$nz['timeout'] = 3;
 							}
 							
-							//Генерируем уровни союзника
+							//Р“РµРЅРµСЂРёСЂСѓРµРј СѓСЂРѕРІРЅРё СЃРѕСЋР·РЅРёРєР°
 							$lvl = (int)$_POST['levellogin1'];
 							if($lvl == 0)
 							{
@@ -231,7 +231,7 @@ $r .= '</div></td></tr></table>';
 							
 							if((int)$_POST['k']==1)
 							{
-								//кулачный бой
+								//РєСѓР»Р°С‡РЅС‹Р№ Р±РѕР№
 								$nz['type'] = 1;
 							}
 							
@@ -240,13 +240,13 @@ $r .= '</div></td></tr></table>';
 							$nz['tm1'] = 100*$u->info['level']+10*$u->info['upLevel']+$u->info['exp']+$u->stats['reting'];
 							
 						}else{
-							$gad = 0; $this->error = 'Что-то не так...<br>';
+							$gad = 0; $this->error = 'Р§С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє...<br>';
 						}
 					}elseif($r==4 && $u->info['level']>1)
 					{
-						//групповой бой
-						//'Array ( [startime] => 300 [timeout] => 1 [nlogin1] => 11 [levellogin1] => 0 [nlogin2] => 11 [levellogin2] => 0 [k] => 1 [travma] => on [mut_clever] => on [cmt] => тест [open] => Начнем месилово! :) )';
-						//здесь заносим и проверяем данные на гурпповой бой
+						//РіСЂСѓРїРїРѕРІРѕР№ Р±РѕР№
+						//'Array ( [startime] => 300 [timeout] => 1 [nlogin1] => 11 [levellogin1] => 0 [nlogin2] => 11 [levellogin2] => 0 [k] => 1 [travma] => on [mut_clever] => on [cmt] => С‚РµСЃС‚ [open] => РќР°С‡РЅРµРј РјРµСЃРёР»РѕРІРѕ! :) )';
+						//Р·РґРµСЃСЊ Р·Р°РЅРѕСЃРёРј Рё РїСЂРѕРІРµСЂСЏРµРј РґР°РЅРЅС‹Рµ РЅР° РіСѓСЂРїРїРѕРІРѕР№ Р±РѕР№
 						if($_POST['startime'])
 						{
 							$nz['time_start'] = (int)$_POST['startime'];
@@ -268,24 +268,24 @@ $r .= '</div></td></tr></table>';
 							$nz['tm1max'] = (int)$_POST['nlogin1'];
 							if($nz['tm1max']<1 || $nz['tm1max']>99)
 							{
-								$this->error .= 'Неверное кол-во союзников<br>';
+								$this->error .= 'РќРµРІРµСЂРЅРѕРµ РєРѕР»-РІРѕ СЃРѕСЋР·РЅРёРєРѕРІ<br>';
 								$gad = 0;
 							}
 							
 							$nz['tm2max'] = (int)$_POST['nlogin2'];
 							if($nz['tm2max']<1 || $nz['tm2max']>99)
 							{
-								$this->error .= 'Неверное кол-во противников<br>';
+								$this->error .= 'РќРµРІРµСЂРЅРѕРµ РєРѕР»-РІРѕ РїСЂРѕС‚РёРІРЅРёРєРѕРІ<br>';
 								$gad = 0;
 							}
 							
 							if($nz['tm1max']+$nz['tm2max']<3)
 							{
-								$this->error .= 'Заявки 1 на 1 подаются в разделе физические или договорные бои<br>';
+								$this->error .= 'Р—Р°СЏРІРєРё 1 РЅР° 1 РїРѕРґР°СЋС‚СЃСЏ РІ СЂР°Р·РґРµР»Рµ С„РёР·РёС‡РµСЃРєРёРµ РёР»Рё РґРѕРіРѕРІРѕСЂРЅС‹Рµ Р±РѕРё<br>';
 								$gad = 0;
 							}
 														
-							//Генерируем уровни союзника
+							//Р“РµРЅРµСЂРёСЂСѓРµРј СѓСЂРѕРІРЅРё СЃРѕСЋР·РЅРёРєР°
 							$lvl = (int)$_POST['levellogin1'];
 							if($lvl == 0)
 							{
@@ -318,11 +318,11 @@ $r .= '</div></td></tr></table>';
 							}elseif($lvl == 6){
 								$nz['min_lvl_1'] = 99;
 							}else{
-								$this->error = 'Что-то не так...<br>';
+								$this->error = 'Р§С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє...<br>';
 								$gad = 0;
 							}
 							
-							//Генерируем уровни противника
+							//Р“РµРЅРµСЂРёСЂСѓРµРј СѓСЂРѕРІРЅРё РїСЂРѕС‚РёРІРЅРёРєР°
 							$lvl = (int)$_POST['levellogin2'];
 							if($lvl == 0)
 							{
@@ -355,7 +355,7 @@ $r .= '</div></td></tr></table>';
 							}elseif($lvl == 6){
 								$nz['min_lvl_2'] = 99;
 							}else{
-								$this->error = 'Что-то не так...<br>';
+								$this->error = 'Р§С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє...<br>';
 								$gad = 0;
 							}
 							
@@ -366,13 +366,13 @@ $r .= '</div></td></tr></table>';
 														
 							if((int)$_POST['k']==1)
 							{
-								//кулачный бой
+								//РєСѓР»Р°С‡РЅС‹Р№ Р±РѕР№
 								$nz['type'] = 1;
 							}
 							
 						}else{
 							$gad = 0;
-							$this->error = 'Что-то не так...<br>';
+							$this->error = 'Р§С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє...<br>';
 						}
 					}
 					if($gad==1)
@@ -410,9 +410,9 @@ $r .= '</div></td></tr></table>';
 						{
 							mysql_query('UPDATE `stats` SET `zv`="'.$zid.'",`team`="1" WHERE `id`="'.$u->info['id'].'" LIMIT 1');
 							$u->info['zv'] = $zid;
-							$this->error = 'Заявка на бой подана';
+							$this->error = 'Р—Р°СЏРІРєР° РЅР° Р±РѕР№ РїРѕРґР°РЅР°';
 						}else{
-							$this->error = 'Вы не смогли подать заявку...';
+							$this->error = 'Р’С‹ РЅРµ СЃРјРѕРіР»Рё РїРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ...';
 						}
 					}
 				}
@@ -420,7 +420,7 @@ $r .= '</div></td></tr></table>';
 		}
 	}
 
-	//тренеровочный бой
+	//С‚СЂРµРЅРµСЂРѕРІРѕС‡РЅС‹Р№ Р±РѕР№
 	public function addBot()
 	{
 		global $u,$c,$code;
@@ -432,16 +432,16 @@ $r .= '</div></td></tr></table>';
 		}
 		if($bot==false)
 		{
-			$this->error = 'Бои с монстрами, нежитью, клонами и прочими вурдалаками проводятся только для персонажей младше 4 уровня...<br>Со стороны посматривает Общий Враг, ему явно что-то не понравилось...<br>';
+			$this->error = 'Р‘РѕРё СЃ РјРѕРЅСЃС‚СЂР°РјРё, РЅРµР¶РёС‚СЊСЋ, РєР»РѕРЅР°РјРё Рё РїСЂРѕС‡РёРјРё РІСѓСЂРґР°Р»Р°РєР°РјРё РїСЂРѕРІРѕРґСЏС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ РїРµСЂСЃРѕРЅР°Р¶РµР№ РјР»Р°РґС€Рµ 4 СѓСЂРѕРІРЅСЏ...<br>РЎРѕ СЃС‚РѕСЂРѕРЅС‹ РїРѕСЃРјР°С‚СЂРёРІР°РµС‚ РћР±С‰РёР№ Р’СЂР°Рі, РµРјСѓ СЏРІРЅРѕ С‡С‚Рѕ-С‚Рѕ РЅРµ РїРѕРЅСЂР°РІРёР»РѕСЃСЊ...<br>';
 		}elseif($u->info['hpNow']<$u->stats['hpAll']/100*30 && ($r>=1 || $r<=3))
 		{
-			$this->error = 'Вы еще слишком ослаблены чтобы начать новый бой';
+			$this->error = 'Р’С‹ РµС‰Рµ СЃР»РёС€РєРѕРј РѕСЃР»Р°Р±Р»РµРЅС‹ С‡С‚РѕР±С‹ РЅР°С‡Р°С‚СЊ РЅРѕРІС‹Р№ Р±РѕР№';
 			$az = 0;
 		}elseif($bot==false)
 		{
 			echo '<br><font color=red>Cannot start battle (no prototype "ND0Clone")</font><br>';
 		}else{
-			//создаем поединок с ботом
+			//СЃРѕР·РґР°РµРј РїРѕРµРґРёРЅРѕРє СЃ Р±РѕС‚РѕРј
 			$expB = 25;
 			$btl = array('players'=>'','timeout'=>60,'type'=>0,'invis'=>0,'noinc'=>0,'travmChance'=>0,'typeBattle'=>0,'addExp'=>$expB,'money'=>0);
 			$ins = mysql_query('INSERT INTO `battle` (`city`,`time_start`,`players`,`timeout`,`type`,`invis`,`noinc`,`travmChance`,`typeBattle`,`addExp`,`money`) VALUES (
@@ -459,20 +459,20 @@ $r .= '</div></td></tr></table>';
 			if($ins)
 			{
 				$btl_id = mysql_insert_id();
-				//обновляем данные о поединке						
+				//РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ Рѕ РїРѕРµРґРёРЅРєРµ						
 				$upd2  = mysql_query('UPDATE `users` SET `battle`="'.$btl_id.'" WHERE `id` = "'.$u->info['id'].'" OR `id` = "'.$bot.'" LIMIT 2');
 				mysql_query('UPDATE `stats` SET `team`="1" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				mysql_query('UPDATE `stats` SET `team`="2" WHERE `id` = "'.$bot.'" LIMIT 1');
-				//Если бой кулачный, то снимаем вещи
+				//Р•СЃР»Рё Р±РѕР№ РєСѓР»Р°С‡РЅС‹Р№, С‚Рѕ СЃРЅРёРјР°РµРј РІРµС‰Рё
 				if($btl['type']==1)
 				{
 					mysql_query('UPDATE `items_users` SET `inOdet`="0" WHERE `uid` = "'.$u->info['id'].'" AND `inOdet`!=0');
 					mysql_query('UPDATE `items_users` SET `inOdet`="0" WHERE `uid` = "'.$bot.'" AND `inOdet`!=0');
 				}
 				
-				//обновляем заявку, что бой начался
+				//РѕР±РЅРѕРІР»СЏРµРј Р·Р°СЏРІРєСѓ, С‡С‚Рѕ Р±РѕР№ РЅР°С‡Р°Р»СЃСЏ
 				$u->info['battle'] = $btl_id;
-				//Отправляем сообщение в чат всем бойцам
+				//РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚ РІСЃРµРј Р±РѕР№С†Р°Рј
 				mysql_query("INSERT INTO `chat` (`city`,`room`,`to`,`time`,`type`,`toChat`,`sound`) VALUES ('".$u->info['city']."','".$u->info['room']."','".$u->info['login']."','".time()."','11','0','117')");
 				die('<script>location="main.php?battle_id='.$btl_id.'";</script>');
 			}else{
@@ -481,17 +481,17 @@ $r .= '</div></td></tr></table>';
 		}
 	}
 	
-	//Изломы
+	//РР·Р»РѕРјС‹
 	public function startIzlom($id2,$lvl)
 	{
 		global $u,$c,$code;
 			$lvl = (int)$lvl;
-			$bots = array(1=>'Снеговик Меченосец');
+			$bots = array(1=>'РЎРЅРµРіРѕРІРёРє РњРµС‡РµРЅРѕСЃРµС†');
 			$id = mysql_fetch_array(mysql_query('SELECT * FROM `test_bot` WHERE `login` = "'.$bots[$id2].' ['.$lvl.']" AND `active` = "1" LIMIT 1'));
 			$bot = $u->addNewbot($id['id'],NULL);
 			if(isset($id['id']) && $bot!=false)
 			{
-				//создаем поединок с ботом
+				//СЃРѕР·РґР°РµРј РїРѕРµРґРёРЅРѕРє СЃ Р±РѕС‚РѕРј
 				$expB = -$bot['expB'];
 				$btl = array('players'=>'','timeout'=>60,'type'=>9,'invis'=>0,'noinc'=>0,'travmChance'=>0,'typeBattle'=>0,'addExp'=>$expB,'money'=>0,'izlom'=>(int)$id2,'izlomLvl'=>(int)$lvl);
 				$ins = mysql_query('INSERT INTO `battle` (`city`,`time_start`,`players`,`timeout`,`type`,`invis`,`noinc`,`travmChance`,`typeBattle`,`addExp`,`money`,`izlom`,`izlomLvl`) VALUES (
@@ -509,20 +509,20 @@ $r .= '</div></td></tr></table>';
 				if($ins)
 				{
 					$btl_id = mysql_insert_id();
-					//обновляем данные о поединке						
+					//РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ Рѕ РїРѕРµРґРёРЅРєРµ						
 					$upd2  = mysql_query('UPDATE `users` SET `battle`="'.$btl_id.'" WHERE `id` = "'.$u->info['id'].'" OR `id` = "'.$bot['id'].'" LIMIT 2');
 					mysql_query('UPDATE `stats` SET `team`="1" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `stats` SET `team`="2" WHERE `id` = "'.$bot['id'].'" LIMIT 1');
-					//Если бой кулачный, то снимаем вещи
+					//Р•СЃР»Рё Р±РѕР№ РєСѓР»Р°С‡РЅС‹Р№, С‚Рѕ СЃРЅРёРјР°РµРј РІРµС‰Рё
 					if($btl['type']==1)
 					{
 						mysql_query('UPDATE `items_users` SET `inOdet`="0" WHERE `uid` = "'.$u->info['id'].'" AND `inOdet`!=0');
 						mysql_query('UPDATE `items_users` SET `inOdet`="0" WHERE `uid` = "'.$bot['id'].'" AND `inOdet`!=0');
 					}
 					
-					//обновляем заявку, что бой начался
+					//РѕР±РЅРѕРІР»СЏРµРј Р·Р°СЏРІРєСѓ, С‡С‚Рѕ Р±РѕР№ РЅР°С‡Р°Р»СЃСЏ
 					$u->info['battle'] = $btl_id;
-					//Отправляем сообщение в чат всем бойцам
+					//РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚ РІСЃРµРј Р±РѕР№С†Р°Рј
 					mysql_query("INSERT INTO `chat` (`city`,`room`,`to`,`time`,`type`,`toChat`,`sound`) VALUES ('".$u->info['city']."','".$u->info['room']."','".$u->info['login']."','".time()."','11','0','117')");
 					die('<script>location="main.php?battle_id='.$btl_id.'";</script>');
 				}else{
@@ -543,7 +543,7 @@ $r .= '</div></td></tr></table>';
 			$vars = explode('|-|',$vars);
 			if($z['razdel']>=4 && $zv['razdel']<=5)
 			{
-				//начало группового или хаотичного боя
+				//РЅР°С‡Р°Р»Рѕ РіСЂСѓРїРїРѕРІРѕРіРѕ РёР»Рё С…Р°РѕС‚РёС‡РЅРѕРіРѕ Р±РѕСЏ
 				$btl_id = 0;
 				$btl = array('players'=>'','timeout'=>$z['timeout'],'type'=>$z['type'],'invis'=>0,'noinc'=>0,'travmChance'=>0,'typeBattle'=>0,'addExp'=>0,'money'=>0);
 				$ins = mysql_query('INSERT INTO `battle` (`city`,`time_start`,`players`,`timeout`,`type`,`invis`,`noinc`,`travmChance`,`typeBattle`,`addExp`,`money`) VALUES (
@@ -561,33 +561,33 @@ $r .= '</div></td></tr></table>';
 				$btl_id = mysql_insert_id();
 				if($btl_id>0)
 				{
-					//обновляем данные о поединке						
+					//РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ Рѕ РїРѕРµРґРёРЅРєРµ						
 					$upd1  = mysql_query('UPDATE `stats` SET `zv`="0" WHERE `zv` = "'.$z['id'].'"');
 					$upd2  = mysql_query('UPDATE `users` SET `battle`="'.$btl_id.'" WHERE '.$vars[1].'');
 					
-					//Если бой кулачный, то снимаем вещи
+					//Р•СЃР»Рё Р±РѕР№ РєСѓР»Р°С‡РЅС‹Р№, С‚Рѕ СЃРЅРёРјР°РµРј РІРµС‰Рё
 					if($z['type']==1)
 					{
 						//mysql_query('UPDATE `items_users` SET `inOdet`="0" WHERE `uid` = "'.$u->info['id'].'" AND `inOdet`!=0');
 					}
 					
-					//обновляем заявку, что бой начался
+					//РѕР±РЅРѕРІР»СЏРµРј Р·Р°СЏРІРєСѓ, С‡С‚Рѕ Р±РѕР№ РЅР°С‡Р°Р»СЃСЏ
 					$upd = mysql_query('UPDATE `zayvki` SET `start` = "'.time().'",`btl_id` = "'.$btl_id.'" WHERE `id` = "'.$z['id'].'" LIMIT 1');
 					$u->info['battle'] = $btl_id;
-					//Отправляем сообщение в чат всем бойцам
+					//РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚ РІСЃРµРј Р±РѕР№С†Р°Рј
 					mysql_query("INSERT INTO `chat` (`city`,`room`,`to`,`time`,`type`,`toChat`,`sound`) VALUES ('".$u->info['city']."','-1','".$vars[0]."','".time()."','11','0','117')");
 					die('<script>location="main.php?battle_id='.$btl_id.'";</script>');
 				}
 			}elseif($z['razdel']>=1 && $z['razdel']<=3)
 			{
-				//начало PvP
+				//РЅР°С‡Р°Р»Рѕ PvP
 				if($u->info['team']==1 && $u->info['zv']==$z['id'])
 				{
 					$zu = mysql_fetch_array(mysql_query('SELECT * FROM `stats` WHERE `zv`="'.$z['id'].'" AND `team` = "2" LIMIT 1'));
 					if(isset($zu['id']))
 					{
 						$uz = mysql_fetch_array(mysql_query('SELECT `login`,`money` FROM `users` WHERE `id`="'.$zu['id'].'" LIMIT 1'));
-						//создаем поединок						
+						//СЃРѕР·РґР°РµРј РїРѕРµРґРёРЅРѕРє						
 						$btl_id = 0;
 						if($uz['money']<$z['money'] || $u->info['money']<$z['money'])
 						{
@@ -609,31 +609,31 @@ $r .= '</div></td></tr></table>';
 						$btl_id = mysql_insert_id();
 						if($ins)
 						{
-							//обновляем данные о поединке						
+							//РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ Рѕ РїРѕРµРґРёРЅРєРµ						
 							$upd1  = mysql_query('UPDATE `stats` SET `zv`="0" WHERE `zv` = "'.$z['id'].'" LIMIT 2');
 							$upd2  = mysql_query('UPDATE `users` SET `battle`="'.$btl_id.'" WHERE `id` = "'.$u->info['id'].'" OR `id` = "'.$zu['id'].'" LIMIT 2');
 							
-							//Если бой кулачный, то снимаем вещи
+							//Р•СЃР»Рё Р±РѕР№ РєСѓР»Р°С‡РЅС‹Р№, С‚Рѕ СЃРЅРёРјР°РµРј РІРµС‰Рё
 							if($z['type']==1)
 							{
 								mysql_query('UPDATE `items_users` SET `inOdet`="0" WHERE `uid` = "'.$u->info['id'].'" AND `inOdet`!=0');
 								mysql_query('UPDATE `items_users` SET `inOdet`="0" WHERE `uid` = "'.$zu['id'].'" AND `inOdet`!=0');
 							}
 							
-							//обновляем заявку, что бой начался
+							//РѕР±РЅРѕРІР»СЏРµРј Р·Р°СЏРІРєСѓ, С‡С‚Рѕ Р±РѕР№ РЅР°С‡Р°Р»СЃСЏ
 							$upd = mysql_query('UPDATE `zayvki` SET `start` = "'.time().'",`btl_id` = "'.$btl_id.'" WHERE `id` = "'.$z['id'].'" LIMIT 1');
 							$u->info['battle'] = $btl_id;
-							//Отправляем сообщение в чат всем бойцам
+							//РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚ РІСЃРµРј Р±РѕР№С†Р°Рј
 							mysql_query("INSERT INTO `chat` (`city`,`room`,`to`,`time`,`type`,`toChat`,`sound`) VALUES ('".$u->info['city']."','".$u->info['room']."','".$uz['login']."','".time()."','11','0','117')");
 							die('<script>location="main.php?battle_id='.$btl_id.'";</script>');
 						}else{
-							$this->error = 'Ошибка создания битвы.';
+							$this->error = 'РћС€РёР±РєР° СЃРѕР·РґР°РЅРёСЏ Р±РёС‚РІС‹.';
 						}	
 					}else{
-						$this->error = 'Вы не можете начать поединок, вашу заявку никто не принял.';
+						$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РЅР°С‡Р°С‚СЊ РїРѕРµРґРёРЅРѕРє, РІР°С€Сѓ Р·Р°СЏРІРєСѓ РЅРёРєС‚Рѕ РЅРµ РїСЂРёРЅСЏР».';
 					}
 				}else{
-					$this->error = 'Вы не можете начать поединок.';
+					$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РЅР°С‡Р°С‚СЊ РїРѕРµРґРёРЅРѕРє.';
 				}
 			}
 		}	
@@ -652,37 +652,37 @@ $r .= '</div></td></tr></table>';
 				{
 					if($u->info['team']==1)
 					{
-						//выкидываем из заявки + пишем сообщение в чат
+						//РІС‹РєРёРґС‹РІР°РµРј РёР· Р·Р°СЏРІРєРё + РїРёС€РµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚
 						$upd = mysql_query('UPDATE `stats` SET `zv` = "0",`team`="0" WHERE `id` = "'.$enemy['id'].'" LIMIT 1');
 						if($upd)
 						{
-							$this->error = 'Вы отказали '.$enemy['login'].' в поединке';
-							//отправляем сообщение в чат
+							$this->error = 'Р’С‹ РѕС‚РєР°Р·Р°Р»Рё '.$enemy['login'].' РІ РїРѕРµРґРёРЅРєРµ';
+							//РѕС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚
 							$sa = '';
 							if($u->info['sex']==2)
 							{
-								$sa = 'а';
+								$sa = 'Р°';
 							}
-							$text = ' [login:'.$u->info['login'].'] отказал'.$sa.' вам в поединке.';
+							$text = ' [login:'.$u->info['login'].'] РѕС‚РєР°Р·Р°Р»'.$sa.' РІР°Рј РІ РїРѕРµРґРёРЅРєРµ.';
 							mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('".$enemy['city']."','".$enemy['room']."','','".$enemy['login']."','".$text."','".time()."','10','0')");
 						}
 					}elseif($u->info['id']==$enemy['id'] && $zi['start']==0)
 					{
-						//выкидываем из заявки + пишем сообщение в чат
+						//РІС‹РєРёРґС‹РІР°РµРј РёР· Р·Р°СЏРІРєРё + РїРёС€РµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚
 						$upd = mysql_query('UPDATE `stats` SET `zv` = "0",`team`="0" WHERE `id` = "'.$enemy['id'].'" LIMIT 1');
 						if($upd)
 						{
 							$uz = mysql_fetch_array(mysql_query('SELECT `u`.`sex`,`u`.`login`,`u`.`city`,`u`.`room`,`u`.`id`,`st`.`zv`,`st`.`team` FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`zv`="'.$zi['id'].'" AND `st`.`team` = "1" LIMIT 1'));
 							if(isset($uz['id']))
 							{
-								$this->error = 'Вы отозвали свой запрос на бой.';
-								//отправляем сообщение в чат
+								$this->error = 'Р’С‹ РѕС‚РѕР·РІР°Р»Рё СЃРІРѕР№ Р·Р°РїСЂРѕСЃ РЅР° Р±РѕР№.';
+								//РѕС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚
 								$sa = '';
 								if($u->info['sex']==2)
 								{
-									$sa = 'а';
+									$sa = 'Р°';
 								}
-								$text = ' [login:'.$u->info['login'].'] отозвал'.$sa.' свой запрос на бой.';
+								$text = ' [login:'.$u->info['login'].'] РѕС‚РѕР·РІР°Р»'.$sa.' СЃРІРѕР№ Р·Р°РїСЂРѕСЃ РЅР° Р±РѕР№.';
 								mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('".$uz['city']."','".$uz['room']."','','".$uz['login']."','".$text."','".time()."','10','0')");
 							}
 							$u->info['zv'] = 0;
@@ -693,12 +693,12 @@ $r .= '</div></td></tr></table>';
 			}else{
 				if($zi['razdel']>=1 && $zi['razdel']<=3 && $u->info['team']==1)
 				{
-					//удаляем заявку на бой
+					//СѓРґР°Р»СЏРµРј Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№
 					$upd = mysql_query('UPDATE `zayvki` SET `cancel` = "'.time().'" WHERE `id` = "'.$zi['id'].'" LIMIT 1');
 					if($upd)
 					{
 						mysql_query('UPDATE `stats` SET `zv` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-						$this->error = 'Вы отозвали свою заявку';
+						$this->error = 'Р’С‹ РѕС‚РѕР·РІР°Р»Рё СЃРІРѕСЋ Р·Р°СЏРІРєСѓ';
 						$zi = false;
 						$u->info['zv'] = 0;
 					}
@@ -719,19 +719,19 @@ $r .= '</div></td></tr></table>';
 				$this->zv_see = 1;
 				if($u->room['FR']==0)
 				{
-					echo '<br><br><br><b><font color="black"><center>Подать заявку можно только в комнатах бойцовского клуба</center></font></b>'; $this->zv_see = 0;
+					echo '<br><br><br><b><font color="black"><center>РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ РІ РєРѕРјРЅР°С‚Р°С… Р±РѕР№С†РѕРІСЃРєРѕРіРѕ РєР»СѓР±Р°</center></font></b>'; $this->zv_see = 0;
 				}elseif($r==1 && $u->info['level']>0)
 				{
-					echo '<br><br><br><b><font color="black"><center>Вы уже выросли из ползунков ;)</center></font></b>'; $this->zv_see = 0;
+					echo '<br><br><br><b><font color="black"><center>Р’С‹ СѓР¶Рµ РІС‹СЂРѕСЃР»Рё РёР· РїРѕР»Р·СѓРЅРєРѕРІ ;)</center></font></b>'; $this->zv_see = 0;
 				}elseif($r>1 && $r<6 && $u->info['level']<1)
 				{
-					echo '<br><br><br><b><font color="black"><center>Вы еще не выросли из ползунков ;)</center></font></b>'; $this->zv_see = 0;
+					echo '<br><br><br><b><font color="black"><center>Р’С‹ РµС‰Рµ РЅРµ РІС‹СЂРѕСЃР»Рё РёР· РїРѕР»Р·СѓРЅРєРѕРІ ;)</center></font></b>'; $this->zv_see = 0;
 				}elseif($r>3 && $r<6 && $u->info['level']<2)
 				{
-					echo '<br><br><br><b><font color="black"><center>В '.$this->z1n[$r].' бои только с второго уровня.</center></font></b>'; $this->zv_see = 0;
+					echo '<br><br><br><b><font color="black"><center>Р’ '.$this->z1n[$r].' Р±РѕРё С‚РѕР»СЊРєРѕ СЃ РІС‚РѕСЂРѕРіРѕ СѓСЂРѕРІРЅСЏ.</center></font></b>'; $this->zv_see = 0;
 				}elseif($r==1 && $u->info['level']>0)
 				{
-					echo '<br><br><br><b><font color="black"><center>Вы уже выросли из ползунков ;)</center></font></b>'; $this->zv_see = 0;
+					echo '<br><br><br><b><font color="black"><center>Р’С‹ СѓР¶Рµ РІС‹СЂРѕСЃР»Рё РёР· РїРѕР»Р·СѓРЅРєРѕРІ ;)</center></font></b>'; $this->zv_see = 0;
 				}elseif($u->info['zv']>0 && $u->info['battle']==0)
 				{
 					if($zi['razdel']==1 || $zi['razdel']==2 || $zi['razdel']==3)
@@ -746,73 +746,73 @@ $r .= '</div></td></tr></table>';
 								$uz = mysql_fetch_array(mysql_query('SELECT `u`.`sex`,`u`.`id`,`u`.`login`,`u`.`align`,`u`.`clan`,`u`.`admin`,`u`.`city`,`u`.`room`,`u`.`online`,`u`.`level`,`u`.`battle`,`u`.`money`,`st`.* FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`zv`="'.$zi['id'].'" AND `st`.`team`="2" LIMIT 1'));
 								if(!isset($uz['id']))
 								{
-									//если никто не принял
-									echo '<div style="float:left;"><div style="float:left;">Вы уже подали заявку на бой  <INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&rnd='.$code.'&cancelzv\';" TYPE=submit name=close value="Отозвать заявку"></div>';
+									//РµСЃР»Рё РЅРёРєС‚Рѕ РЅРµ РїСЂРёРЅСЏР»
+									echo '<div style="float:left;"><div style="float:left;">Р’С‹ СѓР¶Рµ РїРѕРґР°Р»Рё Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№  <INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&rnd='.$code.'&cancelzv\';" TYPE=submit name=close value="РћС‚РѕР·РІР°С‚СЊ Р·Р°СЏРІРєСѓ"></div>';
 								}else{
-									//если кто-то принял
+									//РµСЃР»Рё РєС‚Рѕ-С‚Рѕ РїСЂРёРЅСЏР»
 									$sa = '';
 									if($uz['sex']==2)
 									{
-										$sa = 'а';
+										$sa = 'Р°';
 									}
-									echo '<script> zv_Priem = '.(0+$uz['id']).';</script><font color="red"><b>Вашу заявку принял'.$sa.' '.$ca.'</font></b> '.$u->microLogin($uz['id'],1).'</a><font color="red"><b> Хотите подтвердить бой? </b></font><INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&rnd='.$code.'&startBattle\';" TYPE=submit name=close value="Подтвердить"> <INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&rnd='.$code.'&cancelzv\';" TYPE=submit name=close value="Отказать">';
+									echo '<script> zv_Priem = '.(0+$uz['id']).';</script><font color="red"><b>Р’Р°С€Сѓ Р·Р°СЏРІРєСѓ РїСЂРёРЅСЏР»'.$sa.' '.$ca.'</font></b> '.$u->microLogin($uz['id'],1).'</a><font color="red"><b> РҐРѕС‚РёС‚Рµ РїРѕРґС‚РІРµСЂРґРёС‚СЊ Р±РѕР№? </b></font><INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&rnd='.$code.'&startBattle\';" TYPE=submit name=close value="РџРѕРґС‚РІРµСЂРґРёС‚СЊ"> <INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&rnd='.$code.'&cancelzv\';" TYPE=submit name=close value="РћС‚РєР°Р·Р°С‚СЊ">';
 								}
 							}else{
 								$uz = mysql_fetch_array(mysql_query('SELECT `u`.`id`,`u`.`login`,`u`.`align`,`u`.`clan`,`u`.`admin`,`u`.`city`,`u`.`room`,`u`.`online`,`u`.`level`,`u`.`battle`,`u`.`money`,`st`.* FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`zv`="'.$zi['id'].'" AND `st`.`team`="1" LIMIT 1'));
 								if(isset($uz['id']))
 								{
-									echo 'Ожидаем подтверждения боя от '.$u->microLogin($uz['id'],1).' <INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&rnd='.$code.'&cancelzv\';" TYPE=submit name=close value="Отозвать запрос">';
+									echo 'РћР¶РёРґР°РµРј РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ Р±РѕСЏ РѕС‚ '.$u->microLogin($uz['id'],1).' <INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&rnd='.$code.'&cancelzv\';" TYPE=submit name=close value="РћС‚РѕР·РІР°С‚СЊ Р·Р°РїСЂРѕСЃ">';
 								}else{
-									//удаляем заявку
+									//СѓРґР°Р»СЏРµРј Р·Р°СЏРІРєСѓ
 									
 								}
 							}
 							
 							echo '</td>
 							<td align="right" valign="top">
-								<div style="float:right;"><INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&rnd='.$code.'\';" TYPE=button name=tmp value="Обновить"></div>
+								<div style="float:right;"><INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&rnd='.$code.'\';" TYPE=button name=tmp value="РћР±РЅРѕРІРёС‚СЊ"></div>
 							</td>
 						  </tr>
 						</table></div>';						
 					}else{
 						$tm_start = floor(($zi['time']+$zi['time_start']-time())/6)/10;
 						$tm_start = $this->rzv($tm_start);
-						echo '<div style="float:right;"><INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&rnd='.$code.'\';" TYPE=button name=tmp value="Обновить"></div>
-						<b>Ожидаем начала '.$this->z2n[$zi['razdel']].' боя</b>';
+						echo '<div style="float:right;"><INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&rnd='.$code.'\';" TYPE=button name=tmp value="РћР±РЅРѕРІРёС‚СЊ"></div>
+						<b>РћР¶РёРґР°РµРј РЅР°С‡Р°Р»Р° '.$this->z2n[$zi['razdel']].' Р±РѕСЏ</b>';
 						$sv0 = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `stats` WHERE `zv` = "'.$zi['id'].'" LIMIT 100'));
 						if($sv0[0] <= 1)
 						{
 							if(isset($_GET['cancelzvnow']))
 							{
-								echo ' <b><font color="red">Заявка на бой отменена</font></b>';
+								echo ' <b><font color="red">Р—Р°СЏРІРєР° РЅР° Р±РѕР№ РѕС‚РјРµРЅРµРЅР°</font></b>';
 								$u->info['zv'] = 0;
 								mysql_query('UPDATE `stats` SET `zv` = "0",`team` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 							}else{
-								echo ' <a href="main.php?zayvka&r='.$_GET['r'].'&cancelzvnow&rnd='.$code.'" title="Отменить заявку">Отменить</a>';
+								echo ' <a href="main.php?zayvka&r='.$_GET['r'].'&cancelzvnow&rnd='.$code.'" title="РћС‚РјРµРЅРёС‚СЊ Р·Р°СЏРІРєСѓ">РћС‚РјРµРЅРёС‚СЊ</a>';
 							}
 						}
 						unset($sv0);
-						echo '<br>Ваш бой начнется через '.$tm_start.' мин.';
+						echo '<br>Р’Р°С€ Р±РѕР№ РЅР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· '.$tm_start.' РјРёРЅ.';
 					}
 				}elseif($r==1 || $r==2 || $r==3)
 				{
-					//новички,физические,договорные
-					$zi = array(1=>'Если вы не достигли первого уровня, то для вас это единственный способ для проведения битв.',2=>'Здесь вы можете найти себе достойного противника для сражения.',3=>'Если вы предварительно с кем-то договорились о поединке, то лучше здесь подать заявку.');
+					//РЅРѕРІРёС‡РєРё,С„РёР·РёС‡РµСЃРєРёРµ,РґРѕРіРѕРІРѕСЂРЅС‹Рµ
+					$zi = array(1=>'Р•СЃР»Рё РІС‹ РЅРµ РґРѕСЃС‚РёРіР»Рё РїРµСЂРІРѕРіРѕ СѓСЂРѕРІРЅСЏ, С‚Рѕ РґР»СЏ РІР°СЃ СЌС‚Рѕ РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ СЃРїРѕСЃРѕР± РґР»СЏ РїСЂРѕРІРµРґРµРЅРёСЏ Р±РёС‚РІ.',2=>'Р—РґРµСЃСЊ РІС‹ РјРѕР¶РµС‚Рµ РЅР°Р№С‚Рё СЃРµР±Рµ РґРѕСЃС‚РѕР№РЅРѕРіРѕ РїСЂРѕС‚РёРІРЅРёРєР° РґР»СЏ СЃСЂР°Р¶РµРЅРёСЏ.',3=>'Р•СЃР»Рё РІС‹ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ СЃ РєРµРј-С‚Рѕ РґРѕРіРѕРІРѕСЂРёР»РёСЃСЊ Рѕ РїРѕРµРґРёРЅРєРµ, С‚Рѕ Р»СѓС‡С€Рµ Р·РґРµСЃСЊ РїРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ.');
 					$dv = '';
 					if($r==3)
 					{
-						$dv = '<br>Логин противника
+						$dv = '<br>Р›РѕРіРёРЅ РїСЂРѕС‚РёРІРЅРёРєР°
 									  <INPUT TYPE=text NAME=onlyfor maxlength=30 size=12>
 									  <BR>
-									  Бой на деньги, ставка
+									  Р‘РѕР№ РЅР° РґРµРЅСЊРіРё, СЃС‚Р°РІРєР°
 									  <INPUT TYPE=text NAME=stavkakredit size=6 maxlength=10>
-									  <INPUT TYPE=submit name=open value="Подать заявку">
+									  <INPUT TYPE=submit name=open value="РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ">
 									  &nbsp;';
 					}else{
-						$dv = '<INPUT TYPE=submit name=open value="Подать заявку">';
+						$dv = '<INPUT TYPE=submit name=open value="РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ">';
 						if($u->info['level']<4 || $u->info['admin']>0 || $u->info['id']==1011840)
 						{
-							$dv .= ' <INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&bot='.$u->info['nextAct'].'\';" TYPE=button name=clone value="Тренировочный бой">';
+							$dv .= ' <INPUT onClick="location=\'main.php?zayvka=1&r='.$_GET['r'].'&bot='.$u->info['nextAct'].'\';" TYPE=button name=clone value="РўСЂРµРЅРёСЂРѕРІРѕС‡РЅС‹Р№ Р±РѕР№">';
 						}
 					}
 					echo '
@@ -824,84 +824,84 @@ $r .= '</div></td></tr></table>';
 								<table cellspacing=0 cellpadding=0>
 								  <tr>
 									<td><FIELDSET>
-									  <LEGEND><B>Подать заявку на бой</B> </LEGEND>
-									  Таймаут
+									  <LEGEND><B>РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№</B> </LEGEND>
+									  РўР°Р№РјР°СѓС‚
 									  <SELECT NAME=timeout>
-										<OPTION value=1>1 мин.
-										<OPTION value=2>2 мин.
-										<OPTION value=3 SELECTED>3 мин.
-										<OPTION value=4>4 мин.
-										<OPTION value=5>5 мин.
+										<OPTION value=1>1 РјРёРЅ.
+										<OPTION value=2>2 РјРёРЅ.
+										<OPTION value=3 SELECTED>3 РјРёРЅ.
+										<OPTION value=4>4 РјРёРЅ.
+										<OPTION value=5>5 РјРёРЅ.
 									 </SELECT>
-									  Тип боя
+									  РўРёРї Р±РѕСЏ
 									  <SELECT NAME=k>
-										<OPTION value=0>с оружием
-										<OPTION value=1>кулачный
+										<OPTION value=0>СЃ РѕСЂСѓР¶РёРµРј
+										<OPTION value=1>РєСѓР»Р°С‡РЅС‹Р№
 									</SELECT>
 									  '.$dv.'
 									</FIELDSET></td>
 								  </tr>
 								</table></TD>
-							<TD align=right valign=top><INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&rnd='.$code.'\';" TYPE=button name=tmp value="Обновить"></TD>
+							<TD align=right valign=top><INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&rnd='.$code.'\';" TYPE=button name=tmp value="РћР±РЅРѕРІРёС‚СЊ"></TD>
 						  </TR>
 						</TABLE>
 						</FORM>';
 				}elseif($r==4)
 				{
-					//групповые
-					echo '<INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&new_group&rnd='.$code.'\';" TYPE=button name=tmp value="Подать новую заявку"  style="margin:3px;">
-						  <INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&rnd='.$code.'&sort=\'+document.all.value+\'\';" TYPE=button name=tmp value="Обновить"  style="float:right;">';
+					//РіСЂСѓРїРїРѕРІС‹Рµ
+					echo '<INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&new_group&rnd='.$code.'\';" TYPE=button name=tmp value="РџРѕРґР°С‚СЊ РЅРѕРІСѓСЋ Р·Р°СЏРІРєСѓ"  style="margin:3px;">
+						  <INPUT onClick="location=\'main.php?zayvka&r='.$_GET['r'].'&rnd='.$code.'&sort=\'+document.all.value+\'\';" TYPE=button name=tmp value="РћР±РЅРѕРІРёС‚СЊ"  style="float:right;">';
 				}elseif($r==5)
 				{
-					//хаотичные
-					echo 'Хаотичный бой - разновидность группового, где группы формируются автоматически. Бой не начнется, если собралось меньше 4-х человек.<br>
-						  <a href="#" onclick="if(document.getElementById(\'haot\').style.display==\'\'){ document.getElementById(\'haot\').style.display=\'none\' }else{ document.getElementById(\'haot\').style.display=\'\'; } return false;">Подать заявку на хаотичный бой</a>
+					//С…Р°РѕС‚РёС‡РЅС‹Рµ
+					echo 'РҐР°РѕС‚РёС‡РЅС‹Р№ Р±РѕР№ - СЂР°Р·РЅРѕРІРёРґРЅРѕСЃС‚СЊ РіСЂСѓРїРїРѕРІРѕРіРѕ, РіРґРµ РіСЂСѓРїРїС‹ С„РѕСЂРјРёСЂСѓСЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё. Р‘РѕР№ РЅРµ РЅР°С‡РЅРµС‚СЃСЏ, РµСЃР»Рё СЃРѕР±СЂР°Р»РѕСЃСЊ РјРµРЅСЊС€Рµ 4-С… С‡РµР»РѕРІРµРє.<br>
+						  <a href="#" onclick="if(document.getElementById(\'haot\').style.display==\'\'){ document.getElementById(\'haot\').style.display=\'none\' }else{ document.getElementById(\'haot\').style.display=\'\'; } return false;">РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° С…Р°РѕС‚РёС‡РЅС‹Р№ Р±РѕР№</a>
 						  <form action="main.php?zayvka=1&r='.$_GET['r'].'&start_haot&rnd='.$code.'" method="post" style="margin:0px; padding:0px;">
 						  <div style="display:none;" id="haot">
 										  <br>
 										  <FIELDSET>
-											<LEGEND><strong>Подать заявку на хаотичный бой</strong> </LEGEND>
-											Начало боя   через
+											<LEGEND><strong>РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° С…Р°РѕС‚РёС‡РЅС‹Р№ Р±РѕР№</strong> </LEGEND>
+											РќР°С‡Р°Р»Рѕ Р±РѕСЏ   С‡РµСЂРµР·
 											<SELECT name="startime2">
-											<OPTION selected value="300">5 минут
-											  <OPTION value="600">10 минут
-											  <OPTION value="900">15 минут
-											  <OPTION value="1200">20 минут
-											  <OPTION value="1800">30 минут</OPTION>
+											<OPTION selected value="300">5 РјРёРЅСѓС‚
+											  <OPTION value="600">10 РјРёРЅСѓС‚
+											  <OPTION value="900">15 РјРёРЅСѓС‚
+											  <OPTION value="1200">20 РјРёРЅСѓС‚
+											  <OPTION value="1800">30 РјРёРЅСѓС‚</OPTION>
 											</SELECT>
-											Таймаут
+											РўР°Р№РјР°СѓС‚
 											<SELECT name="timeout">
-											  <OPTION selected value="1">1 мин.
-											  <OPTION value="2">2 мин.
-											  <OPTION value="3">3 мин.
-											  <OPTION value="4">4 мин.
-											  <OPTION value="5">5 мин.</OPTION>
+											  <OPTION selected value="1">1 РјРёРЅ.
+											  <OPTION value="2">2 РјРёРЅ.
+											  <OPTION value="3">3 РјРёРЅ.
+											  <OPTION value="4">4 РјРёРЅ.
+											  <OPTION value="5">5 РјРёРЅ.</OPTION>
 											</SELECT>
 											<BR>
-											Уровни бойцов     
+											РЈСЂРѕРІРЅРё Р±РѕР№С†РѕРІ   В В 
 											<SELECT name="levellogin1">
-											  <OPTION value="0">любой
-											  <OPTION value="3">только моего   уровня
-											  <OPTION selected value="6">мой уровень +/- 1</OPTION>
+											  <OPTION value="0">Р»СЋР±РѕР№
+											  <OPTION value="3">С‚РѕР»СЊРєРѕ РјРѕРµРіРѕ   СѓСЂРѕРІРЅСЏ
+											  <OPTION selected value="6">РјРѕР№ СѓСЂРѕРІРµРЅСЊ +/- 1</OPTION>
 											</SELECT>
 											<BR>
 											<BR>
-											Тип боя
+											РўРёРї Р±РѕСЏ
 											<SELECT name="k">
-											  <OPTION selected value="0">с оружием
-											  <OPTION value="1">кулачный</OPTION>
+											  <OPTION selected value="0">СЃ РѕСЂСѓР¶РёРµРј
+											  <OPTION value="1">РєСѓР»Р°С‡РЅС‹Р№</OPTION>
 											</SELECT>
 											<BR>
 											<INPUT type="checkbox" name="travma">
-											Бой без   правил (проигравшая сторона получает   инвалидность)<BR>
+											Р‘РѕР№ Р±РµР·   РїСЂР°РІРёР» (РїСЂРѕРёРіСЂР°РІС€Р°СЏ СЃС‚РѕСЂРѕРЅР° РїРѕР»СѓС‡Р°РµС‚   РёРЅРІР°Р»РёРґРЅРѕСЃС‚СЊ)<BR>
 											<INPUT type="checkbox" name="mut_clever">
-											Смертельные Раны   (увеличенный урон при повторных попаданиях)<BR>
+											РЎРјРµСЂС‚РµР»СЊРЅС‹Рµ Р Р°РЅС‹   (СѓРІРµР»РёС‡РµРЅРЅС‹Р№ СѓСЂРѕРЅ РїСЂРё РїРѕРІС‚РѕСЂРЅС‹С… РїРѕРїР°РґР°РЅРёСЏС…)<BR>
 											<INPUT type="checkbox" name="mut_hidden">
-											Невидимый Бой (не видно   противников ни в заявке, ни в бою. +5% опыта)<BR>
-											<INPUT value="Подать заявку" type="submit" name="open">
-					 
+											РќРµРІРёРґРёРјС‹Р№ Р‘РѕР№ (РЅРµ РІРёРґРЅРѕ   РїСЂРѕС‚РёРІРЅРёРєРѕРІ РЅРё РІ Р·Р°СЏРІРєРµ, РЅРё РІ Р±РѕСЋ. +5% РѕРїС‹С‚Р°)<BR>
+											<INPUT value="РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ" type="submit" name="open">
+					В 
 									  <BR>
-											Комментарий   к бою
+											РљРѕРјРјРµРЅС‚Р°СЂРёР№   Рє Р±РѕСЋ
 											<INPUT maxLength="40" size="40" name="cmt">
 										  </FIELDSET>
 										</DIV>
@@ -909,27 +909,27 @@ $r .= '</div></td></tr></table>';
 				}				
 			}elseif($r==6)
 			{
-				//текущие
-				echo 'Текущие бои...';
+				//С‚РµРєСѓС‰РёРµ
+				echo 'РўРµРєСѓС‰РёРµ Р±РѕРё...';
 			}elseif($r==7)
 			{
-				//завершенные
+				//Р·Р°РІРµСЂС€РµРЅРЅС‹Рµ
 				$btl = '';
 				$dt = time();
 				$slogin = $u->info['login'];
 				$see = '<TABLE width=100% cellspacing=0 cellpadding=0><TR>
-<TD valign=top>&nbsp;<A HREF="#">« Предыдущий день</A></TD>
-<TD valign=top align=center><H3>Записи о завершенных боях за '.date('d.m.Y',$dt).'</H3></TD>
-<TD  valign=top align=right><A HREF="#">Следующий день »</A>&nbsp;</TD>
+<TD valign=top>&nbsp;<A HREF="#">В« РџСЂРµРґС‹РґСѓС‰РёР№ РґРµРЅСЊ</A></TD>
+<TD valign=top align=center><H3>Р—Р°РїРёСЃРё Рѕ Р·Р°РІРµСЂС€РµРЅРЅС‹С… Р±РѕСЏС… Р·Р° '.date('d.m.Y',$dt).'</H3></TD>
+<TD  valign=top align=right><A HREF="#">РЎР»РµРґСѓСЋС‰РёР№ РґРµРЅСЊ В»</A>&nbsp;</TD>
 </TR><TR><TD colspan=3 align=center>
 <form method="POST" action="main.php?zayvka=1&r=7&rnd='.$code.'">
-Показать только бои персонажа: <INPUT TYPE=text NAME=filter value="'.$slogin.'"> за <INPUT TYPE=text NAME=logs size=12 value="'.date('d.m.Y',$dt).'"> <INPUT TYPE=submit value="фильтр!">
+РџРѕРєР°Р·Р°С‚СЊ С‚РѕР»СЊРєРѕ Р±РѕРё РїРµСЂСЃРѕРЅР°Р¶Р°: <INPUT TYPE=text NAME=filter value="'.$slogin.'"> Р·Р° <INPUT TYPE=text NAME=logs size=12 value="'.date('d.m.Y',$dt).'"> <INPUT TYPE=submit value="С„РёР»СЊС‚СЂ!">
 </form>
 </TD>
 </TR></TABLE>';
 				if($btl=='')
 				{
-					$see .= '<CENTER><BR><BR><B>В этот день не было боев, или же, летописец опять потерял свитки...</B><BR><BR><BR></CENTER><HR><BR>';
+					$see .= '<CENTER><BR><BR><B>Р’ СЌС‚РѕС‚ РґРµРЅСЊ РЅРµ Р±С‹Р»Рѕ Р±РѕРµРІ, РёР»Рё Р¶Рµ, Р»РµС‚РѕРїРёСЃРµС† РѕРїСЏС‚СЊ РїРѕС‚РµСЂСЏР» СЃРІРёС‚РєРё...</B><BR><BR><BR></CENTER><HR><BR>';
 				}else{
 					$see .= $btl;
 				}
@@ -938,13 +938,13 @@ $r .= '</div></td></tr></table>';
 			}else{
 				if((!isset($_GET['new_group']) && !isset($_POST['groupClick'])) || isset($zi['id']))
 				{
-					echo '<BR><BR><CENTER><B>Выберите раздел</B></CENTER>';
+					echo '<BR><BR><CENTER><B>Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР»</B></CENTER>';
 				}
 			}
 		}else{
 			if((!isset($_GET['new_group']) && !isset($_POST['groupClick'])) || isset($zi['id']))
 			{
-				echo '<BR><BR><CENTER><B>Выберите раздел</B></CENTER>';
+				echo '<BR><BR><CENTER><B>Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР»</B></CENTER>';
 			}
 		}
 	}
@@ -993,16 +993,16 @@ $r .= '</div></td></tr></table>';
 			$r = round(intval($_GET['r']));
 			if($r>=1 && $r<=5)
 			{
-				//Список заявок
+				//РЎРїРёСЃРѕРє Р·Р°СЏРІРѕРє
 				$i = 0;
 				$cl = mysql_query('SELECT * FROM `zayvki` WHERE `razdel` = "'.mysql_real_escape_string($r).'" AND `start` = "0" AND `cancel` = "0" AND `time` > "'.(time()-60*60*2).'" AND `city` = "'.$u->info['city'].'" ORDER BY `id` DESC');
 				$zvb = '';
 				if($r==4 || $r==5)
 				{
 						/*echo '<table cellspacing="0" cellpadding="0" align="right"><tr><td>
-						<FIELDSET><LEGEND>Показывать заявки</LEGEND>
-						&nbsp;<INPUT TYPE=radio ID=A1 name="all" value=0 checked> <LABEL FOR=A1>моего уровня</LABEL><BR>
-						&nbsp;<INPUT TYPE=radio ID=A2 name="all" value=1> <LABEL FOR=A2>все</LABEL>
+						<FIELDSET><LEGEND>РџРѕРєР°Р·С‹РІР°С‚СЊ Р·Р°СЏРІРєРё</LEGEND>
+						&nbsp;<INPUT TYPE=radio ID=A1 name="all" value=0 checked> <LABEL FOR=A1>РјРѕРµРіРѕ СѓСЂРѕРІРЅСЏ</LABEL><BR>
+						&nbsp;<INPUT TYPE=radio ID=A2 name="all" value=1> <LABEL FOR=A2>РІСЃРµ</LABEL>
 						</FIELDSET>
 						</td></tr></table><br>';*/
 				}
@@ -1010,7 +1010,7 @@ $r .= '</div></td></tr></table>';
 				{
 					if($pl['razdel']==5)
 					{
-						//Заявки хаотичного боя
+						//Р—Р°СЏРІРєРё С…Р°РѕС‚РёС‡РЅРѕРіРѕ Р±РѕСЏ
 						$tm = '';
 						$tmStart = floor(($pl['time']+$pl['time_start']-time())/6)/10;
 						$tmStart = $this->rzv($tmStart);
@@ -1034,23 +1034,23 @@ $r .= '</div></td></tr></table>';
 						
 						if($pl['invise']==1)
 						{
-							//невидимый бой
-							$tm = '<i>невидимый</i>';
-							$n1tv = ' <img src="http://img.xcombats.com/i/fighttypehidden0.gif" title="Невидимый">';
+							//РЅРµРІРёРґРёРјС‹Р№ Р±РѕР№
+							$tm = '<i>РЅРµРІРёРґРёРјС‹Р№</i>';
+							$n1tv = ' <img src="http://img.xcombats.com/i/fighttypehidden0.gif" title="РќРµРІРёРґРёРјС‹Р№">';
 						}
 						
-						$zvb .= ''.$rad.'<font class="date">'.date('H:i',$pl['time']).'</font> ('.$tm.') ('.$pl['min_lvl_1'].'-'.$pl['max_lvl_1'].') <IMG SRC="http://img.xcombats.com/i/fighttype'.$pl['type'].'.gif" WIDTH="20" HEIGHT="20" title="Хаотичный бой">'.$n1tv.' <font class="dsc"><i>Бой начнется через <B>'.$tmStart.'</B> мин., таймаут '.($pl['timeout']/60).' мин. </font></i><BR>';						
+						$zvb .= ''.$rad.'<font class="date">'.date('H:i',$pl['time']).'</font> ('.$tm.') ('.$pl['min_lvl_1'].'-'.$pl['max_lvl_1'].') <IMG SRC="http://img.xcombats.com/i/fighttype'.$pl['type'].'.gif" WIDTH="20" HEIGHT="20" title="РҐР°РѕС‚РёС‡РЅС‹Р№ Р±РѕР№">'.$n1tv.' <font class="dsc"><i>Р‘РѕР№ РЅР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· <B>'.$tmStart.'</B> РјРёРЅ., С‚Р°Р№РјР°СѓС‚ '.($pl['timeout']/60).' РјРёРЅ. </font></i><BR>';						
 						
 					}elseif($pl['razdel']==4)
 					{
-						//Заявки группового боя
+						//Р—Р°СЏРІРєРё РіСЂСѓРїРїРѕРІРѕРіРѕ Р±РѕСЏ
 						$tm1 = '';
 						$tm2 = '';
 						$tmStart = floor(($pl['time']+$pl['time_start']-time())/6)/10;
 						$tmStart = $this->rzv($tmStart);
 						
-						//Персонаж в заявке, подключаем ему противника
-								//Ищем апонента для групповых
+						//РџРµСЂСЃРѕРЅР°Р¶ РІ Р·Р°СЏРІРєРµ, РїРѕРґРєР»СЋС‡Р°РµРј РµРјСѓ РїСЂРѕС‚РёРІРЅРёРєР°
+								//РС‰РµРј Р°РїРѕРЅРµРЅС‚Р° РґР»СЏ РіСЂСѓРїРїРѕРІС‹С…
 								$rndo = rand(0,1000);
 								if($rndo < 250)
 								{
@@ -1071,7 +1071,7 @@ $r .= '</div></td></tr></table>';
 									}
 								}
 						
-						//генерируем команды
+						//РіРµРЅРµСЂРёСЂСѓРµРј РєРѕРјР°РЅРґС‹
 						$users = mysql_query('SELECT `u`.`id`,`u`.`login`,`u`.`level`,`u`.`align`,`u`.`clan`,`u`.`admin`,`st`.`team` FROM `users` AS `u` LEFT JOIN `stats` AS `st` ON `u`.`id` = `st`.`id` WHERE `st`.`zv` = "'.$pl['id'].'"');
 						while($s = mysql_fetch_array($users))
 						{
@@ -1080,14 +1080,14 @@ $r .= '</div></td></tr></table>';
 						
 						if($tm1=='')
 						{
-							$tm1 = 'группа пока не набрана';
+							$tm1 = 'РіСЂСѓРїРїР° РїРѕРєР° РЅРµ РЅР°Р±СЂР°РЅР°';
 						}else{
 							$tm1 = rtrim($tm1,', ');
 						}
 						
 						if($tm2=='')
 						{
-							$tm2 = 'группа пока не набрана';
+							$tm2 = 'РіСЂСѓРїРїР° РїРѕРєР° РЅРµ РЅР°Р±СЂР°РЅР°';
 						}else{
 							$tm2 = rtrim($tm2,', ');
 						}
@@ -1096,7 +1096,7 @@ $r .= '</div></td></tr></table>';
 						{
 							$rad = '<input type="radio" name="groupClick" id="groupClick" value="'.$pl['id'].'"> ';
 						}
-						$zvb .= ''.$rad.'<font class="date">'.date('H:i',$pl['time']).'</font> <B>'.$pl['tm1max'].' (</b>'.$pl['min_lvl_1'].'-'.$pl['max_lvl_1'].'<b>) на '.$pl['tm2max'].' (</b>'.$pl['min_lvl_2'].'-'.$pl['max_lvl_2'].'<b>)</B> ('.$tm1.') <font class="dsc"><i><span style=\'color:red; font-weight:bold;\'>против</span></font></i> ('.$tm2.') <IMG SRC="http://img.xcombats.com/i/fighttype'.$pl['type'].'.gif" WIDTH="20" HEIGHT="20" title="Групповой бой"> <font class="dsc"><i>Бой начнется через <B>'.$tmStart.'</B> мин., таймаут '.($pl['timeout']/60).' мин. </font></i><BR>';
+						$zvb .= ''.$rad.'<font class="date">'.date('H:i',$pl['time']).'</font> <B>'.$pl['tm1max'].' (</b>'.$pl['min_lvl_1'].'-'.$pl['max_lvl_1'].'<b>) РЅР° '.$pl['tm2max'].' (</b>'.$pl['min_lvl_2'].'-'.$pl['max_lvl_2'].'<b>)</B> ('.$tm1.') <font class="dsc"><i><span style=\'color:red; font-weight:bold;\'>РїСЂРѕС‚РёРІ</span></font></i> ('.$tm2.') <IMG SRC="http://img.xcombats.com/i/fighttype'.$pl['type'].'.gif" WIDTH="20" HEIGHT="20" title="Р“СЂСѓРїРїРѕРІРѕР№ Р±РѕР№"> <font class="dsc"><i>Р‘РѕР№ РЅР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· <B>'.$tmStart.'</B> РјРёРЅ., С‚Р°Р№РјР°СѓС‚ '.($pl['timeout']/60).' РјРёРЅ. </font></i><BR>';
 					}elseif($pl['razdel']>=1 && $pl['razdel']<=3)
 					{
 						$uz = mysql_fetch_array(mysql_query('SELECT `u`.`banned`,`u`.`id`,`u`.`login`,`u`.`align`,`u`.`clan`,`u`.`admin`,`u`.`city`,`u`.`room`,`u`.`online`,`u`.`level`,`u`.`battle`,`u`.`money`,`st`.* FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`zv`="'.$pl['id'].'" AND `st`.`team`="1" LIMIT 1'));
@@ -1114,7 +1114,7 @@ $r .= '</div></td></tr></table>';
 								
 								if(isset($uze['id']))
 								{									
-									$enm = ' против '.$u->microLogin($uze['id'],1).'';
+									$enm = ' РїСЂРѕС‚РёРІ '.$u->microLogin($uze['id'],1).'';
 								}
 								if($uz['banned']>0)
 								{
@@ -1125,9 +1125,9 @@ $r .= '</div></td></tr></table>';
 								$dp1 = '';
 								if($pl['money']>0)
 								{
-									$dp1 = ' Бой на деньги, ставка: <b>'.$u->round2($pl['money']).' кр.</b>';
+									$dp1 = ' Р‘РѕР№ РЅР° РґРµРЅСЊРіРё, СЃС‚Р°РІРєР°: <b>'.$u->round2($pl['money']).' РєСЂ.</b>';
 								}
-								$zvb .= '<input name="btl_go" '.$d1.' type="radio" value="'.$pl['id'].'" /> <font class="date">'.date('H:i',$pl['time']).'</font> '.$u->microLogin($uz['id'],1).' '.$enm.'  тип боя: <img src="http://img.xcombats.com/i/fighttype'.($pl['type']).'.gif"> (таймаут '.round($pl['timeout']/60).' мин.'.$dp1.')<br>';
+								$zvb .= '<input name="btl_go" '.$d1.' type="radio" value="'.$pl['id'].'" /> <font class="date">'.date('H:i',$pl['time']).'</font> '.$u->microLogin($uz['id'],1).' '.$enm.'  С‚РёРї Р±РѕСЏ: <img src="http://img.xcombats.com/i/fighttype'.($pl['type']).'.gif"> (С‚Р°Р№РјР°СѓС‚ '.round($pl['timeout']/60).' РјРёРЅ.'.$dp1.')<br>';
 								if($uz['banned']>0){	$zvb .= '</span>';	  }
 							}
 						}
@@ -1136,11 +1136,11 @@ $r .= '</div></td></tr></table>';
 				}
 				if($i==0)
 				{
-					//заявок нет
+					//Р·Р°СЏРІРѕРє РЅРµС‚
 				}else{
 					if(!isset($zi['id']))
 					{
-						echo '<div style="float:left;"><form method="post" style="margin:0px;padding:0px;" action="main.php?zayvka=1&r='.$r.'&rnd='.$code.'"><input name="" type="submit" value="Принять вызов" /><br>'.$zvb.'<input style="margin-top:1px;" type="submit" value="Принять вызов" /></form></div>';
+						echo '<div style="float:left;"><form method="post" style="margin:0px;padding:0px;" action="main.php?zayvka=1&r='.$r.'&rnd='.$code.'"><input name="" type="submit" value="РџСЂРёРЅСЏС‚СЊ РІС‹Р·РѕРІ" /><br>'.$zvb.'<input style="margin-top:1px;" type="submit" value="РџСЂРёРЅСЏС‚СЊ РІС‹Р·РѕРІ" /></form></div>';
 					}else{
 						echo $zvb;
 					}
@@ -1161,30 +1161,30 @@ $r .= '</div></td></tr></table>';
 				{
 					if($z['razdel']>=1 && $z['razdel']<=3)
 					{
-						//новички, физы, договорные
+						//РЅРѕРІРёС‡РєРё, С„РёР·С‹, РґРѕРіРѕРІРѕСЂРЅС‹Рµ
 						$uz1 = mysql_fetch_array(mysql_query('SELECT `u`.`id`,`u`.`login`,`u`.`align`,`u`.`clan`,`u`.`admin`,`u`.`city`,`u`.`room`,`u`.`online`,`u`.`level`,`u`.`battle`,`u`.`money`,`st`.* FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`zv`="'.$z['id'].'" AND `st`.`team`="1" LIMIT 1'));
 						if(isset($uz1['id']))
 						{
 							$uz2 = mysql_fetch_array(mysql_query('SELECT `u`.`id`,`u`.`login`,`u`.`align`,`u`.`clan`,`u`.`admin`,`u`.`city`,`u`.`room`,`u`.`online`,`u`.`level`,`u`.`battle`,`u`.`money`,`st`.* FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`zv`="'.$z['id'].'" AND `st`.`team`="2" LIMIT 1'));
 							if($u->info['hpNow']<$u->stats['hpAll']/100*30 && ($z['razdel']>=1 || $z['razdel']<=3))
 							{
-								$this->error = 'Вы еще слишком ослаблены чтобы начать новый бой';
+								$this->error = 'Р’С‹ РµС‰Рµ СЃР»РёС€РєРѕРј РѕСЃР»Р°Р±Р»РµРЅС‹ С‡С‚РѕР±С‹ РЅР°С‡Р°С‚СЊ РЅРѕРІС‹Р№ Р±РѕР№';
 								$az = 0;
 							}elseif($uz1['clan']==$u->info['clan'] && $u->info['clan']!=0)
 							{
-								$this->error = 'Вы не можете сражаться против сокланов';
+								$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СЃСЂР°Р¶Р°С‚СЊСЃСЏ РїСЂРѕС‚РёРІ СЃРѕРєР»Р°РЅРѕРІ';
 							}elseif($z['money']>0 && $u->info['level']<4)
 							{
-								$this->error = 'Бои на деньги проводятся с 4-го уровня';
+								$this->error = 'Р‘РѕРё РЅР° РґРµРЅСЊРіРё РїСЂРѕРІРѕРґСЏС‚СЃСЏ СЃ 4-РіРѕ СѓСЂРѕРІРЅСЏ';
 							}elseif($z['withUser']!='' && $filter->mystr($u->info['login'])!=$filter->mystr($z['withUser']) && $z['razdel']==3)
 							{
-								$this->error = 'Вы не можете принять эту заявку';
+								$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїСЂРёРЅСЏС‚СЊ СЌС‚Сѓ Р·Р°СЏРІРєСѓ';
 							}elseif($z['money']>0 && $z['money']>$u->info['money'])
 							{
-								$this->error = 'У Вас недостаточно денег, чтобы принять эту заявку';
+								$this->error = 'РЈ Р’Р°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі, С‡С‚РѕР±С‹ РїСЂРёРЅСЏС‚СЊ СЌС‚Сѓ Р·Р°СЏРІРєСѓ';
 							}elseif($u->stats['hpNow']<ceil($u->stats['hpMax']/100*30))
 							{
-								$this->error = 'Вы слишком ослаблены, восстановитесь';
+								$this->error = 'Р’С‹ СЃР»РёС€РєРѕРј РѕСЃР»Р°Р±Р»РµРЅС‹, РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚РµСЃСЊ';
 							}elseif(!isset($uz2['id']))
 							{
 								$upd = mysql_query('UPDATE `stats` SET `zv` = "'.$z['id'].'",`team` = "2" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -1204,30 +1204,30 @@ $r .= '</div></td></tr></table>';
 									{
 										$ca = '<img src="http://img.xcombats.com/i/align/align'.$uz1['align'].'.gif">'.$ca;
 									}
-									$this->error = 'Ожидаем подтверждения боя от '.$ca.' '.$uz1['login'].' ['.$uz1['level'].']<a href="info/'.$uz1['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="Инф. о '.$uz1['login'].'"></a>';
+									$this->error = 'РћР¶РёРґР°РµРј РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ Р±РѕСЏ РѕС‚ '.$ca.' '.$uz1['login'].' ['.$uz1['level'].']<a href="info/'.$uz1['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="РРЅС„. Рѕ '.$uz1['login'].'"></a>';
 									$sa = '';
 									if($u->info['sex']==2)
 									{
-										$sa = 'а';
+										$sa = 'Р°';
 									}
-									$text = ' [login:'.$u->info['login'].'] принял'.$sa.' вашу заявку на бой.[reflesh_main_zv_priem:'.$u->info['id'].']';
+									$text = ' [login:'.$u->info['login'].'] РїСЂРёРЅСЏР»'.$sa.' РІР°С€Сѓ Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№.[reflesh_main_zv_priem:'.$u->info['id'].']';
 									mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('".$uz1['city']."','".$uz1['room']."','','".$uz1['login']."','".$text."','".time()."','10','0')");
 									$zi = $z;
 									$u->info['zv'] = $z['id'];
 									$u->info['team'] = 2;
 								}else{
-									$this->error = 'Невозможно принять заявку.';
+									$this->error = 'РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРёРЅСЏС‚СЊ Р·Р°СЏРІРєСѓ.';
 								}
 							}else{
-								$this->error = 'Заявку уже кто-то принял до вас.';
+								$this->error = 'Р—Р°СЏРІРєСѓ СѓР¶Рµ РєС‚Рѕ-С‚Рѕ РїСЂРёРЅСЏР» РґРѕ РІР°СЃ.';
 							}
 						}else{
-							$this->error = 'Заявка на бой заблокирована.';
+							$this->error = 'Р—Р°СЏРІРєР° РЅР° Р±РѕР№ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅР°.';
 						}
 					}elseif($z['razdel']==4 && $u->info['level']>1)
 					{
 						$tm = 0;
-						//групповые
+						//РіСЂСѓРїРїРѕРІС‹Рµ
 						if(isset($_GET['tm1']))
 						{
 							$tm = 1;
@@ -1235,7 +1235,7 @@ $r .= '</div></td></tr></table>';
 						{
 							$tm = 2;
 						}else{
-							$this->error = 'Что-то здесь не так';	
+							$this->error = 'Р§С‚Рѕ-С‚Рѕ Р·РґРµСЃСЊ РЅРµ С‚Р°Рє';	
 						}
 						
 						if($tm!=0)
@@ -1259,44 +1259,44 @@ $r .= '</div></td></tr></table>';
 							}
 							if($cln>0)
 							{
-								$this->error = 'Вы не можете сражаться против сокланов';
+								$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СЃСЂР°Р¶Р°С‚СЊСЃСЏ РїСЂРѕС‚РёРІ СЃРѕРєР»Р°РЅРѕРІ';
 							}elseif($z['tm'.$t1.'max']>$tmmax)
 							{
 								if($z['min_lvl_'.$t1]>$u->info['level'] || $z['max_lvl_'.$t1]<$u->info['level'])
 								{
-									$this->error = 'Вы не подходите по уровню, за эту команду могут зайти персонажи '.$z['min_lvl_'.$t1].' - '.$z['max_lvl_'.$t1].' уровня';
+									$this->error = 'Р’С‹ РЅРµ РїРѕРґС…РѕРґРёС‚Рµ РїРѕ СѓСЂРѕРІРЅСЋ, Р·Р° СЌС‚Сѓ РєРѕРјР°РЅРґСѓ РјРѕРіСѓС‚ Р·Р°Р№С‚Рё РїРµСЂСЃРѕРЅР°Р¶Рё '.$z['min_lvl_'.$t1].' - '.$z['max_lvl_'.$t1].' СѓСЂРѕРІРЅСЏ';
 								}elseif($u->stats['hpNow']<ceil($u->stats['hpMax']/100*30))
 								{
-									$this->error = 'Вы слишком ослаблены, восстановитесь';
+									$this->error = 'Р’С‹ СЃР»РёС€РєРѕРј РѕСЃР»Р°Р±Р»РµРЅС‹, РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚РµСЃСЊ';
 								}else{
 									$upd = mysql_query('UPDATE `stats` SET `zv` = "'.$z['id'].'",`team` = "'.mysql_real_escape_string((int)$t1).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 									if(!$upd)
 									{
-										$this->error = 'Ошибка приема заявки...';
+										$this->error = 'РћС€РёР±РєР° РїСЂРёРµРјР° Р·Р°СЏРІРєРё...';
 									}else{
-										$this->error = 'Вы приняли групповой бой...';
+										$this->error = 'Р’С‹ РїСЂРёРЅСЏР»Рё РіСЂСѓРїРїРѕРІРѕР№ Р±РѕР№...';
 										$zi = $z;
 										$u->info['zv'] = $z['id'];
 										$u->info['team'] = mysql_real_escape_string((int)$t1);
 									}
 								}
 							}else{
-								$this->error = 'Группа уже набрана ('.($z['tm'.$t1.'max']-$tmmax).')';
+								$this->error = 'Р“СЂСѓРїРїР° СѓР¶Рµ РЅР°Р±СЂР°РЅР° ('.($z['tm'.$t1.'max']-$tmmax).')';
 							}
 						}
 					}elseif($z['razdel']==5 && $u->info['level']>1)
 					{
-						//хаотичные
+						//С…Р°РѕС‚РёС‡РЅС‹Рµ
 						if($z['min_lvl_1']>$u->info['level'] || $z['max_lvl_1']<$u->info['level'])
 						{
-							$this->error = 'Вы не подходите по уровню, за эту команду могут зайти персонажи '.$z['min_lvl_1'].' - '.$z['max_lvl_1'].' уровня';
+							$this->error = 'Р’С‹ РЅРµ РїРѕРґС…РѕРґРёС‚Рµ РїРѕ СѓСЂРѕРІРЅСЋ, Р·Р° СЌС‚Сѓ РєРѕРјР°РЅРґСѓ РјРѕРіСѓС‚ Р·Р°Р№С‚Рё РїРµСЂСЃРѕРЅР°Р¶Рё '.$z['min_lvl_1'].' - '.$z['max_lvl_1'].' СѓСЂРѕРІРЅСЏ';
 						}elseif($u->stats['hpNow']<ceil($u->stats['hpMax']/100*30))
 						{
-							$this->error = 'Вы слишком ослаблены, восстановитесь';
+							$this->error = 'Р’С‹ СЃР»РёС€РєРѕРј РѕСЃР»Р°Р±Р»РµРЅС‹, РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚РµСЃСЊ';
 						}else{
 							$t1 = 1;
 							
-							/* считаем баланс */
+							/* СЃС‡РёС‚Р°РµРј Р±Р°Р»Р°РЅСЃ */
 							if($z['tm1']>$z['tm2'])
 							{
 								$t1 = 2;
@@ -1311,7 +1311,7 @@ $r .= '</div></td></tr></table>';
 							{
 								$nxtID = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `stats` WHERE `zv` = "'.$z['id'].'"'));
 								$nxtID = $nxtID[0];
-								$u->info['login2'] = 'Боец ('.($nxtID+1).')';
+								$u->info['login2'] = 'Р‘РѕРµС† ('.($nxtID+1).')';
 							}else{
 								$u->info['login2'] = '';
 							}
@@ -1323,11 +1323,11 @@ $r .= '</div></td></tr></table>';
 							$upd = mysql_query('UPDATE `stats` SET `zv` = "'.$z['id'].'",`team` = "'.$t1.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 							if(!$upd)
 							{
-								$this->error = 'Ошибка приема заявки...';
+								$this->error = 'РћС€РёР±РєР° РїСЂРёРµРјР° Р·Р°СЏРІРєРё...';
 							}else{
 								mysql_query('UPDATE `users` SET `login2` = "'.$u->info['login2'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 								mysql_query('UPDATE `zayvki` SET `tm1` = "'.$z['tm1'].'", `tm2` = "'.$z['tm2'].'" WHERE `id` = "'.$z['id'].'" LIMIT 1');
-								$this->error = 'Вы приняли хаотичный бой...';
+								$this->error = 'Р’С‹ РїСЂРёРЅСЏР»Рё С…Р°РѕС‚РёС‡РЅС‹Р№ Р±РѕР№...';
 								$zi = $z;
 								$u->info['zv'] = $z['id'];
 								$u->info['team'] = mysql_real_escape_string((int)$t1);
@@ -1335,15 +1335,15 @@ $r .= '</div></td></tr></table>';
 						}
 					}
 				}else{
-					$this->error = 'Заявка на бой не найдена.';
+					$this->error = 'Р—Р°СЏРІРєР° РЅР° Р±РѕР№ РЅРµ РЅР°Р№РґРµРЅР°.';
 				}						
 			}
 		}else{
-			$this->error = 'Вы не можете принять бой. Сначала отзовите свою заявку.';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїСЂРёРЅСЏС‚СЊ Р±РѕР№. РЎРЅР°С‡Р°Р»Р° РѕС‚Р·РѕРІРёС‚Рµ СЃРІРѕСЋ Р·Р°СЏРІРєСѓ.';
 		}
 	}	
 }
 
 $zv = new zayvki;
-$zv->test(); //проверяем заявки
+$zv->test(); //РїСЂРѕРІРµСЂСЏРµРј Р·Р°СЏРІРєРё
 ?>

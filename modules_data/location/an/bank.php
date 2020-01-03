@@ -4,14 +4,14 @@ if(!defined('GAME'))
 	die();
 }
 	if(!function_exists('send_mime_mail')) {
-		function send_mime_mail($name_from, // имя отправителя
-						   $email_from, // email отправителя
-						   $name_to, // имя получателя
-						   $email_to, // email получателя
-						   $data_charset, // кодировка переданных данных
-						   $send_charset, // кодировка письма
-						   $subject, // тема письма
-						   $body // текст письма
+		function send_mime_mail($name_from, // РёРјСЏ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+						   $email_from, // email РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+						   $name_to, // РёРјСЏ РїРѕР»СѓС‡Р°С‚РµР»СЏ
+						   $email_to, // email РїРѕР»СѓС‡Р°С‚РµР»СЏ
+						   $data_charset, // РєРѕРґРёСЂРѕРІРєР° РїРµСЂРµРґР°РЅРЅС‹С… РґР°РЅРЅС‹С…
+						   $send_charset, // РєРѕРґРёСЂРѕРІРєР° РїРёСЃСЊРјР°
+						   $subject, // С‚РµРјР° РїРёСЃСЊРјР°
+						   $body // С‚РµРєСЃС‚ РїРёСЃСЊРјР°
 						   )
 		   {
 		  $to = mime_header_encode($name_to, $data_charset, $send_charset)
@@ -39,7 +39,7 @@ if(!defined('GAME'))
 if($u->room['file']=='an/bank')
 {
 	$noc = 60; //120 kr = 1 ekr.
-	$con = 20; //1 екр. = 30 кр.
+	$con = 20; //1 РµРєСЂ. = 30 РєСЂ.
 	function getNum($v)
 	{
 		$plid = $v;
@@ -79,29 +79,29 @@ if($u->room['file']=='an/bank')
 		$bank = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$u->info['id'].'" AND `id` = "'.mysql_real_escape_string((int)$_POST['bank']).'" LIMIT 1'));
 		if(!isset($bank['id']))
 		{
-			$re2 = 'Неверный номер счета.';
+			$re2 = 'РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЃС‡РµС‚Р°.';
 		}elseif($bank['pass']!=$_POST['pass'])
 		{
 			$pl = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `time` > "'.(time()-60*60).'" AND `vars` = "bank_bad_pass_'.mysql_real_escape_string($bank['id']).'" LIMIT 5'));
 			if($pl[0]>=3)
 			{
-				$re2 = 'Ваш счет был заблокирован на 1 час';
+				$re2 = 'Р’Р°С€ СЃС‡РµС‚ Р±С‹Р» Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ РЅР° 1 С‡Р°СЃ';
 			}else{
 				if($pl[0]==0)
 				{
-					$re2 = 'Неверный номер счета или пароль. Если вы трижды введете неверный номер счета или пароль, счет будет заблокирован на час';
+					$re2 = 'РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЃС‡РµС‚Р° РёР»Рё РїР°СЂРѕР»СЊ. Р•СЃР»Рё РІС‹ С‚СЂРёР¶РґС‹ РІРІРµРґРµС‚Рµ РЅРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЃС‡РµС‚Р° РёР»Рё РїР°СЂРѕР»СЊ, СЃС‡РµС‚ Р±СѓРґРµС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ РЅР° С‡Р°СЃ';
 				}else{
-					$pp = array(0=>'ок',1=>'ка',2=>'ки',3=>'ки');
-					$re2 = 'Неверный номер счета или пароль. У вас осталось '.(3-$pl[0]).' попыт'.$pp[3-$pl[0]].', в противном случаи счет будет заблокирован на час';
+					$pp = array(0=>'РѕРє',1=>'РєР°',2=>'РєРё',3=>'РєРё');
+					$re2 = 'РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЃС‡РµС‚Р° РёР»Рё РїР°СЂРѕР»СЊ. РЈ РІР°СЃ РѕСЃС‚Р°Р»РѕСЃСЊ '.(3-$pl[0]).' РїРѕРїС‹С‚'.$pp[3-$pl[0]].', РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рё СЃС‡РµС‚ Р±СѓРґРµС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ РЅР° С‡Р°СЃ';
 				}
 				mysql_query('INSERT INTO `actions` (`uid`,`time`,`city`,`room`,`vars`,`ip`) VALUES ("'.$u->info['id'].'","'.time().'","'.$u->info['city'].'","'.$u->info['room'].'","bank_bad_pass_'.mysql_real_escape_string($bank['id']).'","'.mysql_real_escape_string($_SERVER['HTTP_X_REAL_IP']).'")');
 			}
 		}else{
 			
 			if($u->info['allLock'] > time()) {
-				echo '<script>setTimeout(function(){alert("Вам запрещено пользоваться услугами банка до '.date('d.m.y H:i',$u->info['allLock']).'")},250);</script>';
+				echo '<script>setTimeout(function(){alert("Р’Р°Рј Р·Р°РїСЂРµС‰РµРЅРѕ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СѓСЃР»СѓРіР°РјРё Р±Р°РЅРєР° РґРѕ '.date('d.m.y H:i',$u->info['allLock']).'")},250);</script>';
 			}else{			
-				//вошли!
+				//РІРѕС€Р»Рё!
 				$bank['useNow'] = time()+12*60*60;
 				mysql_query('UPDATE `bank` SET `useNow` = "0" WHERE `id` != "'.$bank['id'].'" AND `uid` = "'.$u->info['id'].'" AND `useNow`!="0" LIMIT 1');
 				mysql_query('UPDATE `bank` SET `useNow` = "'.$bank['useNow'].'" WHERE `id` = "'.$bank['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
@@ -115,33 +115,33 @@ if($u->room['file']=='an/bank')
 		$b_pass = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$u->info['id'].'" AND `id` = "'.mysql_real_escape_string(getNumId($_GET['schet'])).'" ORDER BY `id` DESC LIMIT 1'));
 		if($b_pass['repass'] >= time())
 		{
-			$re2 = 'Номера счетов и пароли к ним можно выслать только один раз в сутки';
+			$re2 = 'РќРѕРјРµСЂР° СЃС‡РµС‚РѕРІ Рё РїР°СЂРѕР»Рё Рє РЅРёРј РјРѕР¶РЅРѕ РІС‹СЃР»Р°С‚СЊ С‚РѕР»СЊРєРѕ РѕРґРёРЅ СЂР°Р· РІ СЃСѓС‚РєРё';
 		}else{
 			mysql_query('INSERT INTO `actions` (`uid`,`time`,`city`,`room`,`vars`,`ip`) VALUES ("'.$u->info['id'].'","'.time().'","'.$u->info['city'].'","'.$u->info['room'].'","bank_res","'.mysql_real_escape_string($_SERVER['HTTP_X_REAL_IP']).'")');
-			$re2 = 'Выслан номер счета и пароль на email, указанный в анкете';
+			$re2 = 'Р’С‹СЃР»Р°РЅ РЅРѕРјРµСЂ СЃС‡РµС‚Р° Рё РїР°СЂРѕР»СЊ РЅР° email, СѓРєР°Р·Р°РЅРЅС‹Р№ РІ Р°РЅРєРµС‚Рµ';
 			mysql_query('UPDATE `bank` SET `repass` = "'.(time()+24*3600).'" WHERE `id` = "'.$b_pass['id'].'" LIMIT 1');
-			send_mime_mail('Бойцовский Клуб - Support',
+			send_mime_mail('Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± - Support',
                'support@xcombats.com',
                ''.$u->info['login'].'',
                $u->info['mail'],
-               'CP1251',  // кодировка, в которой находятся передаваемые строки
-               'KOI8-R', // кодировка, в которой будет отправлено письмо
-               'Восстановление пароля от счета в банке персонажа '.$u->info['login'].'',
-               "Номер счета: ".getNum($b_pass['id'])."<br>Пароль: ".$b_pass['pass'].'<br><br>С уважением,<br>Администрация Бойцовского Клуба');
+               'CP1251',  // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґСЏС‚СЃСЏ РїРµСЂРµРґР°РІР°РµРјС‹Рµ СЃС‚СЂРѕРєРё
+               'KOI8-R', // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ
+               'Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ РѕС‚ СЃС‡РµС‚Р° РІ Р±Р°РЅРєРµ РїРµСЂСЃРѕРЅР°Р¶Р° '.$u->info['login'].'',
+               "РќРѕРјРµСЂ СЃС‡РµС‚Р°: ".getNum($b_pass['id'])."<br>РџР°СЂРѕР»СЊ: ".$b_pass['pass'].'<br><br>РЎ СѓРІР°Р¶РµРЅРёРµРј,<br>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°');
 			
 		}
 	}elseif(isset($_GET['open']) && !isset($u->bank['id']))
 	{
 		if( $_POST['rdn01'] == 2 && ($u->info['level'] >= 8 || $u->info['money4'] < 15 )) {
-			$re2 = 'Недостаточно зубов!';
+			$re2 = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р·СѓР±РѕРІ!';
 		}elseif($u->info['money']>=3 || ($u->info['level'] < 8 && $u->info['money4'] >= 15 ))
 		{
 			if( $_POST['pass1'] == '' || $_POST['pass1'] == ' ' ) {
-				$re2 = 'Вы не указали пароль!';
+				$re2 = 'Р’С‹ РЅРµ СѓРєР°Р·Р°Р»Рё РїР°СЂРѕР»СЊ!';
 			}elseif( $_POST['pass1'] != $_POST['pass2'] ) {
-				$re2 = 'Пароли не совпадают!';
+				$re2 = 'РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚!';
 			}elseif( $u->info['money'] - 3 < 0 && $_POST['rdn01'] != 2 ) {
-				$re2 = 'У вас недостаточно кр.';
+				$re2 = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂ.';
 			}elseif($u->info['align']!=2)
 			{
 				$pass = rand(10000,91191);
@@ -156,19 +156,19 @@ if($u->room['file']=='an/bank')
 						$u->info['money'] -= 3;
 					}
 					$upd = mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'",`money4` = "'.$u->info['money4'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-					$re2 = 'Счет №<b>'.getNum($bank).'</b> был успешно открыт.<br>Пароль от счета: <b>'.$pass.'</b><br><small><br>(Сменить пароль можно в разделе "Управление счетом" после авторизации)';
-					$u->addDelo(3,$u->info['id'],'Вы успешно открыли счет №'.getNum($bank).'',time(),$u->info['city'],'Bank.System',3,0,'');
+					$re2 = 'РЎС‡РµС‚ в„–<b>'.getNum($bank).'</b> Р±С‹Р» СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹С‚.<br>РџР°СЂРѕР»СЊ РѕС‚ СЃС‡РµС‚Р°: <b>'.$pass.'</b><br><small><br>(РЎРјРµРЅРёС‚СЊ РїР°СЂРѕР»СЊ РјРѕР¶РЅРѕ РІ СЂР°Р·РґРµР»Рµ "РЈРїСЂР°РІР»РµРЅРёРµ СЃС‡РµС‚РѕРј" РїРѕСЃР»Рµ Р°РІС‚РѕСЂРёР·Р°С†РёРё)';
+					$u->addDelo(3,$u->info['id'],'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹Р»Рё СЃС‡РµС‚ в„–'.getNum($bank).'',time(),$u->info['city'],'Bank.System',3,0,'');
 				}else{
-					$re2 = 'Банк отказал в получении банковского счета.';
+					$re2 = 'Р‘Р°РЅРє РѕС‚РєР°Р·Р°Р» РІ РїРѕР»СѓС‡РµРЅРёРё Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р°.';
 				}				
 			}else{
-				$re2 = 'Хаосники не могут создавать новые счета в банке.';
+				$re2 = 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ СЃРѕР·РґР°РІР°С‚СЊ РЅРѕРІС‹Рµ СЃС‡РµС‚Р° РІ Р±Р°РЅРєРµ.';
 			}
 		}else{
 			if( $u->info['level'] < 8 ) {
-				$re2 = 'Для открытия счета необходимо иметь при себе <b>3.00 кр.</b> или <b>'.$u->zuby(15).'</b>';
+				$re2 = 'Р”Р»СЏ РѕС‚РєСЂС‹С‚РёСЏ СЃС‡РµС‚Р° РЅРµРѕР±С…РѕРґРёРјРѕ РёРјРµС‚СЊ РїСЂРё СЃРµР±Рµ <b>3.00 РєСЂ.</b> РёР»Рё <b>'.$u->zuby(15).'</b>';
 			}else{
-				$re2 = 'Для открытия счета необходимо иметь при себе <b>3.00 кр.</b>';
+				$re2 = 'Р”Р»СЏ РѕС‚РєСЂС‹С‚РёСЏ СЃС‡РµС‚Р° РЅРµРѕР±С…РѕРґРёРјРѕ РёРјРµС‚СЊ РїСЂРё СЃРµР±Рµ <b>3.00 РєСЂ.</b>';
 			}
 		}
 	}elseif(isset($_GET['exit']) && isset($u->bank['id']))
@@ -187,7 +187,7 @@ if($u->room['file']=='an/bank')
 		{
 			if(isset($_POST['transfer_kredit2']) && $u->info['admin']>0)
 			{
-				//перевод екредитов с одного счета на другой
+				//РїРµСЂРµРІРѕРґ РµРєСЂРµРґРёС‚РѕРІ СЃ РѕРґРЅРѕРіРѕ СЃС‡РµС‚Р° РЅР° РґСЂСѓРіРѕР№
 				$ub = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `id` = "'.mysql_real_escape_string((int)$_POST['num2']).'" LIMIT 1'));
 				if(isset($ub['id']) && $ub['id']!=$u->bank['id'])
 				{
@@ -202,7 +202,7 @@ if($u->room['file']=='an/bank')
 						{
 							if($mn<0.01 || $mn>1000000000)
 							{
-								$re2 = 'Неверно указана сумма';
+								$re2 = 'РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅР° СЃСѓРјРјР°';
 							}else{
 								$upd = mysql_query('UPDATE `bank` SET `money2` = "'.mysql_real_escape_string($u->bank['money2']-$mn).'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
 								if($upd)
@@ -214,10 +214,10 @@ if($u->room['file']=='an/bank')
 									mysql_query('UPDATE `users` SET `frg` = `frg` + '.floor($mn).' WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 									
 									mysql_query('UPDATE `bank` SET `money2` = "'.mysql_real_escape_string($ub['money2']).'" WHERE `id` = "'.$ub['id'].'" LIMIT 1');
-									$re2 = 'Вы удачно перевели <b>'.($mn-$prc).' екр.</b> (комиссия <b>'.$prc.' екр.</b>) на счет №'.getNum($ub['id']).' персонажу &quot;<b>'.$ut['login'].'</b>&quot;';
-									$u->addDelo(3,$ut['id'],'Получено <b>'.($mn-$prc).' екр.</b> со счета №'.getNum($u->bank['id']).' от персонажа &quot;'.$u->info['login'].'&quot;, комиссия <b>'.$prc.' екр.</b> <i>(Итого: '.$ub['money1'].' кр., '.$ub['money2'].' екр.)</i>',time(),$ut['city'],'Bank.System',mysql_real_escape_string($mn-$prc),0,$ub['id']);
-									$u->addDelo(3,$u->info['id'],'Передано <b>'.($mn-$prc).' екр.</b> на счет №'.getNum($ub['id']).' персонажу &quot;'.$ut['login'].'&quot;, комиссия <b>'.$prc.' екр.</b> <i>(Итого: '.$u->bank['money1'].' кр., '.$u->bank['money2'].' екр.)</i>',time(),$u->info['city'],'Bank.System',0,mysql_real_escape_string($mn),$u->bank['id']);
-									$log = '&quot;'.$u->info['login'].'&quot;&nbsp;['.$u->info['level'].'] перевел со своего банковского счета №'.$u->bank['id'].' на счет №'.$ub['id'].' к персонажу &quot;'.$ut['login'].'&quot;&nbsp;['.$ut['level'].'] '.($mn-$prc).' екр.';
+									$re2 = 'Р’С‹ СѓРґР°С‡РЅРѕ РїРµСЂРµРІРµР»Рё <b>'.($mn-$prc).' РµРєСЂ.</b> (РєРѕРјРёСЃСЃРёСЏ <b>'.$prc.' РµРєСЂ.</b>) РЅР° СЃС‡РµС‚ в„–'.getNum($ub['id']).' РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;<b>'.$ut['login'].'</b>&quot;';
+									$u->addDelo(3,$ut['id'],'РџРѕР»СѓС‡РµРЅРѕ <b>'.($mn-$prc).' РµРєСЂ.</b> СЃРѕ СЃС‡РµС‚Р° в„–'.getNum($u->bank['id']).' РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$u->info['login'].'&quot;, РєРѕРјРёСЃСЃРёСЏ <b>'.$prc.' РµРєСЂ.</b> <i>(РС‚РѕРіРѕ: '.$ub['money1'].' РєСЂ., '.$ub['money2'].' РµРєСЂ.)</i>',time(),$ut['city'],'Bank.System',mysql_real_escape_string($mn-$prc),0,$ub['id']);
+									$u->addDelo(3,$u->info['id'],'РџРµСЂРµРґР°РЅРѕ <b>'.($mn-$prc).' РµРєСЂ.</b> РЅР° СЃС‡РµС‚ в„–'.getNum($ub['id']).' РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$ut['login'].'&quot;, РєРѕРјРёСЃСЃРёСЏ <b>'.$prc.' РµРєСЂ.</b> <i>(РС‚РѕРіРѕ: '.$u->bank['money1'].' РєСЂ., '.$u->bank['money2'].' РµРєСЂ.)</i>',time(),$u->info['city'],'Bank.System',0,mysql_real_escape_string($mn),$u->bank['id']);
+									$log = '&quot;'.$u->info['login'].'&quot;&nbsp;['.$u->info['level'].'] РїРµСЂРµРІРµР» СЃРѕ СЃРІРѕРµРіРѕ Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р° в„–'.$u->bank['id'].' РЅР° СЃС‡РµС‚ в„–'.$ub['id'].' Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$ut['login'].'&quot;&nbsp;['.$ut['level'].'] '.($mn-$prc).' РµРєСЂ.';
 									$u->addDelo(1,$u->info['id'],$log,time(),$u->info['city'],'Bank.System',0,0,'');
 									$u->addDelo(1,$ut['id'],$log,time(),$ut['city'],'Bank.System',0,0,'');
 									if($ut['id']!=$u->info['id'])
@@ -227,26 +227,26 @@ if($u->room['file']=='an/bank')
 										{
 											$alg = '<img src=http://img.xcombats.com/i/align/align50.gif >';
 										}
-										$text = '&quot;'.$alg.'[login:'.$u->info['login'].']&quot; перевел'.($u->info['sex']==0?"":"а").' вам <b>'.($mn-$prc).' екр.</b> со своего банковского счета №'.getNum($u->bank['id']).' на ваш банковский счет №'.getNum($ub['id']).'.';
+										$text = '&quot;'.$alg.'[login:'.$u->info['login'].']&quot; РїРµСЂРµРІРµР»'.($u->info['sex']==0?"":"Р°").' РІР°Рј <b>'.($mn-$prc).' РµРєСЂ.</b> СЃРѕ СЃРІРѕРµРіРѕ Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р° в„–'.getNum($u->bank['id']).' РЅР° РІР°С€ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.getNum($ub['id']).'.';
 										
 										mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES ('".$ut['city']."','".$ut['room']."','','".$ut['login']."','".$text."','".time()."','12','0','1')");
 									}
 								}else{
-									$re2 = 'Не удалось выполнить операцию';
+									$re2 = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїРѕР»РЅРёС‚СЊ РѕРїРµСЂР°С†РёСЋ';
 								}
 							}
 						}else{
-							$re2 = 'У вас нет <b>'.$mn.' екр.</b> на счете';
+							$re2 = 'РЈ РІР°СЃ РЅРµС‚ <b>'.$mn.' РµРєСЂ.</b> РЅР° СЃС‡РµС‚Рµ';
 						}
 					}else{
-						$re2 = 'Нельзя перевести кредиты на этот счет';
+						$re2 = 'РќРµР»СЊР·СЏ РїРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹ РЅР° СЌС‚РѕС‚ СЃС‡РµС‚';
 					}
 				}else{
-					$re2 = 'Нельзя перевести кредиты на этот счет';
+					$re2 = 'РќРµР»СЊР·СЏ РїРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹ РЅР° СЌС‚РѕС‚ СЃС‡РµС‚';
 				}
 			}elseif(isset($_POST['transfer_kredit']) && $u->info['align']!=2)
 			{
-				//перевод кредитов с одного счета на другой
+				//РїРµСЂРµРІРѕРґ РєСЂРµРґРёС‚РѕРІ СЃ РѕРґРЅРѕРіРѕ СЃС‡РµС‚Р° РЅР° РґСЂСѓРіРѕР№
 				if($u->info['level']>=4 || $u->info['admin']>0)
 				{
 					$ub = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `id` = "'.mysql_real_escape_string((int)$_POST['num']).'" LIMIT 1'));
@@ -263,7 +263,7 @@ if($u->room['file']=='an/bank')
 							{
 								if($mn<0.01 || $mn>1000000000)
 								{
-									$re2 = 'Неверно указана сумма';
+									$re2 = 'РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅР° СЃСѓРјРјР°';
 								}else{
 									$upd = mysql_query('UPDATE `bank` SET `money1` = "'.mysql_real_escape_string($u->bank['money1']-$mn).'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
 									if($upd)
@@ -271,35 +271,35 @@ if($u->room['file']=='an/bank')
 										$u->bank['money1'] -= $mn;
 										$ub['money1'] += $mn-$prc;
 										mysql_query('UPDATE `bank` SET `money1` = "'.mysql_real_escape_string($ub['money1']).'" WHERE `id` = "'.$ub['id'].'" LIMIT 1');
-										$re2 = 'Вы удачно перевели <b>'.($mn-$prc).' кр.</b> (комиссия <b>'.$prc.' кр.</b>) на счет №'.getNum($ub['id']).' персонажу &quot;<b>'.$ut['login'].'</b>&quot;';
-										$u->addDelo(3,$ut['id'],'Получено <b>'.($mn-$prc).' кр.</b> со счета №'.getNum($u->bank['id']).' от персонажа &quot;'.$u->info['login'].'&quot;, комиссия <b>'.$prc.' кр.</b> <i>(Итого: '.$ub['money1'].' кр., '.$ub['money2'].' екр.)</i>',time(),$ut['city'],'Bank.System',mysql_real_escape_string($mn-$prc),0,$ub['id']);
-										$u->addDelo(3,$u->info['id'],'Передано <b>'.($mn-$prc).' кр.</b> на счет №'.getNum($ub['id']).' персонажу &quot;'.$ut['login'].'&quot;, комиссия <b>'.$prc.' кр.</b> <i>(Итого: '.$u->bank['money1'].' кр., '.$u->bank['money2'].' екр.)</i>',time(),$u->info['city'],'Bank.System',0,mysql_real_escape_string($mn),$u->bank['id']);
-										$log = '&quot;'.$u->info['login'].'&quot;&nbsp;['.$u->info['level'].'] перевел со своего банковского счета №'.$u->bank['id'].' на счет №'.$ub['id'].' к персонажу &quot;'.$ut['login'].'&quot;&nbsp;['.$ut['level'].'] '.($mn-$prc).' кр. Дополнительно снято '.$prc.' кр. за услуги банка.';
+										$re2 = 'Р’С‹ СѓРґР°С‡РЅРѕ РїРµСЂРµРІРµР»Рё <b>'.($mn-$prc).' РєСЂ.</b> (РєРѕРјРёСЃСЃРёСЏ <b>'.$prc.' РєСЂ.</b>) РЅР° СЃС‡РµС‚ в„–'.getNum($ub['id']).' РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;<b>'.$ut['login'].'</b>&quot;';
+										$u->addDelo(3,$ut['id'],'РџРѕР»СѓС‡РµРЅРѕ <b>'.($mn-$prc).' РєСЂ.</b> СЃРѕ СЃС‡РµС‚Р° в„–'.getNum($u->bank['id']).' РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$u->info['login'].'&quot;, РєРѕРјРёСЃСЃРёСЏ <b>'.$prc.' РєСЂ.</b> <i>(РС‚РѕРіРѕ: '.$ub['money1'].' РєСЂ., '.$ub['money2'].' РµРєСЂ.)</i>',time(),$ut['city'],'Bank.System',mysql_real_escape_string($mn-$prc),0,$ub['id']);
+										$u->addDelo(3,$u->info['id'],'РџРµСЂРµРґР°РЅРѕ <b>'.($mn-$prc).' РєСЂ.</b> РЅР° СЃС‡РµС‚ в„–'.getNum($ub['id']).' РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$ut['login'].'&quot;, РєРѕРјРёСЃСЃРёСЏ <b>'.$prc.' РєСЂ.</b> <i>(РС‚РѕРіРѕ: '.$u->bank['money1'].' РєСЂ., '.$u->bank['money2'].' РµРєСЂ.)</i>',time(),$u->info['city'],'Bank.System',0,mysql_real_escape_string($mn),$u->bank['id']);
+										$log = '&quot;'.$u->info['login'].'&quot;&nbsp;['.$u->info['level'].'] РїРµСЂРµРІРµР» СЃРѕ СЃРІРѕРµРіРѕ Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р° в„–'.$u->bank['id'].' РЅР° СЃС‡РµС‚ в„–'.$ub['id'].' Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$ut['login'].'&quot;&nbsp;['.$ut['level'].'] '.($mn-$prc).' РєСЂ. Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ СЃРЅСЏС‚Рѕ '.$prc.' РєСЂ. Р·Р° СѓСЃР»СѓРіРё Р±Р°РЅРєР°.';
 										$u->addDelo(1,$u->info['id'],$log,time(),$u->info['city'],'Bank.System',0,0,'');
 										$u->addDelo(1,$ut['id'],$log,time(),$ut['city'],'Bank.System',0,0,'');
 										if($ut['id']!=$u->info['id'])
 										{
-											$text = '&quot;[login:'.$u->info['login'].']&quot; перевел'.($u->info['sex']==0?"":"а").' вам <b>'.($mn-$prc).' кр.</b> со своего банковского счета №'.getNum($u->bank['id']).' на ваш банковский счет №'.getNum($ub['id']).'.';
+											$text = '&quot;[login:'.$u->info['login'].']&quot; РїРµСЂРµРІРµР»'.($u->info['sex']==0?"":"Р°").' РІР°Рј <b>'.($mn-$prc).' РєСЂ.</b> СЃРѕ СЃРІРѕРµРіРѕ Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р° в„–'.getNum($u->bank['id']).' РЅР° РІР°С€ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.getNum($ub['id']).'.';
 											mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$ut['city']."','".$ut['room']."','','".$ut['login']."','".$text."','".time()."','6','0','1')");
 										}
 									}else{
-										$re2 = 'Не удалось выполнить операцию';
+										$re2 = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїРѕР»РЅРёС‚СЊ РѕРїРµСЂР°С†РёСЋ';
 									}
 								}
 							}else{
-								$re2 = 'У вас нет <b>'.$mn.' кр.</b> на счете';
+								$re2 = 'РЈ РІР°СЃ РЅРµС‚ <b>'.$mn.' РєСЂ.</b> РЅР° СЃС‡РµС‚Рµ';
 							}
 						}else{
-							$re2 = 'Нельзя перевести кредиты на этот счет';
+							$re2 = 'РќРµР»СЊР·СЏ РїРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹ РЅР° СЌС‚РѕС‚ СЃС‡РµС‚';
 						}
 					}else{
-						$re2 = 'Нельзя перевести кредиты на этот счет';
+						$re2 = 'РќРµР»СЊР·СЏ РїРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹ РЅР° СЌС‚РѕС‚ СЃС‡РµС‚';
 					}
 				}else{
-					$re2 = 'Передача кредитов возможна только с 4-го уровня';
+					$re2 = 'РџРµСЂРµРґР°С‡Р° РєСЂРµРґРёС‚РѕРІ РІРѕР·РјРѕР¶РЅР° С‚РѕР»СЊРєРѕ СЃ 4-РіРѕ СѓСЂРѕРІРЅСЏ';
 				}
 			}elseif($u->info['align']!=2 && $u->info['haos'] < time() && $u->info['haos'] != 1 && $u->info['align'] !=50 && isset($_POST['convert_kredit']) && 1 == 2) {
-				//обменять кр. на екр.
+				//РѕР±РјРµРЅСЏС‚СЊ РєСЂ. РЅР° РµРєСЂ.
 				if($u->info['palpro'] > time()) {
 					$mn = ceil((int)($_POST['convert_sum2']*100));
 					$mn = round(($mn/100),2);
@@ -309,9 +309,9 @@ if($u->room['file']=='an/bank')
 					$sm_lim = 50;
 					if(isset($sm['id']) && $sm['vals']+$mne > $sm_lim) {
 						if($sm['vals'] < $sm_lim) {
-							$re2 = 'На сегодня Вы можете обменять еще на <b>'.($sm_lim-$sm['vals']).' екр.</b>. (Примерно '.round( ( ($sm_lim-$sm['vals'])*$noc ) ,2).' кр.), текущий обмен на <b>'.$mne.' екр.</b>.';
+							$re2 = 'РќР° СЃРµРіРѕРґРЅСЏ Р’С‹ РјРѕР¶РµС‚Рµ РѕР±РјРµРЅСЏС‚СЊ РµС‰Рµ РЅР° <b>'.($sm_lim-$sm['vals']).' РµРєСЂ.</b>. (РџСЂРёРјРµСЂРЅРѕ '.round( ( ($sm_lim-$sm['vals'])*$noc ) ,2).' РєСЂ.), С‚РµРєСѓС‰РёР№ РѕР±РјРµРЅ РЅР° <b>'.$mne.' РµРєСЂ.</b>.';
 						}else{
-							$re2 = 'На сегодня Вы исчерпали свой лимит обмена кр. на екр. ('.$sm_lim.' екр.)';
+							$re2 = 'РќР° СЃРµРіРѕРґРЅСЏ Р’С‹ РёСЃС‡РµСЂРїР°Р»Рё СЃРІРѕР№ Р»РёРјРёС‚ РѕР±РјРµРЅР° РєСЂ. РЅР° РµРєСЂ. ('.$sm_lim.' РµРєСЂ.)';
 						}
 					}elseif($mn > 0 && $mne > 0 && $mn >= round((0.01*($noc*1.03)+5),2)) {
 						if($u->bank['money1'] >= $mn) {
@@ -320,60 +320,60 @@ if($u->room['file']=='an/bank')
 							}else{
 								mysql_query('UPDATE `actions` SET `vals` = "'.($sm['vals']+$mne).'" WHERE `id` = "'.$sm['id'].'" LIMIT 1');
 							}
-							$re2 = 'Вы успешно обменяли <b>'.$mn.' кр.</b> на <b>'.$mne.' екр.</b>';
+							$re2 = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕР±РјРµРЅСЏР»Рё <b>'.$mn.' РєСЂ.</b> РЅР° <b>'.$mne.' РµРєСЂ.</b>';
 							$u->bank['money1'] -= $mn;
 							$u->bank['money2'] += $mne;			
 											
 							mysql_query('UPDATE `users` SET `catch` = `catch` + "'.round($mne,2).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 												
 							mysql_query('UPDATE `bank` SET `money1` = "'.mysql_real_escape_string($u->bank['money1']).'", `money2` = "'.mysql_real_escape_string($u->bank['money2']).'" WHERE `id` = "'.mysql_real_escape_string($u->bank['id']).'" LIMIT 1');
-										$log = '&quot;'.$u->info['login'].'&quot;&nbsp;['.$u->info['level'].'] обменял <b>'.$mn.' кр.</b> на <b>'.$mne.' екр.</b>, Банковский счет №'.$u->bank['id'].'.';
+										$log = '&quot;'.$u->info['login'].'&quot;&nbsp;['.$u->info['level'].'] РѕР±РјРµРЅСЏР» <b>'.$mn.' РєСЂ.</b> РЅР° <b>'.$mne.' РµРєСЂ.</b>, Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.$u->bank['id'].'.';
 										$u->addDelo(1,$u->info['id'],$log,time(),$u->info['city'],'Bank.System',0,0,'');
-										$u->addDelo(3,$u->info['id'],'Вы успешно обменяли <b>'.ceil((int)($_POST['convert_sum2']*100/100)).' кр.</b> на <b>'.$mne.' екр.</b>, комиссия <b>'.round((ceil((int)($_POST['convert_sum2']*100/100))/100*3+5),2).' кр.</b> <i>(Итого: '.$u->bank['money1'].' кр., '.$u->bank['money2'].' екр.)</i>',time(),$u->info['city'],'Bank.System',0,0,$u->bank['id']);
+										$u->addDelo(3,$u->info['id'],'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕР±РјРµРЅСЏР»Рё <b>'.ceil((int)($_POST['convert_sum2']*100/100)).' РєСЂ.</b> РЅР° <b>'.$mne.' РµРєСЂ.</b>, РєРѕРјРёСЃСЃРёСЏ <b>'.round((ceil((int)($_POST['convert_sum2']*100/100))/100*3+5),2).' РєСЂ.</b> <i>(РС‚РѕРіРѕ: '.$u->bank['money1'].' РєСЂ., '.$u->bank['money2'].' РµРєСЂ.)</i>',time(),$u->info['city'],'Bank.System',0,0,$u->bank['id']);
 						}else{
-							$re2 = 'У вас нет <b>'.$mn.' кр.</b> на счете';
+							$re2 = 'РЈ РІР°СЃ РЅРµС‚ <b>'.$mn.' РєСЂ.</b> РЅР° СЃС‡РµС‚Рµ';
 						}
 					}else{
-						$re2 = 'Минимальная сумма для обмена составляет '.round((0.01*($noc*1.03)+5),2).' кр.';
+						$re2 = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РґР»СЏ РѕР±РјРµРЅР° СЃРѕСЃС‚Р°РІР»СЏРµС‚ '.round((0.01*($noc*1.03)+5),2).' РєСЂ.';
 					}
 				}else{
-					$re2 = 'Вы должны пройти проверку на чистоту у Паладинов или Тарманов.';
+					$re2 = 'Р’С‹ РґРѕР»Р¶РЅС‹ РїСЂРѕР№С‚Рё РїСЂРѕРІРµСЂРєСѓ РЅР° С‡РёСЃС‚РѕС‚Сѓ Сѓ РџР°Р»Р°РґРёРЅРѕРІ РёР»Рё РўР°СЂРјР°РЅРѕРІ.';
 				}
 			}elseif(isset($_POST['convert_ekredit']))
 			{
-				//обменять екр. на кр.
+				//РѕР±РјРµРЅСЏС‚СЊ РµРєСЂ. РЅР° РєСЂ.
 				$mn = ceil((int)($_POST['convert_sum']*100));
 				$mn = round(($mn/100),2);
 				if($u->bank['money2']>=$mn)
 				{
 					if($mn<0.01 || $mn>1000000000)
 					{
-						$re2 = 'Неверно указана сумма';
+						$re2 = 'РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅР° СЃСѓРјРјР°';
 					}else{
 						$upd = mysql_query('UPDATE `bank` SET `money1` = "'.mysql_real_escape_string($u->bank['money1']+($mn*$con)).'",`money2` = "'.mysql_real_escape_string($u->bank['money2']-$mn).'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
 						if($upd)
 						{
 							$u->bank['money1'] += $mn*$con;
 							$u->bank['money2'] -= $mn;
-							$u->addDelo(3,$u->info['id'],'Вы обменяли <b>'.$mn.' екр.</b> на <b>'.($mn*$con).' кр.</b>, комиссия <b>0 кр.</b> <i>(Итого: '.$u->bank['money1'].' кр., '.$u->bank['money2'].' екр.)</i>',time(),$u->info['city'],'Bank.System',0,mysql_real_escape_string($mn*$con),$u->bank['id']);
-							$re2 = 'Вы удачно обменяли <b>'.$mn.' екр.</b> на <b>'.($mn*$con).' кр.</b>';
+							$u->addDelo(3,$u->info['id'],'Р’С‹ РѕР±РјРµРЅСЏР»Рё <b>'.$mn.' РµРєСЂ.</b> РЅР° <b>'.($mn*$con).' РєСЂ.</b>, РєРѕРјРёСЃСЃРёСЏ <b>0 РєСЂ.</b> <i>(РС‚РѕРіРѕ: '.$u->bank['money1'].' РєСЂ., '.$u->bank['money2'].' РµРєСЂ.)</i>',time(),$u->info['city'],'Bank.System',0,mysql_real_escape_string($mn*$con),$u->bank['id']);
+							$re2 = 'Р’С‹ СѓРґР°С‡РЅРѕ РѕР±РјРµРЅСЏР»Рё <b>'.$mn.' РµРєСЂ.</b> РЅР° <b>'.($mn*$con).' РєСЂ.</b>';
 						}else{
-							$re2 = 'Не удалось выполнить операцию';
+							$re2 = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїРѕР»РЅРёС‚СЊ РѕРїРµСЂР°С†РёСЋ';
 						}
 					}
 				}else{
-					$re2 = 'У вас нет <b>'.$mn.' екр.</b> на счете';
+					$re2 = 'РЈ РІР°СЃ РЅРµС‚ <b>'.$mn.' РµРєСЂ.</b> РЅР° СЃС‡РµС‚Рµ';
 				}
 			}elseif(isset($_POST['get_kredit']))			
 			{
-				//положить деньги на счет
+				//РїРѕР»РѕР¶РёС‚СЊ РґРµРЅСЊРіРё РЅР° СЃС‡РµС‚
 				$mn = floor((int)($_POST['get_sum']*100));
 				$mn = round(($mn/100),2);
 				if($u->bank['money1']>=$mn)
 				{
 					if($mn<0.01 || $mn>1000000000)
 					{
-						$re2 = 'Неверно указана сумма';
+						$re2 = 'РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅР° СЃСѓРјРјР°';
 					}else{
 						$upd = mysql_query('UPDATE `users` SET `money` = "'.mysql_real_escape_string($u->info['money']+$mn).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 						if($upd)
@@ -381,25 +381,25 @@ if($u->room['file']=='an/bank')
 							$u->bank['money1'] -= $mn;
 							$u->info['money']  += $mn;
 							mysql_query('UPDATE `bank` SET `money1` = "'.mysql_real_escape_string($u->bank['money1']).'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
-							$u->addDelo(3,$u->info['id'],'Вы сняли со счета <b>'.$mn.' кр.</b>, комиссия <b>0 кр.</b> <i>(Итого: '.$u->bank['money1'].' кр., '.$u->bank['money2'].' екр.)</i>',time(),$u->info['city'],'Bank.System',0,0,$u->bank['id']);
-							$re2 = 'Вы удачно сняли со счета <b>'.$mn.' кр.</b>';
+							$u->addDelo(3,$u->info['id'],'Р’С‹ СЃРЅСЏР»Рё СЃРѕ СЃС‡РµС‚Р° <b>'.$mn.' РєСЂ.</b>, РєРѕРјРёСЃСЃРёСЏ <b>0 РєСЂ.</b> <i>(РС‚РѕРіРѕ: '.$u->bank['money1'].' РєСЂ., '.$u->bank['money2'].' РµРєСЂ.)</i>',time(),$u->info['city'],'Bank.System',0,0,$u->bank['id']);
+							$re2 = 'Р’С‹ СѓРґР°С‡РЅРѕ СЃРЅСЏР»Рё СЃРѕ СЃС‡РµС‚Р° <b>'.$mn.' РєСЂ.</b>';
 						}else{
-							$re2 = 'Не удалось выполнить операцию';
+							$re2 = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїРѕР»РЅРёС‚СЊ РѕРїРµСЂР°С†РёСЋ';
 						}
 					}
 				}else{
-					$re2 = 'У вас нет <b>'.$mn.' кр.</b> на счете';
+					$re2 = 'РЈ РІР°СЃ РЅРµС‚ <b>'.$mn.' РєСЂ.</b> РЅР° СЃС‡РµС‚Рµ';
 				}
 			}elseif(isset($_POST['add_kredit']))			
 			{
-				//положить деньги на счет
+				//РїРѕР»РѕР¶РёС‚СЊ РґРµРЅСЊРіРё РЅР° СЃС‡РµС‚
 				$mn = floor((int)($_POST['add_sum']*100));
 				$mn = round(($mn/100),2);
 				if($u->info['money']>=$mn)
 				{
 					if($mn<0.01 || $mn>1000000000)
 					{
-						$re2 = 'Неверно указана сумма';
+						$re2 = 'РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅР° СЃСѓРјРјР°';
 					}else{
 						$upd = mysql_query('UPDATE `users` SET `money` = "'.mysql_real_escape_string($u->info['money']-$mn).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 						if($upd)
@@ -407,39 +407,39 @@ if($u->room['file']=='an/bank')
 							$u->bank['money1'] += $mn;
 							$u->info['money']  -= $mn;
 							mysql_query('UPDATE `bank` SET `money1` = "'.mysql_real_escape_string($u->bank['money1']).'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
-							$u->addDelo(3,$u->info['id'],'Вы положили на счет <b>'.$mn.' кр.</b>, комиссия <b>0 кр.</b> <i>(Итого: '.$u->bank['money1'].' кр., '.$u->bank['money2'].' екр.)</i>',time(),$u->info['city'],'Bank.System',0,0,$u->bank['id']);
-							$re2 = 'Вы удачно положили на свой счет <b>'.$mn.' кр.</b>';
+							$u->addDelo(3,$u->info['id'],'Р’С‹ РїРѕР»РѕР¶РёР»Рё РЅР° СЃС‡РµС‚ <b>'.$mn.' РєСЂ.</b>, РєРѕРјРёСЃСЃРёСЏ <b>0 РєСЂ.</b> <i>(РС‚РѕРіРѕ: '.$u->bank['money1'].' РєСЂ., '.$u->bank['money2'].' РµРєСЂ.)</i>',time(),$u->info['city'],'Bank.System',0,0,$u->bank['id']);
+							$re2 = 'Р’С‹ СѓРґР°С‡РЅРѕ РїРѕР»РѕР¶РёР»Рё РЅР° СЃРІРѕР№ СЃС‡РµС‚ <b>'.$mn.' РєСЂ.</b>';
 						}else{
-							$re2 = 'Не удалось выполнить операцию';
+							$re2 = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїРѕР»РЅРёС‚СЊ РѕРїРµСЂР°С†РёСЋ';
 						}
 					}
 				}else{
-					$re2 = 'У вас нет при себе <b>'.$mn.' кр.</b>';
+					$re2 = 'РЈ РІР°СЃ РЅРµС‚ РїСЂРё СЃРµР±Рµ <b>'.$mn.' РєСЂ.</b>';
 				}
 			}elseif(isset($_POST['change_psw2']))
 			{
-				//смена пароля счета
+				//СЃРјРµРЅР° РїР°СЂРѕР»СЏ СЃС‡РµС‚Р°
 				$sm = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vals` = "id='.$u->bank['id'].'&new_pass='.$u->bank['pass'].'" AND `vars` = "bank_new_pass" AND `time` > "'.(time()-24*60*60).'" LIMIT 1',1);
 				if($_POST['new_psw1']!=$_POST['new_psw2'])
 				{
-					$re2 = 'Пароли не совпадают';
+					$re2 = 'РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚';
 				}elseif(iconv_strlen($_POST['new_psw1'])<6 || iconv_strlen($_POST['new_psw1'])>32)
 				{
-					$re2 = 'Пароль не может быть короче 6 или длинее 32 символов';
+					$re2 = 'РџР°СЂРѕР»СЊ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РєРѕСЂРѕС‡Рµ 6 РёР»Рё РґР»РёРЅРµРµ 32 СЃРёРјРІРѕР»РѕРІ';
 				}elseif(isset($sm['id']))
 				{
-					$re2 = 'Нельзя менять пароль чаще одного раза в день';
+					$re2 = 'РќРµР»СЊР·СЏ РјРµРЅСЏС‚СЊ РїР°СЂРѕР»СЊ С‡Р°С‰Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ РґРµРЅСЊ';
 				}else{
-					//меняем
+					//РјРµРЅСЏРµРј
 					$upd = mysql_query('UPDATE `bank` SET `pass` = "'.mysql_real_escape_string($_POST['new_psw1']).'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
 					if($upd)
 					{
 						$u->addAction(time(),'bank_new_pass','id='.$u->bank['id'].'&new_pass='.$_POST['new_psw1'].'');
 						$u->bank['pass'] = $_POST['new_psw1'];
-						$re2 = 'Пароль от счета №<b>'.getNum($u->bank['id']).'</b> был успешно изменен<br>Новый пароль: <b>'.$u->bank['pass'].'</b>';
-						$u->addDelo(3,$u->info['id'],'Был изменен пароль от счета.',time(),$u->info['city'],'Bank.System',0,0,$u->bank['id']);
+						$re2 = 'РџР°СЂРѕР»СЊ РѕС‚ СЃС‡РµС‚Р° в„–<b>'.getNum($u->bank['id']).'</b> Р±С‹Р» СѓСЃРїРµС€РЅРѕ РёР·РјРµРЅРµРЅ<br>РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ: <b>'.$u->bank['pass'].'</b>';
+						$u->addDelo(3,$u->info['id'],'Р‘С‹Р» РёР·РјРµРЅРµРЅ РїР°СЂРѕР»СЊ РѕС‚ СЃС‡РµС‚Р°.',time(),$u->info['city'],'Bank.System',0,0,$u->bank['id']);
 					}else{
-						$re2 = 'Вам отказали в смене пароля';
+						$re2 = 'Р’Р°Рј РѕС‚РєР°Р·Р°Р»Рё РІ СЃРјРµРЅРµ РїР°СЂРѕР»СЏ';
 					}
 				}
 			}	
@@ -492,7 +492,7 @@ if($u->room['file']=='an/bank')
       <tr>
         <td><div align="center">
         <div align="center" class="pH3">
-          <h3>Банк<br /></h3>
+          <h3>Р‘Р°РЅРє<br /></h3>
         </div>
         </div></td>
         <td width="200">
@@ -510,7 +510,7 @@ if($u->room['file']=='an/bank')
                             <td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                                 <tr>
                                   <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                                  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=2.180.0.236&rnd=<? echo $code; ?>';" title="<? thisInfRm('2.180.0.236',1); ?>">Страшилкина улица</a></td>
+                                  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=2.180.0.236&rnd=<? echo $code; ?>';" title="<? thisInfRm('2.180.0.236',1); ?>">РЎС‚СЂР°С€РёР»РєРёРЅР° СѓР»РёС†Р°</a></td>
                                 </tr>
                             </table></td>
                           </tr>
@@ -526,7 +526,7 @@ if($u->room['file']=='an/bank')
 	<TR>
 	<form name="F1" method="post">
 	<TD valign="top" align="left">
-	<!--Магазин--></TD>
+	<!--РњР°РіР°Р·РёРЅ--></TD>
 	</FORM>
 	</TR>
 	<TR>
@@ -535,11 +535,11 @@ if($u->room['file']=='an/bank')
 		if(!isset($u->bank['id']))
 		{
 		?>
-        Мы предоставляем следующие услуги:
+        РњС‹ РїСЂРµРґРѕСЃС‚Р°РІР»СЏРµРј СЃР»РµРґСѓСЋС‰РёРµ СѓСЃР»СѓРіРё:
         <OL>
-        <LI>Открытие счета<LI>Возможность положить/снять кредиты/еврокредиты со счета
-        <LI>Перевести кредиты/еврокредиты с одного счета на другой
-        <LI>Обменный пункт. Обмен еврокредитов на кредиты
+        <LI>РћС‚РєСЂС‹С‚РёРµ СЃС‡РµС‚Р°<LI>Р’РѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїРѕР»РѕР¶РёС‚СЊ/СЃРЅСЏС‚СЊ РєСЂРµРґРёС‚С‹/РµРІСЂРѕРєСЂРµРґРёС‚С‹ СЃРѕ СЃС‡РµС‚Р°
+        <LI>РџРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹/РµРІСЂРѕРєСЂРµРґРёС‚С‹ СЃ РѕРґРЅРѕРіРѕ СЃС‡РµС‚Р° РЅР° РґСЂСѓРіРѕР№
+        <LI>РћР±РјРµРЅРЅС‹Р№ РїСѓРЅРєС‚. РћР±РјРµРЅ РµРІСЂРѕРєСЂРµРґРёС‚РѕРІ РЅР° РєСЂРµРґРёС‚С‹
         </OL>
         <script type="text/javascript" src="js/jquery.js"></script>
 		<script>
@@ -552,19 +552,19 @@ if($u->room['file']=='an/bank')
 		}
 		</script>
         <FORM action="main.php?open&rnd=<? echo $code; ?>" method="POST">
-        Хотите открыть свой счет? Услуга платная: <INPUT onclick="hidecreatefx();" TYPE="button" value="Открыть счет">
+        РҐРѕС‚РёС‚Рµ РѕС‚РєСЂС‹С‚СЊ СЃРІРѕР№ СЃС‡РµС‚? РЈСЃР»СѓРіР° РїР»Р°С‚РЅР°СЏ: <INPUT onclick="hidecreatefx();" TYPE="button" value="РћС‚РєСЂС‹С‚СЊ СЃС‡РµС‚">
         <div id="hidecreate" style="display:none">
-        <FIELDSET style="width:300px;"><LEGEND><B>Открытие счета</B> </LEGEND>
+        <FIELDSET style="width:300px;"><LEGEND><B>РћС‚РєСЂС‹С‚РёРµ СЃС‡РµС‚Р°</B> </LEGEND>
         <small>
 		<? if ($u->info['level'] < 8) { ?>
         <center>
-        	<input name="rdn01" type="radio" value="1"> <b>3.00 кр.</b> &nbsp; &nbsp; <input name="rdn01" type="radio" value="2"> <?=$u->zuby(15)?> &nbsp; &nbsp; &nbsp;
+        	<input name="rdn01" type="radio" value="1"> <b>3.00 РєСЂ.</b> &nbsp; &nbsp; <input name="rdn01" type="radio" value="2"> <?=$u->zuby(15)?> &nbsp; &nbsp; &nbsp;
         </center>
         <hr />
         <? }else{
 		?>
         <center>
-        	<input checked="checked" name="rdn01" type="radio" value="1"> <b>3.00 кр.</b> &nbsp; &nbsp; &nbsp;
+        	<input checked="checked" name="rdn01" type="radio" value="1"> <b>3.00 РєСЂ.</b> &nbsp; &nbsp; &nbsp;
         </center>
         <hr />
 		<?
@@ -580,28 +580,28 @@ if($u->room['file']=='an/bank')
         </style>
         <table width="300" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td>Пароль счета:</td>
+            <td>РџР°СЂРѕР»СЊ СЃС‡РµС‚Р°:</td>
             <td><INPUT style='width:90;' type="password" value="" name="pass1"></td>
           </tr>
           <tr>
-            <td>Еще раз:</td>
+            <td>Р•С‰Рµ СЂР°Р·:</td>
             <td><INPUT style='width:90;' type="password" value="" name="pass2"></td>
           </tr>
         </table>
         </small>
         <center>
-        	<INPUT TYPE="submit" value="Открыть счет">
+        	<INPUT TYPE="submit" value="РћС‚РєСЂС‹С‚СЊ СЃС‡РµС‚">
         </center>
         </FIELDSET>
         </div>
         </FORM>
         <form action="main.php?enter&rnd=<? echo $code; ?>" method="POST">
         <br />
-        <FIELDSET style="width:300px;"><LEGEND><B>Управление счетом</B> </LEGEND>
+        <FIELDSET style="width:300px;"><LEGEND><B>РЈРїСЂР°РІР»РµРЅРёРµ СЃС‡РµС‚РѕРј</B> </LEGEND>
         <TABLE width="300">
         <TR><TD valign=top>
         <TABLE>
-        <TR><TD>Номер счета</td> <TD colspan=2><select name="bank" size=0 style="width: 90px">
+        <TR><TD>РќРѕРјРµСЂ СЃС‡РµС‚Р°</td> <TD colspan=2><select name="bank" size=0 style="width: 90px">
         	<?
 			$sp = mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$u->info['id'].'" AND `block` = "0"');
 			while($pl = mysql_fetch_array($sp))
@@ -612,9 +612,9 @@ if($u->room['file']=='an/bank')
 			}
 			?>
         </select></td></tr>
-        <TR><TD>Пароль</td><td> <INPUT style='width:90;' type="password" value="" name="pass"></td>
+        <TR><TD>РџР°СЂРѕР»СЊ</td><td> <INPUT style='width:90;' type="password" value="" name="pass"></td>
         </tr>
-        <TR><TD colspan=3 align=center><INPUT TYPE="submit" value="Войти"></td></tr>
+        <TR><TD colspan=3 align=center><INPUT TYPE="submit" value="Р’РѕР№С‚Рё"></td></tr>
         </TABLE>
         </TD>
         </TABLE>
@@ -624,7 +624,7 @@ if($u->room['file']=='an/bank')
 		<input type=hidden name='res' value=<? echo $code; ?>>
         <br />
         <br />
-        Забыли пароль? Можно его выслать на email, номер счета:<input type=text name='schet'> <input type="submit" value="Выслать" /></TD>
+        Р—Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ? РњРѕР¶РЅРѕ РµРіРѕ РІС‹СЃР»Р°С‚СЊ РЅР° email, РЅРѕРјРµСЂ СЃС‡РµС‚Р°:<input type=text name='schet'> <input type="submit" value="Р’С‹СЃР»Р°С‚СЊ" /></TD>
 	    </form>
 	 </TR>
 	</TABLE>	
@@ -648,35 +648,35 @@ if($u->room['file']=='an/bank')
 }
 .pay td:hover img {
 	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80); /* IE 5.5+*/
-	-moz-opacity: 0.8; /* Mozilla 1.6 и ниже */
+	-moz-opacity: 0.8; /* Mozilla 1.6 Рё РЅРёР¶Рµ */
 	-khtml-opacity: 0.8; /* Konqueror 3.1, Safari 1.1 */
 	opacity: 0.8; /* CSS3 - Mozilla 1.7b +, Firefox 0.9 +, Safari 1.2+, Opera 9 */
 	cursor:pointer;
 }
 </style>
-<!-- управление счетом -->
+<!-- СѓРїСЂР°РІР»РµРЅРёРµ СЃС‡РµС‚РѕРј -->
 <FORM action="main.php" method="POST">
 <INPUT TYPE=hidden name="sd4" value="<? echo $u->info['nextAct']; ?>">
 <TABLE width=100%>
 <TR>
-<TD valign=top width=30%><H4>Управление счетом</H4> &nbsp;
-<b>Счёт №:</b> <? echo getNum($u->bank['id']); ?> <a href="?exit=<? echo $code; ?>" title="Окончить работу c текущим счетом">[x]</a><br>
+<TD valign=top width=30%><H4>РЈРїСЂР°РІР»РµРЅРёРµ СЃС‡РµС‚РѕРј</H4> &nbsp;
+<b>РЎС‡С‘С‚ в„–:</b> <? echo getNum($u->bank['id']); ?> <a href="?exit=<? echo $code; ?>" title="РћРєРѕРЅС‡РёС‚СЊ СЂР°Р±РѕС‚Сѓ c С‚РµРєСѓС‰РёРј СЃС‡РµС‚РѕРј">[x]</a><br>
 </TD>
 <TD valign=top align=center width=40%>
 <TABLE><TR><TD>
-<FIELDSET><LEGEND><B>У вас на счете</B> </LEGEND>
+<FIELDSET><LEGEND><B>РЈ РІР°СЃ РЅР° СЃС‡РµС‚Рµ</B> </LEGEND>
 <TABLE>
-<TR><TD>Кредитов:</TD><TD><B><? echo $u->round2($u->bank['money1']); ?></B></TD></TR>
-<TR><TD>Еврокредитов:</TD>
+<TR><TD>РљСЂРµРґРёС‚РѕРІ:</TD><TD><B><? echo $u->round2($u->bank['money1']); ?></B></TD></TR>
+<TR><TD>Р•РІСЂРѕРєСЂРµРґРёС‚РѕРІ:</TD>
 <TD><B><? echo $u->round2($u->bank['money2']); ?></B></TD>
 </TR>
 <TR><TD colspan=2><HR></TD></TR>
-<TR><TD>При себе наличных:</TD><TD><B><? echo $u->round2($u->info['money']); ?> кр.</B></TD></TR>
+<TR><TD>РџСЂРё СЃРµР±Рµ РЅР°Р»РёС‡РЅС‹С…:</TD><TD><B><? echo $u->round2($u->info['money']); ?> РєСЂ.</B></TD></TR>
 </TABLE>
 </FIELDSET>
 </TD></TR></TABLE>
 </TD>
-<TD valign=top align=right width=30%><FONT COLOR=red>Внимание!</FONT> Некоторые услуги банка платные, о размере взымаемой комиссии написано в соответствующем разделе.</TD>
+<TD valign=top align=right width=30%><FONT COLOR=red>Р’РЅРёРјР°РЅРёРµ!</FONT> РќРµРєРѕС‚РѕСЂС‹Рµ СѓСЃР»СѓРіРё Р±Р°РЅРєР° РїР»Р°С‚РЅС‹Рµ, Рѕ СЂР°Р·РјРµСЂРµ РІР·С‹РјР°РµРјРѕР№ РєРѕРјРёСЃСЃРёРё РЅР°РїРёСЃР°РЅРѕ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРј СЂР°Р·РґРµР»Рµ.</TD>
 </TR>
 </TABLE>
 <style>
@@ -693,7 +693,7 @@ hr {
     <td width="50%" valign="top"><table width="100%" cellspacing="5">
       <tr>
         <td width="50%" valign="top"><fieldset style="background-color:#DDEAD7"">
-         <legend><img src="http://img.xcombats.com/i/align/align50.gif" width="12" height="15" /> <b style="color:#5F3710">Приобретение Екр. онлайн</b> </legend>
+         <legend><img src="http://img.xcombats.com/i/align/align50.gif" width="12" height="15" /> <b style="color:#5F3710">РџСЂРёРѕР±СЂРµС‚РµРЅРёРµ Р•РєСЂ. РѕРЅР»Р°Р№РЅ</b> </legend>
 <style>
 #pay_btn {
 	background-color:#0099FF;
@@ -706,59 +706,59 @@ hr {
 	cursor:pointer;	
 }
 </style>
-Сумма екр.: <input id="pay_in" style="padding-left:2px;width:77px;" value="1.00">
-<input id="pay_btn" name="pay_btn" value="Оплатить" type="button" onclick="window.open('/pay.back.php?ekr='+$('#pay_in').val()+'&code=1&ref=0','_blank');" style="padding:5px;" />
+РЎСѓРјРјР° РµРєСЂ.: <input id="pay_in" style="padding-left:2px;width:77px;" value="1.00">
+<input id="pay_btn" name="pay_btn" value="РћРїР»Р°С‚РёС‚СЊ" type="button" onclick="window.open('/pay.back.php?ekr='+$('#pay_in').val()+'&code=1&ref=0','_blank');" style="padding:5px;" />
 </div>
 <div id="pay_block_see" style="display:none;padding-top:5px;border-top:1px solid #AEAEAE;"></div>
 </fieldset></td>
       </tr> 
       <tr>
         <td valign="top" width="50%"><fieldset>
-         <legend><b>Пополнить счет</b> </legend>
-          Сумма
+         <legend><b>РџРѕРїРѕР»РЅРёС‚СЊ СЃС‡РµС‚</b> </legend>
+          РЎСѓРјРјР°
           <input type="text" name="add_sum" id="add_sum" size="6" maxlength="10" />
-          кр.
-          <input type="submit" name="add_kredit" value="Положить кредиты на счет" onclick="if(Math.round(document.getElementById('add_sum')).value==0) {alert('Укажите сумму и номер счета'); return false;} else {return confirm('Вы хотите положить на свой счет '+(Math.floor(document.getElementById('add_sum').value*100)/100).toFixed(2)+' кр. ?')}" />
+          РєСЂ.
+          <input type="submit" name="add_kredit" value="РџРѕР»РѕР¶РёС‚СЊ РєСЂРµРґРёС‚С‹ РЅР° СЃС‡РµС‚" onclick="if(Math.round(document.getElementById('add_sum')).value==0) {alert('РЈРєР°Р¶РёС‚Рµ СЃСѓРјРјСѓ Рё РЅРѕРјРµСЂ СЃС‡РµС‚Р°'); return false;} else {return confirm('Р’С‹ С…РѕС‚РёС‚Рµ РїРѕР»РѕР¶РёС‚СЊ РЅР° СЃРІРѕР№ СЃС‡РµС‚ '+(Math.floor(document.getElementById('add_sum').value*100)/100).toFixed(2)+' РєСЂ. ?')}" />
           <br />
         </fieldset></td>
       </tr>
       <tr>
         <td valign="top"><fieldset>
-          <legend><b>Перевести кредиты на другой счет</b> </legend>
-          Сумма
+          <legend><b>РџРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹ РЅР° РґСЂСѓРіРѕР№ СЃС‡РµС‚</b> </legend>
+          РЎСѓРјРјР°
           <input id="vl1" value="" type="text" name="tansfer_sum" size="6" maxlength="10" />
-          кр.<br />
-          Номер счета куда перевести кредиты
+          РєСЂ.<br />
+          РќРѕРјРµСЂ СЃС‡РµС‚Р° РєСѓРґР° РїРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹
           <input value="" type="text" id="vl2" name="num" size="12" maxlength="15" />
           <br />
-          <input type="submit" name="transfer_kredit" value="Перевести кредиты на другой счет" onclick="if(Math.round(document.getElementById('vl1')).value==0 || Math.round(document.getElementById('vl2').value)==0) {alert('Укажите сумму и номер счета'); return false;} else {return confirm('Вы хотите перевести со своего счета '+(Math.floor(document.getElementById('vl1').value*100)/100).toFixed(2)+' кр. на счет номер '+Math.floor(document.getElementById('vl2').value)+' ?')}" />
+          <input type="submit" name="transfer_kredit" value="РџРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹ РЅР° РґСЂСѓРіРѕР№ СЃС‡РµС‚" onclick="if(Math.round(document.getElementById('vl1')).value==0 || Math.round(document.getElementById('vl2').value)==0) {alert('РЈРєР°Р¶РёС‚Рµ СЃСѓРјРјСѓ Рё РЅРѕРјРµСЂ СЃС‡РµС‚Р°'); return false;} else {return confirm('Р’С‹ С…РѕС‚РёС‚Рµ РїРµСЂРµРІРµСЃС‚Рё СЃРѕ СЃРІРѕРµРіРѕ СЃС‡РµС‚Р° '+(Math.floor(document.getElementById('vl1').value*100)/100).toFixed(2)+' РєСЂ. РЅР° СЃС‡РµС‚ РЅРѕРјРµСЂ '+Math.floor(document.getElementById('vl2').value)+' ?')}" />
           <br />
-          <small>Комиссия составляет <b>3.00 %</b> от суммы, но не менее <b>1.00 кр</b>.</small>
+          <small>РљРѕРјРёСЃСЃРёСЏ СЃРѕСЃС‚Р°РІР»СЏРµС‚ <b>3.00 %</b> РѕС‚ СЃСѓРјРјС‹, РЅРѕ РЅРµ РјРµРЅРµРµ <b>1.00 РєСЂ</b>.</small>
         </fieldset></td>
       </tr>
       <tr>
         <td valign="top"><fieldset>
-          <legend><b>Обменный пункт</b> </legend>
-          Обменять еврокредиты на кредиты.<br />
-          Курс <b>1 екр.</b> = <b><? echo $con; ?>.00 кр.</b><br />
-          Сумма
+          <legend><b>РћР±РјРµРЅРЅС‹Р№ РїСѓРЅРєС‚</b> </legend>
+          РћР±РјРµРЅСЏС‚СЊ РµРІСЂРѕРєСЂРµРґРёС‚С‹ РЅР° РєСЂРµРґРёС‚С‹.<br />
+          РљСѓСЂСЃ <b>1 РµРєСЂ.</b> = <b><? echo $con; ?>.00 РєСЂ.</b><br />
+          РЎСѓРјРјР°
           <input type="text" name="convert_sum" id="convert_sum" size="6" maxlength="10" />
-          екр.
-          <input type="submit" name="convert_ekredit" value="Обменять" <? /*onclick="return confirm('Вы хотите обменять '+(Math.floor(document.getElementById('convert_sum').value*100)/100).toFixed(2)+' екр. на '+(Math.floor(document.getElementById('convert_sum').value*100)/100*<? echo (0+$con); ?>).toFixed(2)+' кр. ?');" */ ?> />
+          РµРєСЂ.
+          <input type="submit" name="convert_ekredit" value="РћР±РјРµРЅСЏС‚СЊ" <? /*onclick="return confirm('Р’С‹ С…РѕС‚РёС‚Рµ РѕР±РјРµРЅСЏС‚СЊ '+(Math.floor(document.getElementById('convert_sum').value*100)/100).toFixed(2)+' РµРєСЂ. РЅР° '+(Math.floor(document.getElementById('convert_sum').value*100)/100*<? echo (0+$con); ?>).toFixed(2)+' РєСЂ. ?');" */ ?> />
         </fieldset></td>
       </tr>
       <? if($u->info['align']!=2 && $u->info['haos'] < time() && $u->info['haos'] != 1 && $u->info['align'] !=50 && 1 == 2) { ?>
       <tr>
         <td valign="top"><fieldset style="background-color:#DDEAD7">
-          <legend><b>Обменный пункт</b> </legend>
-          Обменять кредиты на еврокредиты.<br />
-          Курс <b><? echo $noc; ?> кр.</b> = <b>1.00 екр.</b><br />
-          Сумма
+          <legend><b>РћР±РјРµРЅРЅС‹Р№ РїСѓРЅРєС‚</b> </legend>
+          РћР±РјРµРЅСЏС‚СЊ РєСЂРµРґРёС‚С‹ РЅР° РµРІСЂРѕРєСЂРµРґРёС‚С‹.<br />
+          РљСѓСЂСЃ <b><? echo $noc; ?> РєСЂ.</b> = <b>1.00 РµРєСЂ.</b><br />
+          РЎСѓРјРјР°
           <input type="text" name="convert_sum2" id="convert_sum2" size="6" maxlength="10" />
-          кр.
+          РєСЂ.
           <br />
-          <small>Комиссия составляет <b>3.00 %</b> от суммы, а так-же <b>5.00 кр</b>.</small>
-          <input type="submit" name="convert_kredit" value="Обменять" onclick="return confirm('Вы хотите обменять '+(5+Math.floor((document.getElementById('convert_sum2').value)*103)/100).toFixed(2)+' кр. на '+(Math.floor(document.getElementById('convert_sum2').value*100)/100/<? echo $noc; ?>).toFixed(2)+' екр. ?');" />
+          <small>РљРѕРјРёСЃСЃРёСЏ СЃРѕСЃС‚Р°РІР»СЏРµС‚ <b>3.00 %</b> РѕС‚ СЃСѓРјРјС‹, Р° С‚Р°Рє-Р¶Рµ <b>5.00 РєСЂ</b>.</small>
+          <input type="submit" name="convert_kredit" value="РћР±РјРµРЅСЏС‚СЊ" onclick="return confirm('Р’С‹ С…РѕС‚РёС‚Рµ РѕР±РјРµРЅСЏС‚СЊ '+(5+Math.floor((document.getElementById('convert_sum2').value)*103)/100).toFixed(2)+' РєСЂ. РЅР° '+(Math.floor(document.getElementById('convert_sum2').value*100)/100/<? echo $noc; ?>).toFixed(2)+' РµРєСЂ. ?');" />
         </fieldset></td>
       </tr>
       <? }
@@ -767,37 +767,37 @@ hr {
 	  ?>
       <tr>
         <td valign="top"><fieldset>
-          <legend><b>Перевести еврокредиты на другой счет</b> </legend>
-          Сумма
+          <legend><b>РџРµСЂРµРІРµСЃС‚Рё РµРІСЂРѕРєСЂРµРґРёС‚С‹ РЅР° РґСЂСѓРіРѕР№ СЃС‡РµС‚</b> </legend>
+          РЎСѓРјРјР°
           <input id="vl12" value="" type="text" name="tansfer_sum2" size="6" maxlength="10" />
-          екр.<br />
-          Номер счета куда перевести кредиты
+          РµРєСЂ.<br />
+          РќРѕРјРµСЂ СЃС‡РµС‚Р° РєСѓРґР° РїРµСЂРµРІРµСЃС‚Рё РєСЂРµРґРёС‚С‹
           <input value="" type="text" id="vl22" name="num2" size="12" maxlength="15" />
           <br />
-          <input type="submit" name="transfer_kredit2" value="Перевести еврокредиты на другой счет" onclick="if(Math.round(document.getElementById('vl12')).value==0 || Math.round(document.getElementById('vl22').value)==0) {alert('Укажите сумму и номер счета'); return false;} else {return confirm('Вы хотите перевести со своего счета '+(Math.floor(document.getElementById('vl12').value*100)/100).toFixed(2)+' екр. на счет номер '+Math.floor(document.getElementById('vl22').value)+' ?')}" />
+          <input type="submit" name="transfer_kredit2" value="РџРµСЂРµРІРµСЃС‚Рё РµРІСЂРѕРєСЂРµРґРёС‚С‹ РЅР° РґСЂСѓРіРѕР№ СЃС‡РµС‚" onclick="if(Math.round(document.getElementById('vl12')).value==0 || Math.round(document.getElementById('vl22').value)==0) {alert('РЈРєР°Р¶РёС‚Рµ СЃСѓРјРјСѓ Рё РЅРѕРјРµСЂ СЃС‡РµС‚Р°'); return false;} else {return confirm('Р’С‹ С…РѕС‚РёС‚Рµ РїРµСЂРµРІРµСЃС‚Рё СЃРѕ СЃРІРѕРµРіРѕ СЃС‡РµС‚Р° '+(Math.floor(document.getElementById('vl12').value*100)/100).toFixed(2)+' РµРєСЂ. РЅР° СЃС‡РµС‚ РЅРѕРјРµСЂ '+Math.floor(document.getElementById('vl22').value)+' ?')}" />
           <br />
-          Комиссия составляет <b>0.00 %</b> от суммы, но не менее <b>0.01 екр</b>.
+          РљРѕРјРёСЃСЃРёСЏ СЃРѕСЃС‚Р°РІР»СЏРµС‚ <b>0.00 %</b> РѕС‚ СЃСѓРјРјС‹, РЅРѕ РЅРµ РјРµРЅРµРµ <b>0.01 РµРєСЂ</b>.
         </fieldset></td>
       </tr>
       <? } ?>
       <tr>
         <td valign="top"><fieldset>
-          <legend><b>Настройки</b> </legend>
-          У вас разрешена высылка номера счета и пароля на email. Если вы не уверены в своем email, или убеждены, что не забудете свой номер счета и пароль к нему, то можете запретить высылку пароля на email. Это убережет вас от кражи кредитов с вашего счета в случае взлома вашего email. Но если вы сами забудете свой номер счета и/или пароль, вам уже никто не поможет!<br />
-          <input type="submit" name="stop_send_email2" value="Запретить высылку пароля на email" />
+          <legend><b>РќР°СЃС‚СЂРѕР№РєРё</b> </legend>
+          РЈ РІР°СЃ СЂР°Р·СЂРµС€РµРЅР° РІС‹СЃС‹Р»РєР° РЅРѕРјРµСЂР° СЃС‡РµС‚Р° Рё РїР°СЂРѕР»СЏ РЅР° email. Р•СЃР»Рё РІС‹ РЅРµ СѓРІРµСЂРµРЅС‹ РІ СЃРІРѕРµРј email, РёР»Рё СѓР±РµР¶РґРµРЅС‹, С‡С‚Рѕ РЅРµ Р·Р°Р±СѓРґРµС‚Рµ СЃРІРѕР№ РЅРѕРјРµСЂ СЃС‡РµС‚Р° Рё РїР°СЂРѕР»СЊ Рє РЅРµРјСѓ, С‚Рѕ РјРѕР¶РµС‚Рµ Р·Р°РїСЂРµС‚РёС‚СЊ РІС‹СЃС‹Р»РєСѓ РїР°СЂРѕР»СЏ РЅР° email. Р­С‚Рѕ СѓР±РµСЂРµР¶РµС‚ РІР°СЃ РѕС‚ РєСЂР°Р¶Рё РєСЂРµРґРёС‚РѕРІ СЃ РІР°С€РµРіРѕ СЃС‡РµС‚Р° РІ СЃР»СѓС‡Р°Рµ РІР·Р»РѕРјР° РІР°С€РµРіРѕ email. РќРѕ РµСЃР»Рё РІС‹ СЃР°РјРё Р·Р°Р±СѓРґРµС‚Рµ СЃРІРѕР№ РЅРѕРјРµСЂ СЃС‡РµС‚Р° Рё/РёР»Рё РїР°СЂРѕР»СЊ, РІР°Рј СѓР¶Рµ РЅРёРєС‚Рѕ РЅРµ РїРѕРјРѕР¶РµС‚!<br />
+          <input type="submit" name="stop_send_email2" value="Р—Р°РїСЂРµС‚РёС‚СЊ РІС‹СЃС‹Р»РєСѓ РїР°СЂРѕР»СЏ РЅР° email" />
           <hr />
-          <b>Сменить пароль</b><br />
+          <b>РЎРјРµРЅРёС‚СЊ РїР°СЂРѕР»СЊ</b><br />
           <table>
             <tr>
-              <td>Новый пароль</td>
+              <td>РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ</td>
               <td><input type="password" name="new_psw1" /></td>
             </tr>
             <tr>
-              <td>Введите новый пароль повторно</td>
+              <td>Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РїР°СЂРѕР»СЊ РїРѕРІС‚РѕСЂРЅРѕ</td>
               <td><input type="password" name="new_psw2" /></td>
             </tr>
           </table>
-          <input type="submit" name="change_psw2" value="Сменить пароль" />
+          <input type="submit" name="change_psw2" value="РЎРјРµРЅРёС‚СЊ РїР°СЂРѕР»СЊ" />
           <br />
           <div id="keypad4" align="center" style="display: none;"></div>
         </fieldset></td>
@@ -810,11 +810,11 @@ hr {
     <td width="50%" valign="top"><table width="100%" align="left" cellspacing="5">
       <tr>
         <td valign="top" width="50%"><fieldset>
-          <legend><b>Снять со счета</b> </legend>
-          Сумма
+          <legend><b>РЎРЅСЏС‚СЊ СЃРѕ СЃС‡РµС‚Р°</b> </legend>
+          РЎСѓРјРјР°
           <input type="text" name="get_sum" id="get_sum" size="6" maxlength="10" />
-          кр.
-          <input type="submit" name="get_kredit" value="Снять кредиты со счета" onclick="if(Math.round(document.getElementById('get_sum')).value==0) {alert('Укажите сумму и номер счета'); return false;} else {return confirm('Вы хотите снять со своего счета '+(Math.floor(document.getElementById('get_sum').value*100)/100).toFixed(2)+' кр. ?')}" />
+          РєСЂ.
+          <input type="submit" name="get_kredit" value="РЎРЅСЏС‚СЊ РєСЂРµРґРёС‚С‹ СЃРѕ СЃС‡РµС‚Р°" onclick="if(Math.round(document.getElementById('get_sum')).value==0) {alert('РЈРєР°Р¶РёС‚Рµ СЃСѓРјРјСѓ Рё РЅРѕРјРµСЂ СЃС‡РµС‚Р°'); return false;} else {return confirm('Р’С‹ С…РѕС‚РёС‚Рµ СЃРЅСЏС‚СЊ СЃРѕ СЃРІРѕРµРіРѕ СЃС‡РµС‚Р° '+(Math.floor(document.getElementById('get_sum').value*100)/100).toFixed(2)+' РєСЂ. ?')}" />
           <br />
         </fieldset></td>
       </tr>
@@ -823,32 +823,32 @@ hr {
       </tr>
       <tr>
         <td valign="top"><fieldset>
-          <legend><b>Курс еврокредита к мировой валюте</b> </legend>
+          <legend><b>РљСѓСЂСЃ РµРІСЂРѕРєСЂРµРґРёС‚Р° Рє РјРёСЂРѕРІРѕР№ РІР°Р»СЋС‚Рµ</b> </legend>
           <table width="100%" border="0" cellpadding="2" cellspacing="0">
             <?
 			$pl = mysql_fetch_array(mysql_query('SELECT * FROM `bank_table` ORDER BY `time` DESC LIMIT 1'));
 			if(isset($pl['id'])) {
 			?>
             <tr>
-              <td><small>Данные на <b><?=date('d.m.y H:i',$pl['time'])?></b> без учета комиссий</small></td>
+              <td><small>Р”Р°РЅРЅС‹Рµ РЅР° <b><?=date('d.m.y H:i',$pl['time'])?></b> Р±РµР· СѓС‡РµС‚Р° РєРѕРјРёСЃСЃРёР№</small></td>
             </tr>
             <?
 				$pl['RUB'] = 1;
 				
 				$i = 0;
 				$true = array(
-					array('USD', 'долларов США'),
-					array('EUR', 'ЕВРО'),
-					array('RUB','российских рублей'),
-					array('UAH','укр. гривен'),
-					array('BYR','белорусских рублей'),
-					array('AZN','азербайджанских манат'),
-					array('GBP','англ. фунтов стерлингов')
+					array('USD', 'РґРѕР»Р»Р°СЂРѕРІ РЎРЁРђ'),
+					array('EUR', 'Р•Р’Р Рћ'),
+					array('RUB','СЂРѕСЃСЃРёР№СЃРєРёС… СЂСѓР±Р»РµР№'),
+					array('UAH','СѓРєСЂ. РіСЂРёРІРµРЅ'),
+					array('BYR','Р±РµР»РѕСЂСѓСЃСЃРєРёС… СЂСѓР±Р»РµР№'),
+					array('AZN','Р°Р·РµСЂР±Р°Р№РґР¶Р°РЅСЃРєРёС… РјР°РЅР°С‚'),
+					array('GBP','Р°РЅРіР». С„СѓРЅС‚РѕРІ СЃС‚РµСЂР»РёРЅРіРѕРІ')
 				);
 				while($i < count($true)) {
 			?>
             <tr>
-              <td><span>1 екр. = </span><span style="display:inline-block;width:100px"><b><?=round( ($pl['cur']/$pl[$true[$i][0]]) , 4 )?></b></span><span><?=$true[$i][1]?></span></td>
+              <td><span>1 РµРєСЂ. = </span><span style="display:inline-block;width:100px"><b><?=round( ($pl['cur']/$pl[$true[$i][0]]) , 4 )?></b></span><span><?=$true[$i][1]?></span></td>
             </tr>
             <?
 					$i++;
@@ -856,14 +856,14 @@ hr {
 			}else{
 			?>
             <tr>
-              <td><small><center><font color=grey>Не удалось получить информацию</font></center></small></td>
+              <td><small><center><font color=grey>РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</font></center></small></td>
             </tr>
             <? } ?>
           </table>
         </fieldset></td>
         </tr><tr>
         <td valign="top"><fieldset>
-          <legend><b>Последние операции</b> </legend>
+          <legend><b>РџРѕСЃР»РµРґРЅРёРµ РѕРїРµСЂР°С†РёРё</b> </legend>
           <table width="100%" border="0" cellpadding="2" cellspacing="0">
             <?
 			$sp = mysql_query('SELECT * FROM `users_delo` WHERE `uid` = "'.$u->info['id'].'" AND `dop` = "'.$u->bank['id'].'" AND `type` = "3" ORDER BY `time` DESC LIMIT 21');
@@ -884,7 +884,7 @@ hr {
   </tr>
 </table>
 </FORM>
-<small>Сумма указанная в окне оповещения и суммы взымаемая\начисляемая могут различаться.</small>
+<small>РЎСѓРјРјР° СѓРєР°Р·Р°РЅРЅР°СЏ РІ РѕРєРЅРµ РѕРїРѕРІРµС‰РµРЅРёСЏ Рё СЃСѓРјРјС‹ РІР·С‹РјР°РµРјР°СЏ\РЅР°С‡РёСЃР»СЏРµРјР°СЏ РјРѕРіСѓС‚ СЂР°Р·Р»РёС‡Р°С‚СЊСЃСЏ.</small>
 <?
 	}
 }

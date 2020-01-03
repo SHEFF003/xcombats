@@ -8,20 +8,20 @@ if(!defined('GAME'))
 	die();
 }
 session_start();
-// реализуем странички http://www.php.su/articles/?cat=examples&page=062
+// СЂРµР°Р»РёР·СѓРµРј СЃС‚СЂР°РЅРёС‡РєРё http://www.php.su/articles/?cat=examples&page=062
 
 function bug_user($id){
-	// Загружаем информацию об авторе
+	// Р—Р°РіСЂСѓР¶Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± Р°РІС‚РѕСЂРµ
 	$user = mysql_fetch_array(mysql_query("SELECT * FROM `users` WHERE `id` = '".mysql_real_escape_string($id)."' LIMIT 1;"));
 	return $user;
 }
 function bug_clan($id){
-	// Догружаем информацию об клане
+	// Р”РѕРіСЂСѓР¶Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± РєР»Р°РЅРµ
 	$clan = mysql_fetch_array(mysql_query("SELECT * FROM `clan` WHERE `id` = '".mysql_real_escape_string($id)."' LIMIT 1;"));
 	return $clan;
 }
 
-function bug_moder($align){  // Проверка склонности на модератора
+function bug_moder($align){  // РџСЂРѕРІРµСЂРєР° СЃРєР»РѕРЅРЅРѕСЃС‚Рё РЅР° РјРѕРґРµСЂР°С‚РѕСЂР°
 	$data = mysql_fetch_array(mysql_query("SELECT `id` FROM `moder` WHERE `align` = '".mysql_real_escape_string($align)."' LIMIT 1;"));
 	return $data;
 }
@@ -52,14 +52,14 @@ function bug_classPost($admin, $id, $data, $readUser, $readAdmin, $readModer, $n
 }
 function bug_type($type){
 	if(isset($type)){
-		if($type==1){$tiType="Игровые вопросы";}
-		elseif($type==2){$tiType="Ошибки мироздания";}
-		elseif($type==3){$tiType="Орден света";}
-		elseif($type==4){$tiType="Предложения";}
-		elseif($type==5){$tiType="Другое";}
-		else {$tiType='Нет';}
+		if($type==1){$tiType="РРіСЂРѕРІС‹Рµ РІРѕРїСЂРѕСЃС‹";}
+		elseif($type==2){$tiType="РћС€РёР±РєРё РјРёСЂРѕР·РґР°РЅРёСЏ";}
+		elseif($type==3){$tiType="РћСЂРґРµРЅ СЃРІРµС‚Р°";}
+		elseif($type==4){$tiType="РџСЂРµРґР»РѕР¶РµРЅРёСЏ";}
+		elseif($type==5){$tiType="Р”СЂСѓРіРѕРµ";}
+		else {$tiType='РќРµС‚';}
 	} else {
-		$tiType='Тема не задана';
+		$tiType='РўРµРјР° РЅРµ Р·Р°РґР°РЅР°';
 	}
 	return $tiType;
 }
@@ -67,17 +67,17 @@ function bug_type($type){
 
 
 function bug_userinfo($login, $id, $level, $align, $clanname){ 	
-	// Проверяем на существование персонажа и выводим информацию о нем в HTML код
+	// РџСЂРѕРІРµСЂСЏРµРј РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Р° Рё РІС‹РІРѕРґРёРј РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РЅРµРј РІ HTML РєРѕРґ
 	if(isset($login)){
 		$userinfo = "<SCRIPT>drwfl('".$login."', '".$id."','".$level."','".$align."','".$clanname."')</SCRIPT>"; 
 	} else { 
-		$userinfo = '<span style=" FONT-WEIGHT: bold;color: #000;font-size: 10pt;">[Игрок не найден]</span>';
+		$userinfo = '<span style=" FONT-WEIGHT: bold;color: #000;font-size: 10pt;">[РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ]</span>';
 	}
 	return $userinfo;
 }
 
 function bug_upView($id) {				
-	//$q = mysql_query("UPDATE `bags` SET readUser='0' WHERE id='".$id."'") or die ("<span style='color:red'>Ошибка при выполнении запроса</span>: ".mysql_error ());
+	//$q = mysql_query("UPDATE `bags` SET readUser='0' WHERE id='".$id."'") or die ("<span style='color:red'>РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°</span>: ".mysql_error ());
 }
 
 function bug_filter_area($id, $page){				
@@ -90,16 +90,16 @@ function bug_filter_area($id, $page){
 	
 	$filter="<style>input[type=\"checkbox\"]{padding:5px;}</style>";
 	$filter.="<form  style=\"padding-top:4px;display:inline-block; margin:6px 30px;\" method=\"post\" action=\"main.php?bagreport=1\">";
-	$filter.="<input type=\"checkbox\" name=\"opt1\" id=\"check1\" value=\"1\" ".$f1."><label for=\"check1\">[Игровые вопросы]</label><br/>";
-	$filter.="<input type=\"checkbox\" id=\"check2\" name=\"opt2\" value=\"2\" ".$f2."><label for=\"check2\">[Ошибки мироздания]</label><br/>";
-	$filter.="<input type=\"checkbox\" name=\"opt3\" value=\"3\" id=\"check3\" ".$f3."><label for=\"check3\">[Орден света(и жалобы на них)]</label><br/>";
-	$filter.="<input type=\"checkbox\"  id=\"check4\" name=\"opt4\" value=\"4\" ".$f4."><label for=\"check4\">[Предложения(без ответов)]</label><br/>";
-	$filter.="<input type=\"checkbox\"  id=\"check5\" name=\"opt5\" value=\"5\" ".$f5."><label for=\"check5\">[Другое]</label><br/><br/>";
-	$filter.="<input type=\"checkbox\"  id=\"delete1\" name=\"delete\" value=\"1\" ".$f6."><label for=\"delete1\">Отображать закрытые темы?</label><br/><br/>";
-	$filter.="&nbsp; &nbsp;на странице: <select name=\"limit\" onchange='this.form.submit()'><option value=\"".$_POST['limit']."\">".$_POST['limit']."</option>";
+	$filter.="<input type=\"checkbox\" name=\"opt1\" id=\"check1\" value=\"1\" ".$f1."><label for=\"check1\">[РРіСЂРѕРІС‹Рµ РІРѕРїСЂРѕСЃС‹]</label><br/>";
+	$filter.="<input type=\"checkbox\" id=\"check2\" name=\"opt2\" value=\"2\" ".$f2."><label for=\"check2\">[РћС€РёР±РєРё РјРёСЂРѕР·РґР°РЅРёСЏ]</label><br/>";
+	$filter.="<input type=\"checkbox\" name=\"opt3\" value=\"3\" id=\"check3\" ".$f3."><label for=\"check3\">[РћСЂРґРµРЅ СЃРІРµС‚Р°(Рё Р¶Р°Р»РѕР±С‹ РЅР° РЅРёС…)]</label><br/>";
+	$filter.="<input type=\"checkbox\"  id=\"check4\" name=\"opt4\" value=\"4\" ".$f4."><label for=\"check4\">[РџСЂРµРґР»РѕР¶РµРЅРёСЏ(Р±РµР· РѕС‚РІРµС‚РѕРІ)]</label><br/>";
+	$filter.="<input type=\"checkbox\"  id=\"check5\" name=\"opt5\" value=\"5\" ".$f5."><label for=\"check5\">[Р”СЂСѓРіРѕРµ]</label><br/><br/>";
+	$filter.="<input type=\"checkbox\"  id=\"delete1\" name=\"delete\" value=\"1\" ".$f6."><label for=\"delete1\">РћС‚РѕР±СЂР°Р¶Р°С‚СЊ Р·Р°РєСЂС‹С‚С‹Рµ С‚РµРјС‹?</label><br/><br/>";
+	$filter.="&nbsp; &nbsp;РЅР° СЃС‚СЂР°РЅРёС†Рµ: <select name=\"limit\" onchange='this.form.submit()'><option value=\"".$_POST['limit']."\">".$_POST['limit']."</option>";
 	if ($_POST['limit']>5){$filter.="<option value=\"5\">5</option> ";}$filter.="<option value=\"10\">10</option><option value=\"20\">20</option><option value=\"30\">30</option><option value=\"40\">40</option><option value=\"50\">50</option></select>";
 	
-	$filter.="&nbsp; &nbsp;страница: <select name=\"page\" onchange='this.form.submit()'>";
+	$filter.="&nbsp; &nbsp;СЃС‚СЂР°РЅРёС†Р°: <select name=\"page\" onchange='this.form.submit()'>";
 	
 	for($i=1;$i<=$page;$i++){
 		if($_POST['page']==$i){
@@ -111,14 +111,14 @@ function bug_filter_area($id, $page){
 	
 	$filter.="</select>";
 	
-	$filter.="<br/><input type=\"submit\" value=\"Применить\"></form>";
+	$filter.="<br/><input type=\"submit\" value=\"РџСЂРёРјРµРЅРёС‚СЊ\"></form>";
 	return $filter;
 }
 
 function bug_filter($opt, $f, $id, $t) {
 	$where="";
 	$pre=0;
-	// Фильтр WHERE для поиска
+	// Р¤РёР»СЊС‚СЂ WHERE РґР»СЏ РїРѕРёСЃРєР°
 	
 	if($opt!=NULL){
 		for($i=0;$i<count($opt);$i++){
@@ -177,7 +177,7 @@ if($u->error!=''){ echo '<font color="red"><b>'.$u->error.'</b></font><br>'; }
 $page ="";
 $post = round($_GET['post']);
 $data = bug_moder($u->info['align']);
-$atp = 'Приветствую тебя, ';
+$atp = 'РџСЂРёРІРµС‚СЃС‚РІСѓСЋ С‚РµР±СЏ, ';
 //$opt = array($_POST['opt1'],$_POST['opt2'],$_POST['opt3'],$_POST['opt4'],$_POST['opt5']);
 if(isset($_POST['opt1'])){ $opt[]=$_POST['opt1'];}if(isset($_POST['opt2'])){ $opt[]=$_POST['opt2'];}if(isset($_POST['opt3'])){ $opt[]=$_POST['opt3'];}if(isset($_POST['opt4'])){ $opt[]=$_POST['opt4'];}if(isset($_POST['opt5'])){ $opt[]=$_POST['opt5'];}
 
@@ -253,39 +253,39 @@ form .newpost input, form .newpost textarea, form .newpost select{ padding:2px 4
 .moderPost.new { background:url('//img.xcombats.com/admin/moder_post-new.png') no-repeat bottom left; }
 </style>
 <? 
-if(!isset($_GET['post'])) { $formTitle='СОЗДАТЬ СООБЩЕНИЕ'; $formButton='Задать вопрос';} else { $postLink='&post='.$_GET['post']; $formTitle='ОТВЕТИТЬ В ТЕМЕ'; $formButton='Ответить в теме';}
+if(!isset($_GET['post'])) { $formTitle='РЎРћР—Р”РђРўР¬ РЎРћРћР‘Р©Р•РќРР•'; $formButton='Р—Р°РґР°С‚СЊ РІРѕРїСЂРѕСЃ';} else { $postLink='&post='.$_GET['post']; $formTitle='РћРўР’Р•РўРРўР¬ Р’ РўР•РњР•'; $formButton='РћС‚РІРµС‚РёС‚СЊ РІ С‚РµРјРµ';}
 $formcreate='<h2 style="font-size:16px; padding-left:20px; font-weight:bold; color: #404040; margin:0px; text-transform:uppercase;">'.$formTitle.'</h2>
 <form style="color: #3F2A11;" method="post" action="main.php?bagreport=1&action=create'.$postLink.'">
 <table class="newpost" width="100%">
 	<tr>
-		<td style="padding-right:7px;" align="right" width="85px"> Персонаж:</td>';
+		<td style="padding-right:7px;" align="right" width="85px"> РџРµСЂСЃРѕРЅР°Р¶:</td>';
 		if(isset($u->info['login'])){$c=strlen($u->info['login']);$formcreate.='<td><input type="text" name="name" size="'.$c.'" value="'.$u->info['login'].'" disabled/></td>';}else{$formcreate.='<td><input type="text" name="name" size="24" value=""/></td>';}
 	$formcreate.='</tr>';
 
 if(!isset($_GET['post'])){	$formcreate.='
 	<tr>
-		<td style="padding-right:7px;width: 75px;" align="right" >Категория:</td>
+		<td style="padding-right:7px;width: 75px;" align="right" >РљР°С‚РµРіРѕСЂРёСЏ:</td>
 		<td>
 			<select name="type"> 
-				<option value="1">Игровые вопросы</option>
-				<option value="3">Орден Света</option>
-				<option value="2">Ошибки Мироздания</option>
-				<option value="4">Предложения</option>
-				<option value="5" selected>Другое</option>
+				<option value="1">РРіСЂРѕРІС‹Рµ РІРѕРїСЂРѕСЃС‹</option>
+				<option value="3">РћСЂРґРµРЅ РЎРІРµС‚Р°</option>
+				<option value="2">РћС€РёР±РєРё РњРёСЂРѕР·РґР°РЅРёСЏ</option>
+				<option value="4">РџСЂРµРґР»РѕР¶РµРЅРёСЏ</option>
+				<option value="5" selected>Р”СЂСѓРіРѕРµ</option>
 			</select>
 		</td>
 	</tr>
 	<tr>
-		<td style="padding-right:7px;" align="right" >Тема:</td>
+		<td style="padding-right:7px;" align="right" >РўРµРјР°:</td>
 		<td><input type="text" size="32" name="title" /></td>
 	</tr>'; }
 $formcreate.='
 	<tr>
-		<td style="vertical-align:top; padding-right:10px;" align="right" >Текст:</td>
+		<td style="vertical-align:top; padding-right:10px;" align="right" >РўРµРєСЃС‚:</td>
 		<td><textarea name="description" style="width:238px; height:100px; "></textarea></td>
 	</tr>
 	<tr>
-		<td colspan=2><input type="submit" style="margin-top: 20px;padding: 6px 10px;font-weight: bold;color: #89634e;" value="Отправить" /></td>
+		<td colspan=2><input type="submit" style="margin-top: 20px;padding: 6px 10px;font-weight: bold;color: #89634e;" value="РћС‚РїСЂР°РІРёС‚СЊ" /></td>
 	</tr>
 </table>
 </form>';
@@ -294,7 +294,7 @@ $formcreate.='
 
 
 
-//if($data OR $u->info['admin']>0 OR $u->info['login']=='Хорс'){ // if moder or admin
+//if($data OR $u->info['admin']>0 OR $u->info['login']=='РҐРѕСЂСЃ'){ // if moder or admin
 if($data OR $u->info['admin']>0){ // if moder or admin
 	if(isset($_POST['limit'])){
 		$num = $_POST['limit'];
@@ -306,10 +306,10 @@ if($data OR $u->info['admin']>0){ // if moder or admin
 	$total=intval(($posts - 1) / $num) + 1; 
 	$filter=bug_filter_area($u->info['admin'], $total); 
 	
-	// Отображение списка записей
-	$page.= '<h2 style="font-size:16px; padding-left:20px; font-weight:bold; color: #404040; margin:0px; text-transform:uppercase;">ЗАЯВКИ</h2>';
-	while ($r = mysql_fetch_array($bugs)) { // Вывод списка  
-		// Сокращение содержимого текста, возвращает[$text]
+	// РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРїРёСЃРєР° Р·Р°РїРёСЃРµР№
+	$page.= '<h2 style="font-size:16px; padding-left:20px; font-weight:bold; color: #404040; margin:0px; text-transform:uppercase;">Р—РђРЇР’РљР</h2>';
+	while ($r = mysql_fetch_array($bugs)) { // Р’С‹РІРѕРґ СЃРїРёСЃРєР°  
+		// РЎРѕРєСЂР°С‰РµРЅРёРµ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ С‚РµРєСЃС‚Р°, РІРѕР·РІСЂР°С‰Р°РµС‚[$text]
 		if(strlen($r['text'])>=100 && empty($_GET['post'])){$text=substr($r['text'], 0, 100)."...";} else {$text=$r['text'];}
 		
 		$author = $r['uid'];
@@ -320,21 +320,21 @@ if($data OR $u->info['admin']>0){ // if moder or admin
 		$data = bug_moder($user['align']); 
 		$checkPost = bug_classPost($user['admin'],$u->info['id'], $data, $r['readUser'], $r['readAdmin'], $r['readModer'], $r['up']); 
 			
-		if(strlen($r['title'])>=1){ $title="<b>«".$r['title']."»</b>"; } else { $title="<b>«Отсутствует»</b>"; }
+		if(strlen($r['title'])>=1){ $title="<b>В«".$r['title']."В»</b>"; } else { $title="<b>В«РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚В»</b>"; }
 
 		$func="";
-		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=read\"><img src=\"//img.xcombats.com/admin/read.png\" height=\"16\"/></a>"; // Отметить - Я прочитал
-		if($u->info['admin']>0 OR $data)$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=update\"><img src=\"//img.xcombats.com/admin/update.png\" height=\"16\"/></a>"; // Вернуть отметку - Я не прочел
+		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=read\"><img src=\"//img.xcombats.com/admin/read.png\" height=\"16\"/></a>"; // РћС‚РјРµС‚РёС‚СЊ - РЇ РїСЂРѕС‡РёС‚Р°Р»
+		if($u->info['admin']>0 OR $data)$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=update\"><img src=\"//img.xcombats.com/admin/update.png\" height=\"16\"/></a>"; // Р’РµСЂРЅСѓС‚СЊ РѕС‚РјРµС‚РєСѓ - РЇ РЅРµ РїСЂРѕС‡РµР»
 		//if($u->info['admin']>0 OR $data)$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=edit\"><img src=\"//img.xcombats.com/admin/edit.png\" height=\"16\"/></a>";
 		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=delete\"><img src=\"//img.xcombats.com/admin/close.png\" height=\"16\"/></a>";
 
 		
 		$bug_sid = mysql_query("SELECT * FROM `bags` WHERE `sid`=".$r['id']." ORDER BY time ASC");
-		if($r['delete']==1){$thisDelete="<span style='color:red'>Тема закрыта</span> &nbsp; | &nbsp;";} else {$thisDelete=" ";}
+		if($r['delete']==1){$thisDelete="<span style='color:red'>РўРµРјР° Р·Р°РєСЂС‹С‚Р°</span> &nbsp; | &nbsp;";} else {$thisDelete=" ";}
 		$reCount=mysql_num_rows($bug_sid);
 		$result= "<div class='linegrad'>
 			<div class='".$checkPost."'>
-				<div><a href='main.php?bagreport=1&type=".$r['type']."' title='Вернуться в рубрику'><b>".$tiType."</b></a> > <a href='main.php?bagreport=1&post=".$r['id']."' title='Подробнее...'>".$title."</a> от ".$userinfo." <span style='float:right; text-align:right;'>".$thisDelete."Сообщений: ".$reCount." (<i class='date'>".date("G:i, d.m.Y",$r['time'])."</i>) <br/>".$func."</span></div>
+				<div><a href='main.php?bagreport=1&type=".$r['type']."' title='Р’РµСЂРЅСѓС‚СЊСЃСЏ РІ СЂСѓР±СЂРёРєСѓ'><b>".$tiType."</b></a> > <a href='main.php?bagreport=1&post=".$r['id']."' title='РџРѕРґСЂРѕР±РЅРµРµ...'>".$title."</a> РѕС‚ ".$userinfo." <span style='float:right; text-align:right;'>".$thisDelete."РЎРѕРѕР±С‰РµРЅРёР№: ".$reCount." (<i class='date'>".date("G:i, d.m.Y",$r['time'])."</i>) <br/>".$func."</span></div>
 				<div style='padding:6px 0px; width: 90%;'>".$text."</div>
 			</div>
 		</div>";
@@ -346,7 +346,7 @@ if($data OR $u->info['admin']>0){ // if moder or admin
 				$data = bug_moder($user['align']);
 				$checkPost = bug_classPost($user['admin'],$u->info['id'], $data, $s['readUser'], $s['readAdmin'], $s['readModer'], $s['up']); 
 				
-				$result.= "<div  class='linegrad_answer' ><div class='".$checkPost."'><div style='font-size:12px'>Ответ от ".$userinfo." <span style='float:right;'>(<i class='date'>".date("G:i, d.m.Y",$s['time'])."</i>)</span></div><div style='padding:6px 0px; width: 90%;'>".$s['text']."</div></div></div>";
+				$result.= "<div  class='linegrad_answer' ><div class='".$checkPost."'><div style='font-size:12px'>РћС‚РІРµС‚ РѕС‚ ".$userinfo." <span style='float:right;'>(<i class='date'>".date("G:i, d.m.Y",$s['time'])."</i>)</span></div><div style='padding:6px 0px; width: 90%;'>".$s['text']."</div></div></div>";
 
 				if($s['uid']!=$u->info['id']){
 					bug_upView($s['id']);
@@ -373,11 +373,11 @@ if($data OR $u->info['admin']>0){ // if moder or admin
 	$total = intval(($posts - 1) / $num) + 1; 
 	$filter=bug_filter_area($u->info['admin'], $total);
 
-	// Отображение списка записей пользователя
-	$page.= '<h2 style="font-size:16px; font-weight:bold; color: #404040; padding-left:20px; margin:0px; text-transform:uppercase;">ВАШИ СООБЩЕНИЯ</h2> ';
+	// РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРїРёСЃРєР° Р·Р°РїРёСЃРµР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	$page.= '<h2 style="font-size:16px; font-weight:bold; color: #404040; padding-left:20px; margin:0px; text-transform:uppercase;">Р’РђРЁР РЎРћРћР‘Р©Р•РќРРЇ</h2> ';
 	while ($r = mysql_fetch_array($bugs)) {
-		// Сокращение содержимого текста, возвращает[$text]
-		if(strlen($r['title'])>=1){ $title="<b>«".$r['title']."»</b>"; } else { $title="<b>«Отсутствует»</b>"; }
+		// РЎРѕРєСЂР°С‰РµРЅРёРµ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ С‚РµРєСЃС‚Р°, РІРѕР·РІСЂР°С‰Р°РµС‚[$text]
+		if(strlen($r['title'])>=1){ $title="<b>В«".$r['title']."В»</b>"; } else { $title="<b>В«РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚В»</b>"; }
 		if(strlen($r['text'])>=47 && empty($_GET['post'])){$text=substr($r['text'], 0, 47)."...";} else {$text=$r['text'];}
 
 		$author = $r['uid'];
@@ -389,19 +389,19 @@ if($data OR $u->info['admin']>0){ // if moder or admin
 		$checkPost = bug_classPost($user['admin'],$u->info['id'], $data, $r['readUser'], $r['readAdmin'], $r['readModer'], $r['up']); 
 		
 		$func="";
-		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=read\"><img src=\"//img.xcombats.com/admin/read.png\" height=\"16\"/></a>"; // Отметить - Я прочитал
-		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=update\"><img src=\"//img.xcombats.com/admin/update.png\" height=\"16\"/></a>"; // Вернуть отметку - Я не прочел
-		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=delete\"><img src=\"//img.xcombats.com/admin/close.png\" height=\"16\"/></a>"; // Закрыть мою тему
+		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=read\"><img src=\"//img.xcombats.com/admin/read.png\" height=\"16\"/></a>"; // РћС‚РјРµС‚РёС‚СЊ - РЇ РїСЂРѕС‡РёС‚Р°Р»
+		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=update\"><img src=\"//img.xcombats.com/admin/update.png\" height=\"16\"/></a>"; // Р’РµСЂРЅСѓС‚СЊ РѕС‚РјРµС‚РєСѓ - РЇ РЅРµ РїСЂРѕС‡РµР»
+		$func.="<a href=\"main.php?bagreport=1&post=".$r['id']."&action=delete\"><img src=\"//img.xcombats.com/admin/close.png\" height=\"16\"/></a>"; // Р—Р°РєСЂС‹С‚СЊ РјРѕСЋ С‚РµРјСѓ
 
-		if($r['delete']==1){$thisDelete="<span style='color:red'>Тема закрыта</span> &nbsp; | &nbsp;";} else {$thisDelete="";}
+		if($r['delete']==1){$thisDelete="<span style='color:red'>РўРµРјР° Р·Р°РєСЂС‹С‚Р°</span> &nbsp; | &nbsp;";} else {$thisDelete="";}
 		$bug_sid = mysql_query("SELECT * FROM `bags` WHERE `sid`=".$r['id']." ORDER BY time ASC");
 		$reCount=mysql_num_rows($bug_sid);
-		$result= "<div class='linegrad'><div class='".$checkPost."'><div><span style='color:darkred; font-size:11px; font-style:italic;'>".$tiType."</span> > <a href='main.php?bagreport=1&post=".$r['id']."' title='Подробнее...'>".$title."</a> <span style='float:right; text-align:right;'>".$thisDelete." Ответов в теме: ".$reCount." (<i class='date'>".date("G:i, d.m.Y",$r['time'])."</i>) <br/>".$func."</span></div><div style='padding:6px 0px;'>".$text."</div></div></div>";
+		$result= "<div class='linegrad'><div class='".$checkPost."'><div><span style='color:darkred; font-size:11px; font-style:italic;'>".$tiType."</span> > <a href='main.php?bagreport=1&post=".$r['id']."' title='РџРѕРґСЂРѕР±РЅРµРµ...'>".$title."</a> <span style='float:right; text-align:right;'>".$thisDelete." РћС‚РІРµС‚РѕРІ РІ С‚РµРјРµ: ".$reCount." (<i class='date'>".date("G:i, d.m.Y",$r['time'])."</i>) <br/>".$func."</span></div><div style='padding:6px 0px;'>".$text."</div></div></div>";
 		 
 		if(isset($_GET['post'])){
 			if($r['delete']==1){
 				if ($_GET['action']=='delete' OR empty($_GET['action'])){
-					$formcreate='<h2 style="font-size:16px; padding-left:20px; font-weight:bold; color: red; margin:0px; text-transform:uppercase;">Тема закрыта</h2>';
+					$formcreate='<h2 style="font-size:16px; padding-left:20px; font-weight:bold; color: red; margin:0px; text-transform:uppercase;">РўРµРјР° Р·Р°РєСЂС‹С‚Р°</h2>';
 				}elseif($_GET['action']=='edit') {
 					$formcreate='';
 				}
@@ -414,11 +414,11 @@ if($data OR $u->info['admin']>0){ // if moder or admin
 				$data = bug_moder($user['align']);  
 				$checkPost = bug_classPost($user['admin'],$u->info['id'], $data, $s['readUser'], $s['readAdmin'], $s['readModer'], $s['up']); 
 				
-				$result.= "<div  class='linegrad_answer' ><div class='".$checkPost."'><div style='font-size:12px'>Ответ от ".$userinfo." <span style='float:right;'>(<i class='date'>".date("G:i, d.m.Y",$s['time'])."</i>)</span></div><div style='padding:6px 0px;'>".$text."</div></div></div>";
+				$result.= "<div  class='linegrad_answer' ><div class='".$checkPost."'><div style='font-size:12px'>РћС‚РІРµС‚ РѕС‚ ".$userinfo." <span style='float:right;'>(<i class='date'>".date("G:i, d.m.Y",$s['time'])."</i>)</span></div><div style='padding:6px 0px;'>".$text."</div></div></div>";
 				/*if($s['uid']!=$u->info['id']){
-					// Если сообщение не мое, отмечаем как прочитанное
+					// Р•СЃР»Рё СЃРѕРѕР±С‰РµРЅРёРµ РЅРµ РјРѕРµ, РѕС‚РјРµС‡Р°РµРј РєР°Рє РїСЂРѕС‡РёС‚Р°РЅРЅРѕРµ
 					$query = "UPDATE `bags` SET readUser='0' WHERE id='".$s['id']."'";
-					$q = mysql_query($query) or die ("<span style='color:red'>Ошибка при выполнении запроса</span>: ".mysql_error ()); 
+					$q = mysql_query($query) or die ("<span style='color:red'>РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°</span>: ".mysql_error ()); 
 				}*/
 			}
 		}
@@ -427,7 +427,7 @@ if($data OR $u->info['admin']>0){ // if moder or admin
 		if(isset($_GET['post'])) break;
 	}
 	
-	// Вывод сообщений пользователя
+	// Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 }
 
 
@@ -441,15 +441,15 @@ if($_GET['action']=='create'){
 	if ($u->info['admin']>0) { $readAdmin="0"; $readUser="1";  } else{ $readAdmin="1"; $readUser="0";}
 	if ($data) { $readModer="0";  $readUser="1"; } else  { $readModer="1"; $readUser="0"; } 
 
-// Отмечает предыдущие сообщения как прочитанные
+// РћС‚РјРµС‡Р°РµС‚ РїСЂРµРґС‹РґСѓС‰РёРµ СЃРѕРѕР±С‰РµРЅРёСЏ РєР°Рє РїСЂРѕС‡РёС‚Р°РЅРЅС‹Рµ
 	$query = "UPDATE `bags` SET readAdmin='0', readModer='0', readUser='0' WHERE sid='".$post."'";
-	$q = mysql_query($query) or die ("<span style='color:red'>Ошибка при выполнении запроса</span>: ".mysql_error ()); 
+	$q = mysql_query($query) or die ("<span style='color:red'>РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°</span>: ".mysql_error ()); 
 	
-// Добавление новое сообщение
+// Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
 	$query = "INSERT INTO `bags` (`uid`, `title`, `sid`, `text`, `type`, `time`, `ip`, `fast`, `readAdmin`, `readModer`, `readUser`) VALUES ('".$id."', '".$title."', '".$_GET['post']."', '".htmlspecialchars($descr,NULL,'cp1251')."', '".$type."', '".time()."', '".$ip."', '0', '".$readAdmin."', '".$readModer."', '".$readUser."');";
-	$q = mysql_query($query) or die ("<span style='color:red'>Ошибка при выполнении запроса</span>: ".mysql_error ()); 
+	$q = mysql_query($query) or die ("<span style='color:red'>РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°</span>: ".mysql_error ()); 
 	
-// Обновление статуса темы 
+// РћР±РЅРѕРІР»РµРЅРёРµ СЃС‚Р°С‚СѓСЃР° С‚РµРјС‹ 
 	$thead = mysql_fetch_array(mysql_query("SELECT `delete`,`readUser`,`readModer`,`readAdmin`, `uid` FROM `bags` WHERE `id` = '".mysql_real_escape_string($_GET['post'])."' LIMIT 1;"));
 	if($u->info['admin']>0){
 		$query = "UPDATE `bags` SET `delete`='0', `readUser`=1, `readModer`=0, `readAdmin`=0, `time`='".time()."' WHERE  `id`='".$post."';";
@@ -459,46 +459,46 @@ if($_GET['action']=='create'){
 		$query = "UPDATE `bags` SET `delete`='0', `readUser`=0, `readModer`=1, `readAdmin`=1, `time`='".time()."' WHERE  `id`='".$post."';";
 	}
 	//$query = "UPDATE `bags` SET readUser='1', readAdmin='1', time='".time()."'  WHERE id='".$post."'";
-	$q = mysql_query($query) or die ("<span style='color:red'>Ошибка при выполнении запроса</span>: ".mysql_error ()); 
+	$q = mysql_query($query) or die ("<span style='color:red'>РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°</span>: ".mysql_error ()); 
 	 
-	$answer.="<div style=\"text-align:center; width:100%;\"><span style='margin-top:30px;color:green; font-weight:bold'>Тема успешно создана</span>.</div>";
+	$answer.="<div style=\"text-align:center; width:100%;\"><span style='margin-top:30px;color:green; font-weight:bold'>РўРµРјР° СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅР°</span>.</div>";
 	$answer.='<META HTTP-EQUIV="refresh" CONTENT="0; url=/main.php?bagreport=1&post='.$post.'">';
 	//redirect to post
 	$answer.=$formcreate;
 } elseif($_GET['action']=='edit'){
 /**/ 
-	$formTitle='РЕДАКТИРОВАНИЕ ТЕМЫ'; 
-	$formButton='Сохранить изменения';
+	$formTitle='Р Р•Р”РђРљРўРР РћР’РђРќРР• РўР•РњР«'; 
+	$formButton='РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ';
 	$postLink='post='.$_GET['post'].'&'; 
 	
 	$formcreate='<h2 style="font-size:16px; padding-left:20px; font-weight:bold; color: #404040; margin:0px; text-transform:uppercase;">'.$formTitle.'</h2>
 	<form style="color: #3F2A11;" method="post" action="main.php?bagreport=1&'.$postLink.'action=edit">
 	<table class="newpost" width="100%">
 	<tr>
-	<td style="padding-right:7px;" align="right" width="85px"> Персонаж:</td>';
+	<td style="padding-right:7px;" align="right" width="85px"> РџРµСЂСЃРѕРЅР°Р¶:</td>';
 	if(isset($u->info['login'])){$c=strlen($u->info['login']);
 	$formcreate.='<td><input type="text" name="name" size="'.$c.'" value="'.$u->info['login'].'" disabled/></td>';}else{$formcreate.='<td><input type="text" name="name" size="24" value=""/></td>';}
 	$formcreate.='</tr>';
 	$formcreate.='
 		<tr>
-			<td style="padding-right:7px;width: 75px;" align="right" >Категория:</td>
+			<td style="padding-right:7px;width: 75px;" align="right" >РљР°С‚РµРіРѕСЂРёСЏ:</td>
 			<td>
 				<select name="type" selected="4"> 
-					<option value="1">Игровые вопросы</option>
-					<option value="3">Орден Света</option>
-					<option value="2">Ошибки Мироздания</option>
-					<option value="4">Предложения</option>
-					<option value="5" selected>Другое</option>
+					<option value="1">РРіСЂРѕРІС‹Рµ РІРѕРїСЂРѕСЃС‹</option>
+					<option value="3">РћСЂРґРµРЅ РЎРІРµС‚Р°</option>
+					<option value="2">РћС€РёР±РєРё РњРёСЂРѕР·РґР°РЅРёСЏ</option>
+					<option value="4">РџСЂРµРґР»РѕР¶РµРЅРёСЏ</option>
+					<option value="5" selected>Р”СЂСѓРіРѕРµ</option>
 				</select>
 			</td>
 		</tr>
 		<tr>
-			<td style="padding-right:7px;" align="right" >Тема:</td>
+			<td style="padding-right:7px;" align="right" >РўРµРјР°:</td>
 			<td><input type="text" size="32" name="title" /></td>
 		</tr>';
 	$formcreate.='
 		<tr>
-			<td style="vertical-align:top; padding-right:10px;" align="right" >Текст:</td>
+			<td style="vertical-align:top; padding-right:10px;" align="right" >РўРµРєСЃС‚:</td>
 			<td><textarea name="description" style="width:238px; height:100px; "></textarea></td>
 		</tr>
 		<tr>
@@ -527,7 +527,7 @@ if($_GET['action']=='create'){
 			$query = "UPDATE `bags` SET `delete`='".$dlt."', `readUser`=0, `readModer`=0, `readAdmin`=0 WHERE  `id`='".$post."';";
 		}
 	}
-	$q = mysql_query($query) or die ("<span style='color:red'>Ошибка при выполнении запроса</span>: ".mysql_error()); 
+	$q = mysql_query($query) or die ("<span style='color:red'>РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°</span>: ".mysql_error()); 
 	$answer.=$formcreate;
 } elseif($_GET['action']=='update'){
 	if($u->info['admin']>0){
@@ -537,8 +537,8 @@ if($_GET['action']=='create'){
 	} else {
 		$query = "UPDATE `bags` SET readUser='1', time='".time()."'  WHERE id='".$post."'";
 	}
-	$q = mysql_query($query) or die ("<span style='color:red'>Ошибка при выполнении запроса</span>: ".mysql_error ()); 
-	$answer.="<div style=\"text-align:center; width:100%;\"><span style='margin-top:30px;color:#8f0000; font-weight:bold'>Прочесть позже</span>.</div>";
+	$q = mysql_query($query) or die ("<span style='color:red'>РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°</span>: ".mysql_error ()); 
+	$answer.="<div style=\"text-align:center; width:100%;\"><span style='margin-top:30px;color:#8f0000; font-weight:bold'>РџСЂРѕС‡РµСЃС‚СЊ РїРѕР·Р¶Рµ</span>.</div>";
 	$answer.='<META HTTP-EQUIV="refresh" CONTENT="0; url=/main.php?bagreport=1&post='.$post.'">';
 } elseif($_GET['action']=='read'){
 	if($u->info['admin']>0){
@@ -548,7 +548,7 @@ if($_GET['action']=='create'){
 	} else {
 		$query = "UPDATE `bags` SET readUser='0', time='".time()."'  WHERE id='".$post."'";
 	}
-	$q = mysql_query($query) or die ("<span style='color:red'>Ошибка при выполнении запроса</span>: ".mysql_error ()); 
+	$q = mysql_query($query) or die ("<span style='color:red'>РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°</span>: ".mysql_error ()); 
 	$answer.=$formcreate;
 } else {
 	$answer.=$formcreate;
@@ -559,12 +559,12 @@ if($_GET['action']=='create'){
 	<div class="title">
 		<div class="left"><?=$atp;?><?$clan = mysql_fetch_array(mysql_query("SELECT * FROM `clan` WHERE `id` = '".mysql_real_escape_string($u->info['clan'])."' LIMIT 1;"));?><SCRIPT>drwfl("<?=$u->info['login']?>",<?=$u->info['id']?>,"<?=$u->info['level']?>",<?=$u->info['align']?>,"<?=$clan['name_mini'];?>")</SCRIPT>!</div>
 		<div class="right"> 
-			<INPUT TYPE="button" class='button' onclick="location.href='main.php?bagreport=1';" value="Обновить" title="Обновить">
-			<INPUT TYPE="button" class='button' onclick="location.href='main.php';" value="Вернуться" title="Вернуться">
+			<INPUT TYPE="button" class='button' onclick="location.href='main.php?bagreport=1';" value="РћР±РЅРѕРІРёС‚СЊ" title="РћР±РЅРѕРІРёС‚СЊ">
+			<INPUT TYPE="button" class='button' onclick="location.href='main.php';" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" title="Р’РµСЂРЅСѓС‚СЊСЃСЏ">
 		</div>
 	</div>
 	<div class="menu"> 
-		<a href='#' onclick="location.href='main.php?bagreport=1';" <?if(isset($_GET['bagreport']))echo"class='active'";?>>Служба поддержки</a>
+		<a href='#' onclick="location.href='main.php?bagreport=1';" <?if(isset($_GET['bagreport']))echo"class='active'";?>>РЎР»СѓР¶Р±Р° РїРѕРґРґРµСЂР¶РєРё</a>
 	</div>
 	<table class="content">
 		<tr style="display:table-row;">
@@ -576,7 +576,7 @@ if($_GET['action']=='create'){
 			<td class='cell right'>
 				<div class='t right'>
 					<div class="f">
-						<h2 style="font-size:16px; padding-left:20px; font-weight:bold; color: #404040; margin:0px; text-transform:uppercase;">Фильтр</h2>
+						<h2 style="font-size:16px; padding-left:20px; font-weight:bold; color: #404040; margin:0px; text-transform:uppercase;">Р¤РёР»СЊС‚СЂ</h2>
 						<?=$filter?> 
 					</div>
 				</div><br/>

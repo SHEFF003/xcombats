@@ -14,26 +14,26 @@ if($p['unbanned']==1)
 			$sx = '';
 			if($u->info['sex']==1)
 			{
-				$sx = 'а';
+				$sx = 'Р°';
 			}
 			if($uu['banned']>0)
 			{
 				mysql_query('UPDATE `users_delo` SET `hb` = "0" WHERE `uid` = "'.$uu['id'].'" AND `hb`!="0"');
-				$rtxt = '[img[items/pal_button7.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; снял'.$sx.' заклятие смерти с &quot;'.$uu['login'].'&quot;';
+				$rtxt = '[img[items/pal_button7.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; СЃРЅСЏР»'.$sx.' Р·Р°РєР»СЏС‚РёРµ СЃРјРµСЂС‚Рё СЃ &quot;'.$uu['login'].'&quot;';
 				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");				
-				$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; снял'.$sx.' заклятие &quot;<b>смерти</b>&quot;.';
+				$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; СЃРЅСЏР»'.$sx.' Р·Р°РєР»СЏС‚РёРµ &quot;<b>СЃРјРµСЂС‚Рё</b>&quot;.';
 				mysql_query("INSERT INTO `users_delo` (`uid`,`ip`,`city`,`time`,`text`,`login`,`type`) VALUES ('".$uu['id']."','".$_SERVER['REMOTE_ADDR']."','".$u->info['city']."','".time()."','".$rtxt."','".$u->info['login']."',0)");
-				$uer = 'Вы успешно сняли заклятие смерти с персонажа "'.$uu['login'].'".<br>';
+				$uer = 'Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРЅСЏР»Рё Р·Р°РєР»СЏС‚РёРµ СЃРјРµСЂС‚Рё СЃ РїРµСЂСЃРѕРЅР°Р¶Р° "'.$uu['login'].'".<br>';
 			}else{
-				$uer = 'Персонаж не заблокирован';
+				$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ';
 			}
 		}else{
-			$uer = 'Не удалось использовать данное заклятие';
+			$uer = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ';
 		}
 	}else{
-		$uer = 'Персонаж не найден в этом городе';
+		$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 	}
 }else{
-	$uer = 'У Вас нет прав на использование данного заклятия';
+	$uer = 'РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РЅР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РґР°РЅРЅРѕРіРѕ Р·Р°РєР»СЏС‚РёСЏ';
 }	
 ?>

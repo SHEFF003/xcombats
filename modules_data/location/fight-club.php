@@ -38,13 +38,13 @@ if(!defined('GAME')){
                   </tr>
                 </table>   
               <div style="display:none; height:0px " id="moveto"></div>     
-              <div align="right" style="padding: 3px;"><small>&laquo;<?php echo $c['title3']; ?>&raquo; приветствует Вас, <b><?php echo $u->info['login']; ?></b>.<br /><?php
+              <div align="right" style="padding: 3px;"><small>&laquo;<?php echo $c['title3']; ?>&raquo; РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ Р’Р°СЃ, <b><?php echo $u->info['login']; ?></b>.<br /><?php
              	 if($u->info['level']<6){
                	 	echo '
-                 	Вам все время кажется что за вами следят? Чудится, что случайный попутчик мечтает всадить вам топор в спину? При совершении очередной покупки в гос. магазине мучает ощущение, что вас обманули? Кажется, что симпатичная девушка напротив смотрит на вас как на пищу? Успокойтесь, это не паранойя. Это реалии Capital city. Города Тьмы.
+                 	Р’Р°Рј РІСЃРµ РІСЂРµРјСЏ РєР°Р¶РµС‚СЃСЏ С‡С‚Рѕ Р·Р° РІР°РјРё СЃР»РµРґСЏС‚? Р§СѓРґРёС‚СЃСЏ, С‡С‚Рѕ СЃР»СѓС‡Р°Р№РЅС‹Р№ РїРѕРїСѓС‚С‡РёРє РјРµС‡С‚Р°РµС‚ РІСЃР°РґРёС‚СЊ РІР°Рј С‚РѕРїРѕСЂ РІ СЃРїРёРЅСѓ? РџСЂРё СЃРѕРІРµСЂС€РµРЅРёРё РѕС‡РµСЂРµРґРЅРѕР№ РїРѕРєСѓРїРєРё РІ РіРѕСЃ. РјР°РіР°Р·РёРЅРµ РјСѓС‡Р°РµС‚ РѕС‰СѓС‰РµРЅРёРµ, С‡С‚Рѕ РІР°СЃ РѕР±РјР°РЅСѓР»Рё? РљР°Р¶РµС‚СЃСЏ, С‡С‚Рѕ СЃРёРјРїР°С‚РёС‡РЅР°СЏ РґРµРІСѓС€РєР° РЅР°РїСЂРѕС‚РёРІ СЃРјРѕС‚СЂРёС‚ РЅР° РІР°СЃ РєР°Рє РЅР° РїРёС‰Сѓ? РЈСЃРїРѕРєРѕР№С‚РµСЃСЊ, СЌС‚Рѕ РЅРµ РїР°СЂР°РЅРѕР№СЏ. Р­С‚Рѕ СЂРµР°Р»РёРё Capital city. Р“РѕСЂРѕРґР° РўСЊРјС‹.
                  	';
                  }else{
-                 	echo 'Возможно, вы ошиблись этажом - настоящие сражения проходят этажом выше.';
+                 	echo 'Р’РѕР·РјРѕР¶РЅРѕ, РІС‹ РѕС€РёР±Р»РёСЃСЊ СЌС‚Р°Р¶РѕРј - РЅР°СЃС‚РѕСЏС‰РёРµ СЃСЂР°Р¶РµРЅРёСЏ РїСЂРѕС…РѕРґСЏС‚ СЌС‚Р°Р¶РѕРј РІС‹С€Рµ.';
                  }
 			?></small></div></td>
         </tr>
@@ -52,17 +52,17 @@ if(!defined('GAME')){
       	<small>
         <HR><div id="ajaxButtons"<?php
         $hgo = $u->testHome(); if(!isset($hgo['id'])){
-			echo'<INPUT onclick="location.href=\'main.php?homeworld=' . $code . '\';" class="btn" value="Возврат" type="button" name="combats2">';
+			echo'<INPUT onclick="location.href=\'main.php?homeworld=' . $code . '\';" class="btn" value="Р’РѕР·РІСЂР°С‚" type="button" name="combats2">';
         }
         unset($hgo);
-        ?><input <?php thisInfRm('1.180.0.225'); ?> onClick="location='main.php?loc=1.180.0.225';" class="btn" value="Казино" type="button" name="combats" />
-          <INPUT onclick="location.href='main.php?clubmap=<? echo $code; ?>';" class="btn" value="Карта клуба" type="button" name="combats2">
-          <INPUT id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Форум" type="button" name="forum">
-          <INPUT class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="Подсказка" type="button">
-          <INPUT class="btn" value="Объекты" type="button">
+        ?><input <?php thisInfRm('1.180.0.225'); ?> onClick="location='main.php?loc=1.180.0.225';" class="btn" value="РљР°Р·РёРЅРѕ" type="button" name="combats" />
+          <INPUT onclick="location.href='main.php?clubmap=<? echo $code; ?>';" class="btn" value="РљР°СЂС‚Р° РєР»СѓР±Р°" type="button" name="combats2">
+          <INPUT id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Р¤РѕСЂСѓРј" type="button" name="forum">
+          <INPUT class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="РџРѕРґСЃРєР°Р·РєР°" type="button">
+          <INPUT class="btn" value="РћР±СЉРµРєС‚С‹" type="button">
         </div><br />
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
         <?php echo $rowonmax; ?><BR>
       </div></td>
   </tr>

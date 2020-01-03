@@ -8,20 +8,20 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 </style>
 <TABLE width="100%" cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><div align="center" class="pH3">Валютная Биржа<br><font color="red"><b><small>(работает в тестовом режиме)</small></b></font></div>
+    <td valign="top"><div align="center" class="pH3">Р’Р°Р»СЋС‚РЅР°СЏ Р‘РёСЂР¶Р°<br><font color="red"><b><small>(СЂР°Р±РѕС‚Р°РµС‚ РІ С‚РµСЃС‚РѕРІРѕРј СЂРµР¶РёРјРµ)</small></b></font></div>
     <?
 	if( !isset($u->bank['id']) ) {
 		?>
 	<form name="F1" method="post">
-        <div align="center">Укажите номер вашего счета в банке и пароль к нему.<br />
+        <div align="center">РЈРєР°Р¶РёС‚Рµ РЅРѕРјРµСЂ РІР°С€РµРіРѕ СЃС‡РµС‚Р° РІ Р±Р°РЅРєРµ Рё РїР°СЂРѕР»СЊ Рє РЅРµРјСѓ.<br />
           <br />
           <?
             if(isset($_POST['bank']) && isset($u->bank['id']))
             {
-                echo '<font color="red"><b>Банковский счет пуст, вход в магазин запрещен</b></font>';
+                echo '<font color="red"><b>Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ РїСѓСЃС‚, РІС…РѕРґ РІ РјР°РіР°Р·РёРЅ Р·Р°РїСЂРµС‰РµРЅ</b></font>';
             }elseif(isset($_POST['bank']) && !isset($u->bank['id']))
             {
-                echo '<font color="red"><b>Неверный пароль от банковского счета.</b></font>';
+                echo '<font color="red"><b>РќРµРІРµСЂРЅС‹Р№ РїР°СЂРѕР»СЊ РѕС‚ Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р°.</b></font>';
             }
             ?>
           <br />
@@ -43,10 +43,10 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
               <td class="wi1s3"><img src="http://img.anticombats.com/1x1.gif" height="1"></td>
               <td><table width="300" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td bgcolor="#B1A996"><div align="center"><strong>Счёт в банке</strong></div></td>
+                  <td bgcolor="#B1A996"><div align="center"><strong>РЎС‡С‘С‚ РІ Р±Р°РЅРєРµ</strong></div></td>
                 </tr>
                 <tr>
-                  <td bgcolor="#DDD5C2" style="padding:5px;"><div align="center"><small>Выберите счёт и введите пароль<br />
+                  <td bgcolor="#DDD5C2" style="padding:5px;"><div align="center"><small>Р’С‹Р±РµСЂРёС‚Рµ СЃС‡С‘С‚ Рё РІРІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ<br />
                     <select name="bank" id="bank">
                       <?
                                 $scet = mysql_query('SELECT `id` FROM `bank` WHERE `block` = "0" AND `uid` = "'.$u->info['id'].'"');
@@ -90,7 +90,7 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
                   <td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                     <tr>
                       <td bgcolor="#D3D3D3"><img src="http://img.anticombats.com/i/move/links.gif" width="9" height="7" /></td>
-                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.213&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.213',1); ?>">Большая торговая улица</a></td>
+                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.213&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.213',1); ?>">Р‘РѕР»СЊС€Р°СЏ С‚РѕСЂРіРѕРІР°СЏ СѓР»РёС†Р°</a></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -108,7 +108,7 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 		
 		function testEkrbuy($ekr,$crs) {
 			global $u,$c;
-			//Обмен екр на кр
+			//РћР±РјРµРЅ РµРєСЂ РЅР° РєСЂ
 			$r = array(
 				'o_ekr'	=> $ekr,
 				'x'		=> 0
@@ -116,7 +116,7 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 			//
 			$test = mysql_fetch_array(mysql_query('SELECT SUM(`buy_ekr`) FROM `birja` WHERE `curs_ekr` <= "'.$crs.'" AND `close` = 0 LIMIT 1'));
 			if( $test[0] == 0 ) {
-				//Нет подходящих сделок
+				//РќРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… СЃРґРµР»РѕРє
 				$r = false;
 			}else{
 				$sp = mysql_query('SELECT * FROM `birja` WHERE `curs_ekr` <= "'.$crs.'" AND `buy_ekr` > 0 AND `close` = 0 ORDER BY `buy_ekr` ASC');	
@@ -173,7 +173,7 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 		
 		function testEkrsale($ekr,$crs) {
 			global $u,$c;
-			//Обмен кр на екр
+			//РћР±РјРµРЅ РєСЂ РЅР° РµРєСЂ
 			$r = array(
 				'o_ekr'	=> $ekr,
 				'x'		=> 0
@@ -181,7 +181,7 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 			//
 			$test = mysql_fetch_array(mysql_query('SELECT SUM(`sale_ekr`) FROM `birja` WHERE `curs_ekr` >= "'.$crs.'" AND `close` = 0 LIMIT 1'));
 			if( $test[0] == 0 ) {
-				//Нет подходящих сделок
+				//РќРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… СЃРґРµР»РѕРє
 				$r = false;
 			}else{
 				$sp = mysql_query('SELECT * FROM `birja` WHERE `curs_ekr` >= "'.$crs.'" AND `sale_ekr` > 0 AND `close` = 0 ORDER BY `sale_ekr` ASC');	
@@ -244,8 +244,8 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 				$htmlbox = '<form method="post" action="main.php">';
 				$htmlbox .= '<input type="hidden" name="buy_kr" value="'.$mn.'">';
 				$htmlbox .= '<input type="hidden" name="curs_kr" value="'.$cr.'">';
-				$htmlbox .= '<legend>Подтверждение продажи екр.</legend>Вы предлагаете на продажу <b style="color:red">'.$mn.' екр.</b> по цене <b style="color:red">'.$cr.' кр.</b> за один екр. на сумму <b style="color:red">'.round($cr*$mn,2).' кр.</b> Биржа возьмёт комиссию в размере <b style="color:red">'.round(($mn/100*$c['birja_buy']),2).' екр.</b> (<b style="color:red">'.$c['birja_buy'].'%</b> от количества екр. на продажу). Всего с вашего счета будет списано <b style="color:red">'.(round(($mn/100*$c['birja_buy']),2)+$mn).' екр.</b>';
-				$htmlbox .= '<hr><input type="submit" name="good" value="Подтверждаю" class="btnnew"> <input type="button" onClick="location.href=\'main.php\'" name="cancel" value="Отменить" class="btnnew">';
+				$htmlbox .= '<legend>РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїСЂРѕРґР°Р¶Рё РµРєСЂ.</legend>Р’С‹ РїСЂРµРґР»Р°РіР°РµС‚Рµ РЅР° РїСЂРѕРґР°Р¶Сѓ <b style="color:red">'.$mn.' РµРєСЂ.</b> РїРѕ С†РµРЅРµ <b style="color:red">'.$cr.' РєСЂ.</b> Р·Р° РѕРґРёРЅ РµРєСЂ. РЅР° СЃСѓРјРјСѓ <b style="color:red">'.round($cr*$mn,2).' РєСЂ.</b> Р‘РёСЂР¶Р° РІРѕР·СЊРјС‘С‚ РєРѕРјРёСЃСЃРёСЋ РІ СЂР°Р·РјРµСЂРµ <b style="color:red">'.round(($mn/100*$c['birja_buy']),2).' РµРєСЂ.</b> (<b style="color:red">'.$c['birja_buy'].'%</b> РѕС‚ РєРѕР»РёС‡РµСЃС‚РІР° РµРєСЂ. РЅР° РїСЂРѕРґР°Р¶Сѓ). Р’СЃРµРіРѕ СЃ РІР°С€РµРіРѕ СЃС‡РµС‚Р° Р±СѓРґРµС‚ СЃРїРёСЃР°РЅРѕ <b style="color:red">'.(round(($mn/100*$c['birja_buy']),2)+$mn).' РµРєСЂ.</b>';
+				$htmlbox .= '<hr><input type="submit" name="good" value="РџРѕРґС‚РІРµСЂР¶РґР°СЋ" class="btnnew"> <input type="button" onClick="location.href=\'main.php\'" name="cancel" value="РћС‚РјРµРЅРёС‚СЊ" class="btnnew">';
 				$htmlbox .= '</form>';
 			}elseif(isset($_POST['buy_ekr'])) {
 				$mn = round($_POST['buy_ekr'],2);
@@ -253,8 +253,8 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 				$htmlbox = '<form method="post" action="main.php">';
 				$htmlbox .= '<input type="hidden" name="buy_ekr" value="'.$mn.'">';
 				$htmlbox .= '<input type="hidden" name="curs_ekr" value="'.$cr.'">';
-				$htmlbox .= '<legend>Подтверждение покупки екр.</legend>Вы хотите купить <b style="color:red">'.$mn.' екр.</b> по цене <b style="color:red">'.$cr.' кр.</b> за один екр. на сумму <b style="color:red">'.round($cr*$mn,2).' кр.</b> Биржа возьмёт комиссию в размере <b style="color:red">'.round(($cr/100*$c['birja_sale']),2).' кр.</b> (<b style="color:red">'.$c['birja_sale'].'%</b> от суммы сделки в кр.). Всего с вашего счета будет списано <b style="color:red">'.(round(($cr/100*$c['birja_sale']),2)+$cr).' кр.</b>';
-				$htmlbox .= '<hr><input type="submit" name="good" value="Подтверждаю" class="btnnew"> <input type="button" onClick="location.href=\'main.php\'" name="cancel" value="Отменить" class="btnnew">';
+				$htmlbox .= '<legend>РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїРѕРєСѓРїРєРё РµРєСЂ.</legend>Р’С‹ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ <b style="color:red">'.$mn.' РµРєСЂ.</b> РїРѕ С†РµРЅРµ <b style="color:red">'.$cr.' РєСЂ.</b> Р·Р° РѕРґРёРЅ РµРєСЂ. РЅР° СЃСѓРјРјСѓ <b style="color:red">'.round($cr*$mn,2).' РєСЂ.</b> Р‘РёСЂР¶Р° РІРѕР·СЊРјС‘С‚ РєРѕРјРёСЃСЃРёСЋ РІ СЂР°Р·РјРµСЂРµ <b style="color:red">'.round(($cr/100*$c['birja_sale']),2).' РєСЂ.</b> (<b style="color:red">'.$c['birja_sale'].'%</b> РѕС‚ СЃСѓРјРјС‹ СЃРґРµР»РєРё РІ РєСЂ.). Р’СЃРµРіРѕ СЃ РІР°С€РµРіРѕ СЃС‡РµС‚Р° Р±СѓРґРµС‚ СЃРїРёСЃР°РЅРѕ <b style="color:red">'.(round(($cr/100*$c['birja_sale']),2)+$cr).' РєСЂ.</b>';
+				$htmlbox .= '<hr><input type="submit" name="good" value="РџРѕРґС‚РІРµСЂР¶РґР°СЋ" class="btnnew"> <input type="button" onClick="location.href=\'main.php\'" name="cancel" value="РћС‚РјРµРЅРёС‚СЊ" class="btnnew">';
 				$htmlbox .= '</form>';
 			}
 		}elseif(isset($_POST['buy_ekr'])) {
@@ -262,22 +262,22 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 			$cr = round($_POST['curs_ekr'],2);
 			//
 			if( $mn < 0.01 ) {
-				$u->error = 'Минимальная сумма покупки 0.01 екр.';
+				$u->error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РїРѕРєСѓРїРєРё 0.01 РµРєСЂ.';
 			}elseif( $mn/100*(100+$c['birja_buy']) > $u->bank['money1'] ) {
-				$u->error = 'У вас недостаточно кр. для этой сделки! (требуется: '.($mn/100*(100+$c['birja_buy'])).' кр.)';				
+				$u->error = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂ. РґР»СЏ СЌС‚РѕР№ СЃРґРµР»РєРё! (С‚СЂРµР±СѓРµС‚СЃСЏ: '.($mn/100*(100+$c['birja_buy'])).' РєСЂ.)';				
 			}elseif( $cr <= $c['ecrtocr'] || $cr > 60 ) {
-				$u->error = 'Нельзя выставлять курс ниже, чем в банке. (Курс банка: 1 екр = '.$c['ecrtocr'].' кр., не выше 60 кр.)';
+				$u->error = 'РќРµР»СЊР·СЏ РІС‹СЃС‚Р°РІР»СЏС‚СЊ РєСѓСЂСЃ РЅРёР¶Рµ, С‡РµРј РІ Р±Р°РЅРєРµ. (РљСѓСЂСЃ Р±Р°РЅРєР°: 1 РµРєСЂ = '.$c['ecrtocr'].' РєСЂ., РЅРµ РІС‹С€Рµ 60 РєСЂ.)';
 			}else{
 				//
-				$u->addDelo(1,$u->info['id'],'<b>'.$u->info['login'].'</b> выставил '.$cr.' кр. для покупки екр. на бирже',time(),time());
+				$u->addDelo(1,$u->info['id'],'<b>'.$u->info['login'].'</b> РІС‹СЃС‚Р°РІРёР» '.$cr.' РєСЂ. РґР»СЏ РїРѕРєСѓРїРєРё РµРєСЂ. РЅР° Р±РёСЂР¶Рµ',time(),time());
 				$r = testEkrbuy($mn,$cr);
 				if( $r == false ) {
-					$u->error = 'На бирже сейчас нет подходящих сделок. Ваша заявка помещена в список.';
+					$u->error = 'РќР° Р±РёСЂР¶Рµ СЃРµР№С‡Р°СЃ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… СЃРґРµР»РѕРє. Р’Р°С€Р° Р·Р°СЏРІРєР° РїРѕРјРµС‰РµРЅР° РІ СЃРїРёСЃРѕРє.';
 				}else{
 					if( $r['o_ekr'] == 0 ) {
-						$u->error = 'Приобретено '.$mn.' екр. на сумму '.round($mn * $cr,2).' кр. Заявка выполнена полностью.';
+						$u->error = 'РџСЂРёРѕР±СЂРµС‚РµРЅРѕ '.$mn.' РµРєСЂ. РЅР° СЃСѓРјРјСѓ '.round($mn * $cr,2).' РєСЂ. Р—Р°СЏРІРєР° РІС‹РїРѕР»РЅРµРЅР° РїРѕР»РЅРѕСЃС‚СЊСЋ.';
 					}else{
-						$u->error = 'Приобретено '.($mn-$r['o_ekr']).' екр. на сумму '.round(($mn-$r['o_ekr']) * $cr,2).' кр. Заявка выполнена частично. Осталось обработать: '.$r['o_ekr'].' екр. (Деньги поступят на ваш счет как только появится подходящая сделка)';
+						$u->error = 'РџСЂРёРѕР±СЂРµС‚РµРЅРѕ '.($mn-$r['o_ekr']).' РµРєСЂ. РЅР° СЃСѓРјРјСѓ '.round(($mn-$r['o_ekr']) * $cr,2).' РєСЂ. Р—Р°СЏРІРєР° РІС‹РїРѕР»РЅРµРЅР° С‡Р°СЃС‚РёС‡РЅРѕ. РћСЃС‚Р°Р»РѕСЃСЊ РѕР±СЂР°Р±РѕС‚Р°С‚СЊ: '.$r['o_ekr'].' РµРєСЂ. (Р”РµРЅСЊРіРё РїРѕСЃС‚СѓРїСЏС‚ РЅР° РІР°С€ СЃС‡РµС‚ РєР°Рє С‚РѕР»СЊРєРѕ РїРѕСЏРІРёС‚СЃСЏ РїРѕРґС…РѕРґСЏС‰Р°СЏ СЃРґРµР»РєР°)';
 					}
 				}
 				//
@@ -288,22 +288,22 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 			$cr = round($_POST['curs_kr'],2);
 			//
 			if( $mn < 0.01 ) {
-				$u->error = 'Минимальная сумма продажи 0.01 екр.';
+				$u->error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РїСЂРѕРґР°Р¶Рё 0.01 РµРєСЂ.';
 			}elseif( $mn/100*(100+$c['birja_sale']) > $u->bank['money2'] ) {
-				$u->error = 'У вас недостаточно екр. для этой сделки! (требуется: '.($mn/100*(100+$c['birja_sale'])).' екр.)';				
+				$u->error = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РµРєСЂ. РґР»СЏ СЌС‚РѕР№ СЃРґРµР»РєРё! (С‚СЂРµР±СѓРµС‚СЃСЏ: '.($mn/100*(100+$c['birja_sale'])).' РµРєСЂ.)';				
 			}elseif( $cr <= $c['ecrtocr'] || $cr > 60 ) {
-				$u->error = 'Нельзя выставлять курс ниже, чем в банке. (Курс банка: 1 екр = '.$c['ecrtocr'].' кр. , не выше 60 кр.)';
+				$u->error = 'РќРµР»СЊР·СЏ РІС‹СЃС‚Р°РІР»СЏС‚СЊ РєСѓСЂСЃ РЅРёР¶Рµ, С‡РµРј РІ Р±Р°РЅРєРµ. (РљСѓСЂСЃ Р±Р°РЅРєР°: 1 РµРєСЂ = '.$c['ecrtocr'].' РєСЂ. , РЅРµ РІС‹С€Рµ 60 РєСЂ.)';
 			}else{
 				//
-				$u->addDelo(1,$u->info['id'],'<b>'.$u->info['login'].'</b> выставил '.$mn.' екр. для покупки кр. на бирже',time(),time());
+				$u->addDelo(1,$u->info['id'],'<b>'.$u->info['login'].'</b> РІС‹СЃС‚Р°РІРёР» '.$mn.' РµРєСЂ. РґР»СЏ РїРѕРєСѓРїРєРё РєСЂ. РЅР° Р±РёСЂР¶Рµ',time(),time());
 				$r = testEkrsale($mn,$cr);
 				if( $r == false ) {
-					$u->error = 'На бирже сейчас нет подходящих сделок. Ваша заявка помещена в список.';
+					$u->error = 'РќР° Р±РёСЂР¶Рµ СЃРµР№С‡Р°СЃ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… СЃРґРµР»РѕРє. Р’Р°С€Р° Р·Р°СЏРІРєР° РїРѕРјРµС‰РµРЅР° РІ СЃРїРёСЃРѕРє.';
 				}else{
 					if( $r['o_ekr'] == 0 ) {
-						$u->error = 'Проданно '.$mn.' екр. на сумму '.round($mn * $cr,2).' кр. Заявка выполнена полностью.';
+						$u->error = 'РџСЂРѕРґР°РЅРЅРѕ '.$mn.' РµРєСЂ. РЅР° СЃСѓРјРјСѓ '.round($mn * $cr,2).' РєСЂ. Р—Р°СЏРІРєР° РІС‹РїРѕР»РЅРµРЅР° РїРѕР»РЅРѕСЃС‚СЊСЋ.';
 					}else{
-						$u->error = 'Проданно '.($mn-$r['o_ekr']).' екр. на сумму '.round(($mn-$r['o_ekr']) * $cr,2).' кр. Заявка выполнена частично. Осталось обработать: '.$r['o_ekr'].' екр. (Деньги поступят на ваш счет как только появится подходящая сделка)';
+						$u->error = 'РџСЂРѕРґР°РЅРЅРѕ '.($mn-$r['o_ekr']).' РµРєСЂ. РЅР° СЃСѓРјРјСѓ '.round(($mn-$r['o_ekr']) * $cr,2).' РєСЂ. Р—Р°СЏРІРєР° РІС‹РїРѕР»РЅРµРЅР° С‡Р°СЃС‚РёС‡РЅРѕ. РћСЃС‚Р°Р»РѕСЃСЊ РѕР±СЂР°Р±РѕС‚Р°С‚СЊ: '.$r['o_ekr'].' РµРєСЂ. (Р”РµРЅСЊРіРё РїРѕСЃС‚СѓРїСЏС‚ РЅР° РІР°С€ СЃС‡РµС‚ РєР°Рє С‚РѕР»СЊРєРѕ РїРѕСЏРІРёС‚СЃСЏ РїРѕРґС…РѕРґСЏС‰Р°СЏ СЃРґРµР»РєР°)';
 					}
 				}
 				//
@@ -318,7 +318,7 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 		echo '<div><b><font color="red">'.$u->error.'</font></b></div>';
 	}
 	?>
-    <center><?='№'.$u->bank['id'].': <b>'.$u->bank['money1'].'</b> кр. <b>'.$u->bank['money2'].'</b> екр.'?><a href="main.php?bank_exit=1" title="Завершить работу со счетом"><img src="http://img.anticombats.com/i/close_bank.gif"></a></center>
+    <center><?='в„–'.$u->bank['id'].': <b>'.$u->bank['money1'].'</b> РєСЂ. <b>'.$u->bank['money2'].'</b> РµРєСЂ.'?><a href="main.php?bank_exit=1" title="Р—Р°РІРµСЂС€РёС‚СЊ СЂР°Р±РѕС‚Сѓ СЃРѕ СЃС‡РµС‚РѕРј"><img src="http://img.anticombats.com/i/close_bank.gif"></a></center>
     <?
 	if(!isset($htmlbox) || $htmlbox == '') {
 	?>
@@ -327,26 +327,26 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
         <TD valign=top align="center" width=50%>
             <form method="post">
             <fieldset>
-              <legend><b>Купить екр. (комиссия <?=$c['birja_buy']?>%)</b> </legend>
-              Купить
+              <legend><b>РљСѓРїРёС‚СЊ РµРєСЂ. (РєРѕРјРёСЃСЃРёСЏ <?=$c['birja_buy']?>%)</b> </legend>
+              РљСѓРїРёС‚СЊ
               <input type="text" name="buy_ekr" id="buy_ekr" size="6" maxlength="10" />
-              екр. по курсу 
+              РµРєСЂ. РїРѕ РєСѓСЂСЃСѓ 
               <input type="text" name="curs_ekr" id="curs_ekr" size="6" maxlength="10" />
-              кр. или ниже<hr>
-              <center><input class="btnnew" type="submit" value="Купить екр." /></center>
+              РєСЂ. РёР»Рё РЅРёР¶Рµ<hr>
+              <center><input class="btnnew" type="submit" value="РљСѓРїРёС‚СЊ РµРєСЂ." /></center>
             </fieldset>
             </form>
         </TD>
         <TD valign=top align=center width=50%>
             <form method="post">
             <fieldset>
-              <legend><b>Продать екр. (комиссия <?=$c['birja_sale']?>%)</b> </legend>
-              Продать
+              <legend><b>РџСЂРѕРґР°С‚СЊ РµРєСЂ. (РєРѕРјРёСЃСЃРёСЏ <?=$c['birja_sale']?>%)</b> </legend>
+              РџСЂРѕРґР°С‚СЊ
               <input type="text" name="buy_kr" id="buy_kr" size="6" maxlength="10" />
-              екр. по курсу 
+              РµРєСЂ. РїРѕ РєСѓСЂСЃСѓ 
               <input type="text" name="curs_kr" id="curs_kr" size="6" maxlength="10" />
-              кр. или выше<hr>
-              <center><input class="btnnew" type="submit" value="Продать екр." /></center>
+              РєСЂ. РёР»Рё РІС‹С€Рµ<hr>
+              <center><input class="btnnew" type="submit" value="РџСЂРѕРґР°С‚СЊ РµРєСЂ." /></center>
             </fieldset>
             </form>
         </TD>
@@ -358,25 +358,25 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 	?>
     <br>
 <fieldset>
-  <legend><b>Просмотр заявок</b> </legend>
+  <legend><b>РџСЂРѕСЃРјРѕС‚СЂ Р·Р°СЏРІРѕРє</b> </legend>
   <center>
     <? if(!isset($_GET['myzv'])) { ?>
-  	<input class="btnnew" type="button" value="Мои заявки" onclick="location.href='main.php?myzv'">
-    <input class="btnnew" type="button" value="Обновить" onclick="location.href='main.php'">
+  	<input class="btnnew" type="button" value="РњРѕРё Р·Р°СЏРІРєРё" onclick="location.href='main.php?myzv'">
+    <input class="btnnew" type="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location.href='main.php'">
     <? }else{ ?>
-  	<input class="btnnew2" type="button" value="Все заявки" onclick="location.href='main.php'">
-    <input class="btnnew" type="button" value="Обновить" onclick="location.href='main.php?myzv'">
+  	<input class="btnnew2" type="button" value="Р’СЃРµ Р·Р°СЏРІРєРё" onclick="location.href='main.php'">
+    <input class="btnnew" type="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location.href='main.php?myzv'">
     <? } ?>
   </center>  
 </fieldset>
 <? if(!isset($_GET['myzv'])) { ?>
     <br>
 <fieldset>
-  <legend><b>Биржевые ставки</b> </legend>
+  <legend><b>Р‘РёСЂР¶РµРІС‹Рµ СЃС‚Р°РІРєРё</b> </legend>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
      <tr>
-     	<td align="center"><b>Продажи екр.</b></td>
-        <td align="center"><b>Покупки екр.</b></td>
+     	<td align="center"><b>РџСЂРѕРґР°Р¶Рё РµРєСЂ.</b></td>
+        <td align="center"><b>РџРѕРєСѓРїРєРё РµРєСЂ.</b></td>
      </tr>
      <tr>
         <td width="50%" valign="top">
@@ -389,9 +389,9 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 				$html .= '<tr><td>'.$i . '</td><td>'.$pl['curs_ekr'].'</td><td>'.$pl['buy_ekr'].'</td></tr>';
 			}
 			if( $html == '' ) {
-				echo '<br><center>Нет сделок</center><br>';
+				echo '<br><center>РќРµС‚ СЃРґРµР»РѕРє</center><br>';
 			}else{
-				echo '<table width="100%"><tr bgcolor="#a5a5a5"><td align="center"><b>#</b></td><td align="center"><b>Курс</b></td><td align="center"><b>Кол-во</b></td></tr>'.$html.'</table>';
+				echo '<table width="100%"><tr bgcolor="#a5a5a5"><td align="center"><b>#</b></td><td align="center"><b>РљСѓСЂСЃ</b></td><td align="center"><b>РљРѕР»-РІРѕ</b></td></tr>'.$html.'</table>';
 			}
 			?>
         </td>
@@ -405,9 +405,9 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 				$html .= '<tr><td align="center">'.$i . '</td><td align="center">'.$pl['curs_ekr'].'</td><td align="center">'.$pl['sale_ekr'].'</td></tr>';
 			}
 			if( $html == '' ) {
-				echo '<br><center>Нет сделок</center><br>';
+				echo '<br><center>РќРµС‚ СЃРґРµР»РѕРє</center><br>';
 			}else{
-				echo '<table width="100%"><tr bgcolor="#a5a5a5"><td align="center"><b>#</b></td><td align="center"><b>Курс</b></td><td align="center"><b>Кол-во</b></td></tr>'.$html.'</table>';
+				echo '<table width="100%"><tr bgcolor="#a5a5a5"><td align="center"><b>#</b></td><td align="center"><b>РљСѓСЂСЃ</b></td><td align="center"><b>РљРѕР»-РІРѕ</b></td></tr>'.$html.'</table>';
 			}
 			?>
      </td>
@@ -419,14 +419,14 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 ?>
     <br>
 <fieldset>
-  <legend><b>Мои продажи</b> </legend>
+  <legend><b>РњРѕРё РїСЂРѕРґР°Р¶Рё</b> </legend>
   <table width="100%">
      <tr bgcolor="#a5a5a5">
-     	<td width="20%" align="center"><b>Курс за 1 екр.</b></td>
-        <td width="20%" align="center"><b>Осталось</b></td>
-        <td width="20%" align="center"><b>Размещена</b></td>
-        <td width="20%" align="center"><b>До возврата</b></td>
-        <td width="20%" align="center"><b>Отозвать</b></td>
+     	<td width="20%" align="center"><b>РљСѓСЂСЃ Р·Р° 1 РµРєСЂ.</b></td>
+        <td width="20%" align="center"><b>РћСЃС‚Р°Р»РѕСЃСЊ</b></td>
+        <td width="20%" align="center"><b>Р Р°Р·РјРµС‰РµРЅР°</b></td>
+        <td width="20%" align="center"><b>Р”Рѕ РІРѕР·РІСЂР°С‚Р°</b></td>
+        <td width="20%" align="center"><b>РћС‚РѕР·РІР°С‚СЊ</b></td>
      </tr>
   </table>
   <?
@@ -435,7 +435,7 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
   while( $pl = mysql_fetch_array($sp) ) {
 	if(isset($_GET['otz1_g']) && $_GET['otz1_g'] == $pl['id']) {
 		$html .= '<table width="100%">';
-		$html .= '<tr bgcolor="#c74747"><td align="center">Заявка отозвана. Остаток в <b style="color:blue">'.$pl['buy_ekr'].' екр.</b> возвращен на счет '.$u->bank['id'].'</td><tr>';
+		$html .= '<tr bgcolor="#c74747"><td align="center">Р—Р°СЏРІРєР° РѕС‚РѕР·РІР°РЅР°. РћСЃС‚Р°С‚РѕРє РІ <b style="color:blue">'.$pl['buy_ekr'].' РµРєСЂ.</b> РІРѕР·РІСЂР°С‰РµРЅ РЅР° СЃС‡РµС‚ '.$u->bank['id'].'</td><tr>';
 		$html .= '</table>';
 		mysql_query('UPDATE `birja` SET `buy_ekr` = 0,`close` = "'.time().'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 		$u->bank['money2'] += $pl['buy_ekr'];
@@ -447,16 +447,16 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 		}
 		$html .= '><td width="20%" align="center">'.$pl['curs_ekr'].'</td><td width="20%" align="center">'.$pl['buy_ekr'].'</td><td width="20%" align="center">'.date('d.m.Y H:i',$pl['time']).'</td><td width="20%" align="center">'.$u->timeOut( $pl['time'] + 7*86400 - time() ).'</td><td width="20%" align="center">';
 		if(isset($_GET['otz1']) && $_GET['otz1'] == $pl['id']) {
-			$html .= '<a href="main.php?myzv&otz1_g='.$pl['id'].'">принять</a>';
+			$html .= '<a href="main.php?myzv&otz1_g='.$pl['id'].'">РїСЂРёРЅСЏС‚СЊ</a>';
 		}else{
-			$html .= '<a href="main.php?myzv&otz1='.$pl['id'].'">отозвать</a>';
+			$html .= '<a href="main.php?myzv&otz1='.$pl['id'].'">РѕС‚РѕР·РІР°С‚СЊ</a>';
 		}
 		$html .= '</td></tr></table>';
 	}
   }
   if( $html == '' ) {
 		$html .= '<table width="100%">';
-		$html .= '<tr><td align="center">Заявок нет</td><tr>';
+		$html .= '<tr><td align="center">Р—Р°СЏРІРѕРє РЅРµС‚</td><tr>';
 		$html .= '</table>';
   }
   echo $html;
@@ -464,14 +464,14 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
   </fieldset>
     <br>
 <fieldset>
-  <legend><b>Мои покупки</b> </legend>
+  <legend><b>РњРѕРё РїРѕРєСѓРїРєРё</b> </legend>
   <table width="100%">
      <tr bgcolor="#a5a5a5">
-     	<td width="20%" align="center"><b>Курс за 1 екр.</b></td>
-        <td width="20%" align="center"><b>Осталось</b></td>
-        <td width="20%" align="center"><b>Размещена</b></td>
-        <td width="20%" align="center"><b>До возврата</b></td>
-        <td width="20%" align="center"><b>Отозвать</b></td>
+     	<td width="20%" align="center"><b>РљСѓСЂСЃ Р·Р° 1 РµРєСЂ.</b></td>
+        <td width="20%" align="center"><b>РћСЃС‚Р°Р»РѕСЃСЊ</b></td>
+        <td width="20%" align="center"><b>Р Р°Р·РјРµС‰РµРЅР°</b></td>
+        <td width="20%" align="center"><b>Р”Рѕ РІРѕР·РІСЂР°С‚Р°</b></td>
+        <td width="20%" align="center"><b>РћС‚РѕР·РІР°С‚СЊ</b></td>
      </tr>
   </table>
   <?
@@ -480,7 +480,7 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
   while( $pl = mysql_fetch_array($sp) ) {
 	if(isset($_GET['otz2_g']) && $_GET['otz2_g'] == $pl['id']) {
 		$html .= '<table width="100%">';
-		$html .= '<tr bgcolor="#c74747"><td align="center">Заявка отозвана. Остаток в <b style="color:blue">'.($pl['sale_ekr']*$pl['curs_ekr']).' кр.</b> возвращен на счет '.$u->bank['id'].'</td><tr>';
+		$html .= '<tr bgcolor="#c74747"><td align="center">Р—Р°СЏРІРєР° РѕС‚РѕР·РІР°РЅР°. РћСЃС‚Р°С‚РѕРє РІ <b style="color:blue">'.($pl['sale_ekr']*$pl['curs_ekr']).' РєСЂ.</b> РІРѕР·РІСЂР°С‰РµРЅ РЅР° СЃС‡РµС‚ '.$u->bank['id'].'</td><tr>';
 		$html .= '</table>';
 		mysql_query('UPDATE `birja` SET `buy_ekr` = 0,`close` = "'.time().'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 		$u->bank['money1'] += ($pl['sale_ekr']*$pl['curs_ekr']);
@@ -492,16 +492,16 @@ if( !defined('GAME') || $u->room['file']!='birja' ) {
 		}
 		$html .= '><td width="20%" align="center">'.$pl['curs_ekr'].'</td><td width="20%" align="center">'.($pl['sale_ekr']*$pl['curs_ekr']).'</td><td width="20%" align="center">'.date('d.m.Y H:i',$pl['time']).'</td><td width="20%" align="center">'.$u->timeOut( $pl['time'] + 7*86400 - time() ).'</td><td width="20%" align="center">';
 		if(isset($_GET['otz2']) && $_GET['otz2'] == $pl['id']) {
-			$html .= '<a href="main.php?myzv&otz2_g='.$pl['id'].'">принять</a>';
+			$html .= '<a href="main.php?myzv&otz2_g='.$pl['id'].'">РїСЂРёРЅСЏС‚СЊ</a>';
 		}else{
-			$html .= '<a href="main.php?myzv&otz2='.$pl['id'].'">отозвать</a>';
+			$html .= '<a href="main.php?myzv&otz2='.$pl['id'].'">РѕС‚РѕР·РІР°С‚СЊ</a>';
 		}
 		$html .= '</td></tr></table>';
 	}
   }
   if( $html == '' ) {
 		$html .= '<table width="100%">';
-		$html .= '<tr><td align="center">Заявок нет</td><tr>';
+		$html .= '<tr><td align="center">Р—Р°СЏРІРѕРє РЅРµС‚</td><tr>';
 		$html .= '</table>';
   }
   echo $html;

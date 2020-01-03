@@ -1,7 +1,7 @@
 <?
 
 if( $u->info['admin'] == 0 ) {
-	die('Продажа ЕКР отключена.');
+	die('РџСЂРѕРґР°Р¶Р° Р•РљР  РѕС‚РєР»СЋС‡РµРЅР°.');
 }
 
 if(!defined('GAME')) {
@@ -22,9 +22,9 @@ function w(login,id,align,klan,level,online,city,battle){
 	var s='';
 	if(online != "") {
 		if (city!="") {
-			s+='<img src=http://img.xcombats.com/1x1.gif width="20" height="15" alt="В другом городе" />';
+			s+='<img src=http://img.xcombats.com/1x1.gif width="20" height="15" alt="Р’ РґСЂСѓРіРѕРј РіРѕСЂРѕРґРµ" />';
 		} else {
-			s+='<a href="javascript:top.chat.addto(\''+login+'\',\'private\');"><img src=http://img.xcombats.com/i/lock.gif width="20" height="15" alt="Приватно" /></a>';
+			s+='<a href="javascript:top.chat.addto(\''+login+'\',\'private\');"><img src=http://img.xcombats.com/i/lock.gif width="20" height="15" alt="РџСЂРёРІР°С‚РЅРѕ" /></a>';
 		}
 		if (city!="") {
 			s+='<img title="'+city+'" src="http://img.xcombats.com/i/city_ico/'+city+'.gif" width="17" height="15" />';
@@ -32,14 +32,14 @@ function w(login,id,align,klan,level,online,city,battle){
 		s+=' <img src="http://img.xcombats.com/i/align/align'+align+'.gif" width="12" height="15" />';
 
 		if (klan!='') {s+='<a href="/encicl/klan/'+klan+'.html" target="_blank"><img src="http://img.xcombats.com/i/clan/'+klan+'.gif" width="24" height="15" /></a>'}
-		s+='<a href="javascript:top.chat.addto(\''+login+'\',\'to\');">'+login+'</a>['+level+']<a href="http://xcombats.com/info/'+id+'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" width="12" height="11" alt="Информация о персонаже" /></a>';
+		s+='<a href="javascript:top.chat.addto(\''+login+'\',\'to\');">'+login+'</a>['+level+']<a href="http://xcombats.com/info/'+id+'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" width="12" height="11" alt="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ" /></a>';
 		if (city!="") {
-			s+=" - нет в этом городе";
+			s+=" - РЅРµС‚ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ";
 		} else {
 			s+=' - '+online;
 		}
 	} else {
-		s+='<img src="http://img.xcombats.com/i/offline.gif" width="20" height="15" border="0" alt="Нет в клубе" />';
+		s+='<img src="http://img.xcombats.com/i/offline.gif" width="20" height="15" border="0" alt="РќРµС‚ РІ РєР»СѓР±Рµ" />';
 		if (city!="") {
 			s+='<img title="'+city+'" src="http://img.xcombats.com/i/city_ico/'+city+'.gif" width="17" height="15" />';
 		}
@@ -50,14 +50,14 @@ function w(login,id,align,klan,level,online,city,battle){
 			if (nlevel==0) {
 				nlevel=1; s="<br />"+s;
 			}
-			s+='<font color=gray><b>'+login+'</b>['+level+']<a href="http://xcombats.com/info/'+id+'" target="_blank"><img src="http://img.xcombats.com/i/inf.gif" width="12" height="11" alt="Информация о персонаже" /></a> - Нет в клубе';
+			s+='<font color=gray><b>'+login+'</b>['+level+']<a href="http://xcombats.com/info/'+id+'" target="_blank"><img src="http://img.xcombats.com/i/inf.gif" width="12" height="11" alt="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ" /></a> - РќРµС‚ РІ РєР»СѓР±Рµ';
 		} else {
 			if (nlevel==1) {
 				nlevel=2; s="<br />"+s;
 			}
 			mlogin = login;
 			for(var i=0;i<from.length;++i) while(mlogin.indexOf(from[i])>=0)  mlogin= mlogin.replace(from[i],to[i]);
-			s+='<font color=gray><i>'+login+'</i> <a href="http://xcombats.com/info/'+mlogin+'" target="_blank"><img src="http://img.xcombats.com/i/inf_.gif" width="12" height="11" alt="Информация о персонаже" /></a> - нет в этом городе';
+			s+='<font color=gray><i>'+login+'</i> <a href="http://xcombats.com/info/'+mlogin+'" target="_blank"><img src="http://img.xcombats.com/i/inf_.gif" width="12" height="11" alt="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ" /></a> - РЅРµС‚ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 		}
 		s+='</font>';
 
@@ -69,10 +69,10 @@ function w(login,id,align,klan,level,online,city,battle){
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td width="160"></td>
-      <td align="center"><h4>Покупка ЕвроКредитов</h4></td>
+      <td align="center"><h4>РџРѕРєСѓРїРєР° Р•РІСЂРѕРљСЂРµРґРёС‚РѕРІ</h4></td>
       <td width="160" align="right"><span style="vertical-align: top; text-align: right; ">
-        <INPUT class="btnnew" type="button" value="Обновить" onclick="location='/main.php?alh&rnd=<?=$code?>'">
-        <INPUT TYPE="button" value="Вернуться" class="btnnew" onclick='location="/main.php"'>
+        <INPUT class="btnnew" type="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location='/main.php?alh&rnd=<?=$code?>'">
+        <INPUT TYPE="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" class="btnnew" onclick='location="/main.php"'>
       </span></td>
     </tr>
   </table>
@@ -81,20 +81,20 @@ function w(login,id,align,klan,level,online,city,battle){
       <td width="520" align="left" valign="top">
              
         <fieldset>
-        <legend><b><span style='color:#8F0000;'>Покупка ЕКР онлайн:</span></b></legend>
-        <form target="_blank" method="post" id="ekrform" action="pay.back.php" onsubmit="if(document.getElementById('ch_1').checked==false) {alert('Вы не согласились с пользовательским соглашением.');return false;} else {if(document.getElementById('ch_2').checked==false) {alert('Вы не согласились с условиями оплаты.');return false;};}; if(document.getElementById('ekr').value<1) {alert('Нельзя купить менее 1 ЕКР!');return false;};">
-            Сумма ЕКР: <input style="padding:3px;" type="text" name="ekr" id="ekr" value="10.00"> <input type="submit" class="btnnew" value="Пополнить баланс"><hr>
+        <legend><b><span style='color:#8F0000;'>РџРѕРєСѓРїРєР° Р•РљР  РѕРЅР»Р°Р№РЅ:</span></b></legend>
+        <form target="_blank" method="post" id="ekrform" action="pay.back.php" onsubmit="if(document.getElementById('ch_1').checked==false) {alert('Р’С‹ РЅРµ СЃРѕРіР»Р°СЃРёР»РёСЃСЊ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРј СЃРѕРіР»Р°С€РµРЅРёРµРј.');return false;} else {if(document.getElementById('ch_2').checked==false) {alert('Р’С‹ РЅРµ СЃРѕРіР»Р°СЃРёР»РёСЃСЊ СЃ СѓСЃР»РѕРІРёСЏРјРё РѕРїР»Р°С‚С‹.');return false;};}; if(document.getElementById('ekr').value<1) {alert('РќРµР»СЊР·СЏ РєСѓРїРёС‚СЊ РјРµРЅРµРµ 1 Р•РљР !');return false;};">
+            РЎСѓРјРјР° Р•РљР : <input style="padding:3px;" type="text" name="ekr" id="ekr" value="10.00"> <input type="submit" class="btnnew" value="РџРѕРїРѕР»РЅРёС‚СЊ Р±Р°Р»Р°РЅСЃ"><hr>
             
-            <label><input type="checkbox" name="ch1" id="ch_1" /> Внимание! При пополнении баланса вы соглашаетесь с <small><a href="http://xcombats.com/" target="_blank">соглашением о предоставлении сервиса игры &laquo;Старый Бойцовский Клуб&raquo;</a></small>.</label>
+            <label><input type="checkbox" name="ch1" id="ch_1" /> Р’РЅРёРјР°РЅРёРµ! РџСЂРё РїРѕРїРѕР»РЅРµРЅРёРё Р±Р°Р»Р°РЅСЃР° РІС‹ СЃРѕРіР»Р°С€Р°РµС‚РµСЃСЊ СЃ <small><a href="http://xcombats.com/" target="_blank">СЃРѕРіР»Р°С€РµРЅРёРµРј Рѕ РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёРё СЃРµСЂРІРёСЃР° РёРіСЂС‹ &laquo;РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±&raquo;</a></small>.</label>
             <br />
-            <label><input type="checkbox" name="ch2" id="ch_2" /> Все комиссии платёжных систем Вы оплачиваете за свой счёт.</label>
+            <label><input type="checkbox" name="ch2" id="ch_2" /> Р’СЃРµ РєРѕРјРёСЃСЃРёРё РїР»Р°С‚С‘Р¶РЅС‹С… СЃРёСЃС‚РµРј Р’С‹ РѕРїР»Р°С‡РёРІР°РµС‚Рµ Р·Р° СЃРІРѕР№ СЃС‡С‘С‚.</label>
 		</form>
         <hr>
-        При оплате могут возникать задержки на пополнение, обычно не более 1 часа. Если по истечению нескольких часов деньги так и не поступили на ваш баланс, то необходимо обратиться в <a href="http://www.free-kassa.ru/support.php" target="_blank">службу поддержки FREE-KASSA</a>.
+        РџСЂРё РѕРїР»Р°С‚Рµ РјРѕРіСѓС‚ РІРѕР·РЅРёРєР°С‚СЊ Р·Р°РґРµСЂР¶РєРё РЅР° РїРѕРїРѕР»РЅРµРЅРёРµ, РѕР±С‹С‡РЅРѕ РЅРµ Р±РѕР»РµРµ 1 С‡Р°СЃР°. Р•СЃР»Рё РїРѕ РёСЃС‚РµС‡РµРЅРёСЋ РЅРµСЃРєРѕР»СЊРєРёС… С‡Р°СЃРѕРІ РґРµРЅСЊРіРё С‚Р°Рє Рё РЅРµ РїРѕСЃС‚СѓРїРёР»Рё РЅР° РІР°С€ Р±Р°Р»Р°РЅСЃ, С‚Рѕ РЅРµРѕР±С…РѕРґРёРјРѕ РѕР±СЂР°С‚РёС‚СЊСЃСЏ РІ <a href="http://www.free-kassa.ru/support.php" target="_blank">СЃР»СѓР¶Р±Сѓ РїРѕРґРґРµСЂР¶РєРё FREE-KASSA</a>.
         <hr>
-        Если Вы очень хотели бы положить деньги на игровой счёт, но нет подходящей платёжной системы, можем посоветовать воспользоваться <a href="http://www.bestchange.ru" target="_blank">обменными пунктами</a>, либо воспользоваться услугами <b>Алхимиков</b>.
+        Р•СЃР»Рё Р’С‹ РѕС‡РµРЅСЊ С…РѕС‚РµР»Рё Р±С‹ РїРѕР»РѕР¶РёС‚СЊ РґРµРЅСЊРіРё РЅР° РёРіСЂРѕРІРѕР№ СЃС‡С‘С‚, РЅРѕ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РµР№ РїР»Р°С‚С‘Р¶РЅРѕР№ СЃРёСЃС‚РµРјС‹, РјРѕР¶РµРј РїРѕСЃРѕРІРµС‚РѕРІР°С‚СЊ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ <a href="http://www.bestchange.ru" target="_blank">РѕР±РјРµРЅРЅС‹РјРё РїСѓРЅРєС‚Р°РјРё</a>, Р»РёР±Рѕ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СѓСЃР»СѓРіР°РјРё <b>РђР»С…РёРјРёРєРѕРІ</b>.
         <hr>
-        <b>Пополняя свой игровой счёт, Вы тем самым спонсируете проект. ВСЕ ваши вложенные деньги в игру будут идти ТОЛЬКО на её же развитие.</b>
+        <b>РџРѕРїРѕР»РЅСЏСЏ СЃРІРѕР№ РёРіСЂРѕРІРѕР№ СЃС‡С‘С‚, Р’С‹ С‚РµРј СЃР°РјС‹Рј СЃРїРѕРЅСЃРёСЂСѓРµС‚Рµ РїСЂРѕРµРєС‚. Р’РЎР• РІР°С€Рё РІР»РѕР¶РµРЅРЅС‹Рµ РґРµРЅСЊРіРё РІ РёРіСЂСѓ Р±СѓРґСѓС‚ РёРґС‚Рё РўРћР›Р¬РљРћ РЅР° РµС‘ Р¶Рµ СЂР°Р·РІРёС‚РёРµ.</b>
         
         </fieldset>
               
@@ -102,49 +102,49 @@ function w(login,id,align,klan,level,online,city,battle){
       <td align="left" valign="top">
       
         <fieldset>
-        <legend><b><span style='color:#8F0000;'>Ваш накопительный бонус:</span> 0% (0 ЕКР)</b></legend>
-        Курс покупки ЕвроКредитов: <b>1</b> eкр. = <b>
+        <legend><b><span style='color:#8F0000;'>Р’Р°С€ РЅР°РєРѕРїРёС‚РµР»СЊРЅС‹Р№ Р±РѕРЅСѓСЃ:</span> 0% (0 Р•РљР )</b></legend>
+        РљСѓСЂСЃ РїРѕРєСѓРїРєРё Р•РІСЂРѕРљСЂРµРґРёС‚РѕРІ: <b>1</b> eРєСЂ. = <b>
         <?=round($crs['cur'],2)?>
-        </b>руб.<br>
-        Курс обмена ЕвроКредитов: <b>1</b> екр = <b>
+        </b>СЂСѓР±.<br>
+        РљСѓСЂСЃ РѕР±РјРµРЅР° Р•РІСЂРѕРљСЂРµРґРёС‚РѕРІ: <b>1</b> РµРєСЂ = <b>
         <?=$c['ecrtocr']?>
-        </b> кр.<br>
+        </b> РєСЂ.<br>
         <?
         if($c['crtoecr']>0) {  
         ?>
-        Курс обмена Кредитов:
+        РљСѓСЂСЃ РѕР±РјРµРЅР° РљСЂРµРґРёС‚РѕРІ:
         <?=$c['crtoecr']?>
-        кр = 1 екр.
+        РєСЂ = 1 РµРєСЂ.
         <? } ?>
         </fieldset>
         <fieldset>
-              <legend><b><span style='color:#8F0000;'>Курс еврокредита к мировой валюте</span></b></legend>
+              <legend><b><span style='color:#8F0000;'>РљСѓСЂСЃ РµРІСЂРѕРєСЂРµРґРёС‚Р° Рє РјРёСЂРѕРІРѕР№ РІР°Р»СЋС‚Рµ</span></b></legend>
               <table width="100%" border="0" cellpadding="2" cellspacing="0">
                 <?
 			if(isset($pl['id'])) {
 			?>
                 <tr>
-                  <td><small>Данные на <b>
+                  <td><small>Р”Р°РЅРЅС‹Рµ РЅР° <b>
                     <?=date('d.m.y H:i',$pl['time'])?>
-                  </b> без учета комиссий</small></td>
+                  </b> Р±РµР· СѓС‡РµС‚Р° РєРѕРјРёСЃСЃРёР№</small></td>
                 </tr>
                 <?
 				$pl['RUB'] = 1;
 				
 				$i = 0;
 				$true = array(
-					array('USD', 'долларов США'),
-					array('EUR', 'ЕВРО'),
-					array('RUB','российских рублей'),
-					array('UAH','укр. гривен'),
-					array('BYR','белорусских рублей'),
-					array('AZN','азербайджанских манат'),
-					array('GBP','англ. фунтов стерлингов')
+					array('USD', 'РґРѕР»Р»Р°СЂРѕРІ РЎРЁРђ'),
+					array('EUR', 'Р•Р’Р Рћ'),
+					array('RUB','СЂРѕСЃСЃРёР№СЃРєРёС… СЂСѓР±Р»РµР№'),
+					array('UAH','СѓРєСЂ. РіСЂРёРІРµРЅ'),
+					array('BYR','Р±РµР»РѕСЂСѓСЃСЃРєРёС… СЂСѓР±Р»РµР№'),
+					array('AZN','Р°Р·РµСЂР±Р°Р№РґР¶Р°РЅСЃРєРёС… РјР°РЅР°С‚'),
+					array('GBP','Р°РЅРіР». С„СѓРЅС‚РѕРІ СЃС‚РµСЂР»РёРЅРіРѕРІ')
 				);
 				while($i < count($true)) {
 			?>
                 <tr>
-                  <td><span>1 екр. = </span><span style="display:inline-block;width:100px"><b>
+                  <td><span>1 РµРєСЂ. = </span><span style="display:inline-block;width:100px"><b>
                     <?=round( ($pl['cur']/$pl[$true[$i][0]]) , 4 )?>
                     </b></span><span>
                       <?=$true[$i][1]?>
@@ -158,7 +158,7 @@ function w(login,id,align,klan,level,online,city,battle){
                 <tr>
                   <td><small>
                     <center>
-                      <font color=grey>Не удалось получить информацию</font>
+                      <font color=grey>РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</font>
                     </center>
                   </small></td>
                 </tr>

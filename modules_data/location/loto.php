@@ -9,7 +9,7 @@ if($u->room['file']=='loto')
 	$loto = mysql_fetch_array(mysql_query('SELECT * FROM `loto_info` WHERE `time_start` <= "'.time().'" AND (`time_finish` > '.time().' OR `finished` = 0) LIMIT 1'));
 	//
 	if( $loto['time_finish'] < time() && $loto['finished'] == 0 ) {
-		//Завершаем розыгрыш
+		//Р—Р°РІРµСЂС€Р°РµРј СЂРѕР·С‹РіСЂС‹С€
 		$loto['finished'] = 1;
 		mysql_query('UPDATE `loto_info` SET `finished` = "'.$loto['finished'].'" WHERE `id` = "'.$loto['finished'].'" LIMIT 1');
 		$b = $loto['buy'];
@@ -18,8 +18,8 @@ if($u->room['file']=='loto')
 			$i = 0;
 			while( $i < $pl['colvo'] ) {
 				$winner = rand(1,$b);
-				//echo 'Победитель: Билет №'.$winner.'<br>Приз: '.$pl['text'].'<hr>';
-				$uwin = mysql_fetch_array(mysql_query('SELECT `id`,`uid` FROM `items_users` WHERE `data` LIKE "%Тираж №'.$loto['id'].', Билет №'.$winner.'<br>%" LIMIT 1'));
+				//echo 'РџРѕР±РµРґРёС‚РµР»СЊ: Р‘РёР»РµС‚ в„–'.$winner.'<br>РџСЂРёР·: '.$pl['text'].'<hr>';
+				$uwin = mysql_fetch_array(mysql_query('SELECT `id`,`uid` FROM `items_users` WHERE `data` LIKE "%РўРёСЂР°Р¶ в„–'.$loto['id'].', Р‘РёР»РµС‚ в„–'.$winner.'<br>%" LIMIT 1'));
 				if(isset($uwin['id'])) {
 					$uwin = $uwin['uid'];
 				}else{
@@ -35,12 +35,12 @@ if($u->room['file']=='loto')
 	//
 	if( isset($_GET['buyloto']) && isset($loto['id']) && $loto['finished'] == 0 ) {
 		if( $loto['buy'] >= $loto['tiraj'] ) {
-			$error = 'Билетов больше нет.';
+			$error = 'Р‘РёР»РµС‚РѕРІ Р±РѕР»СЊС€Рµ РЅРµС‚.';
 		}elseif( $loto['price'] > $u->info['money'] ) {
-			$error = 'У вас недостаточно кредитов';
+			$error = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂРµРґРёС‚РѕРІ';
 		}else{
-			$error = 'Вы успешно приобрели лотерейный билет, тираж №'.$loto['id'].'.';
-			$u->addItem(4539,$u->info['id'],'|sudba='.$u->info['login'].'|info=Лотерея &quot;'.$loto['name'].'&quot;<br>Тираж №'.$loto['id'].', Билет №'.($loto['buy']+1).'<br><b>Розыгрыш завершится '.date('d.m.Y H:i',$loto['time_finish']).'</b>');
+			$error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРѕР±СЂРµР»Рё Р»РѕС‚РµСЂРµР№РЅС‹Р№ Р±РёР»РµС‚, С‚РёСЂР°Р¶ в„–'.$loto['id'].'.';
+			$u->addItem(4539,$u->info['id'],'|sudba='.$u->info['login'].'|info=Р›РѕС‚РµСЂРµСЏ &quot;'.$loto['name'].'&quot;<br>РўРёСЂР°Р¶ в„–'.$loto['id'].', Р‘РёР»РµС‚ в„–'.($loto['buy']+1).'<br><b>Р РѕР·С‹РіСЂС‹С€ Р·Р°РІРµСЂС€РёС‚СЃСЏ '.date('d.m.Y H:i',$loto['time_finish']).'</b>');
 			$u->info['money'] -= $loto['price'];
 			mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			//
@@ -54,7 +54,7 @@ if($u->room['file']=='loto')
 	}
 ?>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3"><h3>Лото Бойцовского Клуба</h3></div>
+	<tr><td valign="top"><div align="center" class="pH3"><h3>Р›РѕС‚Рѕ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°</h3></div>
 	<?php
 	echo '<b style="color:red">'.$error.'</b>';
 	?>
@@ -62,18 +62,18 @@ if($u->room['file']=='loto')
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="50%" valign="top">
-        	<center><h3>Текущая лотерея<? if(isset($loto['id'])) { echo ' &quot;'.$loto['name'].'&quot;'; } ?></h3></center>
-            <? if(!isset($loto['id'])) { ?><center>Розыгрышей нет</center><? }else{ ?>
+        	<center><h3>РўРµРєСѓС‰Р°СЏ Р»РѕС‚РµСЂРµСЏ<? if(isset($loto['id'])) { echo ' &quot;'.$loto['name'].'&quot;'; } ?></h3></center>
+            <? if(!isset($loto['id'])) { ?><center>Р РѕР·С‹РіСЂС‹С€РµР№ РЅРµС‚</center><? }else{ ?>
             <div style="padding:20px;">
-            Начало розыгрыша: <span class="date"><?=date('d.m.Y H:i',$loto['time_start'])?></span><br />
-            Завершение розыгрыша: <span class="date"><?=date('d.m.Y H:i',$loto['time_finish'])?></span><br />
-            Куплено билетов: <?=$loto['buy']?> из <b><?=$loto['tiraj']?></b><br />
-            Стоимость лотерейного билета: <b><?=$loto['price']?>.00 кр.</b><br />
+            РќР°С‡Р°Р»Рѕ СЂРѕР·С‹РіСЂС‹С€Р°: <span class="date"><?=date('d.m.Y H:i',$loto['time_start'])?></span><br />
+            Р—Р°РІРµСЂС€РµРЅРёРµ СЂРѕР·С‹РіСЂС‹С€Р°: <span class="date"><?=date('d.m.Y H:i',$loto['time_finish'])?></span><br />
+            РљСѓРїР»РµРЅРѕ Р±РёР»РµС‚РѕРІ: <?=$loto['buy']?> РёР· <b><?=$loto['tiraj']?></b><br />
+            РЎС‚РѕРёРјРѕСЃС‚СЊ Р»РѕС‚РµСЂРµР№РЅРѕРіРѕ Р±РёР»РµС‚Р°: <b><?=$loto['price']?>.00 РєСЂ.</b><br />
             <br />
             <? if( $loto['finished'] == 0 ) { ?>
-            <input onclick="location.href='main.php?buyloto=1'" type="button" value="Купить лотерейный билет" /><? } ?><br />
-            <small>(Один игрок может купить несколько билетов)</small><hr />
-            <h3>Призы в текущем розыгрыше</h3>
+            <input onclick="location.href='main.php?buyloto=1'" type="button" value="РљСѓРїРёС‚СЊ Р»РѕС‚РµСЂРµР№РЅС‹Р№ Р±РёР»РµС‚" /><? } ?><br />
+            <small>(РћРґРёРЅ РёРіСЂРѕРє РјРѕР¶РµС‚ РєСѓРїРёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ Р±РёР»РµС‚РѕРІ)</small><hr />
+            <h3>РџСЂРёР·С‹ РІ С‚РµРєСѓС‰РµРј СЂРѕР·С‹РіСЂС‹С€Рµ</h3>
             <?
 			$sp = mysql_query('SELECT * FROM `loto_itm` WHERE `lid` = "'.$loto['id'].'"');
 			while( $pl = mysql_fetch_array($sp) ) {
@@ -81,7 +81,7 @@ if($u->room['file']=='loto')
 				if(isset($itm['id'])) {
 					echo '[itm]<hr>';
 				}else{
-					echo ''.$pl['text'].', <b>Количество: '.$pl['colvo'].'</b><hr>';
+					echo ''.$pl['text'].', <b>РљРѕР»РёС‡РµСЃС‚РІРѕ: '.$pl['colvo'].'</b><hr>';
 				}
 			}
 			?>
@@ -97,7 +97,7 @@ if($u->room['file']=='loto')
 				}
 				$bilets[$pl['uid']]++;
 			}
-			echo '<center><h3>Участники текущего розыгрыша ('.count($usrs).')</h3></center>';
+			echo '<center><h3>РЈС‡Р°СЃС‚РЅРёРєРё С‚РµРєСѓС‰РµРіРѕ СЂРѕР·С‹РіСЂС‹С€Р° ('.count($usrs).')</h3></center>';
 			$i = 0;
 			function declOfNum($number, $titles) {
 				$cases = array (2, 0, 1, 1, 1, 2);
@@ -109,7 +109,7 @@ if($u->room['file']=='loto')
 					$usrs[$i] = str_replace('-91','',$usrs[$i]);
 					$usrs[$i] = str_replace('-92','',$usrs[$i]);
 				}
-				echo '<div><span style="float:left">'.($i+1).'. '.$u->microLogin($usrs[$i],1).'</span><span style="float:right"><small>Билетов: <div style="width:54px;display:inline-block;">'.$tks.'</div></small></span><br></div><hr>';
+				echo '<div><span style="float:left">'.($i+1).'. '.$u->microLogin($usrs[$i],1).'</span><span style="float:right"><small>Р‘РёР»РµС‚РѕРІ: <div style="width:54px;display:inline-block;">'.$tks.'</div></small></span><br></div><hr>';
 				$i++;
 			}
 			?>
@@ -120,7 +120,7 @@ if($u->room['file']=='loto')
 			<?
 			$last_loto = mysql_fetch_array(mysql_query('SELECT * FROM `loto_info` WHERE `finished` = 1 ORDER BY `id` DESC LIMIT 1'));
             ?>
-        	<center><h3>Победители прошлого розыгрыша<? if(isset($last_loto['id'])){ echo ' &quot;'.$last_loto['name'].'&quot;'; } ?></h3></center>
+        	<center><h3>РџРѕР±РµРґРёС‚РµР»Рё РїСЂРѕС€Р»РѕРіРѕ СЂРѕР·С‹РіСЂС‹С€Р°<? if(isset($last_loto['id'])){ echo ' &quot;'.$last_loto['name'].'&quot;'; } ?></h3></center>
             <?
 			$i = 0;
 			$sp = mysql_query('SELECT * FROM `loto_win` WHERE `lid` = "'.$last_loto['id'].'" ORDER BY `id` DESC');
@@ -130,17 +130,17 @@ if($u->room['file']=='loto')
 					$pl['uid'] = str_replace('-92','',$pl['uid']);
 				}
 				if( $pl['uid'] == -1 ) {
-					echo 'Билет №'.$pl['bilet'].'. <i>(Персонаж был заблокирован, либо удален)</i>';
+					echo 'Р‘РёР»РµС‚ в„–'.$pl['bilet'].'. <i>(РџРµСЂСЃРѕРЅР°Р¶ Р±С‹Р» Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ, Р»РёР±Рѕ СѓРґР°Р»РµРЅ)</i>';
 				}else{
 					$witm = mysql_fetch_array(mysql_query('SELECT * FROM `loto_itm` WHERE `id` = "'.$pl['priz'].'" LIMIT 1'));
-					echo 'Билет №'.$pl['bilet'].'. Персонаж '.$u->microLogin($pl['uid'],1).' выиграл &quot;<b>'.$witm['text'].'</b>&quot;!';
+					echo 'Р‘РёР»РµС‚ в„–'.$pl['bilet'].'. РџРµСЂСЃРѕРЅР°Р¶ '.$u->microLogin($pl['uid'],1).' РІС‹РёРіСЂР°Р» &quot;<b>'.$witm['text'].'</b>&quot;!';
 				}
 				echo '<hr>';
 				$i++;
 			}
 			if( $i == 0 ) {
 			?>
-            <center>Победителей нет</center>
+            <center>РџРѕР±РµРґРёС‚РµР»РµР№ РЅРµС‚</center>
             <? } ?>
         </td>
         </tr>
@@ -148,7 +148,7 @@ if($u->room['file']=='loto')
 <TABLE width="100%" cellspacing="0" cellpadding="4">
   <TR>
 	<form name="F1" method="post">
-	<TD valign="top" align="left"><!--Магазин--></TD>
+	<TD valign="top" align="left"><!--РњР°РіР°Р·РёРЅ--></TD>
 	</FORM>
 	</TR>
 	</TABLE>	
@@ -166,7 +166,7 @@ if($u->room['file']=='loto')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.9&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Центральная площадь</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.9&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РїР»РѕС‰Р°РґСЊ</a></td>
 	</tr>
 	</table>
 	</td>

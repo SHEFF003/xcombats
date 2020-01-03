@@ -11,43 +11,43 @@ $hostel_option = array(
 	'none' => array(
 		'type' => 0,
 		'room' => 253,
-		'name' => 'Общежитие',
-		'stage' => 'холл',
+		'name' => 'РћР±С‰РµР¶РёС‚РёРµ',
+		'stage' => 'С…РѕР»Р»',
 		'price' => 0,
 		'partition' => ''
 	),
 	'base' => array(
 		'type' => 1,
-		't_name' => 'Койка в общежитии',
-		't_names' => 'Койку в общежитии',
+		't_name' => 'РљРѕР№РєР° РІ РѕР±С‰РµР¶РёС‚РёРё',
+		't_names' => 'РљРѕР№РєСѓ РІ РѕР±С‰РµР¶РёС‚РёРё',
 		'room' => 256,
-		'name' => 'Общ. Этаж 1',
-		'stage' => 'на 1 этаже',
+		'name' => 'РћР±С‰. Р­С‚Р°Р¶ 1',
+		'stage' => 'РЅР° 1 СЌС‚Р°Р¶Рµ',
 		'price' => 1,
 		'tariff' => array('items'=>25, 'souvenirs'=>50, 'animal'=>0),
-		'partition' => array(1=>'Комната',2=>'Хранилище',4=>'Сон')
+		'partition' => array(1=>'РљРѕРјРЅР°С‚Р°',2=>'РҐСЂР°РЅРёР»РёС‰Рµ',4=>'РЎРѕРЅ')
 	),
 	'advanced' => array(
 		'type' => 2,
-		't_name' => 'Койка с тумбочкой',
-		't_names' => 'Койку с тумбочкой',
+		't_name' => 'РљРѕР№РєР° СЃ С‚СѓРјР±РѕС‡РєРѕР№',
+		't_names' => 'РљРѕР№РєСѓ СЃ С‚СѓРјР±РѕС‡РєРѕР№',
 		'room' => 257,
-		'name' => 'Общ. Этаж 2',
-		'stage' => 'на 2 этаже',
+		'name' => 'РћР±С‰. Р­С‚Р°Р¶ 2',
+		'stage' => 'РЅР° 2 СЌС‚Р°Р¶Рµ',
 		'price' => 3,
 		'tariff' => array('items'=>50, 'souvenirs'=>150, 'animal'=>0),
-		'partition' => array(1=>'Комната',2=>'Хранилище',3=>'Животные',4=>'Сон')
+		'partition' => array(1=>'РљРѕРјРЅР°С‚Р°',2=>'РҐСЂР°РЅРёР»РёС‰Рµ',3=>'Р–РёРІРѕС‚РЅС‹Рµ',4=>'РЎРѕРЅ')
 	),
 	'advanced2' => array(
 		'type' => 3,
-		't_name' => 'Койка со шкафом',
-		't_names' => 'Койку со шкафом',
+		't_name' => 'РљРѕР№РєР° СЃРѕ С€РєР°С„РѕРј',
+		't_names' => 'РљРѕР№РєСѓ СЃРѕ С€РєР°С„РѕРј',
 		'room' => 258,
-		'name' => 'Общ. Этаж 3',
-		'stage' => 'на 3 этаже',
+		'name' => 'РћР±С‰. Р­С‚Р°Р¶ 3',
+		'stage' => 'РЅР° 3 СЌС‚Р°Р¶Рµ',
 		'price' => 10,
 		'tariff' => array('items'=>70, 'souvenirs'=>200, 'animal'=>2),
-		'partition' => array(1=>'Комната',2=>'Хранилище',3=>'Животные',4=>'Сон')
+		'partition' => array(1=>'РљРѕРјРЅР°С‚Р°',2=>'РҐСЂР°РЅРёР»РёС‰Рµ',3=>'Р–РёРІРѕС‚РЅС‹Рµ',4=>'РЎРѕРЅ')
 	)
 );
 $sleep = $u->testAction('`vars` = "sleep" AND `uid` = "'.$u->info['id'].'" LIMIT 1', 1);
@@ -90,12 +90,12 @@ if( isset($sleep_mod) && !isset($sleep['id'])){
 }
 $hostel = mysql_fetch_array(mysql_query("SELECT * FROM `house` WHERE `owner` = '".mysql_real_escape_string($u->info['id'])."';"));
 if( $sleep['vars'] == 'sleep' AND isset($hostel) && $hostel_option[$hostel['type']]['room'] != $u->room['id'] && $u->room['id'] != 253 ) {
-	 changeSleep(2); // Если человек спит в неположенном месте, просыпаемся!!!
+	 changeSleep(2); // Р•СЃР»Рё С‡РµР»РѕРІРµРє СЃРїРёС‚ РІ РЅРµРїРѕР»РѕР¶РµРЅРЅРѕРј РјРµСЃС‚Рµ, РїСЂРѕСЃС‹РїР°РµРјСЃСЏ!!!
 }
 if( isset($_POST['savenotes']) AND $hostel['partition'] == '1' ) {
 	saveNote();
 }
-if( isset($hostel) ) { #---обновляем баланс
+if( isset($hostel) ) { #---РѕР±РЅРѕРІР»СЏРµРј Р±Р°Р»Р°РЅСЃ
 	$hostel['balance'] = round(($hostel['weekcost']*(floor(($hostel['endtime']-time())/24/3600)))/7, 2);
 	mysql_query("UPDATE `house` SET `balance` = '".$hostel['balance']."' WHERE `owner` = '".mysql_real_escape_string($u->info['id'])."';");
 }
@@ -107,32 +107,32 @@ function updateHostel(){
 		if($hostel['balance'] >= ($hostel_option[$_GET['changearenda']]['price']*2) ) {
 			$endtime = time() + (($hostel['balance']-$hostel_option[$_GET['changearenda']]['price'])/$hostel_option[$_GET['changearenda']]['price'])*604800; 
 			mysql_query("UPDATE `house` SET `starttime` = ".time().", `endtime` = ".$endtime.", `type` = '".mysql_real_escape_string($_GET['changearenda'])."', `weekcost` = '".$hostel_option[mysql_real_escape_string($_GET['changearenda'])]['price']."' WHERE `owner` = '".mysql_real_escape_string($u->info['id'])."';");
-			$err = '<FONT COLOR=red><B>Смена арендуемого помещения произведена успешно</B></FONT>';
+			$err = '<FONT COLOR=red><B>РЎРјРµРЅР° Р°СЂРµРЅРґСѓРµРјРѕРіРѕ РїРѕРјРµС‰РµРЅРёСЏ РїСЂРѕРёР·РІРµРґРµРЅР° СѓСЃРїРµС€РЅРѕ</B></FONT>';
 			$hostel['type']=$_GET['changearenda'];
 			$hostel['endtime'] = $endtime;
 		}else{
-			$err = '<FONT COLOR=red><B>На балансе не хватает '.( ($hostel_option[$_GET['changearenda']]['price']*2)-$hostel['balance'] ).' кр. для смены арендуемого помещения</B></FONT>';
+			$err = '<FONT COLOR=red><B>РќР° Р±Р°Р»Р°РЅСЃРµ РЅРµ С…РІР°С‚Р°РµС‚ '.( ($hostel_option[$_GET['changearenda']]['price']*2)-$hostel['balance'] ).' РєСЂ. РґР»СЏ СЃРјРµРЅС‹ Р°СЂРµРЅРґСѓРµРјРѕРіРѕ РїРѕРјРµС‰РµРЅРёСЏ</B></FONT>';
 		}
 		unset($hostel['action']);
 	} elseif( $hostel['action'] == 'newarenda' ){
 		if(isset($_GET['azb']) && $u->info['level'] > 7 ) {
-			$err = '<FONT COLOR=red><B>Вы не можете расплачиваться зубами, у вас слишком высокий уровень<BR></B></FONT><BR>';
+			$err = '<FONT COLOR=red><B>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СЂР°СЃРїР»Р°С‡РёРІР°С‚СЊСЃСЏ Р·СѓР±Р°РјРё, Сѓ РІР°СЃ СЃР»РёС€РєРѕРј РІС‹СЃРѕРєРёР№ СѓСЂРѕРІРµРЅСЊ<BR></B></FONT><BR>';
 		}elseif($u->info['money4'] < $hostel_option[$_GET['arenda']]['price']*5 && isset($_GET['azb'])) {
-			$err = '<FONT COLOR=red><B>У вас недостаточно зубов<BR></B></FONT><BR>';
+			$err = '<FONT COLOR=red><B>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р·СѓР±РѕРІ<BR></B></FONT><BR>';
 		}elseif($u->info['money']>=$hostel_option[$_GET['arenda']]['price'] || isset($_GET['azb'])) {
 			mysql_query("INSERT INTO `house`(`owner`,`type`,`starttime`,`endtime`,`balance`,`weekcost`) VALUES ('".mysql_real_escape_string($u->info['id'])."','".mysql_real_escape_string($_GET['arenda'])."','".time()."','".(time()+604800)."','".$hostel_option[$_GET['arenda']]['price']."','".$hostel_option[$_GET['arenda']]['price']."')");
 			if(isset($_GET['azb'])) {
 				mysql_query("UPDATE `users` SET `money4` = `money4`-".($hostel_option[$_GET['arenda']]['price']*5)." WHERE `id` = '".mysql_real_escape_string($u->info['id'])."';");
-				$err = "<FONT COLOR=red><B>Вы арендовали '".$hostel_option[$_GET['arenda']]['t_names']."' за ".$u->zuby($hostel_option[$_GET['arenda']]['price']*5,1).".<BR></B></FONT><BR>";
+				$err = "<FONT COLOR=red><B>Р’С‹ Р°СЂРµРЅРґРѕРІР°Р»Рё '".$hostel_option[$_GET['arenda']]['t_names']."' Р·Р° ".$u->zuby($hostel_option[$_GET['arenda']]['price']*5,1).".<BR></B></FONT><BR>";
 			}else{
 				mysql_query("UPDATE `users` SET `money` = `money`-".$hostel_option[$_GET['arenda']]['price']." WHERE `id` = '".mysql_real_escape_string($u->info['id'])."';");
-				$err = "<FONT COLOR=red><B>Вы арендовали '".$hostel_option[$_GET['arenda']]['t_names']."' за ".$hostel_option[$_GET['arenda']]['price']." кр.<BR></B></FONT><BR>";
+				$err = "<FONT COLOR=red><B>Р’С‹ Р°СЂРµРЅРґРѕРІР°Р»Рё '".$hostel_option[$_GET['arenda']]['t_names']."' Р·Р° ".$hostel_option[$_GET['arenda']]['price']." РєСЂ.<BR></B></FONT><BR>";
 			}
 		}else{
 			if(isset($_GET['azb'])) {
-				$err = '<FONT COLOR=red><B>У вас недостаточно зубов<BR></B></FONT><BR>';
+				$err = '<FONT COLOR=red><B>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р·СѓР±РѕРІ<BR></B></FONT><BR>';
 			}else{
-				$err = '<FONT COLOR=red><B>У вас недостаточно денег<BR></B></FONT><BR>';
+				$err = '<FONT COLOR=red><B>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі<BR></B></FONT><BR>';
 			}
 		}
 		$hostel = mysql_fetch_array(mysql_query("SELECT * FROM `house` WHERE `owner` = '".mysql_real_escape_string($u->info['id'])."';"));
@@ -186,7 +186,7 @@ function changePets(){
 		$id = (int)$_GET['pet_id'];
 		if( $_GET['pet_id'] < 0 ) {
 			$id = -$id;
-			//Помещаем зверя в общагу
+			//РџРѕРјРµС‰Р°РµРј Р·РІРµСЂСЏ РІ РѕР±С‰Р°РіСѓ
 			$cageid = mysql_fetch_array(mysql_query("SELECT `id`,`name` FROM `users_animal` WHERE `pet_in_cage` = '0' AND `uid` = '".mysql_real_escape_string($u->info['id'])."' AND `id` = '".mysql_real_escape_string($id)."' LIMIT 1"));
 			if( isset($cageid['id']) ) {
 				$cageid1 = mysql_fetch_array(mysql_query("SELECT `id` FROM `users_animal` WHERE `pet_in_cage` = '1' AND `uid` = '".mysql_real_escape_string($u->info['id'])."' LIMIT 1"));
@@ -201,12 +201,12 @@ function changePets(){
 				} else {
 					mysql_query('UPDATE `users_animal` SET `pet_in_cage` = "1" WHERE `id` = "'.$cageid['id'].'" LIMIT 1');
 				}
-				$u->error = '<FONT COLOR=red>Вы успешно поместили &quot;'.$cageid['name'].'&quot; в общежития!</FONT>';
+				$u->error = '<FONT COLOR=red>Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕРјРµСЃС‚РёР»Рё &quot;'.$cageid['name'].'&quot; РІ РѕР±С‰РµР¶РёС‚РёСЏ!</FONT>';
 			} else {
-				$u->error = '<FONT COLOR=red><B>Зверь не найден в инвентаре!</B></FONT>';
+				$u->error = '<FONT COLOR=red><B>Р—РІРµСЂСЊ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ!</B></FONT>';
 			}
 		} else {
-			//Забираем зверя из общаги
+			//Р—Р°Р±РёСЂР°РµРј Р·РІРµСЂСЏ РёР· РѕР±С‰Р°РіРё
 			$cageid = mysql_fetch_array(mysql_query("SELECT `id`,`name`,`pet_in_cage` FROM `users_animal` WHERE `pet_in_cage` > '0' AND `uid` = '".mysql_real_escape_string($u->info['id'])."' AND `id` = '".mysql_real_escape_string($id)."' LIMIT 1"));
 			if( isset($cageid['id']) ) {
 				if( $u->info['animal'] > 0 ) {
@@ -215,9 +215,9 @@ function changePets(){
 				} else {
 					mysql_query('UPDATE `users_animal` SET `pet_in_cage` = "0" WHERE `id` = "'.$cageid['id'].'" LIMIT 1');
 				}
-				$u->error = '<FONT COLOR=red>Вы успешно забрали &quot;'.$cageid['name'].'&quot; из общежития!</FONT>';
+				$u->error = '<FONT COLOR=red>Р’С‹ СѓСЃРїРµС€РЅРѕ Р·Р°Р±СЂР°Р»Рё &quot;'.$cageid['name'].'&quot; РёР· РѕР±С‰РµР¶РёС‚РёСЏ!</FONT>';
 			} else {
-				$u->error = '<FONT COLOR=red><B>Зверь не найден в общежитии!</B></FONT>';
+				$u->error = '<FONT COLOR=red><B>Р—РІРµСЂСЊ РЅРµ РЅР°Р№РґРµРЅ РІ РѕР±С‰РµР¶РёС‚РёРё!</B></FONT>';
 			}
 		}
 	}
@@ -235,11 +235,11 @@ function saveNote() {
 	$_POST['notes'] = str_replace(" \\n","\n",$_POST['notes']); 
 	$simbolcount = strlen($_POST['notes']);
 	if($simbolcount>10000) {
-		$err = "<FONT COLOR=red><B>Слишком много текста... такое не сохранить.<BR></B></FONT><BR>";
+		$err = "<FONT COLOR=red><B>РЎР»РёС€РєРѕРј РјРЅРѕРіРѕ С‚РµРєСЃС‚Р°... С‚Р°РєРѕРµ РЅРµ СЃРѕС…СЂР°РЅРёС‚СЊ.<BR></B></FONT><BR>";
 	} else {
 		mysql_query("UPDATE `house` SET `notes` = '".mysql_real_escape_string($_POST['notes'])."' WHERE `owner` = '".mysql_real_escape_string($u->info['id'])."';");
 		$hostel['notes'] = $_POST['notes'];
-		$err = "<FONT COLOR=red><B>Сохранено (".$simbolcount.")<BR></B></FONT><BR>";
+		$err = "<FONT COLOR=red><B>РЎРѕС…СЂР°РЅРµРЅРѕ (".$simbolcount.")<BR></B></FONT><BR>";
 	}
 	$hostel = mysql_fetch_array(mysql_query("SELECT * FROM `house` WHERE `owner` = '".mysql_real_escape_string($u->info['id'])."';"));
 }
@@ -247,8 +247,8 @@ function saveNote() {
 function hostel($id){
 	global $hostel, $hostel_option, $u, $err;
 	$filter = '<table cellpadding="0" cellspacing="0" style="padding:0px 16px 0px 8px;">
-<tbody><tr><td>&nbsp;Правила: Нет нападениям. Нет телепортации. Нет передаче предметов. Нет использованию магии и распитию эликсиров.</td>
-</tr><tr><td align="right"><i>Комендант</i></td></tr></tbody></table>';
+<tbody><tr><td>&nbsp;РџСЂР°РІРёР»Р°: РќРµС‚ РЅР°РїР°РґРµРЅРёСЏРј. РќРµС‚ С‚РµР»РµРїРѕСЂС‚Р°С†РёРё. РќРµС‚ РїРµСЂРµРґР°С‡Рµ РїСЂРµРґРјРµС‚РѕРІ. РќРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ РјР°РіРёРё Рё СЂР°СЃРїРёС‚РёСЋ СЌР»РёРєСЃРёСЂРѕРІ.</td>
+</tr><tr><td align="right"><i>РљРѕРјРµРЅРґР°РЅС‚</i></td></tr></tbody></table>';
 	$content = '';
 	$additional = ''; 
 	
@@ -257,28 +257,28 @@ function hostel($id){
 	);
 	
 	if( $u->info['level'] < 8 ) {
-		$azuby[0] = ' &nbsp; / <A style="padding-left:12px" href="?arenda=base&azb=1&sd4='.$u->info['id'].'" onClick="return confirm(\'Вы уверены, что хотите заплатить 5 зубов?\')">Арендовать за '.$u->zuby(5,1).'</A>';
-		$azuby[1] = ' &nbsp; / <A style="padding-left:12px" href="?arenda=advanced&azb=1&sd4='.$u->info['id'].'" onClick="return confirm(\'Вы уверены, что хотите заплатить 15 зубов?\')">Арендовать за '.$u->zuby(15,1).'</A>';
-		$azuby[2] = ' &nbsp; / <A style="padding-left:12px" href="?arenda=advanced2&azb=1&sd4='.$u->info['id'].'" onClick="return confirm(\'Вы уверены, что хотите заплатить 50 зубов?\')">Арендовать за '.$u->zuby(50,1).'</A>';
+		$azuby[0] = ' &nbsp; / <A style="padding-left:12px" href="?arenda=base&azb=1&sd4='.$u->info['id'].'" onClick="return confirm(\'Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 5 Р·СѓР±РѕРІ?\')">РђСЂРµРЅРґРѕРІР°С‚СЊ Р·Р° '.$u->zuby(5,1).'</A>';
+		$azuby[1] = ' &nbsp; / <A style="padding-left:12px" href="?arenda=advanced&azb=1&sd4='.$u->info['id'].'" onClick="return confirm(\'Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 15 Р·СѓР±РѕРІ?\')">РђСЂРµРЅРґРѕРІР°С‚СЊ Р·Р° '.$u->zuby(15,1).'</A>';
+		$azuby[2] = ' &nbsp; / <A style="padding-left:12px" href="?arenda=advanced2&azb=1&sd4='.$u->info['id'].'" onClick="return confirm(\'Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 50 Р·СѓР±РѕРІ?\')">РђСЂРµРЅРґРѕРІР°С‚СЊ Р·Р° '.$u->zuby(50,1).'</A>';
 	}
 	
-	if($hostel['action'] == 'changelist'){ # смена аренды
-		$content = "Вы можете сменить арендуемое помещение:<br/><p><small>Для смены аренды на вашем балансе должна быть необходимая сумма.<BR>Смена аренды, оплаченной зубами на кредитную аренду запрещена.<BR>Количество вещей, сувениров и животных на вашем складе не должно превышать допустимое значение для выбранного арендуемого помещения.<BR></small></p>".( $hostel['type'] != "base" ? "<hr align=\"left\" width=\"40%\"/>Арендовать <strong>Койку в общежитии</strong><BR>Цена: 1 кр. + 1 кр. в неделю.<p style='padding-left:12px;margin: 5px 0px;'>&bull; Размер сундука: 25 вещей<BR>&bull; Сувениры: 50 шт.<BR>&bull; Койка</p><A style='padding-left:12px;padding-bottom:6px' href=\"?changearenda=base&sd4=".$u->info['id']."\" onClick=\"return confirm('Вы уверены, что хотите заплатить 1 кр. за смену помещения?')\">Сменить помещение</A>" : '').( $hostel['type'] != "advanced" ? "<hr align=\"left\" width=\"40%\"/>Арендовать <strong>Койку с тумбочкой</strong><BR>Цена: 3 кр. + 3 кр. в неделю.<p style='padding-left:12px;margin: 5px 0px;'>&bull; Размер сундука: 40 вещей<BR>&bull; Сувениры: 150 шт.<BR>&bull; Койка</p><A style='padding-left:12px;padding-bottom:6px' href=\"?changearenda=advanced&sd4=".$u->info['id']."\" onClick=\"return confirm('Вы уверены, что хотите заплатить 3 кр. за смену помещения?')\">Сменить помещение</A>" : '').( $hostel['type'] != "advanced2" ? "<hr align=\"left\" width=\"40%\"/>Арендовать <strong>Койку со шкафом</strong><BR>Цена: 10 кр. + 10 кр. в неделю.<p style='padding-left:12px;margin: 5px 0px;'>&bull; Размер сундука: 70 вещей<BR>&bull; Сувениры: 200 шт.<BR>&bull; Мест для животных: 2 <BR>&bull; Койка</p><A style='padding-left:12px;padding-bottom:6px' href=\"?changearenda=advanced2&sd4=".$u->info['id']."\" onClick=\"return confirm('Вы уверены, что хотите заплатить 10 кр. за смену помещения?')\">Сменить помещение</A>" : '').'<br/>&nbsp;';
-	} elseif($id == 0){ # новая аренда
-		$content = '<div style="padding:8px 6px;"><strong>Койка в общежитии</strong><br/>Цена: 1 кр. + 1 кр. в неделю.<br/><p style="padding-left:12px;margin: 5px 0px;">&bull; Размер сундука: 25 вещей<br/>&bull; Сувениры: 50 шт.<br/>&bull; Койка</p><A style="padding-left:12px" href="?arenda=base&sd4='.$u->info['id'].'" onClick="return confirm(\'Вы уверены, что хотите заплатить 1 кр.?\')">Арендовать</A>'.$azuby[0].'<br/><hr align="left" width="40%"/><strong>Койка с тумбочкой</strong><br/>Цена: 3 кр. + 3 кр. в неделю.<br/><p style="padding-left:12px;margin: 5px 0px;">&bull; Размер сундука: 40 вещей<br/>&bull; Сувениры: 150 шт.<br/>&bull; Койка</p><A style="padding-left:12px" href="?arenda=advanced&sd4='.$u->info['id'].'" onClick="return confirm(\'Вы уверены, что хотите заплатить 3 кр.?\')">Арендовать</A>'.$azuby[1].'<br/><hr align="left" width="40%"/><strong>Койка со шкафом</strong><br/>Цена: 10 кр. + 10 кр. в неделю.<br/><p style="padding-left:12px;margin: 5px 0px;">&bull; Размер сундука: 70 вещей<br/>&bull; Сувениры: 200 шт.<br/>&bull; Мест для животных: 2 <br/>&bull; Койка</p><A style="padding-left:12px;padding-bottom:6px" href="?arenda=advanced2&sd4='.$u->info['id'].'" onClick="return confirm(\'Вы уверены, что хотите заплатить 10 кр.?\')">Арендовать</A>'.$azuby[2].'<br/></div>';
-	} else { # текущее состояние аренды
-		$content = "Вы арендовали «".$hostel_option[$hostel['type']]['t_name']."» ".$hostel_option[$hostel['type']]['stage']."<BR>Начало аренды: ".date('d.m.y H:i',$hostel['starttime'])."<BR>Оплачено до: ".date("d.m.y H:i",$hostel['endtime']).' (баланс '.$hostel['balance'].' кр.)'."
-		<IMG src=\"http://img.combats.ru/i/up.gif\" width=11 height=11 title=\"Оплатить\" onClick=\"usescript('Оплата аренды','main.php', 'payarenda', '".$hostel['weekcost']."', 'Сумма оплаты:<BR>',0, '<INPUT type=hidden name=sd4 value='+sd4+'>')\" style=\"cursor:pointer\">";
+	if($hostel['action'] == 'changelist'){ # СЃРјРµРЅР° Р°СЂРµРЅРґС‹
+		$content = "Р’С‹ РјРѕР¶РµС‚Рµ СЃРјРµРЅРёС‚СЊ Р°СЂРµРЅРґСѓРµРјРѕРµ РїРѕРјРµС‰РµРЅРёРµ:<br/><p><small>Р”Р»СЏ СЃРјРµРЅС‹ Р°СЂРµРЅРґС‹ РЅР° РІР°С€РµРј Р±Р°Р»Р°РЅСЃРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РЅРµРѕР±С…РѕРґРёРјР°СЏ СЃСѓРјРјР°.<BR>РЎРјРµРЅР° Р°СЂРµРЅРґС‹, РѕРїР»Р°С‡РµРЅРЅРѕР№ Р·СѓР±Р°РјРё РЅР° РєСЂРµРґРёС‚РЅСѓСЋ Р°СЂРµРЅРґСѓ Р·Р°РїСЂРµС‰РµРЅР°.<BR>РљРѕР»РёС‡РµСЃС‚РІРѕ РІРµС‰РµР№, СЃСѓРІРµРЅРёСЂРѕРІ Рё Р¶РёРІРѕС‚РЅС‹С… РЅР° РІР°С€РµРј СЃРєР»Р°РґРµ РЅРµ РґРѕР»Р¶РЅРѕ РїСЂРµРІС‹С€Р°С‚СЊ РґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РІС‹Р±СЂР°РЅРЅРѕРіРѕ Р°СЂРµРЅРґСѓРµРјРѕРіРѕ РїРѕРјРµС‰РµРЅРёСЏ.<BR></small></p>".( $hostel['type'] != "base" ? "<hr align=\"left\" width=\"40%\"/>РђСЂРµРЅРґРѕРІР°С‚СЊ <strong>РљРѕР№РєСѓ РІ РѕР±С‰РµР¶РёС‚РёРё</strong><BR>Р¦РµРЅР°: 1 РєСЂ. + 1 РєСЂ. РІ РЅРµРґРµР»СЋ.<p style='padding-left:12px;margin: 5px 0px;'>&bull; Р Р°Р·РјРµСЂ СЃСѓРЅРґСѓРєР°: 25 РІРµС‰РµР№<BR>&bull; РЎСѓРІРµРЅРёСЂС‹: 50 С€С‚.<BR>&bull; РљРѕР№РєР°</p><A style='padding-left:12px;padding-bottom:6px' href=\"?changearenda=base&sd4=".$u->info['id']."\" onClick=\"return confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 1 РєСЂ. Р·Р° СЃРјРµРЅСѓ РїРѕРјРµС‰РµРЅРёСЏ?')\">РЎРјРµРЅРёС‚СЊ РїРѕРјРµС‰РµРЅРёРµ</A>" : '').( $hostel['type'] != "advanced" ? "<hr align=\"left\" width=\"40%\"/>РђСЂРµРЅРґРѕРІР°С‚СЊ <strong>РљРѕР№РєСѓ СЃ С‚СѓРјР±РѕС‡РєРѕР№</strong><BR>Р¦РµРЅР°: 3 РєСЂ. + 3 РєСЂ. РІ РЅРµРґРµР»СЋ.<p style='padding-left:12px;margin: 5px 0px;'>&bull; Р Р°Р·РјРµСЂ СЃСѓРЅРґСѓРєР°: 40 РІРµС‰РµР№<BR>&bull; РЎСѓРІРµРЅРёСЂС‹: 150 С€С‚.<BR>&bull; РљРѕР№РєР°</p><A style='padding-left:12px;padding-bottom:6px' href=\"?changearenda=advanced&sd4=".$u->info['id']."\" onClick=\"return confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 3 РєСЂ. Р·Р° СЃРјРµРЅСѓ РїРѕРјРµС‰РµРЅРёСЏ?')\">РЎРјРµРЅРёС‚СЊ РїРѕРјРµС‰РµРЅРёРµ</A>" : '').( $hostel['type'] != "advanced2" ? "<hr align=\"left\" width=\"40%\"/>РђСЂРµРЅРґРѕРІР°С‚СЊ <strong>РљРѕР№РєСѓ СЃРѕ С€РєР°С„РѕРј</strong><BR>Р¦РµРЅР°: 10 РєСЂ. + 10 РєСЂ. РІ РЅРµРґРµР»СЋ.<p style='padding-left:12px;margin: 5px 0px;'>&bull; Р Р°Р·РјРµСЂ СЃСѓРЅРґСѓРєР°: 70 РІРµС‰РµР№<BR>&bull; РЎСѓРІРµРЅРёСЂС‹: 200 С€С‚.<BR>&bull; РњРµСЃС‚ РґР»СЏ Р¶РёРІРѕС‚РЅС‹С…: 2 <BR>&bull; РљРѕР№РєР°</p><A style='padding-left:12px;padding-bottom:6px' href=\"?changearenda=advanced2&sd4=".$u->info['id']."\" onClick=\"return confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 10 РєСЂ. Р·Р° СЃРјРµРЅСѓ РїРѕРјРµС‰РµРЅРёСЏ?')\">РЎРјРµРЅРёС‚СЊ РїРѕРјРµС‰РµРЅРёРµ</A>" : '').'<br/>&nbsp;';
+	} elseif($id == 0){ # РЅРѕРІР°СЏ Р°СЂРµРЅРґР°
+		$content = '<div style="padding:8px 6px;"><strong>РљРѕР№РєР° РІ РѕР±С‰РµР¶РёС‚РёРё</strong><br/>Р¦РµРЅР°: 1 РєСЂ. + 1 РєСЂ. РІ РЅРµРґРµР»СЋ.<br/><p style="padding-left:12px;margin: 5px 0px;">&bull; Р Р°Р·РјРµСЂ СЃСѓРЅРґСѓРєР°: 25 РІРµС‰РµР№<br/>&bull; РЎСѓРІРµРЅРёСЂС‹: 50 С€С‚.<br/>&bull; РљРѕР№РєР°</p><A style="padding-left:12px" href="?arenda=base&sd4='.$u->info['id'].'" onClick="return confirm(\'Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 1 РєСЂ.?\')">РђСЂРµРЅРґРѕРІР°С‚СЊ</A>'.$azuby[0].'<br/><hr align="left" width="40%"/><strong>РљРѕР№РєР° СЃ С‚СѓРјР±РѕС‡РєРѕР№</strong><br/>Р¦РµРЅР°: 3 РєСЂ. + 3 РєСЂ. РІ РЅРµРґРµР»СЋ.<br/><p style="padding-left:12px;margin: 5px 0px;">&bull; Р Р°Р·РјРµСЂ СЃСѓРЅРґСѓРєР°: 40 РІРµС‰РµР№<br/>&bull; РЎСѓРІРµРЅРёСЂС‹: 150 С€С‚.<br/>&bull; РљРѕР№РєР°</p><A style="padding-left:12px" href="?arenda=advanced&sd4='.$u->info['id'].'" onClick="return confirm(\'Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 3 РєСЂ.?\')">РђСЂРµРЅРґРѕРІР°С‚СЊ</A>'.$azuby[1].'<br/><hr align="left" width="40%"/><strong>РљРѕР№РєР° СЃРѕ С€РєР°С„РѕРј</strong><br/>Р¦РµРЅР°: 10 РєСЂ. + 10 РєСЂ. РІ РЅРµРґРµР»СЋ.<br/><p style="padding-left:12px;margin: 5px 0px;">&bull; Р Р°Р·РјРµСЂ СЃСѓРЅРґСѓРєР°: 70 РІРµС‰РµР№<br/>&bull; РЎСѓРІРµРЅРёСЂС‹: 200 С€С‚.<br/>&bull; РњРµСЃС‚ РґР»СЏ Р¶РёРІРѕС‚РЅС‹С…: 2 <br/>&bull; РљРѕР№РєР°</p><A style="padding-left:12px;padding-bottom:6px" href="?arenda=advanced2&sd4='.$u->info['id'].'" onClick="return confirm(\'Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїР»Р°С‚РёС‚СЊ 10 РєСЂ.?\')">РђСЂРµРЅРґРѕРІР°С‚СЊ</A>'.$azuby[2].'<br/></div>';
+	} else { # С‚РµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ Р°СЂРµРЅРґС‹
+		$content = "Р’С‹ Р°СЂРµРЅРґРѕРІР°Р»Рё В«".$hostel_option[$hostel['type']]['t_name']."В» ".$hostel_option[$hostel['type']]['stage']."<BR>РќР°С‡Р°Р»Рѕ Р°СЂРµРЅРґС‹: ".date('d.m.y H:i',$hostel['starttime'])."<BR>РћРїР»Р°С‡РµРЅРѕ РґРѕ: ".date("d.m.y H:i",$hostel['endtime']).' (Р±Р°Р»Р°РЅСЃ '.$hostel['balance'].' РєСЂ.)'."
+		<IMG src=\"http://img.combats.ru/i/up.gif\" width=11 height=11 title=\"РћРїР»Р°С‚РёС‚СЊ\" onClick=\"usescript('РћРїР»Р°С‚Р° Р°СЂРµРЅРґС‹','main.php', 'payarenda', '".$hostel['weekcost']."', 'РЎСѓРјРјР° РѕРїР»Р°С‚С‹:<BR>',0, '<INPUT type=hidden name=sd4 value='+sd4+'>')\" style=\"cursor:pointer\">";
 		
 		if( $u->info['level'] < 8 ) {
-			$content .= " &nbsp; <small>Оплатить за зубы (Цена в неделю: ".$u->zuby($hostel['weekcost']*5,1)."): </small><IMG src=\"http://img.combats.ru/i/up.gif\" width=11 height=11 title=\"Оплатить за зубы\" onClick=\"usescript('Оплата аренды за зубы','main.php?zby=1', 'payarenda', '".$hostel['weekcost']."', 'Сумма оплаты:<BR>',0, '<INPUT type=hidden name=sd4 value='+sd4+'>')\" style=\"cursor:pointer\">";
+			$content .= " &nbsp; <small>РћРїР»Р°С‚РёС‚СЊ Р·Р° Р·СѓР±С‹ (Р¦РµРЅР° РІ РЅРµРґРµР»СЋ: ".$u->zuby($hostel['weekcost']*5,1)."): </small><IMG src=\"http://img.combats.ru/i/up.gif\" width=11 height=11 title=\"РћРїР»Р°С‚РёС‚СЊ Р·Р° Р·СѓР±С‹\" onClick=\"usescript('РћРїР»Р°С‚Р° Р°СЂРµРЅРґС‹ Р·Р° Р·СѓР±С‹','main.php?zby=1', 'payarenda', '".$hostel['weekcost']."', 'РЎСѓРјРјР° РѕРїР»Р°С‚С‹:<BR>',0, '<INPUT type=hidden name=sd4 value='+sd4+'>')\" style=\"cursor:pointer\">";
 		}
 		
-		$content .= "<BR>Цена в неделю: ".$hostel['weekcost']." кр.<BR>&nbsp;&bull; Размер сундука: ".$hostel_option[$hostel['type']]['tariff']['items']." вещей<BR>&nbsp;&bull; Сувениры: ".$hostel_option[$hostel['type']]['tariff']['souvenirs']." шт.<BR>".($hostel_option[$hostel['type']]['tariff']['animal']>0 ? '&nbsp;&bull; Мест для животных: '.$hostel_option[$hostel['type']]['tariff']['animal'].'<BR>' : '' )." &nbsp&bull; Койка <br/><p><A href=\"?closearenda=1&sd4=".$u->info['id']."\" onClick=\"return confirm('Вы уверены, что хотите прекратить аренду?')\">Прекратить аренду</A><BR><SMALL>При отмене аренды, все вещи из сундука переносятся в ваш инвентарь.<BR>Ваши животные передаются вам. Если у вас уже есть другое животное, то выпускаются на волю.<BR>Остаток средств не возвращается.<BR>Если вы должны оплатить аренду, то ваш долг удваивается и вы не сможете воспользоваться арендой, пока не оплатите долг.<BR></SMALL></p><p><A href=\"?changelist=1&sd4=".$u->info['id']."\">Сменить аренду";
+		$content .= "<BR>Р¦РµРЅР° РІ РЅРµРґРµР»СЋ: ".$hostel['weekcost']." РєСЂ.<BR>&nbsp;&bull; Р Р°Р·РјРµСЂ СЃСѓРЅРґСѓРєР°: ".$hostel_option[$hostel['type']]['tariff']['items']." РІРµС‰РµР№<BR>&nbsp;&bull; РЎСѓРІРµРЅРёСЂС‹: ".$hostel_option[$hostel['type']]['tariff']['souvenirs']." С€С‚.<BR>".($hostel_option[$hostel['type']]['tariff']['animal']>0 ? '&nbsp;&bull; РњРµСЃС‚ РґР»СЏ Р¶РёРІРѕС‚РЅС‹С…: '.$hostel_option[$hostel['type']]['tariff']['animal'].'<BR>' : '' )." &nbsp&bull; РљРѕР№РєР° <br/><p><A href=\"?closearenda=1&sd4=".$u->info['id']."\" onClick=\"return confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РїСЂРµРєСЂР°С‚РёС‚СЊ Р°СЂРµРЅРґСѓ?')\">РџСЂРµРєСЂР°С‚РёС‚СЊ Р°СЂРµРЅРґСѓ</A><BR><SMALL>РџСЂРё РѕС‚РјРµРЅРµ Р°СЂРµРЅРґС‹, РІСЃРµ РІРµС‰Рё РёР· СЃСѓРЅРґСѓРєР° РїРµСЂРµРЅРѕСЃСЏС‚СЃСЏ РІ РІР°С€ РёРЅРІРµРЅС‚Р°СЂСЊ.<BR>Р’Р°С€Рё Р¶РёРІРѕС‚РЅС‹Рµ РїРµСЂРµРґР°СЋС‚СЃСЏ РІР°Рј. Р•СЃР»Рё Сѓ РІР°СЃ СѓР¶Рµ РµСЃС‚СЊ РґСЂСѓРіРѕРµ Р¶РёРІРѕС‚РЅРѕРµ, С‚Рѕ РІС‹РїСѓСЃРєР°СЋС‚СЃСЏ РЅР° РІРѕР»СЋ.<BR>РћСЃС‚Р°С‚РѕРє СЃСЂРµРґСЃС‚РІ РЅРµ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ.<BR>Р•СЃР»Рё РІС‹ РґРѕР»Р¶РЅС‹ РѕРїР»Р°С‚РёС‚СЊ Р°СЂРµРЅРґСѓ, С‚Рѕ РІР°С€ РґРѕР»Рі СѓРґРІР°РёРІР°РµС‚СЃСЏ Рё РІС‹ РЅРµ СЃРјРѕР¶РµС‚Рµ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ Р°СЂРµРЅРґРѕР№, РїРѕРєР° РЅРµ РѕРїР»Р°С‚РёС‚Рµ РґРѕР»Рі.<BR></SMALL></p><p><A href=\"?changelist=1&sd4=".$u->info['id']."\">РЎРјРµРЅРёС‚СЊ Р°СЂРµРЅРґСѓ";
 		if( $u->info['level'] < 8 ) {
-			$content .= ' (Только за кр.)';
+			$content .= ' (РўРѕР»СЊРєРѕ Р·Р° РєСЂ.)';
 		}
-		$content .= "</A><BR><SMALL>Для смены аренды на вашем балансе должна быть необходимая сумма.<BR>Смена аренды, оплаченной зубами на кредитную аренду запрещена.<BR>Количество вещей, сувениров и животных на вашем складе не должно превышать допустимое значение для выбранного арендуемого помещения.<BR></SMALL></p>";
+		$content .= "</A><BR><SMALL>Р”Р»СЏ СЃРјРµРЅС‹ Р°СЂРµРЅРґС‹ РЅР° РІР°С€РµРј Р±Р°Р»Р°РЅСЃРµ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РЅРµРѕР±С…РѕРґРёРјР°СЏ СЃСѓРјРјР°.<BR>РЎРјРµРЅР° Р°СЂРµРЅРґС‹, РѕРїР»Р°С‡РµРЅРЅРѕР№ Р·СѓР±Р°РјРё РЅР° РєСЂРµРґРёС‚РЅСѓСЋ Р°СЂРµРЅРґСѓ Р·Р°РїСЂРµС‰РµРЅР°.<BR>РљРѕР»РёС‡РµСЃС‚РІРѕ РІРµС‰РµР№, СЃСѓРІРµРЅРёСЂРѕРІ Рё Р¶РёРІРѕС‚РЅС‹С… РЅР° РІР°С€РµРј СЃРєР»Р°РґРµ РЅРµ РґРѕР»Р¶РЅРѕ РїСЂРµРІС‹С€Р°С‚СЊ РґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РІС‹Р±СЂР°РЅРЅРѕРіРѕ Р°СЂРµРЅРґСѓРµРјРѕРіРѕ РїРѕРјРµС‰РµРЅРёСЏ.<BR></SMALL></p>";
 	}
 	return array('filter'=>$filter, 'content'=>$content, 'additional'=>$additional);
 }
@@ -289,30 +289,30 @@ function partition($pid){
 	$content = '';
 	$additional = ''; 
 	if( $hostel['partition'] == 0 OR $hostel['partition'] =='') $hostel['partition']  = 4; 
-	# $hostel_option[$pid]['type'] - инфа о тарифе
-	if( $hostel['partition'] == 1){ # Комната
-		$content = '<form method="post" name="F1" style="padding:2px 0px 2px 5px;">Вы находитесь в своей комнате. Первое, что вы видите - записная книжка.<BR>
-Вы можете оставить нужные вам записи общим объемом не более 10000 символов.
+	# $hostel_option[$pid]['type'] - РёРЅС„Р° Рѕ С‚Р°СЂРёС„Рµ
+	if( $hostel['partition'] == 1){ # РљРѕРјРЅР°С‚Р°
+		$content = '<form method="post" name="F1" style="padding:2px 0px 2px 5px;">Р’С‹ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ СЃРІРѕРµР№ РєРѕРјРЅР°С‚Рµ. РџРµСЂРІРѕРµ, С‡С‚Рѕ РІС‹ РІРёРґРёС‚Рµ - Р·Р°РїРёСЃРЅР°СЏ РєРЅРёР¶РєР°.<BR>
+Р’С‹ РјРѕР¶РµС‚Рµ РѕСЃС‚Р°РІРёС‚СЊ РЅСѓР¶РЅС‹Рµ РІР°Рј Р·Р°РїРёСЃРё РѕР±С‰РёРј РѕР±СЉРµРјРѕРј РЅРµ Р±РѕР»РµРµ 10000 СЃРёРјРІРѕР»РѕРІ.
 <TEXTAREA rows=15 style="width: 90%;" name="notes">'.$hostel['notes'].'</TEXTAREA><BR>
 <INPUT type="hidden" name="room" value="1">
-<INPUT type="submit" name="savenotes" value="Сохранить текст"></form>';
-	} else if( $hostel['partition'] == 2){ # Хранилище
+<INPUT type="submit" name="savenotes" value="РЎРѕС…СЂР°РЅРёС‚СЊ С‚РµРєСЃС‚"></form>';
+	} else if( $hostel['partition'] == 2){ # РҐСЂР°РЅРёР»РёС‰Рµ
 		
-		$text2 = 'В рюкзаке';
+		$text2 = 'Р’ СЂСЋРєР·Р°РєРµ';
 		if( $hostel['category'] == 1 ){
-			$text1 = 'В сундуке';
+			$text1 = 'Р’ СЃСѓРЅРґСѓРєРµ';
 			$count = mysql_num_rows(mysql_query('SELECT `iu`.`item_id` FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE  	`iu`.`inShop` = "1" AND 	`iu`.`gift` = "" AND `iu`.`gtxt1` = "" AND `iu`.`gtxt2` = "" AND `iu`.`uid` = "'.$u->info['id'].'" AND `iu`.`delete` = "0" GROUP BY `im`.id,`iu`.item_id, `iu`.inGroup HAVING `iu`.inGroup > 0  UNION ALL SELECT `iu`.`item_id` FROM `items_users` AS `iu`  LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE  `iu`.inGroup=0 AND `iu`.`inShop` = "1" AND `iu`.`gift` = "" AND `iu`.`gtxt1` = "" AND `iu`.`gtxt2` = "" AND `iu`.`uid` = "'.$u->info['id'].'" AND `iu`.`delete` = "0" GROUP BY `iu`.id, `iu`.item_id'));
 			$chest = $u->genInv(7,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `im`.`type` != "28" AND `im`.`type` != "38" AND `im`.`type` != "39" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="1" ORDER BY `lastUPD` DESC');
 			$inventory = $u->genInv(8,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `im`.`type` != "28" AND `im`.`type` != "38" AND `im`.`type` != "39" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" ORDER BY `lastUPD` DESC');
 		} elseif( $hostel['category'] == 2 ){
-			$text1 = 'В сохранении';
+			$text1 = 'Р’ СЃРѕС…СЂР°РЅРµРЅРёРё';
 			$count = mysql_num_rows(mysql_query('SELECT `iu`.`item_id` FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE  	`iu`.`inShop` = "1" AND 	`iu`.`gift` != "" AND `iu`.`uid` = "'.$u->info['id'].'" AND `iu`.`delete` = "0" GROUP BY `im`.id,`iu`.item_id, `iu`.inGroup HAVING `iu`.inGroup > 0  UNION ALL SELECT `iu`.`item_id` FROM `items_users` AS `iu`  LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE  `iu`.inGroup=0 AND `iu`.`inShop` = "1" AND `iu`.`gift` != "" AND `iu`.`uid` = "'.$u->info['id'].'" AND `iu`.`delete` = "0" GROUP BY `iu`.id, `iu`.item_id'));
 			$chest = $u->genInv(10,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND (`im`.`type` = "28" OR `im`.`type` = "38" OR `im`.`type` = "39") AND `iu`.`inOdet`="0" AND `iu`.`inShop`="1" ORDER BY `lastUPD` DESC');
 			$inventory = $u->genInv(9,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND (`im`.`type` = "28" OR `im`.`type` = "38" OR `im`.`type` = "39") AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" ORDER BY `lastUPD` DESC');
 		}
 		$additional = '<table width=100% cellpadding=0 cellspacing=0 valign=center><tr>
-		<td class="add-btn'.( $hostel['category'] == 1 ? ' active' : '' ).'" align="center" valign="center"><a href="?'.( $hostel['category'] != 1 ? 'category=1&' : '' ).'rnd='.rand(0,999999999999).'" title="Сундук"> Сундук '.( $hostel['category'] == 1 ? '<span id="chestCount">[<span id="in_chest" style="padding: 0px 1px;">'.$count.'</span>/<span style="padding: 0px 1px;">'.$hostel_option[$hostel['type']]['tariff']['items'].'</span>]</span>' : '' ).'</a></td>
-		<td class="add-btn'.( $hostel['category']  == 2 ? ' active' : '' ).'" align="center" valign="center"><a href="?'.( $hostel['category'] != 2 ? 'category=2&' : '' ).'rnd='.rand(0,999999999999).'" title="Полка для сувениров"> Сувениры '.( $hostel['category'] == 2 ? '<span id="giftCount">[<span id="in_chest" style="padding: 0px 1px;">'.$count.'</span>/<span style="padding: 0px 1px;">'.$hostel_option[$hostel['type']]['tariff']['souvenirs'].'</span>]</span>' : '' ).'</a></td>
+		<td class="add-btn'.( $hostel['category'] == 1 ? ' active' : '' ).'" align="center" valign="center"><a href="?'.( $hostel['category'] != 1 ? 'category=1&' : '' ).'rnd='.rand(0,999999999999).'" title="РЎСѓРЅРґСѓРє"> РЎСѓРЅРґСѓРє '.( $hostel['category'] == 1 ? '<span id="chestCount">[<span id="in_chest" style="padding: 0px 1px;">'.$count.'</span>/<span style="padding: 0px 1px;">'.$hostel_option[$hostel['type']]['tariff']['items'].'</span>]</span>' : '' ).'</a></td>
+		<td class="add-btn'.( $hostel['category']  == 2 ? ' active' : '' ).'" align="center" valign="center"><a href="?'.( $hostel['category'] != 2 ? 'category=2&' : '' ).'rnd='.rand(0,999999999999).'" title="РџРѕР»РєР° РґР»СЏ СЃСѓРІРµРЅРёСЂРѕРІ"> РЎСѓРІРµРЅРёСЂС‹ '.( $hostel['category'] == 2 ? '<span id="giftCount">[<span id="in_chest" style="padding: 0px 1px;">'.$count.'</span>/<span style="padding: 0px 1px;">'.$hostel_option[$hostel['type']]['tariff']['souvenirs'].'</span>]</span>' : '' ).'</a></td>
 		</tr></table>';
 		
 		$filter = '<table width="100%" cellpadding=0 cellspacing=0 valign=center><tr>
@@ -322,10 +322,10 @@ function partition($pid){
 						<td><font style="font-family: Arial, Tahoma, sans-serif; font-weight: bold;color: #003388;">'.$text1.':</font></td>
 						<td align="right">
 							<form id="line_filter1" style="display:inline; font-size:11px;" onsubmit="return false;" prc_adsf="true">
-								Поиск: <div style="display:inline-block; position:relative; ">
-								<input type="text" id="inp1FilterName"  placeholder="Введите название предмета..." autofocus="autofocus" size="44" autocomplete="off">
-								<img style="position:absolute; cursor:pointer; right: 2px; top: 3px; width: 12px; height: 12px;" onclick="document.getElementById(\'inp1FilterName\').value=\'\';" title="Убрать фильтр (клавиша Esc)"  src="http://img.xcombats.com/i/clear.gif">
-								<input type="submit" style="display: none" id="inp1FilterName_submit" value="Фильтр" onclick="return false">
+								РџРѕРёСЃРє: <div style="display:inline-block; position:relative; ">
+								<input type="text" id="inp1FilterName"  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїСЂРµРґРјРµС‚Р°..." autofocus="autofocus" size="44" autocomplete="off">
+								<img style="position:absolute; cursor:pointer; right: 2px; top: 3px; width: 12px; height: 12px;" onclick="document.getElementById(\'inp1FilterName\').value=\'\';" title="РЈР±СЂР°С‚СЊ С„РёР»СЊС‚СЂ (РєР»Р°РІРёС€Р° Esc)"  src="http://img.xcombats.com/i/clear.gif">
+								<input type="submit" style="display: none" id="inp1FilterName_submit" value="Р¤РёР»СЊС‚СЂ" onclick="return false">
 								<div class="autocomplete-suggestions" style="position: absolute; display: none;top: 15px; left:0px; margin:0px auto; right: 0px; max-height: 300px;"></div>
 								</div>
 							</form>
@@ -339,10 +339,10 @@ function partition($pid){
 						<td><font style="font-family: Arial, Tahoma, sans-serif; font-weight: bold;color: #003388;">'.$text2.':</font></td>
 						<td align="right">
 							<form id="line_filter2" style="display:inline; font-size:11px;" onsubmit="return false;" prc_adsf="true">
-								Поиск: <div style="display:inline-block; position:relative; ">
-								<input type="text" id="inp2FilterName"  placeholder="Введите название предмета..." autofocus="autofocus" size="44" autocomplete="off">
-								<img style="position:absolute; cursor:pointer; right: 2px; top: 3px; width: 12px; height: 12px;" onclick="document.getElementById(\'inp2FilterName\').value=\'\';" title="Убрать фильтр (клавиша Esc)"  src="http://img.xcombats.com/i/clear.gif">
-								<input type="submit" style="display: none" id="inp2FilterName_submit" value="Фильтр" onclick="return false">
+								РџРѕРёСЃРє: <div style="display:inline-block; position:relative; ">
+								<input type="text" id="inp2FilterName"  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїСЂРµРґРјРµС‚Р°..." autofocus="autofocus" size="44" autocomplete="off">
+								<img style="position:absolute; cursor:pointer; right: 2px; top: 3px; width: 12px; height: 12px;" onclick="document.getElementById(\'inp2FilterName\').value=\'\';" title="РЈР±СЂР°С‚СЊ С„РёР»СЊС‚СЂ (РєР»Р°РІРёС€Р° Esc)"  src="http://img.xcombats.com/i/clear.gif">
+								<input type="submit" style="display: none" id="inp2FilterName_submit" value="Р¤РёР»СЊС‚СЂ" onclick="return false">
 								<div class="autocomplete-suggestions" style="position: absolute; display: none;top: 15px; left:0px; margin:0px auto; right: 0px; max-height: 300px;"></div>
 								</div>
 							</form>
@@ -353,16 +353,16 @@ function partition($pid){
 		</tr>
 		<tr bgcolor="#a5a5a5">
 			<td align="left" style="font-family: Arial, Tahoma, sans-serif; font-size:13px; padding:3px 0px 2px 5px">&nbsp;</td>
-			<td align="right" style="font-family: Arial, Tahoma, sans-serif; font-size:13px; padding:3px 5px 2px 0px"><strong>&nbsp; передач: <span id="in_chest22">'.$u->info['transfers'].'</span>'.'</strong></td>
+			<td align="right" style="font-family: Arial, Tahoma, sans-serif; font-size:13px; padding:3px 5px 2px 0px"><strong>&nbsp; РїРµСЂРµРґР°С‡: <span id="in_chest22">'.$u->info['transfers'].'</span>'.'</strong></td>
 		</tr>
 		</table>';
 
 		$content = '<table width="100%" cellpadding=0 cellspacing=0 valign=center><tr>
-			<td width="50%" valign="top"><div class="scrollStyle" style="border-left: 1px solid #a5a5a5; border-right: 1px solid #a5a5a5; height: 504px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(165, 165, 165); border-top-width: 2px; border-top-style: solid; border-top-color: rgb(165, 165, 165); overflow-y: auto; overflow-x: hidden;"><div '.( $chest[0] != 0 ? 'style="display:none;"': '' ).' id="chest_null"> ПУСТО</div><table id="chest" width="100%" cellpadding=0 cellspacing=0><tbody>'.$chest[2].'</tbody></table></div></td>
-			<td valign="top" valign="top"><div class="scrollStyle" style="border-left: 1px solid #a5a5a5; border-right: 1px solid #a5a5a5; height: 504px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(165, 165, 165); border-top-width: 2px; border-top-style: solid; border-top-color: rgb(165, 165, 165); overflow-y: auto; overflow-x: hidden;"><div '.( $inventory[0] != 0 ? 'style="display:none;"': '' ).' id="inventory_null"> ПУСТО</div><table id="inventory" width="100%" cellpadding=0 cellspacing=0 ><tbody>'.$inventory[2].'</tbody></table></div></td>
+			<td width="50%" valign="top"><div class="scrollStyle" style="border-left: 1px solid #a5a5a5; border-right: 1px solid #a5a5a5; height: 504px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(165, 165, 165); border-top-width: 2px; border-top-style: solid; border-top-color: rgb(165, 165, 165); overflow-y: auto; overflow-x: hidden;"><div '.( $chest[0] != 0 ? 'style="display:none;"': '' ).' id="chest_null"> РџРЈРЎРўРћ</div><table id="chest" width="100%" cellpadding=0 cellspacing=0><tbody>'.$chest[2].'</tbody></table></div></td>
+			<td valign="top" valign="top"><div class="scrollStyle" style="border-left: 1px solid #a5a5a5; border-right: 1px solid #a5a5a5; height: 504px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(165, 165, 165); border-top-width: 2px; border-top-style: solid; border-top-color: rgb(165, 165, 165); overflow-y: auto; overflow-x: hidden;"><div '.( $inventory[0] != 0 ? 'style="display:none;"': '' ).' id="inventory_null"> РџРЈРЎРўРћ</div><table id="inventory" width="100%" cellpadding=0 cellspacing=0 ><tbody>'.$inventory[2].'</tbody></table></div></td>
 		</tr></table>';
 		
-	} else if( $hostel['partition'] == 3) { # Животное
+	} else if( $hostel['partition'] == 3) { # Р–РёРІРѕС‚РЅРѕРµ
 		$ar = changePets();
 		$pet = $ar['pet'];
 		$cage1 = $ar['cage1'];
@@ -372,36 +372,36 @@ function partition($pid){
 				<TD>
 					<table cellpadding=0 cellspacing=0><tr>";
 						if( $cage1['pet_in_cage'] == 1 ) {
-							$content  .= '<TD width=150 align=center><div><B>'.$cage1['name'].'</B> ['.$cage1['level'].']</div><A href="/main.php?pet_id='.$cage1['id'].'&sd4='.$u->info['id'].'&room=3&0.'.rand(0,9999999999999999).'" alt="Оставить"><IMG src="http://img.xcombats.com/i/obraz/'.$cage1['sex'].'/'.$cage1['obraz'].'.gif" width=120 height=220></A></TD>';
+							$content  .= '<TD width=150 align=center><div><B>'.$cage1['name'].'</B> ['.$cage1['level'].']</div><A href="/main.php?pet_id='.$cage1['id'].'&sd4='.$u->info['id'].'&room=3&0.'.rand(0,9999999999999999).'" alt="РћСЃС‚Р°РІРёС‚СЊ"><IMG src="http://img.xcombats.com/i/obraz/'.$cage1['sex'].'/'.$cage1['obraz'].'.gif" width=120 height=220></A></TD>';
 						} else {
-							$content  .= '<TD width=150 align=center><div><B>свободно</B></div><BR><IMG src="http://img.xcombats.com/i/obraz/0/null.gif" width=120 height=220></A></TD>';
+							$content  .= '<TD width=150 align=center><div><B>СЃРІРѕР±РѕРґРЅРѕ</B></div><BR><IMG src="http://img.xcombats.com/i/obraz/0/null.gif" width=120 height=220></A></TD>';
 						}
 						if( $cage2['pet_in_cage'] == 2 ) {
-							$content  .= '<TD width=150 align=center><div><B>'.$cage2['name'].'</B> ['.$cage2['level'].']</div><A href="/main.php?pet_id='.$cage2['id'].'&sd4='.$u->info['id'].'&room=3&0.'.rand(0,9999999999999999).'" alt="Оставить"><IMG src="http://img.xcombats.com/i/obraz/'.$cage2['sex'].'/'.$cage2['obraz'].'.gif" width=120 height=220></A></TD>';
+							$content  .= '<TD width=150 align=center><div><B>'.$cage2['name'].'</B> ['.$cage2['level'].']</div><A href="/main.php?pet_id='.$cage2['id'].'&sd4='.$u->info['id'].'&room=3&0.'.rand(0,9999999999999999).'" alt="РћСЃС‚Р°РІРёС‚СЊ"><IMG src="http://img.xcombats.com/i/obraz/'.$cage2['sex'].'/'.$cage2['obraz'].'.gif" width=120 height=220></A></TD>';
 						} else {
-							$content  .= '<TD width=150 align=center><div><B>свободно</B></div><BR><IMG src="http://img.xcombats.com/i/obraz/0/null.gif" width=120 height=220></A></TD>';
+							$content  .= '<TD width=150 align=center><div><B>СЃРІРѕР±РѕРґРЅРѕ</B></div><BR><IMG src="http://img.xcombats.com/i/obraz/0/null.gif" width=120 height=220></A></TD>';
 						}
 				$content  .= "</tr></table>
 				</TD>
 				<TD>&nbsp;</TD>
 				<TD width=150 align=center>";
 						if(!$pet) {
-							$content  .= '<div><B>свободно</B></div><IMG src="http://img.xcombats.com/i/obraz/0/null.gif" width=120 height=220>';
+							$content  .= '<div><B>СЃРІРѕР±РѕРґРЅРѕ</B></div><IMG src="http://img.xcombats.com/i/obraz/0/null.gif" width=120 height=220>';
 						} else {
-							$content  .=  '<div><B>'.$pet['name'].'</B> ['.$pet['level'].']</div><A href="/main.php?pet_id=-'.$pet['id'].'&sd4='.$u->info['id'].'&room=3&0.'.rand(0,9999999999999999).'" alt="Оставить"><IMG src="http://img.xcombats.com/i/obraz/'.$pet['sex'].'/'.$pet['obraz'].'.gif" width=120 height=220>';
+							$content  .=  '<div><B>'.$pet['name'].'</B> ['.$pet['level'].']</div><A href="/main.php?pet_id=-'.$pet['id'].'&sd4='.$u->info['id'].'&room=3&0.'.rand(0,9999999999999999).'" alt="РћСЃС‚Р°РІРёС‚СЊ"><IMG src="http://img.xcombats.com/i/obraz/'.$pet['sex'].'/'.$pet['obraz'].'.gif" width=120 height=220>';
 						}
 					$content  .= "</A>
 				</TD>
 			</TR>
 		</TABLE><br/>";
 
-	} else if( $hostel['partition'] == 4 ) { # Сон
+	} else if( $hostel['partition'] == 4 ) { # РЎРѕРЅ
 
-		if( $sleep['vars'] == 'sleep' ) $u->error = '<font>Во время сна нельзя перемещаться и пользоваться чем-либо.</font>'; 
-		$content = '<div style="padding:2px 0px 2px 5px;">Вы можете заснуть, забыв о внешнем мире.<BR>'.'Во время сна все временные эффекты на вас приостанавливаются. Это касается как, например, эликсиров, так и травм.<BR>'.'Сон не влияет на состояние предметов с ограниченным сроком существования<BR></div>';
+		if( $sleep['vars'] == 'sleep' ) $u->error = '<font>Р’Рѕ РІСЂРµРјСЏ СЃРЅР° РЅРµР»СЊР·СЏ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ Рё РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ С‡РµРј-Р»РёР±Рѕ.</font>'; 
+		$content = '<div style="padding:2px 0px 2px 5px;">Р’С‹ РјРѕР¶РµС‚Рµ Р·Р°СЃРЅСѓС‚СЊ, Р·Р°Р±С‹РІ Рѕ РІРЅРµС€РЅРµРј РјРёСЂРµ.<BR>'.'Р’Рѕ РІСЂРµРјСЏ СЃРЅР° РІСЃРµ РІСЂРµРјРµРЅРЅС‹Рµ СЌС„С„РµРєС‚С‹ РЅР° РІР°СЃ РїСЂРёРѕСЃС‚Р°РЅР°РІР»РёРІР°СЋС‚СЃСЏ. Р­С‚Рѕ РєР°СЃР°РµС‚СЃСЏ РєР°Рє, РЅР°РїСЂРёРјРµСЂ, СЌР»РёРєСЃРёСЂРѕРІ, С‚Р°Рє Рё С‚СЂР°РІРј.<BR>'.'РЎРѕРЅ РЅРµ РІР»РёСЏРµС‚ РЅР° СЃРѕСЃС‚РѕСЏРЅРёРµ РїСЂРµРґРјРµС‚РѕРІ СЃ РѕРіСЂР°РЅРёС‡РµРЅРЅС‹Рј СЃСЂРѕРєРѕРј СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ<BR></div>';
 		$filter = '<table width="100%" cellspacing="0" cellpadding="0" border="0"><tr>
-				<td align="left">'.( $sleep['vars'] == 'sleep' ? "<DIV style='color: #FA0000'>" : '').'Состояние: <B>Вы '.( $sleep['vars'] == 'sleep' ? 'спите' : 'бодрствуете').'</B>'.( $sleep['vars'] == 'sleep' ? "</DIV>" : '').'</td>
-				<td align="right"><a style="padding: 2px 15px;" href="?to_'.( $sleep['vars'] == 'sleep' ? 'awake' : 'sleep').'=1&sd4='.$u->info['id'].'&room=4&0.'.( rand(0,9999999999999999) ).'" >'.( $sleep['vars'] == 'sleep' ? 'Проснуться' : 'Уснуть').'</a></td>
+				<td align="left">'.( $sleep['vars'] == 'sleep' ? "<DIV style='color: #FA0000'>" : '').'РЎРѕСЃС‚РѕСЏРЅРёРµ: <B>Р’С‹ '.( $sleep['vars'] == 'sleep' ? 'СЃРїРёС‚Рµ' : 'Р±РѕРґСЂСЃС‚РІСѓРµС‚Рµ').'</B>'.( $sleep['vars'] == 'sleep' ? "</DIV>" : '').'</td>
+				<td align="right"><a style="padding: 2px 15px;" href="?to_'.( $sleep['vars'] == 'sleep' ? 'awake' : 'sleep').'=1&sd4='.$u->info['id'].'&room=4&0.'.( rand(0,9999999999999999) ).'" >'.( $sleep['vars'] == 'sleep' ? 'РџСЂРѕСЃРЅСѓС‚СЊСЃСЏ' : 'РЈСЃРЅСѓС‚СЊ').'</a></td>
 		</tr></table>';
 
 	}
@@ -419,7 +419,7 @@ if( isset($hostel['action']) && $hostel['action'] != '' ){
 	updateHostel();
 }
 
-//if( $u->info['admin'] > 0 ) { # Твинки
+//if( $u->info['admin'] > 0 ) { # РўРІРёРЅРєРё
 	$user_new_pers = false;
 //} else {
 //	$user_new_pers = false;
@@ -427,52 +427,52 @@ if( isset($hostel['action']) && $hostel['action'] != '' ){
 
 
 if( $hostel['balance'] <= 0 && $u->room['id'] != 253 && $sleep['vars'] != 'sleep' ) {
-	$result['filter'] = '<font color="red">Аренда прекращена. Оплатите задолженность.</font><BR>';
+	$result['filter'] = '<font color="red">РђСЂРµРЅРґР° РїСЂРµРєСЂР°С‰РµРЅР°. РћРїР»Р°С‚РёС‚Рµ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚СЊ.</font><BR>';
 }elseif( !isset($hostel) && $u->room['id'] != 253 ) {
-	$result['filter'] = '<font color="red">Вы ничего не арендуете на этом этаже.</font><BR>';
+	$result['filter'] = '<font color="red">Р’С‹ РЅРёС‡РµРіРѕ РЅРµ Р°СЂРµРЅРґСѓРµС‚Рµ РЅР° СЌС‚РѕРј СЌС‚Р°Р¶Рµ.</font><BR>';
 } elseif( isset($hostel) && $hostel_option[$hostel['type']]['room'] != $u->room['id'] && $u->room['id'] != 253 ) {
-	$result['filter'] = '<font color="red">Вы ничего не арендуете на этом этаже.</font><BR>';
+	$result['filter'] = '<font color="red">Р’С‹ РЅРёС‡РµРіРѕ РЅРµ Р°СЂРµРЅРґСѓРµС‚Рµ РЅР° СЌС‚РѕРј СЌС‚Р°Р¶Рµ.</font><BR>';
 	$hostel_option[$hostel['type']]['type'] = false;
 } elseif( isset($hostel) && $hostel_option[$hostel['type']]['room'] == $u->room['id'] && $u->room['id'] != 253 ){
 	$result = partition( $hostel['type'] );
 } elseif( $u->room['id'] == 253 ){
-	if( isset($_GET['closearenda']) && (int)$_GET['closearenda']==1) { #---Прекращаем аренду
+	if( isset($_GET['closearenda']) && (int)$_GET['closearenda']==1) { #---РџСЂРµРєСЂР°С‰Р°РµРј Р°СЂРµРЅРґСѓ
 		mysql_query("UPDATE `items_users` SET `inShop` = '0' WHERE `uid` = '".mysql_real_escape_string($u->info['id'])."' AND `inShop` = '1';");
 		mysql_query("DELETE FROM `house` WHERE `owner` = '".mysql_real_escape_string($u->info['id'])."';");
-		$err = '<FONT COLOR=red><B>Вы отказались арендовать "'.$hostel_option[$hostel['type']]['t_name'].'"</B></FONT>';unset($hostel);
+		$err = '<FONT COLOR=red><B>Р’С‹ РѕС‚РєР°Р·Р°Р»РёСЃСЊ Р°СЂРµРЅРґРѕРІР°С‚СЊ "'.$hostel_option[$hostel['type']]['t_name'].'"</B></FONT>';unset($hostel);
 	}
 	if(isset($hostel) && $hostel_option[$hostel['type']]['type'] > 0){
-		if(isset($_POST['payarenda']) && !isset($_GET['zby'])) { #---Продлить аренду
+		if(isset($_POST['payarenda']) && !isset($_GET['zby'])) { #---РџСЂРѕРґР»РёС‚СЊ Р°СЂРµРЅРґСѓ
 			if($_POST['payarenda']>=1) {
 				if($u->info['money']>0 && (int)$_POST['payarenda']>0 && ((int)$_POST['payarenda']<=$u->info['money'])) {
 					$paytime = ($_POST['payarenda']/$hostel['weekcost'])*604800;
 					mysql_query("UPDATE `house`,`users` SET `house`.`endtime` = `house`.`endtime`+'".$paytime."', `house`.`balance` = `house`.`balance`+'".mysql_real_escape_string($_POST['payarenda'])."' WHERE `house`.`owner` = `users`.`id` AND `house`.`owner` = '".mysql_real_escape_string($u->info['id'])."';");
-					$err = '<FONT COLOR=red><B>Вы положили на счет '.htmlspecialchars($_POST['payarenda'],NULL,'cp1251').'.00 кр.</B></FONT> ';
+					$err = '<FONT COLOR=red><B>Р’С‹ РїРѕР»РѕР¶РёР»Рё РЅР° СЃС‡РµС‚ '.htmlspecialchars($_POST['payarenda'],NULL,'cp1251').'.00 РєСЂ.</B></FONT> ';
 					$u->info['money'] -= round((int)$_POST['payarenda']);
 					mysql_query('UPDATE `users` SET `money` = "'.mysql_real_escape_string($u->info['money']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					$hostel['balance'] +=$_POST['payarenda'];
 					$hostel['endtime'] += $paytime;
 				} else {
-					$err = '<FONT COLOR=red><B>У вас недостаточно денег<BR></B></FONT><BR>';
+					$err = '<FONT COLOR=red><B>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі<BR></B></FONT><BR>';
 				}
 			} else {
-				$err = '<FONT COLOR=red><B>Минимальная сумма: 1кр.<BR></B></FONT><BR>';
+				$err = '<FONT COLOR=red><B>РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР°: 1РєСЂ.<BR></B></FONT><BR>';
 			}
-		}elseif(isset($_POST['payarenda']) && isset($_GET['zby'])) { #---Продлить аренду (за зубы)
+		}elseif(isset($_POST['payarenda']) && isset($_GET['zby'])) { #---РџСЂРѕРґР»РёС‚СЊ Р°СЂРµРЅРґСѓ (Р·Р° Р·СѓР±С‹)
 			if($_POST['payarenda']>=5) {
 				if($u->info['level'] < 8 && $u->info['money4']>0 && (int)$_POST['payarenda']>0 && ((int)$_POST['payarenda']<=$u->info['money4'])) {
 					$paytime = (round($_POST['payarenda']/5,2)/$hostel['weekcost'])*604800;
 					mysql_query("UPDATE `house`,`users` SET `house`.`endtime` = `house`.`endtime`+'".$paytime."', `house`.`balance` = `house`.`balance`+'".mysql_real_escape_string($_POST['payarenda'])."' WHERE `house`.`owner` = `users`.`id` AND `house`.`owner` = '".mysql_real_escape_string($u->info['id'])."';");
-					$err = '<FONT COLOR=red><B>Вы положили на счет '.$u->zuby(round((int)$_POST['payarenda']),1).'</B></FONT> ';
+					$err = '<FONT COLOR=red><B>Р’С‹ РїРѕР»РѕР¶РёР»Рё РЅР° СЃС‡РµС‚ '.$u->zuby(round((int)$_POST['payarenda']),1).'</B></FONT> ';
 					$u->info['money4'] -= round((int)$_POST['payarenda']);
 					mysql_query('UPDATE `users` SET `money4` = "'.mysql_real_escape_string($u->info['money4']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					$hostel['balance'] += round($_POST['payarenda']/5,2);
 					$hostel['endtime'] += $paytime;
 				} else {
-					$err = '<FONT COLOR=red><B>У вас недостаточно зубов<BR></B></FONT><BR>';
+					$err = '<FONT COLOR=red><B>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р·СѓР±РѕРІ<BR></B></FONT><BR>';
 				}
 			} else {
-				$err = '<FONT COLOR=red><B>Минимальная сумма: '.$u->zuby(5,1).'.<BR></B></FONT><BR>';
+				$err = '<FONT COLOR=red><B>РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР°: '.$u->zuby(5,1).'.<BR></B></FONT><BR>';
 			}
 		}
 		$result = hostel($hostel_option[$hostel['type']]['type']); 
@@ -565,10 +565,10 @@ $(document).ready(function () {
 					cache: false,
 					success: function (data) {
 						if (data=='error') {
-							$("#errorMsg").html("<font color='red'>Больше не помещается!</font>");
+							$("#errorMsg").html("<font color='red'>Р‘РѕР»СЊС€Рµ РЅРµ РїРѕРјРµС‰Р°РµС‚СЃСЏ!</font>");
 						} else {
 							$(t).attr('class','obj_take');
-							$(t).text('В рюкзак');
+							$(t).text('Р’ СЂСЋРєР·Р°Рє');
 							t = $(t).parents('.item').first();
 							obj_recount(1);
 							moveAnimate(t, $('#chest').children('tbody'));
@@ -577,7 +577,7 @@ $(document).ready(function () {
 					}
 				}); 
 		} else {
-			alert('Лимит передач на сегодня исчерпан.');
+			alert('Р›РёРјРёС‚ РїРµСЂРµРґР°С‡ РЅР° СЃРµРіРѕРґРЅСЏ РёСЃС‡РµСЂРїР°РЅ.');
 		}
 	}
 
@@ -585,10 +585,10 @@ $(document).ready(function () {
 		if( parseInt($('#in_chest22').text()) > 0 ) {
 			$(t).text('<? 
 			if( $hostel['category'] == 1 ){
-				echo "В сундук";
+				echo "Р’ СЃСѓРЅРґСѓРє";
 			} elseif($hostel['category'] == 2 ){
-				echo "Под стекло";
-			} else echo "куда-то закинуть";?>');
+				echo "РџРѕРґ СЃС‚РµРєР»Рѕ";
+			} else echo "РєСѓРґР°-С‚Рѕ Р·Р°РєРёРЅСѓС‚СЊ";?>');
 			
 			t = $(t).parents('.item').first();
 			if (rnd=='' || rnd ==undefined || rnd =='undefined') {var rnd = 1;}$.ajax({type: "GET",url: "main.php?ajax=1&obj_take="+id+"&room="+room+"&rnd="+rnd,cache: false,success: function () {
@@ -597,7 +597,7 @@ $(document).ready(function () {
 				setTimeout(UpdateItemList(), 200);
 			}});
 		} else {
-			alert('Лимит передач на сегодня исчерпан.');
+			alert('Р›РёРјРёС‚ РїРµСЂРµРґР°С‡ РЅР° СЃРµРіРѕРґРЅСЏ РёСЃС‡РµСЂРїР°РЅ.');
 		}
 	}
 
@@ -634,23 +634,23 @@ $(document).ready(function () {
 		}
 	}
 	
-	UpdateItemList(); // пересчет предметов.
+	UpdateItemList(); // РїРµСЂРµСЃС‡РµС‚ РїСЂРµРґРјРµС‚РѕРІ.
 	invFilterByName1Timer=null;
 	invFilterByName2Timer=null;
 	
-	// просматриваем результат
+	// РїСЂРѕСЃРјР°С‚СЂРёРІР°РµРј СЂРµР·СѓР»СЊС‚Р°С‚
 	$('#line_filter1').submit(function (){ $('#inp1FilterName_submit').trigger('click'); });
 	$('#line_filter2').submit(function (){ $('#inp2FilterName_submit').trigger('click'); });
 	
-	// Если в выпадающем списке предметов листаем при помощи клавиш Up и Down, автоматически просматриваем результат.
+	// Р•СЃР»Рё РІ РІС‹РїР°РґР°СЋС‰РµРј СЃРїРёСЃРєРµ РїСЂРµРґРјРµС‚РѕРІ Р»РёСЃС‚Р°РµРј РїСЂРё РїРѕРјРѕС‰Рё РєР»Р°РІРёС€ Up Рё Down, Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРѕСЃРјР°С‚СЂРёРІР°РµРј СЂРµР·СѓР»СЊС‚Р°С‚.
 	$('#inp1FilterName').keyup(function (e){ $('#inp1FilterName_submit').trigger('click'); });
 	$('#inp2FilterName').keyup(function (e){ $('#inp2FilterName_submit').trigger('click'); });
 	
-	// Запоминаем прошлый поиск предмета и активируем его при открытии инвентаря\сундука
+	// Р—Р°РїРѕРјРёРЅР°РµРј РїСЂРѕС€Р»С‹Р№ РїРѕРёСЃРє РїСЂРµРґРјРµС‚Р° Рё Р°РєС‚РёРІРёСЂСѓРµРј РµРіРѕ РїСЂРё РѕС‚РєСЂС‹С‚РёРё РёРЅРІРµРЅС‚Р°СЂСЏ\СЃСѓРЅРґСѓРєР°
 	if ($.cookie('invFilterByName1')) { $('#inp1FilterName').val($.cookie('invFilterByName1')); invFilterByName1(); }
 	if ($.cookie('invFilterByName2')) { $('#inp2FilterName').val($.cookie('invFilterByName2')); invFilterByName2(); }
 	
-	// Автообновление в реальном времени при написании текста.
+	// РђРІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё РїСЂРё РЅР°РїРёСЃР°РЅРёРё С‚РµРєСЃС‚Р°.
 	$('#line_filter1').click(function (){ window.clearInterval(invFilterByName1Timer); if($('#inp1FilterName').val()=='')invFilterByName1(); else invFilterByName1Timer=setTimeout(invFilterByName1, 200); return false;} );
 	$('#line_filter2').click(function (){ window.clearInterval(invFilterByName2Timer); if($('#inp2FilterName').val()=='')invFilterByName2(); else invFilterByName2Timer=setTimeout(invFilterByName2, 200); return false;} );
 	
@@ -728,7 +728,7 @@ var sd4 = "<?=$u->info['id'];?>";
 			$njk = array('1.180.0.253'=>true);
 			foreach($roomGo as $val) {
 				$temp = $u->roomInfo($val, true);
-				if( isset($temp['id']) && !isset($njk[$temp['code']]) ){ // Перемещение по комнатам.
+				if( isset($temp['id']) && !isset($njk[$temp['code']]) ){ // РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕ РєРѕРјРЅР°С‚Р°Рј.
 					echo '<tr><td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td><td bgcolor="#D3D3D3" style="min-width:84px;" nowrap>'.'<a href="#" title="'.$temp['name'].'" id="greyText" class="menutop" onClick="';
 					echo  "location='main.php?loc=".$temp['code']."&rnd=".$code.";'";
 					echo '">'.$temp['name'].'</a></td></tr>';
@@ -736,13 +736,13 @@ var sd4 = "<?=$u->info['id'];?>";
 				}
 			}
 			echo '</table></div>'; 
-			if($u->info['room']=="253") { // Вход
-				echo '<p><B>Аренда</B><br/>';
+			if($u->info['room']=="253") { // Р’С…РѕРґ
+				echo '<p><B>РђСЂРµРЅРґР°</B><br/>';
 				if(isset($hostel) && $hostel_option[$hostel['type']]['t_name']){
-					echo "«".$hostel_option[$hostel['type']]['t_name']."» ".$hostel_option[$hostel['type']]['stage'].".<br/><br/>";
+					echo "В«".$hostel_option[$hostel['type']]['t_name']."В» ".$hostel_option[$hostel['type']]['stage'].".<br/><br/>";
 				}
-				echo '</p><p>Деньги: '.$u->info['money'].' кр.</p>';
-			} else { // Перемещение по частям комнат
+				echo '</p><p>Р”РµРЅСЊРіРё: '.$u->info['money'].' РєСЂ.</p>';
+			} else { // РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕ С‡Р°СЃС‚СЏРј РєРѕРјРЅР°С‚
 				if($hostel_option[$hostel['type']]['type'] != false) {
 					echo '<div class="menuList" >';
 					foreach ($hostel_option[$hostel['type']]['partition'] as $key=>$val){

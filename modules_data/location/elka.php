@@ -3,7 +3,7 @@ if(!defined('GAME'))
 {
  die();
 }
-//id Новогоднего подарка
+//id РќРѕРІРѕРіРѕРґРЅРµРіРѕ РїРѕРґР°СЂРєР°
 $pidid = 4008;
 
 $dy = 1;
@@ -18,21 +18,21 @@ if($u->room['file']=='elka')
 {
 	if(isset($_GET['take_gift']) && (date('m') == 12 || (date('m') == 1 && date('d') < 11)))
 	{
-		//получаем свой новогодний подарок за текущий год addItem($id,$uid)
+		//РїРѕР»СѓС‡Р°РµРј СЃРІРѕР№ РЅРѕРІРѕРіРѕРґРЅРёР№ РїРѕРґР°СЂРѕРє Р·Р° С‚РµРєСѓС‰РёР№ РіРѕРґ addItem($id,$uid)
 		$smt = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vars` = "take_gift_'.$dt.'" LIMIT 1',1);
 		if(!isset($smt['id']))
 		{
 			$pid = $u->addItem($pidid,$u->info['id']);
 			if($pid>0)
 			{
-				mysql_query('UPDATE `items_users` SET `gift` = "Администрация",`gtxt1` = "Поздравляем Вас с Новым Годом!" WHERE `id` = "'.$pid.'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
+				mysql_query('UPDATE `items_users` SET `gift` = "РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ",`gtxt1` = "РџРѕР·РґСЂР°РІР»СЏРµРј Р’Р°СЃ СЃ РќРѕРІС‹Рј Р“РѕРґРѕРј!" WHERE `id` = "'.$pid.'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
 				$u->addAction(time(),'take_gift_'.$dt.'',$u->info['city']);
-				echo '<font color=red>Предмет находится у Вас в инвентаре, в разделе "прочее"</font>';
+				echo '<font color=red>РџСЂРµРґРјРµС‚ РЅР°С…РѕРґРёС‚СЃСЏ Сѓ Р’Р°СЃ РІ РёРЅРІРµРЅС‚Р°СЂРµ, РІ СЂР°Р·РґРµР»Рµ "РїСЂРѕС‡РµРµ"</font>';
 			}else{
-				echo '<font color=red>Не удалось получить подарок...</font>';
+				echo '<font color=red>РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РїРѕРґР°СЂРѕРє...</font>';
 			}
 		}else{
-			echo '<font color=red>Вы уже получили свой подарок ;)</font>';
+			echo '<font color=red>Р’С‹ СѓР¶Рµ РїРѕР»СѓС‡РёР»Рё СЃРІРѕР№ РїРѕРґР°СЂРѕРє ;)</font>';
 		}
 	}elseif(isset($_GET['del']))
 	{
@@ -53,7 +53,7 @@ if($u->room['file']=='elka')
 		{
 			$u->addAction(time(),'use_cupNewYear','');
 			mysql_query('UPDATE `stats` SET `hpNow` = "'.$u->stats['hpAll'].'",`mpNow` = "'.$u->stats['mpAll'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-			echo '<font color=red>Успешно использован эликсир "Полное восстановление"</font>';
+			echo '<font color=red>РЈСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅ СЌР»РёРєСЃРёСЂ "РџРѕР»РЅРѕРµ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ"</font>';
 		}
 	}elseif(isset($_POST['message']))
 	{
@@ -68,7 +68,7 @@ if($u->room['file']=='elka')
 	   $u->info['ET'] = $u->testAction('`uid` = "'.$u->info['id'].'" AND `time` > '.(time()-600).' AND `vars` = "send_elka" LIMIT 1',1);
 	   if(isset($u->info['ET']['id']))
 	   {
-		 echo '<font color=red>Оставлять надписи на стволе ёлки можно не чаще одного раза в 10 минут</font>';
+		 echo '<font color=red>РћСЃС‚Р°РІР»СЏС‚СЊ РЅР°РґРїРёСЃРё РЅР° СЃС‚РІРѕР»Рµ С‘Р»РєРё РјРѕР¶РЅРѕ РЅРµ С‡Р°С‰Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ 10 РјРёРЅСѓС‚</font>';
 	   }else{
 			$pInfo = ''.$u->info['align'].'|'.$u->info['clan'].'|'.$u->info['login'].'|'.$u->info['level'].'|'.$u->info['cityreg'].'|'.$u->info['id'].'';
 			mysql_query("INSERT INTO `elka` (`year`,`time`,`pers`,`text`,`city`) VALUES (".(date('Y',time())+$dy).",".time().",'".$pInfo."','".mysql_real_escape_string($_POST['message'])."','".$u->info['city']."'); ");
@@ -121,28 +121,28 @@ if($u->room['file']=='elka')
     <div align="right"><? if($re!=''){ echo '<font color="red"><b>'.$re.'</b></font>'; } ?></div>
 	<div id="hint3" style="visibility:hidden"></div>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3">Новогодняя елка <?
+	<tr><td valign="top"><div align="center" class="pH3">РќРѕРІРѕРіРѕРґРЅСЏСЏ РµР»РєР° <?
 	 echo $dt; ?>!</div>
 	<br />
-	<!-- Подарки -->
+	<!-- РџРѕРґР°СЂРєРё -->
 	<?
 	$sg = 1;
-	//Если есть подарки		
+	//Р•СЃР»Рё РµСЃС‚СЊ РїРѕРґР°СЂРєРё		
 	if((date('n',time())==12 || date('n',time())<=2) && $sg==1)
 	{
 	?>
     <div style="padding-left:10px;">
-	<span class="pH3"><small>Подарки:</small></span>
+	<span class="pH3"><small>РџРѕРґР°СЂРєРё:</small></span>
     <div>
     <?
     $smt = $u->testAction('`uid` = "'.$u->info['id'].'" AND `time` > '.(time()-600).' AND `vars` = "use_cupNewYear" LIMIT 1',1);
 	?>
-    <a href="?use_cup=<? echo $code; ?>" <? if(isset($smt['id'])){ echo 'onClick="alert(\'Использовать Новогодний кубок можно не чаще одного раза в 10 минут\');return false;"'; } ?> /><img src="http://img.xcombats.com/cup2012.gif" style="padding:10px;<? if(isset($smt['id'])){ echo 'filter: alpha(opacity=35); -moz-opacity: 0.35; -khtml-opacity: 0.35; opacity: 0.35;'; } ?>" title="Выпить из`Новогодний кубок`"></a>
+    <a href="?use_cup=<? echo $code; ?>" <? if(isset($smt['id'])){ echo 'onClick="alert(\'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РќРѕРІРѕРіРѕРґРЅРёР№ РєСѓР±РѕРє РјРѕР¶РЅРѕ РЅРµ С‡Р°С‰Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ 10 РјРёРЅСѓС‚\');return false;"'; } ?> /><img src="http://img.xcombats.com/cup2012.gif" style="padding:10px;<? if(isset($smt['id'])){ echo 'filter: alpha(opacity=35); -moz-opacity: 0.35; -khtml-opacity: 0.35; opacity: 0.35;'; } ?>" title="Р’С‹РїРёС‚СЊ РёР·`РќРѕРІРѕРіРѕРґРЅРёР№ РєСѓР±РѕРє`"></a>
     <? 
 	if( date('m') == 12 || (date('m') == 1 && date('d') < 11) ) {
 	$pd = $u->testAction('`uid` = "'.$u->info['id'].'" AND `time` > '.(time()-600).' AND `vars` = "take_gift'.$dt.'" LIMIT 1',1);
 	?>
-	<a href="?take_gift=<? echo $code; ?>" <? if(isset($pd['id'])){ echo 'onClick="return false;"'; } ?> /><img src="http://img.xcombats.com/i/items/<? echo 'podarok2014'; ?>.gif" style="padding:10px;<? if(isset($pd['id'])){ echo 'filter: alpha(opacity=35); -moz-opacity: 0.35; -khtml-opacity: 0.35; opacity: 0.35;'; } ?>" title="Взять `Новогодний подарок <? echo $dt; ?>`"></a>
+	<a href="?take_gift=<? echo $code; ?>" <? if(isset($pd['id'])){ echo 'onClick="return false;"'; } ?> /><img src="http://img.xcombats.com/i/items/<? echo 'podarok2014'; ?>.gif" style="padding:10px;<? if(isset($pd['id'])){ echo 'filter: alpha(opacity=35); -moz-opacity: 0.35; -khtml-opacity: 0.35; opacity: 0.35;'; } ?>" title="Р’Р·СЏС‚СЊ `РќРѕРІРѕРіРѕРґРЅРёР№ РїРѕРґР°СЂРѕРє <? echo $dt; ?>`"></a>
     <? } ?>
     </div>
 	</div>
@@ -190,7 +190,7 @@ if($u->room['file']=='elka')
 					{
 					 $jt = '<span class="number">'.$j.'</span>';
 					}
-					$pagesN .= ' <a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$j.'" title="Перейти на страницу №'.$j.'">'.$jt.'</a> ';
+					$pagesN .= ' <a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$j.'" title="РџРµСЂРµР№С‚Рё РЅР° СЃС‚СЂР°РЅРёС†Сѓ в„–'.$j.'">'.$jt.'</a> ';
 				   }
 				  }
 				}
@@ -210,7 +210,7 @@ if($u->room['file']=='elka')
 				   {
 					 $jt = '<span class="number">'.$j.'</span>';
 				   }
-				   $pagesN .= ' <a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$j.'" title="Перейти на страницу №'.$j.'">'.$jt.'</a> ';
+				   $pagesN .= ' <a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$j.'" title="РџРµСЂРµР№С‚Рё РЅР° СЃС‚СЂР°РЅРёС†Сѓ в„–'.$j.'">'.$jt.'</a> ';
 				  }
 				  $k++;
 				 }
@@ -229,19 +229,19 @@ if($u->room['file']=='elka')
 				$_GET['d'] = (int)$_GET['d'];
 				if($fpage-7>0)
 				{
-				 $pages .= '<a href="?id='.$post['id'].'&d='.$_GET['d'].'&page=1" title="Первая страница">«</a> <a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$prpage.'" title="Показать предыдущие страницы">...</a> ';
+				 $pages .= '<a href="?id='.$post['id'].'&d='.$_GET['d'].'&page=1" title="РџРµСЂРІР°СЏ СЃС‚СЂР°РЅРёС†Р°">В«</a> <a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$prpage.'" title="РџРѕРєР°Р·Р°С‚СЊ РїСЂРµРґС‹РґСѓС‰РёРµ СЃС‚СЂР°РЅРёС†С‹">...</a> ';
 				}
 				$pages .= ' '.$pagesN.' ';
 				if($fpage<$d-5)
 				{
-				 $pages .= '<a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$nxpage.'" title="Показать следующие страницы">...</a> <a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$d.'" title="Последняя страница">»</a>';
+				 $pages .= '<a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$nxpage.'" title="РџРѕРєР°Р·Р°С‚СЊ СЃР»РµРґСѓСЋС‰РёРµ СЃС‚СЂР°РЅРёС†С‹">...</a> <a href="?id='.$post['id'].'&d='.$_GET['d'].'&page='.$d.'" title="РџРѕСЃР»РµРґРЅСЏСЏ СЃС‚СЂР°РЅРёС†Р°">В»</a>';
 				}
 			   }		   
 			  }else{
 				$pages = '';
 			  }
 	?>
-	<U>Посетители оставили надписи на стволе елки:</U> <? echo $pages; ?><br>
+	<U>РџРѕСЃРµС‚РёС‚РµР»Рё РѕСЃС‚Р°РІРёР»Рё РЅР°РґРїРёСЃРё РЅР° СЃС‚РІРѕР»Рµ РµР»РєРё:</U> <? echo $pages; ?><br>
     <div style="padding:5px;">
 	<?
 	$sp = mysql_query('SELECT * FROM `elka` WHERE `year`="'.$dt.'" AND `city`="'.$u->info['city'].'" AND (`delete` = "0" OR '.$u->info['admin'].' > 0) ORDER BY `time` DESC LIMIT '.$limit1.','.$limit2.'');
@@ -259,16 +259,16 @@ if($u->room['file']=='elka')
 		$clanPrs = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id`="'.$prs[1].'" LIMIT 1'));
 		$pers .= '<img src="http://img.xcombats.com/i/clan/'.$clanPrs['name_mini'].'.gif">';
 	  }
-	  $pers .= '<b>'.$prs[2].'</b>['.$prs[3].']<a href="http://xcombats.com/info/'.$prs[5].'" title="Инф. о '.$prs[2].'" target="blank"><img src="http://img.xcombats.com/i/inf_'.$prs[4].'.gif"></a>';
+	  $pers .= '<b>'.$prs[2].'</b>['.$prs[3].']<a href="http://xcombats.com/info/'.$prs[5].'" title="РРЅС„. Рѕ '.$prs[2].'" target="blank"><img src="http://img.xcombats.com/i/inf_'.$prs[4].'.gif"></a>';
 	  if($pl['delete']!='0')
 	  {
 		if($pl['delete']=='1')
 		{
 		  if($u->info['admin']>0)
 		  {
-			$pl['text'] = '<font color=red><i>Сообщение стерто</i></font> <font color=grey><small>('.$pl['text'].')</small></font>';
+			$pl['text'] = '<font color=red><i>РЎРѕРѕР±С‰РµРЅРёРµ СЃС‚РµСЂС‚Рѕ</i></font> <font color=grey><small>('.$pl['text'].')</small></font>';
 		  }else{
-		   $pl['text'] = '<font color=red><i>Сообщение стерто</i></font>';
+		   $pl['text'] = '<font color=red><i>РЎРѕРѕР±С‰РµРЅРёРµ СЃС‚РµСЂС‚Рѕ</i></font>';
 		  }
 		}else{
 	  $prs = explode('|',$pl['delete']); $pers2 = '';
@@ -281,19 +281,19 @@ if($u->room['file']=='elka')
 		$clanPrs = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id`="'.$prs[1].'" LIMIT 1'));
 		$pers2 .= '<img src="http://img.xcombats.com/i/clan/'.$clanPrs['img'].'.gif">';
 	  }
-	  $pers2 .= '<a href="javascript:top.toUser(\''.$prs[2].'\',\'private\');"><b>'.$prs[2].'</b></a>['.$prs[3].']<a href="http://xcombats.com/info/'.$prs[2].'" title="Инф. о '.$prs[2].'" target="blank"><img src="http://img.xcombats.com/i/inf_'.$prs[4].'.gif"></a>';
+	  $pers2 .= '<a href="javascript:top.toUser(\''.$prs[2].'\',\'private\');"><b>'.$prs[2].'</b></a>['.$prs[3].']<a href="http://xcombats.com/info/'.$prs[2].'" title="РРЅС„. Рѕ '.$prs[2].'" target="blank"><img src="http://img.xcombats.com/i/inf_'.$prs[4].'.gif"></a>';
 	  
 		  if($u->info['admin']>0 || ($u->info['align']>1 && $u->info['align']<2) || ($u->info['align']>3 && $u->info['align']<4))
 		  {
-			$pl['text'] = '<i><font color=red>Сообщение стерто персонажем</font> '.$pers2.'</i> <font color=grey><small>('.$pl['text'].')</small></font>';
+			$pl['text'] = '<i><font color=red>РЎРѕРѕР±С‰РµРЅРёРµ СЃС‚РµСЂС‚Рѕ РїРµСЂСЃРѕРЅР°Р¶РµРј</font> '.$pers2.'</i> <font color=grey><small>('.$pl['text'].')</small></font>';
 		  }else{
-		   $pl['text'] = '<i><font color=red>Сообщение стерто персонажем</font> '.$pers2.'</i>';
+		   $pl['text'] = '<i><font color=red>РЎРѕРѕР±С‰РµРЅРёРµ СЃС‚РµСЂС‚Рѕ РїРµСЂСЃРѕРЅР°Р¶РµРј</font> '.$pers2.'</i>';
 		  }
 		}
 	  }
 	  if(($u->info['admin']>0 || ($u->info['align']>1 && $u->info['align']<2) || ($u->info['align']>3 && $u->info['align']<4)) && $pl['delete']=='0')
 	  {
-		$dl = ' <a href="main.php?page='.$_POST['page'].'&del='.$pl['id'].'"><small>Стереть</small></a>';
+		$dl = ' <a href="main.php?page='.$_POST['page'].'&del='.$pl['id'].'"><small>РЎС‚РµСЂРµС‚СЊ</small></a>';
 	  }else{
 		$dl = '';
 	  }
@@ -301,9 +301,9 @@ if($u->room['file']=='elka')
 	}
 	?>
     </div>
-	Страницы: <? echo $pages; ?><br>
+	РЎС‚СЂР°РЅРёС†С‹: <? echo $pages; ?><br>
 	<FORM method="post" action="main.php">
-	 Оставить сообщение: <INPUT type=text name=message maxlength=150 size=50>&nbsp;<INPUT type=submit name=addmessage value='Добавить'>
+	 РћСЃС‚Р°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ: <INPUT type=text name=message maxlength=150 size=50>&nbsp;<INPUT type=submit name=addmessage value='Р”РѕР±Р°РІРёС‚СЊ'>
 	</FORM>
 	  <td width="280" valign="top"><table cellspacing="0" cellpadding="0">
 		<tr>
@@ -318,14 +318,14 @@ if($u->room['file']=='elka')
 						<td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 							<tr>
 							  <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.9&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Центральная Площадь</a></td>
+							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.9&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РџР»РѕС‰Р°РґСЊ</a></td>
 							</tr>
 						</table></td>
 					  </tr>					  <tr>
 						<td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 							<tr>
 							  <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-							  <td bgcolor="#D3D3D3" nowrap="nowrap"><div align="left"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.209&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.209',1); ?>">Ледяная пещера</a></div></td>
+							  <td bgcolor="#D3D3D3" nowrap="nowrap"><div align="left"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.209&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.209',1); ?>">Р›РµРґСЏРЅР°СЏ РїРµС‰РµСЂР°</a></div></td>
 							</tr>
 						</table></td>
 					  </tr>

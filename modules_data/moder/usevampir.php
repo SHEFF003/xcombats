@@ -11,60 +11,60 @@ if($u->info['admin']>0 || ($u->info['align']>=3 && $u->info['align']<4))
 	{
 		if($uu['id'] == $u->info['id'])
 		{
-			$uer = 'Вы не можете кусать самого себя';
+			$uer = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РєСѓСЃР°С‚СЊ СЃР°РјРѕРіРѕ СЃРµР±СЏ';
 		}elseif($u->info['battle']>0)
 		{
-			$uer = 'Вы не можете кусать в бою';
+			$uer = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РєСѓСЃР°С‚СЊ РІ Р±РѕСЋ';
 		}elseif($ust['hpNow']<($ust['hpAll']/100*15))
 		{
-			$uer = 'Вы не можете укусить этого персонажа, жертва слишком слаба';
+			$uer = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СѓРєСѓСЃРёС‚СЊ СЌС‚РѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°, Р¶РµСЂС‚РІР° СЃР»РёС€РєРѕРј СЃР»Р°Р±Р°';
 		}elseif($uu['level']>$u->info['level'])
 		{
-			$uer = 'Вы не можете кусать персонажей старше вас по уровню';
+			$uer = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РєСѓСЃР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶РµР№ СЃС‚Р°СЂС€Рµ РІР°СЃ РїРѕ СѓСЂРѕРІРЅСЋ';
 		}elseif(date('H',time())>6 && date('H',time())<21 && $u->info['admin']==0)
 		{
-			$uer = 'Вампиры не могут кусаться днем';
+			$uer = 'Р’Р°РјРїРёСЂС‹ РЅРµ РјРѕРіСѓС‚ РєСѓСЃР°С‚СЊСЃСЏ РґРЅРµРј';
 		}elseif($u->stats['hpNow'] >= ($u->stats['hpAll']/100*67) && $u->info['admin']==0)
 		{
-			$uer = 'Вы не нужнаетесь в этом, ваше здоровье восстановится само ...';
+			$uer = 'Р’С‹ РЅРµ РЅСѓР¶РЅР°РµС‚РµСЃСЊ РІ СЌС‚РѕРј, РІР°С€Рµ Р·РґРѕСЂРѕРІСЊРµ РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЃСЏ СЃР°РјРѕ ...';
 		}elseif(floor($uu['align'])==3 && $u->info['admin']==0)
 		{
-			$uer = 'Вы не можете кусать темных';
+			$uer = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РєСѓСЃР°С‚СЊ С‚РµРјРЅС‹С…';
 		}elseif($uu['online']<time()-120)
 		{
-			$uer = 'Персонаж сейчас оффлайн';
+			$uer = 'РџРµСЂСЃРѕРЅР°Р¶ СЃРµР№С‡Р°СЃ РѕС„С„Р»Р°Р№РЅ';
 		}elseif($uu['room']!=$u->info['room'])
 		{
-			$uer = 'Вы должны находится в одной локации с жертвой';
+			$uer = 'Р’С‹ РґРѕР»Р¶РЅС‹ РЅР°С…РѕРґРёС‚СЃСЏ РІ РѕРґРЅРѕР№ Р»РѕРєР°С†РёРё СЃ Р¶РµСЂС‚РІРѕР№';
 		}elseif($uu['battle']>0)
 		{
-			$uer = 'Персонаж находится в бою';
+			$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ Р±РѕСЋ';
 		}else{
-			$sx = ''; $sx2 = 'ий';
+			$sx = ''; $sx2 = 'РёР№';
 			if($u->info['sex']==1)
 			{
-				$sx = 'а'; $sx2 = 'ая';
+				$sx = 'Р°'; $sx2 = 'Р°СЏ';
 			}
 			$itm1 = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `uid` = "'.$uu['id'].'" AND `delete` = 0 AND `inShop` = 0 AND `inTransfer` = 0 AND `iznosNOW` <= `iznosMAX` AND `item_id` = 1164 LIMIT 1'));
 			if(isset($itm1['id']))
 			{
-				$uer = 'Не удалось выпить энергию "'.$uu['login'].'", у персонажа был при себе кол против вампиров. Начался бой с жертвой!<br>';
+				$uer = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїРёС‚СЊ СЌРЅРµСЂРіРёСЋ "'.$uu['login'].'", Сѓ РїРµСЂСЃРѕРЅР°Р¶Р° Р±С‹Р» РїСЂРё СЃРµР±Рµ РєРѕР» РїСЂРѕС‚РёРІ РІР°РјРїРёСЂРѕРІ. РќР°С‡Р°Р»СЃСЏ Р±РѕР№ СЃ Р¶РµСЂС‚РІРѕР№!<br>';
 				mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW`+1 WHERE `id` = "'.$itm2['id'].'" LIMIT 1');
 			}else{
 				$itm2 = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `uid` = "'.$uu['id'].'" AND `delete` = 0 AND `inShop` = 0 AND `inTransfer` = 0 AND `iznosNOW` <= `iznosMAX` AND `item_id` = 1163 LIMIT 1'));
 				if(isset($itm2['id']))
 				{
-					$sx = 'него'; $sx2 = 'ий';
+					$sx = 'РЅРµРіРѕ'; $sx2 = 'РёР№';
 					if($uu['sex']==1)
 					{
-						$sx = 'неё'; $sx2 = 'ая';
+						$sx = 'РЅРµС‘'; $sx2 = 'Р°СЏ';
 					}
-					$uer = 'Не удалось выпить энергию "'.$uu['login'].'", у персонажа был при себе <span title="'.ceil($itm2['iznosNOW']).'/'.floor($itm2['iznosMAX']).'">чеснок</span> против вампиров. Вы утратили все здоровье.<br>';
+					$uer = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїРёС‚СЊ СЌРЅРµСЂРіРёСЋ "'.$uu['login'].'", Сѓ РїРµСЂСЃРѕРЅР°Р¶Р° Р±С‹Р» РїСЂРё СЃРµР±Рµ <span title="'.ceil($itm2['iznosNOW']).'/'.floor($itm2['iznosMAX']).'">С‡РµСЃРЅРѕРє</span> РїСЂРѕС‚РёРІ РІР°РјРїРёСЂРѕРІ. Р’С‹ СѓС‚СЂР°С‚РёР»Рё РІСЃРµ Р·РґРѕСЂРѕРІСЊРµ.<br>';
 					mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW`+1 WHERE `id` = "'.$itm2['id'].'" LIMIT 1');
 					mysql_query('UPDATE `stats` SET `hpNow` = "1",`regHP` = "'.time().'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-					$rtxt = '[img[items/chesnok2.gif]] Вампир &quot;'.$u->info['cast_login'].'&quot; неудачно укусил'.$sx.' т.к. у &quot;'.$uu['login'].'&quot; был при себе чеснок';
+					$rtxt = '[img[items/chesnok2.gif]] Р’Р°РјРїРёСЂ &quot;'.$u->info['cast_login'].'&quot; РЅРµСѓРґР°С‡РЅРѕ СѓРєСѓСЃРёР»'.$sx.' С‚.Рє. Сѓ &quot;'.$uu['login'].'&quot; Р±С‹Р» РїСЂРё СЃРµР±Рµ С‡РµСЃРЅРѕРє';
 				}else{
-					$rtxt = '[img[items/vampir.gif]] Оголодавш'.$sx2.' &quot;'.$u->info['cast_login'].'&quot; напал'.$sx.' на персонажа &quot;'.$uu['login'].'&quot; и выпил'.$sx.' всю энергию.';
+					$rtxt = '[img[items/vampir.gif]] РћРіРѕР»РѕРґР°РІС€'.$sx2.' &quot;'.$u->info['cast_login'].'&quot; РЅР°РїР°Р»'.$sx.' РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$uu['login'].'&quot; Рё РІС‹РїРёР»'.$sx.' РІСЃСЋ СЌРЅРµСЂРіРёСЋ.';
 					$u->stats['hpNow'] += $ust['hpNow'];
 					if($u->stats['hpNow']>$u->stats['hpAll'])
 					{
@@ -73,15 +73,15 @@ if($u->info['admin']>0 || ($u->info['align']>=3 && $u->info['align']<4))
 					mysql_query('UPDATE `stats` SET `hpNow` = "'.$u->stats['hpAll'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `stats` SET `hpNow` = "1",`regHP` = "'.time().'" WHERE `id` = "'.$uu['id'].'" LIMIT 1');
 					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");				
-					$uer = 'Вы успешно выпили всю кровь у персонажа "'.$uu['login'].'".<br>';
+					$uer = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РІС‹РїРёР»Рё РІСЃСЋ РєСЂРѕРІСЊ Сѓ РїРµСЂСЃРѕРЅР°Р¶Р° "'.$uu['login'].'".<br>';
 				}
 			}
 			unset($itm1,$itm2);
 		}
 	}else{
-		$uer = 'Персонаж не найден в этом городе';
+		$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 	}
 }else{
-	$uer = 'У Вас нет прав на использование данного навыка';
+	$uer = 'РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РЅР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РґР°РЅРЅРѕРіРѕ РЅР°РІС‹РєР°';
 }	
 ?>

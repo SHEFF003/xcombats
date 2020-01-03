@@ -8,10 +8,10 @@ $err = '';
 $an = mysql_fetch_array(mysql_query('SELECT * FROM `users_animal` WHERE `id` = "'.$u->info['animal'].'" LIMIT 1'));
 if(!isset($an['id']))
 {
-	echo '<br><br><br><br><center>Зверь не найден...</center>';
+	echo '<br><br><br><br><center>Р—РІРµСЂСЊ РЅРµ РЅР°Р№РґРµРЅ...</center>';
 }else{
 if(isset($_GET['delete']) && $_GET['delete'] == $an['id']) {
-	echo '<font color="red">Зверь был выгнан...</font>';
+	echo '<font color="red">Р—РІРµСЂСЊ Р±С‹Р» РІС‹РіРЅР°РЅ...</font>';
 	mysql_query('UPDATE `users` SET `animal` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 	mysql_query('UPDATE `users_animal` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `id` = "'.$an['id'].'" AND `delete` = "0" LIMIT 1');
 }elseif(isset($_GET['anml_login']) && $an['rename'] == 0) {
@@ -20,7 +20,7 @@ if(isset($_GET['delete']) && $_GET['delete'] == $an['id']) {
 	{
 		$g = false;
 		$en = preg_match("/^(([a-zA-Z _-])+)$/i", $txt);
-		$ru = preg_match("/^(([а-яА-Я _-])+)$/i", $txt);
+		$ru = preg_match("/^(([Р°-СЏРђ-РЇ _-])+)$/i", $txt);
 		if(($ru && $en) || (!$ru && !$en))
 		{
 			$g = true;
@@ -30,7 +30,7 @@ if(isset($_GET['delete']) && $_GET['delete'] == $an['id']) {
 	$nl = htmlspecialchars($_GET['anml_login'],NULL,'cp1251');
 	$nl = str_replace(' ','',$nl);
 	$nl = str_replace('	','',$nl);
-	$sr = "!@#$%^&*()\+Ёё|/'`\"-_";
+	$sr = "!@#$%^&*()\+РЃС‘|/'`\"-_";
 	if($nl == '' || strlen($nl) > 10 || strlen($nl) < 2 || en_ru($nl) == true || strpos($sr,$nl)) {
 		$n = 0;
 	}else{
@@ -41,9 +41,9 @@ if(isset($_GET['delete']) && $_GET['delete'] == $an['id']) {
 	if($n == 1) {
 		mysql_query('UPDATE `users_animal` SET `name` = "'.mysql_real_escape_string($nl).'",`rename` = "1" WHERE `uid` = "'.$u->info['id'].'" AND `id` = "'.$an['id'].'" AND `delete` = "0" LIMIT 1');
 		$an['rename'] = 1;
-		echo '<font color="red">Вы успешно переименовали питомца в &quot;'.$nl.'&quot;</font>';
+		echo '<font color="red">Р’С‹ СѓСЃРїРµС€РЅРѕ РїРµСЂРµРёРјРµРЅРѕРІР°Р»Рё РїРёС‚РѕРјС†Р° РІ &quot;'.$nl.'&quot;</font>';
 	}else{
-		echo '<font color="red">Эта кличка не подходит</font>';
+		echo '<font color="red">Р­С‚Р° РєР»РёС‡РєР° РЅРµ РїРѕРґС…РѕРґРёС‚</font>';
 	}
 }
 
@@ -51,7 +51,7 @@ $anl = mysql_fetch_array(mysql_query('SELECT `bonus` FROM `levels_animal` WHERE 
 $anl = $anl['bonus'];
 $anl = $u->lookStats($anl);
 
-$nam = array(1=>'Кот',2=>'Сова',3=>'Светляк',4=>'Чертяка',5=>'Собака',6=>'Свинья',7=>'Дракон');
+$nam = array(1=>'РљРѕС‚',2=>'РЎРѕРІР°',3=>'РЎРІРµС‚Р»СЏРє',4=>'Р§РµСЂС‚СЏРєР°',5=>'РЎРѕР±Р°РєР°',6=>'РЎРІРёРЅСЊСЏ',7=>'Р”СЂР°РєРѕРЅ');
 $sab = mysql_fetch_array(mysql_query('SELECT * FROM `test_bot` WHERE `login` = "'.$nam[$an['type']].' ['.$an['level'].']" LIMIT 1'));
 $sa = $u->lookStats($an['stats']);
 $sa['hpAll'] += 30+$sa['s4']*6+$sa['hpAll'];
@@ -90,33 +90,33 @@ if(!isset($ne['id']))
 if(isset($_GET['obj_corm'])) {
 	$corm = mysql_fetch_array(mysql_query('SELECT `iu`.*,`im`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON `iu`.`item_id` = `im`.`id` WHERE `im`.`type` = "49" AND `iu`.`delete` = "0" AND `iu`.`inShop` = "0" AND `iu`.`inOdet` = "0" AND `iu`.`inTransfer` = "0" AND `iu`.`id` = "'.mysql_real_escape_string($_GET['obj_corm']).'" LIMIT 1'));
 	if(isset($corm['id'])) {
-		//кормушка зверя
+		//РєРѕСЂРјСѓС€РєР° Р·РІРµСЂСЏ
 		$see1 = 1;
 		if($an['type'] == 3 && substr_count($corm['img'],'wisp') == 0) {
-			//светляк
+			//СЃРІРµС‚Р»СЏРє
 			$see1 = 0;
 		}elseif($an['type'] == 2 && substr_count($corm['img'],'owl') == 0) {
-			//сова
+			//СЃРѕРІР°
 			$see1 = 0;
 		}elseif($an['type'] == 1 && substr_count($corm['img'],'cat') == 0) {
-			//кот
+			//РєРѕС‚
 			$see1 = 0;
 		}elseif($an['type'] == 4 && substr_count($corm['img'],'chrt') == 0) {
-			//чертяка
+			//С‡РµСЂС‚СЏРєР°
 			$see1 = 0;
 		}elseif($an['type'] == 5 && substr_count($corm['img'],'dog') == 0) {
-			//собака
+			//СЃРѕР±Р°РєР°
 			$see1 = 0;
 		}elseif($an['type'] == 6 && substr_count($corm['img'],'pig') == 0) {
-			//свинья
+			//СЃРІРёРЅСЊСЏ
 			$see1 = 0;
 		}elseif($an['type'] == 7 && substr_count($corm['img'],'dragon') == 0) {
-			//дракон
+			//РґСЂР°РєРѕРЅ
 			$see1 = 0;
 		}
 		if($see1 == 1) {
 			if($an['yad'] > time()) {
-				$err = '&quot;'.$an['name'].'&quot; отвернулся от еды...';
+				$err = '&quot;'.$an['name'].'&quot; РѕС‚РІРµСЂРЅСѓР»СЃСЏ РѕС‚ РµРґС‹...';
 			}elseif($an['eda'] < 50) {
 				$po = $u->lookStats($corm['data']);
 				$corm['level'] = $po['tr_lvl'];
@@ -141,18 +141,18 @@ if(isset($_GET['obj_corm'])) {
 					}
 					mysql_query('UPDATE `users_animal` SET `eda` = "'.$an['eda'].'" WHERE `id` = "'.$an['id'].'" LIMIT 1');
 					mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `id` = "'.mysql_real_escape_string($_GET['obj_corm']).'" LIMIT 1');
-					$err = 'Ваш питомец был успешно накормлен...';
+					$err = 'Р’Р°С€ РїРёС‚РѕРјРµС† Р±С‹Р» СѓСЃРїРµС€РЅРѕ РЅР°РєРѕСЂРјР»РµРЅ...';
 				}else{
-					$err = 'Ваш питомец пока-что не может употреблять подобную пищу ...';
+					$err = 'Р’Р°С€ РїРёС‚РѕРјРµС† РїРѕРєР°-С‡С‚Рѕ РЅРµ РјРѕР¶РµС‚ СѓРїРѕС‚СЂРµР±Р»СЏС‚СЊ РїРѕРґРѕР±РЅСѓСЋ РїРёС‰Сѓ ...';
 				}				
 			}else{
-				$err = 'Ваш питомец сыт...';
+				$err = 'Р’Р°С€ РїРёС‚РѕРјРµС† СЃС‹С‚...';
 			}
 		}else{
-			$err = 'Ваш питомец не употребляет подобную пищу...';
+			$err = 'Р’Р°С€ РїРёС‚РѕРјРµС† РЅРµ СѓРїРѕС‚СЂРµР±Р»СЏРµС‚ РїРѕРґРѕР±РЅСѓСЋ РїРёС‰Сѓ...';
 		}
 	}else{
-		$err = 'Предмет не найден';
+		$err = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ';
 	}
 }
  
@@ -160,7 +160,7 @@ $itmAll = $u->genInv(15,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" A
 if($itmAll[0] != 0) {
 	$itmAll = $itmAll[2];
 }else{
-	$itmAll = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО</td></tr>';
+	$itmAll = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ</td></tr>';
 }
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="5">
@@ -169,27 +169,27 @@ if($itmAll[0] != 0) {
       <tr>
         <td width="150" align="center" valign="top"><b><?=$an['name']?></b> [<?=$an['level']?>]<br><img src="http://img.xcombats.com/i/obraz/<?=$an['sex']?>/<?=$an['obraz']?>.gif" width="120" height="220"></td>
         <td valign="top"><p>HP: <?=$sa['hpAll']?></p>
-          <p>Сила: <?=$sa['s1']?><br>Ловкость: <?=$sa['s2']?><br>Интуиция: <?=$sa['s3']?><br>Выносливость: <?=$sa['s4']?></p>
-          <p>Уровень: <?=$an['level']?><br>Опыт: <?=$an['exp']?> / <?=$ne['exp']?><br>
-          Сытость: <?=$an['eda']?></p>
+          <p>РЎРёР»Р°: <?=$sa['s1']?><br>Р›РѕРІРєРѕСЃС‚СЊ: <?=$sa['s2']?><br>РРЅС‚СѓРёС†РёСЏ: <?=$sa['s3']?><br>Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ: <?=$sa['s4']?></p>
+          <p>РЈСЂРѕРІРµРЅСЊ: <?=$an['level']?><br>РћРїС‹С‚: <?=$an['exp']?> / <?=$ne['exp']?><br>
+          РЎС‹С‚РѕСЃС‚СЊ: <?=$an['eda']?></p>
           <p>
-          Освоенные навыки:<br>
-          &bull; <i>Отсутствуют</i></p>
+          РћСЃРІРѕРµРЅРЅС‹Рµ РЅР°РІС‹РєРё:<br>
+          &bull; <i>РћС‚СЃСѓС‚СЃС‚РІСѓСЋС‚</i></p>
           <p>
-          Боевые бонусы:<br>
+          Р‘РѕРµРІС‹Рµ Р±РѕРЅСѓСЃС‹:<br>
           <?
 		  $ba = '';
 			$i = 0;
 			while($i<count($u->items['add'])) {
 				if(isset($anl['add_'.$u->items['add'][$i]])) {
 					if( $u->items['add'][$i] == 'mib1' ) {
-						$ba .= '&bull; Броня головы: +'.$anl['add_'.$u->items['add'][$i]].'<br>';
+						$ba .= '&bull; Р‘СЂРѕРЅСЏ РіРѕР»РѕРІС‹: +'.$anl['add_'.$u->items['add'][$i]].'<br>';
 					}elseif( $u->items['add'][$i] == 'mib2' ) {
-						$ba .= '&bull; Броня корпуса: +'.$anl['add_'.$u->items['add'][$i]].'<br>';
+						$ba .= '&bull; Р‘СЂРѕРЅСЏ РєРѕСЂРїСѓСЃР°: +'.$anl['add_'.$u->items['add'][$i]].'<br>';
 					}elseif( $u->items['add'][$i] == 'mib3' ) {
-						$ba .= '&bull; Броня пояса: +'.$anl['add_'.$u->items['add'][$i]].'<br>';
+						$ba .= '&bull; Р‘СЂРѕРЅСЏ РїРѕСЏСЃР°: +'.$anl['add_'.$u->items['add'][$i]].'<br>';
 					}elseif( $u->items['add'][$i] == 'mib4' ) {
-						$ba .= '&bull; Броня ног: +'.$anl['add_'.$u->items['add'][$i]].'<br>';
+						$ba .= '&bull; Р‘СЂРѕРЅСЏ РЅРѕРі: +'.$anl['add_'.$u->items['add'][$i]].'<br>';
 					}elseif( $u->items['add'][$i] == 'mab1' || $u->items['add'][$i] == 'mab2' || $u->items['add'][$i] == 'mab3' || $u->items['add'][$i] == 'mab4') {
 						
 					}else{
@@ -200,7 +200,7 @@ if($itmAll[0] != 0) {
 			}
 		  
 		  if($ba == '') {
-			 $ba = '&bull; <i>Отсутствуют</i>'; 
+			 $ba = '&bull; <i>РћС‚СЃСѓС‚СЃС‚РІСѓСЋС‚</i>'; 
 		  }
 		  echo $ba;
 		  ?>
@@ -210,8 +210,8 @@ if($itmAll[0] != 0) {
     </table></td>
     <td valign="top">
     <div>
-    	<div style="float:left"><? if($an['rename'] == 0) { ?><input type="button" onclick="top.anren();" value="Кличка" /><? } ?> <input type="button" onclick="if(confirm('Выгнать зверя?')){top.frames['main'].location='main.php?pet=1&delete=<?=$an['id']?>&rnd=<?=$code?>'}" value="Выгнать" /></div>
-    	<div style="float:right"><input type="button" onclick="top.frames['main'].location='main.php?pet=1&rnd=<?=$code?>'" value="Обновить" /> <input type="button" onclick="top.frames['main'].location='main.php?rnd=<?=$code?>'" value="Вернуться" /></div>
+    	<div style="float:left"><? if($an['rename'] == 0) { ?><input type="button" onclick="top.anren();" value="РљР»РёС‡РєР°" /><? } ?> <input type="button" onclick="if(confirm('Р’С‹РіРЅР°С‚СЊ Р·РІРµСЂСЏ?')){top.frames['main'].location='main.php?pet=1&delete=<?=$an['id']?>&rnd=<?=$code?>'}" value="Р’С‹РіРЅР°С‚СЊ" /></div>
+    	<div style="float:right"><input type="button" onclick="top.frames['main'].location='main.php?pet=1&rnd=<?=$code?>'" value="РћР±РЅРѕРІРёС‚СЊ" /> <input type="button" onclick="top.frames['main'].location='main.php?rnd=<?=$code?>'" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" /></div>
     </div>
     <div><br />
     <?

@@ -4,17 +4,17 @@ if(!defined('GAME')){
 	die();
 }
 $StaticMSG = array(
-	'your-position'=>iconv("WINDOWS-1251", "UTF-8", 'Ваше местоположение'),
-	'move-bk'=>iconv("WINDOWS-1251", "UTF-8", 'Проход через &quot;<b>Бойцовский клуб</b>&quot;'),
-	'move-zalu4'=>iconv("WINDOWS-1251", "UTF-8", 'Проход через &quot;<b>Зал паладинов</b>&quot;'),
-	'move-map_halls'=>iconv("WINDOWS-1251", "UTF-8", 'Проход через &quot;<b>Залы</b>&quot;'),
-	'move-to-sek4'=>iconv("WINDOWS-1251", "UTF-8", 'Проход через &quot;<b>Рыцарский</b>&quot; или &quot;<b>Торговый</b>&quot; зал'),
-	'move-sek5'=>iconv("WINDOWS-1251", "UTF-8", 'Проход через &quot;<b>Торговый зал</b>&quot;'),
-	'move-sek6'=>iconv("WINDOWS-1251", "UTF-8", 'Проход через &quot;<b>Рыцарский зал</b>&quot;'),
+	'your-position'=>iconv("WINDOWS-1251", "UTF-8", 'Р’Р°С€Рµ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ'),
+	'move-bk'=>iconv("WINDOWS-1251", "UTF-8", 'РџСЂРѕС…РѕРґ С‡РµСЂРµР· &quot;<b>Р‘РѕР№С†РѕРІСЃРєРёР№ РєР»СѓР±</b>&quot;'),
+	'move-zalu4'=>iconv("WINDOWS-1251", "UTF-8", 'РџСЂРѕС…РѕРґ С‡РµСЂРµР· &quot;<b>Р—Р°Р» РїР°Р»Р°РґРёРЅРѕРІ</b>&quot;'),
+	'move-map_halls'=>iconv("WINDOWS-1251", "UTF-8", 'РџСЂРѕС…РѕРґ С‡РµСЂРµР· &quot;<b>Р—Р°Р»С‹</b>&quot;'),
+	'move-to-sek4'=>iconv("WINDOWS-1251", "UTF-8", 'РџСЂРѕС…РѕРґ С‡РµСЂРµР· &quot;<b>Р С‹С†Р°СЂСЃРєРёР№</b>&quot; РёР»Рё &quot;<b>РўРѕСЂРіРѕРІС‹Р№</b>&quot; Р·Р°Р»'),
+	'move-sek5'=>iconv("WINDOWS-1251", "UTF-8", 'РџСЂРѕС…РѕРґ С‡РµСЂРµР· &quot;<b>РўРѕСЂРіРѕРІС‹Р№ Р·Р°Р»</b>&quot;'),
+	'move-sek6'=>iconv("WINDOWS-1251", "UTF-8", 'РџСЂРѕС…РѕРґ С‡РµСЂРµР· &quot;<b>Р С‹С†Р°СЂСЃРєРёР№ Р·Р°Р»</b>&quot;'),
 );
 $Response = array('status'=>'update');
 switch($u->room['file']){
-	case'bk':// Бойцовский клуб
+	case'bk':// Р‘РѕР№С†РѕРІСЃРєРёР№ РєР»СѓР±
 		$Response = array(
 			'status'=>'success',
 			'location'=>array(
@@ -36,15 +36,15 @@ switch($u->room['file']){
 				array('id'=>'map_klub7','params'=>thisInfRm('1.180.0.9', NULL, true))
 			),
 			'buttons'=>array(
-				array(iconv("WINDOWS-1251", "UTF-8", 'Возврат'),'main.php?homeworld=true'),
-				array(iconv("WINDOWS-1251", "UTF-8", 'Казино'),'main.php?loc=1.180.0.225'),
-				array(iconv("WINDOWS-1251", "UTF-8", 'Карта клуба'),'main.php?clubmap=true'),
-				array(iconv("WINDOWS-1251", "UTF-8", 'Форум'),"window.open('http://" . $c['forum'] . "/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')"),
-				array(iconv("WINDOWS-1251", "UTF-8", 'Подсказка'),"window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')")
+				array(iconv("WINDOWS-1251", "UTF-8", 'Р’РѕР·РІСЂР°С‚'),'main.php?homeworld=true'),
+				array(iconv("WINDOWS-1251", "UTF-8", 'РљР°Р·РёРЅРѕ'),'main.php?loc=1.180.0.225'),
+				array(iconv("WINDOWS-1251", "UTF-8", 'РљР°СЂС‚Р° РєР»СѓР±Р°'),'main.php?clubmap=true'),
+				array(iconv("WINDOWS-1251", "UTF-8", 'Р¤РѕСЂСѓРј'),"window.open('http://" . $c['forum'] . "/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')"),
+				array(iconv("WINDOWS-1251", "UTF-8", 'РџРѕРґСЃРєР°Р·РєР°'),"window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')")
 			)
 		);
 	break;
-	case'zv1':// Зал Воинов 1
+	case'zv1':// Р—Р°Р» Р’РѕРёРЅРѕРІ 1
 		$Response = array(
 			'status'=>'success',
 			'location'=>array(
@@ -67,7 +67,7 @@ switch($u->room['file']){
 			)
 		);
 	break;
-	case'zv2':// Зал Воинов 2
+	case'zv2':// Р—Р°Р» Р’РѕРёРЅРѕРІ 2
 		$Response = array(
 			'status'=>'success',
 			'location'=>array(
@@ -90,7 +90,7 @@ switch($u->room['file']){
 			)
 		);
 	break;
-	case'zv3':// Зал Воинов 3
+	case'zv3':// Р—Р°Р» Р’РѕРёРЅРѕРІ 3
 		$Response = array(
 			'status'=>'success',
 			'location'=>array(
@@ -113,7 +113,7 @@ switch($u->room['file']){
 			)
 		);
 	break;
-	case'zv4':// Будуар
+	case'zv4':// Р‘СѓРґСѓР°СЂ
 		$Response = array(
 			'status'=>'success',
 			'location'=>array(
@@ -136,7 +136,7 @@ switch($u->room['file']){
 			)
 		);
 	break;
-	case'zalu':// Залы
+	case'zalu':// Р—Р°Р»С‹
 		$Response = array(
 			'status'=>'success',
 			'location'=>array(
@@ -157,7 +157,7 @@ switch($u->room['file']){
 			)
 		);
 	break;
-	case'zalu_pal':// Залы
+	case'zalu_pal':// Р—Р°Р»С‹
 		$Response = array(
 			'status'=>'success',
 			'location'=>array(
@@ -177,7 +177,7 @@ switch($u->room['file']){
 			)
 		);
 	break;
-	case'bk2':// Залы
+	case'bk2':// Р—Р°Р»С‹
 		$Response = array(
 			'status'=>'success',
 			'location'=>array(

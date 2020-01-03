@@ -12,7 +12,7 @@ if($u->room['file']=='secret')
 </style>
 <table width="100%" cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><div align="center" class="pH3">Секретная комната</div>
+    <td valign="top"><div align="center" class="pH3">РЎРµРєСЂРµС‚РЅР°СЏ РєРѕРјРЅР°С‚Р°</div>
     <br /></td>
     <td width="280" valign="top"><table align="right" cellpadding="0" cellspacing="0">
       <tr>
@@ -27,7 +27,7 @@ if($u->room['file']=='secret')
                   <td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                     <tr>
                       <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.3&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.3',1); ?>">Бойцовский клуб</a></td>
+                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.3&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.3',1); ?>">Р‘РѕР№С†РѕРІСЃРєРёР№ РєР»СѓР±</a></td>
                     </tr>
                   </table></td>
                 </tr>

@@ -6,26 +6,26 @@ if(!defined('GAME'))
 
 if($u->room['file']=='enterptp'){
 
-if(isset($_GET['rz'])) $roomSection = 1; // Получаем Задание
-	else $roomSection = 0;  // Собираем группу для похода
+if(isset($_GET['rz'])) $roomSection = 1; // РџРѕР»СѓС‡Р°РµРј Р—Р°РґР°РЅРёРµ
+	else $roomSection = 0;  // РЎРѕР±РёСЂР°РµРј РіСЂСѓРїРїСѓ РґР»СЏ РїРѕС…РѕРґР°
 	
 $dun = 0;
 /*
-    if($u->room['id']==372){ $dun = 12; } // Вход в Пещеру Тысячи Проклятий , CapitalCity
-elseif($u->room['id']==369){ $dun = 102; } // Вход в подземелье Драконов, 
-elseif($u->room['id']==354){ $dun = 101; } // Вход в Бездну , AngelsCity
-elseif($u->room['id']==293){ $dun = 3; } // Вход в Катакомбы , DemonsCity
-elseif($u->room['id']==296){ $dun = 11; } // Вход в Некровиль , для новичков 2-7 лвл
-elseif($u->room['id']==18){  $dun = 10; } // Вход в Грибницу , для новичков 2-7 лвл SandCity
-elseif($u->room['id']==209){ $dun = 20; } // Вход в Ледяную пещеру, 
-elseif($u->room['id']==188){ $dun = 1; } // Вход в Вход в канализацию 
+    if($u->room['id']==372){ $dun = 12; } // Р’С…РѕРґ РІ РџРµС‰РµСЂСѓ РўС‹СЃСЏС‡Рё РџСЂРѕРєР»СЏС‚РёР№ , CapitalCity
+elseif($u->room['id']==369){ $dun = 102; } // Р’С…РѕРґ РІ РїРѕРґР·РµРјРµР»СЊРµ Р”СЂР°РєРѕРЅРѕРІ, 
+elseif($u->room['id']==354){ $dun = 101; } // Р’С…РѕРґ РІ Р‘РµР·РґРЅСѓ , AngelsCity
+elseif($u->room['id']==293){ $dun = 3; } // Р’С…РѕРґ РІ РљР°С‚Р°РєРѕРјР±С‹ , DemonsCity
+elseif($u->room['id']==296){ $dun = 11; } // Р’С…РѕРґ РІ РќРµРєСЂРѕРІРёР»СЊ , РґР»СЏ РЅРѕРІРёС‡РєРѕРІ 2-7 Р»РІР»
+elseif($u->room['id']==18){  $dun = 10; } // Р’С…РѕРґ РІ Р“СЂРёР±РЅРёС†Сѓ , РґР»СЏ РЅРѕРІРёС‡РєРѕРІ 2-7 Р»РІР» SandCity
+elseif($u->room['id']==209){ $dun = 20; } // Р’С…РѕРґ РІ Р›РµРґСЏРЅСѓСЋ РїРµС‰РµСЂСѓ, 
+elseif($u->room['id']==188){ $dun = 1; } // Р’С…РѕРґ РІ Р’С…РѕРґ РІ РєР°РЅР°Р»РёР·Р°С†РёСЋ 
 */
 $dungeon = mysql_fetch_assoc(mysql_query('SELECT `id` as room, `dungeon_id` as id, `dungeon_name` as name FROM `dungeon_room` WHERE `id`="'.$u->room['id'].'" LIMIT 1'));
 $dungeon['list'] = array(
-			// список подземелий, которые используются для вычита используемой репутации.
-			// При добавлении в список нового города, следует проверить наличие ячеек в таблице `rep`.
-			// Так-же следует помнить, что в __user.php в выводе инвентаря, некоторых подземелий\городов, нету.
-			// Да и вообще, херня получается, что наши подземелья считаются как Город, то есть два подземелья на город - технически нет такого. Так-как ПТП это capitalcity.
+			// СЃРїРёСЃРѕРє РїРѕРґР·РµРјРµР»РёР№, РєРѕС‚РѕСЂС‹Рµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ РґР»СЏ РІС‹С‡РёС‚Р° РёСЃРїРѕР»СЊР·СѓРµРјРѕР№ СЂРµРїСѓС‚Р°С†РёРё.
+			// РџСЂРё РґРѕР±Р°РІР»РµРЅРёРё РІ СЃРїРёСЃРѕРє РЅРѕРІРѕРіРѕ РіРѕСЂРѕРґР°, СЃР»РµРґСѓРµС‚ РїСЂРѕРІРµСЂРёС‚СЊ РЅР°Р»РёС‡РёРµ СЏС‡РµРµРє РІ С‚Р°Р±Р»РёС†Рµ `rep`.
+			// РўР°Рє-Р¶Рµ СЃР»РµРґСѓРµС‚ РїРѕРјРЅРёС‚СЊ, С‡С‚Рѕ РІ __user.php РІ РІС‹РІРѕРґРµ РёРЅРІРµРЅС‚Р°СЂСЏ, РЅРµРєРѕС‚РѕСЂС‹С… РїРѕРґР·РµРјРµР»РёР№\РіРѕСЂРѕРґРѕРІ, РЅРµС‚Сѓ.
+			// Р”Р° Рё РІРѕРѕР±С‰Рµ, С…РµСЂРЅСЏ РїРѕР»СѓС‡Р°РµС‚СЃСЏ, С‡С‚Рѕ РЅР°С€Рё РїРѕРґР·РµРјРµР»СЊСЏ СЃС‡РёС‚Р°СЋС‚СЃСЏ РєР°Рє Р“РѕСЂРѕРґ, С‚Рѕ РµСЃС‚СЊ РґРІР° РїРѕРґР·РµРјРµР»СЊСЏ РЅР° РіРѕСЂРѕРґ - С‚РµС…РЅРёС‡РµСЃРєРё РЅРµС‚ С‚Р°РєРѕРіРѕ. РўР°Рє-РєР°Рє РџРўРџ СЌС‚Рѕ capitalcity.
 			1=>'capitalcity',
 			2=>'demonscity',
 			3=>'angelscity',
@@ -33,11 +33,11 @@ $dungeon['list'] = array(
 			5=>'suncity');
 
 
-$er = ''; // Собираем ошибки.
-$dungeonGroupList = ''; // Сюда помещаем список Групп.
-$dungeonGo = 1; // По умолчанию, мы идем в пещеру.
+$er = ''; // РЎРѕР±РёСЂР°РµРј РѕС€РёР±РєРё.
+$dungeonGroupList = ''; // РЎСЋРґР° РїРѕРјРµС‰Р°РµРј СЃРїРёСЃРѕРє Р“СЂСѓРїРї.
+$dungeonGo = 1; // РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ, РјС‹ РёРґРµРј РІ РїРµС‰РµСЂСѓ.
 
-if($u->info['dn']>0){ // Если ты пошел гулять, так иди и гуляй!
+if($u->info['dn']>0){ // Р•СЃР»Рё С‚С‹ РїРѕС€РµР» РіСѓР»СЏС‚СЊ, С‚Р°Рє РёРґРё Рё РіСѓР»СЏР№!
 	$zv = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_zv` WHERE `id`="'.$u->info['dn'].'" AND `delete` = "0" LIMIT 1'));
 	if(!isset($zv['id'])){
 		mysql_query('UPDATE `stats` SET `dn` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -45,32 +45,32 @@ if($u->info['dn']>0){ // Если ты пошел гулять, так иди и гуляй!
 	}
 }
 
-$dungeon_timeout = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vars` = "psh'.$dungeon['id'].'" AND `time` > '.(time()-60*60*3).' LIMIT 1',1); // Проверка - последний визит?
-// if($u->info['admin']>0) unset($dungeon_timeout); // $dungeon_timeout - задержка на посещение пещеры.
-if(isset($dungeon_timeout['id'])) // Кто-то передумал и не пойдет в пещеру, так-как уже там был.
+$dungeon_timeout = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vars` = "psh'.$dungeon['id'].'" AND `time` > '.(time()-60*60*3).' LIMIT 1',1); // РџСЂРѕРІРµСЂРєР° - РїРѕСЃР»РµРґРЅРёР№ РІРёР·РёС‚?
+// if($u->info['admin']>0) unset($dungeon_timeout); // $dungeon_timeout - Р·Р°РґРµСЂР¶РєР° РЅР° РїРѕСЃРµС‰РµРЅРёРµ РїРµС‰РµСЂС‹.
+if(isset($dungeon_timeout['id'])) // РљС‚Рѕ-С‚Рѕ РїРµСЂРµРґСѓРјР°Р» Рё РЅРµ РїРѕР№РґРµС‚ РІ РїРµС‰РµСЂСѓ, С‚Р°Рє-РєР°Рє СѓР¶Рµ С‚Р°Рј Р±С‹Р».
 {
 	$dungeonGo = 0;
 	if(isset($_GET['start']))
 	{
-		$re = 'До следующего похода осталось еще: '.$u->timeOut(60*60*3-time()+$dungeon_timeout['time']);
+		$re = 'Р”Рѕ СЃР»РµРґСѓСЋС‰РµРіРѕ РїРѕС…РѕРґР° РѕСЃС‚Р°Р»РѕСЃСЊ РµС‰Рµ: '.$u->timeOut(60*60*3-time()+$dungeon_timeout['time']);
 	}
 }
 
 if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){	
-	//начинаем поход
-	//начинаем поход
+	//РЅР°С‡РёРЅР°РµРј РїРѕС…РѕРґ
+	//РЅР°С‡РёРЅР°РµРј РїРѕС…РѕРґ
 	$ig = 1;
 	if($ig>0)
 	{
-		//перемещаем игроков в пещеру
+		//РїРµСЂРµРјРµС‰Р°РµРј РёРіСЂРѕРєРѕРІ РІ РїРµС‰РµСЂСѓ
 		//$u->addAction(time(),'psh'.$dun,'');
 		$ins = mysql_query('INSERT INTO `dungeon_now` (`city`,`uid`,`id2`,`name`,`time_start`)
-		VALUES ("'.$zv['city'].'","'.$zv['uid'].'","'.$dungeon['id'].'","Бездна","'.time().'")');
+		VALUES ("'.$zv['city'].'","'.$zv['uid'].'","'.$dungeon['id'].'","Р‘РµР·РґРЅР°","'.time().'")');
 		if($ins)
 		{
 			$zid = mysql_insert_id();
 			mysql_query('UPDATE `dungeon_zv` SET `delete` = "'.time().'" WHERE `id` = "'.$zv['id'].'" LIMIT 1');
-			//обновляем пользователей
+			//РѕР±РЅРѕРІР»СЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 			$su = mysql_query('SELECT `u`.`id`,`st`.`dn` FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`dn`="'.$zv['id'].'" LIMIT '.($zv['team_max']+1).'');
 			$ids = '';
 			
@@ -85,7 +85,7 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 			{
 				$ids .= ' `id` = "'.$pu['id'].'" OR';
 				$u->addAction(time(),'psh'.$dungeon['id'],'',$pu['id']);
-				//Добавляем квестовые обьекты для персонажей
+				//Р”РѕР±Р°РІР»СЏРµРј РєРІРµСЃС‚РѕРІС‹Рµ РѕР±СЊРµРєС‚С‹ РґР»СЏ РїРµСЂСЃРѕРЅР°Р¶РµР№
 				$sp = mysql_query('SELECT * FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` LIKE "%start_quest%" AND `vals` = "go" LIMIT 100');
 				while($pl2 = mysql_fetch_array($sp))
 				{
@@ -95,11 +95,11 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 						$i = 0;
 						while( $i < count($act) ) {
 							$xr = explode(':=:',$act[$i]);
-							//Сбор ресурсов
+							//РЎР±РѕСЂ СЂРµСЃСѓСЂСЃРѕРІ
 							if( $xr[0] == 'tk_itm' ) {
 								$xr2 = explode('=',$xr[1]);
 								if( $xr2[2] == 0 ) {
-									//Добавляем обьект для юзера
+									//Р”РѕР±Р°РІР»СЏРµРј РѕР±СЊРµРєС‚ РґР»СЏ СЋР·РµСЂР°
 									$j = 0;
 									while( $j < $xr2[1] ) {
 										$cord = $map_locs[rand(0,count($map_locs)-1)];
@@ -111,7 +111,7 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 										$j++;
 									}
 								}else{
-									//Предмет находится в конкретном месте
+									//РџСЂРµРґРјРµС‚ РЅР°С…РѕРґРёС‚СЃСЏ РІ РєРѕРЅРєСЂРµС‚РЅРѕРј РјРµСЃС‚Рµ
 									mysql_query('INSERT INTO `dungeon_items` (`dn`,`user`,`item_id`,`time`,`x`,`y`,`onlyfor`,`quest`) VALUES (
 										"'.$zid.'","'.$u->info['id'].'","'.$xr2[0].'","'.time().'","'.$xr2[2].'","'.$xr2[3].'","'.$u->info['id'].'","'.$pl['id'].'"
 									)');
@@ -129,8 +129,8 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 			if($upd1)
 			{
 				$upd2 = mysql_query('UPDATE `users` SET `room` = "374" WHERE '.$ids.' LIMIT '.($zv['team_max']+1).'');
-				//Добавляем ботов и обьекты в пещеру $zid с for_dn = $dungeon['id']
-				//Добавляем ботов
+				//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ Рё РѕР±СЊРµРєС‚С‹ РІ РїРµС‰РµСЂСѓ $zid СЃ for_dn = $dungeon['id']
+				//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ
 				$vls = '';
 				$sp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `for_dn` = "'.$dungeon['id'].'"');
 				while($pl = mysql_fetch_array($sp))
@@ -139,7 +139,7 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 				}
 				$vls = rtrim($vls,',');				
 				$ins1 = mysql_query('INSERT INTO `dungeon_bots` (`dn`,`id_bot`,`colvo`,`items`,`x`,`y`,`dialog`,`atack`,`go_bot`) VALUES '.$vls.'');
-				//Добавляем обьекты
+				//Р”РѕР±Р°РІР»СЏРµРј РѕР±СЊРµРєС‚С‹
 				$vls = '';
 				$sp = mysql_query('SELECT * FROM `dungeon_obj` WHERE `for_dn` = "'.$dungeon['id'].'"');
 				while($pl = mysql_fetch_array($sp))
@@ -157,13 +157,13 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 				{
 					die('<script>location="main.php?rnd='.$code.'";</script>');
 				}else{
-					$re = 'Ошибка перехода в подземелье...';
+					$re = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 				}
 			}else{
-				$re = 'Ошибка перехода в подземелье...';
+				$re = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 			}
 		}else{
-			$re = 'Ошибка перехода в подземелье...';
+			$re = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 		}
 	}
 }elseif(isset($_POST['go'],$_POST['goid']) && $dungeonGo==1)
@@ -174,7 +174,7 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 		if(isset($zv['id']) && $u->info['dn'] == 0)
 		{
 			if( $zv['pass'] != '' && $_POST['pass_com'] != $zv['pass'] ) {
-				$re = 'Вы ввели неправильный пароль';				
+				$re = 'Р’С‹ РІРІРµР»Рё РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ РїР°СЂРѕР»СЊ';				
 			}elseif($u->info['level'] > 7)
 			{
 				$row = 0;
@@ -183,30 +183,30 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 					$upd = mysql_query('UPDATE `stats` SET `dn` = "'.$zv['id'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					if(!$upd)
 					{
-						$re = 'Не удалось вступить в эту группу';
+						$re = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІСЃС‚СѓРїРёС‚СЊ РІ СЌС‚Сѓ РіСЂСѓРїРїСѓ';
 						unset($zv);
 					}else{
 						$u->info['dn'] = $zv['id'];
 					}
 				}else{
-					$re = 'В группе нет места';
+					$re = 'Р’ РіСЂСѓРїРїРµ РЅРµС‚ РјРµСЃС‚Р°';
 					unset($zv);
 				}
 			}else{
-				$re = 'Вы не подходите по уровню';
+				$re = 'Р’С‹ РЅРµ РїРѕРґС…РѕРґРёС‚Рµ РїРѕ СѓСЂРѕРІРЅСЋ';
 				unset($zv);
 			}
 		}else{
-			$re = 'Заявка не найдена';
+			$re = 'Р—Р°СЏРІРєР° РЅРµ РЅР°Р№РґРµРЅР°';
 		}
 	}else{
-		$re = 'Вы уже находитесь в группе';
+		$re = 'Р’С‹ СѓР¶Рµ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ РіСЂСѓРїРїРµ';
 	}
 }elseif(isset($_POST['leave']) && isset($zv['id']) && $dungeonGo == 1)
 {
 	if($zv['uid']==$u->info['id'])
 	{
-		//ставим в группу нового руководителя
+		//СЃС‚Р°РІРёРј РІ РіСЂСѓРїРїСѓ РЅРѕРІРѕРіРѕ СЂСѓРєРѕРІРѕРґРёС‚РµР»СЏ
 		$ld = mysql_fetch_array(mysql_query('SELECT `id` FROM `stats` WHERE `dn` = "'.$zv['id'].'" AND `id` != "'.$u->info['id'].'" LIMIT 1'));
 		if(isset($ld['id']))
 		{
@@ -216,14 +216,14 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 			$u->info['dn'] = 0;
 			unset($zv);
 		}else{
-			//удаляем группу целиком
+			//СѓРґР°Р»СЏРµРј РіСЂСѓРїРїСѓ С†РµР»РёРєРѕРј
 			mysql_query('UPDATE `dungeon_zv` SET `delete` = "'.time().'" WHERE `id` = "'.$zv['id'].'" LIMIT 1');
 			mysql_query('UPDATE `stats` SET `dn` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			$u->info['dn'] = 0;
 			unset($zv);
 		}
 	}else{
-		//просто выходим с группы
+		//РїСЂРѕСЃС‚Рѕ РІС‹С…РѕРґРёРј СЃ РіСЂСѓРїРїС‹
 		mysql_query('UPDATE `stats` SET `dn` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 		$u->info['dn'] = 0;
 		unset($zv);
@@ -245,26 +245,26 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $dungeonGo == 1){
 			$zv['id'] = $u->info['dn'];
 			$zv['uid'] = $u->info['id'];
 			mysql_query('UPDATE `stats` SET `dn` = "'.$u->info['dn'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-			$re = 'Вы успешно создали группу';
+			$re = 'Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°Р»Рё РіСЂСѓРїРїСѓ';
 		}else{
-			$re = 'Не удалось создать группу';
+			$re = 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РіСЂСѓРїРїСѓ';
 		}
 	}else{
-		$re = 'Вы уже находитесь в группе';
+		$re = 'Р’С‹ СѓР¶Рµ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ РіСЂСѓРїРїРµ';
 	}
 }
 
-//Генерируем список групп
+//Р“РµРЅРµСЂРёСЂСѓРµРј СЃРїРёСЃРѕРє РіСЂСѓРїРї
 $sp = mysql_query('SELECT * FROM `dungeon_zv` WHERE `city` = "'.$u->info['city'].'" AND `dun` = "'.$dungeon['id'].'" AND `delete` = "0" AND `time` > "'.(time()-60*60*2).'"');
 while($pl = mysql_fetch_array($sp)){
 	$dungeonGroupList .= '<div style="padding:2px;">';
 	if($u->info['dn']==0) $dungeonGroupList .= '<input type="radio" name="goid" id="goid" value="'.$pl['id'].'" />';
 	$dungeonGroupList .= '<span class="date">'.date('H:i',$pl['time']).'</span> ';
 	
-	$pus = ''; //группа
+	$pus = ''; //РіСЂСѓРїРїР°
 	$su = mysql_query('SELECT `u`.`id`,`u`.`login`,`u`.`level`,`u`.`align`,`u`.`clan`,`st`.`dn`,`u`.`city`,`u`.`room` FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`dn`="'.$pl['id'].'" LIMIT '.($pl['team_max']+1).'');
 	while($pu = mysql_fetch_array($su)){
-		$pus .= '<b>'.$pu['login'].'</b> ['.$pu['level'].']<a href="info/'.$pu['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="Инф. о '.$pu['login'].'"></a>';
+		$pus .= '<b>'.$pu['login'].'</b> ['.$pu['level'].']<a href="info/'.$pu['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="РРЅС„. Рѕ '.$pu['login'].'"></a>';
 		$pus .= ', ';
 	}
 	$pus = trim($pus,', ');
@@ -276,11 +276,11 @@ while($pl = mysql_fetch_array($sp)){
 	if($pl['com']!='')
 	{
 		$dl = '';
-		// Если модератор, даем возможность удалять комментарий к походу.
+		// Р•СЃР»Рё РјРѕРґРµСЂР°С‚РѕСЂ, РґР°РµРј РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СѓРґР°Р»СЏС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№ Рє РїРѕС…РѕРґСѓ.
 		$moder = mysql_fetch_array(mysql_query('SELECT * FROM `moder` WHERE `align` = "'.$u->info['align'].'" LIMIT 1'));
 		if(($moder['boi']==1 || $u->info['admin']>0) && $pl['dcom']==0)
 		{
-			$dl .= ' (<a href="?delcom='.$pl['id'].'&key='.$u->info['nextAct'].'&rnd='.$code.'">удалить комментарий</a>)';
+			$dl .= ' (<a href="?delcom='.$pl['id'].'&key='.$u->info['nextAct'].'&rnd='.$code.'">СѓРґР°Р»РёС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№</a>)';
 			if(isset($_GET['delcom']) && $_GET['delcom']==$pl['id'] && $u->newAct($_GET['key'])==true)
 			{
 				mysql_query('UPDATE `dungeon_zv` SET `dcom` = "'.$u->info['id'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
@@ -292,7 +292,7 @@ while($pl = mysql_fetch_array($sp)){
 		
 		if($pl['dcom']>0)
 		{
-			$dl = ' <font color="grey"><i>комментарий удален модератором</i></font>';
+			$dl = ' <font color="grey"><i>РєРѕРјРјРµРЅС‚Р°СЂРёР№ СѓРґР°Р»РµРЅ РјРѕРґРµСЂР°С‚РѕСЂРѕРј</i></font>';
 		}	
 		
 		if($pl['dcom']>0)
@@ -348,15 +348,15 @@ body
 							  }
 							  ?>"><?
 							  if($u->info['city']=='fallenearth'){
-								echo "Темный Портал";
+								echo "РўРµРјРЅС‹Р№ РџРѕСЂС‚Р°Р»";
 							  }else {
-								echo "Магический Портал";
+								echo "РњР°РіРёС‡РµСЃРєРёР№ РџРѕСЂС‚Р°Р»";
 							  }
 							  ?></a></td>
                             </tr>
                             <tr>
                               <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                              <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.373&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.373',1); ?>">Рыцарский магазин</a></td>
+                              <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.373&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.373',1); ?>">Р С‹С†Р°СЂСЃРєРёР№ РјР°РіР°Р·РёРЅ</a></td>
                             </tr>
                         </table>
 						</td>
@@ -374,24 +374,24 @@ body
 <? if($roomSection == 1) { ?>
 	<div align="center" style="float:right;width:100px;">
 	  <p>
-		<input type='button' onclick='location="main.php?rz=1"' value="Обновить" />
+		<input type='button' onclick='location="main.php?rz=1"' value="РћР±РЅРѕРІРёС‚СЊ" />
 		<br />
-		<input type='button' onclick='location="main.php"' value="Вернуться" />
+		<input type='button' onclick='location="main.php"' value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" />
 	  </p>
 	</div>
 	<? }else{ ?>
 	<div align="center" style="float:right;width:100px;">
 	  <p>
-		<input type='button' onclick='location="main.php"' value="Обновить" />
+		<input type='button' onclick='location="main.php"' value="РћР±РЅРѕРІРёС‚СЊ" />
 		<br />
-		<input type='button' onclick='location="main.php?rz=1"' value="Задания" />
+		<input type='button' onclick='location="main.php?rz=1"' value="Р—Р°РґР°РЅРёСЏ" />
 	  </p>
 	</div>
 <? } ?>
 <?
 if($re!='')echo '<font color="red"><b>'.$re.'</b></font><br>';
 
-//отображаем
+//РѕС‚РѕР±СЂР°Р¶Р°РµРј
 if($dungeonGroupList=='')
 {
 	$dungeonGroupList = '';
@@ -400,7 +400,7 @@ if($dungeonGroupList=='')
 	{
 		if($dungeonGo==1 || $u->info['dn'] == 0)
 		{
-			$pr = '<input name="go" type="submit" value="Вступить в группу">';
+			$pr = '<input name="go" type="submit" value="Р’СЃС‚СѓРїРёС‚СЊ РІ РіСЂСѓРїРїСѓ">';
 		}
 		$dungeonGroupList = '<form autocomplete="off" action="main.php?rnd='.$code.'" method="post">'.$pr.'<br>'.$dungeonGroupList.''.$pr.'</form>';
 	}
@@ -421,11 +421,11 @@ $qx = 0;
 //}
 if(isset($_GET['add_quest'])){
 	if(isset($hgo['id'])) {
-		echo '<font color="red"><b>Нельзя получать задания чаще одного раза в сутки</b></font><br>';
+		echo '<font color="red"><b>РќРµР»СЊР·СЏ РїРѕР»СѓС‡Р°С‚СЊ Р·Р°РґР°РЅРёСЏ С‡Р°С‰Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ СЃСѓС‚РєРё</b></font><br>';
 	} else {
 		
 //if($u->info['admin']>0){
-//	$sp = mysql_query('SELECT * FROM `quests` WHERE `id` = "236" && `tr_date` LIKE "%tr_dn:=:'.$dun.'%"'); // Только дашку 
+//	$sp = mysql_query('SELECT * FROM `quests` WHERE `id` = "236" && `tr_date` LIKE "%tr_dn:=:'.$dun.'%"'); // РўРѕР»СЊРєРѕ РґР°С€РєСѓ 
 //} else {
 	$sp = mysql_query('SELECT * FROM `quests` WHERE `line` = '.$dungeon['id'].'');
 //}
@@ -433,12 +433,12 @@ if(isset($_GET['add_quest'])){
 		$dq_add = array();
 		while($pl = mysql_fetch_array($sp)) {
 			if($u->rep['repcapitalcity'] == 9999) {
-				//квет, рыцарского задания
+				//РєРІРµС‚, СЂС‹С†Р°СЂСЃРєРѕРіРѕ Р·Р°РґР°РЅРёСЏ
 				if( $pl['kin'] == 1 ) {
 					$dq_add = array( 0 => $pl );
 				}
 			} elseif($u->rep['repcapitalcity'] == 24999) {
-				//квет, рыцарского задания
+				//РєРІРµС‚, СЂС‹С†Р°СЂСЃРєРѕРіРѕ Р·Р°РґР°РЅРёСЏ
 				if( $pl['kin'] == 2 ) {
 					$dq_add = array( 0 => $pl );
 				}
@@ -455,50 +455,50 @@ if(isset($_GET['add_quest'])){
 		if( $q->testGood($dq_add) == 1 && $dq_add > 0 )
 		{
 			$q->startq_dn($dq_add['id']);
-			echo '<font color="red"><b>Вы успешно получили новое задание &quot;'.$dq_add['name'].'&quot;.</b></font><br>'; 
+			echo '<font color="red"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё РЅРѕРІРѕРµ Р·Р°РґР°РЅРёРµ &quot;'.$dq_add['name'].'&quot;.</b></font><br>'; 
 			$u->addAction(time(),'psh_qt_capitalcity',$dq_add['id']);
 		} else {
 			if( $u->rep['repcapitalcity'] == 9999 ) {
-				//квет, рыцарского задания
-				echo '<font color="red"><b>Вы уже получили задание на достижение титула рыцаря!</b></font><br>';
+				//РєРІРµС‚, СЂС‹С†Р°СЂСЃРєРѕРіРѕ Р·Р°РґР°РЅРёСЏ
+				echo '<font color="red"><b>Р’С‹ СѓР¶Рµ РїРѕР»СѓС‡РёР»Рё Р·Р°РґР°РЅРёРµ РЅР° РґРѕСЃС‚РёР¶РµРЅРёРµ С‚РёС‚СѓР»Р° СЂС‹С†Р°СЂСЏ!</b></font><br>';
 			}elseif( $u->rep['repcapitalcity'] == 24999 ) {
-				//квет, рыцарского задания
-				echo '<font color="red"><b>Вы завершили квестовую линию, ожидайте новых заданий!</b></font><br>';
+				//РєРІРµС‚, СЂС‹С†Р°СЂСЃРєРѕРіРѕ Р·Р°РґР°РЅРёСЏ
+				echo '<font color="red"><b>Р’С‹ Р·Р°РІРµСЂС€РёР»Рё РєРІРµСЃС‚РѕРІСѓСЋ Р»РёРЅРёСЋ, РѕР¶РёРґР°Р№С‚Рµ РЅРѕРІС‹С… Р·Р°РґР°РЅРёР№!</b></font><br>';
 			}else{
-				echo '<font color="red"><b>Не удалось получить задание &quot;'.$dq_add['name'].'&quot;. Попробуйте еще...</b></font><br>';
+				echo '<font color="red"><b>РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ Р·Р°РґР°РЅРёРµ &quot;'.$dq_add['name'].'&quot;. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ...</b></font><br>';
 			}	
 		}
 		unset($dq_add);
 	}
 }
 
-//Генерируем список текущих квестов
+//Р“РµРЅРµСЂРёСЂСѓРµРј СЃРїРёСЃРѕРє С‚РµРєСѓС‰РёС… РєРІРµСЃС‚РѕРІ
 $sp = mysql_query('SELECT * FROM `actions` WHERE `vars` LIKE "%start_quest%" AND `vals` = "go" AND `uid` = "'.$u->info['id'].'" LIMIT 100');
 while($pl = mysql_fetch_array($sp))
 {
 	$pq = mysql_fetch_array(mysql_query('SELECT * FROM `quests` WHERE `id` = "'.str_replace('start_quest','',$pl['vars']).'" LIMIT 1'));
-	$qsee .= '<a href="main.php?rz=1&end_qst_now='.$pq['id'].'"><img src="http://img.xcombats.com/i/clear.gif" title="Отказаться от задания"></a> <b>'.$pq['name'].'</b><div style="padding-left:15px;padding-bottom:5px;border-bottom:1px solid grey"><small>'.$pq['info'].'<br>'.$q->info($pq).'</small></div><br>';
+	$qsee .= '<a href="main.php?rz=1&end_qst_now='.$pq['id'].'"><img src="http://img.xcombats.com/i/clear.gif" title="РћС‚РєР°Р·Р°С‚СЊСЃСЏ РѕС‚ Р·Р°РґР°РЅРёСЏ"></a> <b>'.$pq['name'].'</b><div style="padding-left:15px;padding-bottom:5px;border-bottom:1px solid grey"><small>'.$pq['info'].'<br>'.$q->info($pq).'</small></div><br>';
 	$qx++;
 }
 
 if($qsee == '')
 {
-	$qsee = 'К сожалению у вас нет ни одного задания';
+	$qsee = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ Сѓ РІР°СЃ РЅРµС‚ РЅРё РѕРґРЅРѕРіРѕ Р·Р°РґР°РЅРёСЏ';
 }
 ?>
 <Br />
 <FIELDSET>
-<LEGEND><B>Текущие задания: </B>[<?=$qx?>/28]</LEGEND>
+<LEGEND><B>РўРµРєСѓС‰РёРµ Р·Р°РґР°РЅРёСЏ: </B>[<?=$qx?>/28]</LEGEND>
 <?=$qsee?>
 <span style="padding-left: 10">
 <?
 if(!isset($hgo['id'])) {
 ?>
 <br />
-<input type='button' value='Получить задание' onclick='location="main.php?rz=1&add_quest=1"' />
+<input type='button' value='РџРѕР»СѓС‡РёС‚СЊ Р·Р°РґР°РЅРёРµ' onclick='location="main.php?rz=1&add_quest=1"' />
 <?
 }else{ 
-	echo 'Получить новое задание можно <b>'.date('d.m.Y H:i',$hgo['time']+60*60*24).'</b> <font color="">( Через '.$u->timeOut($hgo['time']+60*60*24-time()).' )</font>';
+	echo 'РџРѕР»СѓС‡РёС‚СЊ РЅРѕРІРѕРµ Р·Р°РґР°РЅРёРµ РјРѕР¶РЅРѕ <b>'.date('d.m.Y H:i',$hgo['time']+60*60*24).'</b> <font color="">( Р§РµСЂРµР· '.$u->timeOut($hgo['time']+60*60*24-time()).' )</font>';
 }
 ?>
 </span>
@@ -506,13 +506,13 @@ if(!isset($hgo['id'])) {
 	</form>
 	<br />
 	<? 
-	//Начисление бонуса награды
+	//РќР°С‡РёСЃР»РµРЅРёРµ Р±РѕРЅСѓСЃР° РЅР°РіСЂР°РґС‹
 	if(isset($_GET['buy1'])) { 
 		  if($_GET['buy1']==1) {
-			  //покупаем статы
+			  //РїРѕРєСѓРїР°РµРј СЃС‚Р°С‚С‹
 			  $price = 2000+($u->rep['add_stats']*100);
 			  $cur_price = array('price'=>0);
-			  if(25-$u->rep['add_stats']>0 && $u->rep['allrep']-$u->rep['allnurep']>=$price) { // Характеристики!
+			  if(25-$u->rep['add_stats']>0 && $u->rep['allrep']-$u->rep['allnurep']>=$price) { // РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё!
 				  
 				  foreach($dungeon['list'] as $key=>$val){
 					if(!($cur_price['price'] >= $price)){
@@ -526,7 +526,7 @@ if(!isset($hgo['id'])) {
 					}
 				  }
 				  if($price==$cur_price['price']) {
-					echo '<font color="red"><b>Вы успешно приобрели 1 способность за '.$price.' ед. награды</b></font><br>';
+					echo '<font color="red"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРѕР±СЂРµР»Рё 1 СЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ Р·Р° '.$price.' РµРґ. РЅР°РіСЂР°РґС‹</b></font><br>';
 					$u->info['ability']  += 1;
 					$u->rep['add_stats'] += 1;
 					
@@ -538,14 +538,14 @@ if(!isset($hgo['id'])) {
 					}
 					mysql_query('UPDATE `rep` SET `add_stats` = "'.$u->rep['add_stats'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `stats` SET `ability` = "'.$u->info['ability'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				  } else echo 'Недостаточно репутации.';
+				  } else echo 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЂРµРїСѓС‚Р°С†РёРё.';
 			  } else {
-				 echo '<font color="red"><b>Ничего не получилось...</b></font><br>'; 
+				 echo '<font color="red"><b>РќРёС‡РµРіРѕ РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ...</b></font><br>'; 
 			  }
-		  } elseif($_GET['buy1']==2) { // Умения!
+		  } elseif($_GET['buy1']==2) { // РЈРјРµРЅРёСЏ!
 			  $price = 2000+(2000*$u->rep['add_skills']);
 			  $cur_price = array('price'=>0); 
-			  if(10-$u->rep['add_skills']>0 && $u->rep['allrep']-$u->rep['allnurep'] >= $price ) { // Умения!
+			  if(10-$u->rep['add_skills']>0 && $u->rep['allrep']-$u->rep['allnurep'] >= $price ) { // РЈРјРµРЅРёСЏ!
 				   foreach($dungeon['list'] as $key=>$val){
 					if(!($cur_price['price'] >= $price)){
 					  if( $u->rep['rep'.$val] - $u->rep['nu_'.$val] > $price ){
@@ -558,7 +558,7 @@ if(!isset($hgo['id'])) {
 					}
 				  }
 				  if($price==$cur_price['price']) {
-					echo '<font color="red"><b>Вы успешно приобрели 1 умение за '.$price.' ед. награды</b></font><br>';
+					echo '<font color="red"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРѕР±СЂРµР»Рё 1 СѓРјРµРЅРёРµ Р·Р° '.$price.' РµРґ. РЅР°РіСЂР°РґС‹</b></font><br>';
 					$u->info['skills']  += 1;
 					$u->rep['add_skills'] += 1;
 					
@@ -570,14 +570,14 @@ if(!isset($hgo['id'])) {
 					}
 					mysql_query('UPDATE `rep` SET `add_skills` = "'.$u->rep['add_skills'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `stats` SET `skills` = "'.$u->info['skills'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				  } else echo 'Недостаточно репутации.';
+				  } else echo 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЂРµРїСѓС‚Р°С†РёРё.';
 			  } else {
-				 echo '<font color="red"><b>Ничего не получилось...</b></font><br>'; 
+				 echo '<font color="red"><b>РќРёС‡РµРіРѕ РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ...</b></font><br>'; 
 			  }
-		  }elseif($_GET['buy1']==3) { // Кредиты
+		  }elseif($_GET['buy1']==3) { // РљСЂРµРґРёС‚С‹
 			  $price = 100;
 			  $cur_price = array('price'=>0); 
-			  if( $u->rep['allrep'] - $u->rep['allnurep'] >= $price) { // Покупаем кредиты
+			  if( $u->rep['allrep'] - $u->rep['allnurep'] >= $price) { // РџРѕРєСѓРїР°РµРј РєСЂРµРґРёС‚С‹
 				  foreach($dungeon['list'] as $key=>$val){
 					if(!($cur_price['price'] >= $price)){
 					  if( $u->rep['rep'.$val] - $u->rep['nu_'.$val] > $price ){
@@ -590,7 +590,7 @@ if(!isset($hgo['id'])) {
 					}
 				  } 
 				  if($price==$cur_price['price']) {
-					echo '<font color="red"><b>Вы успешно приобрели 10 кр. за '.$price.' ед. награды</b></font><br>';
+					echo '<font color="red"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРѕР±СЂРµР»Рё 10 РєСЂ. Р·Р° '.$price.' РµРґ. РЅР°РіСЂР°РґС‹</b></font><br>';
 					$u->info['money']  += 10;
 					$u->rep['add_money'] += 10;
 					
@@ -602,14 +602,14 @@ if(!isset($hgo['id'])) {
 					}
 					mysql_query('UPDATE `rep` SET `add_money` = "'.$u->rep['add_money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				  } else echo 'Недостаточно репутации.'; 
+				  } else echo 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЂРµРїСѓС‚Р°С†РёРё.'; 
 			  }else{
-				 echo '<font color="red"><b>Ничего не получилось...</b></font><br>'; 
+				 echo '<font color="red"><b>РќРёС‡РµРіРѕ РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ...</b></font><br>'; 
 			  }
-		  }elseif( $_GET['buy1'] == 4 ) { // Особенности
+		  }elseif( $_GET['buy1'] == 4 ) { // РћСЃРѕР±РµРЅРЅРѕСЃС‚Рё
 			  $price = 3000;
 			  $cur_price = array('price'=>0);
-			  if( 5 - $u->rep['add_skills2'] > 0 && $u->rep['allrep']-$u->rep['allnurep'] >= $price ) { // Особенности
+			  if( 5 - $u->rep['add_skills2'] > 0 && $u->rep['allrep']-$u->rep['allnurep'] >= $price ) { // РћСЃРѕР±РµРЅРЅРѕСЃС‚Рё
 				  foreach($dungeon['list'] as $key=>$val){
 					if(!($cur_price['price'] >= $price)){
 					  if( $u->rep['rep'.$val] - $u->rep['nu_'.$val] > $price ){
@@ -622,7 +622,7 @@ if(!isset($hgo['id'])) {
 					}
 				  }
 				  if($price==$cur_price['price']) {
-					echo '<font color="red"><b>Вы успешно приобрели 1 особенность за '.$price.' ед. награды</b></font><br>';
+					echo '<font color="red"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРѕР±СЂРµР»Рё 1 РѕСЃРѕР±РµРЅРЅРѕСЃС‚СЊ Р·Р° '.$price.' РµРґ. РЅР°РіСЂР°РґС‹</b></font><br>';
 					$u->info['sskills']  += 1;
 					$u->rep['add_skills2'] += 1;
 					
@@ -634,48 +634,48 @@ if(!isset($hgo['id'])) {
 					}
 					mysql_query('UPDATE `rep` SET `add_skills2` = "'.$u->rep['add_skills2'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `stats` SET `sskills` = "'.$u->info['sskills'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				  } else echo 'Недостаточно репутации.'; 
+				  } else echo 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЂРµРїСѓС‚Р°С†РёРё.'; 
 				  
-				 // echo '<font color="red"><b>Вы успешно приобрели 1 особенность за 3000 ед. награды</b></font><br>'; 
+				 // echo '<font color="red"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРѕР±СЂРµР»Рё 1 РѕСЃРѕР±РµРЅРЅРѕСЃС‚СЊ Р·Р° 3000 РµРґ. РЅР°РіСЂР°РґС‹</b></font><br>'; 
 				 // $u->info['nskills']  += 1;
 				 // $u->rep['nu_capitalcity'] += 3000;
 				 // $u->rep['add_skills2'] += 1;
 				 // mysql_query('UPDATE `rep` SET `add_skills2` = `add_skills2`+1,`nu_capitalcity` = "'.$u->rep['nu_capitalcity'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				 // mysql_query('UPDATE `stats` SET `nskills` = "'.$u->info['nskills'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			  }else{
-				 echo '<font color="red"><b>Ничего не получилось...</b></font><br>'; 
+				 echo '<font color="red"><b>РќРёС‡РµРіРѕ РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ...</b></font><br>'; 
 			  }
 	  	}
 	  }
 	  ?>
       <fieldset>
-        <legend>Награда: <b>
+        <legend>РќР°РіСЂР°РґР°: <b>
         <?=($u->rep['allrep']-$u->rep['allnurep'])?> 
-        ед.</b></legend>
+        РµРґ.</b></legend>
         <table>
           <tr>
-            <td>Способность (еще <?=(25-$u->rep['add_stats'])?>)</td>
-            <td style='padding-left: 10px'>за <?=2000+($u->rep['add_stats']*100);?> ед.</td>
-            <td style='padding-left: 10px'><input type='button' value='Купить'
-onclick="if (confirm('Купить: Способность?\n\nКупив способность, Вы сможете увеличить характеристики персонажа.\nНапример, можно увеличить силу.')) {location='main.php?rz=1&buy1=1'}" /></td>
+            <td>РЎРїРѕСЃРѕР±РЅРѕСЃС‚СЊ (РµС‰Рµ <?=(25-$u->rep['add_stats'])?>)</td>
+            <td style='padding-left: 10px'>Р·Р° <?=2000+($u->rep['add_stats']*100);?> РµРґ.</td>
+            <td style='padding-left: 10px'><input type='button' value='РљСѓРїРёС‚СЊ'
+onclick="if (confirm('РљСѓРїРёС‚СЊ: РЎРїРѕСЃРѕР±РЅРѕСЃС‚СЊ?\n\nРљСѓРїРёРІ СЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ, Р’С‹ СЃРјРѕР¶РµС‚Рµ СѓРІРµР»РёС‡РёС‚СЊ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїРµСЂСЃРѕРЅР°Р¶Р°.\nРќР°РїСЂРёРјРµСЂ, РјРѕР¶РЅРѕ СѓРІРµР»РёС‡РёС‚СЊ СЃРёР»Сѓ.')) {location='main.php?rz=1&buy1=1'}" /></td>
           </tr>
           <tr>
-            <td>Умение (еще <?=(10-$u->rep['add_skills'])?>)</td>
-            <td style='padding-left: 10px'>за <?=2000+(2000*$u->rep['add_skills']);?> ед.</td>
-            <td style='padding-left: 10px'><input type='button' value='Купить'
-onclick="if (confirm('Купить: Умение?\n\nУмение даёт возможность почуствовать себя мастером меча, топора, магии и т.п.')) {location='main.php?rz=1&buy1=2'}" /></td>
+            <td>РЈРјРµРЅРёРµ (РµС‰Рµ <?=(10-$u->rep['add_skills'])?>)</td>
+            <td style='padding-left: 10px'>Р·Р° <?=2000+(2000*$u->rep['add_skills']);?> РµРґ.</td>
+            <td style='padding-left: 10px'><input type='button' value='РљСѓРїРёС‚СЊ'
+onclick="if (confirm('РљСѓРїРёС‚СЊ: РЈРјРµРЅРёРµ?\n\nРЈРјРµРЅРёРµ РґР°С‘С‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїРѕС‡СѓСЃС‚РІРѕРІР°С‚СЊ СЃРµР±СЏ РјР°СЃС‚РµСЂРѕРј РјРµС‡Р°, С‚РѕРїРѕСЂР°, РјР°РіРёРё Рё С‚.Рї.')) {location='main.php?rz=1&buy1=2'}" /></td>
           </tr>
           <tr>
-            <td>Деньги (10 кр.)</td>
-            <td style='padding-left: 10px'>за 100 ед.</td>
-            <td style='padding-left: 10px'><input type='button' value='Купить'
-onclick="if (confirm('Купить: Деньги (10 кр.)?\n\nНаграду можно получить полновесными кредитами.')) {location='main.php?rz=1&buy1=3'}" /></td>
+            <td>Р”РµРЅСЊРіРё (10 РєСЂ.)</td>
+            <td style='padding-left: 10px'>Р·Р° 100 РµРґ.</td>
+            <td style='padding-left: 10px'><input type='button' value='РљСѓРїРёС‚СЊ'
+onclick="if (confirm('РљСѓРїРёС‚СЊ: Р”РµРЅСЊРіРё (10 РєСЂ.)?\n\nРќР°РіСЂР°РґСѓ РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ РїРѕР»РЅРѕРІРµСЃРЅС‹РјРё РєСЂРµРґРёС‚Р°РјРё.')) {location='main.php?rz=1&buy1=3'}" /></td>
           </tr>
           <tr>
-            <td>Особенность (еще <?=(5-$u->rep['add_skills2'])?>)</td>
-            <td style='padding-left: 10px'>за 3000 ед.</td>
-            <td style='padding-left: 10px'><input type='button' value='Купить'
-onclick="if (confirm('Купить: Особенность?\n\nОсобенность - это дополнительные возможности персонажа, не дающие преимущества в боях.\nНапример, можно увеличить скорость восстановления HP')) {location='main.php?rz=1&buy1=4'}" /></td>
+            <td>РћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ (РµС‰Рµ <?=(5-$u->rep['add_skills2'])?>)</td>
+            <td style='padding-left: 10px'>Р·Р° 3000 РµРґ.</td>
+            <td style='padding-left: 10px'><input type='button' value='РљСѓРїРёС‚СЊ'
+onclick="if (confirm('РљСѓРїРёС‚СЊ: РћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ?\n\nРћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ - СЌС‚Рѕ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїРµСЂСЃРѕРЅР°Р¶Р°, РЅРµ РґР°СЋС‰РёРµ РїСЂРµРёРјСѓС‰РµСЃС‚РІР° РІ Р±РѕСЏС….\nРќР°РїСЂРёРјРµСЂ, РјРѕР¶РЅРѕ СѓРІРµР»РёС‡РёС‚СЊ СЃРєРѕСЂРѕСЃС‚СЊ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ HP')) {location='main.php?rz=1&buy1=4'}" /></td>
           </tr>
         </table>
         <p><span style="padding-left: 10px">
@@ -691,33 +691,33 @@ onclick="if (confirm('Купить: Особенность?\n\nОсобенность - это дополнительные в
 			 }
 			 $u->info['money'] += $prc;
 			 mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-			 echo '<font color="red"><b>Вы успешно сдали чеки в количестве '.$x.' шт. на сумму '.$prc.' кр.</b></font><br>'; 
+			 echo '<font color="red"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРґР°Р»Рё С‡РµРєРё РІ РєРѕР»РёС‡РµСЃС‚РІРµ '.$x.' С€С‚. РЅР° СЃСѓРјРјСѓ '.$prc.' РєСЂ.</b></font><br>'; 
 			 $chk[0] = 0;
 		
 		}
 		if($chk[0]>0) {
 		?>
-          <input type='button' value='Сдать чеки'
-onclick="if (confirm('Сдать все чеки (<?=$chk[0]?> шт.) находящиеся у Вас в инвентаре за <?=$chk[1]?> кр. ?')) {location='main.php?rz=1&buy777=1'}" />
+          <input type='button' value='РЎРґР°С‚СЊ С‡РµРєРё'
+onclick="if (confirm('РЎРґР°С‚СЊ РІСЃРµ С‡РµРєРё (<?=$chk[0]?> С€С‚.) РЅР°С…РѕРґСЏС‰РёРµСЃСЏ Сѓ Р’Р°СЃ РІ РёРЅРІРµРЅС‚Р°СЂРµ Р·Р° <?=$chk[1]?> РєСЂ. ?')) {location='main.php?rz=1&buy777=1'}" />
 		<? } ?>
         </span></p>
       </fieldset>
 	  <fieldset style='margin-top:15px;'>
 		<table> 
 		  <tr>
-			<td width="200">Репутация в Capital city:</td>
-			<td><?=$u->rep['repcapitalcity']?> ед. </td>
+			<td width="200">Р РµРїСѓС‚Р°С†РёСЏ РІ Capital city:</td>
+			<td><?=$u->rep['repcapitalcity']?> РµРґ. </td>
 		  </tr>
           <tr>
-			<td>Репутация в Demons city:</td>
-			<td><?=$u->rep['repdemonscity']?> ед.  </td>
+			<td>Р РµРїСѓС‚Р°С†РёСЏ РІ Demons city:</td>
+			<td><?=$u->rep['repdemonscity']?> РµРґ.  </td>
 		  </tr>
           <tr>
-			<td>Репутация в Angels city:</td>
-			<td><?=$u->rep['repangelscity']?> ед. </td>
+			<td>Р РµРїСѓС‚Р°С†РёСЏ РІ Angels city:</td>
+			<td><?=$u->rep['repangelscity']?> РµРґ. </td>
 		  </tr> 
         </table>
-        <legend>Текущая репутация:</legend> 
+        <legend>РўРµРєСѓС‰Р°СЏ СЂРµРїСѓС‚Р°С†РёСЏ:</legend> 
       </fieldset>
 </div>
 <?
@@ -730,14 +730,14 @@ onclick="if (confirm('Сдать все чеки (<?=$chk[0]?> шт.) находящиеся у Вас в инве
 				<td valign="top">
 				<form id="from" autocomplete="off" name="from" action="main.php?pz1=<? echo $code; ?>" method="post">
 				  <fieldset style='padding-left: 5; width=50%'>
-				  <legend><b> Группа </b> </legend>
-					Комментарий
+				  <legend><b> Р“СЂСѓРїРїР° </b> </legend>
+					РљРѕРјРјРµРЅС‚Р°СЂРёР№
 					<input type="text" name="text" maxlength="40" size="40" />
 				  <br />
-					Пароль
+					РџР°СЂРѕР»СЊ
 			  <input type="password" name="pass" maxlength="25" size="25" />
 			  <br />
-			  <input type="submit" name="add" value="Создать группу" />
+			  <input type="submit" name="add" value="РЎРѕР·РґР°С‚СЊ РіСЂСѓРїРїСѓ" />
 			  &nbsp;<br />
 				  </fieldset>
 				</form>
@@ -749,19 +749,19 @@ onclick="if (confirm('Сдать все чеки (<?=$chk[0]?> шт.) находящиеся у Вас в инве
 				$psh_start = '';
 				if(isset($zv['id'])){
 					if($zv['uid']==$u->info['id']){
-						$psh_start = '<INPUT type=\'button\' name=\'start\' value=\'Начать\' onClick="top.frames[\'main\'].location = \'main.php?start=1&rnd='.$code.'\'"> &nbsp;';
+						$psh_start = '<INPUT type=\'button\' name=\'start\' value=\'РќР°С‡Р°С‚СЊ\' onClick="top.frames[\'main\'].location = \'main.php?start=1&rnd='.$code.'\'"> &nbsp;';
 					}
 					echo '<br><FORM autocomplete="off" id="REQUEST" method="post" style="width:210px;" action="main.php?rnd='.$code.'">
 					<FIELDSET style=\'padding-left: 5; width=50%\'>
-					<LEGEND><B> Группа </B> </LEGEND>
+					<LEGEND><B> Р“СЂСѓРїРїР° </B> </LEGEND>
 					'.$psh_start.'
-					<INPUT type=\'submit\' name=\'leave\' value=\'Покинуть группу\'> 
+					<INPUT type=\'submit\' name=\'leave\' value=\'РџРѕРєРёРЅСѓС‚СЊ РіСЂСѓРїРїСѓ\'> 
 					</FIELDSET>
 					</FORM>';
 				}
 			}
 		}else{
-			echo 'Поход в пещеры разрешен один раз в три часа. Осталось еще: '.$u->timeOut(60*60*3-time()+$dungeon_timeout['time']).'<br><small style="color:grey">Но Вы всегда можете приобрести ключ от прохода у любого &quot;копателя пещер&quot; в Торговом зале ;)</small>';
+			echo 'РџРѕС…РѕРґ РІ РїРµС‰РµСЂС‹ СЂР°Р·СЂРµС€РµРЅ РѕРґРёРЅ СЂР°Р· РІ С‚СЂРё С‡Р°СЃР°. РћСЃС‚Р°Р»РѕСЃСЊ РµС‰Рµ: '.$u->timeOut(60*60*3-time()+$dungeon_timeout['time']).'<br><small style="color:grey">РќРѕ Р’С‹ РІСЃРµРіРґР° РјРѕР¶РµС‚Рµ РїСЂРёРѕР±СЂРµСЃС‚Рё РєР»СЋС‡ РѕС‚ РїСЂРѕС…РѕРґР° Сѓ Р»СЋР±РѕРіРѕ &quot;РєРѕРїР°С‚РµР»СЏ РїРµС‰РµСЂ&quot; РІ РўРѕСЂРіРѕРІРѕРј Р·Р°Р»Рµ ;)</small>';
 		}
 	}
 }

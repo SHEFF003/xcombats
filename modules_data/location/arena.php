@@ -49,7 +49,7 @@ if($u->room['file']=='arena')
 	</style>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
 	<tr><td valign="top"><br /><br />
-	<div align="center" class="pH3">Арена</div>
+	<div align="center" class="pH3">РђСЂРµРЅР°</div>
 	<?php
 	echo '<b style="color:red">'.$error.'</b>';
 	?>
@@ -75,15 +75,15 @@ if($u->room['file']=='arena')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.213&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.213',1); ?>">Большая торговая улица</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.213&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.213',1); ?>">Р‘РѕР»СЊС€Р°СЏ С‚РѕСЂРіРѕРІР°СЏ СѓР»РёС†Р°</a></td>
 	</tr>
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.xx&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.xx',1); ?>">Турнирный магазин</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.xx&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.xx',1); ?>">РўСѓСЂРЅРёСЂРЅС‹Р№ РјР°РіР°Р·РёРЅ</a></td>
 	</tr>
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.322&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.322',1); ?>">Алтарь крови</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.322&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.322',1); ?>">РђР»С‚Р°СЂСЊ РєСЂРѕРІРё</a></td>
 	</tr>
 	</table>
 	</td>

@@ -10,11 +10,11 @@ if($u->room['file']=='dragopsh') {
 	
 	$lab = mysql_fetch_array(mysql_query('SELECT * FROM `laba_now` WHERE `id` = "'.$u->info['dnow'].'" LIMIT 1')); 
 	if( !isset($lab['id']) ) {		
-		die('Поход в подземелье не найден...');	
+		die('РџРѕС…РѕРґ РІ РїРѕРґР·РµРјРµР»СЊРµ РЅРµ РЅР°Р№РґРµРЅ...');	
 	}
 	
 				$varsitmsund = array( 
-					//Вещи в сундуках
+					//Р’РµС‰Рё РІ СЃСѓРЅРґСѓРєР°С…
 					array(4391,1),
 					array(1043,1),
 					array(3106,1),
@@ -43,7 +43,7 @@ if($u->room['file']=='dragopsh') {
 				);
 				
 				$varsitm = array( 
-					//Слабые ресурсы
+					//РЎР»Р°Р±С‹Рµ СЂРµСЃСѓСЂСЃС‹
 					array(4373,1),
 					array(4374,1),
 					array(4375,1),
@@ -87,7 +87,7 @@ if($u->room['file']=='dragopsh') {
 					array(4385,1)
 				);
 				$varsitmart = array( 
-					//Артефакты
+					//РђСЂС‚РµС„Р°РєС‚С‹
 					array(2109,1),
 					array(2111,1),
 					array(2099,1),
@@ -101,7 +101,7 @@ if($u->room['file']=='dragopsh') {
 	
 	$map = mysql_fetch_array(mysql_query('SELECT `id`,`data`,`update` FROM `laba_map` WHERE `id` = "'.$u->info['dnow'].'" LIMIT 1'));
 	if( !isset($map['id']) ) {		
-		die('Карта подземелий не найдена...');
+		die('РљР°СЂС‚Р° РїРѕРґР·РµРјРµР»РёР№ РЅРµ РЅР°Р№РґРµРЅР°...');
 	}
 	
 	$dies = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$u->info['dnow'].'" AND `vars` = "dielaba" LIMIT 1'));
@@ -121,9 +121,9 @@ if($u->room['file']=='dragopsh') {
 		);
 		if(isset($var['obj']['id'])) {
 			if( $var['obj']['take'] == 0 ) {
-				$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'а'; }
-				$var['text'] = '<b>'.$u->info['login'].'</b> поднял'.$var['sex'].' предмет &quot;'.$var['obj']['name'].'&quot;';
-				$errors .= '<b><font color=red>Вы подняли предмет &quot;'.$var['obj']['name'].'&quot;</font></b>';
+				$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'Р°'; }
+				$var['text'] = '<b>'.$u->info['login'].'</b> РїРѕРґРЅСЏР»'.$var['sex'].' РїСЂРµРґРјРµС‚ &quot;'.$var['obj']['name'].'&quot;';
+				$errors .= '<b><font color=red>Р’С‹ РїРѕРґРЅСЏР»Рё РїСЂРµРґРјРµС‚ &quot;'.$var['obj']['name'].'&quot;</font></b>';
 				mysql_query('UPDATE `laba_itm` SET `take` = "'.$u->info['id'].'" WHERE `id` = "'.$var['obj']['id'].'" LIMIT 1');
 				if( $var['obj']['inslot'] > 0 ) {
 					$u->addItem($var['obj']['itm'],$u->info['id'],'|fromlaba=1|nosavelaba=1|nosale=1');
@@ -132,10 +132,10 @@ if($u->room['file']=='dragopsh') {
 				}
 				mysql_query("INSERT INTO `chat` (`dn`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['dnow']."','".$u->info['city']."','".$u->info['room']."','','','".$var['text']."','".time()."','6','0','1','1')");									
 			}else{
-				$errors .= '<b><font color=red>Предмет кто-то поднял раньше Вас...</font></b>';
+				$errors .= '<b><font color=red>РџСЂРµРґРјРµС‚ РєС‚Рѕ-С‚Рѕ РїРѕРґРЅСЏР» СЂР°РЅСЊС€Рµ Р’Р°СЃ...</font></b>';
 			}
 		}else{
-			$errors = '<font color=red><b>Предмет не найден...</b></font>';
+			$errors = '<font color=red><b>РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ...</b></font>';
 		}
 	}elseif( isset($_GET['useobj']) ) {
 		$var = array(
@@ -144,12 +144,12 @@ if($u->room['file']=='dragopsh') {
 		if(isset($var['obj']['id'])) {
 			if( $var['obj']['use'] == 0 ) {
 				if( $var['obj']['type'] == 1 ) {
-					//сунудук										
-					$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'а'; }
+					//СЃСѓРЅСѓРґСѓРє										
+					$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'Р°'; }
 					
-					//Выдаем ресурсы, свитки
+					//Р’С‹РґР°РµРј СЂРµСЃСѓСЂСЃС‹, СЃРІРёС‚РєРё
 					if( rand(0,100) < 25 ) {
-						//Выдаем арт varsitmart
+						//Р’С‹РґР°РµРј Р°СЂС‚ varsitmart
 						$var['itm'] = $varsitm[rand(0,count($varsitm)-1)];
 						$var['itm'] = $var['itm'][0];
 						$var['itm'] = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$var['itm'].'" LIMIT 1'));
@@ -158,29 +158,29 @@ if($u->room['file']=='dragopsh') {
 								"'.$u->info['id'].'","'.$lab['id'].'","'.time().'","'.$var['itm']['id'].'","'.$u->info['x'].'","'.$u->info['y'].'","0"
 							)');
 						}else{
-							$var['itm']['name'] = 'Предмет рассыпался на глазах...';
+							$var['itm']['name'] = 'РџСЂРµРґРјРµС‚ СЂР°СЃСЃС‹РїР°Р»СЃСЏ РЅР° РіР»Р°Р·Р°С…...';
 						}
 					}
-					//Выдаем ресурсы, свитки
+					//Р’С‹РґР°РµРј СЂРµСЃСѓСЂСЃС‹, СЃРІРёС‚РєРё
 					$var['itm'] = $varsitmsund[rand(0,count($varsitmsund)-1)];
 					$var['itm'] = $var['itm'][0];
 					$var['itm'] = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$var['itm'].'" LIMIT 1'));
 					if( isset($var['itm']['id']) ) {
 						$u->addItem($var['itm']['id'],$u->info['id'],'|fromlaba=1');
 					}else{
-						$var['itm']['name'] = 'Предмет рассыпался на глазах...';
+						$var['itm']['name'] = 'РџСЂРµРґРјРµС‚ СЂР°СЃСЃС‹РїР°Р»СЃСЏ РЅР° РіР»Р°Р·Р°С…...';
 					}
-					$var['text'] = '<img width=40 height=25 src=http://img.xcombats.com/i/items/event_sunduk.gif> <b>'.$u->info['login'].'</b> открыл'.$var['sex'].' сундук...и забрал &quot;'.$var['itm']['name'].'&quot;';
+					$var['text'] = '<img width=40 height=25 src=http://img.xcombats.com/i/items/event_sunduk.gif> <b>'.$u->info['login'].'</b> РѕС‚РєСЂС‹Р»'.$var['sex'].' СЃСѓРЅРґСѓРє...Рё Р·Р°Р±СЂР°Р» &quot;'.$var['itm']['name'].'&quot;';
 					mysql_query("INSERT INTO `chat` (`dn`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['dnow']."','".$u->info['city']."','".$u->info['room']."','','','".$var['text']."','".time()."','6','0','1','1')");								
-					$errors .= '<img width="40" height="25" src="http://img.xcombats.com/i/items/event_sunduk.gif"> '.$u->info['login'].' открыл'.$var['sex'].' сундук...и забрал &quot;'.$var['itm']['name'].'&quot;';
+					$errors .= '<img width="40" height="25" src="http://img.xcombats.com/i/items/event_sunduk.gif"> '.$u->info['login'].' РѕС‚РєСЂС‹Р»'.$var['sex'].' СЃСѓРЅРґСѓРє...Рё Р·Р°Р±СЂР°Р» &quot;'.$var['itm']['name'].'&quot;';
 					$var['obj']['use'] = $u->info['id'];
 				}elseif( $var['obj']['type'] == 5 ) {
-					//Пандору										
-					$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'а'; }
+					//РџР°РЅРґРѕСЂСѓ										
+					$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'Р°'; }
 					
-					//Выдаем ресурсы, свитки
+					//Р’С‹РґР°РµРј СЂРµСЃСѓСЂСЃС‹, СЃРІРёС‚РєРё
 					if( rand(0,100) < 70 ) {
-						//Выдаем арт varsitmart
+						//Р’С‹РґР°РµРј Р°СЂС‚ varsitmart
 						$var['itm'] = $varsitmart[rand(0,count($varsitmart)-1)];
 						$var['itm'] = $var['itm'][0];
 						$var['itm'] = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$var['itm'].'" LIMIT 1'));
@@ -189,7 +189,7 @@ if($u->room['file']=='dragopsh') {
 								"'.$u->info['id'].'","'.$lab['id'].'","'.time().'","'.$var['itm']['id'].'","'.$u->info['x'].'","'.$u->info['y'].'","0"
 							)');
 						}else{
-							$var['itm']['name'] = 'Предмет рассыпался на глазах...';
+							$var['itm']['name'] = 'РџСЂРµРґРјРµС‚ СЂР°СЃСЃС‹РїР°Р»СЃСЏ РЅР° РіР»Р°Р·Р°С…...';
 						}
 					}
 					$var['itm'] = $varsitm[rand(0,count($varsitm)-1)];
@@ -201,41 +201,41 @@ if($u->room['file']=='dragopsh') {
 							"'.$u->info['id'].'","'.$lab['id'].'","'.time().'","'.$var['itm']['id'].'","'.$u->info['x'].'","'.$u->info['y'].'","0"
 						)');
 					}else{
-						$var['itm']['name'] = 'Предмет рассыпался на глазах...';
+						$var['itm']['name'] = 'РџСЂРµРґРјРµС‚ СЂР°СЃСЃС‹РїР°Р»СЃСЏ РЅР° РіР»Р°Р·Р°С…...';
 					}
-					$var['text'] = '<img width=40 height=25 src=http://img.xcombats.com/i/items/event_pandbox.gif> <b>'.$u->info['login'].'</b> открыл'.$var['sex'].' Ящик Пандоры...';
+					$var['text'] = '<img width=40 height=25 src=http://img.xcombats.com/i/items/event_pandbox.gif> <b>'.$u->info['login'].'</b> РѕС‚РєСЂС‹Р»'.$var['sex'].' РЇС‰РёРє РџР°РЅРґРѕСЂС‹...';
 					mysql_query("INSERT INTO `chat` (`dn`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['dnow']."','".$u->info['city']."','".$u->info['room']."','','','".$var['text']."','".time()."','6','0','1','1')");								
-					$errors .= '<img width="40" height="25" src="http://img.xcombats.com/i/items/event_pandbox.gif"> '.$u->info['login'].' открыл'.$var['sex'].' Ящик Пандоры...';
+					$errors .= '<img width="40" height="25" src="http://img.xcombats.com/i/items/event_pandbox.gif"> '.$u->info['login'].' РѕС‚РєСЂС‹Р»'.$var['sex'].' РЇС‰РёРє РџР°РЅРґРѕСЂС‹...';
 					$var['obj']['use'] = $u->info['id'];
 				}elseif( $var['obj']['type'] == 3 ) {
-					//Хилка										
-					$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'а'; }
+					//РҐРёР»РєР°										
+					$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'Р°'; }
 					$var['hpp'] = rand(2,5)*10;
 					$var['hp'] = round($u->stats['hpAll']/100*$var['hpp']);
 					$u->stats['hpNow'] += $var['hp'];
 					if( $u->stats['hpNow'] > $u->stats['hpAll'] ) {
 						$u->stats['hpNow'] = $u->stats['hpAll'];
 					}
-					$var['text'] = '<img width=40 height=25 src=http://img.xcombats.com/i/items/event_heal.gif> <b>'.$u->info['login'].'</b> пополнил'.$var['sex'].' здоровье, Уровень Жизни +'.$var['hpp'].'% (+'.$var['hp'].'HP)';
+					$var['text'] = '<img width=40 height=25 src=http://img.xcombats.com/i/items/event_heal.gif> <b>'.$u->info['login'].'</b> РїРѕРїРѕР»РЅРёР»'.$var['sex'].' Р·РґРѕСЂРѕРІСЊРµ, РЈСЂРѕРІРµРЅСЊ Р–РёР·РЅРё +'.$var['hpp'].'% (+'.$var['hp'].'HP)';
 					mysql_query('UPDATE `stats` SET `hpNow` = "'.$u->stats['hpNow'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query("INSERT INTO `chat` (`dn`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['dnow']."','".$u->info['city']."','".$u->info['room']."','','','".$var['text']."','".time()."','6','0','1','1')");								
-					$errors .= '<img width="40" height="25" src="http://img.xcombats.com/i/items/event_heal.gif"> '.$u->info['login'].' пополнил'.$var['sex'].' здоровье, Уровень Жизни +'.$var['hpp'].'% (+'.$var['hp'].'HP)';
+					$errors .= '<img width="40" height="25" src="http://img.xcombats.com/i/items/event_heal.gif"> '.$u->info['login'].' РїРѕРїРѕР»РЅРёР»'.$var['sex'].' Р·РґРѕСЂРѕРІСЊРµ, РЈСЂРѕРІРµРЅСЊ Р–РёР·РЅРё +'.$var['hpp'].'% (+'.$var['hp'].'HP)';
 					$var['obj']['use'] = $u->info['id'];
 				}				
 				if( $var['obj']['use'] > 0 ) {
 					mysql_query('UPDATE `laba_obj` SET `use` = "'.$var['obj']['use'].'" WHERE `id` = "'.$var['obj']['id'].'" LIMIT 1');
 				}
 			}else{
-				$errors = '<font color=red><b>Кто-то уже использовал это до Вас...</b></font>';
+				$errors = '<font color=red><b>РљС‚Рѕ-С‚Рѕ СѓР¶Рµ РёСЃРїРѕР»СЊР·РѕРІР°Р» СЌС‚Рѕ РґРѕ Р’Р°СЃ...</b></font>';
 			}
 		}else{
-			$errors = '<font color=red><b>Обьект не найден...</b></font>';
+			$errors = '<font color=red><b>РћР±СЊРµРєС‚ РЅРµ РЅР°Р№РґРµРЅ...</b></font>';
 		}
 		
 		unset($var);
 	}
 		
-	//Генирация карты
+	//Р“РµРЅРёСЂР°С†РёСЏ РєР°СЂС‚С‹
 	$mapsee = '';
 	$real_x = $u->info['x'];
 	$real_y = $u->info['y'];
@@ -291,7 +291,7 @@ if($u->room['file']=='dragopsh') {
 			$goto['y']++;
 		}
 		if( $goodgoo[$_GET['goto']] == 1 && $u->info['timeGo'] <= time() ) {
-			//переходим
+			//РїРµСЂРµС…РѕРґРёРј
 			$u->info['y'] = $goto['x'];
 			$u->info['x'] = $goto['y'];
 			$real_x = $u->info['x'];
@@ -340,7 +340,7 @@ if($u->room['file']=='dragopsh') {
 		
 	if( isset($_POST['exit']) ) {
 		if( $lab['users'] < 2 ) {
-			//Удаляем подземелье
+			//РЈРґР°Р»СЏРµРј РїРѕРґР·РµРјРµР»СЊРµ
 			mysql_query('DELETE FROM `laba_now` WHERE `id` = "'.$lab['id'].'" LIMIT 1');
 			mysql_query('DELETE FROM `laba_map` WHERE `id` = "'.$lab['id'].'" LIMIT 1');
 			mysql_query('DELETE FROM `laba_obj` WHERE `lib` = "'.$lab['id'].'"');
@@ -354,19 +354,19 @@ if($u->room['file']=='dragopsh') {
 		mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `delete` < 1234567890 AND `inShop` = "0" AND `data` LIKE "%nosavelaba=1%"');
 		mysql_query('UPDATE `users` SET `room` = "369" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 		mysql_query('UPDATE `stats` SET `dnow` = "0",`x`="0",`y`="0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-		//Выбрасываем предметы которые из подземелья
+		//Р’С‹Р±СЂР°СЃС‹РІР°РµРј РїСЂРµРґРјРµС‚С‹ РєРѕС‚РѕСЂС‹Рµ РёР· РїРѕРґР·РµРјРµР»СЊСЏ
 		
 		die('<script>location.href="main.php";</script>');
 	}
 	
-	//Предметы в локации
+	//РџСЂРµРґРјРµС‚С‹ РІ Р»РѕРєР°С†РёРё
 	$itms = '';
 	
 	if(isset($objs[$u->info['x']][$u->info['y']]['id'])) {
 		$var = array();
 		$mitm = $objs[$u->info['x']][$u->info['y']];
 		if( $mitm['type'] == 6 ) {
-			//Случайный предмет
+			//РЎР»СѓС‡Р°Р№РЅС‹Р№ РїСЂРµРґРјРµС‚
 			if( $mitm['vars'] < 25 ) {
 				$i = 0;
 				while( $i < $mitm['vars'] ) {
@@ -383,7 +383,7 @@ if($u->room['file']=='dragopsh') {
 					$i++;
 				}
 			}else{
-				//Конкретный предмет
+				//РљРѕРЅРєСЂРµС‚РЅС‹Р№ РїСЂРµРґРјРµС‚
 				
 			}
 			mysql_query('DELETE FROM `laba_obj` WHERE `id` = "'.$mitm['id'].'" LIMIT 1');
@@ -391,10 +391,10 @@ if($u->room['file']=='dragopsh') {
 			if( $mitm['use'] == 0 ) {
 				$tbtl = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `team_win` = -1 AND `dn_id` = "'.$lab['id'].'" AND `x` = "'.$u->info['x'].'" AND `y` = "'.$u->info['y'].'" LIMIT 1'));
 				if( isset($tbtl['id']) ) {
-					//вступаем в поединок
+					//РІСЃС‚СѓРїР°РµРј РІ РїРѕРµРґРёРЅРѕРє
 					mysql_query('UPDATE `users` SET `battle` = "'.$tbtl['id'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `stats` SET `team` = "1" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-					$u->error = 'Нападаем ... <script>location="main.php?rnd='.$code.'";</script>';
+					$u->error = 'РќР°РїР°РґР°РµРј ... <script>location="main.php?rnd='.$code.'";</script>';
 				}else{
 					$var['bots'] = array( 
 						array(357,5),
@@ -409,11 +409,11 @@ if($u->room['file']=='dragopsh') {
 						array(366,5),
 						array(367,3)
 					);
-					//Создаем новый бой
+					//РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ Р±РѕР№
 					if( $mitm['vars'] != NULL ) {
-						//Боты уже есть
+						//Р‘РѕС‚С‹ СѓР¶Рµ РµСЃС‚СЊ
 					}else{
-						//Новый список составляем
+						//РќРѕРІС‹Р№ СЃРїРёСЃРѕРє СЃРѕСЃС‚Р°РІР»СЏРµРј
 						$i = 0;
 						while( $i <= $u->info['level'] ) {
 							$var['ab'] = $var['bots'][rand(0,count($var['bots'])-1)];
@@ -488,31 +488,31 @@ if($u->room['file']=='dragopsh') {
 						{
 							mysql_query('UPDATE `users` SET `battle` = "'.$btl_id.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 							mysql_query('UPDATE `stats` SET `team` = "1" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');							
-							$u->error = 'Нападаем ... <script>location="main.php?rnd='.$code.'";</script>';
+							$u->error = 'РќР°РїР°РґР°РµРј ... <script>location="main.php?rnd='.$code.'";</script>';
 						}else{
-							$u->error = 'Не удалось напасть, ошибка обьекта нападения ...';	
+							$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°РїР°СЃС‚СЊ, РѕС€РёР±РєР° РѕР±СЊРµРєС‚Р° РЅР°РїР°РґРµРЅРёСЏ ...';	
 						}
 					}
 					//
 				}
 			}
 		}elseif( $mitm['type'] == 1 ) {
-			//Сундук
+			//РЎСѓРЅРґСѓРє
 			if( $mitm['use'] == 0 ) {
-				$itms .= '<a title="Открыть" href="main.php?useobj='.$mitm['id'].'"><img src="http://img.xcombats.com/i/items/use_sunduk_on.gif" width="60" height="60"></a>';
+				$itms .= '<a title="РћС‚РєСЂС‹С‚СЊ" href="main.php?useobj='.$mitm['id'].'"><img src="http://img.xcombats.com/i/items/use_sunduk_on.gif" width="60" height="60"></a>';
 			}else{
-				$itms .= '<img title="Сундук был открыт" src="http://img.xcombats.com/i/items/use_sunduk_off.gif" width="60" height="60">';
+				$itms .= '<img title="РЎСѓРЅРґСѓРє Р±С‹Р» РѕС‚РєСЂС‹С‚" src="http://img.xcombats.com/i/items/use_sunduk_off.gif" width="60" height="60">';
 			}
 		}elseif( $mitm['type'] == 3 ) {
-			//хилка
+			//С…РёР»РєР°
 			if( $mitm['use'] == 0 ) {
-				$itms .= '<a title="Выпить" href="main.php?useobj='.$mitm['id'].'"><img src="http://img.xcombats.com/i/items/use_heal_on.gif" width="60" height="60"></a>';
+				$itms .= '<a title="Р’С‹РїРёС‚СЊ" href="main.php?useobj='.$mitm['id'].'"><img src="http://img.xcombats.com/i/items/use_heal_on.gif" width="60" height="60"></a>';
 			}else{
-				$itms .= '<img title="Эликсир был выпит" src="http://img.xcombats.com/i/items/openHeal.gif" width="60" height="60">';
+				$itms .= '<img title="Р­Р»РёРєСЃРёСЂ Р±С‹Р» РІС‹РїРёС‚" src="http://img.xcombats.com/i/items/openHeal.gif" width="60" height="60">';
 			}
 		}elseif( $mitm['type'] == 4 ) {
 			if( $mitm['use'] == 0 ) {
-				//Ловушка
+				//Р›РѕРІСѓС€РєР°
 				$var['trap1'] = mysql_fetch_array(mysql_query('SELECT `id`,`vals`,`time` FROM `laba_act` WHERE `uid` = "'.$u->info['id'].'" AND `lib` = "'.$lab['id'].'" AND `time` > "'.time().'" AND `vars` = "trap1" ORDER BY `time` DESC LIMIT 1'));
 				$var['time'] = rand(1,60);
 				if( isset($var['trap1']['id']) ) {
@@ -524,20 +524,20 @@ if($u->room['file']=='dragopsh') {
 				}
 				mysql_query('UPDATE `laba_obj` SET `use` = "'.$u->info['id'].'" WHERE `id` = "'.$mitm['id'].'" LIMIT 1');
 				
-				$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'а'; }
-				$var['text'] = '<img width=40 height=25 src=http://img.xcombats.com/i/items/event_timer_trap.gif> <b>'.$u->info['login'].'</b> угодил'.$var['sex'].' в ловушку...';
+				$var['sex'] = ''; if($u->info['sex'] == 1) { $var['sex'] = 'Р°'; }
+				$var['text'] = '<img width=40 height=25 src=http://img.xcombats.com/i/items/event_timer_trap.gif> <b>'.$u->info['login'].'</b> СѓРіРѕРґРёР»'.$var['sex'].' РІ Р»РѕРІСѓС€РєСѓ...';
 				
 				$varos['trap1'] = mysql_fetch_array(mysql_query('SELECT `vals`,`time` FROM `laba_act` WHERE `uid` = "'.$u->info['id'].'" AND `lib` = "'.$lab['id'].'" AND `time` > "'.time().'" AND `vars` = "trap1" ORDER BY `time` DESC LIMIT 1'));
 	
 				mysql_query("INSERT INTO `chat` (`dn`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['dnow']."','".$u->info['city']."','".$u->info['room']."','','','".$var['text']."','".time()."','6','0','1','1')");								
-				$errors .= '<img width="40" height="25" src="http://img.xcombats.com/i/items/event_timer_trap.gif"> '.$u->info['login'].' угодил'.$var['sex'].' в ловушку... Время перехода +3 секунды (Длительность: +'.$var['time'].' мин.)';
+				$errors .= '<img width="40" height="25" src="http://img.xcombats.com/i/items/event_timer_trap.gif"> '.$u->info['login'].' СѓРіРѕРґРёР»'.$var['sex'].' РІ Р»РѕРІСѓС€РєСѓ... Р’СЂРµРјСЏ РїРµСЂРµС…РѕРґР° +3 СЃРµРєСѓРЅРґС‹ (Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ: +'.$var['time'].' РјРёРЅ.)';
 			}
 		}elseif( $mitm['type'] == 5 ) {
-			//Пандора
+			//РџР°РЅРґРѕСЂР°
 			if( $mitm['use'] == 0 ) {
-				$itms .= '<a title="Открыть" href="main.php?useobj='.$mitm['id'].'"><img src="http://img.xcombats.com/i/items/panbox_on.gif" width="60" height="60"></a>';
+				$itms .= '<a title="РћС‚РєСЂС‹С‚СЊ" href="main.php?useobj='.$mitm['id'].'"><img src="http://img.xcombats.com/i/items/panbox_on.gif" width="60" height="60"></a>';
 			}else{
-				$itms .= '<img title="Сундук был открыт" src="http://img.xcombats.com/i/items/panbox_off.gif" width="60" height="60">';
+				$itms .= '<img title="РЎСѓРЅРґСѓРє Р±С‹Р» РѕС‚РєСЂС‹С‚" src="http://img.xcombats.com/i/items/panbox_off.gif" width="60" height="60">';
 			}
 		}
 		unset($var);
@@ -545,15 +545,15 @@ if($u->room['file']=='dragopsh') {
 	
 	$sp = mysql_query('SELECT `i`.*,`m`.`name`,`m`.`img` FROM `laba_itm` AS `i` LEFT JOIN `items_main` AS `m` ON `m`.`id` = `i`.`itm` WHERE `i`.`lib` = "'.$lab['id'].'" AND `i`.`x` = "'.$u->info['x'].'" AND `i`.`y` = "'.$u->info['y'].'" AND `i`.`take` = "0"');
 	while( $pl = mysql_fetch_array($sp) ) {
-		$itms .= ' <a href="main.php?takeitm='.$pl['id'].'"><img src="http://img.xcombats.com/i/items/'.$pl['img'].'" title="Поднять &quot;'.$pl['name'].'&quot;"></a>';
+		$itms .= ' <a href="main.php?takeitm='.$pl['id'].'"><img src="http://img.xcombats.com/i/items/'.$pl['img'].'" title="РџРѕРґРЅСЏС‚СЊ &quot;'.$pl['name'].'&quot;"></a>';
 	}
 	
 	if( $itms != '' ) {
-		$itms = '<u>В этой комнате находится:</u><br /><br />'.$itms.'<br />';
+		$itms = '<u>Р’ СЌС‚РѕР№ РєРѕРјРЅР°С‚Рµ РЅР°С…РѕРґРёС‚СЃСЏ:</u><br /><br />'.$itms.'<br />';
 	}elseif( $u->info['y'] == count($map_d)-2 ) {
-		//Выход нашелся!
+		//Р’С‹С…РѕРґ РЅР°С€РµР»СЃСЏ!
 		if( $lab['users'] < 2 ) {
-			//Удаляем подземелье
+			//РЈРґР°Р»СЏРµРј РїРѕРґР·РµРјРµР»СЊРµ
 			mysql_query('DELETE FROM `laba_now` WHERE `id` = "'.$lab['id'].'" LIMIT 1');
 			mysql_query('DELETE FROM `laba_map` WHERE `id` = "'.$lab['id'].'" LIMIT 1');
 			mysql_query('DELETE FROM `laba_obj` WHERE `lib` = "'.$lab['id'].'"');
@@ -568,22 +568,22 @@ if($u->room['file']=='dragopsh') {
 		mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `delete` < 1234567890 AND `inShop` = "0" AND `data` LIKE "%nosavelaba=1%"');
 		mysql_query('UPDATE `users` SET `room` = "369" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 		mysql_query('UPDATE `stats` SET `dnow` = "0",`x`="0",`y`="0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-		$r = '<img src=http://img.xcombats.com/i/items/paper100.gif width=40 height=25 /> Вы получили награду &quot;Чек на предъявителя (50кр.)&quot;';
+		$r = '<img src=http://img.xcombats.com/i/items/paper100.gif width=40 height=25 /> Р’С‹ РїРѕР»СѓС‡РёР»Рё РЅР°РіСЂР°РґСѓ &quot;Р§РµРє РЅР° РїСЂРµРґСЉСЏРІРёС‚РµР»СЏ (50РєСЂ.)&quot;';
 		mysql_query("INSERT INTO `chat` (`typeTime`,`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','1','".$u->info['city']."','".$u->info['room']."','','".$u->info['login']."','".$r."','".time()."','6','0')");
-		$r = '<img src=http://img.xcombats.com/i/items/lmap.gif width=40 height=25 /> Вы прошли лабиринт &quot;Подземелья Драконов&quot; и сохранили предметы из лабиринта!';
+		$r = '<img src=http://img.xcombats.com/i/items/lmap.gif width=40 height=25 /> Р’С‹ РїСЂРѕС€Р»Рё Р»Р°Р±РёСЂРёРЅС‚ &quot;РџРѕРґР·РµРјРµР»СЊСЏ Р”СЂР°РєРѕРЅРѕРІ&quot; Рё СЃРѕС…СЂР°РЅРёР»Рё РїСЂРµРґРјРµС‚С‹ РёР· Р»Р°Р±РёСЂРёРЅС‚Р°!';
 		mysql_query("INSERT INTO `chat` (`typeTime`,`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','1','".$u->info['city']."','".$u->info['room']."','','".$u->info['login']."','".$r."','".time()."','6','0')");
-		//Выбрасываем предметы которые из подземелья		
+		//Р’С‹Р±СЂР°СЃС‹РІР°РµРј РїСЂРµРґРјРµС‚С‹ РєРѕС‚РѕСЂС‹Рµ РёР· РїРѕРґР·РµРјРµР»СЊСЏ		
 		die('<script>location.href="main.php";</script>');
 	}
 	
 	$sp = mysql_query('SELECT `s`.`x`,`s`.`y`,`u`.`id`,`u`.`login`,`u`.`level` FROM `stats` AS `s` LEFT JOIN `users` AS `u` ON `u`.`id` = `s`.`id` WHERE `s`.`dnow` = "'.$lab['id'].'" AND `s`.`id` != "'.$u->info['id'].'" LIMIT 5');
 	$pi = 1;
 	while( $pl = mysql_fetch_array($sp) ) {
-		$objs[$pl['x']][$pl['y']] = array(2 => '<div title="Игрок: '.$pl['login'].'" class="ddp1ee'.$pi.'"></div>'); //Персонаж 1
+		$objs[$pl['x']][$pl['y']] = array(2 => '<div title="РРіСЂРѕРє: '.$pl['login'].'" class="ddp1ee'.$pi.'"></div>'); //РџРµСЂСЃРѕРЅР°Р¶ 1
 		$pi++;
 	}
 	
-	$objs[$u->info['x']][$u->info['y']] = array(2 => '<div title="Я" class="ddp1me"></div>'); //Персонаж 1
+	$objs[$u->info['x']][$u->info['y']] = array(2 => '<div title="РЇ" class="ddp1me"></div>'); //РџРµСЂСЃРѕРЅР°Р¶ 1
 	$i = 0;
 	while( $i <= count($map_d) ) {
 		$j = 0;
@@ -596,9 +596,9 @@ if($u->room['file']=='dragopsh') {
 						if( isset($objs[$i][$j][2]) ) {
 							//
 						}elseif( $j == 1 ) {
-							$objs[$i][$j][2] = '<div title="Вход в лабиринт" class="ddpStart"></div>';
+							$objs[$i][$j][2] = '<div title="Р’С…РѕРґ РІ Р»Р°Р±РёСЂРёРЅС‚" class="ddpStart"></div>';
 						}elseif( $j == count($map_d)-2 ) {
-							$objs[$i][$j][2] = '<div title="Выход из лабиринта!" class="ddpExit"></div>';
+							$objs[$i][$j][2] = '<div title="Р’С‹С…РѕРґ РёР· Р»Р°Р±РёСЂРёРЅС‚Р°!" class="ddpExit"></div>';
 						}
 					}else{
 						if( $objs[$i][$j]['use'] == 0 ) {
@@ -620,9 +620,9 @@ if($u->room['file']=='dragopsh') {
 	$mapsee = '<div style="width:165px;height:165px;padding:10px;">'.$mapsee.'</div>';
 	
 	
-	//Эффекты на персонаже
+	//Р­С„С„РµРєС‚С‹ РЅР° РїРµСЂСЃРѕРЅР°Р¶Рµ
 	if( isset($varos['trap1']['vals']) && $varos['trap1']['vals'] > 0 ) {
-		$effed .= '<div><img width=40 height=25 src=http://img.xcombats.com/i/items/event_timer_trap.gif> - Время перехода +3 секунды (Осталось: '.$u->timeOut($varos['trap1']['time']-time()).')</div>';
+		$effed .= '<div><img width=40 height=25 src=http://img.xcombats.com/i/items/event_timer_trap.gif> - Р’СЂРµРјСЏ РїРµСЂРµС…РѕРґР° +3 СЃРµРєСѓРЅРґС‹ (РћСЃС‚Р°Р»РѕСЃСЊ: '.$u->timeOut($varos['trap1']['time']-time()).')</div>';
 	}
 	unset($varos);
 ?>
@@ -746,7 +746,7 @@ $('body').keydown(function( event ) {
             <td width="5">&nbsp;</td>
             <td width="99%">
             <div><?=$u->error?></div>
-            <div>Карта: <?=$lab['id']?></div>
+            <div>РљР°СЂС‚Р°: <?=$lab['id']?></div>
 			<script language="javascript" type="text/javascript">
             function confirmSubmit(mes)
             {
@@ -762,17 +762,17 @@ $('body').keydown(function( event ) {
                 <div>
                     <?=$d->usersDng($lab['id']);?>
                 </div>
-                <input type="submit" name="exit" value="Выйти и потерять все найденное!" onclick="return confirmSubmit('Действительно хотите Выйти и потерять все найденное?')" />
+                <input type="submit" name="exit" value="Р’С‹Р№С‚Рё Рё РїРѕС‚РµСЂСЏС‚СЊ РІСЃРµ РЅР°Р№РґРµРЅРЅРѕРµ!" onclick="return confirmSubmit('Р”РµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ Р’С‹Р№С‚Рё Рё РїРѕС‚РµСЂСЏС‚СЊ РІСЃРµ РЅР°Р№РґРµРЅРЅРѕРµ?')" />
               </form>
               <br />
               <? if( $effed != '' ) { echo $effed; } ?>
               <br />
               <?
 			  if( $dies > 0 ) {
-				echo '<b>Кол-во смертей: '.$dies.'/3</b><br>';
+				echo '<b>РљРѕР»-РІРѕ СЃРјРµСЂС‚РµР№: '.$dies.'/3</b><br>';
 			  }
 			  ?>
-              координаты : X=<?=$u->info['y']?>  Y=<?=$u->info['x']?><br /></td>
+              РєРѕРѕСЂРґРёРЅР°С‚С‹ : X=<?=$u->info['y']?>  Y=<?=$u->info['x']?><br /></td>
             <td width="5">&nbsp;</td>
           </tr>
           <tr>
@@ -855,7 +855,7 @@ $('body').keydown(function( event ) {
                       <tr>
                         <td width="26" height="26"></td>
                         <td width="12"></td>
-                        <td width="26" height="26"><a href="http://xcombats.com/main.php?goto=2"><img src="http://img.xcombats.com/drgn/arr1.gif" border="0" title="Вверх" alt="Вверх" /></a></td>
+                        <td width="26" height="26"><a href="http://xcombats.com/main.php?goto=2"><img src="http://img.xcombats.com/drgn/arr1.gif" border="0" title="Р’РІРµСЂС…" alt="Р’РІРµСЂС…" /></a></td>
                         <td width="13"></td>
                         <td width="26"></td>
                       </tr>
@@ -867,11 +867,11 @@ $('body').keydown(function( event ) {
                         <td></td>
                       </tr>
                       <tr>
-                        <td width="26" height="26"><a href="http://xcombats.com/main.php?goto=1"><img src="http://img.xcombats.com/drgn/arr4.gif" border="0" title="Влево" alt="Влево" /></a></td>
+                        <td width="26" height="26"><a href="http://xcombats.com/main.php?goto=1"><img src="http://img.xcombats.com/drgn/arr4.gif" border="0" title="Р’Р»РµРІРѕ" alt="Р’Р»РµРІРѕ" /></a></td>
                         <td></td>
-                        <td width="26" height="26"	><a href="http://xcombats.com/main.php?refresh"><img src="http://img.xcombats.com/drgn/refresh.gif" border="0" title="Обновить" alt="Обновить" /></a></td>
+                        <td width="26" height="26"	><a href="http://xcombats.com/main.php?refresh"><img src="http://img.xcombats.com/drgn/refresh.gif" border="0" title="РћР±РЅРѕРІРёС‚СЊ" alt="РћР±РЅРѕРІРёС‚СЊ" /></a></td>
                         <td></td>
-                        <td width="26" height="26"><a href="http://xcombats.com/main.php?goto=3"><img src="http://img.xcombats.com/drgn/arr2.gif" border="0" title="Вправо" alt="Вправо" /></a></td>
+                        <td width="26" height="26"><a href="http://xcombats.com/main.php?goto=3"><img src="http://img.xcombats.com/drgn/arr2.gif" border="0" title="Р’РїСЂР°РІРѕ" alt="Р’РїСЂР°РІРѕ" /></a></td>
                       </tr>
                       <tr>
                         <td></td>
@@ -890,7 +890,7 @@ $('body').keydown(function( event ) {
                       <tr>
                         <td></td>
                         <td></td>
-                        <td width="26" height="26"><a href="http://xcombats.com/main.php?goto=4"><img src="http://img.xcombats.com/drgn/arr3.gif" border="0" title="Вниз" alt="Вниз" /></a></td>
+                        <td width="26" height="26"><a href="http://xcombats.com/main.php?goto=4"><img src="http://img.xcombats.com/drgn/arr3.gif" border="0" title="Р’РЅРёР·" alt="Р’РЅРёР·" /></a></td>
                         <td></td>
                         <td></td>
                       </tr>

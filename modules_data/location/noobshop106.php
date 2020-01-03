@@ -23,7 +23,7 @@ if(isset($file) && $file[0]=='noobshop106.php')
 		{
 			$re = $u->buyItem($sid,(int)$_GET['buy'],(int)$_GET['x'],'sudba='.$u->info['login'].'|frompisher='.$d->info['id2'].'|nosale=1');
 		}else{
-			$re = 'Вы уверены что хотите купить этот предмет?';
+			$re = 'Р’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ СЌС‚РѕС‚ РїСЂРµРґРјРµС‚?';
 		}
 	}
 	
@@ -31,9 +31,9 @@ if(isset($file) && $file[0]=='noobshop106.php')
 	<script type="text/javascript">
 	function AddCount(name, txt)
 	{
-		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>Купить неск. штук</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
+		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>РљСѓРїРёС‚СЊ РЅРµСЃРє. С€С‚СѓРє</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
 		'<form method=post><table border=0 width=100% cellspacing=0 cellpadding=0 bgcolor="#FFF6DD"><tr><INPUT TYPE="hidden" name="set" value="'+name+'"><td colspan=2 align=center><B><I>'+txt+'</td></tr><tr><td width=80% align=right>'+
-		'Количество (шт.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" »» ">'+
+		'РљРѕР»РёС‡РµСЃС‚РІРѕ (С€С‚.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" В»В» ">'+
 		'</TD></TR></form></TABLE></td></tr></table>';
 		document.getElementById("hint4").style.visibility = 'visible';
 		document.getElementById("hint4").style.left = '100px';
@@ -85,7 +85,7 @@ if(isset($file) && $file[0]=='noobshop106.php')
 	}	
 	</style>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3">Магазин Новичка</div>
+	<tr><td valign="top"><div align="center" class="pH3">РњР°РіР°Р·РёРЅ РќРѕРІРёС‡РєР°</div>
 	<?php
 	echo '<b style="color:red">'.$error.'</b>';
 	?>
@@ -94,16 +94,16 @@ if(isset($file) && $file[0]=='noobshop106.php')
 	<TR>
 	<form name="F1" method="post">
 	<TD valign="top" align="left">
-	<!--Магазин-->
+	<!--РњР°РіР°Р·РёРЅ-->
 	<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#a5a5a5">
 	<div id="hint3" style="visibility:hidden"></div>
 	<tr>
 	<td align="center" height="21">
     <?php	
-		/*названия разделов (сверху)*/
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРІРµСЂС…Сѓ)*/
 		if(!isset($_GET['sale']) && !isset($_GET['gifts']) && isset($_GET['otdel'])) 
 		{
-			$otdels_small_array = array (1=>'<b>Предметы которые возможно купить за Жетоны Новичка</b>');
+			$otdels_small_array = array (1=>'<b>РџСЂРµРґРјРµС‚С‹ РєРѕС‚РѕСЂС‹Рµ РІРѕР·РјРѕР¶РЅРѕ РєСѓРїРёС‚СЊ Р·Р° Р–РµС‚РѕРЅС‹ РќРѕРІРёС‡РєР°</b>');
 			if(isset($otdels_small_array[$_GET['otdel']]))
 			{
 				echo $otdels_small_array[$_GET['otdel']];	
@@ -113,10 +113,10 @@ if(isset($file) && $file[0]=='noobshop106.php')
 	?>
 	</tr>
 	<tr><td>
-	<!--Рюкзак / Прилавок-->
+	<!--Р СЋРєР·Р°Рє / РџСЂРёР»Р°РІРѕРє-->
 	<table width="100%" CELLSPACING="1" CELLPADDING="1" bgcolor="#a5a5a5">
     <?php
-		//Выводим вещи в магазине для покупки
+		//Р’С‹РІРѕРґРёРј РІРµС‰Рё РІ РјР°РіР°Р·РёРЅРµ РґР»СЏ РїРѕРєСѓРїРєРё
 		$u->shopItems($sid);
 	?>
 	</TABLE>	 
@@ -140,7 +140,7 @@ if(isset($file) && $file[0]=='noobshop106.php')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?back=1&rnd=<?=$code?>';">Вернуться назад</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?back=1&rnd=<?=$code?>';">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</a></td>
 	</tr>
 	</table>
 	</td>
@@ -151,18 +151,18 @@ if(isset($file) && $file[0]=='noobshop106.php')
 	<div><br />
       <div align="right">
       <small>
-	  Масса: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
-	  У вас в наличии: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> кр.</b> &nbsp;
+	  РњР°СЃСЃР°: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
+	  РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> РєСЂ.</b> &nbsp;
       </small>
       </div>
 	  <br />
-    <INPUT TYPE="button" value="Обновить" onclick="location = '<? echo $_SERVER['REQUEST_URI']; ?>';"><BR>
+    <INPUT TYPE="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location = '<? echo $_SERVER['REQUEST_URI']; ?>';"><BR>
 	  </div>
-	<div style="background-color:#A5A5A5;padding:1"><center><B>Отделы магазина</B></center></div>
+	<div style="background-color:#A5A5A5;padding:1"><center><B>РћС‚РґРµР»С‹ РјР°РіР°Р·РёРЅР°</B></center></div>
 	<div style="line-height:17px;">
 	<?php
-		/*названия разделов (справа)*/
-		$otdels_array = array (1=>'Предметы новичка');
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРїСЂР°РІР°)*/
+		$otdels_array = array (1=>'РџСЂРµРґРјРµС‚С‹ РЅРѕРІРёС‡РєР°');
 		$i=1;
 		while ($i!=-1)
 		{

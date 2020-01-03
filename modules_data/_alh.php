@@ -14,9 +14,9 @@ function w(login,id,align,klan,level,online,city,battle,blns){
 	var s='';
 	if(online != "") {
 		if (city!="") {
-			s+='<img src=http://img.xcombats.com/1x1.gif width="20" height="15" alt="В другом городе" />';
+			s+='<img src=http://img.xcombats.com/1x1.gif width="20" height="15" alt="Р’ РґСЂСѓРіРѕРј РіРѕСЂРѕРґРµ" />';
 		} else {
-			s+='<a href="javascript:top.chat.addto(\''+login+'\',\'private\');"><img src=http://img.xcombats.com/i/lock.gif width="20" height="15" alt="Приватно" /></a>';
+			s+='<a href="javascript:top.chat.addto(\''+login+'\',\'private\');"><img src=http://img.xcombats.com/i/lock.gif width="20" height="15" alt="РџСЂРёРІР°С‚РЅРѕ" /></a>';
 		}
 		if (city!="") {
 			s+='<img title="'+city+'" src="http://img.xcombats.com/i/city_ico/'+city+'.gif" width="17" height="15" />';
@@ -24,17 +24,17 @@ function w(login,id,align,klan,level,online,city,battle,blns){
 		s+=' <img src="http://img.xcombats.com/i/align/align'+align+'.gif" width="12" height="15" />';
 
 		if (klan!='') {s+='<a href="/encicl/klan/'+klan+'.html" target="_blank"><img src="http://img.xcombats.com/i/clan/'+klan+'.gif" width="24" height="15" /></a>'}
-		s+='<a href="javascript:top.chat.addto(\''+login+'\',\'to\');">'+login+'</a>['+level+']<a href="http://xcombats.com/info/'+id+'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" width="12" height="11" alt="Информация о персонаже" /></a>';
+		s+='<a href="javascript:top.chat.addto(\''+login+'\',\'to\');">'+login+'</a>['+level+']<a href="http://xcombats.com/info/'+id+'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" width="12" height="11" alt="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ" /></a>';
 		if (city!="") {
-			s+=" &mdash; нет в этом городе";
+			s+=" &mdash; РЅРµС‚ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ";
 		} else {
 			s+=' &mdash; '+online;
 		}
 		if( blns != '0' ) {
-			s+= ' &mdash; Баланс: '+blns+' Екр.';
+			s+= ' &mdash; Р‘Р°Р»Р°РЅСЃ: '+blns+' Р•РєСЂ.';
 		}
 	} else {
-		s+='<img src="http://img.xcombats.com/i/offline.gif" width="20" height="15" border="0" alt="Нет в клубе" />';
+		s+='<img src="http://img.xcombats.com/i/offline.gif" width="20" height="15" border="0" alt="РќРµС‚ РІ РєР»СѓР±Рµ" />';
 		if (city!="") {
 			s+='<img title="'+city+'" src="http://img.xcombats.com/i/city_ico/'+city+'.gif" width="17" height="15" />';
 		}
@@ -45,17 +45,17 @@ function w(login,id,align,klan,level,online,city,battle,blns){
 			if (nlevel==0) {
 				nlevel=1; s="<br />"+s;
 			}
-			s+='<font color=gray><b>'+login+'</b>['+level+']<a href="http://xcombats.com/info/'+id+'" target="_blank"><img src="http://img.xcombats.com/i/inf.gif" width="12" height="11" alt="Информация о персонаже" /></a> &mdash; Нет в клубе';
+			s+='<font color=gray><b>'+login+'</b>['+level+']<a href="http://xcombats.com/info/'+id+'" target="_blank"><img src="http://img.xcombats.com/i/inf.gif" width="12" height="11" alt="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ" /></a> &mdash; РќРµС‚ РІ РєР»СѓР±Рµ';
 		} else {
 			if (nlevel==1) {
 				nlevel=2; s="<br />"+s;
 			}
 			mlogin = login;
 			for(var i=0;i<from.length;++i) while(mlogin.indexOf(from[i])>=0)  mlogin= mlogin.replace(from[i],to[i]);
-			s+='<font color=gray><i>'+login+'</i> <a href="http://xcombats.com/info/'+mlogin+'" target="_blank"><img src="http://img.xcombats.com/i/inf_.gif" width="12" height="11" alt="Информация о персонаже" /></a> &mdash; нет в этом городе';
+			s+='<font color=gray><i>'+login+'</i> <a href="http://xcombats.com/info/'+mlogin+'" target="_blank"><img src="http://img.xcombats.com/i/inf_.gif" width="12" height="11" alt="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ" /></a> &mdash; РЅРµС‚ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 		}
 		if( blns != '0' ) {
-			s+= ' &mdash; Баланс: '+blns+' Екр.';
+			s+= ' &mdash; Р‘Р°Р»Р°РЅСЃ: '+blns+' Р•РєСЂ.';
 		}
 		s+='</font>';
 
@@ -69,7 +69,7 @@ function w(login,id,align,klan,level,online,city,battle,blns){
 <TD style="width: 40%; vertical-align: top; "><br />
 <TABLE cellspacing=0 cellpadding=2 style="width: 100%; ">
   <TR>
-<TD align=center><h4>Алхимики</h4></TD>
+<TD align=center><h4>РђР»С…РёРјРёРєРё</h4></TD>
 </TR>
 <TR>
 <TD bgcolor=efeded nowrap><SCRIPT>
@@ -112,49 +112,49 @@ $pl = mysql_fetch_array(mysql_query('SELECT * FROM `bank_table` ORDER BY `time` 
 </SCRIPT>
 <?
 if( $i == 0 ) {
-	echo '<center>Нет ни одного назначенного Алхимика</cetner>';
+	echo '<center>РќРµС‚ РЅРё РѕРґРЅРѕРіРѕ РЅР°Р·РЅР°С‡РµРЅРЅРѕРіРѕ РђР»С…РёРјРёРєР°</cetner>';
 }
 ?>
 <TR>
-<TD style="text-align: left; "><hr><small>Курс покупки ЕвроКредитов: <b>1</b> eкр. = <b><?=round($pl['cur'],2)?> </b>руб.<br>
-  Курс обмена ЕвроКредитов: <b>1</b> екр = <b><?=$c['ecrtocr']?></b> кр.<br>
+<TD style="text-align: left; "><hr><small>РљСѓСЂСЃ РїРѕРєСѓРїРєРё Р•РІСЂРѕРљСЂРµРґРёС‚РѕРІ: <b>1</b> eРєСЂ. = <b><?=round($pl['cur'],2)?> </b>СЂСѓР±.<br>
+  РљСѓСЂСЃ РѕР±РјРµРЅР° Р•РІСЂРѕРљСЂРµРґРёС‚РѕРІ: <b>1</b> РµРєСЂ = <b><?=$c['ecrtocr']?></b> РєСЂ.<br>
   <?
 	if($c['crtoecr']>0) {  
   ?>
-  Курс обмена Кредитов: <?=$c['crtoecr']?> кр = 1 екр.<br>
+  РљСѓСЂСЃ РѕР±РјРµРЅР° РљСЂРµРґРёС‚РѕРІ: <?=$c['crtoecr']?> РєСЂ = 1 РµРєСЂ.<br>
   <?
 	}
-  ?>Продают еврокредиты и прочие платные услуги сервиса<BR>Вы можете отправить им личное сообщение, даже если Вы и Алхимик находитесь в разных городах</small></div></TD>
+  ?>РџСЂРѕРґР°СЋС‚ РµРІСЂРѕРєСЂРµРґРёС‚С‹ Рё РїСЂРѕС‡РёРµ РїР»Р°С‚РЅС‹Рµ СѓСЃР»СѓРіРё СЃРµСЂРІРёСЃР°<BR>Р’С‹ РјРѕР¶РµС‚Рµ РѕС‚РїСЂР°РІРёС‚СЊ РёРј Р»РёС‡РЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ, РґР°Р¶Рµ РµСЃР»Рё Р’С‹ Рё РђР»С…РёРјРёРє РЅР°С…РѕРґРёС‚РµСЃСЊ РІ СЂР°Р·РЅС‹С… РіРѕСЂРѕРґР°С…</small></div></TD>
 </TR>
 </TABLE>
 <hr>
 <table>
       <tr>
         <td valign="top"><fieldset>
-          <legend><b>Курс еврокредита к мировой валюте</b> </legend>
+          <legend><b>РљСѓСЂСЃ РµРІСЂРѕРєСЂРµРґРёС‚Р° Рє РјРёСЂРѕРІРѕР№ РІР°Р»СЋС‚Рµ</b> </legend>
           <table width="100%" border="0" cellpadding="2" cellspacing="0">
             <?
 			if(isset($pl['id'])) {
 			?>
             <tr>
-              <td><small>Данные на <b><?=date('d.m.y H:i',$pl['time'])?></b> без учета комиссий</small></td>
+              <td><small>Р”Р°РЅРЅС‹Рµ РЅР° <b><?=date('d.m.y H:i',$pl['time'])?></b> Р±РµР· СѓС‡РµС‚Р° РєРѕРјРёСЃСЃРёР№</small></td>
             </tr>
             <?
 				$pl['RUB'] = 1;
 				
 				$i = 0;
 				$true = array(
-					array('USD', 'долларов США'),
-					array('EUR', 'ЕВРО'),
-					array('RUB','российских рублей'),
-					array('UAH','укр. гривен'),
-					array('AZN','азербайджанских манат'),
-					array('GBP','англ. фунтов стерлингов')
+					array('USD', 'РґРѕР»Р»Р°СЂРѕРІ РЎРЁРђ'),
+					array('EUR', 'Р•Р’Р Рћ'),
+					array('RUB','СЂРѕСЃСЃРёР№СЃРєРёС… СЂСѓР±Р»РµР№'),
+					array('UAH','СѓРєСЂ. РіСЂРёРІРµРЅ'),
+					array('AZN','Р°Р·РµСЂР±Р°Р№РґР¶Р°РЅСЃРєРёС… РјР°РЅР°С‚'),
+					array('GBP','Р°РЅРіР». С„СѓРЅС‚РѕРІ СЃС‚РµСЂР»РёРЅРіРѕРІ')
 				);
 				while($i < count($true)) {
 			?>
             <tr>
-              <td><span>1 екр. = </span><span style="display:inline-block;width:100px"><b><?=round( ($pl['cur']/$pl[$true[$i][0]]) , 4 )?></b></span><span><?=$true[$i][1]?></span></td>
+              <td><span>1 РµРєСЂ. = </span><span style="display:inline-block;width:100px"><b><?=round( ($pl['cur']/$pl[$true[$i][0]]) , 4 )?></b></span><span><?=$true[$i][1]?></span></td>
             </tr>
             <?
 					$i++;
@@ -162,7 +162,7 @@ if( $i == 0 ) {
 			}else{
 			?>
             <tr>
-              <td><small><center><font color=grey>Не удалось получить информацию</font></center></small></td>
+              <td><small><center><font color=grey>РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</font></center></small></td>
             </tr>
             <? } ?>
           </table>
@@ -172,8 +172,8 @@ if( $i == 0 ) {
 
 </TD>
 <TD style="vertical-align: top; ">&nbsp;</TD>
-<TD width="165" style="vertical-align: top; text-align: right; "><INPUT class="btnnew" type='button' value='Обновить' onclick='location="/main.php?alh&rnd=<?=$code?>"';'>
-&nbsp;<INPUT TYPE=button value="Вернуться" class="btnnew" onclick='location="/main.php"'></TD>
+<TD width="165" style="vertical-align: top; text-align: right; "><INPUT class="btnnew" type='button' value='РћР±РЅРѕРІРёС‚СЊ' onclick='location="/main.php?alh&rnd=<?=$code?>"';'>
+&nbsp;<INPUT TYPE=button value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" class="btnnew" onclick='location="/main.php"'></TD>
 </TR>
 </TABLE>
 <DIV>

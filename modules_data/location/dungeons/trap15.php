@@ -15,37 +15,37 @@ if(isset($file) && $file[0]=='dungeons/trap15.php'){
 	//
 	$vad['rnd'] = rand(-3,5);
 	if($vad['rnd'] == 1) {
-		//Вымороженные сухожилия (Ловкость: -5) 
+		//Р’С‹РјРѕСЂРѕР¶РµРЅРЅС‹Рµ СЃСѓС…РѕР¶РёР»РёСЏ (Р›РѕРІРєРѕСЃС‚СЊ: -5) 
 		$vad['img'] = 'hockey_trap_agil';
-		$vad['g'] = 'Вымороженные сухожилия';
+		$vad['g'] = 'Р’С‹РјРѕСЂРѕР¶РµРЅРЅС‹Рµ СЃСѓС…РѕР¶РёР»РёСЏ';
 		$vad['id_eff'] = 391;
 		$vad['eff'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u->info['id'].'" AND `delete` = 0 AND `id_eff` = "'.$vad['id_eff'].'" LIMIT 1'));
 		$vad['data'] = 'add_s2=-'.(round($vad['eff']['x']+1)*5).'';
 	}elseif($vad['rnd'] == 2) {
-		//Замедленная реакция (Интуиция: -5) 
+		//Р—Р°РјРµРґР»РµРЅРЅР°СЏ СЂРµР°РєС†РёСЏ (РРЅС‚СѓРёС†РёСЏ: -5) 
 		$vad['img'] = 'hockey_trap_inst';
-		$vad['g'] = 'Замедленная реакция';
+		$vad['g'] = 'Р—Р°РјРµРґР»РµРЅРЅР°СЏ СЂРµР°РєС†РёСЏ';
 		$vad['id_eff'] = 392;
 		$vad['eff'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u->info['id'].'" AND `delete` = 0 AND `id_eff` = "'.$vad['id_eff'].'" LIMIT 1'));
 		$vad['data'] = 'add_s3=-'.(round($vad['eff']['x']+1)*5).'';
 	}elseif($vad['rnd'] == 3) {
-		//Пробитый иммунитет (Уровень жизни (НР): -10%) 
+		//РџСЂРѕР±РёС‚С‹Р№ РёРјРјСѓРЅРёС‚РµС‚ (РЈСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё (РќР ): -10%) 
 		$vad['img'] = 'hockey_trap_hp';
-		$vad['g'] = 'Пробитый иммунитет';
+		$vad['g'] = 'РџСЂРѕР±РёС‚С‹Р№ РёРјРјСѓРЅРёС‚РµС‚';
 		$vad['id_eff'] = 393;
 		$vad['eff'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u->info['id'].'" AND `delete` = 0 AND `id_eff` = "'.$vad['id_eff'].'" LIMIT 1'));
 		$vad['data'] = 'add_hpProc=-'.(round($vad['eff']['x']+1)*10).'';
 	}elseif($vad['rnd'] == 4) {
-		//Печальное бессилие (Сила: -5) 
+		//РџРµС‡Р°Р»СЊРЅРѕРµ Р±РµСЃСЃРёР»РёРµ (РЎРёР»Р°: -5) 
 		$vad['img'] = 'hockey_trap_str';
-		$vad['g'] = 'Печальное бессилие';
+		$vad['g'] = 'РџРµС‡Р°Р»СЊРЅРѕРµ Р±РµСЃСЃРёР»РёРµ';
 		$vad['id_eff'] = 394;
 		$vad['eff'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u->info['id'].'" AND `delete` = 0 AND `id_eff` = "'.$vad['id_eff'].'" LIMIT 1'));
 		$vad['data'] = 'add_s1=-'.(round($vad['eff']['x']+1)*5).'';
 	}elseif($vad['rnd'] == 5) {
-		//Замедленная скорость передвижения 
+		//Р—Р°РјРµРґР»РµРЅРЅР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ 
 		$vad['img'] = 'hockey_trap_speed';
-		$vad['g'] = 'Замедленная скорость передвижения';
+		$vad['g'] = 'Р—Р°РјРµРґР»РµРЅРЅР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ';
 		$vad['id_eff'] = 395;
 		$vad['eff'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u->info['id'].'" AND `delete` = 0 AND `id_eff` = "'.$vad['id_eff'].'" LIMIT 1'));
 		$vad['data'] = 'add_speed_dungeon=-'.(round($vad['eff']['x']+1)*20).'';
@@ -54,13 +54,13 @@ if(isset($file) && $file[0]=='dungeons/trap15.php'){
 	}
 	
 	if( $vad['eff']['x'] > 4 ) {
-		$d->error = 'Вы и так покалечены, вы не катаетесь на коньках, а просто ползете по льду...';
+		$d->error = 'Р’С‹ Рё С‚Р°Рє РїРѕРєР°Р»РµС‡РµРЅС‹, РІС‹ РЅРµ РєР°С‚Р°РµС‚РµСЃСЊ РЅР° РєРѕРЅСЊРєР°С…, Р° РїСЂРѕСЃС‚Рѕ РїРѕР»Р·РµС‚Рµ РїРѕ Р»СЊРґСѓ...';
 	}elseif( $vad['g'] == '' ) {
-		$d->error = 'Вы чудом не упали, но в следующий раз вам точно не повезет!';
+		$d->error = 'Р’С‹ С‡СѓРґРѕРј РЅРµ СѓРїР°Р»Рё, РЅРѕ РІ СЃР»РµРґСѓСЋС‰РёР№ СЂР°Р· РІР°Рј С‚РѕС‡РЅРѕ РЅРµ РїРѕРІРµР·РµС‚!';
 	}else{
-		$d->error = 'Вы упали и получили негативный эффект &quot;'.$vad['g'].'&quot;...'; 
+		$d->error = 'Р’С‹ СѓРїР°Р»Рё Рё РїРѕР»СѓС‡РёР»Рё РЅРµРіР°С‚РёРІРЅС‹Р№ СЌС„С„РµРєС‚ &quot;'.$vad['g'].'&quot;...'; 
 		//
-		//Добавляем новую болезнь
+		//Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІСѓСЋ Р±РѕР»РµР·РЅСЊ
 		if(!isset($vad['eff']['id'])) {
 			mysql_query('INSERT INTO `eff_users` (
 				`id_eff`,`uid`,`name`,`data`,`timeUse`
@@ -69,9 +69,9 @@ if(isset($file) && $file[0]=='dungeons/trap15.php'){
 			)');
 			//
 			if($u->info['sex'] == 0) {
-				$vad['text'] = '[img[items/'.$vad['img'].'.gif]] <b>'.$u->info['login'].'</b> поскользнулся и получил увечья &quot;'.$vad['g'].'&quot;!';
+				$vad['text'] = '[img[items/'.$vad['img'].'.gif]] <b>'.$u->info['login'].'</b> РїРѕСЃРєРѕР»СЊР·РЅСѓР»СЃСЏ Рё РїРѕР»СѓС‡РёР» СѓРІРµС‡СЊСЏ &quot;'.$vad['g'].'&quot;!';
 			}else{
-				$vad['text'] = '[img[items/'.$vad['img'].'.gif]] <b>'.$u->info['login'].'</b> поскользнулась и получила увечья &quot;'.$vad['g'].'&quot;!';	
+				$vad['text'] = '[img[items/'.$vad['img'].'.gif]] <b>'.$u->info['login'].'</b> РїРѕСЃРєРѕР»СЊР·РЅСѓР»Р°СЃСЊ Рё РїРѕР»СѓС‡РёР»Р° СѓРІРµС‡СЊСЏ &quot;'.$vad['g'].'&quot;!';	
 			}
 			$d->sys_chat($vad['text']);
 		}else{

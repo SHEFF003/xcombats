@@ -6,7 +6,7 @@ if(!defined('GAME'))
 if($u->room['file']=='znahar'){
 if($c['znahar']==true){$raspst=99999;$kr=0;$price = 1;}else{$raspst=0;$kr=0;$price = 0;}
 
-//Платно или бесплатно
+//РџР»Р°С‚РЅРѕ РёР»Рё Р±РµСЃРїР»Р°С‚РЅРѕ
 
 
 if(date('w') == 6 || date('w') == 0) {
@@ -20,22 +20,22 @@ function add_narkoz($tm,$name) {
 		$name = ': '.$name;
 	}
 	//mysql_query('INSERT INTO `eff_users` (`uid`,`id_eff`,`name`,`data`,`overType`,`timeUse`) VALUES (
-	//	"'.$u->info['id'].'","50","Наркоз'.mysql_real_escape_string($name).'",""
+	//	"'.$u->info['id'].'","50","РќР°СЂРєРѕР·'.mysql_real_escape_string($name).'",""
 	//)');
 
-	$name = 'Наркоз'.$name;
-	$stat=rand(1, 3); // пока без духовности
+	$name = 'РќР°СЂРєРѕР·'.$name;
+	$stat=rand(1, 3); // РїРѕРєР° Р±РµР· РґСѓС…РѕРІРЅРѕСЃС‚Рё
 	if($tm == 3) {
-		$timeEnd=rand(2,5);// время травмы от 12 до 6 часов
+		$timeEnd=rand(2,5);// РІСЂРµРјСЏ С‚СЂР°РІРјС‹ РѕС‚ 12 РґРѕ 6 С‡Р°СЃРѕРІ
 		$timeEnd = $timeEnd * 3600;
 	}elseif($tm == 1 || $tm == 2) {
-		$timeEnd=rand(1,2);// время травмы от 5 до 10 мин
+		$timeEnd=rand(1,2);// РІСЂРµРјСЏ С‚СЂР°РІРјС‹ РѕС‚ 5 РґРѕ 10 РјРёРЅ
 		$timeEnd = $timeEnd * (60*5);
 	}else{
 		$tm = round($tm*60);
 	}
 	
-	$timeEnd = rand(1,3);// время травмы от 5 до 15 мин
+	$timeEnd = rand(1,3);// РІСЂРµРјСЏ С‚СЂР°РІРјС‹ РѕС‚ 5 РґРѕ 15 РјРёРЅ
 	$timeEnd = $timeEnd * (60*5);
 	//$timeEnd = 0;
 	
@@ -95,11 +95,11 @@ function test_s5() {
 	return $r;
 }
 
-$c['znahar1'] = 1; //сброс навыков
-$c['znahar2'] = 1; //сброс особенностей
-$c['znahar3'] = 1; //сброс статов
-$c['znahar4'] = 1; //сброс пристрастия
-$c['znahar5'] = 1; //перераспределение статов
+$c['znahar1'] = 1; //СЃР±СЂРѕСЃ РЅР°РІС‹РєРѕРІ
+$c['znahar2'] = 1; //СЃР±СЂРѕСЃ РѕСЃРѕР±РµРЅРЅРѕСЃС‚РµР№
+$c['znahar3'] = 1; //СЃР±СЂРѕСЃ СЃС‚Р°С‚РѕРІ
+$c['znahar4'] = 1; //СЃР±СЂРѕСЃ РїСЂРёСЃС‚СЂР°СЃС‚РёСЏ
+$c['znahar5'] = 1; //РїРµСЂРµСЂР°СЃРїСЂРµРґРµР»РµРЅРёРµ СЃС‚Р°С‚РѕРІ
 
 if($price == 0) {
 
@@ -153,11 +153,11 @@ function zact($i,$x = 1) {
 	$bad = 0;
 	
 	if( $price == 1 ) {
-		//бесплатно
+		//Р±РµСЃРїР»Р°С‚РЅРѕ
 		$point = 0;
 		$price1 = 0;
 	}else{
-		//платно
+		//РїР»Р°С‚РЅРѕ
 		$point = $pr_free[$i]*$x;
 		if($point > $u->info['znahar']) {
 			$price1 = $pr[$i]*$x;
@@ -186,12 +186,12 @@ function zact($i,$x = 1) {
 			$i++;
 		}
 	}else{
-		$r = array(0,'У вас недостаточно денег для этого действия.');
+		$r = array(0,'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі РґР»СЏ СЌС‚РѕРіРѕ РґРµР№СЃС‚РІРёСЏ.');
 	}
 	return $r;
 }
 
-#------------------Запросы и прочее
+#------------------Р—Р°РїСЂРѕСЃС‹ Рё РїСЂРѕС‡РµРµ
 $st = $u->lookStats($u->info['stats']);
 $vinos = array(
 	/*   level,summvinos*/
@@ -210,7 +210,7 @@ $vinos = array(
 	"12" => 41,
 	"21" => 41
 );
-//минимальный уровень для статов
+//РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ РґР»СЏ СЃС‚Р°С‚РѕРІ
 $minlvl = array(
 		1=>0,
 		2=>0,
@@ -227,28 +227,28 @@ $minlvl = array(
 
 $tst_trvm = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE (`id_eff` = 4 OR `id_eff` = 5) AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" LIMIT 1'));
 if(isset($tst_trvm['id'])) {
-	$err = '<font color=red>У вас травма &quot;'.$tst_trvm['name'].'&quot;. Вы не можете пользоваться услугами знахаря!</font>';
+	$err = '<font color=red>РЈ РІР°СЃ С‚СЂР°РІРјР° &quot;'.$tst_trvm['name'].'&quot;. Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СѓСЃР»СѓРіР°РјРё Р·РЅР°С…Р°СЂСЏ!</font>';
 }elseif(isset($_GET['unprist'])) {
 	$epr = mysql_fetch_array(mysql_query('SELECT `a`.`id`,`b`.`mname` FROM `eff_users` AS `a` LEFT JOIN `eff_main` AS `b` ON `b`.`id2` = `a`.`id_eff` WHERE ((`a`.`id_eff` >= 301 AND `a`.`id_eff` <= 304) OR (`a`.`id_eff` >= 321 AND `a`.`id_eff` <= 332)) AND `a`.`uid` = "'.$u->info['id'].'" AND `a`.`id` = "'.mysql_real_escape_string((int)$_GET['unprist']).'" LIMIT 1'));
 	if(isset($epr['id'])) {
 		$z_na = zact(4);
 		if($z_na[0] == 1) {
-			//сброс пристрастия
+			//СЃР±СЂРѕСЃ РїСЂРёСЃС‚СЂР°СЃС‚РёСЏ
 			mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `id` = "'.mysql_real_escape_string($epr['id']).'" LIMIT 1');
 			$st = $u->lookStats($u->info['stats']);	
-			add_narkoz(2,'Сброс пристрастий');
-			$err = '<font color=red>Вы заплатили '.$kr.' кр. Все прошло успешно, но вам необходим отдых...</font>';
+			add_narkoz(2,'РЎР±СЂРѕСЃ РїСЂРёСЃС‚СЂР°СЃС‚РёР№');
+			$err = '<font color=red>Р’С‹ Р·Р°РїР»Р°С‚РёР»Рё '.$kr.' РєСЂ. Р’СЃРµ РїСЂРѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ, РЅРѕ РІР°Рј РЅРµРѕР±С…РѕРґРёРј РѕС‚РґС‹С…...</font>';
 		}else{
 			$err = '<font color=red>'.$z_na[1].'</font>';
 		}
 	}else{
-		$err = '<font color=red>Пристрастие не найдено...</font>';
+		$err = '<font color=red>РџСЂРёСЃС‚СЂР°СЃС‚РёРµ РЅРµ РЅР°Р№РґРµРЅРѕ...</font>';
 	}
 }elseif(isset($_POST['dropstats']))
 {
 	$z_na = zact(3);
 	if($z_na[0] == 1) {
-		//сброс статов
+		//СЃР±СЂРѕСЃ СЃС‚Р°С‚РѕРІ
 		$st = $u->lookStats($u->info['stats']);
 		$st['s1']  = 3;
 		$st['s2']  = 3;
@@ -274,8 +274,8 @@ if(isset($tst_trvm['id'])) {
 		//$u->info['wipe'] = 2;
 		//$u->wipe();
 		$st = $u->lookStats($u->info['stats']);	
-		add_narkoz(1,'Сброс характеристик');
-		$err = '<font color=red>Вы заплатили '.$kr.' кр. Все прошло успешно, но вам необходим отдых...</font>';
+		add_narkoz(1,'РЎР±СЂРѕСЃ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє');
+		$err = '<font color=red>Р’С‹ Р·Р°РїР»Р°С‚РёР»Рё '.$kr.' РєСЂ. Р’СЃРµ РїСЂРѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ, РЅРѕ РІР°Рј РЅРµРѕР±С…РѕРґРёРј РѕС‚РґС‹С…...</font>';
 	}else{
 		$err = '<font color=red>'.$z_na[1].'</font>';
 	}
@@ -283,7 +283,7 @@ if(isset($tst_trvm['id'])) {
 {
 	$z_na = zact(1);
 	if($z_na[0] == 1) {
-		//сброс статов
+		//СЃР±СЂРѕСЃ СЃС‚Р°С‚РѕРІ
 		$st = $u->lookStats($u->info['stats']);
 		$st['a1']  = 0;
 		$st['a2']  = 0;
@@ -307,21 +307,21 @@ if(isset($tst_trvm['id'])) {
 		//$u->info['wipe'] = 2;
 		//$u->wipe();
 		$st = $u->lookStats($u->info['stats']);	
-		add_narkoz(1,'Сброс умений');
-		$err = '<font color=red>Вы заплатили '.$kr.' кр. Все прошло успешно, но вам необходим отдых...</font>';
+		add_narkoz(1,'РЎР±СЂРѕСЃ СѓРјРµРЅРёР№');
+		$err = '<font color=red>Р’С‹ Р·Р°РїР»Р°С‚РёР»Рё '.$kr.' РєСЂ. Р’СЃРµ РїСЂРѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ, РЅРѕ РІР°Рј РЅРµРѕР±С…РѕРґРёРј РѕС‚РґС‹С…...</font>';
 	}else{
 		$err = '<font color=red>'.$z_na[1].'</font>';
 	}
 }elseif(isset($_POST['dropmastery']))
 {
-	//Старая версия
+	//РЎС‚Р°СЂР°СЏ РІРµСЂСЃРёСЏ
 	$z_na = zact(1);
 	if($z_na[0] == 1) {
-		//сброс характеристик
+		//СЃР±СЂРѕСЃ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
 		$u->info['wipe'] = 3;
 		$u->wipe();
 		$st = $u->lookStats($u->info['stats']);
-		$err = '<font color=red>Умения покину вас...  вам плохо...</font>';
+		$err = '<font color=red>РЈРјРµРЅРёСЏ РїРѕРєРёРЅСѓ РІР°СЃ...  РІР°Рј РїР»РѕС…Рѕ...</font>';
 	}else{
 		$err = '<font color=red>'.$z_na[1].'</font>';
 	}
@@ -329,17 +329,17 @@ if(isset($tst_trvm['id'])) {
 {
 	$z_na = zact(1);
 	if($z_na[0] == 1) {
-		//сброс особенностей
+		//СЃР±СЂРѕСЃ РѕСЃРѕР±РµРЅРЅРѕСЃС‚РµР№
 		$u->info['wipe'] = 3.5;
 		$u->wipe();
 		$st = $u->lookStats($u->info['stats']);	
-		add_narkoz(1,'Сброс навыков');
-		$err = '<font color=red>Особенности покинули вас... вам плохо...</font>';
+		add_narkoz(1,'РЎР±СЂРѕСЃ РЅР°РІС‹РєРѕРІ');
+		$err = '<font color=red>РћСЃРѕР±РµРЅРЅРѕСЃС‚Рё РїРѕРєРёРЅСѓР»Рё РІР°СЃ... РІР°Рј РїР»РѕС…Рѕ...</font>';
 	}else{
 		$err = '<font color=red>'.$z_na[1].'</font>';
 	}
 }elseif(isset($_GET['movestat'])){
-	//общее кол-во статов
+	//РѕР±С‰РµРµ РєРѕР»-РІРѕ СЃС‚Р°С‚РѕРІ
 	$allStats = $st['s1']+$st['s2']+$st['s3']+$st['s4']+$st['s5']+$st['s6']+$st['s7']+$st['s8']+$st['s9']+$st['s10'];
 	$allStatsTesto = $st['s1']+$st['s2']+$st['s3']+$st['s4']+$st['s5']+$st['s6']+$st['s7']+$st['s8']+$st['s9']+$st['s10'];
 	$no = 0; $st_l = 0;
@@ -362,7 +362,7 @@ if(isset($tst_trvm['id'])) {
 	if( $allStatsTesto != $allStats ) {
 		$no++;
 	}
-	//echo "Статы: <br>".$st['s1']."=3<br>".$st['s2']."=3<br>".$st['s3']."=3<br>".$st['s4']."=3<br>".$st['s5']."=0<br>".$st['s6']."=0<br>".$st['s7']."=0<br>".$st['s8']."=0<br>".$st['s9']."=0<br>".$st['s10']."=0<br>";
+	//echo "РЎС‚Р°С‚С‹: <br>".$st['s1']."=3<br>".$st['s2']."=3<br>".$st['s3']."=3<br>".$st['s4']."=3<br>".$st['s5']."=0<br>".$st['s6']."=0<br>".$st['s7']."=0<br>".$st['s8']."=0<br>".$st['s9']."=0<br>".$st['s10']."=0<br>";
 	if($no==0){
 		
 		$z_na = zact(5,(int)$st_l);
@@ -370,12 +370,12 @@ if(isset($tst_trvm['id'])) {
 			if( ($st['s5'] > 0 && $u->info['level'] < 4) || ($st['s6'] > 0 && $u->info['level'] < 7) || ($st['s7'] > 0 && $u->info['level'] < 9) || ($st['s8'] > 0 && $u->info['level'] < 11) || ($st['s9'] > 0 && $u->info['level'] < 12) || ($st['s10'] > 0 && $u->info['level'] < 13) ) {
 				
 			}elseif($st['s1']>=3 && $st['s2']>=3 && $st['s3']>=3 && $st['s4']>=test_s5() && $st['s5']>=0 && $st['s6']>=0 && $st['s7']>=0 && $st['s8']>=0 && $st['s9']>=0 && $st['s10']>=0){	
-				//Желательно проверку на статы по уровню (можно ли этот стат поднимать на текущем уровне перса)
+				//Р–РµР»Р°С‚РµР»СЊРЅРѕ РїСЂРѕРІРµСЂРєСѓ РЅР° СЃС‚Р°С‚С‹ РїРѕ СѓСЂРѕРІРЅСЋ (РјРѕР¶РЅРѕ Р»Рё СЌС‚РѕС‚ СЃС‚Р°С‚ РїРѕРґРЅРёРјР°С‚СЊ РЅР° С‚РµРєСѓС‰РµРј СѓСЂРѕРІРЅРµ РїРµСЂСЃР°)
 				$u->info['stats'] = $u->impStats($st);
 				if(mysql_query('UPDATE `stats` SET `stats` = "'.mysql_real_escape_string($u->info['stats']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1'))
 				{
-					add_narkoz(2,'Переброс характеристик');
-					//Надо добавить UPDATE в базе свободных статов				
+					add_narkoz(2,'РџРµСЂРµР±СЂРѕСЃ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє');
+					//РќР°РґРѕ РґРѕР±Р°РІРёС‚СЊ UPDATE РІ Р±Р°Р·Рµ СЃРІРѕР±РѕРґРЅС‹С… СЃС‚Р°С‚РѕРІ				
 					$u->stats = $u->getStats($u->info['id'],0,1);
 					$u->testItems($u->info['id'],$u->stats,0);
 					$st = $u->lookStats($u->info['stats']);
@@ -386,7 +386,7 @@ if(isset($tst_trvm['id'])) {
 		}
 	}
 }
-#------------------Запросы и прочее
+#------------------Р—Р°РїСЂРѕСЃС‹ Рё РїСЂРѕС‡РµРµ
 ?>
 <STYLE>
 .H3			{ COLOR: #8f0000;  FONT-FAMILY: Arial;  FONT-SIZE: 12pt;  FONT-WEIGHT: bold;}
@@ -400,18 +400,18 @@ function ghideshow() { top.fullhideshow(mmoves3); }
 <div id="mmoves3" style="background-color:#FFFFCC; visibility:hidden; z-index: 101; overflow:visible; position:absolute; border-color:#666666; border-style:solid; border-width: 1px; padding: 2px;"></div>
 <SCRIPT src='http://img.combats.ru/i/commoninf.js'></SCRIPT>
 <TABLE width=100%>
-<TR><TD><DIV class='H3' align=center>Комната Знахаря</DIV>
+<TR><TD><DIV class='H3' align=center>РљРѕРјРЅР°С‚Р° Р—РЅР°С…Р°СЂСЏ</DIV>
 <?=$err;?><?
 if($u->error != '') {
 	echo '<br><font style="float:right" color=red>'.$u->error.'</font>';
 }
  if($re!=''){ echo '<br><font style="float:right" color="red"><b>'.$re.'</b></font>'; }
 ?><BR>
-<b><i>Запахи трав наполняют помещение, непонятные и пугающие предметы скрываются в пляшущих тенях...<BR>
-Говорят, здесь можно изменить свою судьбу.
-Стать кем-то иным... кем раньше был лишь в мечтах...</i></b><BR><BR>
-Деньги: <B><?=$u->info['money'];?></B> кр.<BR>
-Бесплатных перераспределений: <? if($price == 1) { ?>Сегодня - неограничено!<? }else{ echo round(0+$u->info['znahar']); } ?><BR>
+<b><i>Р—Р°РїР°С…Рё С‚СЂР°РІ РЅР°РїРѕР»РЅСЏСЋС‚ РїРѕРјРµС‰РµРЅРёРµ, РЅРµРїРѕРЅСЏС‚РЅС‹Рµ Рё РїСѓРіР°СЋС‰РёРµ РїСЂРµРґРјРµС‚С‹ СЃРєСЂС‹РІР°СЋС‚СЃСЏ РІ РїР»СЏС€СѓС‰РёС… С‚РµРЅСЏС…...<BR>
+Р“РѕРІРѕСЂСЏС‚, Р·РґРµСЃСЊ РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ СЃРІРѕСЋ СЃСѓРґСЊР±Сѓ.
+РЎС‚Р°С‚СЊ РєРµРј-С‚Рѕ РёРЅС‹Рј... РєРµРј СЂР°РЅСЊС€Рµ Р±С‹Р» Р»РёС€СЊ РІ РјРµС‡С‚Р°С…...</i></b><BR><BR>
+Р”РµРЅСЊРіРё: <B><?=$u->info['money'];?></B> РєСЂ.<BR>
+Р‘РµСЃРїР»Р°С‚РЅС‹С… РїРµСЂРµСЂР°СЃРїСЂРµРґРµР»РµРЅРёР№: <? if($price == 1) { ?>РЎРµРіРѕРґРЅСЏ - РЅРµРѕРіСЂР°РЅРёС‡РµРЅРѕ!<? }else{ echo round(0+$u->info['znahar']); } ?><BR>
 </TD>
 <TD width=1 valign=top>
 <table  border="0" cellpadding="0" cellspacing="0">
@@ -426,13 +426,13 @@ if($u->error != '') {
 <table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 <tr>
 <td bgcolor="#D3D3D3"><img src="http://img.combats.ru/i/move/links.gif" width="9" height="7" /></td>
-<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" class="menutop" onClick="location='main.php?loc=1.180.0.3&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.3',1); ?>">Бойцовский клуб</a></td>
+<td bgcolor="#D3D3D3" nowrap><a href="javascript:void(0)" class="menutop" onClick="location='main.php?loc=1.180.0.3&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.3',1); ?>">Р‘РѕР№С†РѕРІСЃРєРёР№ РєР»СѓР±</a></td>
 </tr>
 </table>
 </td>
 </tr>
 </table>
-<!-- <br /><span class="menutop"><nobr>Комната Знахаря</nobr></span>-->
+<!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° Р—РЅР°С…Р°СЂСЏ</nobr></span>-->
 </td>
 </tr>
 </table>
@@ -443,25 +443,25 @@ if($u->error != '') {
 </TABLE>
 <TABLE>
 <TR bgcolor=#D8D8D8>
-<TD><IMG width=20 height=20 src='http://img.xcombats.com/i/strsmall.gif'> Характеристики</TD>
-<TD><IMG width=20 height=20 src='http://img.xcombats.com/i/cureelixirsmall.gif'> Пристрастия</TD>
-<TD><IMG width=20 height=20 src='http://img.xcombats.com/i/weaponsmall.gif'> Прочее</TD>
+<TD><IMG width=20 height=20 src='http://img.xcombats.com/i/strsmall.gif'> РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё</TD>
+<TD><IMG width=20 height=20 src='http://img.xcombats.com/i/cureelixirsmall.gif'> РџСЂРёСЃС‚СЂР°СЃС‚РёСЏ</TD>
+<TD><IMG width=20 height=20 src='http://img.xcombats.com/i/weaponsmall.gif'> РџСЂРѕС‡РµРµ</TD>
 <TR>
 <TD width=270 valign=top>
 <SCRIPT>
 var mylvl = <?=$u->info['level']; ?>;
-//////////////Название,параметр,всего, +сколько, до скольки сбросить(макс возможное),сколько сбрасывать/прибавлять
+//////////////РќР°Р·РІР°РЅРёРµ,РїР°СЂР°РјРµС‚СЂ,РІСЃРµРіРѕ, +СЃРєРѕР»СЊРєРѕ, РґРѕ СЃРєРѕР»СЊРєРё СЃР±СЂРѕСЃРёС‚СЊ(РјР°РєСЃ РІРѕР·РјРѕР¶РЅРѕРµ),СЃРєРѕР»СЊРєРѕ СЃР±СЂР°СЃС‹РІР°С‚СЊ/РїСЂРёР±Р°РІР»СЏС‚СЊ
 var pr = new Array(
-'Сила', 's1', <?=(0+$st['s1'])?>, <?=$u->stats['s1']-$st['s1'];?>, 3, 0, <?=$minlvl[1];?>,
-'Ловкость', 's2', <?=(0+$st['s2'])?>, <?=$u->stats['s2']-$st['s2'];?>, 3, 0, <?=$minlvl[2];?>,
-'Интуиция', 's3', <?=(0+$st['s3'])?>, <?=$u->stats['s3']-$st['s3'];?>, 3, 0, <?=$minlvl[3];?>,
-'Выносливость', 's4', <?=(0+$st['s4'])?>, 0, <?=$vinos[$u->info['level']]?>, 0, <?=$minlvl[4];?>,
-'Интеллект', 's5', <?=(0+$st['s5'])?>, <?=$u->stats['s5']-$st['s5'];?>, 0, 0, <?=$minlvl[5];?>,
-'Мудрость', 's6', <?=(0+$st['s6'])?>, 0, 0, 0, <?=$minlvl[6];?>,
-'Духовность', 's7',  <?=(0+$st['s7'])?>, 0, 0, 0, <?=$minlvl[7];?>,
-'Воля', 's8', <?=(0+$st['s8'])?>, 0, 0, 0, <?=$minlvl[8];?>,
-'Свобода Духа', 's9', <?=(0+$st['s9'])?>, 0, 0, 0, <?=$minlvl[9];?>,
-'Божественность', 's10', <?=(0+$st['s10'])?>, 0, 0, 0, <?=$minlvl[10];?>
+'РЎРёР»Р°', 's1', <?=(0+$st['s1'])?>, <?=$u->stats['s1']-$st['s1'];?>, 3, 0, <?=$minlvl[1];?>,
+'Р›РѕРІРєРѕСЃС‚СЊ', 's2', <?=(0+$st['s2'])?>, <?=$u->stats['s2']-$st['s2'];?>, 3, 0, <?=$minlvl[2];?>,
+'РРЅС‚СѓРёС†РёСЏ', 's3', <?=(0+$st['s3'])?>, <?=$u->stats['s3']-$st['s3'];?>, 3, 0, <?=$minlvl[3];?>,
+'Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ', 's4', <?=(0+$st['s4'])?>, 0, <?=$vinos[$u->info['level']]?>, 0, <?=$minlvl[4];?>,
+'РРЅС‚РµР»Р»РµРєС‚', 's5', <?=(0+$st['s5'])?>, <?=$u->stats['s5']-$st['s5'];?>, 0, 0, <?=$minlvl[5];?>,
+'РњСѓРґСЂРѕСЃС‚СЊ', 's6', <?=(0+$st['s6'])?>, 0, 0, 0, <?=$minlvl[6];?>,
+'Р”СѓС…РѕРІРЅРѕСЃС‚СЊ', 's7',  <?=(0+$st['s7'])?>, 0, 0, 0, <?=$minlvl[7];?>,
+'Р’РѕР»СЏ', 's8', <?=(0+$st['s8'])?>, 0, 0, 0, <?=$minlvl[8];?>,
+'РЎРІРѕР±РѕРґР° Р”СѓС…Р°', 's9', <?=(0+$st['s9'])?>, 0, 0, 0, <?=$minlvl[9];?>,
+'Р‘РѕР¶РµСЃС‚РІРµРЅРЅРѕСЃС‚СЊ', 's10', <?=(0+$st['s10'])?>, 0, 0, 0, <?=$minlvl[10];?>
 );
 function getprstr(i) {
 var ss= pr[i]+": "+(pr[i+2]+pr[i+3]+pr[i+5]);
@@ -499,7 +499,7 @@ for (j=0; j<pr.length; j+=7) {
 if (pr[j+5] > 0) {moves+=pr[j+5]};
 }
 movedonebutton.disabled=(freepr || moves==0?true:false);
-document.all["prmoves"].innerHTML = moves+((freemoves < moves)?" за "+(movecost*(moves - freemoves))+" кр.":(moves?" / бесплатно":""));
+document.all["prmoves"].innerHTML = moves+((freemoves < moves)?" Р·Р° "+(movecost*(moves - freemoves))+" РєСЂ.":(moves?" / Р±РµСЃРїР»Р°С‚РЅРѕ":""));
 }
 function movedone() {
 if (freepr) {
@@ -523,45 +523,45 @@ s+='<img src=http://img.combats.com/i/plus.gif  border=0 onclick="modpr('+i+',1)
 }
 }
 s+="</TABLE>";
-s+="<small>(осталось: <span id='prfree'>0</span>, распределений: <span id='prmoves'>0</span>)<BR>";
+s+="<small>(РѕСЃС‚Р°Р»РѕСЃСЊ: <span id='prfree'>0</span>, СЂР°СЃРїСЂРµРґРµР»РµРЅРёР№: <span id='prmoves'>0</span>)<BR>";
 document.write(s);
 </SCRIPT>
-<input type=button onClick="movedone();" id='movedonebutton' value="Применить" disabled>
+<input type=button onClick="movedone();" id='movedonebutton' value="РџСЂРёРјРµРЅРёС‚СЊ" disabled>
 </TD>
 <TD width=270 valign=top>
 <?
 $prs = '';
 $sp = mysql_query('SELECT `a`.*,`b`.* FROM `eff_users` AS `a` LEFT JOIN `eff_main` AS `b` ON `b`.`id2` = `a`.`id_eff` WHERE ((`a`.`id_eff` >= 301 AND `a`.`id_eff` <= 304) OR (`a`.`id_eff` >= 321 AND `a`.`id_eff` <= 332)) AND `a`.`uid` = "'.$u->info['id'].'" AND `a`.`delete` = "0"');
-$txtl = 'бесплатно';
+$txtl = 'Р±РµСЃРїР»Р°С‚РЅРѕ';
 if($c['znahar4'] == 0) {
-	$txtl = ' за '.$pr[4].' кр.';
+	$txtl = ' Р·Р° '.$pr[4].' РєСЂ.';
 }
 while($pl = mysql_fetch_array($sp)) {
-	$prs .= '<img style="display:inline-block;vertical-align:bottom" title="'.$pl['mname'].''."\r\n".''.$pl['name'].'" height="20" src="http://img.xcombats.com/i/eff/'.$pl['img'].'"> <a href="main.php?unprist='.$pl['id'].'&rnd='.$code.'"> <small>вылечить '.$txtl.'</small> </a><br>';
+	$prs .= '<img style="display:inline-block;vertical-align:bottom" title="'.$pl['mname'].''."\r\n".''.$pl['name'].'" height="20" src="http://img.xcombats.com/i/eff/'.$pl['img'].'"> <a href="main.php?unprist='.$pl['id'].'&rnd='.$code.'"> <small>РІС‹Р»РµС‡РёС‚СЊ '.$txtl.'</small> </a><br>';
 }
 
 if($prs == '') {
-	$prs = '<BR><BR><BR><BR><small><center>У вас нет пристрастий</center></small>';
+	$prs = '<BR><BR><BR><BR><small><center>РЈ РІР°СЃ РЅРµС‚ РїСЂРёСЃС‚СЂР°СЃС‚РёР№</center></small>';
 }
 echo $prs;
 ?>
 </TD>
 <TD valign=top><BR>
-Навыки владения оружием и магией (<?=test_skills()?>)<BR>
-<form method=post><INPUT type=submit name='dropmastery' value='Сбросить <?echo $c['znahar1']==1? "бесплатно":"(".$pr[1]."кр.)"?>' onClick="return confirm('Вы действительно хотите сбросить умения?')"><HR style="border:0;border-bottom:1px solid grey"></form>
-Особенности персонажа (<?=test_skills2()?>)<BR>
-<form method=post><INPUT type=submit  name='dropperks' value='Сбросить <?echo $c['znahar2']==1? "бесплатно":"(".$pr[2]."кр.)"?>' onClick="return confirm('Вы действительно хотите сбросить особенности?')"><HR style="border:0;border-bottom:1px solid grey"></form>
-Характеристики (<?=test_ability()?>/<?=(9+test_s5())?>)<BR>
-<form method=post><INPUT type=submit name='dropstats' value='Сбросить <?echo $c['znahar3']==1? "бесплатно":"(".$pr[3]."кр.)"?>' onClick="return confirm('Вы действительно хотите сбросить все характеристики до минимального уровня?')"></form>
+РќР°РІС‹РєРё РІР»Р°РґРµРЅРёСЏ РѕСЂСѓР¶РёРµРј Рё РјР°РіРёРµР№ (<?=test_skills()?>)<BR>
+<form method=post><INPUT type=submit name='dropmastery' value='РЎР±СЂРѕСЃРёС‚СЊ <?echo $c['znahar1']==1? "Р±РµСЃРїР»Р°С‚РЅРѕ":"(".$pr[1]."РєСЂ.)"?>' onClick="return confirm('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃР±СЂРѕСЃРёС‚СЊ СѓРјРµРЅРёСЏ?')"><HR style="border:0;border-bottom:1px solid grey"></form>
+РћСЃРѕР±РµРЅРЅРѕСЃС‚Рё РїРµСЂСЃРѕРЅР°Р¶Р° (<?=test_skills2()?>)<BR>
+<form method=post><INPUT type=submit  name='dropperks' value='РЎР±СЂРѕСЃРёС‚СЊ <?echo $c['znahar2']==1? "Р±РµСЃРїР»Р°С‚РЅРѕ":"(".$pr[2]."РєСЂ.)"?>' onClick="return confirm('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃР±СЂРѕСЃРёС‚СЊ РѕСЃРѕР±РµРЅРЅРѕСЃС‚Рё?')"><HR style="border:0;border-bottom:1px solid grey"></form>
+РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё (<?=test_ability()?>/<?=(9+test_s5())?>)<BR>
+<form method=post><INPUT type=submit name='dropstats' value='РЎР±СЂРѕСЃРёС‚СЊ <?echo $c['znahar3']==1? "Р±РµСЃРїР»Р°С‚РЅРѕ":"(".$pr[3]."РєСЂ.)"?>' onClick="return confirm('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃР±СЂРѕСЃРёС‚СЊ РІСЃРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РґРѕ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ?')"></form>
 </TABLE>
-<small>Каждые 7 дней после последнего использования комнаты знахаря вы получаете 1 бесплатное перераспределение, но не более 15<BR>
-Исцеление пристрастия, cброс умений или особенностей стоят 5 перераспределений<BR>
-Изменение Характеристик досрочно завершает некоторые эффекты<!--, например эффект свитка <B>Жажда Жизни</B>-->
+<small>РљР°Р¶РґС‹Рµ 7 РґРЅРµР№ РїРѕСЃР»Рµ РїРѕСЃР»РµРґРЅРµРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РєРѕРјРЅР°С‚С‹ Р·РЅР°С…Р°СЂСЏ РІС‹ РїРѕР»СѓС‡Р°РµС‚Рµ 1 Р±РµСЃРїР»Р°С‚РЅРѕРµ РїРµСЂРµСЂР°СЃРїСЂРµРґРµР»РµРЅРёРµ, РЅРѕ РЅРµ Р±РѕР»РµРµ 15<BR>
+РСЃС†РµР»РµРЅРёРµ РїСЂРёСЃС‚СЂР°СЃС‚РёСЏ, cР±СЂРѕСЃ СѓРјРµРЅРёР№ РёР»Рё РѕСЃРѕР±РµРЅРЅРѕСЃС‚РµР№ СЃС‚РѕСЏС‚ 5 РїРµСЂРµСЂР°СЃРїСЂРµРґРµР»РµРЅРёР№<BR>
+РР·РјРµРЅРµРЅРёРµ РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРє РґРѕСЃСЂРѕС‡РЅРѕ Р·Р°РІРµСЂС€Р°РµС‚ РЅРµРєРѕС‚РѕСЂС‹Рµ СЌС„С„РµРєС‚С‹<!--, РЅР°РїСЂРёРјРµСЂ СЌС„С„РµРєС‚ СЃРІРёС‚РєР° <B>Р–Р°Р¶РґР° Р–РёР·РЅРё</B>-->
 </small>
 <BR>
 </TABLE>
 <div>
-<?//рейтинг?>
+<?//СЂРµР№С‚РёРЅРі?>
 </div>
 </BODY>
 </HTML>

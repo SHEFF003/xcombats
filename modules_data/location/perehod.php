@@ -25,7 +25,7 @@ if($u->room['file']=='perehod')
                       <div style="position:absolute; left:264px; top:106px; width:175px; height:37px; z-index:90;"><img <? thisInfRm('1.180.0.0'); ?> src="http://img.xcombats.com/i/images/subimages/map_zal2.gif" id="mo_1.180.0.0" width="175" height="37" /></div>
                       <div style="position:absolute; left:47px; top:120px; width:135px; height:29px; z-index:90;"><img src="http://img.xcombats.com/i/images/subimages/map_zal3.gif" width="135" height="29"  class="aFilter" id="mo_1.180.0.1" /></div>
                       <div style="position:absolute; left:81px; top:102px; width:88px; height:15px; z-index:90;"><img <? thisInfRm('1.180.0.2'); ?> src="http://img.xcombats.com/i/images/subimages/map_zal1.gif" width="88" height="15" class="aFilter" id="mo_1.180.0.2" /></div>
-                      <div style="position:absolute; left:167px; top:107px; width:16px; height:18px; z-index:90;"><img src="http://img.xcombats.com/i/images/subimages/fl1.gif" width="16" height="18" title="Вы находитесь в Комнате перехода"    /></div>
+                      <div style="position:absolute; left:167px; top:107px; width:16px; height:18px; z-index:90;"><img src="http://img.xcombats.com/i/images/subimages/fl1.gif" width="16" height="18" title="Р’С‹ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ РљРѕРјРЅР°С‚Рµ РїРµСЂРµС…РѕРґР°"    /></div>
                       <div id="snow"></div>
                       <? echo $goline; ?>
                     </div>
@@ -33,34 +33,34 @@ if($u->room['file']=='perehod')
                   </tr>
                 </table>  
                 <div style="display:none; height:0px " id="moveto"></div>      
-              <div align="right" style="text-align:justify; padding: 3px;"><small>&laquo;<? echo $c['title3']; ?>&raquo; приветствует Вас, <b><? echo $u->info['login']; ?></b>.<br />
-                Чтобы сражаться с остальными на равных, вам нужно распределить начальные характеристики.<br />
-                Для этого нажмите на <a href='/main.php?skills=1&amp;side=1'>Способности</a>, а затем, нажимая на <img src="http://img.xcombats.com/i/plus.gif" width="9" height="9" /> / <img src="http://img.xcombats.com/i/minus.gif" width="9" height="9" />, сформируйте своего персонажа.<br />
-                Подробнее о значении характеристик можно узнать в <b>Библиотеке</b>.<br />
-                Распределив все характеристики нажмите на кнопку
-                <input type="button" class="btn" value='Вернуться' disabled="disabled" />
+              <div align="right" style="text-align:justify; padding: 3px;"><small>&laquo;<? echo $c['title3']; ?>&raquo; РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ Р’Р°СЃ, <b><? echo $u->info['login']; ?></b>.<br />
+                Р§С‚РѕР±С‹ СЃСЂР°Р¶Р°С‚СЊСЃСЏ СЃ РѕСЃС‚Р°Р»СЊРЅС‹РјРё РЅР° СЂР°РІРЅС‹С…, РІР°Рј РЅСѓР¶РЅРѕ СЂР°СЃРїСЂРµРґРµР»РёС‚СЊ РЅР°С‡Р°Р»СЊРЅС‹Рµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё.<br />
+                Р”Р»СЏ СЌС‚РѕРіРѕ РЅР°Р¶РјРёС‚Рµ РЅР° <a href='/main.php?skills=1&amp;side=1'>РЎРїРѕСЃРѕР±РЅРѕСЃС‚Рё</a>, Р° Р·Р°С‚РµРј, РЅР°Р¶РёРјР°СЏ РЅР° <img src="http://img.xcombats.com/i/plus.gif" width="9" height="9" /> / <img src="http://img.xcombats.com/i/minus.gif" width="9" height="9" />, СЃС„РѕСЂРјРёСЂСѓР№С‚Рµ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°.<br />
+                РџРѕРґСЂРѕР±РЅРµРµ Рѕ Р·РЅР°С‡РµРЅРёРё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє РјРѕР¶РЅРѕ СѓР·РЅР°С‚СЊ РІ <b>Р‘РёР±Р»РёРѕС‚РµРєРµ</b>.<br />
+                Р Р°СЃРїСЂРµРґРµР»РёРІ РІСЃРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РЅР°Р¶РјРёС‚Рµ РЅР° РєРЅРѕРїРєСѓ
+                <input type="button" class="btn" value='Р’РµСЂРЅСѓС‚СЊСЃСЏ' disabled="disabled" />
                 <br />
-                Для проведения боя нажмите на кнопку
-                <input type='button' value='Поединки' class="btn" disabled="disabled" />
+                Р”Р»СЏ РїСЂРѕРІРµРґРµРЅРёСЏ Р±РѕСЏ РЅР°Р¶РјРёС‚Рµ РЅР° РєРЅРѕРїРєСѓ
+                <input type='button' value='РџРѕРµРґРёРЅРєРё' class="btn" disabled="disabled" />
                 <br />
-                Выберите раздел &quot;Новички&quot;.<br />
-                Более подробно о поединках можно прочитать в <b>Библиотеке</b><br />
+                Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР» &quot;РќРѕРІРёС‡РєРё&quot;.<br />
+                Р‘РѕР»РµРµ РїРѕРґСЂРѕР±РЅРѕ Рѕ РїРѕРµРґРёРЅРєР°С… РјРѕР¶РЅРѕ РїСЂРѕС‡РёС‚Р°С‚СЊ РІ <b>Р‘РёР±Р»РёРѕС‚РµРєРµ</b><br />
             </small></div></td>
           <td>
-              <!-- <br /><span class="menutop"><nobr>Комната для новичков</nobr></span>-->
+              <!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ</nobr></span>-->
           </td>
         </tr>
       </table>
       	<small>
         <HR>
-          <? $hgo = $u->testHome(); if(!isset($hgo['id'])){ ?><INPUT onclick="location.href='main.php?homeworld=<? echo $code; ?>';" class="btn" value="Возврат" type="button" name="combats2"><? } unset($hgo); ?>
-          <INPUT onclick="location.href='main.php?clubmap=<? echo $code; ?>';" class="btn" value="Карта клуба" type="button" name="combats2">
-          <INPUT id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Форум" type="button" name="forum">
-          <INPUT class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="Подсказка" type="button">
-          <INPUT class="btn" value="Объекты" type="button">
+          <? $hgo = $u->testHome(); if(!isset($hgo['id'])){ ?><INPUT onclick="location.href='main.php?homeworld=<? echo $code; ?>';" class="btn" value="Р’РѕР·РІСЂР°С‚" type="button" name="combats2"><? } unset($hgo); ?>
+          <INPUT onclick="location.href='main.php?clubmap=<? echo $code; ?>';" class="btn" value="РљР°СЂС‚Р° РєР»СѓР±Р°" type="button" name="combats2">
+          <INPUT id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Р¤РѕСЂСѓРј" type="button" name="forum">
+          <INPUT class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="РџРѕРґСЃРєР°Р·РєР°" type="button">
+          <INPUT class="btn" value="РћР±СЉРµРєС‚С‹" type="button">
         <br />
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
        <? echo $rowonmax; ?><BR>
         
       </div></td>

@@ -7,7 +7,7 @@ if(!defined('GAME'))
 $tattack = '';
 
 if( date('H') >= 22 || date('H') < 6 ) {
-	$tattack = '<a style="color:#D8D8D8" style="cursor:pointer" onclick="top.useMagic(\'Нападение на персонажа\',\'night_atack\',\'pal_button8.gif\',1,\'main.php?nightatack=1\');">Напасть</a> &nbsp; ';
+	$tattack = '<a style="color:#D8D8D8" style="cursor:pointer" onclick="top.useMagic(\'РќР°РїР°РґРµРЅРёРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°\',\'night_atack\',\'pal_button8.gif\',1,\'main.php?nightatack=1\');">РќР°РїР°СЃС‚СЊ</a> &nbsp; ';
 }
 
 if($u->room['file']=='cp1')
@@ -50,7 +50,7 @@ function AtackNoWindow()
             <table width="500" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td><div style="position:relative; cursor: pointer;" id="ione"> <img src="http://img.xcombats.com/city/capitalcity/<? echo $now; ?>/city_capres1.jpg" alt="" name="img_ione" width="500" height="268" border="1" id="img_ione"/>
-                  <div id="buttons_on_image" style="cursor:pointer; font-weight:bold; color:#D8D8D8; font-size:10px;"> <? echo $tattack; ?> &nbsp; <span onMouseMove="this.runtimeStyle.color = 'white';" onMouseOut="this.runtimeStyle.color = this.parentElement.style.color;" onclick="window.open('http://xcombats.com/forum', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')">Форум</span> &nbsp; </div>
+                  <div id="buttons_on_image" style="cursor:pointer; font-weight:bold; color:#D8D8D8; font-size:10px;"> <? echo $tattack; ?> &nbsp; <span onMouseMove="this.runtimeStyle.color = 'white';" onMouseOut="this.runtimeStyle.color = this.parentElement.style.color;" onclick="window.open('http://xcombats.com/forum', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')">Р¤РѕСЂСѓРј</span> &nbsp; </div>
                   <script language="javascript" type="text/javascript">
                         <!--
                         if(document.getElementById('ione'))
@@ -71,8 +71,8 @@ function AtackNoWindow()
                   <div style="position: absolute; left: 236px; top: 143px; width: 71px; height: 45px; z-index: 91;"><img  <? thisInfRm('1.180.0.210'); ?> src="http://img.xcombats.com/i/images/300x225/capital/2remont.gif" width="71" height="45"  class="aFilter" /></div>
                   <div style="position: absolute; left: 276px; top: 181px; width: 27px; height: 55px; z-index: 93;"><img  <? thisInfRm('1.180.0.x'); ?> src="http://img.xcombats.com/city/capitalcity/day/2pm.gif" class="aFilter" width="27" height="55" /></div>
                   <div style="position:absolute; left:300px; top:130px; width:111px; height:72px; z-index:92;"><img <? thisInfRm('1.180.0.226'); ?> src="http://img.xcombats.com/city/capitalcity/day/2pochta.gif" width="111" height="72" class="aFilter" /></div>
-                  <div style="position:absolute; left:73px; top:135px; width:92px; height:62px; z-index:100;"><img  <? thisInfRm('1.180.0.14'); ?>  onclick="alert('Не работает. Находится на реконструкции.')"  onMouseOver="this.className='aFilterhover';" onMouseOut="this.className='aFilter';" src="http://img.xcombats.com/city/capitalcity/day/2vokzal.gif" width="92" height="62" class="aFilter" /></div>
-                  <!-- <div style="position:absolute; left:166px; top:149px; width:27px; height:55px; z-index:99;"><img  src="http://img.xcombats.com/i/images/300x225/capital/2pm.gif" width="27" height="55" title="Памятник Мироздателю" /></div> -->
+                  <div style="position:absolute; left:73px; top:135px; width:92px; height:62px; z-index:100;"><img  <? thisInfRm('1.180.0.14'); ?>  onclick="alert('РќРµ СЂР°Р±РѕС‚Р°РµС‚. РќР°С…РѕРґРёС‚СЃСЏ РЅР° СЂРµРєРѕРЅСЃС‚СЂСѓРєС†РёРё.')"  onMouseOver="this.className='aFilterhover';" onMouseOut="this.className='aFilter';" src="http://img.xcombats.com/city/capitalcity/day/2vokzal.gif" width="92" height="62" class="aFilter" /></div>
+                  <!-- <div style="position:absolute; left:166px; top:149px; width:27px; height:55px; z-index:99;"><img  src="http://img.xcombats.com/i/images/300x225/capital/2pm.gif" width="27" height="55" title="РџР°РјСЏС‚РЅРёРє РњРёСЂРѕР·РґР°С‚РµР»СЋ" /></div> -->
                   <!--
                   <div style="position: absolute; left: 142px; top: 129px; width: 75px; height: 90px; z-index: 99;"><img src="http://img.xcombats.com/i/images/300x225/capital/stellav.gif" width="75" height="90" <? thisInfRm('1.180.0.420'); ?> class="aFilter" /></div>
                   -->
@@ -82,7 +82,7 @@ function AtackNoWindow()
                   
 					<?
 					if( date('m') == 12 || date('m') == 1 ) {
-						//Елка НГ
+						//Р•Р»РєР° РќР“
 					?>
 					<div style="position: absolute; left: 145px; top: 125px; width: 32px; height: 43px; z-index: 100;"><img <? thisInfRm('1.180.0.208'); ?> src="http://img.anticombats.com/newyear2014.png" width="60" height="90" title="" class="aFilter" /></div>
 					<?
@@ -101,7 +101,7 @@ if(date("H")<6 || date("H")>=22)
               <form method="post" action="main.php">
                 <table width="300" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td><div style="width:300px; padding:3px; margin:7px; background-color:#CCCCCC; border:1px solid #575757;"> Введите логин жертвы:<br />
+                    <td><div style="width:300px; padding:3px; margin:7px; background-color:#CCCCCC; border:1px solid #575757;"> Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ Р¶РµСЂС‚РІС‹:<br />
                       <input name="atack" type="text" id="atack" size="35" maxlength="30" />
                       <input type="submit" name="button" id="button" class="btn" value="OK" />
                     </div></td>
@@ -113,19 +113,19 @@ if(date("H")<6 || date("H")>=22)
 }
 ?>
             <!-- -->
-            <div style="width:500px; text-align:left; background-color:#D3D3D3;"> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.3'); ?>>Бойцовский Клуб</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.323'); ?>>Парковая улица</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.10'); ?>>Магазин</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.210'); ?>>Ремонтная мастерская</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.272'); ?>>Комиссионный магазин</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.11'); ?>>Страшилкина улица</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.14'); ?>>Вокзал</a></span> 
-            <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.371'); ?>>Лото</a></span>
-            <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.226'); ?>>Почта</a></span>
+            <div style="width:500px; text-align:left; background-color:#D3D3D3;"> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.3'); ?>>Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.323'); ?>>РџР°СЂРєРѕРІР°СЏ СѓР»РёС†Р°</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.10'); ?>>РњР°РіР°Р·РёРЅ</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.210'); ?>>Р РµРјРѕРЅС‚РЅР°СЏ РјР°СЃС‚РµСЂСЃРєР°СЏ</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.272'); ?>>РљРѕРјРёСЃСЃРёРѕРЅРЅС‹Р№ РјР°РіР°Р·РёРЅ</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.11'); ?>>РЎС‚СЂР°С€РёР»РєРёРЅР° СѓР»РёС†Р°</a></span> <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.14'); ?>>Р’РѕРєР·Р°Р»</a></span> 
+            <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.371'); ?>>Р›РѕС‚Рѕ</a></span>
+            <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('1.180.0.226'); ?>>РџРѕС‡С‚Р°</a></span>
             </div>
             <!-- -->
             <div style="display:none; height:0px " id="moveto"></div></td>
-          <td><!-- <br /><span class="menutop"><nobr>Комната для новичков</nobr></span>--></td>
+          <td><!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ</nobr></span>--></td>
         </tr>
       </table>
       <small>
         <HR>
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
        <? echo $rowonmax; ?><BR>        
       </div></td>
   </tr>

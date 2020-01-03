@@ -25,7 +25,7 @@ if($u->room['file']=='shop2_')
 		{
 			$re = $u->buyItem($sid,(int)$_GET['buy'],(int)$_GET['x']);
 		}else{
-			$re = 'Вы уверены что хотите купить этот предмет?';
+			$re = 'Р’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ СЌС‚РѕС‚ РїСЂРµРґРјРµС‚?';
 		}
 	}elseif(isset($_GET['sale']) && isset($_GET['item']) && $u->newAct($_GET['sd4']))
 	{
@@ -37,13 +37,13 @@ if($u->room['file']=='shop2_')
 		}
 		if(isset($po['nosale']))
 		{
-			$error = 'Не удалось продать предмет, запрет продажи данного предмета ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, Р·Р°РїСЂРµС‚ РїСЂРѕРґР°Р¶Рё РґР°РЅРЅРѕРіРѕ РїСЂРµРґРјРµС‚Р° ...';
 		}elseif($pl['type']<29 && ($po['srok'] > 0 || $pl['srok'] > 0))
 		{
-			$error = 'Не удалось продать предмет, вышел срок годности ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, РІС‹С€РµР» СЃСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё ...';
 		}elseif(isset($po['frompisher']))
 		{
-			$error = 'Не удалось продать предмет, предмет из подземелья ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, РїСЂРµРґРјРµС‚ РёР· РїРѕРґР·РµРјРµР»СЊСЏ ...';
 		}elseif(isset($itm['id']))
 		{
 			if($itm['1price']>0)
@@ -93,18 +93,18 @@ if($u->room['file']=='shop2_')
 				$upd = mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				if($upd)
 				{
-					$error = 'Вы успешно продали предмет &quot;'.$itm['name'].' [x'.$col.']&quot; за '.$shpCena.' кр.';
+					$error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРѕРґР°Р»Рё РїСЂРµРґРјРµС‚ &quot;'.$itm['name'].' [x'.$col.']&quot; Р·Р° '.$shpCena.' РєСЂ.';
 					mysql_query('UPDATE `items_users` SET `inGroup` = "0",`delete` = "'.time().'" WHERE `inGroup` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT '.$itm['group_max'].'');
-					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: Предмет &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] был продан в магазин за <B>'.$shpCena.' кр.</B>.',time(),$u->info['city'],'System.shop',0,0);
+					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] Р±С‹Р» РїСЂРѕРґР°РЅ РІ РјР°РіР°Р·РёРЅ Р·Р° <B>'.$shpCena.' РєСЂ.</B>.',time(),$u->info['city'],'System.shop',0,0);
 				}else{
-					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: Предмет &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] был продан в магазин за <B>'.$shpCena.' кр.</B> (кредиты не переведены).',time(),$u->info['city'],'System.shop',0,0);
-					$error = 'Не удалось продать предмет...';
+					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] Р±С‹Р» РїСЂРѕРґР°РЅ РІ РјР°РіР°Р·РёРЅ Р·Р° <B>'.$shpCena.' РєСЂ.</B> (РєСЂРµРґРёС‚С‹ РЅРµ РїРµСЂРµРІРµРґРµРЅС‹).',time(),$u->info['city'],'System.shop',0,0);
+					$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚...';
 				}
 			}else{
-				$error = 'Не удалось продать предмет...';
+				$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚...';
 			}
 		}else{
-			$error = 'Предмет не найден в инвентаре.';
+			$error = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ.';
 		}
 	}
 	
@@ -112,9 +112,9 @@ if($u->room['file']=='shop2_')
 	<script type="text/javascript">
 	function AddCount(name, txt)
 	{
-		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>Купить неск. штук</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
+		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>РљСѓРїРёС‚СЊ РЅРµСЃРє. С€С‚СѓРє</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
 		'<form method=post><table border=0 width=100% cellspacing=0 cellpadding=0 bgcolor="#FFF6DD"><tr><INPUT TYPE="hidden" name="set" value="'+name+'"><td colspan=2 align=center><B><I>'+txt+'</td></tr><tr><td width=80% align=right>'+
-		'Количество (шт.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" »» ">'+
+		'РљРѕР»РёС‡РµСЃС‚РІРѕ (С€С‚.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" В»В» ">'+
 		'</TD></TR></form></TABLE></td></tr></table>';
 		document.getElementById("hint4").style.visibility = 'visible';
 		document.getElementById("hint4").style.left = '100px';
@@ -174,59 +174,59 @@ if($u->room['file']=='shop2_')
 	<TR>
 	<form name="F1" method="post">
 	<TD valign="top" align="left">
-	<!--Магазин-->
+	<!--РњР°РіР°Р·РёРЅ-->
 	<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#a5a5a5">
 	<div id="hint3" style="visibility:hidden"></div>
 	<tr>
 	<td align="center" height="21">
     <?php	
-		/*названия разделов (сверху)*/
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРІРµСЂС…Сѓ)*/
 		if(!isset($_GET['sale']) && isset($_GET['otdel'])) 
 		{
 			$otdels_small_array = array (
 			'',
-			'<b>Отдел&nbsp;&quot;Оружие: кастеты,ножи&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Оружие: топоры&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Оружие: дубины,булавы&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Оружие: мечи&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Оружие: магические посохи&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћСЂСѓР¶РёРµ: РєР°СЃС‚РµС‚С‹,РЅРѕР¶Рё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћСЂСѓР¶РёРµ: С‚РѕРїРѕСЂС‹&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћСЂСѓР¶РёРµ: РґСѓР±РёРЅС‹,Р±СѓР»Р°РІС‹&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћСЂСѓР¶РёРµ: РјРµС‡Рё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћСЂСѓР¶РёРµ: РјР°РіРёС‡РµСЃРєРёРµ РїРѕСЃРѕС…Рё&quot;</b>',
 			
-			'<b>Отдел&nbsp;&nbsp;Ресурсы: пещерные&nbsp;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&nbsp;Р РµСЃСѓСЂСЃС‹: РїРµС‰РµСЂРЅС‹Рµ&nbsp;</b>',
 			
-			'<b>Отдел&nbsp;&quot;Одежда: плащи и накидки&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: РїР»Р°С‰Рё Рё РЅР°РєРёРґРєРё&quot;</b>',
 			
-			'<b>Отдел&nbsp;&quot;Заклинания: нейтральные&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Одежда: перчатки&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Одежда: рубахи&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Одежда: легкая броня&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Одежда: тяжелая броня&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Одежда: шлемы&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Одежда: наручи&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Одежда: пояса&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Одежда: поножи&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Щиты&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Ювелирные товары: серьги&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Ювелирные товары: ожерелья&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Ювелирные товары: кольца&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: РЅРµР№С‚СЂР°Р»СЊРЅС‹Рµ&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: РїРµСЂС‡Р°С‚РєРё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: СЂСѓР±Р°С…Рё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: Р»РµРіРєР°СЏ Р±СЂРѕРЅСЏ&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: С‚СЏР¶РµР»Р°СЏ Р±СЂРѕРЅСЏ&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: С€Р»РµРјС‹&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: РЅР°СЂСѓС‡Рё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: РїРѕСЏСЃР°&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РћРґРµР¶РґР°: РїРѕРЅРѕР¶Рё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;Р©РёС‚С‹&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;Р®РІРµР»РёСЂРЅС‹Рµ С‚РѕРІР°СЂС‹: СЃРµСЂСЊРіРё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;Р®РІРµР»РёСЂРЅС‹Рµ С‚РѕРІР°СЂС‹: РѕР¶РµСЂРµР»СЊСЏ&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;Р®РІРµР»РёСЂРЅС‹Рµ С‚РѕРІР°СЂС‹: РєРѕР»СЊС†Р°&quot;</b>',
 			
-			'<b>Отдел&nbsp;&quot;Заклинания: нейтральные&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Заклинания: боевые и защитные&quot;</b>'
-			,'<b>Отдел&nbsp;&quot;Заклинания: пирожки&quot;</b>'
-			,'<b>Отдел&nbsp;&quot;Заклинания: исцеляющие&quot;</b>'
-			,'<b>Отдел&nbsp;&quot;Заклинания: манящие&quot;</b>'
-			,'<b>Отдел&nbsp;&quot;Заклинания: стратегические&quot;</b>'
-			,'<b>Отдел&nbsp;&quot;Заклинания: тактические&quot;</b>'
-			,'<b>Отдел&nbsp;&quot;Заклинания: сервисные&quot;</b>'
+			'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: РЅРµР№С‚СЂР°Р»СЊРЅС‹Рµ&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: Р±РѕРµРІС‹Рµ Рё Р·Р°С‰РёС‚РЅС‹Рµ&quot;</b>'
+			,'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: РїРёСЂРѕР¶РєРё&quot;</b>'
+			,'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: РёСЃС†РµР»СЏСЋС‰РёРµ&quot;</b>'
+			,'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: РјР°РЅСЏС‰РёРµ&quot;</b>'
+			,'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: СЃС‚СЂР°С‚РµРіРёС‡РµСЃРєРёРµ&quot;</b>'
+			,'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: С‚Р°РєС‚РёС‡РµСЃРєРёРµ&quot;</b>'
+			,'<b>РћС‚РґРµР»&nbsp;&quot;Р—Р°РєР»РёРЅР°РЅРёСЏ: СЃРµСЂРІРёСЃРЅС‹Рµ&quot;</b>'
 			
-			,'<b>Отдел&nbsp;&quot;Амуниция&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Эликсиры&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Подарки&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Подарки: недобрые&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Подарки: упаковка&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Подарки: открытки&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Подарки: фейерверки&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Усиление оружия: заточки&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Наставничество: образы&quot;</b>');
+			,'<b>РћС‚РґРµР»&nbsp;&quot;РђРјСѓРЅРёС†РёСЏ&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;Р­Р»РёРєСЃРёСЂС‹&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РџРѕРґР°СЂРєРё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РџРѕРґР°СЂРєРё: РЅРµРґРѕР±СЂС‹Рµ&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РџРѕРґР°СЂРєРё: СѓРїР°РєРѕРІРєР°&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РџРѕРґР°СЂРєРё: РѕС‚РєСЂС‹С‚РєРё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РџРѕРґР°СЂРєРё: С„РµР№РµСЂРІРµСЂРєРё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РЈСЃРёР»РµРЅРёРµ РѕСЂСѓР¶РёСЏ: Р·Р°С‚РѕС‡РєРё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РќР°СЃС‚Р°РІРЅРёС‡РµСЃС‚РІРѕ: РѕР±СЂР°Р·С‹&quot;</b>');
 			if(isset($otdels_small_array[$_GET['otdel']]))
 			{
 				echo $otdels_small_array[$_GET['otdel']];	
@@ -235,15 +235,15 @@ if($u->room['file']=='shop2_')
 		} elseif (isset($_GET['sale']) && $_GET['sale']) 
 		{
 			echo '
-			<B>Отдел&nbsp;&quot;Скупка&quot;</B><br>
-			Здесь вы можете продать свои вещи, за жалкие гроши...<br>
-			У вас в наличии: 
+			<B>РћС‚РґРµР»&nbsp;&quot;РЎРєСѓРїРєР°&quot;</B><br>
+			Р—РґРµСЃСЊ РІС‹ РјРѕР¶РµС‚Рµ РїСЂРѕРґР°С‚СЊ СЃРІРѕРё РІРµС‰Рё, Р·Р° Р¶Р°Р»РєРёРµ РіСЂРѕС€Рё...<br>
+			РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: 
 			';
 		}
 	?>
 	</tr>
 	<tr><td>
-	<!--Рюкзак / Прилавок-->
+	<!--Р СЋРєР·Р°Рє / РџСЂРёР»Р°РІРѕРє-->
 	<table width="100%" CELLSPACING="1" CELLPADDING="1" bgcolor="#a5a5a5">
 	<?
 		if(isset($_GET['gifts']))
@@ -251,21 +251,21 @@ if($u->room['file']=='shop2_')
 			$itmAll = $u->genInv(3,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND (`im`.`type` = "28" OR `im`.`type` = "38" OR `im`.`type` = "63" OR `im`.`type` = "64") AND `iu`.`gift` = "" ORDER BY `lastUPD`  DESC');
 			if($itmAll[0]==0)
 			{
-				$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">У вас нет подходящих предметов</td></tr>';
+				$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РЈ РІР°СЃ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ</td></tr>';
 			}else{
 				$itmAllSee = $itmAll[2];
 			}
 			echo $itmAllSee;
 		}elseif(!isset($_GET['sale']))
 		{
-			//Выводим вещи в магазине для покупки
+			//Р’С‹РІРѕРґРёРј РІРµС‰Рё РІ РјР°РіР°Р·РёРЅРµ РґР»СЏ РїРѕРєСѓРїРєРё
 			$u->shopItems($sid);
 		}else{
-			//Выводим вещи в инвентаре для продажи
+			//Р’С‹РІРѕРґРёРј РІРµС‰Рё РІ РёРЅРІРµРЅС‚Р°СЂРµ РґР»СЏ РїСЂРѕРґР°Р¶Рё
 			$itmAll = $u->genInv(2,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" ORDER BY `iu`.`lastUPD` DESC');
 			if($itmAll[0]==0)
 			{
-				$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО</td></tr>';
+				$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ</td></tr>';
 			}else{
 				$itmAllSee = $itmAll[2];
 			}
@@ -293,7 +293,7 @@ if($u->room['file']=='shop2_')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.10&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.10',1); ?>">Государственный магазин</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.10&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.10',1); ?>">Р“РѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ РјР°РіР°Р·РёРЅ</a></td>
 	</tr>
 	</table>
 	</td>
@@ -304,71 +304,71 @@ if($u->room['file']=='shop2_')
 	<div><br />
       <div align="right">
       <small>
-	  Масса: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
-	  У вас в наличии: <span class="icos_WL"><b><?php echo round($u->rep['rep3']-$u->rep['rep3_buy']); ?> Воинственности</small></span></b> &nbsp;
+	  РњР°СЃСЃР°: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
+	  РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: <span class="icos_WL"><b><?php echo round($u->rep['rep3']-$u->rep['rep3_buy']); ?> Р’РѕРёРЅСЃС‚РІРµРЅРЅРѕСЃС‚Рё</small></span></b> &nbsp;
       </small>
       </div>
 	  <br />
 	  <?php
-	/*кнопочки*/
+	/*РєРЅРѕРїРѕС‡РєРё*/
 	/*if(!isset($_GET['sale']))
 	{
 	echo '
-	<INPUT TYPE="button" value="Продать вещи" onclick="location=\'?otdel='.$_GET['otdel'].'&sale=1\'">&nbsp;
+	<INPUT TYPE="button" value="РџСЂРѕРґР°С‚СЊ РІРµС‰Рё" onclick="location=\'?otdel='.$_GET['otdel'].'&sale=1\'">&nbsp;
 	';
 	} else {*/
 	//echo '
-	//<INPUT TYPE="button" value="Купить вещи" onclick="location=\'?otdel='.$_GET['otdel'].'\'">&nbsp;
+	//<INPUT TYPE="button" value="РљСѓРїРёС‚СЊ РІРµС‰Рё" onclick="location=\'?otdel='.$_GET['otdel'].'\'">&nbsp;
 	//';
 	//}
 	?>
-    <INPUT TYPE="button" value="Обновить" onclick="location = '<? echo str_replace('item','',str_replace('buy','',$_SERVER['REQUEST_URI'])); ?>';"><BR>
+    <INPUT TYPE="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location = '<? echo str_replace('item','',str_replace('buy','',$_SERVER['REQUEST_URI'])); ?>';"><BR>
 	  </div>
-	<div style="background-color:#A5A5A5;padding:1"><center><B>Отделы магазина</B></center></div>
+	<div style="background-color:#A5A5A5;padding:1"><center><B>РћС‚РґРµР»С‹ РјР°РіР°Р·РёРЅР°</B></center></div>
 	<div style="line-height:17px;">
 	<?php
-		/*названия разделов (справа)*/
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРїСЂР°РІР°)*/
 		$otdels_array = array (
 		'',
-		'Оружие: кастеты,ножи',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;топоры',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;дубины,булавы',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;мечи',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;магические посохи',
-		'Ресурсы: пещерные&nbsp;',
-		'Одежда: плащи и накидки&nbsp;',
-		'Заклинания: нейтральные'
-		/*'Одежда: сапоги',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;перчатки',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;рубахи',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;легкая броня',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тяжелая броня',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;шлемы',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;наручи',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;пояса',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;поножи',
-		'Щиты',
-		'Ювелирные товары: серьги',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ожерелья',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;кольца',
+		'РћСЂСѓР¶РёРµ: РєР°СЃС‚РµС‚С‹,РЅРѕР¶Рё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;С‚РѕРїРѕСЂС‹',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РґСѓР±РёРЅС‹,Р±СѓР»Р°РІС‹',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РјРµС‡Рё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РјР°РіРёС‡РµСЃРєРёРµ РїРѕСЃРѕС…Рё',
+		'Р РµСЃСѓСЂСЃС‹: РїРµС‰РµСЂРЅС‹Рµ&nbsp;',
+		'РћРґРµР¶РґР°: РїР»Р°С‰Рё Рё РЅР°РєРёРґРєРё&nbsp;',
+		'Р—Р°РєР»РёРЅР°РЅРёСЏ: РЅРµР№С‚СЂР°Р»СЊРЅС‹Рµ'
+		/*'РћРґРµР¶РґР°: СЃР°РїРѕРіРё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РїРµСЂС‡Р°С‚РєРё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;СЂСѓР±Р°С…Рё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Р»РµРіРєР°СЏ Р±СЂРѕРЅСЏ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;С‚СЏР¶РµР»Р°СЏ Р±СЂРѕРЅСЏ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;С€Р»РµРјС‹',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РЅР°СЂСѓС‡Рё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РїРѕСЏСЃР°',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РїРѕРЅРѕР¶Рё',
+		'Р©РёС‚С‹',
+		'Р®РІРµР»РёСЂРЅС‹Рµ С‚РѕРІР°СЂС‹: СЃРµСЂСЊРіРё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РѕР¶РµСЂРµР»СЊСЏ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РєРѕР»СЊС†Р°',
 		
-		'Заклинания: нейтральные',		
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;боевые и защитные',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;пирожки',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;исцеляющие',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;манящие',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стратегические',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тактические',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;сервисные',
+		'Р—Р°РєР»РёРЅР°РЅРёСЏ: РЅРµР№С‚СЂР°Р»СЊРЅС‹Рµ',		
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Р±РѕРµРІС‹Рµ Рё Р·Р°С‰РёС‚РЅС‹Рµ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РїРёСЂРѕР¶РєРё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РёСЃС†РµР»СЏСЋС‰РёРµ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РјР°РЅСЏС‰РёРµ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;СЃС‚СЂР°С‚РµРіРёС‡РµСЃРєРёРµ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;С‚Р°РєС‚РёС‡РµСЃРєРёРµ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;СЃРµСЂРІРёСЃРЅС‹Рµ',
 		
-		'Амуниция',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Эликсиры',
-		'Подарки',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;недобрые',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;упаковка',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;открытки',
-		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;фейерверки',
-		'Усиление оружия: заточки'*/);
+		'РђРјСѓРЅРёС†РёСЏ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Р­Р»РёРєСЃРёСЂС‹',
+		'РџРѕРґР°СЂРєРё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РЅРµРґРѕР±СЂС‹Рµ',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;СѓРїР°РєРѕРІРєР°',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;РѕС‚РєСЂС‹С‚РєРё',
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;С„РµР№РµСЂРІРµСЂРєРё',
+		'РЈСЃРёР»РµРЅРёРµ РѕСЂСѓР¶РёСЏ: Р·Р°С‚РѕС‡РєРё'*/);
 		$i=1;
 		while ($i!=-1)
 		{

@@ -11,13 +11,13 @@ if($u->room['file']=='novich')
 	if(!isset($tst['id'])) {
 		if(isset($_GET['noobgo']) || $c['noobgade'] == false) {
 			if($_GET['noobgo'] == 1 && $c['noobgade'] == true) {
-				//Согласился (создаем пещеру и телепортируем туда
+				//РЎРѕРіР»Р°СЃРёР»СЃСЏ (СЃРѕР·РґР°РµРј РїРµС‰РµСЂСѓ Рё С‚РµР»РµРїРѕСЂС‚РёСЂСѓРµРј С‚СѓРґР°
 				
 				$ins = mysql_query('INSERT INTO `dungeon_now` (`city`,`uid`,`id2`,`name`,`time_start`)
-				VALUES ("'.$u->info['city'].'","'.$u->info['id'].'","106","Академия Новичков","'.time().'")');
+				VALUES ("'.$u->info['city'].'","'.$u->info['id'].'","106","РђРєР°РґРµРјРёСЏ РќРѕРІРёС‡РєРѕРІ","'.time().'")');
 				if($ins){
 					$zid = mysql_insert_id();
-					//обновляем пользователей
+					//РѕР±РЅРѕРІР»СЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 					$su = mysql_query('SELECT `u`.`id`,`st`.`dn` FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`id`="'.$u->info['id'].'"');
 					$ids = '';
 					
@@ -38,8 +38,8 @@ if($u->room['file']=='novich')
 					$upd1 = mysql_query('UPDATE `stats` SET `s`="4",`res_s`="1",`x`="0",`y`="0",`res_x`="0",`res_y`="0",`dn` = "0",`dnow` = "'.$zid.'" WHERE '.$ids.'');
 					if( $upd1 ){
 						$upd2 = mysql_query('UPDATE `users` SET `room` = "391" WHERE '.$ids.'');
-						//Добавляем ботов и обьекты в пещеру $zid с for_dn = $dungeon['id']
-						//Добавляем ботов
+						//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ Рё РѕР±СЊРµРєС‚С‹ РІ РїРµС‰РµСЂСѓ $zid СЃ for_dn = $dungeon['id']
+						//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ
 						$vls = '';
 						$sp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `for_dn` = "106"');
 						while( $pl = mysql_fetch_array( $sp ) ) {
@@ -52,7 +52,7 @@ if($u->room['file']=='novich')
 						}
 						$vls = rtrim($vls,',');				
 						$ins1 = mysql_query('INSERT INTO `dungeon_bots` (`dn`,`id_bot`,`colvo`,`items`,`x`,`y`,`dialog`,`atack`,`go_bot`,`noatack`) VALUES '.$vls.'');
-						//Добавляем обьекты
+						//Р”РѕР±Р°РІР»СЏРµРј РѕР±СЊРµРєС‚С‹
 						$vls = '';
 						$sp = mysql_query('SELECT * FROM `dungeon_obj` WHERE `for_dn` = "106"');
 						while($pl = mysql_fetch_array($sp))
@@ -69,26 +69,26 @@ if($u->room['file']=='novich')
 						if( $upd2 && $ins1 && $ins2 ){
 							die('<script>location="main.php?rnd='.$code.'";</script>');
 						} else {
-							$error = 'Ошибка перехода в подземелье...';
+							$error = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 						}
 					} else {
-						$error = 'Ошибка перехода в подземелье...';
+						$error = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 					}
 				} else {
-					$error = 'Ошибка перехода в подземелье...';
+					$error = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 				}			
 				//
 				//header('location: main.php');
 				die();
 			}else{
-				//Отказался (добавляем квест, системку и пошел нах)
+				//РћС‚РєР°Р·Р°Р»СЃСЏ (РґРѕР±Р°РІР»СЏРµРј РєРІРµСЃС‚, СЃРёСЃС‚РµРјРєСѓ Рё РїРѕС€РµР» РЅР°С…)
 				mysql_query('INSERT INTO `dialog_act` (
 					`uid`,`var`,`time`
 				) VALUES (
 					"'.$u->info['id'].'","noobqst1","'.time().'"
 				)');
 				
-				//Начало обучения
+				//РќР°С‡Р°Р»Рѕ РѕР±СѓС‡РµРЅРёСЏ
 				$humor = array(
 					0 => array(
 						''
@@ -100,18 +100,18 @@ if($u->room['file']=='novich')
 				$humor = $humor[$u->info['sex']];
 				//$u->info['fnq'] = 1;
 				//mysql_query('UPDATE `users` SET `fnq` = "'.$u->info['fnq'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				//Отправляем сообщение в чат о новичке
+				//РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚ Рѕ РЅРѕРІРёС‡РєРµ
 				//mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `delete` = 0 AND `item_id` = 4703');
 				//mysql_query('UPDATE `users` SET `room` = 4 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				//mysql_query('UPDATE `stats` SET `hpNow` = 1000,`mpNow` = 1000,`dn` = 0 , `dnow` = 0 , `x` = 0 , `y` = 0 , `s` = 0 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				//$u->send('','','','','','В нашем мире появился новый игрок &quot;<b>' . $u->info['login'] . '</b>&quot;! '.$humor[rand(0,count($humor)-1)].'',time(),6,0,0,0,1,0);
+				//$u->send('','','','','','Р’ РЅР°С€РµРј РјРёСЂРµ РїРѕСЏРІРёР»СЃСЏ РЅРѕРІС‹Р№ РёРіСЂРѕРє &quot;<b>' . $u->info['login'] . '</b>&quot;! '.$humor[rand(0,count($humor)-1)].'',time(),6,0,0,0,1,0);
 
-				//echo '<div><font color=red><b>Вы отказались от обучения, второй попытки больше не будет!</b></font></div>';
+				//echo '<div><font color=red><b>Р’С‹ РѕС‚РєР°Р·Р°Р»РёСЃСЊ РѕС‚ РѕР±СѓС‡РµРЅРёСЏ, РІС‚РѕСЂРѕР№ РїРѕРїС‹С‚РєРё Р±РѕР»СЊС€Рµ РЅРµ Р±СѓРґРµС‚!</b></font></div>';
 			}
 		}else{
 			echo '<script>
 			function qstnoobsstart() {
-				top.win.add(\'qstnoobsstart\',\'Вы хотите пройти обучение?\',\'\',{\'a1\':\'top.frames[\\\'main\\\'].location.href=\\\'main.php?noobgo=1\\\';\',\'a2\':\'top.frames[\\\'main\\\'].location.href=\\\'main.php?noobgo=2\\\';\',\'n\':\'<center><small>Отказавшись вы не получите награду!</small></center>\'},2,1,\'width:300px;\');
+				top.win.add(\'qstnoobsstart\',\'Р’С‹ С…РѕС‚РёС‚Рµ РїСЂРѕР№С‚Рё РѕР±СѓС‡РµРЅРёРµ?\',\'\',{\'a1\':\'top.frames[\\\'main\\\'].location.href=\\\'main.php?noobgo=1\\\';\',\'a2\':\'top.frames[\\\'main\\\'].location.href=\\\'main.php?noobgo=2\\\';\',\'n\':\'<center><small>РћС‚РєР°Р·Р°РІС€РёСЃСЊ РІС‹ РЅРµ РїРѕР»СѓС‡РёС‚Рµ РЅР°РіСЂР°РґСѓ!</small></center>\'},2,1,\'width:300px;\');
 			}
 			qstnoobsstart();
 			</script>';
@@ -135,8 +135,8 @@ if($u->room['file']=='novich')
                     <div style="position:relative; cursor: pointer; width: 500px;" id="ione"><img src="http://img.xcombats.com/i/images/300x225/club/navig2.jpg" id="img_ione" width="500" height="240"  border="1"/>
                       <div style="position:absolute; left:264px; top:106px; width:175px; height:37px; z-index:90;"><img src="http://img.xcombats.com/i/images/subimages/map_zal2.gif" width="175" height="37" id="mo_1.180.0.0" /></div>
                       <div style="position:absolute; left:47px; top:120px; width:135px; height:29px; z-index:90;"><img <? thisInfRm('1.180.0.1'); ?> src="http://img.xcombats.com/i/images/subimages/map_zal3.gif" width="135" height="29"  class="aFilter" id="mo_1.180.0.1" /></div>
-                      <div style="position:absolute; left:81px; top:102px; width:88px; height:15px; z-index:90;"><img src="http://img.xcombats.com/i/images/subimages/map_zal1.gif" width="88" height="15" title="Вход через Комнату Перехода" id="mo_1.180.0.2" class="aFilter" onclick="alert('Вход через Комнату Перехода')"  /></div>
-                      <div style="position:absolute; left:349px; top:139px; width:16px; height:18px; z-index:90;"><img src="http://img.xcombats.com/i/images/subimages/fl1.gif" width="16" height="18" title="Вы находитесь в Комнате для Новичков"    /></div>
+                      <div style="position:absolute; left:81px; top:102px; width:88px; height:15px; z-index:90;"><img src="http://img.xcombats.com/i/images/subimages/map_zal1.gif" width="88" height="15" title="Р’С…РѕРґ С‡РµСЂРµР· РљРѕРјРЅР°С‚Сѓ РџРµСЂРµС…РѕРґР°" id="mo_1.180.0.2" class="aFilter" onclick="alert('Р’С…РѕРґ С‡РµСЂРµР· РљРѕРјРЅР°С‚Сѓ РџРµСЂРµС…РѕРґР°')"  /></div>
+                      <div style="position:absolute; left:349px; top:139px; width:16px; height:18px; z-index:90;"><img src="http://img.xcombats.com/i/images/subimages/fl1.gif" width="16" height="18" title="Р’С‹ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ РљРѕРјРЅР°С‚Рµ РґР»СЏ РќРѕРІРёС‡РєРѕРІ"    /></div>
                       <div id="snow"></div>
                       <? echo $goline; ?>
                     </div>
@@ -144,35 +144,35 @@ if($u->room['file']=='novich')
                   </tr>
                 </table> 
                 <div style="display:none; height:0px " id="moveto"></div>       
-              <div align="right" style="text-align:justify; padding: 3px;"><small>&laquo;<? echo $c['title3']; ?>&raquo; приветствует Вас, <b><? echo $u->info['login']; ?></b>.<br />
-                Чтобы сражаться с остальными на равных, вам нужно распределить начальные характеристики.<br />
-                Для этого нажмите на <a href='/main.php?skills=1&amp;side=1'>Способности</a>, а затем, нажимая на <img src="http://img.xcombats.com/i/plus.gif" width="9" height="9" /> / <img src="http://img.xcombats.com/i/minus.gif" width="9" height="9" />, сформируйте своего персонажа.<br />
-                Подробнее о значении характеристик можно узнать в <b>Библиотеке</b>.<br />
-                Распределив все характеристики нажмите на кнопку
-                <input type="button" class="btn" value='Вернуться' onclick="location.href='main.php?inv'" />
+              <div align="right" style="text-align:justify; padding: 3px;"><small>&laquo;<? echo $c['title3']; ?>&raquo; РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ Р’Р°СЃ, <b><? echo $u->info['login']; ?></b>.<br />
+                Р§С‚РѕР±С‹ СЃСЂР°Р¶Р°С‚СЊСЃСЏ СЃ РѕСЃС‚Р°Р»СЊРЅС‹РјРё РЅР° СЂР°РІРЅС‹С…, РІР°Рј РЅСѓР¶РЅРѕ СЂР°СЃРїСЂРµРґРµР»РёС‚СЊ РЅР°С‡Р°Р»СЊРЅС‹Рµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё.<br />
+                Р”Р»СЏ СЌС‚РѕРіРѕ РЅР°Р¶РјРёС‚Рµ РЅР° <a href='/main.php?skills=1&amp;side=1'>РЎРїРѕСЃРѕР±РЅРѕСЃС‚Рё</a>, Р° Р·Р°С‚РµРј, РЅР°Р¶РёРјР°СЏ РЅР° <img src="http://img.xcombats.com/i/plus.gif" width="9" height="9" /> / <img src="http://img.xcombats.com/i/minus.gif" width="9" height="9" />, СЃС„РѕСЂРјРёСЂСѓР№С‚Рµ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°.<br />
+                РџРѕРґСЂРѕР±РЅРµРµ Рѕ Р·РЅР°С‡РµРЅРёРё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє РјРѕР¶РЅРѕ СѓР·РЅР°С‚СЊ РІ <b>Р‘РёР±Р»РёРѕС‚РµРєРµ</b>.<br />
+                Р Р°СЃРїСЂРµРґРµР»РёРІ РІСЃРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РЅР°Р¶РјРёС‚Рµ РЅР° РєРЅРѕРїРєСѓ
+                <input type="button" class="btn" value='Р’РµСЂРЅСѓС‚СЊСЃСЏ' onclick="location.href='main.php?inv'" />
                 <br />
-                Для проведения боя нажмите на кнопку
-                <input onclick="location.href='main.php?zayvka'" type='button' value='Поединки' class="btn" />
+                Р”Р»СЏ РїСЂРѕРІРµРґРµРЅРёСЏ Р±РѕСЏ РЅР°Р¶РјРёС‚Рµ РЅР° РєРЅРѕРїРєСѓ
+                <input onclick="location.href='main.php?zayvka'" type='button' value='РџРѕРµРґРёРЅРєРё' class="btn" />
                 <br />
-                Выберите раздел &quot;Новички&quot;.<br />
-                Более подробно о поединках можно прочитать в <b>Библиотеке</b><br />
+                Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР» &quot;РќРѕРІРёС‡РєРё&quot;.<br />
+                Р‘РѕР»РµРµ РїРѕРґСЂРѕР±РЅРѕ Рѕ РїРѕРµРґРёРЅРєР°С… РјРѕР¶РЅРѕ РїСЂРѕС‡РёС‚Р°С‚СЊ РІ <b>Р‘РёР±Р»РёРѕС‚РµРєРµ</b><br />
             </small></div></td>
           <td>
-              <!-- <br /><span class="menutop"><nobr>Комната для новичков</nobr></span>-->
+              <!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ</nobr></span>-->
           </td>
         </tr>
       </table>
       	<small>
         <HR>
-          <INPUT onclick="location.href='main.php?zayvka'" class="btn" value="Поединки" type="button" name="combats">
-          <? $hgo = $u->testHome(); if(!isset($hgo['id'])){ ?><INPUT onclick="location.href='main.php?homeworld=<? echo $code; ?>';" class="btn" value="Возврат" type="button" name="combats2"><? } unset($hgo); ?>
-          <INPUT onclick="location.href='main.php?clubmap=<? echo $code; ?>';" class="btn" value="Карта клуба" type="button" name="combats2">
-          <INPUT id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Форум" type="button" name="forum">
-          <INPUT class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="Подсказка" type="button">
-          <INPUT class="btn" value="Объекты" type="button">
+          <INPUT onclick="location.href='main.php?zayvka'" class="btn" value="РџРѕРµРґРёРЅРєРё" type="button" name="combats">
+          <? $hgo = $u->testHome(); if(!isset($hgo['id'])){ ?><INPUT onclick="location.href='main.php?homeworld=<? echo $code; ?>';" class="btn" value="Р’РѕР·РІСЂР°С‚" type="button" name="combats2"><? } unset($hgo); ?>
+          <INPUT onclick="location.href='main.php?clubmap=<? echo $code; ?>';" class="btn" value="РљР°СЂС‚Р° РєР»СѓР±Р°" type="button" name="combats2">
+          <INPUT id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Р¤РѕСЂСѓРј" type="button" name="forum">
+          <INPUT class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="РџРѕРґСЃРєР°Р·РєР°" type="button">
+          <INPUT class="btn" value="РћР±СЉРµРєС‚С‹" type="button">
         <br />
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
        <? echo $rowonmax; ?><BR>        
       </div></td>
   </tr>

@@ -9,23 +9,23 @@ if( $u->room['file'] == 'dungeon_shop_all' ) {
 	$dungeon = mysql_fetch_array( mysql_query('SELECT * FROM `dungeon_room` WHERE `shop`="'.$u->room['id'].'" LIMIT 1') );
 	$getout_room = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `id` = "'.$dungeon['id'].'" LIMIT 1'));
 
-	$sid = 400; // Общий рыцарский магазин
+	$sid = 400; // РћР±С‰РёР№ СЂС‹С†Р°СЂСЃРєРёР№ РјР°РіР°Р·РёРЅ
 	$error = '';
 	
 	if(isset($_GET['buy'])){
 		if($u->newAct($_GET['sd4'])==true){
 			$re = $u->buyItem($sid,(int)$_GET['buy'],(int)$_GET['x']);
 		}else{
-			$re = 'Вы уверены что хотите купить этот предмет?';
+			$re = 'Р’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ СЌС‚РѕС‚ РїСЂРµРґРјРµС‚?';
 		}
 	}
 	
 	if($re!=''){ echo '<div align="right"><font color="red"><b>'.$re.'</b></font></div>'; } ?>
 	<script type="text/javascript">
 	function AddCount(name, txt){
-		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>Купить неск. штук</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
+		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>РљСѓРїРёС‚СЊ РЅРµСЃРє. С€С‚СѓРє</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
 		'<form method=post><table border=0 width=100% cellspacing=0 cellpadding=0 bgcolor="#FFF6DD"><tr><INPUT TYPE="hidden" name="set" value="'+name+'"><td colspan=2 align=center><B><I>'+txt+'</td></tr><tr><td width=80% align=right>'+
-		'Количество (шт.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" »» ">'+
+		'РљРѕР»РёС‡РµСЃС‚РІРѕ (С€С‚.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" В»В» ">'+
 		'</TD></TR></form></TABLE></td></tr></table>';
 		document.getElementById("hint4").style.visibility = 'visible';
 		document.getElementById("hint4").style.left = '100px';
@@ -85,25 +85,25 @@ if( $u->room['file'] == 'dungeon_shop_all' ) {
 	<TR>
 	<form name="F1" method="post">
 	<TD valign="top" align="left">
-	<!--Магазин-->
+	<!--РњР°РіР°Р·РёРЅ-->
 	<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#a5a5a5">
 	<div id="hint3" style="visibility:hidden"></div>
 	<tr>
 	<td align="center" height="21">
     <?php	
-		/*названия разделов (сверху)*/
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРІРµСЂС…Сѓ)*/
 		
 		$otdels_small_array = array (
-			1 => '<b>Отдел&nbsp;&quot;Пещера Тысячи Проклятий&quot;</b>', 
-			2 => '<b>Отдел&nbsp;&quot;Бездна&quot;</b>',
-			3 => '<b>Отдел&nbsp;&quot;Пещеры Мглы&quot;</b>',
-			4 => '<b>Отдел&nbsp;&quot;Катакомбы&quot;</b>',
-			5 => '<b>Отдел&nbsp;&quot;Потеряный вход&quot;</b>',
-			6 => '<b>Отдел&nbsp;&quot;Грибница&quot;</b>',
+			1 => '<b>РћС‚РґРµР»&nbsp;&quot;РџРµС‰РµСЂР° РўС‹СЃСЏС‡Рё РџСЂРѕРєР»СЏС‚РёР№&quot;</b>', 
+			2 => '<b>РћС‚РґРµР»&nbsp;&quot;Р‘РµР·РґРЅР°&quot;</b>',
+			3 => '<b>РћС‚РґРµР»&nbsp;&quot;РџРµС‰РµСЂС‹ РњРіР»С‹&quot;</b>',
+			4 => '<b>РћС‚РґРµР»&nbsp;&quot;РљР°С‚Р°РєРѕРјР±С‹&quot;</b>',
+			5 => '<b>РћС‚РґРµР»&nbsp;&quot;РџРѕС‚РµСЂСЏРЅС‹Р№ РІС…РѕРґ&quot;</b>',
+			6 => '<b>РћС‚РґРµР»&nbsp;&quot;Р“СЂРёР±РЅРёС†Р°&quot;</b>',
 			
-			7 => '<b>Отдел&nbsp;&nbsp;Туманные Низины&nbsp;</b>',
+			7 => '<b>РћС‚РґРµР»&nbsp;&nbsp;РўСѓРјР°РЅРЅС‹Рµ РќРёР·РёРЅС‹&nbsp;</b>',
 			
-			8 => '<b>Отдел&nbsp;&quot;Другие предметы подземелий&quot;</b>'
+			8 => '<b>РћС‚РґРµР»&nbsp;&quot;Р”СЂСѓРіРёРµ РїСЂРµРґРјРµС‚С‹ РїРѕРґР·РµРјРµР»РёР№&quot;</b>'
 		
 		); 
 		if(isset($otdels_small_array[$_GET['otdel']]))
@@ -113,10 +113,10 @@ if( $u->room['file'] == 'dungeon_shop_all' ) {
 	?>
 	</tr>
 	<tr><td>
-	<!--Рюкзак / Прилавок-->
+	<!--Р СЋРєР·Р°Рє / РџСЂРёР»Р°РІРѕРє-->
 	<table width="100%" CELLSPACING="1" CELLPADDING="1" bgcolor="#a5a5a5">
     <?php
-		//Выводим вещи в магазине для покупки
+		//Р’С‹РІРѕРґРёРј РІРµС‰Рё РІ РјР°РіР°Р·РёРЅРµ РґР»СЏ РїРѕРєСѓРїРєРё
 		$u->shopItems($sid);
 	?>
 	</TABLE>	 
@@ -144,7 +144,7 @@ if( $u->room['file'] == 'dungeon_shop_all' ) {
 		if( isset($getout_room) ){
 			echo '<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location=\'main.php?loc=1.180.0.321&rnd='.$code.'\'" title="';
 			echo thisInfRm('1.180.0.321',1);
-			echo '">Магический портал</a></td>';
+			echo '">РњР°РіРёС‡РµСЃРєРёР№ РїРѕСЂС‚Р°Р»</a></td>';
 		}
 	?> 
 	</tr>
@@ -157,43 +157,43 @@ if( $u->room['file'] == 'dungeon_shop_all' ) {
 	<div><br />
       <div align="right">
       <small>
-	  Масса: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
-	  У вас в наличии: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> кр.</b> &nbsp;
+	  РњР°СЃСЃР°: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
+	  РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> РєСЂ.</b> &nbsp;
       <?
 	  if($u->info['level'] < 8) {
 		?>
-        <br />Зубов: <?=$u->zuby($u->info['money4'])?> &nbsp; &nbsp;
+        <br />Р—СѓР±РѕРІ: <?=$u->zuby($u->info['money4'])?> &nbsp; &nbsp;
         <?  
 	  }
 	  ?>
       </small>
       </div>
 	  <br />
-    <INPUT class="btnnew" style="display:inline-block; vertical-align:baseline;" TYPE="button" value="Обновить" onclick="location = '<? echo str_replace('item','',str_replace('buy','',$_SERVER['REQUEST_URI'])); ?>';"><BR>
+    <INPUT class="btnnew" style="display:inline-block; vertical-align:baseline;" TYPE="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location = '<? echo str_replace('item','',str_replace('buy','',$_SERVER['REQUEST_URI'])); ?>';"><BR>
 	  </div>
-	<div style="background-color:#A5A5A5;padding:1"><center><B>Отделы магазина</B></center></div>
+	<div style="background-color:#A5A5A5;padding:1"><center><B>РћС‚РґРµР»С‹ РјР°РіР°Р·РёРЅР°</B></center></div>
 	<div style="line-height:17px;">
 	<?
-		/*названия разделов (справа)*/ 
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРїСЂР°РІР°)*/ 
 		$otdels_array = array (
-			1=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/capitalcity.gif"> Пещера Тысячи Проклятий',
-			2=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/angelscity.gif"> Бездна',
-			3=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/sandcity.gif"> Пещеры Мглы',
-			4=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/demonscity.gif"> Катакомбы',
-			5=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/emeraldscity.gif"> Потеряный вход',
-			6=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/suncity.gif"> Грибница',
-			7=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/devilscity.gif"> Туманные Низины',
-			8=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/10.gif"> Другое ...'
+			1=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/capitalcity.gif"> РџРµС‰РµСЂР° РўС‹СЃСЏС‡Рё РџСЂРѕРєР»СЏС‚РёР№',
+			2=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/angelscity.gif"> Р‘РµР·РґРЅР°',
+			3=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/sandcity.gif"> РџРµС‰РµСЂС‹ РњРіР»С‹',
+			4=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/demonscity.gif"> РљР°С‚Р°РєРѕРјР±С‹',
+			5=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/emeraldscity.gif"> РџРѕС‚РµСЂСЏРЅС‹Р№ РІС…РѕРґ',
+			6=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/suncity.gif"> Р“СЂРёР±РЅРёС†Р°',
+			7=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/devilscity.gif"> РўСѓРјР°РЅРЅС‹Рµ РќРёР·РёРЅС‹',
+			8=>'<img style="display:inline-block;vertical-align:bottom; width="34" height="19" src="http://img.xcombats.com/i/city_ico2/10.gif"> Р”СЂСѓРіРѕРµ ...'
 		);
 		if($u->rep['rep'.$dungeon['city']] >= 10000){
-			if($sid==802) $otdels_array[8] = 'Плащи';
-			if($sid==802) $otdels_array[14] = 'Шлемы';
-			if($sid==801) $otdels_array[9] = 'Сапоги';
-			if($sid==803) $otdels_array[12] = 'Легкая броня';
-			if($sid==803) $otdels_array[13] = 'Тяжелая броня';
-			if($sid==804) $otdels_array[10] = 'Перчатки';
-			$otdels_array[22] = 'Заклинания';
-			$otdels_array[7] = 'Ресурсы';
+			if($sid==802) $otdels_array[8] = 'РџР»Р°С‰Рё';
+			if($sid==802) $otdels_array[14] = 'РЁР»РµРјС‹';
+			if($sid==801) $otdels_array[9] = 'РЎР°РїРѕРіРё';
+			if($sid==803) $otdels_array[12] = 'Р›РµРіРєР°СЏ Р±СЂРѕРЅСЏ';
+			if($sid==803) $otdels_array[13] = 'РўСЏР¶РµР»Р°СЏ Р±СЂРѕРЅСЏ';
+			if($sid==804) $otdels_array[10] = 'РџРµСЂС‡Р°С‚РєРё';
+			$otdels_array[22] = 'Р—Р°РєР»РёРЅР°РЅРёСЏ';
+			$otdels_array[7] = 'Р РµСЃСѓСЂСЃС‹';
 		}
 		foreach($otdels_array as $key=>$val){
 			if(isset($key) && isset($val)){

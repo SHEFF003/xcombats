@@ -15,12 +15,12 @@ if($u->room['file']=='hramrep')
 			if($_GET['r']!=1)
 			{
 			//echo 'dsfgdsgf';
-				//Обмен на репутацию
+				//РћР±РјРµРЅ РЅР° СЂРµРїСѓС‚Р°С†РёСЋ
 				$resz = $u->repobmen($_GET['itm'],1);
 				echo '<font color=red><b>'.$resz.'</b></font>';
 				unset($resz);
 			}else{
-				//Переплавка рун
+				//РџРµСЂРµРїР»Р°РІРєР° СЂСѓРЅ
 				
 			}
 		}
@@ -71,7 +71,7 @@ if($u->room['file']=='hramrep')
 	<div align="right"><? if($re!=''){ echo '<font color="red"><b>'.$re.'</b></font>'; } ?></div>
 	<div id="hint3" style="visibility:hidden"></div>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3">Храм Репутации</div>
+	<tr><td valign="top"><div align="center" class="pH3">РҐСЂР°Рј Р РµРїСѓС‚Р°С†РёРё</div>
 	<td width="280" valign="top"><table align="right" cellpadding="0" cellspacing="0">
 		<tr>
 		  <td width="100%">&nbsp;</td>
@@ -85,7 +85,7 @@ if($u->room['file']=='hramrep')
 						<td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 							<tr>
 							  <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.213&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.213',1); ?>">Большая торговая улица</a></td>
+							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.213&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.213',1); ?>">Р‘РѕР»СЊС€Р°СЏ С‚РѕСЂРіРѕРІР°СЏ СѓР»РёС†Р°</a></td>
 							</tr>
 						</table></td>
 					  </tr>					  <tr>
@@ -105,11 +105,11 @@ if($u->room['file']=='hramrep')
 	$itmAll = $u->genInv(12,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" and (`im`.`inslot`="3" or `im`.`inslot`="14" or `im`.`type`="31") ORDER BY `lastUPD` DESC');
 	if($itmAll[0]==0)
 	{
-		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО (нет подходящих предметов)</td></tr>';
+		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ (РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ)</td></tr>';
 	}else{
 		$itmAllSee = $itmAll[2];
 	}
-	//Удачно растворен предмет "Укрепленный Костыль". Получена руна "Моно Бауни".
+	//РЈРґР°С‡РЅРѕ СЂР°СЃС‚РІРѕСЂРµРЅ РїСЂРµРґРјРµС‚ "РЈРєСЂРµРїР»РµРЅРЅС‹Р№ РљРѕСЃС‚С‹Р»СЊ". РџРѕР»СѓС‡РµРЅР° СЂСѓРЅР° "РњРѕРЅРѕ Р‘Р°СѓРЅРё".
 	?>
     <script>
 	function takeItRun(img,id,vl)
@@ -117,7 +117,7 @@ if($u->room['file']=='hramrep')
 		if(id!=urlras)
 		{
 			urlras = id;
-			document.getElementById('use_item').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="Предмет для переплавки"/><br><a href="javascript:void(0);" onClick="cancelItRun()">Отменить</a>';
+			document.getElementById('use_item').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="РџСЂРµРґРјРµС‚ РґР»СЏ РїРµСЂРµРїР»Р°РІРєРё"/><br><a href="javascript:void(0);" onClick="cancelItRun()">РћС‚РјРµРЅРёС‚СЊ</a>';
 			document.getElementById('add_rep').innerHTML = ' + '+vl;
 		}else{
 			cancelItRun();
@@ -126,7 +126,7 @@ if($u->room['file']=='hramrep')
 	function cancelItRun()
 	{
 		urlras = 0;
-		document.getElementById('use_item').innerHTML = 'Предмет не выбран';
+		document.getElementById('use_item').innerHTML = 'РџСЂРµРґРјРµС‚ РЅРµ РІС‹Р±СЂР°РЅ';
 		document.getElementById('add_rep').innerHTML = '';
 	}
 	urlras = 0;
@@ -137,24 +137,24 @@ if($u->room['file']=='hramrep')
 			<?
 			//print_r($u->info);
 			?>
-            <b>Репутация Capitalcity: <? echo 0+$reps['repcapitalcity']; ?></b><span id="add_rep"></span>
-            <br /><br /><center><span id="use_item">Предмет не выбран</span><br /><br />
-            <input type="button" value="Обменять" onclick="location = '?r=<?=$_GET['r'].'&rnd='.$code.'&itm=';?>'+urlras;" /></center>
+            <b>Р РµРїСѓС‚Р°С†РёСЏ Capitalcity: <? echo 0+$reps['repcapitalcity']; ?></b><span id="add_rep"></span>
+            <br /><br /><center><span id="use_item">РџСЂРµРґРјРµС‚ РЅРµ РІС‹Р±СЂР°РЅ</span><br /><br />
+            <input type="button" value="РћР±РјРµРЅСЏС‚СЊ" onclick="location = '?r=<?=$_GET['r'].'&rnd='.$code.'&itm=';?>'+urlras;" /></center>
             <br />
             <br /><small>
-            <font color="red">Внимание!</font><br />
-			Предметы при обмене необратимо теряются.<br>
-			<b>К обмену принимается оружие и щиты, 4ур и выше найденные в подземелиях.</b></small>
+            <font color="red">Р’РЅРёРјР°РЅРёРµ!</font><br />
+			РџСЂРµРґРјРµС‚С‹ РїСЂРё РѕР±РјРµРЅРµ РЅРµРѕР±СЂР°С‚РёРјРѕ С‚РµСЂСЏСЋС‚СЃСЏ.<br>
+			<b>Рљ РѕР±РјРµРЅСѓ РїСЂРёРЅРёРјР°РµС‚СЃСЏ РѕСЂСѓР¶РёРµ Рё С‰РёС‚С‹, 4СѓСЂ Рё РІС‹С€Рµ РЅР°Р№РґРµРЅРЅС‹Рµ РІ РїРѕРґР·РµРјРµР»РёСЏС….</b></small>
             </td>
     	    <td valign="top">
             <!-- -->
             <table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">
-            <? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Рюкзак закрыт.</b><br><img title="Замок для рюкзака" src="http://img.xcombats.com/i/items/box_lock.gif"> Введите пароль: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="Открыть"></form></div>'; } ?>
+            <? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Р СЋРєР·Р°Рє Р·Р°РєСЂС‹С‚.</b><br><img title="Р—Р°РјРѕРє РґР»СЏ СЂСЋРєР·Р°РєР°" src="http://img.xcombats.com/i/items/box_lock.gif"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="РћС‚РєСЂС‹С‚СЊ"></form></div>'; } ?>
             </table>
             <!-- -->
             </td>
       </tr>
     </table>
 <? }else{ ?>
-    	&nbsp; По всей видимости Алтарь рун был разрушен... <b>Лорд разрушитель</b> не дремлет...
+    	&nbsp; РџРѕ РІСЃРµР№ РІРёРґРёРјРѕСЃС‚Рё РђР»С‚Р°СЂСЊ СЂСѓРЅ Р±С‹Р» СЂР°Р·СЂСѓС€РµРЅ... <b>Р›РѕСЂРґ СЂР°Р·СЂСѓС€РёС‚РµР»СЊ</b> РЅРµ РґСЂРµРјР»РµС‚...
 <? } } ?>

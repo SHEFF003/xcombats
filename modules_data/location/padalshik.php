@@ -13,10 +13,10 @@ if($_GET['get']=='10'  && $is_eff[0]==0){
         mysql_query('INSERT INTO `eff_users` (
 				`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`
 			) VALUES (
-				"396","'.$user['id'].'","Благословление Падальщика","add_exp=5|add_m10=2|add_m11=2|nofastfinisheff=1","101","'.time().'"
+				"396","'.$user['id'].'","Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РџР°РґР°Р»СЊС‰РёРєР°","add_exp=5|add_m10=2|add_m11=2|nofastfinisheff=1","101","'.time().'"
 			)'));
     {
-        $err = "Падальщик сегодня в хорошем настроении. Вы получили Благословение Падальщика и 10 кредитов!";
+        $err = "РџР°РґР°Р»СЊС‰РёРє СЃРµРіРѕРґРЅСЏ РІ С…РѕСЂРѕС€РµРј РЅР°СЃС‚СЂРѕРµРЅРёРё. Р’С‹ РїРѕР»СѓС‡РёР»Рё Р‘Р»Р°РіРѕСЃР»РѕРІРµРЅРёРµ РџР°РґР°Р»СЊС‰РёРєР° Рё 10 РєСЂРµРґРёС‚РѕРІ!";
     }
 }
 elseif($_GET['get']=='10'  && $is_eff[0]>0){
@@ -25,12 +25,12 @@ elseif($_GET['get']=='10'  && $is_eff[0]>0){
     $left_time=$wait_sec-$new_t;
     $left_min=floor($left_time/3600);
     $left_sec=floor(($left_time-$left_min*3600)/60);
-    if($left_min==1){$time_h="час";}
-    if($left_min>1 and $left_min<5){$time_h="часа";}
-    if($left_min>4){$time_h="часов";}
-    $time_left=$left_min." ".$time_h." ".$left_sec." мин";
+    if($left_min==1){$time_h="С‡Р°СЃ";}
+    if($left_min>1 and $left_min<5){$time_h="С‡Р°СЃР°";}
+    if($left_min>4){$time_h="С‡Р°СЃРѕРІ";}
+    $time_left=$left_min." ".$time_h." ".$left_sec." РјРёРЅ";
 
-    $err="Вы уже получали благословение Падальщика. Дождитесь окончания текущего Благословления";
+    $err="Р’С‹ СѓР¶Рµ РїРѕР»СѓС‡Р°Р»Рё Р±Р»Р°РіРѕСЃР»РѕРІРµРЅРёРµ РџР°РґР°Р»СЊС‰РёРєР°. Р”РѕР¶РґРёС‚РµСЃСЊ РѕРєРѕРЅС‡Р°РЅРёСЏ С‚РµРєСѓС‰РµРіРѕ Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёСЏ";
 }
 
 ?>
@@ -44,12 +44,12 @@ elseif($_GET['get']=='10'  && $is_eff[0]>0){
 <body bgcolor=e2e0e0 style="background-image: url(/i/misc/statue.png);background-repeat:no-repeat;background-position:top right">
 <div id=hint4 class=ahint></div>
 <TABLE width=100%>
-<TR><TD valign=top width=100%><center><font style="font-size:24px; color:#000033"><h3>"Памятник Падальщику"</h3></font></center>
+<TR><TD valign=top width=100%><center><font style="font-size:24px; color:#000033"><h3>"РџР°РјСЏС‚РЅРёРє РџР°РґР°Р»СЊС‰РёРєСѓ"</h3></font></center>
 <div style="float:right;width:300px;">
 <?
-	//id предмета
+	//id РїСЂРµРґРјРµС‚Р°
 	$arr = array(
-	//Пока что предметов нету
+	//РџРѕРєР° С‡С‚Рѕ РїСЂРµРґРјРµС‚РѕРІ РЅРµС‚Сѓ
 		);
 	if( isset($_GET['takeartefact']) ) {
 		$i = (int)$_GET['takeartefact'];
@@ -58,19 +58,19 @@ elseif($_GET['get']=='10'  && $is_eff[0]>0){
 			$take_today = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `data` LIKE "%musor_art=1%" AND `delete` < 1234567890 LIMIT 1'));
 			$take_today = 0 + $take_today[0];
 			if( $take_today < 2 ) {
-				$error .= 'Вы взяли у Ангела «'.$itm['name'].'» найти вы его можете у себя в рюкзаке.';
+				$error .= 'Р’С‹ РІР·СЏР»Рё Сѓ РђРЅРіРµР»Р° В«'.$itm['name'].'В» РЅР°Р№С‚Рё РІС‹ РµРіРѕ РјРѕР¶РµС‚Рµ Сѓ СЃРµР±СЏ РІ СЂСЋРєР·Р°РєРµ.';
 				$u->addItem($itm['id'],$u->info['id'],'|sudba='.$u->info['login'].'|nosale=1|frompisher=1|musor_art=1');
 			}else{
-				$error .= 'Ангел Вам уже выдал предмет, больше вы не получите, если хотите поменять свою вещь, отдайте Ангелу те которые вы уже взяли !';
+				$error .= 'РђРЅРіРµР» Р’Р°Рј СѓР¶Рµ РІС‹РґР°Р» РїСЂРµРґРјРµС‚, Р±РѕР»СЊС€Рµ РІС‹ РЅРµ РїРѕР»СѓС‡РёС‚Рµ, РµСЃР»Рё С…РѕС‚РёС‚Рµ РїРѕРјРµРЅСЏС‚СЊ СЃРІРѕСЋ РІРµС‰СЊ, РѕС‚РґР°Р№С‚Рµ РђРЅРіРµР»Сѓ С‚Рµ РєРѕС‚РѕСЂС‹Рµ РІС‹ СѓР¶Рµ РІР·СЏР»Рё !';
 			}
 		}else{
-			$error .= 'Предмет не найден!';
+			$error .= 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ!';
 		}
 	}elseif(isset($_GET['restart'])) {
 		if(mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `data` LIKE "%musor_art=1%" AND `delete` < 1234567890')) {
-			$error .= 'Вы отдали все вещи полученные в дар Ангелом, выберите себе новые предметы.';
+			$error .= 'Р’С‹ РѕС‚РґР°Р»Рё РІСЃРµ РІРµС‰Рё РїРѕР»СѓС‡РµРЅРЅС‹Рµ РІ РґР°СЂ РђРЅРіРµР»РѕРј, РІС‹Р±РµСЂРёС‚Рµ СЃРµР±Рµ РЅРѕРІС‹Рµ РїСЂРµРґРјРµС‚С‹.';
 		}else{
-			$error .= 'У вас нет предметов от Ангела.';
+			$error .= 'РЈ РІР°СЃ РЅРµС‚ РїСЂРµРґРјРµС‚РѕРІ РѕС‚ РђРЅРіРµР»Р°.';
 		}
 	}
 	echo '<b style="color:red">'.$error.'</b><br>';
@@ -79,15 +79,15 @@ elseif($_GET['get']=='10'  && $is_eff[0]>0){
 	while($i < count($arr)) {
 		$itm = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.mysql_real_escape_string($arr[$i]).'" LIMIT 1'));
 		if(isset($itm['id'])) {
-			$items .= ' <a href="?takeartefact='.$i.'"><img src="http://img.xcombats.com/i/items/'.$itm['img'].'" title="Взять &quot;' . $itm['name'] . '&quot;"></a> &nbsp; ';
+			$items .= ' <a href="?takeartefact='.$i.'"><img src="http://img.xcombats.com/i/items/'.$itm['img'].'" title="Р’Р·СЏС‚СЊ &quot;' . $itm['name'] . '&quot;"></a> &nbsp; ';
 		}
 		$i++;
 	}
-	/*echo '<a href="?restart=1">Отдать Ангелу вещи</a><br><b>Возможно взять вещи:</b><br>';
+	/*echo '<a href="?restart=1">РћС‚РґР°С‚СЊ РђРЅРіРµР»Сѓ РІРµС‰Рё</a><br><b>Р’РѕР·РјРѕР¶РЅРѕ РІР·СЏС‚СЊ РІРµС‰Рё:</b><br>';
 	if( $items != '' ) {
 		echo '<br><br>'.$items;
 	}else{
-		echo 'Нет предметов';
+		echo 'РќРµС‚ РїСЂРµРґРјРµС‚РѕРІ';
 	}*/
 ?>
         </div>
@@ -127,7 +127,7 @@ elseif($_GET['get']=='10'  && $is_eff[0]>0){
                                                                                         <table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                                                                                             <tr>
                                                                                                 <td bgcolor="#D3D3D3"><img src="http://<? echo $c['img']; ?>/i/move/links.gif" width="9" height="7" /></td>
-                                                                                                <td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onClick="location='main.php?loc=1.180.0.415&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.415',1); ?>">Площадь поклона</a></td>
+                                                                                                <td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onClick="location='main.php?loc=1.180.0.415&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.415',1); ?>">РџР»РѕС‰Р°РґСЊ РїРѕРєР»РѕРЅР°</a></td>
                                                                                             </tr>
                                                                                         </table>
                                                                                     </td>
@@ -138,7 +138,7 @@ elseif($_GET['get']=='10'  && $is_eff[0]>0){
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!-- <br /><span class="menutop"><nobr>Общежитие</nobr></span>-->
+                                            <!-- <br /><span class="menutop"><nobr>РћР±С‰РµР¶РёС‚РёРµ</nobr></span>-->
                                             </td>
                                             </tr>
                                         </table>
@@ -157,7 +157,7 @@ elseif($_GET['get']=='10'  && $is_eff[0]>0){
 <tr>
     <td>
         <div align="left"><font color="red"><b><?=$err?></b></font></div>
-        Благословление Падальщика: <a href="?get=10">получить</a>
+        Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РџР°РґР°Р»СЊС‰РёРєР°: <a href="?get=10">РїРѕР»СѓС‡РёС‚СЊ</a>
     </td>
 </tr>
 </TABLE>

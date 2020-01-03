@@ -11,9 +11,9 @@ if($p['useuntravm']==1)
 		{
 			$trvm = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE (`id_eff` = "4" OR `id_eff` = "5") AND `uid` = "'.$uu['id'].'" AND `delete` = "0" LIMIT 1'));
 			if($uu['battle'] > 0) {
-				$uer = 'Персонаж находится в поединке.<br>';
+				$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РїРѕРµРґРёРЅРєРµ.<br>';
 			}elseif(!isset($trvm['id'])) {
-				$uer = 'У персонажа нет травмы.<br>';
+				$uer = 'РЈ РїРµСЂСЃРѕРЅР°Р¶Р° РЅРµС‚ С‚СЂР°РІРјС‹.<br>';
 			}else{
 				$upd = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE (`id_eff` = "4" OR `id_eff` = "5") AND `uid` = "'.$uu['id'].'" AND `delete` = "0"');
 				if($upd)
@@ -21,21 +21,21 @@ if($p['useuntravm']==1)
 					$sx = '';
 					if($u->info['sex']==1)
 					{
-						$sx = 'а';
+						$sx = 'Р°';
 					}
-					$rtxt = '[img[items/cure3.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; излечил'.$sx.' персонажа &quot;'.$uu['login'].'&quot; от травм.';
+					$rtxt = '[img[items/cure3.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; РёР·Р»РµС‡РёР»'.$sx.' РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$uu['login'].'&quot; РѕС‚ С‚СЂР°РІРј.';
 					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");				
-					$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; излечил'.$sx.' от травм';
+					$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; РёР·Р»РµС‡РёР»'.$sx.' РѕС‚ С‚СЂР°РІРј';
 					mysql_query("INSERT INTO `users_delo` (`uid`,`ip`,`city`,`time`,`text`,`login`,`type`) VALUES ('".$uu['id']."','".$_SERVER['REMOTE_ADDR']."','".$u->info['city']."','".time()."','".$rtxt."','".$u->info['login']."',0)");
-					$uer = 'Вы успешно излечили персонажу "'.$uu['login'].'" от травм.';
+					$uer = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёР·Р»РµС‡РёР»Рё РїРµСЂСЃРѕРЅР°Р¶Сѓ "'.$uu['login'].'" РѕС‚ С‚СЂР°РІРј.';
 				}else{
-					$uer = 'Не удалось использовать данное заклятие';
+					$uer = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ';
 				}
 			}
 		}else{
-			$uer = 'Персонаж не найден в этом городе';
+			$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 		}
 }else{
-	$uer = 'У Вас нет прав на использование данного заклятия';
+	$uer = 'РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РЅР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РґР°РЅРЅРѕРіРѕ Р·Р°РєР»СЏС‚РёСЏ';
 }	
 ?>

@@ -2,7 +2,7 @@
 if(!defined('GAME')) { die(); }
 
 if(isset($file) && $file[0] == 'dungeons/trap_portal.php') {
-  echo '<input type="button" value="Обновить" onclick="location =\''.$_SERVER['REQUEST_URI'].'\';" /> &nbsp;Вы должны быть перемещены, но портал еще не работает. ';
+  echo '<input type="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location =\''.$_SERVER['REQUEST_URI'].'\';" /> &nbsp;Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РїРµСЂРµРјРµС‰РµРЅС‹, РЅРѕ РїРѕСЂС‚Р°Р» РµС‰Рµ РЅРµ СЂР°Р±РѕС‚Р°РµС‚. ';
   $actions = array();
   $action = explode('|', $file[1]);
   foreach($action as $value) {

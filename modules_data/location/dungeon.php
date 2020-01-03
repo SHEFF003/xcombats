@@ -13,7 +13,7 @@ $pd = array(
 	6 =>0,
 	7 =>0,
 	8 =>0,
-	9 =>0, //передняя стенка, в 2-х шагах
+	9 =>0, //РїРµСЂРµРґРЅСЏСЏ СЃС‚РµРЅРєР°, РІ 2-С… С€Р°РіР°С…
 	10=>0,
 	11=>0,
 	12=>0,
@@ -28,12 +28,12 @@ $pd = array(
 	21=>0,
 	22=>0,
 	23=>0,
-	/* Растояние: 1 шаг */
-	24=>0, //стена прямо слева от персонажа (1)
-	25=>0, //стена прямо справа от персонажа (1)
-	26=>0, //стена прямо перед персонажем (1)
-	27=>0, //стена слева от персонажа (1)
-	28=>0  //стена справа от персонажа (1)
+	/* Р Р°СЃС‚РѕСЏРЅРёРµ: 1 С€Р°Рі */
+	24=>0, //СЃС‚РµРЅР° РїСЂСЏРјРѕ СЃР»РµРІР° РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (1)
+	25=>0, //СЃС‚РµРЅР° РїСЂСЏРјРѕ СЃРїСЂР°РІР° РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (1)
+	26=>0, //СЃС‚РµРЅР° РїСЂСЏРјРѕ РїРµСЂРµРґ РїРµСЂСЃРѕРЅР°Р¶РµРј (1)
+	27=>0, //СЃС‚РµРЅР° СЃР»РµРІР° РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (1)
+	28=>0  //СЃС‚РµРЅР° СЃРїСЂР°РІР° РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (1)
 );
 
 if(isset($_POST['go_to_admin']) && $u->info['admin'] == 1) {
@@ -87,8 +87,8 @@ if(isset($_GET['go_from_psh'])) {
 
 
 if($u->info['dnow']==0){
-	//выкидываем из пещеры
-	die('Ошибки инициализации');
+	//РІС‹РєРёРґС‹РІР°РµРј РёР· РїРµС‰РµСЂС‹
+	die('РћС€РёР±РєРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё');
 }else{
 	
 	if($d->info['id2'] == 15) {
@@ -96,7 +96,7 @@ if($u->info['dnow']==0){
 		$sb = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `delete` = 0 AND `item_id` = 4910 LIMIT 1'));
 		//
 		if(isset($_GET['atackpuck'])) {
-			//Атакуем!
+			//РђС‚Р°РєСѓРµРј!
 			$shbtu = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`battle` FROM `users` WHERE `id` = "'.mysql_real_escape_string($_GET['atackpuck']).'" LIMIT 1'));
 			if(isset($shbtu['id'])) {
 				$shbts = mysql_fetch_array(mysql_query('SELECT `id`,`x`,`y`,`dnow` FROM `stats` WHERE `id` = "'.$shbtu['id'].'" LIMIT 1'));
@@ -104,30 +104,30 @@ if($u->info['dnow']==0){
 					$tm11 = mysql_fetch_array(mysql_query('SELECT * FROM `katok_now` WHERE `clone` = "'.$u->info['id'].'" LIMIT 1'));
 					$tm22 = mysql_fetch_array(mysql_query('SELECT * FROM `katok_now` WHERE `clone` = "'.$shbtu['id'].'" LIMIT 1'));
 					if($tm11['team'] == $tm22['team']) {
-						$d->error = 'Вы не можете атаковать игрока из своей команды!';
+						$d->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ Р°С‚Р°РєРѕРІР°С‚СЊ РёРіСЂРѕРєР° РёР· СЃРІРѕРµР№ РєРѕРјР°РЅРґС‹!';
 					}elseif($shbts['x'] == $u->info['x'] || $shbts['x'] == $u->info['x']-1 || $shbts['x'] == $u->info['x']+1) {
 						if($shbts['x'] == $u->info['x'] || $shbts['x'] == $u->info['x']-1 || $shbts['x'] == $u->info['x']+1) {
 							//
 							if($shbtu['battle'] > 0) {
-								$d->error = 'Вмешиваемся в бой против &quot;'.$shbtu['login'].'&quot;!';
+								$d->error = 'Р’РјРµС€РёРІР°РµРјСЃСЏ РІ Р±РѕР№ РїСЂРѕС‚РёРІ &quot;'.$shbtu['login'].'&quot;!';
 							}else{
-								$d->error = 'Атакуем &quot;'.$shbtu['login'].'&quot; прямо сейчас!';
+								$d->error = 'РђС‚Р°РєСѓРµРј &quot;'.$shbtu['login'].'&quot; РїСЂСЏРјРѕ СЃРµР№С‡Р°СЃ!';
 							}
 							//
 						}else{
-							$d->error = '&quot;'.$shbtu['login'].'&quot; находится далеко от вас для паса!';
+							$d->error = '&quot;'.$shbtu['login'].'&quot; РЅР°С…РѕРґРёС‚СЃСЏ РґР°Р»РµРєРѕ РѕС‚ РІР°СЃ РґР»СЏ РїР°СЃР°!';
 						}
 					}else{
-						$d->error = '&quot;'.$shbtu['login'].'&quot; находится далеко от вас для паса!';
+						$d->error = '&quot;'.$shbtu['login'].'&quot; РЅР°С…РѕРґРёС‚СЃСЏ РґР°Р»РµРєРѕ РѕС‚ РІР°СЃ РґР»СЏ РїР°СЃР°!';
 					}
 				}else{
-					$d->error = 'Игрок не найден на хоккейном поле...';
+					$d->error = 'РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ РЅР° С…РѕРєРєРµР№РЅРѕРј РїРѕР»Рµ...';
 				}
 			}else{
-				$d->error = 'Игрок не найден на хоккейном поле!';
+				$d->error = 'РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ РЅР° С…РѕРєРєРµР№РЅРѕРј РїРѕР»Рµ!';
 			}
 		}elseif(isset($_GET['addpuck']) && isset($sb['id'])) {
-			//Передаем шайбу
+			//РџРµСЂРµРґР°РµРј С€Р°Р№Р±Сѓ
 			$shbtu = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`battle` FROM `users` WHERE `id` = "'.mysql_real_escape_string($_GET['addpuck']).'" LIMIT 1'));
 			if(isset($shbtu['id'])) {
 				$shbts = mysql_fetch_array(mysql_query('SELECT `id`,`x`,`y`,`dnow` FROM `stats` WHERE `id` = "'.$shbtu['id'].'" LIMIT 1'));
@@ -135,33 +135,33 @@ if($u->info['dnow']==0){
 					$tm11 = mysql_fetch_array(mysql_query('SELECT * FROM `katok_now` WHERE `clone` = "'.$u->info['id'].'" LIMIT 1'));
 					$tm22 = mysql_fetch_array(mysql_query('SELECT * FROM `katok_now` WHERE `clone` = "'.$shbtu['id'].'" LIMIT 1'));
 					if($tm11['team'] != $tm22['team']) {
-						$d->error = 'Вы не можете дать пас сопернику!';
+						$d->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РґР°С‚СЊ РїР°СЃ СЃРѕРїРµСЂРЅРёРєСѓ!';
 					}elseif($shbts['x'] == $u->info['x'] || $shbts['x'] == $u->info['x']-1 || $shbts['x'] == $u->info['x']+1) {
 						if($shbts['x'] == $u->info['x'] || $shbts['x'] == $u->info['x']-1 || $shbts['x'] == $u->info['x']+1) {
 							//
 							if($shbtu['battle'] > 0) {
-								$d->error = '&quot;'.$shbtu['login'].'&quot; находится в конфликте с соперником!';
+								$d->error = '&quot;'.$shbtu['login'].'&quot; РЅР°С…РѕРґРёС‚СЃСЏ РІ РєРѕРЅС„Р»РёРєС‚Рµ СЃ СЃРѕРїРµСЂРЅРёРєРѕРј!';
 							}else{
 								mysql_query('UPDATE `items_users` SET `uid` = "'.$shbtu['id'].'" WHERE `id` = "'.$sb['id'].'" LIMIT 1');
 								unset($sb);
-								$d->error = '&quot;'.$shbtu['login'].'&quot; получает пас и ведёт шайбу!';
-								$d->sys_chat('<b>'.$u->info['login'].'</b> передаем пас игроку <b>'.$shbtu['login'].'</b>!');
+								$d->error = '&quot;'.$shbtu['login'].'&quot; РїРѕР»СѓС‡Р°РµС‚ РїР°СЃ Рё РІРµРґС‘С‚ С€Р°Р№Р±Сѓ!';
+								$d->sys_chat('<b>'.$u->info['login'].'</b> РїРµСЂРµРґР°РµРј РїР°СЃ РёРіСЂРѕРєСѓ <b>'.$shbtu['login'].'</b>!');
 							}
 							//
 						}else{
-							$d->error = '&quot;'.$shbtu['login'].'&quot; находится далеко от вас для паса!';
+							$d->error = '&quot;'.$shbtu['login'].'&quot; РЅР°С…РѕРґРёС‚СЃСЏ РґР°Р»РµРєРѕ РѕС‚ РІР°СЃ РґР»СЏ РїР°СЃР°!';
 						}
 					}else{
-						$d->error = '&quot;'.$shbtu['login'].'&quot; находится далеко от вас для паса!';
+						$d->error = '&quot;'.$shbtu['login'].'&quot; РЅР°С…РѕРґРёС‚СЃСЏ РґР°Р»РµРєРѕ РѕС‚ РІР°СЃ РґР»СЏ РїР°СЃР°!';
 					}
 				}else{
-					$d->error = 'Игрок не найден на хоккейном поле...';
+					$d->error = 'РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ РЅР° С…РѕРєРєРµР№РЅРѕРј РїРѕР»Рµ...';
 				}
 			}else{
-				$d->error = 'Игрок не найден на хоккейном поле!';
+				$d->error = 'РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ РЅР° С…РѕРєРєРµР№РЅРѕРј РїРѕР»Рµ!';
 			}
 		}
-		//Каток
+		//РљР°С‚РѕРє
 		$tm1win = mysql_fetch_array(mysql_query('SELECT SUM(`win`) FROM `katok_now` WHERE `team` = 1'));
 		$tm2win = mysql_fetch_array(mysql_query('SELECT SUM(`win`) FROM `katok_now` WHERE `team` = 2'));
 		$tm1win = 0+$tm1win[0];
@@ -175,10 +175,10 @@ if($u->info['dnow']==0){
 		if($tmwin > 0) {
 			$sp = mysql_query('SELECT * FROM `katok_now`');
 			while( $pl = mysql_fetch_array($sp) ) {
-				//Портируем персонажа обратно
+				//РџРѕСЂС‚РёСЂСѓРµРј РїРµСЂСЃРѕРЅР°Р¶Р° РѕР±СЂР°С‚РЅРѕ
 				mysql_query('UPDATE `users` SET `inUser` = 0, `room` = 409 WHERE `inUser` = "'.$pl['clone'].'" LIMIT 1');
 
-				//Удаляем текущего бота и инвентарь
+				//РЈРґР°Р»СЏРµРј С‚РµРєСѓС‰РµРіРѕ Р±РѕС‚Р° Рё РёРЅРІРµРЅС‚Р°СЂСЊ
 				mysql_query('DELETE FROM `users` WHERE `id` = "'.$pl['clone'].'" LIMIT 1');
 				mysql_query('DELETE FROM `stats` WHERE `id` = "'.$pl['clone'].'" LIMIT 1');
 				mysql_query('DELETE FROM `items_users` WHERE `uid` = "'.$pl['clone'].'"');
@@ -188,40 +188,40 @@ if($u->info['dnow']==0){
 				mysql_query('DELETE FROM `katok_now` WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 				//
 				if( $pl['team'] == $tmwin ) {
-					//Выдаем награду за победу!
+					//Р’С‹РґР°РµРј РЅР°РіСЂР°РґСѓ Р·Р° РїРѕР±РµРґСѓ!
 					
 				}
 				//
 			}
 			header('location: http://xcombats.com/main.php');
-			die('Матч закончился! Победила команда №'.$tmwin.'');
+			die('РњР°С‚С‡ Р·Р°РєРѕРЅС‡РёР»СЃСЏ! РџРѕР±РµРґРёР»Р° РєРѕРјР°РЅРґР° в„–'.$tmwin.'');
 		}
 	}
 	
 	if($d->info['bsid']==0 && $d->info['id2'] != 106){ 
 		if(isset($_GET['exitd'])) {
-			//Удаляем обьекты и т.д. из старых пещер
-			$rb = 321; // Магический портал
+			//РЈРґР°Р»СЏРµРј РѕР±СЊРµРєС‚С‹ Рё С‚.Рґ. РёР· СЃС‚Р°СЂС‹С… РїРµС‰РµСЂ
+			$rb = 321; // РњР°РіРёС‡РµСЃРєРёР№ РїРѕСЂС‚Р°Р»
 			if($u->info['room']==304){
-				$rb = 209; // Вход в ледяную пещеру
+				$rb = 209; // Р’С…РѕРґ РІ Р»РµРґСЏРЅСѓСЋ РїРµС‰РµСЂСѓ
 			}elseif($u->info['room']==396){
-				$rb = 395; // Канализация (Ангелс)
+				$rb = 395; // РљР°РЅР°Р»РёР·Р°С†РёСЏ (РђРЅРіРµР»СЃ)
 			}elseif($u->info['room']==398){
-				$rb = 397; // Шахты (Ангелс)
+				$rb = 397; // РЁР°С…С‚С‹ (РђРЅРіРµР»СЃ)
 			}elseif($u->info['room']==405){
-				$rb = 321; // Все пещеры
+				$rb = 321; // Р’СЃРµ РїРµС‰РµСЂС‹
 			}elseif($d->info['id2']==3){
-				$rb = 293; // Вход в Катакомбы
+				$rb = 293; // Р’С…РѕРґ РІ РљР°С‚Р°РєРѕРјР±С‹
 			}elseif($d->info['id2']==1){
-				$rb = 188; // Вход в Канализацию
+				$rb = 188; // Р’С…РѕРґ РІ РљР°РЅР°Р»РёР·Р°С†РёСЋ
 			}elseif($d->info['id2']==13){
-				$rb = 275; // Гора Легиона
+				$rb = 275; // Р“РѕСЂР° Р›РµРіРёРѕРЅР°
 			}elseif($d->info['id2']==12){
-				$rb = 372; // Вход в Пещеру Тысячи Проклятий
+				$rb = 372; // Р’С…РѕРґ РІ РџРµС‰РµСЂСѓ РўС‹СЃСЏС‡Рё РџСЂРѕРєР»СЏС‚РёР№
 			}elseif($d->info['id2']==101){
-				$rb = 242; // Вход в Бездну
+				$rb = 242; // Р’С…РѕРґ РІ Р‘РµР·РґРЅСѓ
 			}elseif($d->info['id2']==104){
-				$rb = 2; // Вход в Шахты (зал воинов)
+				$rb = 2; // Р’С…РѕРґ РІ РЁР°С…С‚С‹ (Р·Р°Р» РІРѕРёРЅРѕРІ)
 			}
 			$sp = mysql_query('SELECT * FROM `dungeon_now` WHERE `time_finish` = "0" LIMIT 50');
 			while($pl = mysql_fetch_array($sp)) {
@@ -242,22 +242,22 @@ if($u->info['dnow']==0){
 					mysql_query('UPDATE `dungeon_now` SET `uid` = "'.$cn['id'].'" WHERE `id` = "'.$d->info['id'].'" LIMIT 1');	
 					if( $cn['sex'] == 0 ) {
 						if( $u->info['sex'] == 0 ) {
-							$d->sys_chat('<b>'.$u->info['login'].'</b> покинул подземелье, новым лидером группы стал <b>'.$cn['login'].'</b>');
+							$d->sys_chat('<b>'.$u->info['login'].'</b> РїРѕРєРёРЅСѓР» РїРѕРґР·РµРјРµР»СЊРµ, РЅРѕРІС‹Рј Р»РёРґРµСЂРѕРј РіСЂСѓРїРїС‹ СЃС‚Р°Р» <b>'.$cn['login'].'</b>');
 						}else{
-							$d->sys_chat('<b>'.$u->info['login'].'</b> покинула подземелье, новым лидером группы стал <b>'.$cn['login'].'</b>');
+							$d->sys_chat('<b>'.$u->info['login'].'</b> РїРѕРєРёРЅСѓР»Р° РїРѕРґР·РµРјРµР»СЊРµ, РЅРѕРІС‹Рј Р»РёРґРµСЂРѕРј РіСЂСѓРїРїС‹ СЃС‚Р°Р» <b>'.$cn['login'].'</b>');
 						}
 					}else{
 						if( $u->info['sex'] == 0 ) {
-							$d->sys_chat('<b>'.$u->info['login'].'</b> покинул подземелье, новым лидером группы стала <b>'.$cn['login'].'</b>');
+							$d->sys_chat('<b>'.$u->info['login'].'</b> РїРѕРєРёРЅСѓР» РїРѕРґР·РµРјРµР»СЊРµ, РЅРѕРІС‹Рј Р»РёРґРµСЂРѕРј РіСЂСѓРїРїС‹ СЃС‚Р°Р»Р° <b>'.$cn['login'].'</b>');
 						}else{
-							$d->sys_chat('<b>'.$u->info['login'].'</b> покинула подземелье, новым лидером группы стала <b>'.$cn['login'].'</b>');
+							$d->sys_chat('<b>'.$u->info['login'].'</b> РїРѕРєРёРЅСѓР»Р° РїРѕРґР·РµРјРµР»СЊРµ, РЅРѕРІС‹Рј Р»РёРґРµСЂРѕРј РіСЂСѓРїРїС‹ СЃС‚Р°Р»Р° <b>'.$cn['login'].'</b>');
 						}
 					}
 				}else{
 					if( $u->info['sex'] == 0 ) {
-						$d->sys_chat('<b>'.$u->info['login'].'</b> покинул подземелье!');
+						$d->sys_chat('<b>'.$u->info['login'].'</b> РїРѕРєРёРЅСѓР» РїРѕРґР·РµРјРµР»СЊРµ!');
 					}else{
-						$d->sys_chat('<b>'.$u->info['login'].'</b> покинула подземелье!');
+						$d->sys_chat('<b>'.$u->info['login'].'</b> РїРѕРєРёРЅСѓР»Р° РїРѕРґР·РµРјРµР»СЊРµ!');
 					}
 				}
 			}
@@ -265,7 +265,7 @@ if($u->info['dnow']==0){
 			$city = mysql_fetch_assoc(mysql_query('SELECT `id`, `city` FROM `room` WHERE `id` = "'.$rb.'" LIMIT 1')); 
 			mysql_query('UPDATE `stats` SET `dnow` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			mysql_query('UPDATE `users` SET `room` = "'.$rb.'", `city`="'.$city['city'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-			//удаляем все предметы которые пропадают после выхода из пещеры
+			//СѓРґР°Р»СЏРµРј РІСЃРµ РїСЂРµРґРјРµС‚С‹ РєРѕС‚РѕСЂС‹Рµ РїСЂРѕРїР°РґР°СЋС‚ РїРѕСЃР»Рµ РІС‹С…РѕРґР° РёР· РїРµС‰РµСЂС‹
 			mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `dn_delete` = "1" LIMIT 1000');
 			
             mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND (`item_id` = "1189" OR `item_id` = "4447" OR `item_id` = "1174") LIMIT 1000');
@@ -286,7 +286,7 @@ if( $d->point['fileadd']==1 && $d->point['file']!='0' && $d->point['file']!=''){
 		if( $file[3]<1 || $file[3]>4 ) {
 			$file[3] = 1;	
 		}
-		echo '<br><br><center>Локация &quot;'.str_replace('.php','',$file[0]).'&quot; не определена, вернуться <a href="main.php?rnd='.$code.'">назад</a></center>';
+		echo '<br><br><center>Р›РѕРєР°С†РёСЏ &quot;'.str_replace('.php','',$file[0]).'&quot; РЅРµ РѕРїСЂРµРґРµР»РµРЅР°, РІРµСЂРЅСѓС‚СЊСЃСЏ <a href="main.php?rnd='.$code.'">РЅР°Р·Р°Рґ</a></center>';
 		mysql_query('UPDATE `stats` SET `x` = "'.$file[1].'",`y` = "'.$file[2].'",`s` = "'.$file[3].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');	
 	}
 }
@@ -299,7 +299,7 @@ if( $d->point['fileadd']==0 && $d->point['file']!='0' && $d->point['file']!=''){
 		if( $file[3]<1 || $file[3]>4 ) {
 			$file[3] = 1;	
 		}
-		echo '<br><br><center>Локация &quot;'.str_replace('.php','',$file[0]).'&quot; не определена, вернуться <a href="main.php?rnd='.$code.'">назад</a></center>';
+		echo '<br><br><center>Р›РѕРєР°С†РёСЏ &quot;'.str_replace('.php','',$file[0]).'&quot; РЅРµ РѕРїСЂРµРґРµР»РµРЅР°, РІРµСЂРЅСѓС‚СЊСЃСЏ <a href="main.php?rnd='.$code.'">РЅР°Р·Р°Рґ</a></center>';
 		mysql_query('UPDATE `stats` SET `x` = "'.$file[1].'",`y` = "'.$file[2].'",`s` = "'.$file[3].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');	
 	}
 } else {
@@ -309,13 +309,13 @@ if( $d->point['fileadd']==0 && $d->point['file']!='0' && $d->point['file']!=''){
 <? if(!isset($_GET['ajax'])) { ?>
 $('body').keydown(function( event ) {
   if( event.which == 38 || event.which == 87  ) {
-  	 goToLoca(1,'вперед');
+  	 goToLoca(1,'РІРїРµСЂРµРґ');
   }else if( event.which == 37 || event.which == 65  ) {
-  	 goToLoca(4,'налево');
+  	 goToLoca(4,'РЅР°Р»РµРІРѕ');
   }else if( event.which == 39 || event.which == 68  ) {
-  	 goToLoca(3,'направо');
+  	 goToLoca(3,'РЅР°РїСЂР°РІРѕ');
   }else if( event.which == 40 || event.which == 83  ) {
-  	 goToLoca(2,'вниз');
+  	 goToLoca(2,'РІРЅРёР·');
   }
   if( event.which == 81  ) {
   	 Fast(1);
@@ -339,34 +339,34 @@ function dialogMenu(id,atk,talk,look,take,e,tmkt)
 		var t = '';
 		if(talk>0)
 		{
-			t += '<a href="main.php?talk='+talk+'&rnd=<? echo $code; ?>">Диалог</a><br>';
+			t += '<a href="main.php?talk='+talk+'&rnd=<? echo $code; ?>">Р”РёР°Р»РѕРі</a><br>';
 		}
 		if(atk==1)
 		{
 			if( tmkt == 0 ) {
-				t += '<a href="main.php?atack='+id+'&rnd=<? echo $code; ?>">Напасть</a><br>';
+				t += '<a href="main.php?atack='+id+'&rnd=<? echo $code; ?>">РќР°РїР°СЃС‚СЊ</a><br>';
 			}else{
 				if( tmkt == 1 ) {
-					//кенты
+					//РєРµРЅС‚С‹
 					<? if(isset($sb['id'])) { ?>
-					t += '<a href="main.php?addpuck='+id+'&rnd=<? echo $code; ?>">Передача шайбы</a><br>';
+					t += '<a href="main.php?addpuck='+id+'&rnd=<? echo $code; ?>">РџРµСЂРµРґР°С‡Р° С€Р°Р№Р±С‹</a><br>';
 					<? }else{ ?>
-					t += '<i>Нет действий</i>';
+					t += '<i>РќРµС‚ РґРµР№СЃС‚РІРёР№</i>';
 					<? } ?>
 				}else{
-					//фраера
-					t += '<a href="main.php?atack='+id+'&rnd=<? echo $code; ?>">Напасть</a><br>';
+					//С„СЂР°РµСЂР°
+					t += '<a href="main.php?atack='+id+'&rnd=<? echo $code; ?>">РќР°РїР°СЃС‚СЊ</a><br>';
 				}
 			}
 			
 		}
 		if(look==1)
 		{
-			t += 'Просмотр<br>';
+			t += 'РџСЂРѕСЃРјРѕС‚СЂ<br>';
 		}
 		if(take==1)
 		{
-			t += 'Поднять<br>';
+			t += 'РџРѕРґРЅСЏС‚СЊ<br>';
 		}
 		d.innerHTML = t+'<small style="float:right;"><button style="border: solid 1pt #B0B0B0; font-family: MS Sans Serif; font-size: 10px; color: #191970; MARGIN-BOTTOM: 2px; MARGIN-TOP: 1px;" type="button" onClick="exitDem();">x</button></center>';
 		d.style.display = '';
@@ -558,7 +558,7 @@ function addObj(v, mz) {
 	  actionNow = '';
 	  if(v[11]['use'] != undefined) {
 		if(v[11]['use'] == 'exit') {
-		  actionNow = 'alert(\'Выход из подземелья\');';
+		  actionNow = 'alert(\'Р’С‹С…РѕРґ РёР· РїРѕРґР·РµРјРµР»СЊСЏ\');';
 		} else if(v[11]['use'] == 'takeit') {
 		  actionNow = 'takeObj('+v[0]+')';
 		}
@@ -575,7 +575,7 @@ function addObj(v, mz) {
 
 function addUser(v,mz){
 	var r = '';
-	var rz = 0; //растояние до пользователя
+	var rz = 0; //СЂР°СЃС‚РѕСЏРЅРёРµ РґРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	if(v[2]>=1 && v[2]<=3){ rz = 1; }
 	if(v[2]>=4 && v[2]<=6){ rz = 2; }
 	if(v[2]>=7 && v[2]<=9){ rz = 3; }
@@ -696,16 +696,16 @@ function locGoLineDng() {
 	}
 	
 	
-	if(gotoup777 > 0 && gotext777 != '' && document.getElementById('gotext777').innerHTML != 'Вы перейдете <b>'+gotext777+'</b> (<a href="javascript:void(0)" onclick="cancelgoto()">отмена</a>)') {
-			document.getElementById('gotext777').innerHTML = 'Вы перейдете <b>'+gotext777+'</b> (<a href="javascript:void(0)" onclick="cancelgoto()">отмена</a>)';
+	if(gotoup777 > 0 && gotext777 != '' && document.getElementById('gotext777').innerHTML != 'Р’С‹ РїРµСЂРµР№РґРµС‚Рµ <b>'+gotext777+'</b> (<a href="javascript:void(0)" onclick="cancelgoto()">РѕС‚РјРµРЅР°</a>)') {
+			document.getElementById('gotext777').innerHTML = 'Р’С‹ РїРµСЂРµР№РґРµС‚Рµ <b>'+gotext777+'</b> (<a href="javascript:void(0)" onclick="cancelgoto()">РѕС‚РјРµРЅР°</a>)';
 		}else if(document.getElementById('gotext777').innerHTML != '' && gotoup777 == 0 && gotext777 == '') {
 			document.getElementById('gotext777').innerHTML = '';
 		}
 	}
 }
 <?
-$tmGo  = $u->info['timeGo']-time(); //сколько секунд осталось
-$tmGol = $u->info['timeGo']-$u->info['timeGoL']; //сколько секунд идти всего
+$tmGo  = $u->info['timeGo']-time(); //СЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ РѕСЃС‚Р°Р»РѕСЃСЊ
+$tmGol = $u->info['timeGo']-$u->info['timeGoL']; //СЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ РёРґС‚Рё РІСЃРµРіРѕ
 echo 'var tgo = '.($tmGo*10).'; var tgol = '.($tmGol*10).';'; ?>
 </script>
 <link href="http://img.xcombats.com/css/dungeon_<? echo $d->point['css']; ?>.css" rel="stylesheet" type="text/css" />
@@ -747,7 +747,7 @@ echo 'var tgo = '.($tmGo*10).'; var tgol = '.($tmGol*10).';'; ?>
   <tr>
     <td>
 <p style="float:left;">&nbsp;<? if(isset($d->error)){ echo '<font color="red">'.$d->error.'</font><br>'; } ?></p>
-<? if($d->info['bsid']==0 && $d->info['id2'] != 106){ ?><p style="float:right;"><a onClick="if(confirm('Выйти из пещеры?')){ location.href = '/main.php?exitd=<? echo $code; ?>'; }" href="javascript:void()">Выйти</a></p><? } ?>
+<? if($d->info['bsid']==0 && $d->info['id2'] != 106){ ?><p style="float:right;"><a onClick="if(confirm('Р’С‹Р№С‚Рё РёР· РїРµС‰РµСЂС‹?')){ location.href = '/main.php?exitd=<? echo $code; ?>'; }" href="javascript:void()">Р’С‹Р№С‚Рё</a></p><? } ?>
     </td>
     </tr>
   <tr>
@@ -758,24 +758,24 @@ echo 'var tgo = '.($tmGo*10).'; var tgol = '.($tmGol*10).';'; ?>
             <td valign="top"><div align="left">
               <div id="users"><? if($d->info['bsid']==0){ echo $d->usersDng();
 		    if( $dies > 0 ) {
-			echo '<H4>Кол-во смертей: '.$dies.'</H4>';
+			echo '<H4>РљРѕР»-РІРѕ СЃРјРµСЂС‚РµР№: '.$dies.'</H4>';
 		    }
 		}else{
 		    if($d->info['id2'] != 15) {
-				//Живые участники и архивариусы
-		    	echo '<H4>Живые участники:</H4>';
+				//Р–РёРІС‹Рµ СѓС‡Р°СЃС‚РЅРёРєРё Рё Р°СЂС…РёРІР°СЂРёСѓСЃС‹
+		    	echo '<H4>Р–РёРІС‹Рµ СѓС‡Р°СЃС‚РЅРёРєРё:</H4>';
 		    	echo $d->usersDng();
 			}else{
-				echo '<H4>Игровой счет. Красные: <font color=red>'.(0+$tm1win).'</font> - Синие: <font color=blue>'.(0+$tm2win).'</font></H4>';
+				echo '<H4>РРіСЂРѕРІРѕР№ СЃС‡РµС‚. РљСЂР°СЃРЅС‹Рµ: <font color=red>'.(0+$tm1win).'</font> - РЎРёРЅРёРµ: <font color=blue>'.(0+$tm2win).'</font></H4>';
 				if( $dies > 0 ) {
-					echo '<H4>Кол-во смертей: '.$dies.'</H4>';
+					echo '<H4>РљРѕР»-РІРѕ СЃРјРµСЂС‚РµР№: '.$dies.'</H4>';
 				}
 				if(isset($sb['id'])) {
-					echo '<H4><font color=blue>Шайба у вас, забейте её в ворота противника!</font></h4>';
+					echo '<H4><font color=blue>РЁР°Р№Р±Р° Сѓ РІР°СЃ, Р·Р°Р±РµР№С‚Рµ РµС‘ РІ РІРѕСЂРѕС‚Р° РїСЂРѕС‚РёРІРЅРёРєР°!</font></h4>';
 				}
 			}
 		}
-		//Генерируем список текущих квестов
+		//Р“РµРЅРµСЂРёСЂСѓРµРј СЃРїРёСЃРѕРє С‚РµРєСѓС‰РёС… РєРІРµСЃС‚РѕРІ
 		$qsee = '';
 		
 		$dungeon_enter = mysql_fetch_array( mysql_query('SELECT * FROM `dungeon_room` WHERE `dungeon_room` = "'.$u->info['room'].'" LIMIT 1') ); 
@@ -783,7 +783,7 @@ echo 'var tgo = '.($tmGo*10).'; var tgol = '.($tmGol*10).';'; ?>
 		while($pl = mysql_fetch_array($sp)){
 		    $pq = mysql_fetch_array(mysql_query('SELECT * FROM `quests` WHERE `id` = "'.str_replace('start_quest','',$pl['vars']).'" AND (`tr_date` LIKE "%tr_dn:=:'.$d->info['id2'].'%" OR `tr_date` NOT LIKE "%tr_dn:=:%") LIMIT 1'));
 		    if(isset($pq['id'])) {
-				$qsee .= '<small>Задание: &nbsp; '.$pq['name'].' '.$q->infoDng($pq).'</small><br>';
+				$qsee .= '<small>Р—Р°РґР°РЅРёРµ: &nbsp; '.$pq['name'].' '.$q->infoDng($pq).'</small><br>';
 		    	$qx++;
 			}
 		}
@@ -795,13 +795,13 @@ echo 'var tgo = '.($tmGo*10).'; var tgol = '.($tmGol*10).';'; ?>
 				$xrz = $r;
 			}
 			$r = '<table style="display:inline-block;" border="0" cellspacing="0" cellpadding="0" height="10"><tr><td valign="middle" width="120" style="padding-top:12px">
-  <div style="position:relative;"><div id="vhp-1234600000'.$pl['id'].'" title="Выполнение задания" align="left" class="seehp" style="position:absolute; top:-10px; width:120px; height:10px; z-index:12;"> '.$xrz.'/'.$r.'</div>
-  <div title="Выполнение задания" class="hpborder" style="position:absolute; top:-10px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
+  <div style="position:relative;"><div id="vhp-1234600000'.$pl['id'].'" title="Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°РЅРёСЏ" align="left" class="seehp" style="position:absolute; top:-10px; width:120px; height:10px; z-index:12;"> '.$xrz.'/'.$r.'</div>
+  <div title="Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°РЅРёСЏ" class="hpborder" style="position:absolute; top:-10px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
   <div class="hp_3 senohp" style="height:9px; width:120px; position:absolute; top:-10px; z-index:11;" id="lhp-1234600000'.$pl['id'].'"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
-  <div title="Выполнение задания" class="hp_none" style="position:absolute; top:-10px; width:120px; height:10px; z-index:10;"><img src="http://img.xcombats.com/1x1.gif" height="10"></div>
+  <div title="Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°РЅРёСЏ" class="hp_none" style="position:absolute; top:-10px; width:120px; height:10px; z-index:10;"><img src="http://img.xcombats.com/1x1.gif" height="10"></div>
 </div></td></tr></table><br><script>top.startHpRegen("main",-1234600000'.$pl['id'].','.$xrz.','.$r.',0,0,0,0,0,0,1);</script>';
 
-			$qsee .= '<small>Задание: &nbsp; '.$pl['info'].' '.$r.'</small><br>';
+			$qsee .= '<small>Р—Р°РґР°РЅРёРµ: &nbsp; '.$pl['info'].' '.$r.'</small><br>';
 		}
 		if( $qsee != '' ) {
 		    echo '<br><br>'.$qsee;
@@ -881,10 +881,10 @@ echo 'var tgo = '.($tmGo*10).'; var tgol = '.($tmGol*10).';'; ?>
                 </table>
                   <script>
                   <?
-				  //выводим мини-карту
+				  //РІС‹РІРѕРґРёРј РјРёРЅРё-РєР°СЂС‚Сѓ
 				$i = 0;
 				$uxy = array();
-				if($u->room['name']!='Башня Смерти'){
+				if($u->room['name']!='Р‘Р°С€РЅСЏ РЎРјРµСЂС‚Рё'){
 					$sp = mysql_query('SELECT `u`.`login`,`u`.`id`,`s`.`x`,`s`.`y`,`s`.`s` FROM `stats` AS `s` LEFT JOIN `users` AS `u` ON `u`.`id` = `s`.`id` WHERE `s`.`dnow` = "'.$u->info['dnow'].'" AND `u`.`id` != "'.$u->info['id'].'" LIMIT 10');
 					while($pl = mysql_fetch_array($sp)){
 						$uxy[$pl['x'].'_'.$pl['y']] = $pl;
@@ -892,7 +892,7 @@ echo 'var tgo = '.($tmGo*10).'; var tgol = '.($tmGol*10).';'; ?>
 				}
 if( $u->info['admin'] > 0 ||  $d->id_dng == 106 ) {
 				$bxy = array();
-				if($u->room['name']!='Башня Смерти'){
+				if($u->room['name']!='Р‘Р°С€РЅСЏ РЎРјРµСЂС‚Рё'){
 $sp = mysql_query('SELECT `db`.*, `tb`.`login`, `tb`.`obraz`, `tb`.`sex` FROM `dungeon_bots` as `db` LEFT JOIN `test_bot` as `tb` ON `tb`.`id`=`db`.`id_bot`
 				  WHERE `db`.`dn` = "'.$u->info['dnow'].'" AND `db`.`delete`=0 AND
 				  (`db`.`x` >= '.($u->info['x']-5).' AND `db`.`x` <= '.($u->info['x']+5).') AND
@@ -908,7 +908,7 @@ $sp = mysql_query('SELECT `db`.*, `tb`.`login`, `tb`.`obraz`, `tb`.`sex` FROM `d
 				
 				$rzn = array(0=>'top',3=>'right',2=>'bottom',1=>'left');
 
-				$sb1 = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_obj` WHERE `name` LIKE "%Шайба%" AND `dn` = "'.$d->info['id'].'" LIMIT 1'));
+				$sb1 = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_obj` WHERE `name` LIKE "%РЁР°Р№Р±Р°%" AND `dn` = "'.$d->info['id'].'" LIMIT 1'));
 				
 				while($pl = mysql_fetch_array($sp)) {
 					$css  = '"background-image":"url(http://img.xcombats.com/fon555.png)",';
@@ -924,7 +924,7 @@ $sp = mysql_query('SELECT `db`.*, `tb`.`login`, `tb`.`obraz`, `tb`.`sex` FROM `d
 					}
 					
 					if( $sb1['x'] == $pl['x'] && $sb1['y'] == $pl['y'] ) {
-						echo '$("#min_'.$pl['x'].'_'.$pl['y'].'").html("<img class=\"u_rot'.$u->info['s'].'\" title=\"Шайба!\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/shb.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
+						echo '$("#min_'.$pl['x'].'_'.$pl['y'].'").html("<img class=\"u_rot'.$u->info['s'].'\" title=\"РЁР°Р№Р±Р°!\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/shb.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
 					}elseif( $u->info['x'] == $pl['x'] && $u->info['y'] == $pl['y'] ) {
 						if($d->info['id2'] == 15 ) {
 							$tmbth = 4;
@@ -934,9 +934,9 @@ $sp = mysql_query('SELECT `db`.*, `tb`.`login`, `tb`.`obraz`, `tb`.`sex` FROM `d
 							}elseif($tm['team'] == 2) {
 								$tmbth = 2;
 							}
-							echo '$("#min_'.$pl['x'].'_'.$pl['y'].'").html("<img class=\"u_rot'.$u->info['s'].'\" title=\"Это Вы\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/p'.$tmbth.'/d0.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
+							echo '$("#min_'.$pl['x'].'_'.$pl['y'].'").html("<img class=\"u_rot'.$u->info['s'].'\" title=\"Р­С‚Рѕ Р’С‹\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/p'.$tmbth.'/d0.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
 						}else{
-							echo '$("#min_'.$pl['x'].'_'.$pl['y'].'").html("<img class=\"u_rot'.$u->info['s'].'\" title=\"Это Вы\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/p1/d0.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
+							echo '$("#min_'.$pl['x'].'_'.$pl['y'].'").html("<img class=\"u_rot'.$u->info['s'].'\" title=\"Р­С‚Рѕ Р’С‹\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/p1/d0.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
 						}
 					} elseif($d->info['id2'] == 15 ) {
 						$tmbth = 4;
@@ -948,7 +948,7 @@ $sp = mysql_query('SELECT `db`.*, `tb`.`login`, `tb`.`obraz`, `tb`.`sex` FROM `d
 						}
 						$tbshin = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$uxy[$pl['x'].'_'.$pl['y']]['id'].'" AND `item_id` = 4910 AND `delete` = 0 LIMIT 1'));
 						if(isset($tbshin['id'])) {
-							echo '$("#min_'.$pl['x'].'_'.$pl['y'].'").html("<img class=\"u_rot'.$u->info['s'].'\" title=\"Шайба!\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/shb.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
+							echo '$("#min_'.$pl['x'].'_'.$pl['y'].'").html("<img class=\"u_rot'.$u->info['s'].'\" title=\"РЁР°Р№Р±Р°!\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/shb.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
 						}else{
 							echo '$("#min_'.$uxy[$pl['x'].'_'.$pl['y']]['x'].'_'.$uxy[$pl['x'].'_'.$pl['y']]['y'].'").html("<img class=\"u_rot'.$uxy[$pl['x'].'_'.$pl['y']]['s'].'\" title=\"'.$uxy[$pl['x'].'_'.$pl['y']]['login'].'\" style=\"margin:2px 3px 3px 2px;background-image:url(http://img.xcombats.com/i/move/p'.$tmbth.'/d0.gif)\" src=\"http://img.xcombats.com/1x1.gif\" width=\"7\" height=\"7\">");';
 						}
@@ -969,15 +969,15 @@ $("#min_<?=$bxy[$pl['x'].'_'.$pl['y']]['x']?>_<?=$bxy[$pl['x'].'_'.$pl['y']]['y'
 			<div style="position:absolute; z-index:50; left: 374px; top: 110px;">
 			  <img src="http://img.xcombats.com/podzem-map2.png" />
 			</div>
-            <img src="http://img.xcombats.com/g1.jpg" title="Обновить, X:<?=$u->info['x']?> ,Y:<?=$u->info['y']?>" width="31" height="18" id="g1" style="position: absolute; cursor:pointer; left: 435px; top: 53px;" />
+            <img src="http://img.xcombats.com/g1.jpg" title="РћР±РЅРѕРІРёС‚СЊ, X:<?=$u->info['x']?> ,Y:<?=$u->info['y']?>" width="31" height="18" id="g1" style="position: absolute; cursor:pointer; left: 435px; top: 53px;" />
 			<? if($d->testGone(3) > 0) { ?>
-			<img src="http://img.xcombats.com/g2.jpg" onclick="goToLoca(3,'направо');" width="27" height="48" id="g2" style="position:absolute;cursor:pointer; left: 492px; top: 40px;" />
+			<img src="http://img.xcombats.com/g2.jpg" onclick="goToLoca(3,'РЅР°РїСЂР°РІРѕ');" width="27" height="48" id="g2" style="position:absolute;cursor:pointer; left: 492px; top: 40px;" />
 			<? } if($d->testGone(4)>0){ ?>
-			<img src="http://img.xcombats.com/g3.jpg" onclick="goToLoca(4,'налево');" width="28" height="46" id="g3" style="position:absolute;cursor:pointer; left: 382px; top: 40px;" />
+			<img src="http://img.xcombats.com/g3.jpg" onclick="goToLoca(4,'РЅР°Р»РµРІРѕ');" width="28" height="46" id="g3" style="position:absolute;cursor:pointer; left: 382px; top: 40px;" />
 			<? } if($d->testGone(2)>0){ ?>
-			<img src="http://img.xcombats.com/g4.jpg" onclick="goToLoca(2,'назад');" width="45" height="25" id="g4" style="position:absolute;cursor:pointer; left: 428px; top: 72px;" />
+			<img src="http://img.xcombats.com/g4.jpg" onclick="goToLoca(2,'РЅР°Р·Р°Рґ');" width="45" height="25" id="g4" style="position:absolute;cursor:pointer; left: 428px; top: 72px;" />
 			<? } if($d->testGone(1)>0){ ?>
-			<img src="http://img.xcombats.com/g5.jpg" onclick="goToLoca(1,'вперед');" width="46" height="26" id="g5" style="position:absolute;cursor:pointer; left: 428px; top: 26px;" />
+			<img src="http://img.xcombats.com/g5.jpg" onclick="goToLoca(1,'РІРїРµСЂРµРґ');" width="46" height="26" id="g5" style="position:absolute;cursor:pointer; left: 428px; top: 26px;" />
 			<? } ?>
             <img src="http://img.xcombats.com/g6.jpg" width="30" height="19" id="g6" style="position:absolute;cursor:pointer; left: 399px; top: 28px;" />
 		    <img src="http://img.xcombats.com/g7.jpg" width="24" height="19" id="g7" style="position:absolute;cursor:pointer; left: 476px; top: 28px;" />
@@ -1104,7 +1104,7 @@ $("document").ready(function() {
 <br /><br />
 <?
 if($u->info['admin'] == 1) {
-  echo '<form method="POST">X - <input type="text" name="g__x" autocomplete="off" value="'.$u->info['x'].'" size="4" /> Y - <input type="text" name="g__y" autocomplete="off" value="'.$u->info['y'].'" size="4" /> <input type="submit" value="Перейти" name="go_to_admin" /><br/><input id="restorbot" type="checkbox" name="g__restorebot" autocomplete="off" /> <label for="restorbot">Восстановить павших ботов </label></form>';
+  echo '<form method="POST">X - <input type="text" name="g__x" autocomplete="off" value="'.$u->info['x'].'" size="4" /> Y - <input type="text" name="g__y" autocomplete="off" value="'.$u->info['y'].'" size="4" /> <input type="submit" value="РџРµСЂРµР№С‚Рё" name="go_to_admin" /><br/><input id="restorbot" type="checkbox" name="g__restorebot" autocomplete="off" /> <label for="restorbot">Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РїР°РІС€РёС… Р±РѕС‚РѕРІ </label></form>';
 }
 ?>
 <? } } ?>

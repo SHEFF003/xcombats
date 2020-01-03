@@ -3,33 +3,33 @@ if( !defined('GAME') ) { die(); }
 if( $u->room['file'] == 'magportal' ) {
     //if($u->info['admin'] == 1)
     if(isset($_POST['p1'])) {
-		if($_POST['p1'] == 'Подземелье Драконов') {
+		if($_POST['p1'] == 'РџРѕРґР·РµРјРµР»СЊРµ Р”СЂР°РєРѕРЅРѕРІ') {
 			/*
 			mysql_query('UPDATE `users` SET `room` = "369" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');
 			*/
-		}elseif($_POST['p1'] == 'Пещера Тысячи Проклятий') {
+		}elseif($_POST['p1'] == 'РџРµС‰РµСЂР° РўС‹СЃСЏС‡Рё РџСЂРѕРєР»СЏС‚РёР№') {
 			/*mysql_query('UPDATE `users` SET `room` = "372" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');*/
-		}elseif($_POST['p1'] == 'Бездна') {
+		}elseif($_POST['p1'] == 'Р‘РµР·РґРЅР°') {
 			/*mysql_query('UPDATE `users` SET `room` = "354" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');*/
-		}elseif($_POST['p1'] == 'Канализация') {
+		}elseif($_POST['p1'] == 'РљР°РЅР°Р»РёР·Р°С†РёСЏ') {
 			/*mysql_query('UPDATE `users` SET `room` = "188" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');*/
-		}elseif($_POST['p1'] == 'Катакомбы') {
+		}elseif($_POST['p1'] == 'РљР°С‚Р°РєРѕРјР±С‹') {
 			/*mysql_query('UPDATE `users` SET `room` = "293" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');*/
 		}elseif($_POST['p1'] == 'catacombs_new') {
 			/*mysql_query('UPDATE `users` SET `room` = "378" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');*/
-		}elseif($_POST['p1'] == 'Пещеры Мглы') {
+		}elseif($_POST['p1'] == 'РџРµС‰РµСЂС‹ РњРіР»С‹') {
 			/*mysql_query('UPDATE `users` SET `room` = "380" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');*/
-		}elseif($_POST['p1'] == 'Тестовая локация') {
+		}elseif($_POST['p1'] == 'РўРµСЃС‚РѕРІР°СЏ Р»РѕРєР°С†РёСЏ') {
 			/*mysql_query('UPDATE `users` SET `room` = "383" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');*/
-		}elseif($_POST['p1'] == 'Грибница') {
+		}elseif($_POST['p1'] == 'Р“СЂРёР±РЅРёС†Р°') {
 			/*mysql_query('UPDATE `users` SET `room` = "18" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>location="main.php";</script>');*/
 		}
@@ -68,7 +68,7 @@ body {
                         <td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                             <tr>
                               <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                              <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.213&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.213',1); ?>">Большая торговая улица</a></td>
+                              <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.213&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.213',1); ?>">Р‘РѕР»СЊС€Р°СЏ С‚РѕСЂРіРѕРІР°СЏ СѓР»РёС†Р°</a></td>
                             </tr>
                         </table></td>
                       </tr>
@@ -83,20 +83,20 @@ body {
 
 <form id="form1" name="form1" method="post" action="main.php?go_psh=1">
 	<fieldset>
-	<legend><B>Вы можете телепортироваться в любую из пещер:</B></legend>
+	<legend><B>Р’С‹ РјРѕР¶РµС‚Рµ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊСЃСЏ РІ Р»СЋР±СѓСЋ РёР· РїРµС‰РµСЂ:</B></legend>
 	<table width="100%" border="0" cellspacing="0" cellpadding="10"> 
 		<tr>
 		<td>
-			<label><input type="radio" name="p1" value="Канализация" id="p1_5" /><img src="http://img.xcombats.com/i/city_ico2/dreamscity.gif" width="33" height="19" style="vertical-align:bottom" />Канализация (Dreams City)</label><br/>
+			<label><input type="radio" name="p1" value="РљР°РЅР°Р»РёР·Р°С†РёСЏ" id="p1_5" /><img src="http://img.xcombats.com/i/city_ico2/dreamscity.gif" width="33" height="19" style="vertical-align:bottom" />РљР°РЅР°Р»РёР·Р°С†РёСЏ (Dreams City)</label><br/>
 	
-			<label><input name="p1" type="radio" id="p1_1" value="Бездна" /><img src="http://img.xcombats.com/i/city_ico2/angelscity.gif" width="33" height="19" style="vertical-align:bottom" />Бездна (Angels City)</label><br />
+			<label><input name="p1" type="radio" id="p1_1" value="Р‘РµР·РґРЅР°" /><img src="http://img.xcombats.com/i/city_ico2/angelscity.gif" width="33" height="19" style="vertical-align:bottom" />Р‘РµР·РґРЅР° (Angels City)</label><br />
 	
-			<label><input name="p1" type="radio" id="p1_0" value="Пещера Тысячи Проклятий" /><img src="http://img.xcombats.com/i/city_ico2/mooncity.gif" width="33" height="19" style="vertical-align:bottom" />Пещера Тысячи Проклятий (Capital City)</label><br />
+			<label><input name="p1" type="radio" id="p1_0" value="РџРµС‰РµСЂР° РўС‹СЃСЏС‡Рё РџСЂРѕРєР»СЏС‚РёР№" /><img src="http://img.xcombats.com/i/city_ico2/mooncity.gif" width="33" height="19" style="vertical-align:bottom" />РџРµС‰РµСЂР° РўС‹СЃСЏС‡Рё РџСЂРѕРєР»СЏС‚РёР№ (Capital City)</label><br />
 	
-			<label><input name="p1" type="radio" id="p1_3" value="Катакомбы" /><img src="http://img.xcombats.com/i/city_ico2/demonscity.gif" width="33" height="19" style="vertical-align:bottom" />Катакомбы (Demons City)</label><br /> 
+			<label><input name="p1" type="radio" id="p1_3" value="РљР°С‚Р°РєРѕРјР±С‹" /><img src="http://img.xcombats.com/i/city_ico2/demonscity.gif" width="33" height="19" style="vertical-align:bottom" />РљР°С‚Р°РєРѕРјР±С‹ (Demons City)</label><br /> 
 	
-			<label><input name="p1" type="radio" id="p1_0" value="Подземелье Драконов" /><img src="http://img.xcombats.com/labaico.gif" width="33" height="19" style="vertical-align:bottom" />Подземелье Драконов</label><br /> 
-			<p style="margin-bottom:0px;"><input type="submit" name="button" id="button" value="Телепортироваться" /></p>
+			<label><input name="p1" type="radio" id="p1_0" value="РџРѕРґР·РµРјРµР»СЊРµ Р”СЂР°РєРѕРЅРѕРІ" /><img src="http://img.xcombats.com/labaico.gif" width="33" height="19" style="vertical-align:bottom" />РџРѕРґР·РµРјРµР»СЊРµ Р”СЂР°РєРѕРЅРѕРІ</label><br /> 
+			<p style="margin-bottom:0px;"><input type="submit" name="button" id="button" value="РўРµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊСЃСЏ" /></p>
 		</td>
 		</tr>
 	</table> 
@@ -105,21 +105,21 @@ body {
 	<br/><br/>
 	<? if($u->info['admin'] > 0) { ?>
 	<fieldset>
-		<legend><b>Пещеры в работе (Только Админам)</b></legend>
+		<legend><b>РџРµС‰РµСЂС‹ РІ СЂР°Р±РѕС‚Рµ (РўРѕР»СЊРєРѕ РђРґРјРёРЅР°Рј)</b></legend>
 		<table>
 			<tr>
 				<td>
-					<label><input name="p1" type="radio" id="p1_3" value="catacombs_new" /><img src="http://img.xcombats.com/i/city_ico2/demonscity.gif" width="33" height="19" style="vertical-align:bottom" />103: Катакомбы (Новые)</label><br /> 
+					<label><input name="p1" type="radio" id="p1_3" value="catacombs_new" /><img src="http://img.xcombats.com/i/city_ico2/demonscity.gif" width="33" height="19" style="vertical-align:bottom" />103: РљР°С‚Р°РєРѕРјР±С‹ (РќРѕРІС‹Рµ)</label><br /> 
 	
-					<label><input type="radio" name="p1" value="Грибница" id="p1_6" /><img src="http://img.xcombats.com/i/city_ico2/suncity.gif" width="33" height="19" style="vertical-align:bottom" />104: Грибница (Sun City)</label><br />
-					<label><input type="radio" name="p1" value="Пещеры Мглы" id="p1_2" /><img src="http://img.xcombats.com/i/city_ico2/sandcity.gif" width="33" height="19" style="vertical-align:bottom" />105: Пещеры Мглы (Sand City)</label><br />
-					<label><input disabled="disabled" type="radio" name="p1" value="Туманные Низины" id="p1_8" /><img src="http://img.xcombats.com/i/city_ico2/devilscity.gif" width="33" height="19" style="vertical-align:bottom" />106: Туманные Низины (Devils City)</label><br />
-					<label><input disabled="disabled" type="radio" name="p1" value="Сторожевая Башня" id="p1_7" /><img src="http://img.xcombats.com/i/city_ico2/abandonedplain.gif" width="33" height="19" style="vertical-align:bottom" />107: Сторожевая Башня (Abandoned Plain)</label><br />
-					<label><input disabled="disabled" type="radio" name="p1" value="Потерянный Вход" id="p1_4" /><img src="http://img.xcombats.com/i/city_ico2/emeraldscity.gif" width="33" height="19" style="vertical-align:bottom" />108: Потерянный Вход (Emeralds City)</label><br />
-					<label><input disabled="disabled" type="radio" name="p1" value="Гора Легиона" id="p1_9" /><img src="http://img.xcombats.com/i/city_ico2/legion.gif" width="33" height="19" style="vertical-align:bottom" />110: Гора Легиона (Abandoned Plain)</label><br />
-					<label><input disabled="disabled" type="radio" name="p1" value="Ледяная Пещера" id="p1_10" /><img src="http://img.xcombats.com/i/city_ico2/snowcity.gif" width="33" height="19" style="vertical-align:bottom" />111: Ледяная Пещера (Snow City)</label><br/>
-					<label><input type="radio" name="p1" value="Тестовая локация" id="p1_10" /><img src="http://img.xcombats.com/i/city_ico2/abandonedplain.gif" width="33" height="19" style="vertical-align:bottom" />999: Тестовая локация</label><br/>
-					<p style="margin-bottom:0px;"><input type="submit" name="button" id="button" value="Телепортироваться" /></p>
+					<label><input type="radio" name="p1" value="Р“СЂРёР±РЅРёС†Р°" id="p1_6" /><img src="http://img.xcombats.com/i/city_ico2/suncity.gif" width="33" height="19" style="vertical-align:bottom" />104: Р“СЂРёР±РЅРёС†Р° (Sun City)</label><br />
+					<label><input type="radio" name="p1" value="РџРµС‰РµСЂС‹ РњРіР»С‹" id="p1_2" /><img src="http://img.xcombats.com/i/city_ico2/sandcity.gif" width="33" height="19" style="vertical-align:bottom" />105: РџРµС‰РµСЂС‹ РњРіР»С‹ (Sand City)</label><br />
+					<label><input disabled="disabled" type="radio" name="p1" value="РўСѓРјР°РЅРЅС‹Рµ РќРёР·РёРЅС‹" id="p1_8" /><img src="http://img.xcombats.com/i/city_ico2/devilscity.gif" width="33" height="19" style="vertical-align:bottom" />106: РўСѓРјР°РЅРЅС‹Рµ РќРёР·РёРЅС‹ (Devils City)</label><br />
+					<label><input disabled="disabled" type="radio" name="p1" value="РЎС‚РѕСЂРѕР¶РµРІР°СЏ Р‘Р°С€РЅСЏ" id="p1_7" /><img src="http://img.xcombats.com/i/city_ico2/abandonedplain.gif" width="33" height="19" style="vertical-align:bottom" />107: РЎС‚РѕСЂРѕР¶РµРІР°СЏ Р‘Р°С€РЅСЏ (Abandoned Plain)</label><br />
+					<label><input disabled="disabled" type="radio" name="p1" value="РџРѕС‚РµСЂСЏРЅРЅС‹Р№ Р’С…РѕРґ" id="p1_4" /><img src="http://img.xcombats.com/i/city_ico2/emeraldscity.gif" width="33" height="19" style="vertical-align:bottom" />108: РџРѕС‚РµСЂСЏРЅРЅС‹Р№ Р’С…РѕРґ (Emeralds City)</label><br />
+					<label><input disabled="disabled" type="radio" name="p1" value="Р“РѕСЂР° Р›РµРіРёРѕРЅР°" id="p1_9" /><img src="http://img.xcombats.com/i/city_ico2/legion.gif" width="33" height="19" style="vertical-align:bottom" />110: Р“РѕСЂР° Р›РµРіРёРѕРЅР° (Abandoned Plain)</label><br />
+					<label><input disabled="disabled" type="radio" name="p1" value="Р›РµРґСЏРЅР°СЏ РџРµС‰РµСЂР°" id="p1_10" /><img src="http://img.xcombats.com/i/city_ico2/snowcity.gif" width="33" height="19" style="vertical-align:bottom" />111: Р›РµРґСЏРЅР°СЏ РџРµС‰РµСЂР° (Snow City)</label><br/>
+					<label><input type="radio" name="p1" value="РўРµСЃС‚РѕРІР°СЏ Р»РѕРєР°С†РёСЏ" id="p1_10" /><img src="http://img.xcombats.com/i/city_ico2/abandonedplain.gif" width="33" height="19" style="vertical-align:bottom" />999: РўРµСЃС‚РѕРІР°СЏ Р»РѕРєР°С†РёСЏ</label><br/>
+					<p style="margin-bottom:0px;"><input type="submit" name="button" id="button" value="РўРµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊСЃСЏ" /></p>
 				</td>
 			</tr>
 		</table>

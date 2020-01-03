@@ -25,23 +25,23 @@ while($pl = mysql_fetch_array($sp))
 }
 if($rfs['see']=='')
 {
-	$rfs['see'] = '<b>К сожалению у Вас нет рефералов</b>';
+	$rfs['see'] = '<b>Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ Сѓ Р’Р°СЃ РЅРµС‚ СЂРµС„РµСЂР°Р»РѕРІ</b>';
 }
 ?>
 <table cellspacing="0" cellpadding="2" width="100%">
   <tr>
     <td style="vertical-align: top; "><table cellspacing="0" cellpadding="2" width="100%">
       <tr>
-        <td colspan="4" align="center"><h4>Рефералы</h4></td>
+        <td colspan="4" align="center"><h4>Р РµС„РµСЂР°Р»С‹</h4></td>
       </tr>
       <tr>
-        <td colspan="4">Ваша уникальная ссылка <input style="background-color:#FBF8E1; border:1px solid #EFDBB6; padding:5px;" size="25" value="xcombats.com/r<?=$u->info['id']?>"  /></td>
+        <td colspan="4">Р’Р°С€Р° СѓРЅРёРєР°Р»СЊРЅР°СЏ СЃСЃС‹Р»РєР° <input style="background-color:#FBF8E1; border:1px solid #EFDBB6; padding:5px;" size="25" value="xcombats.com/r<?=$u->info['id']?>"  /></td>
       </tr>
       <tr>
         <td colspan="4">&nbsp;</td>
       </tr>
       <tr>
-        <td colspan="4">Количество рефералов: <b><?=$rfs['count']?></b> шт.</td>
+        <td colspan="4">РљРѕР»РёС‡РµСЃС‚РІРѕ СЂРµС„РµСЂР°Р»РѕРІ: <b><?=$rfs['count']?></b> С€С‚.</td>
       </tr>
       <tr>
         <td colspan="4"><?=$rfs['see']?></td>
@@ -50,39 +50,39 @@ if($rfs['see']=='')
     <td style="width: 5%; vertical-align: top; ">&nbsp;</td>
     <td style="width: 30%; vertical-align: top; "><table width="100%" cellpadding="2" cellspacing="0">
       <tr>
-        <td style="width: 25%; vertical-align: top; text-align: right; "><input type='button' value='Обновить' style='width: 75px' onclick='location=&quot;main.php?referals&quot;' />
+        <td style="width: 25%; vertical-align: top; text-align: right; "><input type='button' value='РћР±РЅРѕРІРёС‚СЊ' style='width: 75px' onclick='location=&quot;main.php?referals&quot;' />
           &nbsp;
-          <input type="button" value="Вернуться" style='width: 75px' onclick='location=&quot;main.php&quot;' /></td>
+          <input type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" style='width: 75px' onclick='location=&quot;main.php&quot;' /></td>
       </tr>
       <tr>
-        <td align="center"><h4>Настройка реферальной системы</h4></td>
+        <td align="center"><h4>РќР°СЃС‚СЂРѕР№РєР° СЂРµС„РµСЂР°Р»СЊРЅРѕР№ СЃРёСЃС‚РµРјС‹</h4></td>
       </tr>
       <tr>
         <td style="text-align:left;"><table width="100%" border="0" cellspacing="5" cellpadding="0">
           <tr>
-            <td width="200">Счет зачисления Екр.:</td>
+            <td width="200">РЎС‡РµС‚ Р·Р°С‡РёСЃР»РµРЅРёСЏ Р•РєСЂ.:</td>
             <td><select name="r_bank" id="r_bank">
             	<? 
 					$sp = mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$u->info['id'].'" AND `block` = "0" LIMIT 1');
 					while($pl = mysql_fetch_array($sp))
 					{
-						echo '<option value="'.$pl['id'].'">№ '.$pl['id'].'</option>';
+						echo '<option value="'.$pl['id'].'">в„– '.$pl['id'].'</option>';
 					}
 				?>
             </select></td>
           </tr>
           <tr>
-            <td>Тип регистрации:</td>
+            <td>РўРёРї СЂРµРіРёСЃС‚СЂР°С†РёРё:</td>
             <td>
             <form method="post" action="main.php?referals">
             <select name="r_type" id="r_type">
-              <option value="1">обычная</option>
-              <option value="2">премиум</option>
+              <option value="1">РѕР±С‹С‡РЅР°СЏ</option>
+              <option value="2">РїСЂРµРјРёСѓРј</option>
             </select>
             </form></td>
           </tr>
           <tr>
-            <td align="right"><input type="submit" name="button" id="button" value="сохранить изменения" /></td>
+            <td align="right"><input type="submit" name="button" id="button" value="СЃРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ" /></td>
             <td>&nbsp;</td>
           </tr>
           </table></td>

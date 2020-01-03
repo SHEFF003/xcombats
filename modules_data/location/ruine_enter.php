@@ -3,22 +3,22 @@ if(!defined('GAME')) { die(); }
 if($u->room['file']=='ruine_enter') {
 	
 	$loc_c = array(
-		'users' => 2, // сколько человек нужно для старта 
-		'money' => '0.00', // сколько кр. нужно для входа
+		'users' => 2, // СЃРєРѕР»СЊРєРѕ С‡РµР»РѕРІРµРє РЅСѓР¶РЅРѕ РґР»СЏ СЃС‚Р°СЂС‚Р° 
+		'money' => '0.00', // СЃРєРѕР»СЊРєРѕ РєСЂ. РЅСѓР¶РЅРѕ РґР»СЏ РІС…РѕРґР°
 		'free' => 125
 	);
 	
 	if(isset($_GET['join'])) {
 		$rz = mysql_fetch_array(mysql_query('SELECT * FROM `ruine_zv` WHERE `uid` = "'.$u->info['id'].'" LIMIT 1'));
 		if(isset($rz['id'])) {
-			$u->error = 'Вы уже принимаете участие в турнире';
+			$u->error = 'Р’С‹ СѓР¶Рµ РїСЂРёРЅРёРјР°РµС‚Рµ СѓС‡Р°СЃС‚РёРµ РІ С‚СѓСЂРЅРёСЂРµ';
 		}else{
 			$rc = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `ruine_zv` LIMIT 1'));
 			if( $rc[0] >= $loc_c['users'] ) {
-				$u->error = 'Вы опоздали, эта группа уже начала турнир. Попробуйте еще раз...';
+				$u->error = 'Р’С‹ РѕРїРѕР·РґР°Р»Рё, СЌС‚Р° РіСЂСѓРїРїР° СѓР¶Рµ РЅР°С‡Р°Р»Р° С‚СѓСЂРЅРёСЂ. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·...';
 			}else{
 				if( $u->info['money'] < (int)$loc_c['money'] ) {
-					$u->error = 'Для участия в турнире необходимо заплатить '.$loc_c['money'].' кр.';
+					$u->error = 'Р”Р»СЏ СѓС‡Р°СЃС‚РёСЏ РІ С‚СѓСЂРЅРёСЂРµ РЅРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїР»Р°С‚РёС‚СЊ '.$loc_c['money'].' РєСЂ.';
 				}else{
 					mysql_query('INSERT INTO `ruine_zv` (
 						`city`,`time`,`uid`,`money`
@@ -26,7 +26,7 @@ if($u->room['file']=='ruine_enter') {
 						"'.$u->info['city'].'","'.time().'","'.$u->info['id'].'","'.((int)$loc_c['money']).'"
 					)');
 					mysql_query('UPDATE `users` SET `money` = "'.($u->info['money'] - (int)$loc_c['money']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-					$u->error = 'Вы заплатили '.$loc_c['money'].' кр. за участие в турнире.';
+					$u->error = 'Р’С‹ Р·Р°РїР»Р°С‚РёР»Рё '.$loc_c['money'].' РєСЂ. Р·Р° СѓС‡Р°СЃС‚РёРµ РІ С‚СѓСЂРЅРёСЂРµ.';
 				}
 			}
 			unset($rc);
@@ -34,15 +34,15 @@ if($u->room['file']=='ruine_enter') {
 	}elseif(isset($_GET['cancel'])) {
 		$rz = mysql_fetch_array(mysql_query('SELECT * FROM `ruine_zv` WHERE `uid` = "'.$u->info['id'].'" LIMIT 1'));
 		if(!isset($rz['id'])) {
-			$u->error = 'Вы не участвуете в турнире';
+			$u->error = 'Р’С‹ РЅРµ СѓС‡Р°СЃС‚РІСѓРµС‚Рµ РІ С‚СѓСЂРЅРёСЂРµ';
 		}else{
 			$rc = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `ruine_zv` LIMIT 1'));
 			if( $rc[0] >= $loc_c['users'] ) {
-				$u->error = 'Турнир уже начался...';
+				$u->error = 'РўСѓСЂРЅРёСЂ СѓР¶Рµ РЅР°С‡Р°Р»СЃСЏ...';
 			}else{
 				mysql_query('DELETE FROM `ruine_zv` WHERE `id` = "'.$rz['id'].'" LIMIT 1');
 				mysql_query('UPDATE `users` SET `money` = "'.($u->info['money'] + $rz['money']).'" WHERE `id` = "'.$rz['uid'].'" LIMIT 1');
-				$u->error = 'Вы вернули '.$loc_c['money'].' кр. и покинули турнирную заявку.';
+				$u->error = 'Р’С‹ РІРµСЂРЅСѓР»Рё '.$loc_c['money'].' РєСЂ. Рё РїРѕРєРёРЅСѓР»Рё С‚СѓСЂРЅРёСЂРЅСѓСЋ Р·Р°СЏРІРєСѓ.';
 			}
 			unset($rc);
 		}
@@ -71,7 +71,7 @@ if($u->room['file']=='ruine_enter') {
                         <td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                             <tr>
 								<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-								<td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.323&rnd=<? echo $code; ?>';">Большая парковая улица</a></td>
+								<td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.323&rnd=<? echo $code; ?>';">Р‘РѕР»СЊС€Р°СЏ РїР°СЂРєРѕРІР°СЏ СѓР»РёС†Р°</a></td>
                             </tr>
                         </table>
 						</td>
@@ -93,7 +93,7 @@ if($u->room['file']=='ruine_enter') {
             echo '<div><b><font color=red>'.$u->error.'</font></b></div><br>';
         }
         ?>
-    	Всего одержано побед в руинах: 0<br><br>
+    	Р’СЃРµРіРѕ РѕРґРµСЂР¶Р°РЅРѕ РїРѕР±РµРґ РІ СЂСѓРёРЅР°С…: 0<br><br>
         <?
 		//
 		$i = 0;
@@ -133,15 +133,15 @@ if($u->room['file']=='ruine_enter') {
 					//
 					$bus = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$pl['uid'].'" LIMIT 1'));
 					if(isset($bus['id'])) {
-						//Создаем бота
+						//РЎРѕР·РґР°РµРј Р±РѕС‚Р°
 						$text_user[$team] .= $u->microLogin($bus['id'],1).', ';
 						//
 						mysql_query('INSERT INTO `users` (`obraz`,`chatColor`,`align`,`inTurnir`,`molch1`,`molch2`,`activ`,`login`,`room`,`name`,`sex`,`level`,`bithday`) VALUES (
 							"'.$bus['obraz'].'","'.$bus['chatColor'].'","'.$bus['align'].'","'.$rid.'","'.$bus['molch1'].'","'.$bus['molch2'].'","0","'.$bus['login'].'","413","'.$bus['name'].'","'.$bus['sex'].'","10","'.date('d.m.Y').'")');
 						//
-						$inbot = mysql_insert_id(); //айди бота
+						$inbot = mysql_insert_id(); //Р°Р№РґРё Р±РѕС‚Р°
 						if( $inbot > 0 ) {
-							//Создаем данные в руинах
+							//РЎРѕР·РґР°РµРј РґР°РЅРЅС‹Рµ РІ СЂСѓРёРЅР°С…
 							$rx = 0;
 							$ry = 0;
 							//
@@ -181,7 +181,7 @@ if($u->room['file']=='ruine_enter') {
 			//
 			$text_user[1] = rtrim($text_user[1],', ');
 			$text_user[2] = rtrim($text_user[2],', ');
-			$text = 'Турнир между '.$text_user[1].' и '.$text_user[2].' начался.';
+			$text = 'РўСѓСЂРЅРёСЂ РјРµР¶РґСѓ '.$text_user[1].' Рё '.$text_user[2].' РЅР°С‡Р°Р»СЃСЏ.';
 			//
 			mysql_query('INSERT INTO `ruine_logs` (
 				`tid`,`time`,`text`
@@ -192,18 +192,18 @@ if($u->room['file']=='ruine_enter') {
 		}
 		//
 		$rz = mysql_fetch_array(mysql_query('SELECT * FROM `ruine_zv` WHERE `uid` = "'.$u->info['id'].'" LIMIT 1'));
-		echo 'Группа с хаотичным распределением. Набрано '.$i.'/'.$loc_c['users'].' чел. ';
+		echo 'Р“СЂСѓРїРїР° СЃ С…Р°РѕС‚РёС‡РЅС‹Рј СЂР°СЃРїСЂРµРґРµР»РµРЅРёРµРј. РќР°Р±СЂР°РЅРѕ '.$i.'/'.$loc_c['users'].' С‡РµР». ';
 		if( isset($rz['id']) ) {
-			echo '<input onClick="location.href=\'http://xcombats.com/main.php?cancel\';" type="button" value="Покинуть группу" class="btnnew">';
+			echo '<input onClick="location.href=\'http://xcombats.com/main.php?cancel\';" type="button" value="РџРѕРєРёРЅСѓС‚СЊ РіСЂСѓРїРїСѓ" class="btnnew">';
 		}else{
-			echo '<input onClick="location.href=\'http://xcombats.com/main.php?join\';" type="button" value="Присоединиться" class="btnnew">';
+			echo '<input onClick="location.href=\'http://xcombats.com/main.php?join\';" type="button" value="РџСЂРёСЃРѕРµРґРёРЅРёС‚СЊСЃСЏ" class="btnnew">';
 		}
 		?>
     </td>
     <td align="right" valign="top">
-    	<input type="button" value="Обновить" class="btnnew" onclick="location.href='http://xcombats.com/main.php';">
-    	<input type="button" value="Профили характеристик" class="btnnew2" onclick="top.winframe('ruine_fm','Профили характеристик',590,480,'http://xcombats.com/ruin_characteristics.php');">
-        <input type="button" value="Логи текущих турнира" class="btnnew">
+    	<input type="button" value="РћР±РЅРѕРІРёС‚СЊ" class="btnnew" onclick="location.href='http://xcombats.com/main.php';">
+    	<input type="button" value="РџСЂРѕС„РёР»Рё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє" class="btnnew2" onclick="top.winframe('ruine_fm','РџСЂРѕС„РёР»Рё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє',590,480,'http://xcombats.com/ruin_characteristics.php');">
+        <input type="button" value="Р›РѕРіРё С‚РµРєСѓС‰РёС… С‚СѓСЂРЅРёСЂР°" class="btnnew">
     </td>
   </tr>
 </table>

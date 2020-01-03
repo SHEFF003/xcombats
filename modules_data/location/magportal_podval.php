@@ -29,7 +29,7 @@ if($u->room['file']=='magportal_podval') {
 											<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 												<tr>
 													<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td> 
-													<td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.321&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.321',1); ?>">Покинуть помещение</a></td>
+													<td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.321&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.321',1); ?>">РџРѕРєРёРЅСѓС‚СЊ РїРѕРјРµС‰РµРЅРёРµ</a></td>
 												</tr>
 											</table>
 										</td>
@@ -46,7 +46,7 @@ if($u->room['file']=='magportal_podval') {
 	<tr>
 		<td >
 			<div>
-				<i>— Как хорошо, что вы очнулись! <strong>Страж Подземелья</strong> нашел вас без сознания и принес в эту комнату.</i><br/>
+				<i>вЂ” РљР°Рє С…РѕСЂРѕС€Рѕ, С‡С‚Рѕ РІС‹ РѕС‡РЅСѓР»РёСЃСЊ! <strong>РЎС‚СЂР°Р¶ РџРѕРґР·РµРјРµР»СЊСЏ</strong> РЅР°С€РµР» РІР°СЃ Р±РµР· СЃРѕР·РЅР°РЅРёСЏ Рё РїСЂРёРЅРµСЃ РІ СЌС‚Сѓ РєРѕРјРЅР°С‚Сѓ.</i><br/>
 			</div>
 		</td>
 		<td></td>

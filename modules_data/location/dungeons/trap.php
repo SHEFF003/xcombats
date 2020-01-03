@@ -24,15 +24,15 @@ if(isset($file) && $file[0]=='dungeons/trap.php'){
 		}
 		#$test = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_actions` WHERE `dn` = "'.$u->info['dnow'].'" AND `vars` = "obj_nakova2_use" LIMIT 1'));
 		$temp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `dn` = "'.$u->info['dnow'].'" AND ('.$action.') AND `delete`=\'0\' AND `inBattle`=\'0\' LIMIT 10');
-		#echo '<INPUT TYPE="button" value="Обновить" onclick="location =\''.$_SERVER['REQUEST_URI'].'\';"> Если страница не сработала, обновитесь ';
+		#echo '<INPUT TYPE="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location =\''.$_SERVER['REQUEST_URI'].'\';"> Р•СЃР»Рё СЃС‚СЂР°РЅРёС†Р° РЅРµ СЃСЂР°Р±РѕС‚Р°Р»Р°, РѕР±РЅРѕРІРёС‚РµСЃСЊ ';
 		while($t = mysql_fetch_array($temp)){ 
 			if( isset($t['id_bot']) ) $d->botAtack($t,$u->info,2); 
 		}
 		/*
 		if( $u->info['sex'] == 0 ) {
-			$d->sys_chat('<b>'.$u->info['login'].'</b> сделав необдуманый шаг, подвергся нападению ');
+			$d->sys_chat('<b>'.$u->info['login'].'</b> СЃРґРµР»Р°РІ РЅРµРѕР±РґСѓРјР°РЅС‹Р№ С€Р°Рі, РїРѕРґРІРµСЂРіСЃСЏ РЅР°РїР°РґРµРЅРёСЋ ');
 		}else{
-			$d->sys_chat('<b>'.$u->info['login'].'</b> воспользовалась &quot;Наковальней&quot;, другим данный обьект стал недоступен');
+			$d->sys_chat('<b>'.$u->info['login'].'</b> РІРѕСЃРїРѕР»СЊР·РѕРІР°Р»Р°СЃСЊ &quot;РќР°РєРѕРІР°Р»СЊРЅРµР№&quot;, РґСЂСѓРіРёРј РґР°РЅРЅС‹Р№ РѕР±СЊРµРєС‚ СЃС‚Р°Р» РЅРµРґРѕСЃС‚СѓРїРµРЅ');
 		}
 		mysql_query('INSERT INTO `dungeon_actions` (`dn`,`uid`,`time`,`vars`) VALUES (
 			"'.$u->info['dnow'].'","'.$u->info['id'].'","'.time().'","obj_nakova2_use"
@@ -68,12 +68,12 @@ if(isset($file) && $file[0]=='dungeons/trap.php'){
 			}
 		} elseif( isset($vad['count_uses']) && ( $vad['count_uses']['vals'][0]=='ready_die' OR $vad['count_uses']['vals'][0]=='ready_damage')) {
 			if($vad['count_uses']['vals'][0]=='ready_damage'){
-				$d->error = 'Вы попали в ловушку и получили повреждения на -'.$vad['count_uses']['vals'][1].'HP...'; 
+				$d->error = 'Р’С‹ РїРѕРїР°Р»Рё РІ Р»РѕРІСѓС€РєСѓ Рё РїРѕР»СѓС‡РёР»Рё РїРѕРІСЂРµР¶РґРµРЅРёСЏ РЅР° -'.$vad['count_uses']['vals'][1].'HP...'; 
 			}
 			if($u->info['sex'] == 0) {
-				$vad['text'] = '[img[items/trap.gif]] <b>'.$u->info['login'].'</b> угодил в ловушку оставленную одним из обитателей подземелья. <b>-'. $vad['count_uses']['vals'][1].'HP</b>';
+				$vad['text'] = '[img[items/trap.gif]] <b>'.$u->info['login'].'</b> СѓРіРѕРґРёР» РІ Р»РѕРІСѓС€РєСѓ РѕСЃС‚Р°РІР»РµРЅРЅСѓСЋ РѕРґРЅРёРј РёР· РѕР±РёС‚Р°С‚РµР»РµР№ РїРѕРґР·РµРјРµР»СЊСЏ. <b>-'. $vad['count_uses']['vals'][1].'HP</b>';
 			}else{
-				$vad['text'] = '[img[items/trap.gif]] <b>'.$u->info['login'].'</b> угодила в ловушку оставленную одним из обитателей подземелья. <b>-'. $vad['count_uses']['vals'][1].'HP</b>';	
+				$vad['text'] = '[img[items/trap.gif]] <b>'.$u->info['login'].'</b> СѓРіРѕРґРёР»Р° РІ Р»РѕРІСѓС€РєСѓ РѕСЃС‚Р°РІР»РµРЅРЅСѓСЋ РѕРґРЅРёРј РёР· РѕР±РёС‚Р°С‚РµР»РµР№ РїРѕРґР·РµРјРµР»СЊСЏ. <b>-'. $vad['count_uses']['vals'][1].'HP</b>';	
 			}
 			$d->sys_chat($vad['text']);
 			mysql_query('UPDATE `dungeon_actions` SET `vals` = "end" WHERE `id` = "'.$vad['count_uses']['id'].'" LIMIT 1');

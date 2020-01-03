@@ -7,30 +7,30 @@ if(!defined('GAME'))
 	$cgo = $_POST['city'];
 	if(!isset($u->city_name[$cgo]))
 	{
-		$uer = 'Город "'.$cgo.'" не найден.';
+		$uer = 'Р“РѕСЂРѕРґ "'.$cgo.'" РЅРµ РЅР°Р№РґРµРЅ.';
 	}else{
 		$uu = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "'.mysql_real_escape_string($_POST['logingo']).'" LIMIT 1'));
 		if(isset($uu['id']))
 		{
 			if($uu['id']!=$u->info['id'] && $u->info['admin']==0)
 			{
-				$uer = 'Вы можете телепортировать только себя';
+				$uer = 'Р’С‹ РјРѕР¶РµС‚Рµ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ СЃРµР±СЏ';
 			}elseif($uu['battle']>0)
 			{
-				$uer = 'Персонаж находится в бою';
+				$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ Р±РѕСЋ';
 			}elseif($uu['admin']>0 && $u->info['admin']==0)
 			{
-				$uer = 'Вы не можете телепортировать Ангелов в другой город';
+				$uer = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РђРЅРіРµР»РѕРІ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ';
 			}elseif($uu['city']!=$u->info['city'] && $u->info['admin']==0){
-				$uer = 'Персонаж находится в другом городе';
+				$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕРј РіРѕСЂРѕРґРµ';
 			}elseif(floor($uu['align'])==$a && $uu['align']>$u->info['align'] && $u->info['admin']==0)
 			{
-				$uer = 'Вы не можете телепортировать старших по званию';
+				$uer = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ СЃС‚Р°СЂС€РёС… РїРѕ Р·РІР°РЅРёСЋ';
 			}else{
-				$rid = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Вокзал" AND `city` = "'.mysql_real_escape_string($cgo).'" LIMIT 1'));
+				$rid = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Р’РѕРєР·Р°Р»" AND `city` = "'.mysql_real_escape_string($cgo).'" LIMIT 1'));
 				if(!isset($rid['id']))
 				{
-					$uer = 'Телепортация в "'.$u->city_name[$cgo].'" запрещена!';
+					$uer = 'РўРµР»РµРїРѕСЂС‚Р°С†РёСЏ РІ "'.$u->city_name[$cgo].'" Р·Р°РїСЂРµС‰РµРЅР°!';
 				}else{
 					$upd = mysql_query('UPDATE `users` SET `city` = "'.mysql_real_escape_string($cgo).'",`room` = "'.$rid['id'].'" WHERE `id` = "'.$uu['id'].'" LIMIT 1');
 					if($upd)
@@ -38,20 +38,20 @@ if(!defined('GAME'))
 						$sx = '';
 						if($u->info['sex']==1)
 						{
-							$sx = 'а';
+							$sx = 'Р°';
 						}
-						$rtxt = '[img[items/teleport.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; телепортировал'.$sx.' персонажа &quot;'.$uu['login'].'&quot; в [img[city_ico/'.$cgo.'.gif]] '.$u->city_name[$cgo].'.';
+						$rtxt = '[img[items/teleport.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°Р»'.$sx.' РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$uu['login'].'&quot; РІ [img[city_ico/'.$cgo.'.gif]] '.$u->city_name[$cgo].'.';
 						mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");				
-						$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; телепортировал'.$sx.' в &quot;<b>'.$u->city_name[$cgo].'</b>&quot;.';
+						$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°Р»'.$sx.' РІ &quot;<b>'.$u->city_name[$cgo].'</b>&quot;.';
 						mysql_query("INSERT INTO `users_delo` (`uid`,`ip`,`city`,`time`,`text`,`login`,`type`) VALUES ('".$uu['id']."','".$_SERVER['REMOTE_ADDR']."','".$u->info['city']."','".time()."','".$rtxt."','".$u->info['login']."',5)");
-						$uer = 'Вы успешно телепортировали персонажа "'.$uu['login'].'" в <b>'.$u->city_name[$cgo].'</b>.';
+						$uer = 'Р’С‹ СѓСЃРїРµС€РЅРѕ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°Р»Рё РїРµСЂСЃРѕРЅР°Р¶Р° "'.$uu['login'].'" РІ <b>'.$u->city_name[$cgo].'</b>.';
 					}else{
-						$uer = 'Не удалось использовать данное заклятие';
+						$uer = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ';
 					}
 				}
 			}
 		}else{
-			$uer = 'Персонаж не найден в этом городе';
+			$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 		}
 	}
 	

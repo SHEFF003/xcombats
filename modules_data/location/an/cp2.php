@@ -6,7 +6,7 @@ if(!defined('GAME'))
 $tattack = '';
 
 if( date('H') >= 22 || date('H') < 6 ) {
-	$tattack = '<a style="color:#D8D8D8" style="cursor:pointer" onclick="top.useMagic(\'Нападение на персонажа\',\'night_atack\',\'pal_button8.gif\',1,\'main.php?nightatack=1\');">Напасть</a> &nbsp; ';
+	$tattack = '<a style="color:#D8D8D8" style="cursor:pointer" onclick="top.useMagic(\'РќР°РїР°РґРµРЅРёРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°\',\'night_atack\',\'pal_button8.gif\',1,\'main.php?nightatack=1\');">РќР°РїР°СЃС‚СЊ</a> &nbsp; ';
 }
 
 if($u->room['file']=='an/cp2')
@@ -77,7 +77,7 @@ function DrawWeather(room) {
 	var div = '';
 	for (i = 0; i < no; ++ i) {  
 		SetVariable(i);
-		div += "<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: 30" + i +"; VISIBILITY: visible; TOP: " + 0 + "px; LEFT: " + 0 + "px;\"><img id=\"im"+ i +"\" src=\"" + (sty[i]<sp_rel ? snowflake2 : snowflake1 ) + "\" border=\"0\" alt=\"Снежинка\"></div>";
+		div += "<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: 30" + i +"; VISIBILITY: visible; TOP: " + 0 + "px; LEFT: " + 0 + "px;\"><img id=\"im"+ i +"\" src=\"" + (sty[i]<sp_rel ? snowflake2 : snowflake1 ) + "\" border=\"0\" alt=\"РЎРЅРµР¶РёРЅРєР°\"></div>";
 	}
 	
 	document.getElementById('snow').innerHTML = div;	
@@ -121,7 +121,7 @@ function WeatherBegin() {  // IE main animation function
                       <div id="buttons_on_image" style="cursor:pointer; font-weight:bold; color:#D8D8D8; font-size:10px;">
                           <? echo $tattack; ?>
                           &nbsp;
-                          <span onMouseMove="this.runtimeStyle.color = 'white';" onMouseOut="this.runtimeStyle.color = this.parentElement.style.color;" onclick="window.open('http://xcombats.com/forum', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')">Форум</span> &nbsp;
+                          <span onMouseMove="this.runtimeStyle.color = 'white';" onMouseOut="this.runtimeStyle.color = this.parentElement.style.color;" onclick="window.open('http://xcombats.com/forum', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')">Р¤РѕСЂСѓРј</span> &nbsp;
                       </div>
                       <script language="javascript" type="text/javascript">
                         <!--
@@ -148,9 +148,9 @@ function WeatherBegin() {  // IE main animation function
 
                       <div style="position: absolute; left: 337px; top: 93px; width: 40px; height: 23px; z-index: 94;"><img  <? thisInfRm('2.180.0.242'); ?> src="http://img.xcombats.com/city/angelscity/day/ang_dungeon.gif" width="58" class="aFilter" height="29" /></div>
 
-                      <!-- <div style="position:absolute; left:166px; top:149px; width:27px; height:55px; z-index:99;"><img  src="http://img.xcombats.com/i/images/300x225/capital/2pm.gif" width="27" height="55" title="Памятник Мироздателю" /></div> -->
+                      <!-- <div style="position:absolute; left:166px; top:149px; width:27px; height:55px; z-index:99;"><img  src="http://img.xcombats.com/i/images/300x225/capital/2pm.gif" width="27" height="55" title="РџР°РјСЏС‚РЅРёРє РњРёСЂРѕР·РґР°С‚РµР»СЋ" /></div> -->
         
-                        <!-- <div style="position:absolute; left:100px; top:146px; width:75px; height:90px; z-index:99;"><img src="http://img.xcombats.com/i/images/300x225/capital/stellav.gif" width="75" height="90" title="Стела выбора" class="aFilter" /></div> -->
+                        <!-- <div style="position:absolute; left:100px; top:146px; width:75px; height:90px; z-index:99;"><img src="http://img.xcombats.com/i/images/300x225/capital/stellav.gif" width="75" height="90" title="РЎС‚РµР»Р° РІС‹Р±РѕСЂР°" class="aFilter" /></div> -->
                         <div id="snow"></div>
                         <? echo $goline; ?>
                       </div>
@@ -165,7 +165,7 @@ if(date("H")<6 || date("H")>=22)
                    <form method="post" action="main.php">
                    <table width="300" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                      <td><div style="width:300px; padding:3px; margin:7px; background-color:#CCCCCC; border:1px solid #575757;"> Введите логин жертвы:<br />
+                      <td><div style="width:300px; padding:3px; margin:7px; background-color:#CCCCCC; border:1px solid #575757;"> Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ Р¶РµСЂС‚РІС‹:<br />
                             <input name="atack" type="text" id="atack" size="35" maxlength="30" />
                             <input type="submit" name="button" id="button" class="btn" value="OK" />
                       </div></td>
@@ -178,24 +178,24 @@ if(date("H")<6 || date("H")>=22)
 ?>
         <!-- -->
         <div style="width:500px; text-align:left; background-color:#D3D3D3;">
-        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.234'); ?>>Центральная площадь</a></span>
-        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.237'); ?>>Банк</a></span>
-        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.253'); ?>>Общежитие</a></span>
-        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.242'); ?>>Вход в Бездну</a></span>
-        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.251'); ?>>Цветочный магазин</a></span>
+        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.234'); ?>>Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РїР»РѕС‰Р°РґСЊ</a></span>
+        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.237'); ?>>Р‘Р°РЅРє</a></span>
+        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.253'); ?>>РћР±С‰РµР¶РёС‚РёРµ</a></span>
+        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.242'); ?>>Р’С…РѕРґ РІ Р‘РµР·РґРЅСѓ</a></span>
+        <span style="white-space:nowrap; padding-left:3px; padding-right:3px; height:10px"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" />&nbsp;<a href="#" class="menutop" <? thisInfRm('2.180.0.251'); ?>>Р¦РІРµС‚РѕС‡РЅС‹Р№ РјР°РіР°Р·РёРЅ</a></span>
         </div>
         <!-- -->
               <div style="display:none; height:0px " id="moveto"></div>
               </td>
           <td>
-              <!-- <br /><span class="menutop"><nobr>Комната для новичков</nobr></span>-->
+              <!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ</nobr></span>-->
           </td>
         </tr>
       </table>
       	<small>
         <HR>
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
        <? echo $rowonmax; ?><BR>
         
       </div></td>

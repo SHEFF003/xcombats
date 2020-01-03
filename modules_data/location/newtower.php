@@ -5,7 +5,7 @@ if($u->room['file'] == 'newtower') {
 	include('_incl_data/class/__zv.php');
 	$bs = mysql_fetch_array(mysql_query('SELECT * FROM `bs_turnirs` WHERE `id` = "'.$u->info['inTurnir'].'" LIMIT 1'));
 	$bmid = 0;
-	if(!isset($bs['id'])  || $bs['status'] == 0) { die('Турнир не найден.'); }
+	if(!isset($bs['id'])  || $bs['status'] == 0) { die('РўСѓСЂРЅРёСЂ РЅРµ РЅР°Р№РґРµРЅ.'); }
 	
 	function b_act($uid, $val, $time) {
 		global $bs;
@@ -17,17 +17,17 @@ if($u->room['file'] == 'newtower') {
 	
 	function test_users_life() {
 		global $u,$bs;
-		//Проверка бага с юзерами и архивариусами
+		//РџСЂРѕРІРµСЂРєР° Р±Р°РіР° СЃ СЋР·РµСЂР°РјРё Рё Р°СЂС…РёРІР°СЂРёСѓСЃР°РјРё
 		$sp = mysql_query('SELECT `id`,`lose`,`nich` FROM `users` WHERE `inTurnir` = "'.$bs['id'].'"');
 		$users = 0;
 		$arhiv = 0;
 		while( $pl = mysql_fetch_array($sp) ) {
 			$test = mysql_fetch_array(mysql_query('SELECT `id` FROM `users` WHERE `inUser` = "'.$pl['id'].'" AND `real` > 0 AND `inUser` > 0 LIMIT 1'));
 			if(isset($test['id'])) {
-				//Игрок
+				//РРіСЂРѕРє
 				$users++;
 			}else{
-				//Архив
+				//РђСЂС…РёРІ
 				$arhiv++;
 			}
 		}
@@ -51,7 +51,7 @@ if($u->room['file'] == 'newtower') {
 		return $r;
 	}
 	
-	//ПОднять предмет
+	//РџРћРґРЅСЏС‚СЊ РїСЂРµРґРјРµС‚
 	if( isset($_GET['takeit']) ) {
 		$itm = mysql_fetch_array(mysql_query('SELECT * FROM `bs_items` WHERE `bid` = "'.$bs['id'].'" AND `count` = "'.$bs['count'].'" AND `id` = "'.mysql_real_escape_string($_GET['takeit']).'" LIMIT 1'));
 		if( isset($itm['id']) ) {
@@ -64,40 +64,40 @@ if($u->room['file'] == 'newtower') {
 				if( isset($itmb['id']) ) {
 					$tact = b_test($u->info['id'],'take_itm');
 					if( $tact['time'] > time() ) {
-						$error2 = 'Нельзя поднимать предметы так часто, ждите еще '.($tact['time'] - time()).' сек.';
+						$error2 = 'РќРµР»СЊР·СЏ РїРѕРґРЅРёРјР°С‚СЊ РїСЂРµРґРјРµС‚С‹ С‚Р°Рє С‡Р°СЃС‚Рѕ, Р¶РґРёС‚Рµ РµС‰Рµ '.($tact['time'] - time()).' СЃРµРє.';
 					}else{
 						b_act($u->info['id'],'take_itm',time()+3);
-						$error2 = 'Вы подняли предмет &quot;'.$itmb['name'].'&quot;';
+						$error2 = 'Р’С‹ РїРѕРґРЅСЏР»Рё РїСЂРµРґРјРµС‚ &quot;'.$itmb['name'].'&quot;';
 						$u->addItem( $itmb['id'] , $u->info['id'] );
 						mysql_query('DELETE FROM `bs_items` WHERE `id` = "'.$itm['id'].'" LIMIT 1');
 					}
 				}else{
-					$error2 = 'Предмет не найден...';
+					$error2 = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ...';
 				}
 			}else{
-				$error2 = 'Предмет не найден в комнате с вами...';
+				$error2 = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РєРѕРјРЅР°С‚Рµ СЃ РІР°РјРё...';
 			}
 		}else{
-			$error2 = 'Предмет не найден, кто-то оказался быстрее...';
+			$error2 = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ, РєС‚Рѕ-С‚Рѕ РѕРєР°Р·Р°Р»СЃСЏ Р±С‹СЃС‚СЂРµРµ...';
 		}
 	}
 	
-	//Предметы БС
+	//РџСЂРµРґРјРµС‚С‹ Р‘РЎ
 	$bs_items = '';
 	$sp = mysql_query('SELECT * FROM `bs_items` WHERE `bid` = "'.$bs['id'].'" AND `count` = "'.$bs['count'].'" AND `x` = "'.$u->info['x'].'" AND `y` = "'.$u->info['y'].'"');
 	while( $pl = mysql_fetch_array($sp) ) {
 		$itm = mysql_fetch_array(mysql_query('SELECT `id`,`img`,`name` FROM `items_main` WHERE `id` = "'.$pl['item_id'].'" LIMIT 1'));
 		if( isset($itm['id']) ) {
-			$bs_items .= '<a href="?takeit='.$pl['id'].'"><img title="Поднять '."\r".$itm['name'].'" src="http://img.xcombats.com/i/items/'.$itm['img'].'"></a>';
+			$bs_items .= '<a href="?takeit='.$pl['id'].'"><img title="РџРѕРґРЅСЏС‚СЊ '."\r".$itm['name'].'" src="http://img.xcombats.com/i/items/'.$itm['img'].'"></a>';
 		}
 	}
 	if( $bs_items != '' ) {
-		$bs_items = '<br><div><b>Предметы в комнате:</b><br><br>'.$bs_items.'</div>';
+		$bs_items = '<br><div><b>РџСЂРµРґРјРµС‚С‹ РІ РєРѕРјРЅР°С‚Рµ:</b><br><br>'.$bs_items.'</div>';
 	}
 	
-	//Данные комнаты
+	//Р”Р°РЅРЅС‹Рµ РєРѕРјРЅР°С‚С‹
 	$map = array(
-		'name' 	=> 'Название локации',
+		'name' 	=> 'РќР°Р·РІР°РЅРёРµ Р»РѕРєР°С†РёРё',
 			'up' 		=> array( 'i' => 'i' , 'js' => 'onclick="return false"' ),
 			'left' 		=> array( 'i' => 'i' , 'js' => 'onclick="return false"' ),
 			'right' 	=> array( 'i' => 'i' , 'js' => 'onclick="return false"' ),
@@ -120,9 +120,9 @@ if($u->room['file'] == 'newtower') {
 			}
 			$sts = mysql_fetch_array(mysql_query('SELECT `id`,`x`,`y`,`team`,`hpNow` FROM `stats` WHERE `id` = "'.$usr['id'].'" LIMIT 1'));
 			if( $sts['x'] != $u->info['x'] || $sts['y'] != $u->info['y'] ) {
-				$error = 'Вы должны находиться в одной комнате';
+				$error = 'Р’С‹ РґРѕР»Р¶РЅС‹ РЅР°С…РѕРґРёС‚СЊСЃСЏ РІ РѕРґРЅРѕР№ РєРѕРјРЅР°С‚Рµ';
 			}elseif( $usr_real['login'] == $u->info['login'] ) {
-				$error = 'Нельзя нападать на самого себя';
+				$error = 'РќРµР»СЊР·СЏ РЅР°РїР°РґР°С‚СЊ РЅР° СЃР°РјРѕРіРѕ СЃРµР±СЏ';
 			}else{
 				$tbtl = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `id` = "'.$usr['battle'].'" AND `team_win` = "-1" LIMIT 1'));
 				if( !isset($tbtl['id']) && $usr['battle'] > 0 ) {
@@ -148,18 +148,18 @@ if($u->room['file'] == 'newtower') {
 					}
 				}
 				if( $usr['battle'] > 0 ) {
-					//Заносим в лог БС
+					//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 					if( $u->info['sex'] == 0 ) {
-						$text = '{u1} вмешался в поединок против {u2} <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+						$text = '{u1} РІРјРµС€Р°Р»СЃСЏ РІ РїРѕРµРґРёРЅРѕРє РїСЂРѕС‚РёРІ {u2} <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 					}else{
-						$text = '{u1} вмешалась в поединок против {u2} <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+						$text = '{u1} РІРјРµС€Р°Р»Р°СЃСЊ РІ РїРѕРµРґРёРЅРѕРє РїСЂРѕС‚РёРІ {u2} <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 					}
 				}else{
-					//Заносим в лог БС
+					//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 					if( $u->info['sex'] == 0 ) {
-						$text = '{u1} напал на {u2} завязался бой <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+						$text = '{u1} РЅР°РїР°Р» РЅР° {u2} Р·Р°РІСЏР·Р°Р»СЃСЏ Р±РѕР№ <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 					}else{
-						$text = '{u1} напала на {u2} завязался бой <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+						$text = '{u1} РЅР°РїР°Р»Р° РЅР° {u2} Р·Р°РІСЏР·Р°Р»СЃСЏ Р±РѕР№ <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 					}
 				}
 				if( isset($usr_real['id'])) {
@@ -172,7 +172,7 @@ if($u->room['file'] == 'newtower') {
 					}
 					$usrreal .= '<b>'.$usr_real['login'].'</b>['.$usr_real['level'].']<a target=_blank href=/info/'.$usr_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 				}else{
-					$mereal = '<i>Невидимка</i>[??]';
+					$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 				}
 				if( isset($me_real['id']) ) {
 					$mereal = '';
@@ -184,11 +184,11 @@ if($u->room['file'] == 'newtower') {
 					}
 					$mereal .= '<b>'.$me_real['login'].'</b>['.$me_real['level'].']<a target=_blank href=/info/'.$me_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 				}else{
-					$mereal = '<i>Невидимка</i>[??]';
+					$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 				}
 				$text = str_replace('{u1}',$mereal,$text);
 				$text = str_replace('{u2}',$usrreal,$text);
-				//Добавляем в лог БС
+				//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
 				mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 					"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$bs['id'].'", "'.$bs['count'].'", "'.$bs['city'].'",
 					"'.round($bs['money']*0.85,2).'","'.$i.'"
@@ -199,7 +199,7 @@ if($u->room['file'] == 'newtower') {
 				header('location: main.php');
 			}
 		}else{
-			$error = 'Персонаж не найден в этом турнире';
+			$error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ СЌС‚РѕРј С‚СѓСЂРЅРёСЂРµ';
 		}
 	}
 	$box = mysql_fetch_array(mysql_query('SELECT * FROM `bs_map` WHERE `mid` = "'.mysql_real_escape_string($bmid).'" AND `x` = "'.$u->info['x'].'" AND `y` = "'.$u->info['y'].'" LIMIT 1'));
@@ -214,19 +214,19 @@ if($u->room['file'] == 'newtower') {
 		unset($box2);
 	}
 	if( !isset($box['id']) ) {
-		//Клетка не найдена
-		$map['name'] = 'Неизвестная локация: '.$u->info['x'].' . '.$u->info['y'];
+		//РљР»РµС‚РєР° РЅРµ РЅР°Р№РґРµРЅР°
+		$map['name'] = 'РќРµРёР·РІРµСЃС‚РЅР°СЏ Р»РѕРєР°С†РёСЏ: '.$u->info['x'].' . '.$u->info['y'];
 		if( $u->info['x'] == 0 && $u->info['y'] == 0 ) {
 			mysql_query('UPDATE `stats` SET `x` = "-3",`y` = "-8" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			header('location: main.php');
 			die();
 		}
 	}else{
-		//Действия на клетке
+		//Р”РµР№СЃС‚РІРёСЏ РЅР° РєР»РµС‚РєРµ
 		$goto = false;
 		if( isset($_GET['up']) ) {
 			if( $box['up'] == 0 ) {
-				$error = 'Проход не существует';
+				$error = 'РџСЂРѕС…РѕРґ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚';
 			}else{
 				if( $box['up'] > 1 ) {
 					$goto = mysql_fetch_array(mysql_query('SELECT `id` FROM `bs_map` WHERE `mid` = "'.mysql_real_escape_string($bmid).'" AND `id` = "'.mysql_real_escape_string($box['up']).'" LIMIT 1'));
@@ -239,7 +239,7 @@ if($u->room['file'] == 'newtower') {
 			}
 		}elseif( isset($_GET['down']) ) {
 			if( $box['down'] == 0 ) {
-				$error = 'Проход не существует';
+				$error = 'РџСЂРѕС…РѕРґ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚';
 			}else{
 				if( $box['down'] > 1 ) {
 					$goto = mysql_fetch_array(mysql_query('SELECT `id` FROM `bs_map` WHERE `mid` = "'.mysql_real_escape_string($bmid).'" AND `id` = "'.mysql_real_escape_string($box['down']).'" LIMIT 1'));
@@ -252,7 +252,7 @@ if($u->room['file'] == 'newtower') {
 			}
 		}elseif( isset($_GET['left']) ) {
 			if( $box['left'] == 0 ) {
-				$error = 'Проход не существует';
+				$error = 'РџСЂРѕС…РѕРґ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚';
 			}else{
 				if( $box['left'] > 1 ) {
 					$goto = mysql_fetch_array(mysql_query('SELECT `id` FROM `bs_map` WHERE `mid` = "'.mysql_real_escape_string($bmid).'" AND `id` = "'.mysql_real_escape_string($box['left']).'" LIMIT 1'));
@@ -265,7 +265,7 @@ if($u->room['file'] == 'newtower') {
 			}
 		}elseif( isset($_GET['right']) ) {
 			if( $box['right'] == 0 ) {
-				$error = 'Проход не существует';
+				$error = 'РџСЂРѕС…РѕРґ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚';
 			}else{
 				if( $box['right'] > 1 ) {
 					$goto = mysql_fetch_array(mysql_query('SELECT `id` FROM `bs_map` WHERE `mid` = "'.mysql_real_escape_string($bmid).'" AND `id` = "'.mysql_real_escape_string($box['right']).'" LIMIT 1'));
@@ -284,10 +284,10 @@ if($u->room['file'] == 'newtower') {
 				$trap = mysql_fetch_array(mysql_query('SELECT * FROM `bs_trap` WHERE `bid` = "'.$bs['id'].'" AND `login` != "'.$u->info['login'].'" AND `count` = "'.$bs['count'].'" AND `x` = "'.$goto[0].'" AND `y` = "'.$goto[1].'" LIMIT 1'));
 				if( isset($trap['id']) ) {
 					if(rand(0, 100) < $trap['chance'] || $trap['chance'] == 0 ) {
-						//Добавляем эффект и отнимаем НР
+						//Р”РѕР±Р°РІР»СЏРµРј СЌС„С„РµРєС‚ Рё РѕС‚РЅРёРјР°РµРј РќР 
 						$ptntew = rand(1, 10)*60;
 						mysql_query('INSERT INTO `eff_users` (`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`,`img2`) VALUES (
-							"2","'.$u->info['id'].'","Путы (Ловушка '.$trap['login'].')","puti='.(time()+$ptntew).'","1","'.(time()+$ptntew).'","chains.gif"
+							"2","'.$u->info['id'].'","РџСѓС‚С‹ (Р›РѕРІСѓС€РєР° '.$trap['login'].')","puti='.(time()+$ptntew).'","1","'.(time()+$ptntew).'","chains.gif"
 						) ');
 						if( $u->stats['hpNow'] > floor($u->stats['hpAll']/100*33)) {
 							$trap_hpmin = round($u->stats['hpNow']/2);
@@ -299,16 +299,16 @@ if($u->room['file'] == 'newtower') {
 						}elseif( $u->stats['hpNow'] > $u->stats['hpAll'] ) {
 							$u->stats['hpNow'] = $u->stats['hpAll'];
 						}
-						//Заносим в чат
-						$rtxt = '[img[items/trap.gif]] Персонаж &quot;'.$u->info['login'].'&quot; угодил в ловушку поставленную &quot;'.$trap['login'].'&quot;. <b>-'.$trap_hpmin.'</b> ['.round($u->stats['hpNow']).'/'.round($u->stats['hpAll']).']';
+						//Р—Р°РЅРѕСЃРёРј РІ С‡Р°С‚
+						$rtxt = '[img[items/trap.gif]] РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$u->info['login'].'&quot; СѓРіРѕРґРёР» РІ Р»РѕРІСѓС€РєСѓ РїРѕСЃС‚Р°РІР»РµРЅРЅСѓСЋ &quot;'.$trap['login'].'&quot;. <b>-'.$trap_hpmin.'</b> ['.round($u->stats['hpNow']).'/'.round($u->stats['hpAll']).']';
 						mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1','1')");	
-						//Заносим в лог БС
+						//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 						$me_real = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`align`,`clan`,`battle`,`level` FROM `users` WHERE `inUser` = "'.$u->info['id'].'" AND `login` = "'.$u->info['login'].'" LIMIT 1'));
-						//Заносим в лог БС
+						//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 						if( $u->info['sex'] == 0 ) {
-							$text = '{u1} угодил в ловушку поставленную {u2}';
+							$text = '{u1} СѓРіРѕРґРёР» РІ Р»РѕРІСѓС€РєСѓ РїРѕСЃС‚Р°РІР»РµРЅРЅСѓСЋ {u2}';
 						}else{
-							$text = '{u1} угодила в ловушку поставленную {u2}';
+							$text = '{u1} СѓРіРѕРґРёР»Р° РІ Р»РѕРІСѓС€РєСѓ РїРѕСЃС‚Р°РІР»РµРЅРЅСѓСЋ {u2}';
 						}
 						if( isset($trap['id'])) {
 							$usrreal = '';
@@ -320,7 +320,7 @@ if($u->room['file'] == 'newtower') {
 							}
 							$usrreal .= '<b>'.$trap['login'].'</b>['.$trap['level'].']<a target=_blank href=/info/'.$trap['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 						}else{
-							$mereal = '<i>Невидимка</i>[??]';
+							$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 						}
 						if( isset($me_real['id']) ) {
 							$mereal = '';
@@ -332,18 +332,18 @@ if($u->room['file'] == 'newtower') {
 							}
 							$mereal .= '<b>'.$me_real['login'].'</b>['.$me_real['level'].']<a target=_blank href=/info/'.$me_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 						}else{
-							$mereal = '<i>Невидимка</i>[??]';
+							$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 						}
 						$text = str_replace('{u1}',$mereal,$text);
 						$text = str_replace('{u2}',$usrreal,$text);
-						//Добавляем в лог БС
+						//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
 						mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 							"2", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$bs['id'].'", "'.$bs['count'].'", "'.$bs['city'].'",
 							"'.round($bs['money']*0.85,2).'","'.$i.'"
 						)');
 						//
 						unset($text,$usrreal,$mereal,$usr_real,$me_real);
-						//Удаляем ловушку
+						//РЈРґР°Р»СЏРµРј Р»РѕРІСѓС€РєСѓ
 						mysql_query('DELETE FROM `bs_trap` WHERE `id` = "'.$trap['id'].'" LIMIT 1');
 					}
 				}
@@ -351,13 +351,13 @@ if($u->room['file'] == 'newtower') {
 				header('location: /main.php');
 				die();
 			  } else {
-				$error = "Вы в ловушке...";
+				$error = "Р’С‹ РІ Р»РѕРІСѓС€РєРµ...";
 			  }
 			}else{
-				$error = 'Вы не можете так быстро перемещаться...';
+				$error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ С‚Р°Рє Р±С‹СЃС‚СЂРѕ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ...';
 			}
 		}
-		//Данные клетки
+		//Р”Р°РЅРЅС‹Рµ РєР»РµС‚РєРё
 		$map['name'] = $box['name'];
 		if( $box['up'] > 0 ) {
 			$map['up']['i'] = '';
@@ -432,10 +432,10 @@ if($u->room['file'] == 'newtower') {
 					echo $zv->userInfo();
 					$sp = mysql_query('SELECT * FROM `bs_trap` WHERE `bid` = "'.$bs['id'].'" AND `count` = "'.$bs['count'].'" AND `login` = "'.$u->info['login'].'" AND `x` = "'.$u->info['x'].'" AND `y` = "'.$u->info['y'].'"');
 					while($pl = mysql_fetch_array($sp)) {
-						echo '<img title="Ваша ловушка. Вероятность: '.$pl['chance'].'%'."\r".''.date('d.m.Y H:i',$pl['time']).'" src="http://img.xcombats.com/i/items/trap.gif">';
+						echo '<img title="Р’Р°С€Р° Р»РѕРІСѓС€РєР°. Р’РµСЂРѕСЏС‚РЅРѕСЃС‚СЊ: '.$pl['chance'].'%'."\r".''.date('d.m.Y H:i',$pl['time']).'" src="http://img.xcombats.com/i/items/trap.gif">';
 					}
 					if(isset($u->stats['puti'])) {
-						echo '<br><img src="http://img.xcombats.com/i/items/chains.gif"> Вы не можете передвигаться еще '.$u->timeOut($u->stats['puti']-time()).' ';
+						echo '<br><img src="http://img.xcombats.com/i/items/chains.gif"> Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРµСЂРµРґРІРёРіР°С‚СЊСЃСЏ РµС‰Рµ '.$u->timeOut($u->stats['puti']-time()).' ';
 					}
 					echo '<script>top.lafstReg['.$u->info['id'].'] = 0; top.startHpRegen("main",'.$u->info['id'].','.(0+$u->stats['hpNow']).','.(0+$u->stats['hpAll']).','.(0+$u->stats['mpNow']).','.(0+$u->stats['mpAll']).','.(time()-$u->info['regHP']).','.(time()-$u->info['regMP']).','.(0+$u->rgd[0]).','.(0+$u->rgd[1]).',1);</script>';
 					echo $bs_items;
@@ -532,27 +532,27 @@ if($u->room['file'] == 'newtower') {
                       </table></td>
                     </tr>
                   </table>
-                  <!-- <br /><span class="menutop"><nobr>Картинная галерея 2</nobr></span>--></td>
+                  <!-- <br /><span class="menutop"><nobr>РљР°СЂС‚РёРЅРЅР°СЏ РіР°Р»РµСЂРµСЏ 2</nobr></span>--></td>
               </tr>
             </table></td>
           </tr>
         </table>
-        Всего живых участников на данный момент: <b><?=($bs['users'])?></b><? if($bs['arhiv'] > 0) { ?> + <b><?=$bs['arhiv']?></b><? } ?>...
+        Р’СЃРµРіРѕ Р¶РёРІС‹С… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РЅР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚: <b><?=($bs['users'])?></b><? if($bs['arhiv'] > 0) { ?> + <b><?=$bs['arhiv']?></b><? } ?>...
         <br />
-        Тип турнира: <?
+        РўРёРї С‚СѓСЂРЅРёСЂР°: <?
 		$typbs = array(
-			'Обычный',
-			'Светлый',
-			'Темный',
-			'Быстрый',
-			'Медленный',
-			'Жадный',
-			'Яростный',
-			'Без НР'
+			'РћР±С‹С‡РЅС‹Р№',
+			'РЎРІРµС‚Р»С‹Р№',
+			'РўРµРјРЅС‹Р№',
+			'Р‘С‹СЃС‚СЂС‹Р№',
+			'РњРµРґР»РµРЅРЅС‹Р№',
+			'Р–Р°РґРЅС‹Р№',
+			'РЇСЂРѕСЃС‚РЅС‹Р№',
+			'Р‘РµР· РќР '
 		);
 		echo $typbs[$bs['type_btl']];
 		?>, 
-        История текущего <a target="_blank" href="/towerlog.php?id=<?=$bs['count']?>">турнира</a>.
+        РСЃС‚РѕСЂРёСЏ С‚РµРєСѓС‰РµРіРѕ <a target="_blank" href="/towerlog.php?id=<?=$bs['count']?>">С‚СѓСЂРЅРёСЂР°</a>.
         </td>
       </tr>
     </table></td>

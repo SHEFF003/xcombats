@@ -13,12 +13,12 @@ if($u->room['file']=='hram')
 		{
 			if($_GET['r']!=1)
 			{
-				//Переплавка вещей
+				//РџРµСЂРµРїР»Р°РІРєР° РІРµС‰РµР№
 				$resz = $u->plavka($_GET['itm'],1);
 				echo '<font color=red><b>'.$resz.'</b></font>';
 				unset($resz);
 			}else{
-				//Переплавка рун
+				//РџРµСЂРµРїР»Р°РІРєР° СЂСѓРЅ
 				
 			}
 		}
@@ -67,7 +67,7 @@ if($u->room['file']=='hram')
 	<div align="right"><? if($re!=''){ echo '<font color="red"><b>'.$re.'</b></font>'; } ?></div>
 	<div id="hint3" style="visibility:hidden"></div>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3">Храм Знаний <? if($_GET['r']==1){ echo ', Алтарь рун'; }else{ echo ', Алтарь предметов'; } ?></div>
+	<tr><td valign="top"><div align="center" class="pH3">РҐСЂР°Рј Р—РЅР°РЅРёР№ <? if($_GET['r']==1){ echo ', РђР»С‚Р°СЂСЊ СЂСѓРЅ'; }else{ echo ', РђР»С‚Р°СЂСЊ РїСЂРµРґРјРµС‚РѕРІ'; } ?></div>
 	<td width="280" valign="top"><table align="right" cellpadding="0" cellspacing="0">
 		<tr>
 		  <td width="100%">&nbsp;</td>
@@ -81,7 +81,7 @@ if($u->room['file']=='hram')
 						<td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 							<tr>
 							  <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.267&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.267',1); ?>">Центральная площадь</a></td>
+							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.267&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.267',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РїР»РѕС‰Р°РґСЊ</a></td>
 							</tr>
 						</table></td>
 					  </tr>					  <tr>
@@ -93,7 +93,7 @@ if($u->room['file']=='hram')
 		</tr>
 	  </table>
 		<br /><br />
-	  <input type="button" value="Алтарь предметов" onclick="location = '?r=0';" /> &nbsp; <input type="button" value="Алтарь рун" onclick="location = '?r=1';" />
+	  <input type="button" value="РђР»С‚Р°СЂСЊ РїСЂРµРґРјРµС‚РѕРІ" onclick="location = '?r=0';" /> &nbsp; <input type="button" value="РђР»С‚Р°СЂСЊ СЂСѓРЅ" onclick="location = '?r=1';" />
 	</td>
 	</table>
 	<div id="textgo" style="visibility:hidden;"></div>
@@ -102,11 +102,11 @@ if($u->room['file']=='hram')
 	$itmAll = $u->genInv(11,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" ORDER BY `lastUPD` DESC');
 	if($itmAll[0]==0)
 	{
-		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО (нет подходящих предметов)</td></tr>';
+		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ (РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ)</td></tr>';
 	}else{
 		$itmAllSee = $itmAll[2];
 	}
-	//Удачно растворен предмет "Укрепленный Костыль". Получена руна "Моно Бауни".
+	//РЈРґР°С‡РЅРѕ СЂР°СЃС‚РІРѕСЂРµРЅ РїСЂРµРґРјРµС‚ "РЈРєСЂРµРїР»РµРЅРЅС‹Р№ РљРѕСЃС‚С‹Р»СЊ". РџРѕР»СѓС‡РµРЅР° СЂСѓРЅР° "РњРѕРЅРѕ Р‘Р°СѓРЅРё".
 	?>
     <script>
 	function takeItRun(img,id,vl)
@@ -114,7 +114,7 @@ if($u->room['file']=='hram')
 		if(id!=urlras)
 		{
 			urlras = id;
-			document.getElementById('use_item').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="Предмет для переплавки"/><br><a href="javascript:void(0);" onClick="cancelItRun()">Отменить</a>';
+			document.getElementById('use_item').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="РџСЂРµРґРјРµС‚ РґР»СЏ РїРµСЂРµРїР»Р°РІРєРё"/><br><a href="javascript:void(0);" onClick="cancelItRun()">РћС‚РјРµРЅРёС‚СЊ</a>';
 			document.getElementById('add_rep').innerHTML = ' + '+vl;
 		}else{
 			cancelItRun();
@@ -123,7 +123,7 @@ if($u->room['file']=='hram')
 	function cancelItRun()
 	{
 		urlras = 0;
-		document.getElementById('use_item').innerHTML = 'Предмет не выбран';
+		document.getElementById('use_item').innerHTML = 'РџСЂРµРґРјРµС‚ РЅРµ РІС‹Р±СЂР°РЅ';
 		document.getElementById('add_rep').innerHTML = '';
 	}
 	urlras = 0;
@@ -131,23 +131,23 @@ if($u->room['file']=='hram')
     <table width="100%" border="0" cellspacing="0" cellpadding="10">
    	  <tr>
     	    <td width="300" valign="top">
-            <b>Репутация: <? echo 0+$u->info['rep1']; ?></b><span id="add_rep"></span>
-            <br /><br /><center><span id="use_item">Предмет не выбран</span><br /><br />
-            <input type="button" value="Растворить" onclick="location = '?r=<?=$_GET['r'].'&rnd='.$code.'&itm=';?>'+urlras;" /></center>
+            <b>Р РµРїСѓС‚Р°С†РёСЏ: <? echo 0+$u->info['rep1']; ?></b><span id="add_rep"></span>
+            <br /><br /><center><span id="use_item">РџСЂРµРґРјРµС‚ РЅРµ РІС‹Р±СЂР°РЅ</span><br /><br />
+            <input type="button" value="Р Р°СЃС‚РІРѕСЂРёС‚СЊ" onclick="location = '?r=<?=$_GET['r'].'&rnd='.$code.'&itm=';?>'+urlras;" /></center>
             <br />
             <br /><small>
-            <font color="red">Внимание!</font><br />
-			Предметы при растворении и руны при слиянии необратимо теряются.</small>
+            <font color="red">Р’РЅРёРјР°РЅРёРµ!</font><br />
+			РџСЂРµРґРјРµС‚С‹ РїСЂРё СЂР°СЃС‚РІРѕСЂРµРЅРёРё Рё СЂСѓРЅС‹ РїСЂРё СЃР»РёСЏРЅРёРё РЅРµРѕР±СЂР°С‚РёРјРѕ С‚РµСЂСЏСЋС‚СЃСЏ.</small>
             </td>
     	    <td valign="top">
             <!-- -->
             <table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">
-            <? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Рюкзак закрыт.</b><br><img title="Замок для рюкзака" src="http://img.xcombats.com/i/items/box_lock.gif"> Введите пароль: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="Открыть"></form></div>'; } ?>
+            <? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Р СЋРєР·Р°Рє Р·Р°РєСЂС‹С‚.</b><br><img title="Р—Р°РјРѕРє РґР»СЏ СЂСЋРєР·Р°РєР°" src="http://img.xcombats.com/i/items/box_lock.gif"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="РћС‚РєСЂС‹С‚СЊ"></form></div>'; } ?>
             </table>
             <!-- -->
             </td>
       </tr>
     </table>
 <? }else{ ?>
-    	&nbsp; По всей видимости Алтарь рун был разрушен... <b>Лорд разрушитель</b> не дремлет...
+    	&nbsp; РџРѕ РІСЃРµР№ РІРёРґРёРјРѕСЃС‚Рё РђР»С‚Р°СЂСЊ СЂСѓРЅ Р±С‹Р» СЂР°Р·СЂСѓС€РµРЅ... <b>Р›РѕСЂРґ СЂР°Р·СЂСѓС€РёС‚РµР»СЊ</b> РЅРµ РґСЂРµРјР»РµС‚...
 <? } } ?>

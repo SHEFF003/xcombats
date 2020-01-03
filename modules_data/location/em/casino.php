@@ -82,7 +82,7 @@ if($u->room['file']=='em/casino')
 <TABLE width="100%" cellspacing="0" cellpadding="0">
 	<tr><td valign="top"><div align="center" class="pH3"><? echo $u->room['name'];
 	if( $rz == 1 ) {
-		echo ' &quot;Рулетка&quot;';
+		echo ' &quot;Р СѓР»РµС‚РєР°&quot;';
 	}
 	?></div>
 	  <small style="color:#999999;"><br />
@@ -90,12 +90,12 @@ if($u->room['file']=='em/casino')
       <div style="background-color:#d2d2d2">
         <table width="100%" border="0" cellspacing="0" cellpadding="5">
           <tr>
-            <td onclick="location.href='main.php?loc=7.180.0.388&rnd=1'" class="kzn0 kzn<? if( $rz == 0 ) { echo 1; } ?>" width="20%" align="center"><strong>Залы:</strong></td>
-            <td onclick="location.href='main.php?loc=7.180.0.389&rnd=1'" class="kzn0 kzn<? if( $rz == 1 ) { echo 1; } ?>" width="20%" align="center">Рулетка</td>
-            <td onclick="location.href='main.php?loc=7.180.0.390&rnd=1'" class="kzn0 kzn<? if( $rz == 2 ) { echo 1; } ?>" width="20%" align="center">Однорукий бандит</td>
+            <td onclick="location.href='main.php?loc=7.180.0.388&rnd=1'" class="kzn0 kzn<? if( $rz == 0 ) { echo 1; } ?>" width="20%" align="center"><strong>Р—Р°Р»С‹:</strong></td>
+            <td onclick="location.href='main.php?loc=7.180.0.389&rnd=1'" class="kzn0 kzn<? if( $rz == 1 ) { echo 1; } ?>" width="20%" align="center">Р СѓР»РµС‚РєР°</td>
+            <td onclick="location.href='main.php?loc=7.180.0.390&rnd=1'" class="kzn0 kzn<? if( $rz == 2 ) { echo 1; } ?>" width="20%" align="center">РћРґРЅРѕСЂСѓРєРёР№ Р±Р°РЅРґРёС‚</td>
             <!--
-            <td onclick="location.href='main.php?loc=7.180.0.391&rnd=1'" class="kzn0 kzn<? if( $rz == 3 ) { echo 1; } ?>" width="20%" align="center">Блэкджек</td>
-            <td onclick="location.href='main.php?loc=7.180.0.392&rnd=1'" class="kzn0 kzn<? if( $rz == 4 ) { echo 1; } ?>" width="20%" align="center">Девятка</td>
+            <td onclick="location.href='main.php?loc=7.180.0.391&rnd=1'" class="kzn0 kzn<? if( $rz == 3 ) { echo 1; } ?>" width="20%" align="center">Р‘Р»СЌРєРґР¶РµРє</td>
+            <td onclick="location.href='main.php?loc=7.180.0.392&rnd=1'" class="kzn0 kzn<? if( $rz == 4 ) { echo 1; } ?>" width="20%" align="center">Р”РµРІСЏС‚РєР°</td>
          	-->
           </tr>
         </table>
@@ -104,7 +104,7 @@ if($u->room['file']=='em/casino')
 		if( isset($u->bank['id']) ) {
 		?>
         <br /><br /><center>
-        Банковский счет для игры: №<b><?=$u->bank['id']?></b> <a href="main.php?bank_exit=1"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clear.gif" width="13" height="13" title="Сменить счет" /></a>
+        Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ РґР»СЏ РёРіСЂС‹: в„–<b><?=$u->bank['id']?></b> <a href="main.php?bank_exit=1"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clear.gif" width="13" height="13" title="РЎРјРµРЅРёС‚СЊ СЃС‡РµС‚" /></a>
         </center>
 		<?
 		}
@@ -113,15 +113,15 @@ if($u->room['file']=='em/casino')
         <form method="post" action="main.php">
         <br /><br />
         <center>
-        <b>Перед началом игры выберите счет в банке:</b><br />
-        Счет: &nbsp; &nbsp; <select name="bank" style="width:144px;">
+        <b>РџРµСЂРµРґ РЅР°С‡Р°Р»РѕРј РёРіСЂС‹ РІС‹Р±РµСЂРёС‚Рµ СЃС‡РµС‚ РІ Р±Р°РЅРєРµ:</b><br />
+        РЎС‡РµС‚: &nbsp; &nbsp; <select name="bank" style="width:144px;">
           <?
 		  $sp = mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$u->info['id'].'" AND `block` = "0"');
 		  while( $pl = mysql_fetch_array($sp)) {
           ?><option value="<?=$pl['id']?>"><?=$pl['id']?></option><? }?>
         </select><br />
-        Пароль: <input name="bankpsw" type="password" style="width:144px;margin-left:2px;" /><br />
-        <input type="submit" value="Воспользоваться счетом" />
+        РџР°СЂРѕР»СЊ: <input name="bankpsw" type="password" style="width:144px;margin-left:2px;" /><br />
+        <input type="submit" value="Р’РѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СЃС‡РµС‚РѕРј" />
         </center>
         <br /><br />
         </form>
@@ -129,7 +129,7 @@ if($u->room['file']=='em/casino')
 		}elseif( $rz == 0 ) {
 		?>
         <br /><center>
-        Выберите игровой зал
+        Р’С‹Р±РµСЂРёС‚Рµ РёРіСЂРѕРІРѕР№ Р·Р°Р»
         </center>
         <br /><br />
         <?
@@ -142,16 +142,16 @@ if($u->room['file']=='em/casino')
 			$sm = $u->testAction('`city` = "'.$u->info['city'].'" AND `vars` = "casino_balance" LIMIT 1',1);
 			$bnk1 += $sm['vals'];
 			if( $bnk1 <= 0 ) {
-		  		echo 'За все время выиграли '.(-$bnk1).'.00 екр.<br><br>'; 
+		  		echo 'Р—Р° РІСЃРµ РІСЂРµРјСЏ РІС‹РёРіСЂР°Р»Рё '.(-$bnk1).'.00 РµРєСЂ.<br><br>'; 
 			}else{
-				echo 'За все время проиграли '.($bnk1).'.00 екр.<br><br>'; 
+				echo 'Р—Р° РІСЃРµ РІСЂРµРјСЏ РїСЂРѕРёРіСЂР°Р»Рё '.($bnk1).'.00 РµРєСЂ.<br><br>'; 
 			}
 			$sp = mysql_query('SELECT * FROM `ruletka_coin` ORDER BY `id`');
 			$bag1d = array();
 			while( $pl = mysql_fetch_array($sp)) {
 				$bag1d[$pl['game_id']][$pl['uid']] += $pl['money'];
 				if( $bag1d[$pl['game_id']][$pl['uid']] > 100 ) {
-					echo '<br>'.date('d.m.Y H:i',$pl['time']).' <b>'.$u->microLogin($pl['uid'],1).'</b> сделал баговую ставку '.$bag1d[$pl['game_id']][$pl['uid']].' екр.';
+					echo '<br>'.date('d.m.Y H:i',$pl['time']).' <b>'.$u->microLogin($pl['uid'],1).'</b> СЃРґРµР»Р°Р» Р±Р°РіРѕРІСѓСЋ СЃС‚Р°РІРєСѓ '.$bag1d[$pl['game_id']][$pl['uid']].' РµРєСЂ.';
 				}
 			}
 		  //}
@@ -161,10 +161,10 @@ if($u->room['file']=='em/casino')
             <param name="quality" value="high" />
             <param name="wmode" value="opaque" />
             <param name="swfversion" value="6.0.65.0" />
-            <!-- Этот тег param предлагает пользователям Flash Player 6.0 r65 и более поздних версий загрузить последнюю версию Flash Player. Удалите его, если не хотите, чтобы пользователи видели запрос. -->
+            <!-- Р­С‚РѕС‚ С‚РµРі param РїСЂРµРґР»Р°РіР°РµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј Flash Player 6.0 r65 Рё Р±РѕР»РµРµ РїРѕР·РґРЅРёС… РІРµСЂСЃРёР№ Р·Р°РіСЂСѓР·РёС‚СЊ РїРѕСЃР»РµРґРЅСЋСЋ РІРµСЂСЃРёСЋ Flash Player. РЈРґР°Р»РёС‚Рµ РµРіРѕ, РµСЃР»Рё РЅРµ С…РѕС‚РёС‚Рµ, С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РІРёРґРµР»Рё Р·Р°РїСЂРѕСЃ. -->
             <param name="expressinstall" value="Scripts/expressInstall.swf" />
             <param name="BGCOLOR" value="#dedfde" />
-            <!-- Следующий тег object не поддерживается браузером Internet Explorer. Поэтому скройте его от Internet Explorer при помощи IECC. -->
+            <!-- РЎР»РµРґСѓСЋС‰РёР№ С‚РµРі object РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ Р±СЂР°СѓР·РµСЂРѕРј Internet Explorer. РџРѕСЌС‚РѕРјСѓ СЃРєСЂРѕР№С‚Рµ РµРіРѕ РѕС‚ Internet Explorer РїСЂРё РїРѕРјРѕС‰Рё IECC. -->
             <!--[if !IE]>-->
             <object type="application/x-shockwave-flash" data="casino/ruletka.swf" width="940" height="340">
               <!--<![endif]-->
@@ -173,10 +173,10 @@ if($u->room['file']=='em/casino')
               <param name="swfversion" value="6.0.65.0" />
               <param name="expressinstall" value="Scripts/expressInstall.swf" />
               <param name="BGCOLOR" value="#dedfde" />
-              <!-- Браузер отображает следующее альтернативное содержимое для пользователей Flash Player 6.0 и более старых версий. -->
+              <!-- Р‘СЂР°СѓР·РµСЂ РѕС‚РѕР±СЂР°Р¶Р°РµС‚ СЃР»РµРґСѓСЋС‰РµРµ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ Flash Player 6.0 Рё Р±РѕР»РµРµ СЃС‚Р°СЂС‹С… РІРµСЂСЃРёР№. -->
               <div>
-                <h4>Для содержимого этой страницы требуется более новая версия Adobe Flash Player.</h4>
-                <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Получить проигрыватель Adobe Flash Player" /></a></p>
+                <h4>Р”Р»СЏ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ СЌС‚РѕР№ СЃС‚СЂР°РЅРёС†С‹ С‚СЂРµР±СѓРµС‚СЃСЏ Р±РѕР»РµРµ РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ Adobe Flash Player.</h4>
+                <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="РџРѕР»СѓС‡РёС‚СЊ РїСЂРѕРёРіСЂС‹РІР°С‚РµР»СЊ Adobe Flash Player" /></a></p>
               </div>
               <!--[if !IE]>-->
             </object>
@@ -195,10 +195,10 @@ if($u->room['file']=='em/casino')
             <param name="quality" value="high" />
             <param name="wmode" value="opaque" />
             <param name="swfversion" value="6.0.65.0" />
-            <!-- Этот тег param предлагает пользователям Flash Player 6.0 r65 и более поздних версий загрузить последнюю версию Flash Player. Удалите его, если не хотите, чтобы пользователи видели запрос. -->
+            <!-- Р­С‚РѕС‚ С‚РµРі param РїСЂРµРґР»Р°РіР°РµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј Flash Player 6.0 r65 Рё Р±РѕР»РµРµ РїРѕР·РґРЅРёС… РІРµСЂСЃРёР№ Р·Р°РіСЂСѓР·РёС‚СЊ РїРѕСЃР»РµРґРЅСЋСЋ РІРµСЂСЃРёСЋ Flash Player. РЈРґР°Р»РёС‚Рµ РµРіРѕ, РµСЃР»Рё РЅРµ С…РѕС‚РёС‚Рµ, С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РІРёРґРµР»Рё Р·Р°РїСЂРѕСЃ. -->
             <param name="expressinstall" value="Scripts/expressInstall.swf" />
             <param name="BGCOLOR" value="#dedfde" />
-            <!-- Следующий тег object не поддерживается браузером Internet Explorer. Поэтому скройте его от Internet Explorer при помощи IECC. -->
+            <!-- РЎР»РµРґСѓСЋС‰РёР№ С‚РµРі object РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ Р±СЂР°СѓР·РµСЂРѕРј Internet Explorer. РџРѕСЌС‚РѕРјСѓ СЃРєСЂРѕР№С‚Рµ РµРіРѕ РѕС‚ Internet Explorer РїСЂРё РїРѕРјРѕС‰Рё IECC. -->
             <!--[if !IE]>-->
             <object type="application/x-shockwave-flash" data="casino/castle.swf" width="800" height="340">
               <!--<![endif]-->
@@ -207,10 +207,10 @@ if($u->room['file']=='em/casino')
               <param name="swfversion" value="6.0.65.0" />
               <param name="expressinstall" value="Scripts/expressInstall.swf" />
               <param name="BGCOLOR" value="#dedfde" />
-              <!-- Браузер отображает следующее альтернативное содержимое для пользователей Flash Player 6.0 и более старых версий. -->
+              <!-- Р‘СЂР°СѓР·РµСЂ РѕС‚РѕР±СЂР°Р¶Р°РµС‚ СЃР»РµРґСѓСЋС‰РµРµ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ Flash Player 6.0 Рё Р±РѕР»РµРµ СЃС‚Р°СЂС‹С… РІРµСЂСЃРёР№. -->
               <div>
-                <h4>Для содержимого этой страницы требуется более новая версия Adobe Flash Player.</h4>
-                <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Получить проигрыватель Adobe Flash Player" /></a></p>
+                <h4>Р”Р»СЏ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ СЌС‚РѕР№ СЃС‚СЂР°РЅРёС†С‹ С‚СЂРµР±СѓРµС‚СЃСЏ Р±РѕР»РµРµ РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ Adobe Flash Player.</h4>
+                <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="РџРѕР»СѓС‡РёС‚СЊ РїСЂРѕРёРіСЂС‹РІР°С‚РµР»СЊ Adobe Flash Player" /></a></p>
               </div>
               <!--[if !IE]>-->
             </object>
@@ -219,7 +219,7 @@ if($u->room['file']=='em/casino')
         </center>
         <?	
 		}elseif( $rz == 3 ) {
-			echo '<center><br><br><b>Игровой стол временно закрыт</b><br><br></center>';
+			echo '<center><br><br><b>РРіСЂРѕРІРѕР№ СЃС‚РѕР» РІСЂРµРјРµРЅРЅРѕ Р·Р°РєСЂС‹С‚</b><br><br></center>';
 		}elseif( $rz == 3 ) {
 			$min_s = 1;
 			$max_s = 10;
@@ -230,10 +230,10 @@ if($u->room['file']=='em/casino')
             <param name="quality" value="high" />
             <param name="wmode" value="opaque" />
             <param name="swfversion" value="6.0.65.0" />
-            <!-- Этот тег param предлагает пользователям Flash Player 6.0 r65 и более поздних версий загрузить последнюю версию Flash Player. Удалите его, если не хотите, чтобы пользователи видели запрос. -->
+            <!-- Р­С‚РѕС‚ С‚РµРі param РїСЂРµРґР»Р°РіР°РµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј Flash Player 6.0 r65 Рё Р±РѕР»РµРµ РїРѕР·РґРЅРёС… РІРµСЂСЃРёР№ Р·Р°РіСЂСѓР·РёС‚СЊ РїРѕСЃР»РµРґРЅСЋСЋ РІРµСЂСЃРёСЋ Flash Player. РЈРґР°Р»РёС‚Рµ РµРіРѕ, РµСЃР»Рё РЅРµ С…РѕС‚РёС‚Рµ, С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РІРёРґРµР»Рё Р·Р°РїСЂРѕСЃ. -->
             <param name="expressinstall" value="Scripts/expressInstall.swf" />
             <param name="BGCOLOR" value="#dedfde" />
-            <!-- Следующий тег object не поддерживается браузером Internet Explorer. Поэтому скройте его от Internet Explorer при помощи IECC. -->
+            <!-- РЎР»РµРґСѓСЋС‰РёР№ С‚РµРі object РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ Р±СЂР°СѓР·РµСЂРѕРј Internet Explorer. РџРѕСЌС‚РѕРјСѓ СЃРєСЂРѕР№С‚Рµ РµРіРѕ РѕС‚ Internet Explorer РїСЂРё РїРѕРјРѕС‰Рё IECC. -->
             <!--[if !IE]>-->
             <object type="application/x-shockwave-flash" data="casino/blackjack_v1.09.swf?minBet=<?=$min_s?>&maxBet=<?=$max_s?>" width="940" height="400">
               <!--<![endif]-->
@@ -242,10 +242,10 @@ if($u->room['file']=='em/casino')
               <param name="swfversion" value="6.0.65.0" />
               <param name="expressinstall" value="Scripts/expressInstall.swf" />
               <param name="BGCOLOR" value="#dedfde" />
-              <!-- Браузер отображает следующее альтернативное содержимое для пользователей Flash Player 6.0 и более старых версий. -->
+              <!-- Р‘СЂР°СѓР·РµСЂ РѕС‚РѕР±СЂР°Р¶Р°РµС‚ СЃР»РµРґСѓСЋС‰РµРµ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ Flash Player 6.0 Рё Р±РѕР»РµРµ СЃС‚Р°СЂС‹С… РІРµСЂСЃРёР№. -->
               <div>
-                <h4>Для содержимого этой страницы требуется более новая версия Adobe Flash Player.</h4>
-                <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Получить проигрыватель Adobe Flash Player" /></a></p>
+                <h4>Р”Р»СЏ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ СЌС‚РѕР№ СЃС‚СЂР°РЅРёС†С‹ С‚СЂРµР±СѓРµС‚СЃСЏ Р±РѕР»РµРµ РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ Adobe Flash Player.</h4>
+                <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="РџРѕР»СѓС‡РёС‚СЊ РїСЂРѕРёРіСЂС‹РІР°С‚РµР»СЊ Adobe Flash Player" /></a></p>
               </div>
               <!--[if !IE]>-->
             </object>
@@ -257,7 +257,7 @@ if($u->room['file']=='em/casino')
 		?>
         <br />
         <center>
-        <font color="#A9a9a9">Внимание! Все игры проводятся на екр. и Администрация не несет ответственности за возможные исходы игры, включая сбои и т.д.</font>
+        <font color="#A9a9a9">Р’РЅРёРјР°РЅРёРµ! Р’СЃРµ РёРіСЂС‹ РїСЂРѕРІРѕРґСЏС‚СЃСЏ РЅР° РµРєСЂ. Рё РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ РЅРµ РЅРµСЃРµС‚ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚Рё Р·Р° РІРѕР·РјРѕР¶РЅС‹Рµ РёСЃС…РѕРґС‹ РёРіСЂС‹, РІРєР»СЋС‡Р°СЏ СЃР±РѕРё Рё С‚.Рґ.</font>
         </center>
 	<td width="280" valign="top">
     <TABLE cellspacing="0" cellpadding="0"><TD width="100%">&nbsp;</TD><TD>
@@ -273,7 +273,7 @@ if($u->room['file']=='em/casino')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=7.180.0.387&rnd=<? echo $code; ?>';" title="<? thisInfRm('7.180.0.387',1); ?>">Страшилкина улица</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=7.180.0.387&rnd=<? echo $code; ?>';" title="<? thisInfRm('7.180.0.387',1); ?>">РЎС‚СЂР°С€РёР»РєРёРЅР° СѓР»РёС†Р°</a></td>
 	</tr>
 	</table>
 	</td>
@@ -284,7 +284,7 @@ if($u->room['file']=='em/casino')
 	<div>
 	  <br />
       <? if(isset($u->bank['id'])) { ?>
-      <div align="right"><small>	  У вас в наличии: <b style="color:#339900;"><?php echo round($u->bank['money2'],2); ?> екр.</b> &nbsp;
+      <div align="right"><small>	  РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: <b style="color:#339900;"><?php echo round($u->bank['money2'],2); ?> РµРєСЂ.</b> &nbsp;
       </small>      
       </div><? } ?>
 	  <br />

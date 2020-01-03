@@ -10,18 +10,18 @@ if($p['attack']==1)
 		if(isset($uu['id']))
 		{
 			if($u->room['noatack'] == 1) {
-				$uer = 'В данной комнате запрещены нападения!';
+				$uer = 'Р’ РґР°РЅРЅРѕР№ РєРѕРјРЅР°С‚Рµ Р·Р°РїСЂРµС‰РµРЅС‹ РЅР°РїР°РґРµРЅРёСЏ!';
 			}elseif($uu['id'] == $u->info['id']) {
-				$uer = 'Нападать на себя НЕЛЬЗЯ! :)';
+				$uer = 'РќР°РїР°РґР°С‚СЊ РЅР° СЃРµР±СЏ РќР•Р›Р¬Р—РЇ! :)';
 			}elseif($uu['room'] != $u->info['room']) {
-				$uer = 'ВЫ находитесь в разных комнатах<br>';
+				$uer = 'Р’Р« РЅР°С…РѕРґРёС‚РµСЃСЊ РІ СЂР°Р·РЅС‹С… РєРѕРјРЅР°С‚Р°С…<br>';
 			}else{
 				
 				$ua = mysql_fetch_array(mysql_query('SELECT `s`.*,`u`.* FROM `stats` AS `s` LEFT JOIN `users` AS `u` ON `s`.`id` = `u`.`id` WHERE `s`.`id` = "'.mysql_real_escape_string($uu['id']).'" LIMIT 1'));
 				if(isset($ua['id']) && $ua['online'] > time()-520) {
 					
-					$usta = $u->getStats($ua['id'],0); // статы цели
-					$minHp = floor($usta['hpAll']/100*33); // минимальный запас здоровья цели при котором можно напасть
+					$usta = $u->getStats($ua['id'],0); // СЃС‚Р°С‚С‹ С†РµР»Рё
+					$minHp = floor($usta['hpAll']/100*33); // РјРёРЅРёРјР°Р»СЊРЅС‹Р№ Р·Р°РїР°СЃ Р·РґРѕСЂРѕРІСЊСЏ С†РµР»Рё РїСЂРё РєРѕС‚РѕСЂРѕРј РјРѕР¶РЅРѕ РЅР°РїР°СЃС‚СЊ
 					
 					if( $ua['battle'] > 0 ) {
 						$uabt = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `id` = "'.$ua['battle'].'" AND `team_win` = "-1" LIMIT 1'));
@@ -31,17 +31,17 @@ if($p['attack']==1)
 					}
 					
 					if( $ua['battle'] == 0 && $minHp > $usta['hpNow'] ) {
-						$uer = 'Нельзя напасть, у противника не восстановилось здоровье';
+						$uer = 'РќРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ, Сѓ РїСЂРѕС‚РёРІРЅРёРєР° РЅРµ РІРѕСЃСЃС‚Р°РЅРѕРІРёР»РѕСЃСЊ Р·РґРѕСЂРѕРІСЊРµ';
 					}elseif( isset($uabt['id']) && $uabt['type'] == 500 && $ua['team'] == 1 ) {
-						$uer = 'Нельзя сражаться на стороне монстров!';
+						$uer = 'РќРµР»СЊР·СЏ СЃСЂР°Р¶Р°С‚СЊСЃСЏ РЅР° СЃС‚РѕСЂРѕРЅРµ РјРѕРЅСЃС‚СЂРѕРІ!';
 					}elseif( isset($uabt['id']) && $uabt['invis'] > 0 ) {
-						$uer = 'Нельзя вмешиваться в невидимый бой!';
+						$uer = 'РќРµР»СЊР·СЏ РІРјРµС€РёРІР°С‚СЊСЃСЏ РІ РЅРµРІРёРґРёРјС‹Р№ Р±РѕР№!';
 					}elseif( $magic->testAlignAtack( $u->info['id'], $ua['id'], $uabt) == false ) {
-						$uer = 'Нельзя помогать вражеским склонностям!';
+						$uer = 'РќРµР»СЊР·СЏ РїРѕРјРѕРіР°С‚СЊ РІСЂР°Р¶РµСЃРєРёРј СЃРєР»РѕРЅРЅРѕСЃС‚СЏРј!';
 					}elseif( $magic->testTravma( $ua['id'] , 3 ) == true ) {
-						$uer = 'Противник тяжело травмирован, нельзя напасть!';
+						$uer = 'РџСЂРѕС‚РёРІРЅРёРє С‚СЏР¶РµР»Рѕ С‚СЂР°РІРјРёСЂРѕРІР°РЅ, РЅРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ!';
 					}elseif( $magic->testTravma( $u->info['id'] , 2 ) == true ) {
-						$uer = 'Вы травмированы, нельзя напасть!';
+						$uer = 'Р’С‹ С‚СЂР°РІРјРёСЂРѕРІР°РЅС‹, РЅРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ!';
 					}elseif($ua['room']==$u->info['room'] && ($minHp <= $usta['hpNow'] || $ua['battle'] > 0))
 					{
 					
@@ -52,38 +52,38 @@ if($p['attack']==1)
 						$sx = '';
 						if($u->info['sex']==1)
 						{
-							$sx = 'а';
+							$sx = 'Р°';
 						}
-						$rtxt = '[img[items/pal_button8.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; совершил'.$sx.' нападение на персонажа &quot;'.$uu['login'].'&quot;.';
+						$rtxt = '[img[items/pal_button8.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; СЃРѕРІРµСЂС€РёР»'.$sx.' РЅР°РїР°РґРµРЅРёРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$uu['login'].'&quot;.';
 						mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");				
 						
 						header('location: main.php');
 					}
 				}else{
-					$uer = 'Персонаж должен находиться в онлайне';
+					$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РґРѕР»Р¶РµРЅ РЅР°С…РѕРґРёС‚СЊСЃСЏ РІ РѕРЅР»Р°Р№РЅРµ';
 				}
 				
-				/*$upd = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$uu['id'].'" AND `name` LIKE "%травма"');
+				/*$upd = mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$uu['id'].'" AND `name` LIKE "%С‚СЂР°РІРјР°"');
 				if($upd)
 				{
 					$sx = '';
 					if($u->info['sex']==1)
 					{
-						$sx = 'а';
+						$sx = 'Р°';
 					}
-					$rtxt = '[img[items/cure3.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; излечил'.$sx.' персонажа &quot;'.$uu['login'].'&quot; от травм.';
+					$rtxt = '[img[items/cure3.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; РёР·Р»РµС‡РёР»'.$sx.' РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$uu['login'].'&quot; РѕС‚ С‚СЂР°РІРј.';
 					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");				
-					$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; излечил'.$sx.' от травм';
+					$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; РёР·Р»РµС‡РёР»'.$sx.' РѕС‚ С‚СЂР°РІРј';
 					mysql_query("INSERT INTO `users_delo` (`uid`,`ip`,`city`,`time`,`text`,`login`,`type`) VALUES ('".$uu['id']."','".$_SERVER['REMOTE_ADDR']."','".$u->info['city']."','".time()."','".$rtxt."','".$u->info['login']."',0)");
-					$uer = 'Вы успешно излечили персонажу "'.$uu['login'].'" от травм.';
+					$uer = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёР·Р»РµС‡РёР»Рё РїРµСЂСЃРѕРЅР°Р¶Сѓ "'.$uu['login'].'" РѕС‚ С‚СЂР°РІРј.';
 				}else{
-					$uer = 'Не удалось использовать данное заклятие';
+					$uer = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ';
 				}*/
 			}
 		}else{
-			$uer = 'Персонаж не найден в этом городе';
+			$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 		}
 }else{
-	$uer = 'У Вас нет прав на использование данного заклятия';
+	$uer = 'РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РЅР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РґР°РЅРЅРѕРіРѕ Р·Р°РєР»СЏС‚РёСЏ';
 }	
 ?>

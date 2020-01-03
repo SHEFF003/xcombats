@@ -6,7 +6,7 @@ if(!defined('GAME'))
 
 if($u->room['file']=='an/remont')
 {
-	//Предметы которые можно подогнать (гос)
+	//РџСЂРµРґРјРµС‚С‹ РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ РїРѕРґРѕРіРЅР°С‚СЊ (РіРѕСЃ)
 	$itm_podgon = array(
 		784,
 		788,
@@ -15,14 +15,14 @@ if($u->room['file']=='an/remont')
 		1240
 	);
 	
-	//Комплекты подгона
+	//РљРѕРјРїР»РµРєС‚С‹ РїРѕРґРіРѕРЅР°
 	$com_podgon = array(
-		'Комплект Скорпиона' => true,
-		'Комплект Забытых Времен' => true,
-		'Комплект Утреннего Солнца' => true,
-		'Комплект Паука' => true,
-		'Комплект Злодеяний' => true,
-		'Комплект Кровавой Луны' => true
+		'РљРѕРјРїР»РµРєС‚ РЎРєРѕСЂРїРёРѕРЅР°' => true,
+		'РљРѕРјРїР»РµРєС‚ Р—Р°Р±С‹С‚С‹С… Р’СЂРµРјРµРЅ' => true,
+		'РљРѕРјРїР»РµРєС‚ РЈС‚СЂРµРЅРЅРµРіРѕ РЎРѕР»РЅС†Р°' => true,
+		'РљРѕРјРїР»РµРєС‚ РџР°СѓРєР°' => true,
+		'РљРѕРјРїР»РµРєС‚ Р—Р»РѕРґРµСЏРЅРёР№' => true,
+		'РљРѕРјРїР»РµРєС‚ РљСЂРѕРІР°РІРѕР№ Р›СѓРЅС‹' => true
 	);
 	
 	$r = 1;
@@ -39,7 +39,7 @@ if($u->room['file']=='an/remont')
 	}
 	
 	if(isset($_GET['upgrade']) && true == false) {
-		//улучшение предмета
+		//СѓР»СѓС‡С€РµРЅРёРµ РїСЂРµРґРјРµС‚Р°
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`data` LIKE "%modif%" AND `iu`.`data` NOT LIKE "%upgrade=5%" AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['upgrade']).'" LIMIT 1'));
 		if(isset($ir['id'])) {
 			$po = array();
@@ -61,7 +61,7 @@ if($u->room['file']=='an/remont')
 			}
 			$pcena = round($pcena+$pcena/100*(37.795*($po['upgrade']+1)));
 			if($pcena == 0) {
-				$re = '<div align="left">Данный предмет не подходит...</div>';
+				$re = '<div align="left">Р”Р°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚ РЅРµ РїРѕРґС…РѕРґРёС‚...</div>';
 			}elseif($pcena <= $u->info['money']) {
 				if($po['upgrade'] < 5) {
 					$fadd = array(0,0,0,0);
@@ -90,17 +90,17 @@ if($u->room['file']=='an/remont')
 					
 					if($po['upgrade'] <= 3) {
 						$fadd = array(
-							round($fadd[0]/100*$faddp), //статы
-							floor($fadd[1]/100*$faddp), //мф.
-							floor($fadd[2]/100*$faddp), //броня
-							ceil($fadd[3]/100*$faddp)  //НР
+							round($fadd[0]/100*$faddp), //СЃС‚Р°С‚С‹
+							floor($fadd[1]/100*$faddp), //РјС„.
+							floor($fadd[2]/100*$faddp), //Р±СЂРѕРЅСЏ
+							ceil($fadd[3]/100*$faddp)  //РќР 
 						);
 					}else{
 						$fadd = array(
-							ceil($fadd[0]/100*$faddp), //статы
-							ceil($fadd[1]/100*$faddp), //мф.
-							ceil($fadd[2]/100*$faddp), //броня
-							ceil($fadd[3]/100*$faddp)  //НР
+							ceil($fadd[0]/100*$faddp), //СЃС‚Р°С‚С‹
+							ceil($fadd[1]/100*$faddp), //РјС„.
+							ceil($fadd[2]/100*$faddp), //Р±СЂРѕРЅСЏ
+							ceil($fadd[3]/100*$faddp)  //РќР 
 						);
 					}
 					
@@ -110,9 +110,9 @@ if($u->room['file']=='an/remont')
 					$po['add_hpAll']	+= $fadd[3];
 									
 					$po['upgrade']++;
-					$re = '<div align="left">Предмет &quot;'.$ir['name'].'&quot; был успешно улучшен ('.$po['upgrade'].'/5) за '.$pcena.' кр.</div>';	
+					$re = '<div align="left">РџСЂРµРґРјРµС‚ &quot;'.$ir['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓР»СѓС‡С€РµРЅ ('.$po['upgrade'].'/5) Р·Р° '.$pcena.' РєСЂ.</div>';	
 
-					$u->addDelo(2,$u->info['id'],'&quot;<font color="#4863A0">System.remont.itemUpgrade</font>&quot;: Предмет &quot;'.$ir['name'].'&quot; [itm:'.$ir['id'].'] был успешно улучшен ('.$po['upgrade'].'/5) за '.$pcena.' кр..',time(),$u->info['city'],'System.remont.itemUpgrade',0,0);
+					$u->addDelo(2,$u->info['id'],'&quot;<font color="#4863A0">System.remont.itemUpgrade</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$ir['name'].'&quot; [itm:'.$ir['id'].'] Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓР»СѓС‡С€РµРЅ ('.$po['upgrade'].'/5) Р·Р° '.$pcena.' РєСЂ..',time(),$u->info['city'],'System.remont.itemUpgrade',0,0);
 					
 					$po = $u->impStats($po);					
 					mysql_query('UPDATE `items_users` SET `data` = "'.$po.'",`1price` = "'.$ir['1price'].'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');
@@ -120,16 +120,16 @@ if($u->room['file']=='an/remont')
 					$u->info['money'] -= $pcena;
 					
 				}else{
-					$re = '<div align="left">Предмет улучшен до максимума</div>';
+					$re = '<div align="left">РџСЂРµРґРјРµС‚ СѓР»СѓС‡С€РµРЅ РґРѕ РјР°РєСЃРёРјСѓРјР°</div>';
 				}
 			}else{
-				$re = '<div align="left">У вас не достаточно средств для модификации предмета</div>';
+				$re = '<div align="left">РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РјРѕРґРёС„РёРєР°С†РёРё РїСЂРµРґРјРµС‚Р°</div>';
 			}
 		}else{
-			$re = '<div align="left">Подходящий предмет не найден в инвентаре</div>';
+			$re = '<div align="left">РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ</div>';
 		}
 	}elseif(isset($_GET['modif']) && true == false) {
-		//модификация
+		//РјРѕРґРёС„РёРєР°С†РёСЏ
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND
 		`iu`.`data` NOT LIKE "%modif%" AND `im`.`type` > 0 AND `im`.`type` < 16 AND	(`iu`.`data` LIKE "%add_s1%" OR `iu`.`data` LIKE "%add_s2%" OR `iu`.`data` LIKE "%add_s3%" OR `iu`.`data` LIKE "%add_s5%" OR `iu`.`data` LIKE "%add_hpAll%" OR `iu`.`data` LIKE "%add_mib%")
 		AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['modif']).'" LIMIT 1'));
@@ -154,12 +154,12 @@ if($u->room['file']=='an/remont')
 			}
 			$pcena = round($pcena);
 			if($pcena == 0) {
-				$re = '<div align="left">Данный предмет не подходит...</div>';
+				$re = '<div align="left">Р”Р°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚ РЅРµ РїРѕРґС…РѕРґРёС‚...</div>';
 			}elseif($pcena <= $u->info['money']) {
 				if($u->stats['s5'] > 24) {
 					$fadd = array(0,0,0);
 					
-					//добавляем статы
+					//РґРѕР±Р°РІР»СЏРµРј СЃС‚Р°С‚С‹
 					if(isset($po['add_s1']) || isset($po['add_s2']) || isset($po['add_s3']) || isset($po['add_s5'])) {
 						$rnd1 = rand(0,(1000-$u->stats['s5']));
 						if($rnd1 > 500) {
@@ -183,7 +183,7 @@ if($u->room['file']=='an/remont')
 						}
 					}
 					
-					//добавляем НР
+					//РґРѕР±Р°РІР»СЏРµРј РќР 
 					if(isset($po['add_m1']) || isset($po['add_m2']) || isset($po['add_m4']) || isset($po['add_m5'])) {
 						$rnd1 = rand(0,(1000-$u->stats['s5']));
 						if($rnd1 > 500) {
@@ -208,7 +208,7 @@ if($u->room['file']=='an/remont')
 						$fadd[1] = rand($fadd[1],20);
 					}
 					
-					//добавляем броню
+					//РґРѕР±Р°РІР»СЏРµРј Р±СЂРѕРЅСЋ
 					if(isset($po['add_mib1']) || isset($po['add_mib2']) || isset($po['add_mib3']) || isset($po['add_mib4'])) {
 						$rnd1 = rand(0,(1000-$u->stats['s5']));
 						if($rnd1 > 500) {
@@ -233,15 +233,15 @@ if($u->room['file']=='an/remont')
 					}					
 					
 					if($fadd[0] > 0) {
-						//статы
+						//СЃС‚Р°С‚С‹
 						$po['mf_stats'] += $fadd[0];
 					}
 					if($fadd[1] > 0) {
-						//НР
+						//РќР 
 						$po['add_hpAll'] += $fadd[1];
 					}
 					if($fadd[2] > 0) {
-						//броня
+						//Р±СЂРѕРЅСЏ
 						$po['mf_mib'] += $fadd[2];
 					}					
 					$po['modif'] = 1;					
@@ -251,52 +251,52 @@ if($u->room['file']=='an/remont')
 					mysql_query('UPDATE `users` SET `money` = `money` - "'.$pcena.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					$u->info['money'] -= $pcena;
 					
-					$re = '<div align="left">Предмет &quot;'.$ir['name'].'&quot; был успешно модифицирован (Характеристики: +'.$fadd[0].', Здоровье: +'.$fadd[1].', Броня: +'.$fadd[2].') за '.$pcena.' кр.</div>';
+					$re = '<div align="left">РџСЂРµРґРјРµС‚ &quot;'.$ir['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РјРѕРґРёС„РёС†РёСЂРѕРІР°РЅ (РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё: +'.$fadd[0].', Р—РґРѕСЂРѕРІСЊРµ: +'.$fadd[1].', Р‘СЂРѕРЅСЏ: +'.$fadd[2].') Р·Р° '.$pcena.' РєСЂ.</div>';
 					
 				}else{
-					$re = '<div align="left">Для модифицирования предмета требуется характеристика Интелект: 25</div>';
+					$re = '<div align="left">Р”Р»СЏ РјРѕРґРёС„РёС†РёСЂРѕРІР°РЅРёСЏ РїСЂРµРґРјРµС‚Р° С‚СЂРµР±СѓРµС‚СЃСЏ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР° РРЅС‚РµР»РµРєС‚: 25</div>';
 				}
 			}else{
-				$re = '<div align="left">У вас не достаточно средств для модификации предмета</div>';
+				$re = '<div align="left">РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РјРѕРґРёС„РёРєР°С†РёРё РїСЂРµРґРјРµС‚Р°</div>';
 			}
 		}else{
-			$re = '<div align="left">Подходящий предмет не найден в инвентаре</div>';
+			$re = '<div align="left">РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ</div>';
 		}
 	}elseif(isset($_GET['ubeff']) && true == false) {
-		// Берем в переменную текущий предмет.
+		// Р‘РµСЂРµРј РІ РїРµСЂРµРјРµРЅРЅСѓСЋ С‚РµРєСѓС‰РёР№ РїСЂРµРґРјРµС‚.
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`data` LIKE "%upatack_id%" AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['ubeff']).'" LIMIT 1'));
 		
-		// Предмет существует.
+		// РџСЂРµРґРјРµС‚ СЃСѓС‰РµСЃС‚РІСѓРµС‚.
 		if(isset($ir['id'])) {
 			$po = array();
-			$po = $u->lookStats($ir['data']); // Тут мы храним характеристики предмета.
+			$po = $u->lookStats($ir['data']); // РўСѓС‚ РјС‹ С…СЂР°РЅРёРј С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїСЂРµРґРјРµС‚Р°.
 			if($po['tr_lvl'] > $ir['level']) {
-				$pl['level'] = $po['tr_lvl']; // Если уровень предмета, меньше чем уровень требований с характеристик, то идет обновление уровня предмета.
+				$pl['level'] = $po['tr_lvl']; // Р•СЃР»Рё СѓСЂРѕРІРµРЅСЊ РїСЂРµРґРјРµС‚Р°, РјРµРЅСЊС€Рµ С‡РµРј СѓСЂРѕРІРµРЅСЊ С‚СЂРµР±РѕРІР°РЅРёР№ СЃ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє, С‚Рѕ РёРґРµС‚ РѕР±РЅРѕРІР»РµРЅРёРµ СѓСЂРѕРІРЅСЏ РїСЂРµРґРјРµС‚Р°.
 			}
 			
-			$pcena = 5*$pl['level']+35; // цена увеличивается, для продажи в гос. маг.
+			$pcena = 5*$pl['level']+35; // С†РµРЅР° СѓРІРµР»РёС‡РёРІР°РµС‚СЃСЏ, РґР»СЏ РїСЂРѕРґР°Р¶Рё РІ РіРѕСЃ. РјР°Рі.
 			
-			if(isset($po['rune_id'])) { // Если в предмете существует РУНА, увеличиваем цену.
+			if(isset($po['rune_id'])) { // Р•СЃР»Рё РІ РїСЂРµРґРјРµС‚Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р РЈРќРђ, СѓРІРµР»РёС‡РёРІР°РµРј С†РµРЅСѓ.
 				$pcena += 3;
 			}
 			
-			if(isset($po['upatack_id'])) { // Если в предмете имеется Заточка, увеличиваем цену.
+			if(isset($po['upatack_id'])) { // Р•СЃР»Рё РІ РїСЂРµРґРјРµС‚Рµ РёРјРµРµС‚СЃСЏ Р—Р°С‚РѕС‡РєР°, СѓРІРµР»РёС‡РёРІР°РµРј С†РµРЅСѓ.
 				$pcena += 14;
 			}
 			/*
-			if($po['rune_id'] > 0){ // Последовательность действий.
-				$re = '<div align="left">Для дезинтеграции сначала извлеките руну</div>';
+			if($po['rune_id'] > 0){ // РџРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ РґРµР№СЃС‚РІРёР№.
+				$re = '<div align="left">Р”Р»СЏ РґРµР·РёРЅС‚РµРіСЂР°С†РёРё СЃРЅР°С‡Р°Р»Р° РёР·РІР»РµРєРёС‚Рµ СЂСѓРЅСѓ</div>';
 			} else
 			*/
-			if($u->info['money'] >= 100) { // Проверка, хватает ли средств.
-				$pcena -= 14; // Уменьшаем цену после извлеченния заточки.
-				if(isset($po['upatack_id'])) { // Добавляем заточку в инвентарь. 
-					// Берем в переменную свиток заточки, который находится в предмете.
+			if($u->info['money'] >= 100) { // РџСЂРѕРІРµСЂРєР°, С…РІР°С‚Р°РµС‚ Р»Рё СЃСЂРµРґСЃС‚РІ.
+				$pcena -= 14; // РЈРјРµРЅСЊС€Р°РµРј С†РµРЅСѓ РїРѕСЃР»Рµ РёР·РІР»РµС‡РµРЅРЅРёСЏ Р·Р°С‚РѕС‡РєРё.
+				if(isset($po['upatack_id'])) { // Р”РѕР±Р°РІР»СЏРµРј Р·Р°С‚РѕС‡РєСѓ РІ РёРЅРІРµРЅС‚Р°СЂСЊ. 
+					// Р‘РµСЂРµРј РІ РїРµСЂРµРјРµРЅРЅСѓСЋ СЃРІРёС‚РѕРє Р·Р°С‚РѕС‡РєРё, РєРѕС‚РѕСЂС‹Р№ РЅР°С…РѕРґРёС‚СЃСЏ РІ РїСЂРµРґРјРµС‚Рµ.
 					$upattack = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`id` = "'.mysql_real_escape_string((int)$po["upatack"]).'" LIMIT 1'));
-					if(isset($upattack) && $upattack['item_id'] && $upattack['delete']>0){ // Если старый предмет не удален из базы, мы его восстанавливаем.
+					if(isset($upattack) && $upattack['item_id'] && $upattack['delete']>0){ // Р•СЃР»Рё СЃС‚Р°СЂС‹Р№ РїСЂРµРґРјРµС‚ РЅРµ СѓРґР°Р»РµРЅ РёР· Р±Р°Р·С‹, РјС‹ РµРіРѕ РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј.
 						mysql_query('UPDATE `items_users` SET `delete` = "'.mysql_real_escape_string(0).'" WHERE `id` = "'.$po["upatack"].'" LIMIT 1');
 						mysql_query('UPDATE `items_users` SET `data` = CONCAT(`data`,"|nosale=1") WHERE `id` = "'.$po["upatack"].'" LIMIT 1');
-					} else { // Если старый предмет не существует, создаем новый.
+					} else { // Р•СЃР»Рё СЃС‚Р°СЂС‹Р№ РїСЂРµРґРјРµС‚ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№.
 						$u->addItem($po['upatack_id'],$u->info['id'],'|fromshop=1|nosale=1', NULL, NULL, true);
 						$irs .= ','.$po['upatack_name']; 
 					}
@@ -307,7 +307,7 @@ if($u->room['file']=='an/remont')
 				}
 				
 				
-				// Обнуляем инфу к стандартным данным - $ir['item_id']
+				// РћР±РЅСѓР»СЏРµРј РёРЅС„Сѓ Рє СЃС‚Р°РЅРґР°СЂС‚РЅС‹Рј РґР°РЅРЅС‹Рј - $ir['item_id']
 				$item_default = mysql_fetch_array(mysql_query('SELECT `data` FROM `items_main_data` WHERE `items_id` = "'.mysql_real_escape_string((int)$ir['item_id']).'" LIMIT 1'));
 				$item_default = $u->lookStats($item_default['data']);
 				$upattack = $u->lookStats($upattack['data']);
@@ -328,15 +328,15 @@ if($u->room['file']=='an/remont')
 				unset($upattack);
 				$po = $u->impStats($po);
 				
-				// Заточка tr_lvl=4|tr_s5=10|tr_mg7=4|uptype=21|upatack=4|tr_a4=4|srok=432000
+				// Р—Р°С‚РѕС‡РєР° tr_lvl=4|tr_s5=10|tr_mg7=4|uptype=21|upatack=4|tr_a4=4|srok=432000
 				/*
 				if(isset($po['spell_id'])) {
-					//Извлечение чарки
+					//РР·РІР»РµС‡РµРЅРёРµ С‡Р°СЂРєРё
 					$u->addItem($po['spell_id'],$u->info['id']);
 					$irs .= ','.$po['spell_name'];
 				}
 				
-				//обнуление предмета (кроме улучшений , гравировки)
+				//РѕР±РЅСѓР»РµРЅРёРµ РїСЂРµРґРјРµС‚Р° (РєСЂРѕРјРµ СѓР»СѓС‡С€РµРЅРёР№ , РіСЂР°РІРёСЂРѕРІРєРё)
 				
 				$pon = '';
 				if(isset($po['gravi'])) {
@@ -384,17 +384,17 @@ if($u->room['file']=='an/remont')
 				WHERE `id` = "'.$iidis.'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
 				
 				$u->info['money'] -= $pcena;
-				$re = '<div align="left">Предмет &quot;'.$ir['name'].'&quot; был успешно дезинтегрирован ('.$ir['name'].''.$irs.') за '.$pcena.' кр.</div>';
+				$re = '<div align="left">РџСЂРµРґРјРµС‚ &quot;'.$ir['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РґРµР·РёРЅС‚РµРіСЂРёСЂРѕРІР°РЅ ('.$ir['name'].''.$irs.') Р·Р° '.$pcena.' РєСЂ.</div>';
 				*/
 				var_info($po);
 				mysql_query('UPDATE `items_users` SET `data` = "'.$po.'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');
 				mysql_query('UPDATE `users` SET `money` = `money` - 100 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				
 			}else{
-				$re = '<div align="left">У вас не достаточно средств для дезинтеграции</div>';
+				$re = '<div align="left">РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РґРµР·РёРЅС‚РµРіСЂР°С†РёРё</div>';
 			}
 		}else{
-			$re = '<div align="left">Подходящий предмет не найден в инвентаре</div>';
+			$re = '<div align="left">РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ</div>';
 		}
 	}elseif(isset($_GET['unrune']) && true == false) {
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`data` LIKE "%rune_id%" AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['unrune']).'" LIMIT 1'));
@@ -402,7 +402,7 @@ if($u->room['file']=='an/remont')
 			$po = array();
 			$po = $u->lookStats($ir['data']);
 			if(isset($po['noremont']) or isset($st['frompisher'])){
-				$re2 = 'Предмет не подлежит извлечению рун.';
+				$re2 = 'РџСЂРµРґРјРµС‚ РЅРµ РїРѕРґР»РµР¶РёС‚ РёР·РІР»РµС‡РµРЅРёСЋ СЂСѓРЅ.';
 			} else {
 				if($po['tr_lvl'] > $ir['level']) {
 					$ir['level'] = $po['tr_lvl'];
@@ -426,8 +426,8 @@ if($u->room['file']=='an/remont')
 					}	
 						
 					$u->addItem($po['rune_id'],$u->info['id']);
-					$re = '<div align="left">Руна &quot;'.$po['rune_name'].'&quot; была успешно извлечена из предмета &quot;'.$ir['name'].'&quot; за '.$pcena.' кр.</div>';
-					$u->addDelo(2,$u->info['id'],'&quot;<font color="#4863A0">System.remont.unrune</font>&quot;: Руна &quot;'.$po['rune_name'].'&quot; была успешно извлечена из предмета &quot;'.$ir['name'].'&quot; [itm:'.$ir['id'].'] за '.$pcena.' кр.',time(),$u->info['city'],'System.remont.unrune',0,0);
+					$re = '<div align="left">Р СѓРЅР° &quot;'.$po['rune_name'].'&quot; Р±С‹Р»Р° СѓСЃРїРµС€РЅРѕ РёР·РІР»РµС‡РµРЅР° РёР· РїСЂРµРґРјРµС‚Р° &quot;'.$ir['name'].'&quot; Р·Р° '.$pcena.' РєСЂ.</div>';
+					$u->addDelo(2,$u->info['id'],'&quot;<font color="#4863A0">System.remont.unrune</font>&quot;: Р СѓРЅР° &quot;'.$po['rune_name'].'&quot; Р±С‹Р»Р° СѓСЃРїРµС€РЅРѕ РёР·РІР»РµС‡РµРЅР° РёР· РїСЂРµРґРјРµС‚Р° &quot;'.$ir['name'].'&quot; [itm:'.$ir['id'].'] Р·Р° '.$pcena.' РєСЂ.',time(),$u->info['city'],'System.remont.unrune',0,0);
 					unset($po['rune'],$po['rune_id'],$po['rune_name'],$po['rune_lvl']);
 					$po = $u->impStats($po);
 					mysql_query('UPDATE `items_users` SET `data` = "'.$po.'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');
@@ -435,11 +435,11 @@ if($u->room['file']=='an/remont')
 					$u->info['money'] -= $pcena;
 					
 				}else{
-					$re = '<div align="left">У вас не достаточно средств для извлечения</div>';
+					$re = '<div align="left">РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РёР·РІР»РµС‡РµРЅРёСЏ</div>';
 				}
 			}
 		}else{
-			$re = '<div align="left">Подходящий предмет не найден в инвентаре</div>';
+			$re = '<div align="left">РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ</div>';
 		}
 	} elseif(isset($_GET['un_grav'])) {
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND (`im`.`type` = "18" OR `im`.`type` = "19" OR `im`.`type` = "20" OR `im`.`type` = "21" OR `im`.`type` = "22" OR `im`.`type` = "23" OR `im`.`type` = "24" OR `im`.`type` = "26" OR `im`.`type` = "27" OR `im`.`type` = "28") AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['un_grav']).'" LIMIT 1'));
@@ -459,20 +459,20 @@ if($u->room['file']=='an/remont')
 				$po['gravi'] = str_replace('|','',$po['gravi']);
 				$tst = str_replace(' ','',$po['gravi']);
 				$tst = str_replace('	','',$po['gravi']);
-				$po['gravi'] = preg_replace("/[^a-zA-ZА-Яа-я0-9\s]/", "", $po['gravi']);
+				$po['gravi'] = preg_replace("/[^a-zA-ZРђ-РЇР°-СЏ0-9\s]/", "", $po['gravi']);
 				if($po['gravi'] != '' && $tst != '') {
 					$po = $u->impStats($po);
 					mysql_query('UPDATE `users` SET `money` = `money` - "'.$pcena.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `items_users` SET `data` = "'.$po.'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');
-					$re = '<div align="left">На предмете &quot;'.$ir['name'].'&quot; был успешно выгровирован текст за '.$pcena.' кр.</div>';
+					$re = '<div align="left">РќР° РїСЂРµРґРјРµС‚Рµ &quot;'.$ir['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РІС‹РіСЂРѕРІРёСЂРѕРІР°РЅ С‚РµРєСЃС‚ Р·Р° '.$pcena.' РєСЂ.</div>';
 				}else{
-					$re = '<div align="left">Пустой текст, либо состоит из символов которые нельзя использовать</div>';
+					$re = '<div align="left">РџСѓСЃС‚РѕР№ С‚РµРєСЃС‚, Р»РёР±Рѕ СЃРѕСЃС‚РѕРёС‚ РёР· СЃРёРјРІРѕР»РѕРІ РєРѕС‚РѕСЂС‹Рµ РЅРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ</div>';
 				}
 			}else{
-				$re = '<div align="left">У вас не достаточно средств для гравировки</div>';
+				$re = '<div align="left">РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РіСЂР°РІРёСЂРѕРІРєРё</div>';
 			}
 		}else{
-			$re = '<div align="left">Подходящий предмет не найден в инвентаре</div>';
+			$re = '<div align="left">РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ</div>';
 		}
 	}elseif(isset($_GET['grav'])) {
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND (`im`.`type` = "18" OR `im`.`type` = "19" OR `im`.`type` = "20" OR `im`.`type` = "21" OR `im`.`type` = "22" OR `im`.`type` = "23" OR `im`.`type` = "24" OR `im`.`type` = "26" OR `im`.`type` = "27" OR `im`.`type` = "28") AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['grav']).'" LIMIT 1'));
@@ -492,20 +492,20 @@ if($u->room['file']=='an/remont')
 				$po['gravi'] = str_replace('|','',$po['gravi']);
 				$tst = str_replace(' ','',$po['gravi']);
 				$tst = str_replace('	','',$po['gravi']);
-				$po['gravi'] = preg_replace("/[^a-zA-ZА-Яа-я0-9\s]/", "", $po['gravi']);
+				$po['gravi'] = preg_replace("/[^a-zA-ZРђ-РЇР°-СЏ0-9\s]/", "", $po['gravi']);
 				if($po['gravi'] != '' && $tst != '') {
 					$po = $u->impStats($po);
 					mysql_query('UPDATE `users` SET `money` = `money` - "'.$pcena.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `items_users` SET `data` = "'.$po.'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');
-					$re = '<div align="left">На предмете &quot;'.$ir['name'].'&quot; был успешно выгровирован текст за '.$pcena.' кр.</div>';
+					$re = '<div align="left">РќР° РїСЂРµРґРјРµС‚Рµ &quot;'.$ir['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РІС‹РіСЂРѕРІРёСЂРѕРІР°РЅ С‚РµРєСЃС‚ Р·Р° '.$pcena.' РєСЂ.</div>';
 				}else{
-					$re = '<div align="left">Пустой текст, либо состоит из символов которые нельзя использовать</div>';
+					$re = '<div align="left">РџСѓСЃС‚РѕР№ С‚РµРєСЃС‚, Р»РёР±Рѕ СЃРѕСЃС‚РѕРёС‚ РёР· СЃРёРјРІРѕР»РѕРІ РєРѕС‚РѕСЂС‹Рµ РЅРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ</div>';
 				}
 			}else{
-				$re = '<div align="left">У вас не достаточно средств для гравировки</div>';
+				$re = '<div align="left">РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РіСЂР°РІРёСЂРѕРІРєРё</div>';
 			}
 		}else{
-			$re = '<div align="left">Подходящий предмет не найден в инвентаре</div>';
+			$re = '<div align="left">РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ</div>';
 		}
 	}elseif(isset($_GET['podgon'])) {
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `im`.`inslot` = 5 AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['podgon']).'" LIMIT 1'));
@@ -525,15 +525,15 @@ if($u->room['file']=='an/remont')
 					$po = $u->impStats($po);
 					mysql_query('UPDATE `users` SET `money` = `money` - "'.$pcena.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `items_users` SET `data` = "'.$po.'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');
-					$re = '<div align="left">Предмет &quot;'.$ir['name'].'&quot; был успешно подогнан за '.$pcena.' кр. (Добавлено +'.$prhp.'HP)</div>';
+					$re = '<div align="left">РџСЂРµРґРјРµС‚ &quot;'.$ir['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РїРѕРґРѕРіРЅР°РЅ Р·Р° '.$pcena.' РєСЂ. (Р”РѕР±Р°РІР»РµРЅРѕ +'.$prhp.'HP)</div>';
 				}else{
-					$re = '<div align="left">У вас не достаточно средств для подгонки</div>';
+					$re = '<div align="left">РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РїРѕРґРіРѕРЅРєРё</div>';
 				}
 			}else{
-				$re = '<div align="left">Предмет уже был подогнан</div>';
+				$re = '<div align="left">РџСЂРµРґРјРµС‚ СѓР¶Рµ Р±С‹Р» РїРѕРґРѕРіРЅР°РЅ</div>';
 			}
 		}else{
-			$re = '<div align="left">Подходящий предмет не найден в инвентаре</div>';
+			$re = '<div align="left">РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ</div>';
 		}
 	}elseif(isset($_GET['remon']))
 	{
@@ -547,47 +547,47 @@ if($u->room['file']=='an/remont')
 		}
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`iznosNOW` >= 1 AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['remon']).'" LIMIT 1'));
 		
-		$rem_price=round($ir['price1']*0.06/100,2);//цена ремонта за 1ед поломки
-		$rem_all=round($ir['price1']*$ir['iznosNOW']*0.06/100,2);//цена ремонта full
+		$rem_price=round($ir['price1']*0.06/100,2);//С†РµРЅР° СЂРµРјРѕРЅС‚Р° Р·Р° 1РµРґ РїРѕР»РѕРјРєРё
+		$rem_all=round($ir['price1']*$ir['iznosNOW']*0.06/100,2);//С†РµРЅР° СЂРµРјРѕРЅС‚Р° full
 		
 		if( $u->stats['silver'] >= 5 ) {
 			$rem_price = round($rem_price/100*50,2);
 			$rem_all = round($rem_all/100*50,2);
 		}
 		
-		if($rem_price<0.01){$rem_price=0.01;} //кэп поможет
-		if($rem_all<0.01){$rem_all=0.01;} //кэп поможет
+		if($rem_price<0.01){$rem_price=0.01;} //РєСЌРї РїРѕРјРѕР¶РµС‚
+		if($rem_all<0.01){$rem_all=0.01;} //РєСЌРї РїРѕРјРѕР¶РµС‚
 		
 		if(isset($ir['id']))
 		{
 			$po = $u->lookStats($ir['data']);
 			if(isset($po['noremont']))
 			{
-				$re2 = 'Предмет не подлежит ремонту в этой мастерской.';
+				$re2 = 'РџСЂРµРґРјРµС‚ РЅРµ РїРѕРґР»РµР¶РёС‚ СЂРµРјРѕРЅС‚Сѓ РІ СЌС‚РѕР№ РјР°СЃС‚РµСЂСЃРєРѕР№.';
 			}else{
 				if($t == 1)
 				{
 				    $rem_cell=$rem_price;
 					$t = 0;
 					$rm = 1;
-					$re2 .= ' 1 ед.';
+					$re2 .= ' 1 РµРґ.';
 				}elseif($t == 2)
 				{
 					$t = 0;
 					$rm = 10;
 					$rem_cell=$rem_price*10;
-					$re2 .= ' 10 ед.';
+					$re2 .= ' 10 РµРґ.';
 				}elseif($t == 3)
 				{
 				    $rem_cell=$rem_all;
 					$t = 0;
 					$rm = $ir['iznosNOW'];
-					$re2 .= $rm. ' ед.';
+					$re2 .= $rm. ' РµРґ.';
 				}
 				//$priceRemAll=round($rem_price*$rm,2);
 				if($rem_cell>$u->info['money'])
 				{
-					$re2 = 'У вас недостаточно средст для ремонта.';
+					$re2 = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚ РґР»СЏ СЂРµРјРѕРЅС‚Р°.';
 				}else{
 					if($rm > $ir['iznosNOW'])
 					{
@@ -615,21 +615,21 @@ if($u->room['file']=='an/remont')
 							$ir['iznosMAX'] = 1;
 						}
 						mysql_query('UPDATE `items_users` SET `iznosNOW` = "'.$ir['iznosNOW'].'",`iznosMAX` = "'.$ir['iznosMAX'].'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');	
-						$re2 = 'Удачно произведен ремонт '.$re2.' предмета &quot;'.$ir['name'].'&quot; за '.$rem_cell.' кр.';	
+						$re2 = 'РЈРґР°С‡РЅРѕ РїСЂРѕРёР·РІРµРґРµРЅ СЂРµРјРѕРЅС‚ '.$re2.' РїСЂРµРґРјРµС‚Р° &quot;'.$ir['name'].'&quot; Р·Р° '.$rem_cell.' РєСЂ.';	
 						$dop = 0;
 						if(ceil($il)>ceil($ir['iznosMAX']))
 						{
-							$re2 .= '<br>К сожалению, максимальная долговечность предмета из-за ремонта уменьшилась.';
+							$re2 .= '<br>Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґРѕР»РіРѕРІРµС‡РЅРѕСЃС‚СЊ РїСЂРµРґРјРµС‚Р° РёР·-Р·Р° СЂРµРјРѕРЅС‚Р° СѓРјРµРЅСЊС€РёР»Р°СЃСЊ.';
 							$dop = 1;
 						}
-						$u->addDelo(2,$u->info['id'],'&quot;<font color="grey">System.remont</font>&quot;: Предмет &quot;'.$ir['name'].'&quot; [itm:'.$ir['id'].'] был <b>отремонтирован</b>, максимальная долговечность уменьшилась: '.$dop.' ('.$rm.' ед. за '.$t.' кр.).',time(),$u->info['city'],'System.remont',0,0);
+						$u->addDelo(2,$u->info['id'],'&quot;<font color="grey">System.remont</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$ir['name'].'&quot; [itm:'.$ir['id'].'] Р±С‹Р» <b>РѕС‚СЂРµРјРѕРЅС‚РёСЂРѕРІР°РЅ</b>, РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґРѕР»РіРѕРІРµС‡РЅРѕСЃС‚СЊ СѓРјРµРЅСЊС€РёР»Р°СЃСЊ: '.$dop.' ('.$rm.' РµРґ. Р·Р° '.$t.' РєСЂ.).',time(),$u->info['city'],'System.remont',0,0);
 					}else{
-						$re2 = 'Что-то здесь не так...';
+						$re2 = 'Р§С‚Рѕ-С‚Рѕ Р·РґРµСЃСЊ РЅРµ С‚Р°Рє...';
 					}
 				}
 			}
 		}else{
-			$re2 = 'Предмет подходящий для ремонта не найден в инвентаре';	
+			$re2 = 'РџСЂРµРґРјРµС‚ РїРѕРґС…РѕРґСЏС‰РёР№ РґР»СЏ СЂРµРјРѕРЅС‚Р° РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ';	
 		}
 	}elseif(isset($_GET['remonz']))
 	{
@@ -643,16 +643,16 @@ if($u->room['file']=='an/remont')
 		}
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`iznosNOW` >= 1 AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['remonz']).'" LIMIT 1'));
 		
-		$rem_price=round($ir['price1']*0.06/100,2);//цена ремонта за 1ед поломки
-		$rem_all=round($ir['price1']*$ir['iznosNOW']*0.06/100,2);//цена ремонта full
-		if($rem_price<0.01){$rem_price=0.01;} //кэп поможет
+		$rem_price=round($ir['price1']*0.06/100,2);//С†РµРЅР° СЂРµРјРѕРЅС‚Р° Р·Р° 1РµРґ РїРѕР»РѕРјРєРё
+		$rem_all=round($ir['price1']*$ir['iznosNOW']*0.06/100,2);//С†РµРЅР° СЂРµРјРѕРЅС‚Р° full
+		if($rem_price<0.01){$rem_price=0.01;} //РєСЌРї РїРѕРјРѕР¶РµС‚
 		
 		if(isset($ir['id']))
 		{
 			$po = $u->lookStats($ir['data']);
 			if(isset($po['noremont']))
 			{
-				$re2 = 'Предмет не подлежит ремонту в этой мастерской.';
+				$re2 = 'РџСЂРµРґРјРµС‚ РЅРµ РїРѕРґР»РµР¶РёС‚ СЂРµРјРѕРЅС‚Сѓ РІ СЌС‚РѕР№ РјР°СЃС‚РµСЂСЃРєРѕР№.';
 			}else{
 				
 				if( $ir['1price'] > 0 ) {
@@ -667,24 +667,24 @@ if($u->room['file']=='an/remont')
 				    $rem_cell=$rem_price;
 					$t = 0;
 					$rm = 1;
-					$re2 .= ' 1 ед.';
+					$re2 .= ' 1 РµРґ.';
 				}elseif($t == 2)
 				{
 					$t = 0;
 					$rm = 10;
 					$rem_cell=$rem_price*10;
-					$re2 .= ' 10 ед.';
+					$re2 .= ' 10 РµРґ.';
 				}elseif($t == 3)
 				{
 				    $rem_cell=$rem_all;
 					$t = 0;
 					$rm = $ir['iznosNOW'];
-					$re2 .= $rm. ' ед.';
+					$re2 .= $rm. ' РµРґ.';
 				}
 				//$priceRemAll=round($rem_price*$rm,2);
 				if($rem_cell>$u->info['money4'])
 				{
-					$re2 = 'У вас недостаточно зубов для ремонта.';
+					$re2 = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р·СѓР±РѕРІ РґР»СЏ СЂРµРјРѕРЅС‚Р°.';
 				}else{
 					if($rm > $ir['iznosNOW'])
 					{
@@ -713,23 +713,23 @@ if($u->room['file']=='an/remont')
 						}
 						$po = $u->impStats($po);
 						mysql_query('UPDATE `items_users` SET `data` = "'.$po.'",`iznosNOW` = "'.$ir['iznosNOW'].'",`iznosMAX` = "'.$ir['iznosMAX'].'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');	
-						$re2 = 'Удачно произведен ремонт '.$re2.' предмета &quot;'.$ir['name'].'&quot; за '.$u->zuby($rem_cell,1).'.';	
+						$re2 = 'РЈРґР°С‡РЅРѕ РїСЂРѕРёР·РІРµРґРµРЅ СЂРµРјРѕРЅС‚ '.$re2.' РїСЂРµРґРјРµС‚Р° &quot;'.$ir['name'].'&quot; Р·Р° '.$u->zuby($rem_cell,1).'.';	
 						$dop = 0;
 						if(ceil($il)>ceil($ir['iznosMAX']))
 						{
-							$re2 .= '<br>К сожалению, максимальная долговечность предмета из-за ремонта уменьшилась.';
+							$re2 .= '<br>Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґРѕР»РіРѕРІРµС‡РЅРѕСЃС‚СЊ РїСЂРµРґРјРµС‚Р° РёР·-Р·Р° СЂРµРјРѕРЅС‚Р° СѓРјРµРЅСЊС€РёР»Р°СЃСЊ.';
 							$dop = 1;
 						}
 						//
 						//
-						$u->addDelo(2,$u->info['id'],'&quot;<font color="grey">System.remont</font>&quot;: Предмет &quot;'.$ir['name'].'&quot; [itm:'.$ir['id'].'] был <b>отремонтирован</b>, максимальная долговечность уменьшилась: '.$dop.' ('.$rm.' ед. за '.$t.' зубов.).',time(),$u->info['city'],'System.remont',0,0);
+						$u->addDelo(2,$u->info['id'],'&quot;<font color="grey">System.remont</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$ir['name'].'&quot; [itm:'.$ir['id'].'] Р±С‹Р» <b>РѕС‚СЂРµРјРѕРЅС‚РёСЂРѕРІР°РЅ</b>, РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґРѕР»РіРѕРІРµС‡РЅРѕСЃС‚СЊ СѓРјРµРЅСЊС€РёР»Р°СЃСЊ: '.$dop.' ('.$rm.' РµРґ. Р·Р° '.$t.' Р·СѓР±РѕРІ.).',time(),$u->info['city'],'System.remont',0,0);
 					}else{
-						$re2 = 'Что-то здесь не так...';
+						$re2 = 'Р§С‚Рѕ-С‚Рѕ Р·РґРµСЃСЊ РЅРµ С‚Р°Рє...';
 					}
 				}
 			}
 		}else{
-			$re2 = 'Предмет подходящий для ремонта не найден в инвентаре';	
+			$re2 = 'РџСЂРµРґРјРµС‚ РїРѕРґС…РѕРґСЏС‰РёР№ РґР»СЏ СЂРµРјРѕРЅС‚Р° РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ';	
 		}
 	}elseif(isset($_GET['upgradelvl'])) {
 		$ir = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`id` = "'.mysql_real_escape_string((int)$_GET['upgradelvl']).'" LIMIT 1'));
@@ -737,68 +737,68 @@ if($u->room['file']=='an/remont')
 			$ur = mysql_fetch_array(mysql_query('SELECT * FROM `items_upgrade` WHERE `iid` = "'.$ir['item_id'].'" LIMIT 1'));
 			if(isset($ur['id'])) {
 				if($ur['price1'] > 0 && $u->info['money'] < $ur['price1']) {
-					$re2 = 'Недостаточно кр. у персонажа';
+					$re2 = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂ. Сѓ РїРµСЂСЃРѕРЅР°Р¶Р°';
 				}elseif($ur['price2'] > 0 && $u->bank['money2'] < $ur['price2']) {
-					$re2 = 'Недостаточно екр. на счету, пополните банковский счет';
+					$re2 = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РµРєСЂ. РЅР° СЃС‡РµС‚Сѓ, РїРѕРїРѕР»РЅРёС‚Рµ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚';
 				}else{
 					$ui1 = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$ur['iup'].'" LIMIT 1'));
 					$ui2 = mysql_fetch_array(mysql_query('SELECT * FROM `items_main_data` WHERE `items_id` = "'.$ur['iup'].'" LIMIT 1'));
 					if(isset($ui1['id'],$ui2['id'])) {
 						mysql_query('UPDATE `items_users` SET `item_id` = "'.$ui1['id'].'",`1price` = "'.$ui1['price1'].'",`2price` = "'.$ui1['price2'].'",`data` = "'.$ui2['data'].'" WHERE `id` = "'.$ir['id'].'" LIMIT 1');
-						$re2 = 'Предмет &quot;'.$ir['name'].'&quot; был успешно улучшен до следующего уровня за '.$ur['price2'].' екр.';
+						$re2 = 'РџСЂРµРґРјРµС‚ &quot;'.$ir['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓР»СѓС‡С€РµРЅ РґРѕ СЃР»РµРґСѓСЋС‰РµРіРѕ СѓСЂРѕРІРЅСЏ Р·Р° '.$ur['price2'].' РµРєСЂ.';
 						$u->bank['money2'] -= $ur['price2'];
 						mysql_query('UPDATE `bank` SET `money2` = "'.$u->bank['money2'].'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
 					}else{
-						$re2 = 'Неудалось улучшить данный предмет';
+						$re2 = 'РќРµСѓРґР°Р»РѕСЃСЊ СѓР»СѓС‡С€РёС‚СЊ РґР°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚';
 					}
 				}
 			}else{
-				$re2 = 'Предмет подходящий для улучшения не найден';
+				$re2 = 'РџСЂРµРґРјРµС‚ РїРѕРґС…РѕРґСЏС‰РёР№ РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ РЅРµ РЅР°Р№РґРµРЅ';
 			}
 		}else{
-			$re2 = 'Предмет подходящий для улучшения не найден в инвентаре';
+			$re2 = 'РџСЂРµРґРјРµС‚ РїРѕРґС…РѕРґСЏС‰РёР№ РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ';
 		}
 	}
 	
 	$see = '';
 	if($r==1){
-		//ремонт предметов
+		//СЂРµРјРѕРЅС‚ РїСЂРµРґРјРµС‚РѕРІ
 		$see = $u->genInv(4,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`iznosNOW` >= 1 ORDER BY `lastUPD` DESC');
 		$see = $see[2];
 	}elseif($r==5){
-		//подгонка брони
+		//РїРѕРґРіРѕРЅРєР° Р±СЂРѕРЅРё
 		$see = $u->genInv(56,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `im`.`inslot` = "5" AND `iu`.`data` NOT LIKE "%podgon%" ORDER BY `lastUPD` DESC');
 		$see = $see[2];
 	}elseif($r==2){
-		//гравировка оружия
+		//РіСЂР°РІРёСЂРѕРІРєР° РѕСЂСѓР¶РёСЏ
 		$see = $u->genInv(57,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND (`im`.`type` = "18" OR `im`.`type` = "19" OR `im`.`type` = "20" OR `im`.`type` = "21" OR `im`.`type` = "22" OR `im`.`type` = "23" OR `im`.`type` = "24" OR `im`.`type` = "26" OR `im`.`type` = "27" OR `im`.`type` = "28") ORDER BY `lastUPD` DESC');
 		$see = $see[2];
 	}elseif($r==4){
-		//вытаскивание рун
+		//РІС‹С‚Р°СЃРєРёРІР°РЅРёРµ СЂСѓРЅ
 		$see = $u->genInv(58,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`data` LIKE "%rune_id%" ORDER BY `lastUPD` DESC');
 		$see = $see[2];
 	}elseif($r==3){
-		//дезинтеграция
+		//РґРµР·РёРЅС‚РµРіСЂР°С†РёСЏ
 		$see = $u->genInv(59,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND (`iu`.`data` LIKE "%upatack_id%") ORDER BY `lastUPD` DESC');
 		$see = $see[2];
 	}elseif($r==7){
-		//модификация
+		//РјРѕРґРёС„РёРєР°С†РёСЏ
 		$see = $u->genInv(60,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`data` NOT LIKE "%modif%" AND `im`.`type` > 0 AND `im`.`type` < 16 AND
 		(`iu`.`data` LIKE "%add_s1%" OR `iu`.`data` LIKE "%add_s2%" OR `iu`.`data` LIKE "%add_s3%" OR `iu`.`data` LIKE "%add_s5%" OR `iu`.`data` LIKE "%add_hpAll%" OR `iu`.`data` LIKE "%add_mib%") ORDER BY `lastUPD` DESC');
 		$see = $see[2];
 	}elseif($r==6) {
-		//Усиление
+		//РЈСЃРёР»РµРЅРёРµ
 		$see = $u->genInv(61,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`data` LIKE "%modif%" AND `iu`.`data` NOT LIKE "%upgrade=5%" ORDER BY `lastUPD` DESC');
 		$see = $see[2];
 	}elseif($r==8) {
 		if(isset($u->bank['id'])) {
-			//Улучшения
+			//РЈР»СѓС‡С€РµРЅРёСЏ
 			$see = $u->genInv(62,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND (SELECT `id` FROM `items_upgrade` WHERE `iid` = `iu`.`item_id` AND `activ` = 1 LIMIT 1) > 0 ORDER BY `lastUPD` DESC');
 			$see = $see[2];
 		}
 	}elseif($r==9) {
 		if(isset($u->bank['id']) && !isset($_GET['upgradelvlcom'])) {
-			//Подгонка под комплект
+			//РџРѕРґРіРѕРЅРєР° РїРѕРґ РєРѕРјРїР»РµРєС‚
 			$itmos = '';
 			$i = 0;
 			while( $i < count($itm_podgon) ) {
@@ -809,7 +809,7 @@ if($u->room['file']=='an/remont')
 			$see = $u->genInv(63,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND (`iu`.`data` LIKE "%|art=1%" '.$itmos.')');
 			$see = $see[2];
 		}else{
-			//Подгонка под комплект
+			//РџРѕРґРіРѕРЅРєР° РїРѕРґ РєРѕРјРїР»РµРєС‚
 			$itmos = '';
 			$i = 0;
 			while( $i < count($itm_podgon) ) {
@@ -867,7 +867,7 @@ if($u->room['file']=='an/remont')
 }
     </style>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3">Ремонтная мастерская</div>
+	<tr><td valign="top"><div align="center" class="pH3">Р РµРјРѕРЅС‚РЅР°СЏ РјР°СЃС‚РµСЂСЃРєР°СЏ</div>
 	<?php
 	echo '<b style="color:red">'.$error.'</b>';
 	?>
@@ -875,29 +875,29 @@ if($u->room['file']=='an/remont')
 	  <tr>
 	    <td><table width="100%" border="0" cellpadding="2" cellspacing="0" bgcolor="d2d2d2">
 	      <tr>
-	        <td><b>&nbsp;&nbsp;Залы:&nbsp;</b></td>
-	        <td nowrap="nowrap" align="center" <? if($r==1){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==1){ echo '<b>Ремонт</b>'; }else{ echo '<a href="?r=1&rnd='.$code.'">Ремонт</a>'; } ?>&nbsp;&nbsp;</td>
-	        <td nowrap="nowrap" align="center" <? if($r==2){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==2){ echo '<b>Гравировка</b>'; }else{ echo '<a href="?r=2&rnd='.$code.'">Гравировка</a>'; } ?>&nbsp;&nbsp;</td>
+	        <td><b>&nbsp;&nbsp;Р—Р°Р»С‹:&nbsp;</b></td>
+	        <td nowrap="nowrap" align="center" <? if($r==1){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==1){ echo '<b>Р РµРјРѕРЅС‚</b>'; }else{ echo '<a href="?r=1&rnd='.$code.'">Р РµРјРѕРЅС‚</a>'; } ?>&nbsp;&nbsp;</td>
+	        <td nowrap="nowrap" align="center" <? if($r==2){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==2){ echo '<b>Р“СЂР°РІРёСЂРѕРІРєР°</b>'; }else{ echo '<a href="?r=2&rnd='.$code.'">Р“СЂР°РІРёСЂРѕРІРєР°</a>'; } ?>&nbsp;&nbsp;</td>
 			<?
 			//if($u->info['admin']>0){
 		/*?>
-			<td nowrap="nowrap" align="center" <? if($r==3){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==3){ echo '<b>Дезинтеграция</b>'; }else{ echo '<a href="?r=3&rnd='.$code.'">Дезинтеграция</a>'; } ?>&nbsp;&nbsp;</td>
+			<td nowrap="nowrap" align="center" <? if($r==3){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==3){ echo '<b>Р”РµР·РёРЅС‚РµРіСЂР°С†РёСЏ</b>'; }else{ echo '<a href="?r=3&rnd='.$code.'">Р”РµР·РёРЅС‚РµРіСЂР°С†РёСЏ</a>'; } ?>&nbsp;&nbsp;</td>
 		<?*/
           /*
 		    ?>
-            <td nowrap="nowrap" align="center" <? if($r==6){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==6){ echo '<B>Усиление</B>'; }else{ echo'<a href="?r=6&rnd='.$code.'">Усиление</a>';}?>&nbsp;&nbsp;</td>
-            <td nowrap="nowrap" align="center" <? if($r==7){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==7){ echo '<B>Модификация</B>'; }else{ echo'<a href="?r=7&rnd='.$code.'">Модификация</a>';}?>&nbsp;&nbsp;</td>
+            <td nowrap="nowrap" align="center" <? if($r==6){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==6){ echo '<B>РЈСЃРёР»РµРЅРёРµ</B>'; }else{ echo'<a href="?r=6&rnd='.$code.'">РЈСЃРёР»РµРЅРёРµ</a>';}?>&nbsp;&nbsp;</td>
+            <td nowrap="nowrap" align="center" <? if($r==7){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==7){ echo '<B>РњРѕРґРёС„РёРєР°С†РёСЏ</B>'; }else{ echo'<a href="?r=7&rnd='.$code.'">РњРѕРґРёС„РёРєР°С†РёСЏ</a>';}?>&nbsp;&nbsp;</td>
 	       
 			
-	        <td nowrap="nowrap" align="center" <? if($r==4){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==4){ echo '<b>Руны</b>'; }else{ echo '<a href="?r=4&rnd='.$code.'">Руны</a>'; } ?>&nbsp;&nbsp;</td>
+	        <td nowrap="nowrap" align="center" <? if($r==4){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==4){ echo '<b>Р СѓРЅС‹</b>'; }else{ echo '<a href="?r=4&rnd='.$code.'">Р СѓРЅС‹</a>'; } ?>&nbsp;&nbsp;</td>
             
             <?
 			*/
 			
 			?>
-			<td nowrap="nowrap" align="center" <? if($r==5){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==5){ echo '<b>Подгонка</b>'; }else{ echo '<a href="?r=5&rnd='.$code.'">Подгонка</a>'; } ?>&nbsp;&nbsp;</td>
-	        <td nowrap="nowrap" align="center" <? if($r==8){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==8){ echo '<b>Улучшение</b>'; }else{ echo '<a href="?r=8&rnd='.$code.'">Улучшение</a>'; } ?>&nbsp;&nbsp;</td>
-            <td nowrap="nowrap" align="center" <? if($r==9){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==9){ echo '<b>Подгонка комплекта</b>'; }else{ echo '<a href="?r=9&rnd='.$code.'">Подгонка комплекта</a>'; } ?>&nbsp;&nbsp;</td>
+			<td nowrap="nowrap" align="center" <? if($r==5){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==5){ echo '<b>РџРѕРґРіРѕРЅРєР°</b>'; }else{ echo '<a href="?r=5&rnd='.$code.'">РџРѕРґРіРѕРЅРєР°</a>'; } ?>&nbsp;&nbsp;</td>
+	        <td nowrap="nowrap" align="center" <? if($r==8){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==8){ echo '<b>РЈР»СѓС‡С€РµРЅРёРµ</b>'; }else{ echo '<a href="?r=8&rnd='.$code.'">РЈР»СѓС‡С€РµРЅРёРµ</a>'; } ?>&nbsp;&nbsp;</td>
+            <td nowrap="nowrap" align="center" <? if($r==9){ echo 'bgcolor="#A5A5A5"'; } ?> >&nbsp;&nbsp;<? if($r==9){ echo '<b>РџРѕРґРіРѕРЅРєР° РєРѕРјРїР»РµРєС‚Р°</b>'; }else{ echo '<a href="?r=9&rnd='.$code.'">РџРѕРґРіРѕРЅРєР° РєРѕРјРїР»РµРєС‚Р°</a>'; } ?>&nbsp;&nbsp;</td>
             <td width="90%">&nbsp;</td>
 	        </tr>
 	      </table></td>
@@ -905,26 +905,26 @@ if($u->room['file']=='an/remont')
 	  <tr>
 	    <?
 		$rn = array(
-			1 => 'Починка поврежденных предметов',
-			2 => 'Нанесение надписей на оружие (20 символов)',
-			3 => 'Разделение на состаные части улучшенных предметов',
-			4 => 'Извлечение рун',
-			5 => 'Подогнать броню',
-			6 => 'Улучшение модифицированных предметов',
-			7 => 'Модификация предметов',
-			8 => 'Улучшение уровня предмета',
-			9 => 'Подгонка предмета под комплект'
+			1 => 'РџРѕС‡РёРЅРєР° РїРѕРІСЂРµР¶РґРµРЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ',
+			2 => 'РќР°РЅРµСЃРµРЅРёРµ РЅР°РґРїРёСЃРµР№ РЅР° РѕСЂСѓР¶РёРµ (20 СЃРёРјРІРѕР»РѕРІ)',
+			3 => 'Р Р°Р·РґРµР»РµРЅРёРµ РЅР° СЃРѕСЃС‚Р°РЅС‹Рµ С‡Р°СЃС‚Рё СѓР»СѓС‡С€РµРЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ',
+			4 => 'РР·РІР»РµС‡РµРЅРёРµ СЂСѓРЅ',
+			5 => 'РџРѕРґРѕРіРЅР°С‚СЊ Р±СЂРѕРЅСЋ',
+			6 => 'РЈР»СѓС‡С€РµРЅРёРµ РјРѕРґРёС„РёС†РёСЂРѕРІР°РЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ',
+			7 => 'РњРѕРґРёС„РёРєР°С†РёСЏ РїСЂРµРґРјРµС‚РѕРІ',
+			8 => 'РЈР»СѓС‡С€РµРЅРёРµ СѓСЂРѕРІРЅСЏ РїСЂРµРґРјРµС‚Р°',
+			9 => 'РџРѕРґРіРѕРЅРєР° РїСЂРµРґРјРµС‚Р° РїРѕРґ РєРѕРјРїР»РµРєС‚'
 		);
 		$rn2 = array(
-			1 => 'У вас в рюкзаке нет поврежденных предметов',
-			2 => 'У вас в рюкзаке нет оружия, на которое можно нанести гравировку',
-			3 => 'У вас в рюкзаке нет улучшенных предметов',
-			4 => 'У вас в рюкзаке нет улучшенных предметов',
-			5 => 'У вас в рюкзаке нет подходящих предметов',
-			6 => 'У вас в рюкзаке нет подходящих предметов',
-			7 => 'У вас в рюкзаке нет подходящих предметов',
-			8 => 'У вас в рюкзаке нет подходящих предметов',
-			9 => 'У вас в рюкзаке нет подходящих предметов'
+			1 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ РїРѕРІСЂРµР¶РґРµРЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ',
+			2 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ РѕСЂСѓР¶РёСЏ, РЅР° РєРѕС‚РѕСЂРѕРµ РјРѕР¶РЅРѕ РЅР°РЅРµСЃС‚Рё РіСЂР°РІРёСЂРѕРІРєСѓ',
+			3 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ СѓР»СѓС‡С€РµРЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ',
+			4 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ СѓР»СѓС‡С€РµРЅРЅС‹С… РїСЂРµРґРјРµС‚РѕРІ',
+			5 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ',
+			6 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ',
+			7 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ',
+			8 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ',
+			9 => 'РЈ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ'
 		);
 		?>
         <td bgcolor="#A5A5A5"><small><b><? echo $rn[$r]; ?></b></small></td>
@@ -933,38 +933,38 @@ if($u->room['file']=='an/remont')
 	    <td style="border:1px solid #A5A5A5;padding:0px;">
         <? 
 		if($r == 2) {
-			echo '<div style="background-color:#c8c8c8;border-bottom:1px solid #a5a5a5;padding:2px;"><i><b>Орден Света</b> предупреждает, что за нецензурные или оскорбительные надписи Вы будете наказаны.</i></div>';
+			echo '<div style="background-color:#c8c8c8;border-bottom:1px solid #a5a5a5;padding:2px;"><i><b>РћСЂРґРµРЅ РЎРІРµС‚Р°</b> РїСЂРµРґСѓРїСЂРµР¶РґР°РµС‚, С‡С‚Рѕ Р·Р° РЅРµС†РµРЅР·СѓСЂРЅС‹Рµ РёР»Рё РѕСЃРєРѕСЂР±РёС‚РµР»СЊРЅС‹Рµ РЅР°РґРїРёСЃРё Р’С‹ Р±СѓРґРµС‚Рµ РЅР°РєР°Р·Р°РЅС‹.</i></div>';
 		}elseif($r == 8) {
-			echo '<div style="background-color:#c8c8c8;border-bottom:1px solid #a5a5a5;padding:2px;"><i>Все усиления предмета (заточки, руны, чарки и т.д.) обнуляются без возможности возврата</i></div>';
+			echo '<div style="background-color:#c8c8c8;border-bottom:1px solid #a5a5a5;padding:2px;"><i>Р’СЃРµ СѓСЃРёР»РµРЅРёСЏ РїСЂРµРґРјРµС‚Р° (Р·Р°С‚РѕС‡РєРё, СЂСѓРЅС‹, С‡Р°СЂРєРё Рё С‚.Рґ.) РѕР±РЅСѓР»СЏСЋС‚СЃСЏ Р±РµР· РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РІРѕР·РІСЂР°С‚Р°</i></div>';
 		}elseif($r == 5) {
-			echo '<div style="background-color:#c8c8c8;border-bottom:1px solid #a5a5a5;padding:2px;"><i>Внимание! Броня будет связана с вами общей судьбой!</i></div>';
+			echo '<div style="background-color:#c8c8c8;border-bottom:1px solid #a5a5a5;padding:2px;"><i>Р’РЅРёРјР°РЅРёРµ! Р‘СЂРѕРЅСЏ Р±СѓРґРµС‚ СЃРІСЏР·Р°РЅР° СЃ РІР°РјРё РѕР±С‰РµР№ СЃСѓРґСЊР±РѕР№!</i></div>';
 		}elseif($r == 3) {
-			//echo '<div style="background-color:#c8c8c8;border-bottom:1px solid #a5a5a5;padding:2px;"><i><b>Внимание!</b> При дезинтеграция изымается свиток заточки, руны и зачарование сохраняется.</i></div>';
+			//echo '<div style="background-color:#c8c8c8;border-bottom:1px solid #a5a5a5;padding:2px;"><i><b>Р’РЅРёРјР°РЅРёРµ!</b> РџСЂРё РґРµР·РёРЅС‚РµРіСЂР°С†РёСЏ РёР·С‹РјР°РµС‚СЃСЏ СЃРІРёС‚РѕРє Р·Р°С‚РѕС‡РєРё, СЂСѓРЅС‹ Рё Р·Р°С‡Р°СЂРѕРІР°РЅРёРµ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ.</i></div>';
 		}
 		?>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<?
 		if(($r == 8 || $r == 9) && !isset($u->bank['id'])) {
-			//Улучшение предметов за кр.\екр.
+			//РЈР»СѓС‡С€РµРЅРёРµ РїСЂРµРґРјРµС‚РѕРІ Р·Р° РєСЂ.\РµРєСЂ.
 		?>
         <?
 		if(isset($_POST['bank']) && isset($u->bank['id']))
 		{
-			echo '<font color="red"><b>Банковский счет пуст, вход в магазин запрещен</b></font>';
+			echo '<font color="red"><b>Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ РїСѓСЃС‚, РІС…РѕРґ РІ РјР°РіР°Р·РёРЅ Р·Р°РїСЂРµС‰РµРЅ</b></font>';
 		}elseif(isset($_POST['bank']) && !isset($u->bank['id']))
 		{
-			echo '<font color="red"><b>Неверный пароль от банковского счета.</b></font>';
+			echo '<font color="red"><b>РќРµРІРµСЂРЅС‹Р№ РїР°СЂРѕР»СЊ РѕС‚ Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р°.</b></font>';
 		}
 		?>
         <form name="F1" method="post">
-        <br /><center>Зайдите на свой банковский счет, для улучшения некоторых предметов требуются екр.</center>
+        <br /><center>Р—Р°Р№РґРёС‚Рµ РЅР° СЃРІРѕР№ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚, РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ РЅРµРєРѕС‚РѕСЂС‹С… РїСЂРµРґРјРµС‚РѕРІ С‚СЂРµР±СѓСЋС‚СЃСЏ РµРєСЂ.</center>
         <div>
           <table style="padding-bottom:20px;" align="center" width="300" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td bgcolor="#B1A996"><div align="center"><strong>Счёт в банке</strong></div></td>
+              <td bgcolor="#B1A996"><div align="center"><strong>РЎС‡С‘С‚ РІ Р±Р°РЅРєРµ</strong></div></td>
             </tr>
             <tr>
-              <td bgcolor="#DDD5C2" style="padding:5px;"><div align="center"><small>Выберите счёт и введите пароль<br />
+              <td bgcolor="#DDD5C2" style="padding:5px;"><div align="center"><small>Р’С‹Р±РµСЂРёС‚Рµ СЃС‡С‘С‚ Рё РІРІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ<br />
                         <select name="bank" id="bank">
 						<?
                         $scet = mysql_query('SELECT `id` FROM `bank` WHERE `block` = "0" AND `uid` = "'.$u->info['id'].'"');
@@ -1026,11 +1026,11 @@ if($u->room['file']=='an/remont')
 						}
 					}
 					if( $com2['com'] > 0 && ($sti['complect'] == $com2['com'] || $sti['complect2'] == $com2['com']) ) {
-						$er2 = 'Предмет уже использует данный комплект.';
+						$er2 = 'РџСЂРµРґРјРµС‚ СѓР¶Рµ РёСЃРїРѕР»СЊР·СѓРµС‚ РґР°РЅРЅС‹Р№ РєРѕРјРїР»РµРєС‚.';
 					}elseif( !isset($com2['id']) ) {
-						$er2 = 'Вы не можете подогнать предмет под данный комплект.';
+						$er2 = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРґРѕРіРЅР°С‚СЊ РїСЂРµРґРјРµС‚ РїРѕРґ РґР°РЅРЅС‹Р№ РєРѕРјРїР»РµРєС‚.';
 					}elseif( $epr > $u->bank['money2'] ) {
-					 	$er2 = 'У вас недостаточно екр., требуется '.$epr.' екр.';
+					 	$er2 = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РµРєСЂ., С‚СЂРµР±СѓРµС‚СЃСЏ '.$epr.' РµРєСЂ.';
 					 }else{
 						$sti['complect2'] = $com2['com'];
 						if($wrk == 1 && ($sti['sudba'] == '0' || !isset($sti['sudba']))) {
@@ -1039,7 +1039,7 @@ if($u->room['file']=='an/remont')
 						$sti_imp = $u->impStats($sti);
 						mysql_query('UPDATE `bank` SET `money2` = `money2` - "'.$epr.'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
 						mysql_query('UPDATE `items_users` SET `data` = "'.mysql_real_escape_string($sti_imp).'" WHERE `id` = "'.$itmu['id'].'" LIMIT 1');
-					 	$er2 = 'Предмет &quot;'.$itmm['name'].'&quot; успешно подогнан под &quot;'.$com2['name'].'&quot; за '.$epr.' екр.'; 
+					 	$er2 = 'РџСЂРµРґРјРµС‚ &quot;'.$itmm['name'].'&quot; СѓСЃРїРµС€РЅРѕ РїРѕРґРѕРіРЅР°РЅ РїРѕРґ &quot;'.$com2['name'].'&quot; Р·Р° '.$epr.' РµРєСЂ.'; 
 					 }
 				  }
 				?>
@@ -1062,12 +1062,12 @@ if($u->room['file']=='an/remont')
 							}
 						}
 						echo $html;
-						?><br /><br />Тип работ:<br />
-                        <label><input type="radio" name="work2" value="1" />Личная <img src="http://img.xcombats.com/i/desteny.gif" title="Предмет будет связан общей судьбой с вами" width="16" height="18" /> за <?=round($itmm['price2']*0.2,2)?> екр. </label><br>
+						?><br /><br />РўРёРї СЂР°Р±РѕС‚:<br />
+                        <label><input type="radio" name="work2" value="1" />Р›РёС‡РЅР°СЏ <img src="http://img.xcombats.com/i/desteny.gif" title="РџСЂРµРґРјРµС‚ Р±СѓРґРµС‚ СЃРІСЏР·Р°РЅ РѕР±С‰РµР№ СЃСѓРґСЊР±РѕР№ СЃ РІР°РјРё" width="16" height="18" /> Р·Р° <?=round($itmm['price2']*0.2,2)?> РµРєСЂ. </label><br>
                         <? if(!isset($sti['sudba'])) { ?>
-                        <label><input type="radio" name="work2" value="2" />Общая за <?=round($itmm['price2']*0.4,2)?> екр. </label><br>
+                        <label><input type="radio" name="work2" value="2" />РћР±С‰Р°СЏ Р·Р° <?=round($itmm['price2']*0.4,2)?> РµРєСЂ. </label><br>
                         <? } ?>
-                        <center><br /><input type="submit" value="Подтвердить" class="btnnew" /></center>
+                        <center><br /><input type="submit" value="РџРѕРґС‚РІРµСЂРґРёС‚СЊ" class="btnnew" /></center>
                         </form>
                         </div>
                     </td>
@@ -1101,7 +1101,7 @@ if($u->room['file']=='an/remont')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=2.180.0.234&rnd=<? echo $code; ?>';" title="<? thisInfRm('2.180.0.234',1); ?>">Центральная Площадь</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=2.180.0.234&rnd=<? echo $code; ?>';" title="<? thisInfRm('2.180.0.234',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РџР»РѕС‰Р°РґСЊ</a></td>
 	</tr>
 	</table>
 	</td>
@@ -1112,8 +1112,8 @@ if($u->room['file']=='an/remont')
 	<div><br />
       <div align="right">
       <small>
-	  Масса: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
-	  У вас в наличии: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> кр.</b> &nbsp;
+	  РњР°СЃСЃР°: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
+	  РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> РєСЂ.</b> &nbsp;
       </small>
       </div>
       	<p><small>

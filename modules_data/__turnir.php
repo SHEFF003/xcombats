@@ -7,9 +7,9 @@ if(!defined('GAME'))
 class turnir {
 	
 	public $info,$user,$name = array(
-						0 => 'Выжить любой ценой',
-						1 => 'Каждый сам за себя',
-						2 => 'Захват ключа'				
+						0 => 'Р’С‹Р¶РёС‚СЊ Р»СЋР±РѕР№ С†РµРЅРѕР№',
+						1 => 'РљР°Р¶РґС‹Р№ СЃР°Рј Р·Р° СЃРµР±СЏ',
+						2 => 'Р—Р°С…РІР°С‚ РєР»СЋС‡Р°'				
 					);
 	
 	public function start() {
@@ -22,14 +22,14 @@ class turnir {
 		global $c,$u;	
 		$row = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `win` = "0" AND `lose` = "0" AND `nich` = "0"'));
 		if($row[0] > 0 && $this->info['status'] != 3) {
-			//Создание поединка
+			//РЎРѕР·РґР°РЅРёРµ РїРѕРµРґРёРЅРєР°
 			mysql_query('INSERT INTO `battle` (`city`,`time_start`,`timeout`,`type`,`turnir`) VALUES ("'.$u->info['city'].'","'.time().'","60","1","'.$this->info['id'].'")');
 			$uri = mysql_insert_id();
-			//Закидываем персонажей в поединок
+			//Р—Р°РєРёРґС‹РІР°РµРј РїРµСЂСЃРѕРЅР°Р¶РµР№ РІ РїРѕРµРґРёРЅРѕРє
 			mysql_query('UPDATE `users` SET `battle` = "'.$uri.'" WHERE `inUser` = "0" AND `inTurnir` = "'.$this->info['id'].'"');
-			//Обозначаем завершение турнира при выходе
+			//РћР±РѕР·РЅР°С‡Р°РµРј Р·Р°РІРµСЂС€РµРЅРёРµ С‚СѓСЂРЅРёСЂР° РїСЂРё РІС‹С…РѕРґРµ
 			mysql_query('UPDATE `turnirs` SET `status` = "3" WHERE `id` = "'.$this->info['id'].'" LIMIT 1');
-			die('Перейтиде в раздел "поединки"...');
+			die('РџРµСЂРµР№С‚РёРґРµ РІ СЂР°Р·РґРµР» "РїРѕРµРґРёРЅРєРё"...');
 		}else{
 			if($this->info['status'] == 3) {
 				$this->finishTurnir();
@@ -49,7 +49,7 @@ class turnir {
 				$inf = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$pl['uid'].'" LIMIT 1'));
 				$bot = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$pl['bot'].'" LIMIT 1'));
 				if(isset($inf['id'],$bot['id'])) {
-					//выдаем призы и т.д	
+					//РІС‹РґР°РµРј РїСЂРёР·С‹ Рё С‚.Рґ	
 					mysql_query('DELETE FROM `users` WHERE `id` = "'.$bot['id'].'" LIMIT 1');
 					mysql_query('DELETE FROM `stats` WHERE `id` = "'.$bot['id'].'" LIMIT 1');	
 					mysql_query('DELETE FROM `items_users` WHERE `uid` = "'.$bot['id'].'" LIMIT 1000');
@@ -65,11 +65,11 @@ class turnir {
 			
 			if($win != '') {
 				$win = rtrim($win,', ');
-				$win = 'Победители турнира: '.$win.'. Следующий турнир начнется через '.$u->timeOut($this->info['time2']).' ('.date('d.m.Y H:i',(time()+$this->info['time2'])).').';
+				$win = 'РџРѕР±РµРґРёС‚РµР»Рё С‚СѓСЂРЅРёСЂР°: '.$win.'. РЎР»РµРґСѓСЋС‰РёР№ С‚СѓСЂРЅРёСЂ РЅР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· '.$u->timeOut($this->info['time2']).' ('.date('d.m.Y H:i',(time()+$this->info['time2'])).').';
 			}else{
-				$win = 'Победители турнира отсутствует. Следующий турнир начнется через '.$u->timeOut($this->info['time2']).' ('.date('d.m.Y H:i',(time()+$this->info['time2'])).').';
+				$win = 'РџРѕР±РµРґРёС‚РµР»Рё С‚СѓСЂРЅРёСЂР° РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚. РЎР»РµРґСѓСЋС‰РёР№ С‚СѓСЂРЅРёСЂ РЅР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· '.$u->timeOut($this->info['time2']).' ('.date('d.m.Y H:i',(time()+$this->info['time2'])).').';
 			}
-			$r = '<font color=black><b>Турнир &laquo;'.$this->name[$this->info['type']].' ['.$this->info['level'].'] №'.$this->info['count'].'&raquo; завершился!</b></font> '.$win;				
+			$r = '<font color=black><b>РўСѓСЂРЅРёСЂ &laquo;'.$this->name[$this->info['type']].' ['.$this->info['level'].'] в„–'.$this->info['count'].'&raquo; Р·Р°РІРµСЂС€РёР»СЃСЏ!</b></font> '.$win;				
 			mysql_query('DELETE FROM `users_turnirs` WHERE `turnir` = "'.$this->info['id'].'" LIMIT '.$this->info['users_in']);
 			mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','','','','<small>".$r."</small>','".time()."','6','0')");
 		}
@@ -85,7 +85,7 @@ class turnir {
 		$tm2 = '';
 		
 		if($this->info['step'] != 3 && $this->info['step'] != 0) {
-			//получение комплекта
+			//РїРѕР»СѓС‡РµРЅРёРµ РєРѕРјРїР»РµРєС‚Р°
 			if(isset($_GET['gocomplect']) && $this->user['points'] < 2) {
 				
 				$aso = array();
@@ -102,13 +102,13 @@ class turnir {
 				$i = 0; $com = array();
 				while($i <= 17) {
 					if($i == 16) {
-						//левая рука
+						//Р»РµРІР°СЏ СЂСѓРєР°
 						
 					}elseif($i == 17) {
-						//правая рука
+						//РїСЂР°РІР°СЏ СЂСѓРєР°
 						
 					}else{
-						//обмундирование
+						//РѕР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ
 						$com[$i] = $aso[$i][rand(0,count($aso[$i]))];
 					}
 					if($com[$i]['id'] > 0) {
@@ -126,7 +126,7 @@ class turnir {
 		if($this->info['step'] == 3) {
 			$this->finishTurnir();
 		}elseif($this->info['step'] == 0) {
-			//распределяем команды
+			//СЂР°СЃРїСЂРµРґРµР»СЏРµРј РєРѕРјР°РЅРґС‹
 			$po = array(0,0);
 			$sp = mysql_query('SELECT * FROM `users_turnirs` WHERE `turnir` = "'.$this->info['id'].'" ORDER BY `points` DESC LIMIT '.$this->info['users_in']);
 			$tmr = rand(1,2);
@@ -166,7 +166,7 @@ class turnir {
 				${'tm'.$bot['team']} .= '<b>'.$bot['login'].'</b> ['.$bot['level'].'], ';
 			}
 		}
-		$r .= '<style>/* цвета команд */
+		$r .= '<style>/* С†РІРµС‚Р° РєРѕРјР°РЅРґ */
 .CSSteam0	{ font-weight: bold; cursor:pointer; }
 .CSSteam1	{ font-weight: bold; color: #6666CC; cursor:pointer; }
 .CSSteam2	{ font-weight: bold; color: #B06A00; cursor:pointer; }
@@ -178,28 +178,28 @@ class turnir {
 .CSSteam8 	{ font-weight: bold; color: #842B61; cursor:pointer; }
 .CSSteam9 	{ font-weight: bold; color: navy; cursor:pointer; }
 .CSSvs 		{ font-weight: bold; }</style>';
-		$r 	.= '<h3>&laquo;'.$this->name[$this->info['type']].'&raquo;</h3><br>Начало турнира через '.$u->timeOut($this->info['time'] - time()).'! ';
+		$r 	.= '<h3>&laquo;'.$this->name[$this->info['type']].'&raquo;</h3><br>РќР°С‡Р°Р»Рѕ С‚СѓСЂРЅРёСЂР° С‡РµСЂРµР· '.$u->timeOut($this->info['time'] - time()).'! ';
 		
 		if($this->user['points'] < 3) {
-			//Еще не получили обмундирование
+			//Р•С‰Рµ РЅРµ РїРѕР»СѓС‡РёР»Рё РѕР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ
 			if($this->user['points'] < 2) {
-				$r .= '<INPUT class=\'btn_grey\' onClick="location=\'main.php?gocomplect=1\';" TYPE=button name=tmp value="Получить обмундирование">';
+				$r .= '<INPUT class=\'btn_grey\' onClick="location=\'main.php?gocomplect=1\';" TYPE=button name=tmp value="РџРѕР»СѓС‡РёС‚СЊ РѕР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ">';
 			}else{
-				$r .= ' <INPUT class=\'btn_grey\' onClick="location=\'main.php\';" TYPE=button name=tmp value="Я готов';
+				$r .= ' <INPUT class=\'btn_grey\' onClick="location=\'main.php\';" TYPE=button name=tmp value="РЇ РіРѕС‚РѕРІ';
 				if($u->info['sex'] == 1) {
-					$r .= 'а';
+					$r .= 'Р°';
 				}
 				$r .= '!">';
 			}
 		}else{
-			$r .= '<small><b>Вы участвуете в турнире!</b></small>';
+			$r .= '<small><b>Р’С‹ СѓС‡Р°СЃС‚РІСѓРµС‚Рµ РІ С‚СѓСЂРЅРёСЂРµ!</b></small>';
 		}
-		$r	.= '<div style="float:right"><INPUT onClick="location=\'main.php\';" TYPE=button name=tmp value="Обновить"></div><hr>';
-		$r .= '<b class="CSSteam1">Команда №1</b>: '.rtrim($tm1,', ');		
-		$r .= '<br><b class="CSSteam2">Команда №2</b>: '.rtrim($tm2,', ');
+		$r	.= '<div style="float:right"><INPUT onClick="location=\'main.php\';" TYPE=button name=tmp value="РћР±РЅРѕРІРёС‚СЊ"></div><hr>';
+		$r .= '<b class="CSSteam1">РљРѕРјР°РЅРґР° в„–1</b>: '.rtrim($tm1,', ');		
+		$r .= '<br><b class="CSSteam2">РљРѕРјР°РЅРґР° в„–2</b>: '.rtrim($tm2,', ');
 		
 		if( ($this->info['time'] - time() < 0) && $this->info['step'] == 1) {
-			//начинаем турнир
+			//РЅР°С‡РёРЅР°РµРј С‚СѓСЂРЅРёСЂ
 			$this->startTurnir();
 		}
 		

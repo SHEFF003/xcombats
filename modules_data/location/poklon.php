@@ -28,15 +28,15 @@ if($u->room['file']=='poklon') {
                   <tr>
                     <td>
                     <div style="position:relative; cursor: pointer; width: 500px;" id="ione"><img src="http://img.xcombats.com/city/poklon_ang.jpg" id="img_ione" width="500" height="268"  border="1"/>
-					<!--Надписи локаций под картинками-->
+					<!--РќР°РґРїРёСЃРё Р»РѕРєР°С†РёР№ РїРѕРґ РєР°СЂС‚РёРЅРєР°РјРё-->
 				  <a bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></a>
-				  <a bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.415&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.417',1); ?>">Памятник Справедливости</a>
+				  <a bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.415&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.417',1); ?>">РџР°РјСЏС‚РЅРёРє РЎРїСЂР°РІРµРґР»РёРІРѕСЃС‚Рё</a>
 				  <a bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></a>
-				  <a bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.414&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.418',1); ?>">Памятник Милосердию</a>
+				  <a bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.414&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.418',1); ?>">РџР°РјСЏС‚РЅРёРє РњРёР»РѕСЃРµСЂРґРёСЋ</a>
 				  <a bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></a>
-				  <a bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.404&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.416',1); ?>">Памятник Падальщика</a><br>
+				  <a bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.404&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.416',1); ?>">РџР°РјСЏС‚РЅРёРє РџР°РґР°Р»СЊС‰РёРєР°</a><br>
 				  <a bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></a>
-				  <a bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.9&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Центральная Площадь</a>
+				  <a bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.9&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РџР»РѕС‰Р°РґСЊ</a>
                       <div style="position: absolute; left: 4px; right: 0px; z-index: 1500; top: 5px;">
                       	<div id="frvrks" style="position:relative;"></div>
                       </div>              
@@ -47,7 +47,7 @@ if($u->room['file']=='poklon') {
                       <div id="snow"></div>
                       <?php echo $goline; ?>
                       <div id="buttons_on_image" style="cursor:pointer; position:absolute; bottom:5px; right:25px; font-weight:bold; color:#D8D8D8; font-size:10px;">
-                      <a style="color:#D8D8D8" href="http://forum.xcombats.com/" target="_blank">Форум</a>
+                      <a style="color:#D8D8D8" href="http://forum.xcombats.com/" target="_blank">Р¤РѕСЂСѓРј</a>
                       </div>
                     </div>
                     </td>
@@ -60,8 +60,8 @@ if($u->room['file']=='poklon') {
         </tr>
       </table>
         <HR>
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
        <? echo $rowonmax; ?><BR>
         
       </div></td>

@@ -6,7 +6,7 @@ if(!defined('GAME'))
 if($u->room['file']=='an/post')
 {
 	
-/* Разделы почты */	
+/* Р Р°Р·РґРµР»С‹ РїРѕС‡С‚С‹ */	
 $r = 1; $otdel = 1;
 if(isset($_POST['torzer'])) {
 	$_GET['r'] = $_POST['torzer'];
@@ -34,16 +34,16 @@ if(isset($_GET['r'])) {
 	}
 }
 
-$tmgo = 30; //минут
+$tmgo = 30; //РјРёРЅСѓС‚
 
 if(isset($_POST['touser'])) {
 	$pu = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "'.mysql_real_escape_string($_POST['touser']).'" ORDER BY `id` ASC LIMIT 1'));
 	if($u->info['allLock'] > time()) {
 		$pu = false;
-		echo '<script>setTimeout(function(){alert("Вам запрещены передачи до '.date('d.m.y H:i',$u->info['allLock']).'")},250);</script>';
+		echo '<script>setTimeout(function(){alert("Р’Р°Рј Р·Р°РїСЂРµС‰РµРЅС‹ РїРµСЂРµРґР°С‡Рё РґРѕ '.date('d.m.y H:i',$u->info['allLock']).'")},250);</script>';
 	}elseif( $u->info['transfers'] < 1 ) {
 		$pu = false;
-		echo '<script>setTimeout(function(){alert("Лимит передач на сегодня исчерпан.")},250);</script>';
+		echo '<script>setTimeout(function(){alert("Р›РёРјРёС‚ РїРµСЂРµРґР°С‡ РЅР° СЃРµРіРѕРґРЅСЏ РёСЃС‡РµСЂРїР°РЅ.")},250);</script>';
 	}
 }
 
@@ -55,7 +55,7 @@ if($r == 1) {
 	if(isset($_POST['itm_post']) && (int)$_POST['itm_post'] > 0) {
 		$itm = mysql_fetch_array(mysql_query('SELECT `iu`.*,`im`.*,`iu`.item_id as item_id FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON `im`.`id` = `iu`.`item_id` WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`id` = "'.mysql_real_escape_string($_POST['itm_post']).'" LIMIT 1'));
 		if( $u->info['align'] == 2 ) {
-			$u->error = 'Хаосники не могут передавать кредиты и предметы';
+			$u->error = 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ РїРµСЂРµРґР°РІР°С‚СЊ РєСЂРµРґРёС‚С‹ Рё РїСЂРµРґРјРµС‚С‹';
 		}elseif(isset($itm['id'])) {
 			$itm['id'] = mysql_real_escape_string(round((int)$_POST['itm_post']));
 			$see1 = 1;
@@ -95,41 +95,41 @@ if($r == 1) {
 					}
 					$u->info['money'] -= $mny;
 					mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-					$u->error = 'Вы успешно передали &quot;'.$itm['name'].'&quot; к персонажу &quot;'.$pu['login'].'&quot; за '.$mny.' кр. ';
+					$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРµСЂРµРґР°Р»Рё &quot;'.$itm['name'].'&quot; Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$pu['login'].'&quot; Р·Р° '.$mny.' РєСЂ. ';
 					
 					
 					$u->info['transfers']--;
 					mysql_query('UPDATE `stats` SET `transfers` = "'.$u->info['transfers'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					
-					//логи
-					$txt = 'Предмет от <b>'.$u->info['login'].'</b>: &quot;'.$itm['name'].'&quot;. Прибытие: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
+					//Р»РѕРіРё
+					$txt = 'РџСЂРµРґРјРµС‚ РѕС‚ <b>'.$u->info['login'].'</b>: &quot;'.$itm['name'].'&quot;. РџСЂРёР±С‹С‚РёРµ: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
 					mysql_query('INSERT INTO `post` (`text`,`uid`,`time`,`sender_id`,`item_id`,`money`) VALUES ("'.mysql_real_escape_string($txt).'",
 					"'.$pu['id'].'","'.time().'","'.$u->info['id'].'","'.mysql_real_escape_string($itm['id']).'","0")');
-					$txt = 'Отправление предмета к <b>'.$pu['login'].'</b>: &quot;'.$itm['name'].'&quot;. Прибытие: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
+					$txt = 'РћС‚РїСЂР°РІР»РµРЅРёРµ РїСЂРµРґРјРµС‚Р° Рє <b>'.$pu['login'].'</b>: &quot;'.$itm['name'].'&quot;. РџСЂРёР±С‹С‚РёРµ: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
 					mysql_query('INSERT INTO `post` (`text`,`sender_id`,`time`,`uid`,`item_id`,`money`) VALUES ("'.mysql_real_escape_string($txt).'",
 					"-'.$pu['id'].'","'.time().'","'.$u->info['id'].'","'.mysql_real_escape_string($itm['id']).'","0")');
 					
-					//чат
+					//С‡Р°С‚
 					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES (
-					'1','".$pu['city']."','0','','".$pu['login']."','<font color=red>Внимание!</font> Получена новая почта от &quot;".$u->info['login']."&quot;','-".(time()+$tmgo*60)."','5','0')");
+					'1','".$pu['city']."','0','','".$pu['login']."','<font color=red>Р’РЅРёРјР°РЅРёРµ!</font> РџРѕР»СѓС‡РµРЅР° РЅРѕРІР°СЏ РїРѕС‡С‚Р° РѕС‚ &quot;".$u->info['login']."&quot;','-".(time()+$tmgo*60)."','5','0')");
 				}else{
-					$u->error = 'Не достаточно денежных средств';	
+					$u->error = 'РќРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµР¶РЅС‹С… СЃСЂРµРґСЃС‚РІ';	
 				}
 			}else{
-				$u->error = 'Подходящий предмет не найден';	
+				$u->error = 'РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ';	
 			}
 		}else{
-			$u->error = 'Предмет не найден';
+			$u->error = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ';
 		}
 	}
 }elseif($r == 3) {
 	if(isset($_GET['itm_take'])) {
 		$itm = mysql_fetch_array(mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON `im`.`id` = `iu`.`item_id` WHERE `iu`.`uid`="-51'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`id` = "'.mysql_real_escape_string($_GET['itm_take']).'" LIMIT 1'));
 		if( $u->info['align'] == 2 ) {
-			$u->error = 'Хаосники не могут передавать кредиты и предметы';
+			$u->error = 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ РїРµСЂРµРґР°РІР°С‚СЊ РєСЂРµРґРёС‚С‹ Рё РїСЂРµРґРјРµС‚С‹';
 		}elseif(isset($itm['id'])) {
 			if($itm['item_id'] == 1220) {
-				//Прием денег
+				//РџСЂРёРµРј РґРµРЅРµРі
 				$post = mysql_fetch_array(mysql_query('SELECT * FROM `post` WHERE `item_id` = "0" AND `money` = "'.$itm['1price'].'" AND `uid` = "'.$u->info['id'].'" AND `finish` = "0" ORDER BY `id` DESC LIMIT 1'));
 				if(isset($post['id'])) {
 					if($post['sender_id'] < 0) {
@@ -139,11 +139,11 @@ if($r == 1) {
 					$pup = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$post['sender_id'].'" LIMIT 1'));
 					if($post['sender_id'] == 0) {
 						$pup = array(
-						'login' => 'Администрация',
+						'login' => 'РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ',
 						'id'	=> 0
 						);
 					}
-					$u->error = 'Вы успешно забрали '.$itm['1price'].' кр. от '.$pup['login'];
+					$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ Р·Р°Р±СЂР°Р»Рё '.$itm['1price'].' РєСЂ. РѕС‚ '.$pup['login'];
 					$u->info['money'] += $itm['1price'];
 					mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');					
 					mysql_query('UPDATE `post` SET `finish` = "'.time().'" WHERE `item_id` = "'.$post['id'].'" ORDER BY `id` DESC LIMIT 1');
@@ -152,17 +152,17 @@ if($r == 1) {
 					$u->info['transfers']--;
 					mysql_query('UPDATE `stats` SET `transfers` = "'.$u->info['transfers'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					
-					//логи
-					$txt = 'Деньги для <b>'.$u->info['login'].'</b>: '.$itm['1price'].' кр. <font color="green">Доставлены.</font>';
+					//Р»РѕРіРё
+					$txt = 'Р”РµРЅСЊРіРё РґР»СЏ <b>'.$u->info['login'].'</b>: '.$itm['1price'].' РєСЂ. <font color="green">Р”РѕСЃС‚Р°РІР»РµРЅС‹.</font>';
 					mysql_query('INSERT INTO `post` (`text`,`uid`,`time`,`sender_id`,`item_id`,`money`) VALUES ("'.mysql_real_escape_string($txt).'",
 					"'.$pup['id'].'","'.time().'","'.$u->info['id'].'","'.mysql_real_escape_string($_GET['itm_take']).'","2")');
 					
-					$txt = 'Деньги от <b>'.$pup['login'].'</b>: '.$itm['1price'].' кр. <font color="green">Получены.</font>';
+					$txt = 'Р”РµРЅСЊРіРё РѕС‚ <b>'.$pup['login'].'</b>: '.$itm['1price'].' РєСЂ. <font color="green">РџРѕР»СѓС‡РµРЅС‹.</font>';
 					mysql_query('INSERT INTO `post` (`text`,`sender_id`,`time`,`uid`,`item_id`,`money`) VALUES ("'.mysql_real_escape_string($txt).'",
 					"-'.$pup['id'].'","'.time().'","'.$u->info['id'].'","'.mysql_real_escape_string($_GET['itm_take']).'","2")');
 				}
 			}else{
-				//Прием вещей
+				//РџСЂРёРµРј РІРµС‰РµР№
 				$post = mysql_fetch_array(mysql_query('SELECT `p`.id,`p`.sender_id, count(`iuu`.id) as inGroupCount, `iu`.id as idItem, `iuu`.item_id, `iuu`.inGroup FROM `post` as `p` LEFT JOIN `items_users` as `iu` ON (`iu`.id = `p`.item_id ) LEFT JOIN `items_users` as `iuu` ON (`iuu`.item_id = `iu`.item_id  AND  `iu`.`inGroup` = `iu`.`inGroup` AND  `iuu`.`uid` = `iu`.`uid`) WHERE (`p`.`sender_id` = "'.$u->info['id'].'" OR `p`.`sender_id` = "-'.$u->info['id'].'") AND `iu`.`id` = "'.mysql_real_escape_string($_GET['itm_take']).'" GROUP BY `iu`.id ORDER BY `iu`.`id` DESC LIMIT 1'));
 				if(isset($post['id'])) {
 					if($post['sender_id'] < 0) {
@@ -183,29 +183,29 @@ if($r == 1) {
 						mysql_query('UPDATE `post` SET `finish` = "'.time().'" WHERE `id` = "'.mysql_real_escape_string($post['id']).'" ORDER BY `id` DESC LIMIT 1');
 						$u->info['transfers']--;
 						mysql_query('UPDATE `stats` SET `transfers` = "'.$u->info['transfers'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-						$u->error = 'Вы успешно забрали &quot;'.$itm['name'].'&quot;';
+						$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ Р·Р°Р±СЂР°Р»Рё &quot;'.$itm['name'].'&quot;';
 						$pup = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$post['sender_id'].'" LIMIT 1'));
 						if($post['sender_id'] == 0) {
 							$pup = array(
-							'login' => 'Администрация',
+							'login' => 'РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ',
 							'id'	=> 0
 							);
 						}
-						//логи
-						$txt = 'Предмет для <b>'.$u->info['login'].'</b>: &quot;'.$itm['name'].'&quot;. <font color="green">Доставлен.</font>';
+						//Р»РѕРіРё
+						$txt = 'РџСЂРµРґРјРµС‚ РґР»СЏ <b>'.$u->info['login'].'</b>: &quot;'.$itm['name'].'&quot;. <font color="green">Р”РѕСЃС‚Р°РІР»РµРЅ.</font>';
 						mysql_query('INSERT INTO `post` (`text`,`uid`,`time`,`sender_id`,`item_id`,`money`,`finish`) VALUES ("'.mysql_real_escape_string($txt).'","'.$pup['id'].'","'.time().'","'.$u->info['id'].'","'.mysql_real_escape_string($_GET['itm_take']).'","2", "'.time().'")');
 					
-						$txt = 'Предмет от <b>'.$pup['login'].'</b>: &quot;'.$itm['name'].'&quot;. <font color="green">Получен.</font>';
+						$txt = 'РџСЂРµРґРјРµС‚ РѕС‚ <b>'.$pup['login'].'</b>: &quot;'.$itm['name'].'&quot;. <font color="green">РџРѕР»СѓС‡РµРЅ.</font>';
 						mysql_query('INSERT INTO `post` (`text`,`sender_id`,`time`,`uid`,`item_id`,`money`,`finish`) VALUES ("'.mysql_real_escape_string($txt).'","-'.$pup['id'].'","'.time().'","'.$u->info['id'].'","'.mysql_real_escape_string($_GET['itm_take']).'","2", "'.time().'")');
 					} else {
-						$u->error = 'Не удалось забрать предмет ('.$itm['id'].')';	
+						$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°Р±СЂР°С‚СЊ РїСЂРµРґРјРµС‚ ('.$itm['id'].')';	
 					}
 				}else{
-					$u->error = 'Не удалось найти предмет';	
+					$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё РїСЂРµРґРјРµС‚';	
 				}
 			}
 		}else{
-			$u->error = 'Предмет не найден';
+			$u->error = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ';
 		}
 		if($u->error != '') {
 			echo '<div>'.$u->error.'</div>';
@@ -221,15 +221,15 @@ if($r == 1) {
   <tr>
     <td valign="top"><br />
     <div style="background-color:#d2d2d2;height:35px;">
-        <div style="float:left;margin:9px;" class="pH3">Почтовое отделение<?
+        <div style="float:left;margin:9px;" class="pH3">РџРѕС‡С‚РѕРІРѕРµ РѕС‚РґРµР»РµРЅРёРµ<?
         if($r == 1) {
-			echo ' &nbsp; &bull; &nbsp; Передать предметы';
+			echo ' &nbsp; &bull; &nbsp; РџРµСЂРµРґР°С‚СЊ РїСЂРµРґРјРµС‚С‹';
 		}elseif($r == 2) {
-			echo ' &nbsp; &bull; &nbsp; Кредиты и телеграф';
+			echo ' &nbsp; &bull; &nbsp; РљСЂРµРґРёС‚С‹ Рё С‚РµР»РµРіСЂР°С„';
 		}elseif($r == 3) {
-			echo ' &nbsp; &bull; &nbsp; Получение вещей и кредитов';
+			echo ' &nbsp; &bull; &nbsp; РџРѕР»СѓС‡РµРЅРёРµ РІРµС‰РµР№ Рё РєСЂРµРґРёС‚РѕРІ';
 		}elseif($r == 4) {
-			echo ' &nbsp; &bull; &nbsp; Отчеты';
+			echo ' &nbsp; &bull; &nbsp; РћС‚С‡РµС‚С‹';
 		}
 		?></div>
         <div style="float:right;margin:9px;"><?=$u->microLogin($u->info['id'],1)?></div>
@@ -247,43 +247,43 @@ if($r == 1) {
 if(isset($pu['id'])) {
 ?>
 <div style="padding:0 10px 5px 10px; margin:5px; border-bottom:1px solid #cac9c7;">
-	К кому передавать: <?=$u->microLogin($pu,2)?> &nbsp; <input type="button" onclick="opennedWinPost(1)" value="сменить" /><br />
+	Рљ РєРѕРјСѓ РїРµСЂРµРґР°РІР°С‚СЊ: <?=$u->microLogin($pu,2)?> &nbsp; <input type="button" onclick="opennedWinPost(1)" value="СЃРјРµРЅРёС‚СЊ" /><br />
     <?
 	if($pu['city'] == $u->info['city']) {
-		echo 'Находится в этом городе.<br>';
+		echo 'РќР°С…РѕРґРёС‚СЃСЏ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ.<br>';
 	}else{
-		echo 'Находится в <b>'.$u->city[$pu['city']].'</b>.<br>';
+		echo 'РќР°С…РѕРґРёС‚СЃСЏ РІ <b>'.$u->city[$pu['city']].'</b>.<br>';
 	}	
-	echo 'Примерное время доставки: 0 ч. 30 мин.';
+	echo 'РџСЂРёРјРµСЂРЅРѕРµ РІСЂРµРјСЏ РґРѕСЃС‚Р°РІРєРё: 0 С‡. 30 РјРёРЅ.';
 	?>
 </div>
 <?	
 }
 if(isset($pu['id'])) {
 	if($r == 1) {
-		//Передача предметов
+		//РџРµСЂРµРґР°С‡Р° РїСЂРµРґРјРµС‚РѕРІ
 		$itmAll = ''; $itmAllSee = '';
 		$itmAll = $u->genInv(67,'`iu`.`uid` = "'.$u->info['id'].'" AND `iu`.`delete` = "0" AND `iu`.`inOdet` = "0" AND `iu`.`inShop` = "0" AND `im`.`inRazdel`="'.mysql_real_escape_string($otdel).'" AND `iu`.`data` NOT LIKE "%zazuby=%" ORDER BY `lastUPD` DESC'); 
 		if($itmAll[0]==0){
-			$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0" style="padding:10px;">ПУСТО</td></tr>';
+			$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0" style="padding:10px;">РџРЈРЎРўРћ</td></tr>';
 		}else{
 			$itmAllSee = $itmAll[2];
 		}
 ?>
 <TABLE width=100% cellspacing=0 cellpadding=3 bgcolor=d4d2d2><TR>
-	<TD width="20%" align=center bgcolor="<?=($otdel==1)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,1);" HREF="javascript:void(0)">Обмундирование</A></TD>
-	<TD width="20%" align=center bgcolor="<?=($otdel==2)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,2);" HREF="javascript:void(0)">Заклятия</A></TD>
-	<TD width="20%" align=center bgcolor="<?=($otdel==3)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,3);" HREF="javascript:void(0)">Эликсиры</A></TD>
-	<TD width="20%" align=center bgcolor="<?=($otdel==6)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,6);" HREF="javascript:void(0)">Руны</A></TD>
-	<TD width="20%" align=center bgcolor="<?=($otdel==4)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,4);" HREF="javascript:void(0)">Прочее</A></TD>
+	<TD width="20%" align=center bgcolor="<?=($otdel==1)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,1);" HREF="javascript:void(0)">РћР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ</A></TD>
+	<TD width="20%" align=center bgcolor="<?=($otdel==2)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,2);" HREF="javascript:void(0)">Р—Р°РєР»СЏС‚РёСЏ</A></TD>
+	<TD width="20%" align=center bgcolor="<?=($otdel==3)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,3);" HREF="javascript:void(0)">Р­Р»РёРєСЃРёСЂС‹</A></TD>
+	<TD width="20%" align=center bgcolor="<?=($otdel==6)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,6);" HREF="javascript:void(0)">Р СѓРЅС‹</A></TD>
+	<TD width="20%" align=center bgcolor="<?=($otdel==4)?"#A5A5A5":""?>"><A onclick="sendFormer(0,1,4);" HREF="javascript:void(0)">РџСЂРѕС‡РµРµ</A></TD>
 </TR></TABLE>
-<table border=0 cellpadding=0 cellspacing=0 width=100% bgcolor="#A5A5A5"><tr><td width=99% align=center><B>Рюкзак (масса: <?=$u->aves['now']?>/<?=$u->aves['max']?>, предметов: <?=$u->aves['items']?>)</B></td></tr></table>
+<table border=0 cellpadding=0 cellspacing=0 width=100% bgcolor="#A5A5A5"><tr><td width=99% align=center><B>Р СЋРєР·Р°Рє (РјР°СЃСЃР°: <?=$u->aves['now']?>/<?=$u->aves['max']?>, РїСЂРµРґРјРµС‚РѕРІ: <?=$u->aves['items']?>)</B></td></tr></table>
 <table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">
-<? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Рюкзак закрыт.</b><br><img title="Замок для рюкзака" src="http://img.xcombats.com/i/items/box_lock.gif"> Введите пароль: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="Открыть"></form></div>'; } ?>
+<? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Р СЋРєР·Р°Рє Р·Р°РєСЂС‹С‚.</b><br><img title="Р—Р°РјРѕРє РґР»СЏ СЂСЋРєР·Р°РєР°" src="http://img.xcombats.com/i/items/box_lock.gif"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="РћС‚РєСЂС‹С‚СЊ"></form></div>'; } ?>
 </table>
 <?
 	}elseif($r == 2) {
-		//Передача кредитов и телеграмм
+		//РџРµСЂРµРґР°С‡Р° РєСЂРµРґРёС‚РѕРІ Рё С‚РµР»РµРіСЂР°РјРј
 		$e1 = '';
 		$e2 = '';
 		$e3 = '';
@@ -295,7 +295,7 @@ if(isset($pu['id'])) {
 			}
 			if($m > 0) {
 				if($u->info['money'] >= round($m+$cm,2)) {
-					$e1 = 'Вы успешно перевели <b>'.$m.'</b> кр. (Комиссия: '.$cm.' кр.) к персонажу '.$pu['login'].'';
+					$e1 = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРµСЂРµРІРµР»Рё <b>'.$m.'</b> РєСЂ. (РљРѕРјРёСЃСЃРёСЏ: '.$cm.' РєСЂ.) Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ '.$pu['login'].'';
 					$u->info['money'] -= round($m+$cm,2);
 					mysql_query('UPDATE `users` SET `money` = "'.mysql_real_escape_string($u->info['money']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					
@@ -304,24 +304,24 @@ if(isset($pu['id'])) {
 					
 					mysql_query("INSERT INTO `items_users`(`item_id`,`1price`,`uid`,`delete`,`lastUPD`)VALUES('1220','".mysql_real_escape_string($m)."','-51".$pu['id']."','0','".(time()+$tmgo*60)."');");
 					
-					$txt = 'Деньги от <b>'.$u->info['login'].'</b>: '.round($m,2).' кр. Прибытие: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
+					$txt = 'Р”РµРЅСЊРіРё РѕС‚ <b>'.$u->info['login'].'</b>: '.round($m,2).' РєСЂ. РџСЂРёР±С‹С‚РёРµ: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
 					mysql_query('INSERT INTO `post` (`uid`,`sender_id`,`time`,`money`,`text`) VALUES("'.$pu['id'].'","-'.$u->info['id'].'","'.time().'",
 					"'.mysql_real_escape_string(round($m,2)).'","'.mysql_real_escape_string($txt).'")');
 					
-					$txt = 'Деньги к <b>'.$pu['login'].'</b>: '.round($m,2).' кр. Прибытие: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
+					$txt = 'Р”РµРЅСЊРіРё Рє <b>'.$pu['login'].'</b>: '.round($m,2).' РєСЂ. РџСЂРёР±С‹С‚РёРµ: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
 					mysql_query('INSERT INTO `post` (`uid`,`sender_id`,`time`,`money`,`text`) VALUES("'.$u->info['id'].'","'.$pu['id'].'","'.time().'",
 					"0","'.mysql_real_escape_string($txt).'")');
 					
-					//чат
+					//С‡Р°С‚
 					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES (
-					'1','".$pu['city']."','0','','".$pu['login']."','<font color=red>Внимание!</font> Получена новая почта от &quot;".$u->info['login']."&quot;','-".(time()+$tmgo*60)."','5','0')");
+					'1','".$pu['city']."','0','','".$pu['login']."','<font color=red>Р’РЅРёРјР°РЅРёРµ!</font> РџРѕР»СѓС‡РµРЅР° РЅРѕРІР°СЏ РїРѕС‡С‚Р° РѕС‚ &quot;".$u->info['login']."&quot;','-".(time()+$tmgo*60)."','5','0')");
 				}else{
-					$e1 = 'У вас недостаточно средств';
+					$e1 = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ';
 				}
 			}
 		}elseif(isset($_POST['send2'])) {
 			if($u->info['money'] >= 0.1) {
-				$ttest = mysql_fetch_array(mysql_query('SELECT `id`,`time` FROM `chat` WHERE `text` LIKE "%Телеграмма от <b>'.$u->info['login'].'</b>%" ORDER BY `id` DESC LIMIT 1'));
+				$ttest = mysql_fetch_array(mysql_query('SELECT `id`,`time` FROM `chat` WHERE `text` LIKE "%РўРµР»РµРіСЂР°РјРјР° РѕС‚ <b>'.$u->info['login'].'</b>%" ORDER BY `id` DESC LIMIT 1'));
 				if( $ttest['time'] < 0 ) {
 					$ttest['time'] = -$ttest['time'];
 				}
@@ -333,7 +333,7 @@ if(isset($pu['id'])) {
 					$_POST['snd_telegraf'] = str_replace(']:[','] : [',$_POST['snd_telegraf']);
 					$_POST['snd_telegraf'] = str_replace('>','&gt;',$_POST['snd_telegraf']);
 					$_POST['snd_telegraf'] = str_replace("'", "",$_POST['snd_telegraf']);
-					$e2 = 'Ваше сообщение успешно доставлено';
+					$e2 = 'Р’Р°С€Рµ СЃРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕСЃС‚Р°РІР»РµРЅРѕ';
 					
 					$u->info['transfers']--;
 					mysql_query('UPDATE `stats` SET `transfers` = "'.$u->info['transfers'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -341,12 +341,12 @@ if(isset($pu['id'])) {
 					$u->info['money'] -= 0.1;
 					mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES (
-					'1','".$pu['city']."','0','','".$pu['login']."','<font color=red>Внимание!</font> ".date("d.m.y H:i")." Телеграмма от <b>".$u->info['login']."</b>: \'".mysql_real_escape_string($_POST['snd_telegraf'])."\' .','-".(time()+$tmgo*60)."','5','0')");
+					'1','".$pu['city']."','0','','".$pu['login']."','<font color=red>Р’РЅРёРјР°РЅРёРµ!</font> ".date("d.m.y H:i")." РўРµР»РµРіСЂР°РјРјР° РѕС‚ <b>".$u->info['login']."</b>: \'".mysql_real_escape_string($_POST['snd_telegraf'])."\' .','-".(time()+$tmgo*60)."','5','0')");
 				}else{
-					$e2 = 'Вы не можете отправлять сообщения так часто. Осталось '.( $ttest['time']-$tmgo*60-time()+10 ).' сек.';
+					$e2 = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РѕС‚РїСЂР°РІР»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ С‚Р°Рє С‡Р°СЃС‚Рѕ. РћСЃС‚Р°Р»РѕСЃСЊ '.( $ttest['time']-$tmgo*60-time()+10 ).' СЃРµРє.';
 				}
 			}else{
-				$e2 = 'У вас недостаточно средств (0.1 кр.)';	
+				$e2 = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ (0.1 РєСЂ.)';	
 			}
 		}elseif(isset($_POST['send3'])) {
 			if($u->info['money'] >= 1) {
@@ -359,7 +359,7 @@ if(isset($pu['id'])) {
 				$_POST['snd_post'] = str_replace('>','&gt;',$_POST['snd_post']);
 				$_POST['snd_post'] = str_replace("'", "",$_POST['snd_post']);
 				$_POST['snd_post'] = str_replace("\n", "<br>",$_POST['snd_post']);
-				$e3 = 'Ваше письмо успешно доставлено';
+				$e3 = 'Р’Р°С€Рµ РїРёСЃСЊРјРѕ СѓСЃРїРµС€РЅРѕ РґРѕСЃС‚Р°РІР»РµРЅРѕ';
 				$u->info['money'] -= 1;
 				
 				$u->info['transfers']--;
@@ -369,75 +369,75 @@ if(isset($pu['id'])) {
 				mysql_query("INSERT INTO `items_users` (`item_id`,`1price`,`uid`,`delete`,`lastUPD`) VALUES ('2131','0','-51".$pu['id']."','0','".(time()+$tmgo*0)."')");
 				$id = mysql_insert_id();
 				mysql_query("INSERT INTO `items_text` (`item_id`,`time`,`login`,`text`,`x`) VALUES ('".$id."','".time()."','".$u->info['login']."','<br>".mysql_real_escape_string($_POST['snd_post'])."','1')");
-				//логи
-				$txt = 'Предмет от <b>'.$u->info['login'].'</b>: &quot;Письмо&quot;. Прибытие: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
+				//Р»РѕРіРё
+				$txt = 'РџСЂРµРґРјРµС‚ РѕС‚ <b>'.$u->info['login'].'</b>: &quot;РџРёСЃСЊРјРѕ&quot;. РџСЂРёР±С‹С‚РёРµ: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
 				mysql_query('INSERT INTO `post` (`text`,`uid`,`time`,`sender_id`,`item_id`,`money`) VALUES ("'.mysql_real_escape_string($txt).'",
 				"'.$pu['id'].'","'.time().'","'.$u->info['id'].'","'.$id.'","0")');
-				$txt = 'Отправление предмета к <b>'.$pu['login'].'</b>: &quot;Письмо&quot;. Прибытие: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
+				$txt = 'РћС‚РїСЂР°РІР»РµРЅРёРµ РїСЂРµРґРјРµС‚Р° Рє <b>'.$pu['login'].'</b>: &quot;РџРёСЃСЊРјРѕ&quot;. РџСЂРёР±С‹С‚РёРµ: '.date('d.m.Y H:i',(time()+$tmgo*60)).'';
 				mysql_query('INSERT INTO `post` (`text`,`sender_id`,`time`,`uid`,`item_id`,`money`) VALUES ("'.mysql_real_escape_string($txt).'",
 				"-'.$pu['id'].'","'.time().'","'.$u->info['id'].'","'.$id.'","0")');
-				//чат
+				//С‡Р°С‚
 				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES (
-				'1','".$pu['city']."','0','','".$pu['login']."','<font color=red>Внимание!</font> Получена новая почта от &quot;".$u->info['login']."&quot;','-".(time()+$tmgo*60)."','5','0')");
+				'1','".$pu['city']."','0','','".$pu['login']."','<font color=red>Р’РЅРёРјР°РЅРёРµ!</font> РџРѕР»СѓС‡РµРЅР° РЅРѕРІР°СЏ РїРѕС‡С‚Р° РѕС‚ &quot;".$u->info['login']."&quot;','-".(time()+$tmgo*60)."','5','0')");
 			}else{
-				$e3 = 'У вас недостаточно средств (1 кр.)';
+				$e3 = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ (1 РєСЂ.)';
 			}
 		}
 ?>
 <div style="padding:0 10px 5px 10px; margin:5px; border-bottom:1px solid #cac9c7;">
-<h4>Передать кредиты</h4>
+<h4>РџРµСЂРµРґР°С‚СЊ РєСЂРµРґРёС‚С‹</h4>
 	<? if($e1!=''){ ?>
     <br />
 	<div align="left" style="height:18px;"><font color="#FF0000"><b><? echo $e1; ?></b></font></div>
     <? } ?>
-У вас на счету: <b style="color:#158e1d"><?=$u->info['money']?></b> кр.<br />
-Передать кредиты, минимально 1 кр. Комиссия составит 5%<br />
-Укажите передаваемую сумму: <input name="snd_money" value="" type="text" /><input type="submit" id="send1" name="send1" value="Передать" />
+РЈ РІР°СЃ РЅР° СЃС‡РµС‚Сѓ: <b style="color:#158e1d"><?=$u->info['money']?></b> РєСЂ.<br />
+РџРµСЂРµРґР°С‚СЊ РєСЂРµРґРёС‚С‹, РјРёРЅРёРјР°Р»СЊРЅРѕ 1 РєСЂ. РљРѕРјРёСЃСЃРёСЏ СЃРѕСЃС‚Р°РІРёС‚ 5%<br />
+РЈРєР°Р¶РёС‚Рµ РїРµСЂРµРґР°РІР°РµРјСѓСЋ СЃСѓРјРјСѓ: <input name="snd_money" value="" type="text" /><input type="submit" id="send1" name="send1" value="РџРµСЂРµРґР°С‚СЊ" />
 </div>
 <div style="padding:0 10px 5px 10px; margin:5px; border-bottom:1px solid #cac9c7;">
-<h4>Телеграф</h4>
+<h4>РўРµР»РµРіСЂР°С„</h4>
 	<? if($e2!=''){ ?>
     <br />
 	<div align="left" style="height:18px;"><font color="#FF0000"><b><? echo $e2; ?></b></font></div>
     <? } ?>
-Услуга платная: <b>0.1</b> кр.<br />
-Сообщение: (Максимально 100 символов)<br />
-<input type="text" name="snd_telegraf" value="" size="75" maxlength="100" /><input type="submit" id="send2" name="send2" value="Передать" />
+РЈСЃР»СѓРіР° РїР»Р°С‚РЅР°СЏ: <b>0.1</b> РєСЂ.<br />
+РЎРѕРѕР±С‰РµРЅРёРµ: (РњР°РєСЃРёРјР°Р»СЊРЅРѕ 100 СЃРёРјРІРѕР»РѕРІ)<br />
+<input type="text" name="snd_telegraf" value="" size="75" maxlength="100" /><input type="submit" id="send2" name="send2" value="РџРµСЂРµРґР°С‚СЊ" />
 </div>
 <div style="padding:0 10px 5px 10px; margin:5px; border-bottom:1px solid #cac9c7;">
-<h4>Письмо</h4>
+<h4>РџРёСЃСЊРјРѕ</h4>
 	<? if($e3!=''){ ?>
     <br />
 	<div align="left" style="height:18px;"><font color="#FF0000"><b><? echo $e3; ?></b></font></div>
     <? } ?>
-Услуга платная: <b>1</b> кр.<br />
-Сообщение: (Время доставки 30 мин.)<br />
+РЈСЃР»СѓРіР° РїР»Р°С‚РЅР°СЏ: <b>1</b> РєСЂ.<br />
+РЎРѕРѕР±С‰РµРЅРёРµ: (Р’СЂРµРјСЏ РґРѕСЃС‚Р°РІРєРё 30 РјРёРЅ.)<br />
 <textarea name="snd_post" cols="89" rows="5"/></textarea><br />
-(Максимально 500 символов) <input type="submit" id="send3" name="send3" value="Отправить" />
+(РњР°РєСЃРёРјР°Р»СЊРЅРѕ 500 СЃРёРјРІРѕР»РѕРІ) <input type="submit" id="send3" name="send3" value="РћС‚РїСЂР°РІРёС‚СЊ" />
 </div>
 <?
 	}
 }elseif($r == 3) {
-	//получить предметы
+	//РїРѕР»СѓС‡РёС‚СЊ РїСЂРµРґРјРµС‚С‹
 	$itmAll = ''; $itmAllSee = '';
 	$itmAll = $u->genInv(68,'`iu`.`uid` = "-51'.$u->info['id'].'" AND `iu`.`delete` = 0 AND `iu`.`inOdet` = 0 AND `iu`.`inShop` = 0 AND `iu`.`lastUPD` < '.time().' ORDER BY `lastUPD` DESC');
 	if($itmAll[0]==0)
 	{
-		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0" style="padding:10px;">Для Вас пока-что нет посылок, проверьте раздел <b>Отчеты</b></td></tr>';
+		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0" style="padding:10px;">Р”Р»СЏ Р’Р°СЃ РїРѕРєР°-С‡С‚Рѕ РЅРµС‚ РїРѕСЃС‹Р»РѕРє, РїСЂРѕРІРµСЂСЊС‚Рµ СЂР°Р·РґРµР» <b>РћС‚С‡РµС‚С‹</b></td></tr>';
 	}else{
 		$itmAllSee = $itmAll[2];
 	}
 ?>
 <table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">
-<? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Рюкзак закрыт.</b><br><img title="Замок для рюкзака" src="http://img.xcombats.com/i/items/box_lock.gif"> Введите пароль: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="Открыть"></form></div>'; } ?>
+<? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Р СЋРєР·Р°Рє Р·Р°РєСЂС‹С‚.</b><br><img title="Р—Р°РјРѕРє РґР»СЏ СЂСЋРєР·Р°РєР°" src="http://img.xcombats.com/i/items/box_lock.gif"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="РћС‚РєСЂС‹С‚СЊ"></form></div>'; } ?>
 </table>
 <?
 }elseif($r == 4) {
-	//отчеты
+	//РѕС‚С‡РµС‚С‹
 ?>
 <br /><br />
 <div style="padding:0 10px 5px 10px; margin:5px; border-bottom:1px solid #cac9c7;">
-В данном разделе отображаются все почтовые операции Вашего персонажа.
+Р’ РґР°РЅРЅРѕРј СЂР°Р·РґРµР»Рµ РѕС‚РѕР±СЂР°Р¶Р°СЋС‚СЃСЏ РІСЃРµ РїРѕС‡С‚РѕРІС‹Рµ РѕРїРµСЂР°С†РёРё Р’Р°С€РµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°.
 </div>
 <?
 $pg = round((int)$_GET['page']);
@@ -459,13 +459,13 @@ while($pl = mysql_fetch_array($sp)) {
 	$r .= '<font color="green">'.date('d.m.Y H:i',$pl['time']).'</font> &nbsp; '.$pl['text'].'</div>';
 }
 if($r == '') {
-	$r = '<div style="padding:0 10px 5px 10px; margin:5px; border-bottom:1px solid #cac9c7;">Отчеты отсутствуют</div>';
+	$r = '<div style="padding:0 10px 5px 10px; margin:5px; border-bottom:1px solid #cac9c7;">РћС‚С‡РµС‚С‹ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚</div>';
 }else{
 	$ap = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `post` WHERE `uid` = "'.$u->info['id'].'"'));
 	$ap = ceil($ap[0]/50);
 	if($ap > 1) {
 		$r .= '<div style="padding:0 10px 5px 10px; margin:5px; border-bottom:1px solid #cac9c7;">';
-		$r .= 'Страницы: ';
+		$r .= 'РЎС‚СЂР°РЅРёС†С‹: ';
 		$i = 1;
 		while($i <= $ap) {
 			if($i == $pg) {
@@ -480,22 +480,22 @@ if($r == '') {
 }
 echo $r;
 }else{
-	//общий раздел
+	//РѕР±С‰РёР№ СЂР°Р·РґРµР»
 ?>
 <BR><BR>
-&bull; <B>Передать предмет</B><BR>
-Вы можете отправить предмет любому персонажу, даже если он находится в другом городе. Цена и время доставки зависят от расстояния.<BR>
+&bull; <B>РџРµСЂРµРґР°С‚СЊ РїСЂРµРґРјРµС‚</B><BR>
+Р’С‹ РјРѕР¶РµС‚Рµ РѕС‚РїСЂР°РІРёС‚СЊ РїСЂРµРґРјРµС‚ Р»СЋР±РѕРјСѓ РїРµСЂСЃРѕРЅР°Р¶Сѓ, РґР°Р¶Рµ РµСЃР»Рё РѕРЅ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕРј РіРѕСЂРѕРґРµ. Р¦РµРЅР° Рё РІСЂРµРјСЏ РґРѕСЃС‚Р°РІРєРё Р·Р°РІРёСЃСЏС‚ РѕС‚ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ.<BR>
 <BR>
-&bull; <B>Кредиты и Телеграф</B><BR>
-Вы можете отправить короткое сообщение любому персонажу, даже если он находится в offline или другом городе.<BR>
-Вы можете отправить некоторую сумму денег персонажу.<BR>
+&bull; <B>РљСЂРµРґРёС‚С‹ Рё РўРµР»РµРіСЂР°С„</B><BR>
+Р’С‹ РјРѕР¶РµС‚Рµ РѕС‚РїСЂР°РІРёС‚СЊ РєРѕСЂРѕС‚РєРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ Р»СЋР±РѕРјСѓ РїРµСЂСЃРѕРЅР°Р¶Сѓ, РґР°Р¶Рµ РµСЃР»Рё РѕРЅ РЅР°С…РѕРґРёС‚СЃСЏ РІ offline РёР»Рё РґСЂСѓРіРѕРј РіРѕСЂРѕРґРµ.<BR>
+Р’С‹ РјРѕР¶РµС‚Рµ РѕС‚РїСЂР°РІРёС‚СЊ РЅРµРєРѕС‚РѕСЂСѓСЋ СЃСѓРјРјСѓ РґРµРЅРµРі РїРµСЂСЃРѕРЅР°Р¶Сѓ.<BR>
 <BR>
-&bull; <B>Получить вещи</B><BR>
-Вы можете получить вещи, которые были отправлены вам другими игроками.<BR>
-Посылка хранится на почте 7 дней, но не более одного дня с момента как вы увидели ее в списке вещей для получения.
-По истечению этого срока, посылка отправляется обратно или удаляется.
+&bull; <B>РџРѕР»СѓС‡РёС‚СЊ РІРµС‰Рё</B><BR>
+Р’С‹ РјРѕР¶РµС‚Рµ РїРѕР»СѓС‡РёС‚СЊ РІРµС‰Рё, РєРѕС‚РѕСЂС‹Рµ Р±С‹Р»Рё РѕС‚РїСЂР°РІР»РµРЅС‹ РІР°Рј РґСЂСѓРіРёРјРё РёРіСЂРѕРєР°РјРё.<BR>
+РџРѕСЃС‹Р»РєР° С…СЂР°РЅРёС‚СЃСЏ РЅР° РїРѕС‡С‚Рµ 7 РґРЅРµР№, РЅРѕ РЅРµ Р±РѕР»РµРµ РѕРґРЅРѕРіРѕ РґРЅСЏ СЃ РјРѕРјРµРЅС‚Р° РєР°Рє РІС‹ СѓРІРёРґРµР»Рё РµРµ РІ СЃРїРёСЃРєРµ РІРµС‰РµР№ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ.
+РџРѕ РёСЃС‚РµС‡РµРЅРёСЋ СЌС‚РѕРіРѕ СЃСЂРѕРєР°, РїРѕСЃС‹Р»РєР° РѕС‚РїСЂР°РІР»СЏРµС‚СЃСЏ РѕР±СЂР°С‚РЅРѕ РёР»Рё СѓРґР°Р»СЏРµС‚СЃСЏ.
 <BR>
-<small><BR>Администрация почты заявляет, что не несет ответственности за хранимый или пересылаемый товар/кредиты/сообщения и не гарантирует 100% его доставку. В случае форс-мажорных обстоятельств, товар/кредиты/сообщения могут быть утеряны.</small>
+<small><BR>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ РїРѕС‡С‚С‹ Р·Р°СЏРІР»СЏРµС‚, С‡С‚Рѕ РЅРµ РЅРµСЃРµС‚ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚Рё Р·Р° С…СЂР°РЅРёРјС‹Р№ РёР»Рё РїРµСЂРµСЃС‹Р»Р°РµРјС‹Р№ С‚РѕРІР°СЂ/РєСЂРµРґРёС‚С‹/СЃРѕРѕР±С‰РµРЅРёСЏ Рё РЅРµ РіР°СЂР°РЅС‚РёСЂСѓРµС‚ 100% РµРіРѕ РґРѕСЃС‚Р°РІРєСѓ. Р’ СЃР»СѓС‡Р°Рµ С„РѕСЂСЃ-РјР°Р¶РѕСЂРЅС‹С… РѕР±СЃС‚РѕСЏС‚РµР»СЊСЃС‚РІ, С‚РѕРІР°СЂ/РєСЂРµРґРёС‚С‹/СЃРѕРѕР±С‰РµРЅРёСЏ РјРѕРіСѓС‚ Р±С‹С‚СЊ СѓС‚РµСЂСЏРЅС‹.</small>
 <?
 }
 ?>
@@ -523,11 +523,11 @@ echo $r;
                   <table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                     <tr>
                       <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=2.180.0.234&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('2.180.0.234',1); ?>">Центральная площадь</a></td>
+                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=2.180.0.234&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('2.180.0.234',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РїР»РѕС‰Р°РґСЊ</a></td>
                     </tr>
                     <tr>
                       <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=2.180.0.403&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('2.180.0.403',1); ?>">Аукцион</a></td>
+                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=2.180.0.403&amp;rnd=<? echo $code; ?>';" title="<? thisInfRm('2.180.0.403',1); ?>">РђСѓРєС†РёРѕРЅ</a></td>
                     </tr>
 <?
 		$hgo = $u->testHome();
@@ -536,7 +536,7 @@ echo $r;
 ?>
                     <tr>
                       <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?homeworld&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Возврат</a></td>
+                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?homeworld&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.9',1); ?>">Р’РѕР·РІСЂР°С‚</a></td>
                     </tr>
 <?
 		}
@@ -551,31 +551,31 @@ echo $r;
     </table>
       <div style="margin-left:10px;"><br />
         <p>&nbsp;</p>
-        <p> Деньги: <?=$u->info['money']?> кр.
+        <p> Р”РµРЅСЊРіРё: <?=$u->info['money']?> РєСЂ.
         <br />
-        Передач: <?=$u->info['transfers']?>
+        РџРµСЂРµРґР°С‡: <?=$u->info['transfers']?>
         <br />
         <br />
-        <a onclick="<? if(!isset($pu['id'])) { echo 'opennedWinPost(1);'; }else{ echo 'sendFormer(0,1,0);'; } ?>" href="javascript:void(0)">Передать предметы</a><br />
-        <a onclick="<? if(!isset($pu['id'])) { echo 'opennedWinPost(2);'; }else{ echo 'sendFormer(0,2,0);'; } ?>" href="javascript:void(0)">Кредиты и Телеграф</a><br />
+        <a onclick="<? if(!isset($pu['id'])) { echo 'opennedWinPost(1);'; }else{ echo 'sendFormer(0,1,0);'; } ?>" href="javascript:void(0)">РџРµСЂРµРґР°С‚СЊ РїСЂРµРґРјРµС‚С‹</a><br />
+        <a onclick="<? if(!isset($pu['id'])) { echo 'opennedWinPost(2);'; }else{ echo 'sendFormer(0,2,0);'; } ?>" href="javascript:void(0)">РљСЂРµРґРёС‚С‹ Рё РўРµР»РµРіСЂР°С„</a><br />
         <?
 		$ot = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `items_users` WHERE `uid` = "-51'.$u->info['id'].'"'));
 		$ot = $ot[0];
 		if($ot > 0) {
-       		echo '<a href="?r=3">Получить вещи</a>';
+       		echo '<a href="?r=3">РџРѕР»СѓС‡РёС‚СЊ РІРµС‰Рё</a>';
 		}else{
-			echo '<font color="grey">Получить вещи</font>';
+			echo '<font color="grey">РџРѕР»СѓС‡РёС‚СЊ РІРµС‰Рё</font>';
 		}
 		?>
         <br /><br />
-        <a href="?r=4">Отчеты</a>
+        <a href="?r=4">РћС‚С‡РµС‚С‹</a>
         </p>
       </div></td>
   </tr>
 </table>
 <script>
 function opennedWinPost(rz) {
-top.win.add('post_win','Почтовые услуги &nbsp;','<center>Укажите логин персонажа:<br><small>(можно щелкнуть по логину в чате)</small><br></center>',{'a1':'top.frames[\'main\'].sendFormer($(\'#post_win_inp\').val(),'+rz+')','usewin':'top.chat.inObj=$(\'#post_win_inp\');$(\'#post_win_inp\').focus()','d':'<center><input style="width:96%; margin:5px;" id="post_win_inp" class="inpt2" type="text" value=""></center>'},3,1,'min-width:300px;');
+top.win.add('post_win','РџРѕС‡С‚РѕРІС‹Рµ СѓСЃР»СѓРіРё &nbsp;','<center>РЈРєР°Р¶РёС‚Рµ Р»РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°:<br><small>(РјРѕР¶РЅРѕ С‰РµР»РєРЅСѓС‚СЊ РїРѕ Р»РѕРіРёРЅСѓ РІ С‡Р°С‚Рµ)</small><br></center>',{'a1':'top.frames[\'main\'].sendFormer($(\'#post_win_inp\').val(),'+rz+')','usewin':'top.chat.inObj=$(\'#post_win_inp\');$(\'#post_win_inp\').focus()','d':'<center><input style="width:96%; margin:5px;" id="post_win_inp" class="inpt2" type="text" value=""></center>'},3,1,'min-width:300px;');
 }
 function itmToUser(id) {
 	document.getElementById('itm_post').value = id;

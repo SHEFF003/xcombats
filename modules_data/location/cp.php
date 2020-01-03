@@ -46,15 +46,15 @@ if($u->room['file']=='cp') {
                       
                       <!-- -->
                       <?
-					  //Праздничные здания
+					  //РџСЂР°Р·РґРЅРёС‡РЅС‹Рµ Р·РґР°РЅРёСЏ
 					  //if($u->info['admin'] > 0 ) {
-						  //Хэллоуин
+						  //РҐСЌР»Р»РѕСѓРёРЅ
 						  if( (date('m') == 11 && date('d') <= 6) || (date('m') == 10 && date('d') == 31) ) {
 						?>
-                        <div style="position: absolute; left: 230px; top: 162px; width: 32px; height: 43px; z-index: 91;"><img onclick="location.href='main.php?talk=5'" title="Диалог с Тыквоголовым" src="http://img.xcombats.com/loca/cp11/sun_pmd.gif" width="32" height="43" title="" class="aFilter" /></div>
+                        <div style="position: absolute; left: 230px; top: 162px; width: 32px; height: 43px; z-index: 91;"><img onclick="location.href='main.php?talk=5'" title="Р”РёР°Р»РѕРі СЃ РўС‹РєРІРѕРіРѕР»РѕРІС‹Рј" src="http://img.xcombats.com/loca/cp11/sun_pmd.gif" width="32" height="43" title="" class="aFilter" /></div>
                         <?  
 						  }elseif( date('m') == 12 || date('m') == 1 ) {
-							 //Елка НГ
+							 //Р•Р»РєР° РќР“
 						?>
 						<div style="position: absolute; left: 212px; top: 133px; width: 32px; height: 43px; z-index: 91;"><img <? thisInfRm('1.180.0.208'); ?> src="http://img.xcombats.com/newyear2014.png" width="60" height="90" title="" class="aFilter" /></div>
 						<?
@@ -68,10 +68,10 @@ if($u->room['file']=='cp') {
                       <div id="buttons_on_image" style="cursor:pointer; position:absolute; bottom:5px; right:25px; font-weight:bold; color:#D8D8D8; font-size:10px;">
                      	 <?
 						 if( date('H') >= 22 || date('H') < 6 ) {
-							 echo '<a style="color:#D8D8D8" style="cursor:pointer" onclick="top.useMagic(\'Нападение на персонажа\',\'night_atack\',\'pal_button8.gif\',1,\'main.php?nightatack=1\');">Напасть</a> &nbsp; ';
+							 echo '<a style="color:#D8D8D8" style="cursor:pointer" onclick="top.useMagic(\'РќР°РїР°РґРµРЅРёРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°\',\'night_atack\',\'pal_button8.gif\',1,\'main.php?nightatack=1\');">РќР°РїР°СЃС‚СЊ</a> &nbsp; ';
 						 }
 						 ?>
-                         <a style="color:#D8D8D8" href="http://xcombats.com/forum/" target="_blank">Форум</a>
+                         <a style="color:#D8D8D8" href="http://xcombats.com/forum/" target="_blank">Р¤РѕСЂСѓРј</a>
                       </div>
                     </div>
                     </td>
@@ -80,7 +80,7 @@ if($u->room['file']=='cp') {
                 <div style="display:none; height:0px " id="moveto"></div>     
               <div align="right" style="padding: 3px;"></div></td>
           <td>
-              <!-- <br /><span class="menutop"><nobr>Комната для новичков</nobr></span>-->
+              <!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ</nobr></span>-->
           </td>
         </tr>
       </table>
@@ -91,25 +91,25 @@ if($u->room['file']=='cp') {
 			if(isset($mon['id'])) {
 				//
 				if($type == 'start') {
-					//День недели
+					//Р”РµРЅСЊ РЅРµРґРµР»Рё
 					if( $mon['start_day'] != -1 ) {
 						if( ($mon['start_day'] < 7 && $mon['start_day'] != date('w')) || $mon['start_day'] != 7 ) {
 							$r = false;
 						}
 					}
-					//Число
+					//Р§РёСЃР»Рѕ
 					if( $mon['start_dd'] != -1 ) {
 						if( $mon['start_dd'] != date('j') ) {
 							$r = false;
 						}
 					}
-					//месяц
+					//РјРµСЃСЏС†
 					if( $mon['start_mm'] != -1 ) {
 						if( $mon['start_mm'] != date('n') ) {
 							$r = false;
 						}
 					}
-					//час
+					//С‡Р°СЃ
 					if( $mon['start_hh'] != -1 ) {
 						if( $mon['start_hh'] != date('G') ) {
 							$r = false;
@@ -121,25 +121,25 @@ if($u->room['file']=='cp') {
 						}
 					}
 				}elseif($type == 'back') {
-					//День недели
+					//Р”РµРЅСЊ РЅРµРґРµР»Рё
 					if( $mon['back_day'] != -1 ) {
 						if( ($mon['back_day'] < 7 && $mon['back_day'] != date('w')) || $mon['back_day'] != 7 ) {
 							$r = false;
 						}
 					}
-					//Число
+					//Р§РёСЃР»Рѕ
 					if( $mon['back_dd'] != -1 ) {
 						if( $mon['back_dd'] != date('j') ) {
 							$r = false;
 						}
 					}
-					//месяц
+					//РјРµСЃСЏС†
 					if( $mon['back_mm'] != -1 ) {
 						if( $mon['back_mm'] != date('n') ) {
 							$r = false;
 						}
 					}
-					//час
+					//С‡Р°СЃ
 					if( $mon['back_hh'] != -1 ) {
 						if( $mon['back_hh'] != date('G') ) {
 							$r = false;
@@ -151,7 +151,7 @@ if($u->room['file']=='cp') {
 						}
 					}
 				}else{
-					//что-то другое
+					//С‡С‚Рѕ-С‚Рѕ РґСЂСѓРіРѕРµ
 					$r = false;
 				}
 				//
@@ -159,19 +159,19 @@ if($u->room['file']=='cp') {
 			return $r;
 		}
 
-		/*echo '<font color=red><b>Расписание атак монстров:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><br>';
+		/*echo '<font color=red><b>Р Р°СЃРїРёСЃР°РЅРёРµ Р°С‚Р°Рє РјРѕРЅСЃС‚СЂРѕРІ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><br>';
 		$sp = mysql_query('SELECT * FROM `aaa_monsters` ORDER BY `start_hh`');
 		while( $pl = mysql_fetch_array($sp) ) {
 			$btc = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$pl['uid'].'" LIMIT 1'));
 			if( isset($btc['id']) ) {
 				if( testMonster($pl,'start') == true ) {
-					echo '<a href="/info/'.$btc['id'].'" target="_blank">'.$btc['login'].'</a> появится через <b>Уже был!</b><br>';
+					echo '<a href="/info/'.$btc['id'].'" target="_blank">'.$btc['login'].'</a> РїРѕСЏРІРёС‚СЃСЏ С‡РµСЂРµР· <b>РЈР¶Рµ Р±С‹Р»!</b><br>';
 				}else{
 					if( $pl['start_hh'] != -1 ) {
 						if ($pl['start_mm'] == - 1 ) { 
 							$pl['start_mm'] = '00';
 						}
-						echo '<a href="/info/'.$btc['id'].'" target="_blank">'.$btc['login'].'</a> появится в '.$pl['start_hh'].':'.$pl['start_mm'].'<br>';
+						echo '<a href="/info/'.$btc['id'].'" target="_blank">'.$btc['login'].'</a> РїРѕСЏРІРёС‚СЃСЏ РІ '.$pl['start_hh'].':'.$pl['start_mm'].'<br>';
 					}
 				}
 			}
@@ -179,8 +179,8 @@ if($u->room['file']=='cp') {
 		echo '';*/
 		?>
         <HR>
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
        <? echo $rowonmax; ?><BR>
         
       </div></td>

@@ -8,16 +8,16 @@ if($u->room['file']=='karcer')
 {
 	if(isset($_GET['karcer_back'])) {
 		if( $u->info['jail'] > time() ) {
-			$u->error = 'Вы не можете выйти из карцера раньше срока';
+			$u->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РІС‹Р№С‚Рё РёР· РєР°СЂС†РµСЂР° СЂР°РЅСЊС€Рµ СЃСЂРѕРєР°';
 		}else{
-			//выпускаем
+			//РІС‹РїСѓСЃРєР°РµРј
 				$upd = mysql_query('UPDATE `users` SET `jail` = "0", `room`="9", `city`="capitalcity" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				if($upd)
 				{
 					mysql_query('UPDATE `items_users` SET `delete` = "0" WHERE `uid` = '.$u->info['id'].' AND `delete` = "1357908642"');
-					$u->error = 'Вы успешно вышли из тюрьмы';
+					$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РІС‹С€Р»Рё РёР· С‚СЋСЂСЊРјС‹';
 				}else{
-					$u->error = 'Не удалось использовать данное заклятие';
+					$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ';
 				}
 		}
 	}
@@ -31,7 +31,7 @@ if($u->room['file']=='karcer')
     <br />
     <font color=red><b><?=$u->error?></b></font><br />
     <? if( $u->info['jail'] > time() ) { ?>
-    Вы заточены в карцере до <?=date('d.m.Y H:i',$u->info['jail'])?>
+    Р’С‹ Р·Р°С‚РѕС‡РµРЅС‹ РІ РєР°СЂС†РµСЂРµ РґРѕ <?=date('d.m.Y H:i',$u->info['jail'])?>
     <? } ?>
     </td>
     <td width="280" valign="top"><table align="right" cellpadding="0" cellspacing="0">
@@ -47,7 +47,7 @@ if($u->room['file']=='karcer')
                   <td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                     <tr>
                       <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?karcer_back=1';">Выйти из карцера</a></td>
+                      <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?karcer_back=1';">Р’С‹Р№С‚Рё РёР· РєР°СЂС†РµСЂР°</a></td>
                     </tr>
                   </table>
                   </td>

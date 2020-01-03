@@ -23,7 +23,7 @@ if($p['unbtl']==1)
 		{
 			if($uu['battle']==0)
 			{
-				$uer = 'Персонаж не находится в поединке<br>';
+				$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°С…РѕРґРёС‚СЃСЏ РІ РїРѕРµРґРёРЅРєРµ<br>';
 			}else{
 				$uu['battle222'] = $uu['battle'];
 				$uu['battle'] = 0;
@@ -39,23 +39,23 @@ if($p['unbtl']==1)
 					$sx = '';
 					if($u->info['sex']==1)
 					{
-						$sx = 'а';
+						$sx = 'Р°';
 					}
-					inBattleLog('{tm1} '.$rang.' &quot;<b>'.$u->info['cast_login'].'</b>&quot; выпустил персонажа &quot;<b>'.$uu['login'].'</b>&quot; из поединка.');
-					$rtxt = '[img[items/pal_buttonn.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; выпустил'.$sx.' персонажа &quot;'.$uu['login'].'&quot; из поединка';
+					inBattleLog('{tm1} '.$rang.' &quot;<b>'.$u->info['cast_login'].'</b>&quot; РІС‹РїСѓСЃС‚РёР» РїРµСЂСЃРѕРЅР°Р¶Р° &quot;<b>'.$uu['login'].'</b>&quot; РёР· РїРѕРµРґРёРЅРєР°.');
+					$rtxt = '[img[items/pal_buttonn.gif]] '.$rang.' &quot;'.$u->info['cast_login'].'&quot; РІС‹РїСѓСЃС‚РёР»'.$sx.' РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$uu['login'].'&quot; РёР· РїРѕРµРґРёРЅРєР°';
 					//mysql_query("UPDATE `chat` SET `delete` = 1 WHERE `login` = '".$uu['login']."' LIMIT 1000");
 					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");				
-					$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; выпустил'.$sx.' персонажа из поединка №<b>'.$uu['battle222'].'</b>.';
+					$rtxt = $rang.' &quot;'.$u->info['login'].'&quot; РІС‹РїСѓСЃС‚РёР»'.$sx.' РїРµСЂСЃРѕРЅР°Р¶Р° РёР· РїРѕРµРґРёРЅРєР° в„–<b>'.$uu['battle222'].'</b>.';
 					mysql_query("INSERT INTO `users_delo` (`uid`,`ip`,`city`,`time`,`text`,`login`,`type`) VALUES ('".$uu['id']."','".$_SERVER['REMOTE_ADDR']."','".$u->info['city']."','".time()."','".$rtxt."','".$u->info['login']."',0)");
-					$uer = 'Вы успешно выпустили персонажа "'.$uu['login'].'" из поединка.';
+					$uer = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РІС‹РїСѓСЃС‚РёР»Рё РїРµСЂСЃРѕРЅР°Р¶Р° "'.$uu['login'].'" РёР· РїРѕРµРґРёРЅРєР°.';
 				}else{
-					$uer = 'Не удалось использовать данное заклятие';
+					$uer = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР°РЅРЅРѕРµ Р·Р°РєР»СЏС‚РёРµ';
 				}
 			}
 		}else{
-			$uer = 'Персонаж не найден в этом городе';
+			$uer = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 		}
 }else{
-	$uer = 'У Вас нет прав на использование данного заклятия';
+	$uer = 'РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РЅР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РґР°РЅРЅРѕРіРѕ Р·Р°РєР»СЏС‚РёСЏ';
 }	
 ?>

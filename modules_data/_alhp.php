@@ -25,7 +25,7 @@ function openMod(title,dat)
 	var d = document.getElementById('useMagic');
 	if(d!=undefined)
 	{
-		document.getElementById('modtitle').innerHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="top">'+title+'</td><td width="30" valign="top"><div align="right"><a title="Закрыть окно" onClick="closeMod(); return false;" href="#">x</a></div></td></tr></table>';
+		document.getElementById('modtitle').innerHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="top">'+title+'</td><td width="30" valign="top"><div align="right"><a title="Р—Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ" onClick="closeMod(); return false;" href="#">x</a></div></td></tr></table>';
 		document.getElementById('moddata').innerHTML = dat;
 		d.style.display = '';
 	}
@@ -44,7 +44,7 @@ function closeMod()
 </script>
 <div id="useMagic" style="display:none; position:absolute; border:solid 1px #776f59; left: 50px; top: 186px;" class="modpow">
 <div class="mt" id="modtitle"></div><div class="md" id="moddata"></div></div>
-<table align=left><tr><td><img src="http://img.xcombats.com/i/alchemy1.gif"></td></tr></table><table align=right><tr><td><INPUT TYPE="button" onclick="location.href='main.php?alhp=1';" value="Обновить" title="Обновить"> <INPUT TYPE="button" onclick="location.href='main.php';" value="Вернуться" title="Вернуться"></table>
+<table align=left><tr><td><img src="http://img.xcombats.com/i/alchemy1.gif"></td></tr></table><table align=right><tr><td><INPUT TYPE="button" onclick="location.href='main.php?alhp=1';" value="РћР±РЅРѕРІРёС‚СЊ" title="РћР±РЅРѕРІРёС‚СЊ"> <INPUT TYPE="button" onclick="location.href='main.php';" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" title="Р’РµСЂРЅСѓС‚СЊСЃСЏ"></table>
 <center><SCRIPT>drwfl("<?=$u->info['login']?>",<?=$u->info['id']?>,"<?=$u->info['level']?>",50,"")</SCRIPT></center>
 <?
 $pl = mysql_fetch_array(mysql_query('SELECT * FROM `bank_table` ORDER BY `time` DESC LIMIT 1'));
@@ -54,40 +54,40 @@ if(isset($ba['id'])) {
 <table width=320>
     <tr>
         <td>
-        	<h4>На алхимических счетах:</h4>
-            <b><?=$ba['ekr']?></b> екр.
+        	<h4>РќР° Р°Р»С…РёРјРёС‡РµСЃРєРёС… СЃС‡РµС‚Р°С…:</h4>
+            <b><?=$ba['ekr']?></b> РµРєСЂ.
             <br />
-            Задолжность <b><? if($ba['USD'] > 0) { echo $ba['USD']; }else{ echo '0.00'; } ?></b> $
+            Р—Р°РґРѕР»Р¶РЅРѕСЃС‚СЊ <b><? if($ba['USD'] > 0) { echo $ba['USD']; }else{ echo '0.00'; } ?></b> $
             <hr />       
             <?
 			$ucur = round(round(($pl['cur']/$pl['USD']),4)/100*(100-$ba['procent']),2);
 			?>     
-            Персональный курс: <b><?=$ucur?></b> $ = 1 Еврокредит.
+            РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Р№ РєСѓСЂСЃ: <b><?=$ucur?></b> $ = 1 Р•РІСЂРѕРєСЂРµРґРёС‚.
             <hr />
             <form method="post" action="main.php?alhp=1">
             <?
 			if(isset($_POST['buy_ekr'])) {
 				$uba = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `id` = "'.mysql_real_escape_string($_POST['buy_ekr']).'" AND `block` = "0" LIMIT 1'));
 				if(isset($uba['id'])) {
-					echo 'Покупатель: '.$u->microLogin($uba['uid'],1).'<br>';
-					echo 'Счет покупателя №'.$uba['id'].'<br>';
-					echo 'Бонус покупателя: 0%<br>';
+					echo 'РџРѕРєСѓРїР°С‚РµР»СЊ: '.$u->microLogin($uba['uid'],1).'<br>';
+					echo 'РЎС‡РµС‚ РїРѕРєСѓРїР°С‚РµР»СЏ в„–'.$uba['id'].'<br>';
+					echo 'Р‘РѕРЅСѓСЃ РїРѕРєСѓРїР°С‚РµР»СЏ: 0%<br>';
 				}else{
-					echo '<font color=red>Банковский счет заблокирован, либо не найден.</font><hr>';
+					echo '<font color=red>Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ, Р»РёР±Рѕ РЅРµ РЅР°Р№РґРµРЅ.</font><hr>';
 					unset($_POST['buy_ekr']);
 				}
 				echo '<hr>';
 				if(isset($uba['id'])) {
 					$_POST['buy4ekr'] = round($_POST['buy4ekr'],2);
 					if(isset($_POST['buy4ekr']) && $_POST['buy4ekr'] < 1) {
-						echo '<font color=red>Минимальная сумма продажи: 1 екр.</font><hr>';
+						echo '<font color=red>РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РїСЂРѕРґР°Р¶Рё: 1 РµРєСЂ.</font><hr>';
 						unset($_POST['buy4ekr']);
 					}elseif($_POST['buy4ekr'] > $ba['ekr']) {
-						echo '<font color=red>Недостаточно средств на счете</font><hr>';
+						echo '<font color=red>РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РЅР° СЃС‡РµС‚Рµ</font><hr>';
 						unset($_POST['buy4ekr']);
 					}
 					if(isset($_POST['buygoodluck'])) { 
-						echo '<script>alert("Продажа на сумму '.$_POST['buy4ekr'].' екр. была совершена успешно!");location.href="main.php?alhp=1";</script>';
+						echo '<script>alert("РџСЂРѕРґР°Р¶Р° РЅР° СЃСѓРјРјСѓ '.$_POST['buy4ekr'].' РµРєСЂ. Р±С‹Р»Р° СЃРѕРІРµСЂС€РµРЅР° СѓСЃРїРµС€РЅРѕ!");location.href="main.php?alhp=1";</script>';
 						$ba['ekr'] -= $_POST['buy4ekr'];
 						$ba['USD'] += round($_POST['buy4ekr']*$ucur,2);
 						mysql_query('UPDATE `bank_alh` SET `ekr` = "'.mysql_real_escape_string($ba['ekr']).'",`USD` = "'.mysql_real_escape_string($ba['USD']).'" WHERE `id` = "'.$ba['id'].'" LIMIT 1');
@@ -101,52 +101,52 @@ if(isset($ba['id'])) {
 						if( $user['host_reg'] > 0 && $_POST['buy4ekr'] >= 1 ) {
 							$refer = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`city`,`sex`,`room`,`host_reg` FROM `users` WHERE `id` = "'.mysql_real_escape_string($user['host_reg']).'" LIMIT 1'));
 							if( isset($refer['id']) ) {
-								$r = '<span class=date>'.date('d.m.Y H:i').'</span> <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Банк</b> &laquo;XCombats&raquo; / Алхимик <b>'.$u->info['login'].'</b></u> сообщает: ';
+								$r = '<span class=date>'.date('d.m.Y H:i').'</span> <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Р‘Р°РЅРє</b> &laquo;XCombats&raquo; / РђР»С…РёРјРёРє <b>'.$u->info['login'].'</b></u> СЃРѕРѕР±С‰Р°РµС‚: ';
 								if($refer['sex'] == 1) {
-									$r .= 'Уважаемая';
+									$r .= 'РЈРІР°Р¶Р°РµРјР°СЏ';
 								}else{
-									$r .= 'Уважаемый';
+									$r .= 'РЈРІР°Р¶Р°РµРјС‹Р№';
 								}
 								$ubaref = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$refer['id'].'" ORDER BY `id` DESC LIMIT 1'));
 								if( isset($ubaref['id']) ) {
 									mysql_query('UPDATE `bank` SET `money2` = "'.mysql_real_escape_string($ubaref['money2']+round($_POST['buy4ekr']*0.05,2)).'" WHERE `id` = "'.$ubaref['id'].'" LIMIT 1');
 								}
-								$r .= ' <b>'.$refer['login'].'</b>, Ваш воспитанник &quot;'.$user['login'].'&quot; приобрел Ekr. и на Ваш банковский счет №'.(0+$ubaref['id']).' зачислено '.round($_POST['buy4ekr']*0.05,2).' Ekr. ';
+								$r .= ' <b>'.$refer['login'].'</b>, Р’Р°С€ РІРѕСЃРїРёС‚Р°РЅРЅРёРє &quot;'.$user['login'].'&quot; РїСЂРёРѕР±СЂРµР» Ekr. Рё РЅР° Р’Р°С€ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.(0+$ubaref['id']).' Р·Р°С‡РёСЃР»РµРЅРѕ '.round($_POST['buy4ekr']*0.05,2).' Ekr. ';
 								mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$refer['city']."','".$refer['room']."','','".$refer['login']."','".$r."','-1','5','0')");
 							}
 						}
 						
-						$r = '<span class=date>'.date('d.m.Y H:i').'</span> <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Банк</b> &laquo;XCombats&raquo; / Алхимик <b>'.$u->info['login'].'</b></u> сообщает: ';
+						$r = '<span class=date>'.date('d.m.Y H:i').'</span> <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Р‘Р°РЅРє</b> &laquo;XCombats&raquo; / РђР»С…РёРјРёРє <b>'.$u->info['login'].'</b></u> СЃРѕРѕР±С‰Р°РµС‚: ';
 						
 						if($user['sex'] == 1) {
-							$r .= 'Уважаемая';
+							$r .= 'РЈРІР°Р¶Р°РµРјР°СЏ';
 						}else{
-							$r .= 'Уважаемый';
+							$r .= 'РЈРІР°Р¶Р°РµРјС‹Р№';
 						}
 						
-						$r .= ' <b>'.$user['login'].'</b>, на Ваш банковский счет №'.$uba['id'].' зачислено '.$_POST['buy4ekr'].' Ekr. Благодарим Вас за покупку!';
+						$r .= ' <b>'.$user['login'].'</b>, РЅР° Р’Р°С€ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.$uba['id'].' Р·Р°С‡РёСЃР»РµРЅРѕ '.$_POST['buy4ekr'].' Ekr. Р‘Р»Р°РіРѕРґР°СЂРёРј Р’Р°СЃ Р·Р° РїРѕРєСѓРїРєСѓ!';
 						
 						mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$user['city']."','".$user['room']."','','".$user['login']."','".$r."','-1','5','0')");
 												
-						$text_msg = 'Алхимик <b>'.$u->info['login'].'</b> совершил продажу <b>'.$_POST['buy4ekr'].'</b> екр. (скидка '.$ba['procent'].'% , задолжность '.$ba['USD'].'$). Покупатель: '.$u->microLogin($uba['uid'],1).'. Банковский счет покупателя: № <b>'.$uba['id'].'</b>.';
+						$text_msg = 'РђР»С…РёРјРёРє <b>'.$u->info['login'].'</b> СЃРѕРІРµСЂС€РёР» РїСЂРѕРґР°Р¶Сѓ <b>'.$_POST['buy4ekr'].'</b> РµРєСЂ. (СЃРєРёРґРєР° '.$ba['procent'].'% , Р·Р°РґРѕР»Р¶РЅРѕСЃС‚СЊ '.$ba['USD'].'$). РџРѕРєСѓРїР°С‚РµР»СЊ: '.$u->microLogin($uba['uid'],1).'. Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ РїРѕРєСѓРїР°С‚РµР»СЏ: в„– <b>'.$uba['id'].'</b>.';
 						
 						$balance = mysql_fetch_array(mysql_query('SELECT SUM(`money`) FROM `balance_money` WHERE `cancel` = 0'));
 						$balance = $balance[0]+$money;
 						mysql_query('INSERT INTO `balance_money` (`time`,`ip`,`money`,`comment2`,`balance`,`cancel`) VALUES ("'.time().'","'.$u->info['ip'].'","'.mysql_real_escape_string((int)$money).'","'.mysql_real_escape_string($text_msg).'","'.$balance.'","'.time().'")');
 						
 					}else{
-						echo 'Сумма екр.:';
+						echo 'РЎСѓРјРјР° РµРєСЂ.:';
 						if(!isset($_POST['buy4ekr'])) {
-							echo '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <input name="buy4ekr" style="width:50px;" value="0.00" /> <input value="Далее" type="submit" /><br>';
+							echo '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <input name="buy4ekr" style="width:50px;" value="0.00" /> <input value="Р”Р°Р»РµРµ" type="submit" /><br>';
 						}else{
-							echo ' <b>'.round((int)$_POST['buy4ekr'],2).'</b> екр.<input name="buy4ekr" type="hidden" value="'.$_POST['buy4ekr'].'" />';
-							echo ' &nbsp; <input type="submit" name="buygoodluck" value="Совершить продажу">';
+							echo ' <b>'.round((int)$_POST['buy4ekr'],2).'</b> РµРєСЂ.<input name="buy4ekr" type="hidden" value="'.$_POST['buy4ekr'].'" />';
+							echo ' &nbsp; <input type="submit" name="buygoodluck" value="РЎРѕРІРµСЂС€РёС‚СЊ РїСЂРѕРґР°Р¶Сѓ">';
 						}
 					}
 				}
 			}
 			?>
-            <? if(isset($_POST['buy_ekr'])){ ?><input name="buy_ekr" type="hidden" value="<?=$_POST['buy_ekr']?>" /> <? }else{ ?>Перести екр. на счет: <input name="buy_ekr" style="width:50px;" value="<?=$_POST['buy_ekr']?>" /> <input value="Далее" type="submit" /><? } ?>
+            <? if(isset($_POST['buy_ekr'])){ ?><input name="buy_ekr" type="hidden" value="<?=$_POST['buy_ekr']?>" /> <? }else{ ?>РџРµСЂРµСЃС‚Рё РµРєСЂ. РЅР° СЃС‡РµС‚: <input name="buy_ekr" style="width:50px;" value="<?=$_POST['buy_ekr']?>" /> <input value="Р”Р°Р»РµРµ" type="submit" /><? } ?>
         	</form>
         </td>
     </tr>
@@ -154,10 +154,10 @@ if(isset($ba['id'])) {
 <?
 }
 
-echo "<br><h4><div align=left>Необходимые средства в работе алхимика</div></h4>";
+echo "<br><h4><div align=left>РќРµРѕР±С…РѕРґРёРјС‹Рµ СЃСЂРµРґСЃС‚РІР° РІ СЂР°Р±РѕС‚Рµ Р°Р»С…РёРјРёРєР°</div></h4>";
 
 $p['m1'] = 1;
-$srok = array(15=>'15 минут',30=>'30 минут',60=>'один час',180=>'три часа',360=>'шесть часов',720=>'двенадцать часов',1440=>'одни сутки',4320=>'трое суток');
+$srok = array(15=>'15 РјРёРЅСѓС‚',30=>'30 РјРёРЅСѓС‚',60=>'РѕРґРёРЅ С‡Р°СЃ',180=>'С‚СЂРё С‡Р°СЃР°',360=>'С€РµСЃС‚СЊ С‡Р°СЃРѕРІ',720=>'РґРІРµРЅР°РґС†Р°С‚СЊ С‡Р°СЃРѕРІ',1440=>'РѕРґРЅРё СЃСѓС‚РєРё',4320=>'С‚СЂРѕРµ СЃСѓС‚РѕРє');
 		
 	if(isset($_GET['usemod']))
 	{
@@ -170,11 +170,11 @@ $srok = array(15=>'15 минут',30=>'30 минут',60=>'один час',180=>'три часа',360=>
 		}
 	}
 if(isset($_POST['tologin'],$_POST['message'])) {
-  $u->send('',1,$infcity,'',htmlspecialchars($_POST['tologin'],NULL,'cp1251'),'<font color=darkblue>Сообщение телеграфом от </font> <b>'.$u->info['login'].'</b>: '.$_POST['message'].'',-1,6,0,0,0,1);
+  $u->send('',1,$infcity,'',htmlspecialchars($_POST['tologin'],NULL,'cp1251'),'<font color=darkblue>РЎРѕРѕР±С‰РµРЅРёРµ С‚РµР»РµРіСЂР°С„РѕРј РѕС‚ </font> <b>'.$u->info['login'].'</b>: '.$_POST['message'].'',-1,6,0,0,0,1);
 }
 ?>
 <table>
-<a href="#" onClick="openMod('<b>Заклятие молчания</b>','<form action=\'main.php?<? echo alhp.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Время заклятия: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'1440\'>Сутки</option></select> <input type=\'submit\' name=\'usem1\' value=\'Исп-ть\'></form>');"><img src="http://img.xcombats.com/i/items/sleep.gif" title="Заклятие молчания" /></a>
+<a href="#" onClick="openMod('<b>Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</b>','<form action=\'main.php?<? echo alhp.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Р’СЂРµРјСЏ Р·Р°РєР»СЏС‚РёСЏ: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'1440\'>РЎСѓС‚РєРё</option></select> <input type=\'submit\' name=\'usem1\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://img.xcombats.com/i/items/sleep.gif" title="Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ" /></a>
 &nbsp;
-<br><h4>Телеграф</h4><!--Вы можете отправить короткое сообщение любому персонажу, даже если он находится в offline или другом городе.-->
-<form method=post style="margin:5px;">Логин персонажа <input type=text size=20 name="tologin"> сообщение <input type=text size=80 name="message"> <input type=submit value="отправить"></form>
+<br><h4>РўРµР»РµРіСЂР°С„</h4><!--Р’С‹ РјРѕР¶РµС‚Рµ РѕС‚РїСЂР°РІРёС‚СЊ РєРѕСЂРѕС‚РєРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ Р»СЋР±РѕРјСѓ РїРµСЂСЃРѕРЅР°Р¶Сѓ, РґР°Р¶Рµ РµСЃР»Рё РѕРЅ РЅР°С…РѕРґРёС‚СЃСЏ РІ offline РёР»Рё РґСЂСѓРіРѕРј РіРѕСЂРѕРґРµ.-->
+<form method=post style="margin:5px;">Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р° <input type=text size=20 name="tologin"> СЃРѕРѕР±С‰РµРЅРёРµ <input type=text size=80 name="message"> <input type=submit value="РѕС‚РїСЂР°РІРёС‚СЊ"></form>

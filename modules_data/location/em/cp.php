@@ -32,9 +32,9 @@ if($u->room['file']=='em/cp') {
                       <div style="position: absolute; left: 4px; right: 0px; z-index: 1500; top: 5px;">
                       	<div id="frvrks" style="position:relative;"></div>
                       </div>
-                      <!-- <div style="position:absolute; left:166px; top:149px; width:27px; height:55px; z-index:99;"><img  src="http://img.xcombats.com/i/images/300x225/capital/2pm.gif" width="27" height="55" title="Памятник Мироздателю" /></div> -->
+                      <!-- <div style="position:absolute; left:166px; top:149px; width:27px; height:55px; z-index:99;"><img  src="http://img.xcombats.com/i/images/300x225/capital/2pm.gif" width="27" height="55" title="РџР°РјСЏС‚РЅРёРє РњРёСЂРѕР·РґР°С‚РµР»СЋ" /></div> -->
         
-                        <!-- <div style="position:absolute; left:100px; top:146px; width:75px; height:90px; z-index:99;"><img src="http://img.xcombats.com/i/images/300x225/capital/stellav.gif" width="75" height="90" title="Стела выбора" class="aFilter" /></div> -->
+                        <!-- <div style="position:absolute; left:100px; top:146px; width:75px; height:90px; z-index:99;"><img src="http://img.xcombats.com/i/images/300x225/capital/stellav.gif" width="75" height="90" title="РЎС‚РµР»Р° РІС‹Р±РѕСЂР°" class="aFilter" /></div> -->
                       <div style="position: absolute; left: 16px; top: 202px; width: 41px; height: 14px; z-index: 910;"><img class="aFilter"  src="http://img.xcombats.com/i/images/300x225/emerald/<?=$nd?>/em_left.gif" width="41" height="14" <? thisInfRm('1.180.0.x'); ?> /></div>
                       
                       <div style="position: absolute; left: 438px; top: 202px; width: 41px; height: 14px; z-index: 910;"><img class="aFilter"  src="http://img.xcombats.com/i/images/300x225/emerald/<?=$nd?>/em_right.gif" width="41" height="14" <? thisInfRm('7.180.0.387'); ?> /></div>
@@ -45,15 +45,15 @@ if($u->room['file']=='em/cp') {
                         
                       <!-- -->
                       <?
-					  //Праздничные здания
+					  //РџСЂР°Р·РґРЅРёС‡РЅС‹Рµ Р·РґР°РЅРёСЏ
 					  //if($u->info['admin'] > 0 ) {
-						  //Хэллоуин
+						  //РҐСЌР»Р»РѕСѓРёРЅ
 						 /* if( (date('m') == 11 && date('d') <= 6) || (date('m') == 10 && date('d') == 31) ) {
 						?>
-                        <div style="position: absolute; left: 230px; top: 162px; width: 32px; height: 43px; z-index: 91;"><img onclick="location.href='main.php?talk=5'" title="Диалог с Тыквоголовым" src="http://img.xcombats.com/loca/cp11/sun_pmd.gif" width="32" height="43" title="" class="aFilter" /></div>
+                        <div style="position: absolute; left: 230px; top: 162px; width: 32px; height: 43px; z-index: 91;"><img onclick="location.href='main.php?talk=5'" title="Р”РёР°Р»РѕРі СЃ РўС‹РєРІРѕРіРѕР»РѕРІС‹Рј" src="http://img.xcombats.com/loca/cp11/sun_pmd.gif" width="32" height="43" title="" class="aFilter" /></div>
                         <?  
 						  }elseif( date('m') == 12 || date('m') == 1 ) {
-							 //Елка НГ
+							 //Р•Р»РєР° РќР“
 						?>
 						<div style="position: absolute; left: 212px; top: 133px; width: 32px; height: 43px; z-index: 91;"><img <? thisInfRm('1.180.0.208'); ?> src="http://img.xcombats.com/newyear2014.png" width="60" height="90" title="" class="aFilter" /></div>
 						<?
@@ -67,10 +67,10 @@ if($u->room['file']=='em/cp') {
                       <div id="buttons_on_image" style="cursor:pointer; position:absolute; bottom:5px; right:25px; font-weight:bold; color:#D8D8D8; font-size:10px;">
                      	 <?
 						 if( date('H') >= 22 || date('H') < 6 ) {
-							 echo '<a style="color:#D8D8D8" style="cursor:pointer" onclick="top.useMagic(\'Нападение на персонажа\',\'night_atack\',\'pal_button8.gif\',1,\'main.php?nightatack=1\');">Напасть</a> &nbsp; ';
+							 echo '<a style="color:#D8D8D8" style="cursor:pointer" onclick="top.useMagic(\'РќР°РїР°РґРµРЅРёРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°\',\'night_atack\',\'pal_button8.gif\',1,\'main.php?nightatack=1\');">РќР°РїР°СЃС‚СЊ</a> &nbsp; ';
 						 }
 						 ?>
-                         <a style="color:#D8D8D8" href="http://xcombats.com/forum/" target="_blank">Форум</a>
+                         <a style="color:#D8D8D8" href="http://xcombats.com/forum/" target="_blank">Р¤РѕСЂСѓРј</a>
                       </div>
                     </div>
                     </td>
@@ -79,14 +79,14 @@ if($u->room['file']=='em/cp') {
                 <div style="display:none; height:0px " id="moveto"></div>     
               <div align="right" style="padding: 3px;"></div></td>
           <td>
-              <!-- <br /><span class="menutop"><nobr>Комната для новичков</nobr></span>-->
+              <!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ</nobr></span>-->
           </td>
         </tr>
       </table>
       	<small>
         <HR>
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
        <? echo $rowonmax; ?><BR>
         
       </div></td>

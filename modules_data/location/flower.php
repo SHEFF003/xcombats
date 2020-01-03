@@ -29,36 +29,36 @@ if($u->room['file']=='flower')
 		{
 			$re = $u->buyItem($sid,(int)$_GET['buy'],(int)$_GET['x'],'sudba='.$u->info['login'].'|frompisher='.$d->info['id2'].'|nosale=1');
 		}else{
-			$re = 'Вы уверены что хотите купить этот предмет?';
+			$re = 'Р’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ СЌС‚РѕС‚ РїСЂРµРґРјРµС‚?';
 		}
 	}elseif(isset($_GET['add_item_f'])) {
-		//Ложим предмет в магазин
+		//Р›РѕР¶РёРј РїСЂРµРґРјРµС‚ РІ РјР°РіР°Р·РёРЅ
 		$itm = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `data` LIKE "%fshop=%" AND `id` = "'.mysql_real_escape_string($_GET['add_item_f']).'" AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inShop` = "0" AND `inOdet` = "0" AND `inTransfer` = "0" LIMIT 1'));
 		if(!isset($itm['id'])) {
-			$re = 'Подходящий предмет не найден';
+			$re = 'РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ';
 		}else{
 			if($u->itemsX($itm['id'])==1) {
 				$itm_m = mysql_fetch_array(mysql_query('SELECT `name` FROM `items_main` WHERE `id` = "'.$itm['item_id'].'" LIMIT 1'));
 				mysql_query('UPDATE `items_users` SET `inShop` = "'.$sid.'" WHERE `id` = "'.$itm['id'].'" LIMIT 1');
-				$re = 'Предмет &quot;'.$itm_m['name'].'&quot; успешно добавлен';
+				$re = 'РџСЂРµРґРјРµС‚ &quot;'.$itm_m['name'].'&quot; СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ';
 			}else{
-				//группа
-				$re = 'Разделите группу предметов';
+				//РіСЂСѓРїРїР°
+				$re = 'Р Р°Р·РґРµР»РёС‚Рµ РіСЂСѓРїРїСѓ РїСЂРµРґРјРµС‚РѕРІ';
 			}
 		}
 	}elseif(isset($_GET['clear_itm_f'])){
-		//Ложим предмет в магазин
+		//Р›РѕР¶РёРј РїСЂРµРґРјРµС‚ РІ РјР°РіР°Р·РёРЅ
 		$itm = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `data` LIKE "%fshop=%" AND `id` = "'.mysql_real_escape_string($_GET['clear_itm_f']).'" AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inShop` = "'.$sid.'" AND `inOdet` = "0" AND `inTransfer` = "0" LIMIT 1'));
 		if(!isset($itm['id'])) {
-			$re = 'Подходящий предмет не найден';
+			$re = 'РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ';
 		}else{
 
 			$itm_m = mysql_fetch_array(mysql_query('SELECT `name` FROM `items_main` WHERE `id` = "'.$itm['item_id'].'" LIMIT 1'));
 			mysql_query('UPDATE `items_users` SET `inShop` = "0",`lastUPD` = "'.time().'" WHERE `id` = "'.$itm['id'].'" LIMIT 1');
-			$re = 'Предмет &quot;'.$itm_m['name'].'&quot; успешно убран';
+			$re = 'РџСЂРµРґРјРµС‚ &quot;'.$itm_m['name'].'&quot; СѓСЃРїРµС€РЅРѕ СѓР±СЂР°РЅ';
 		}
 	}elseif(isset($_GET['createFlowers'])) {
-		//Собираем букет
+		//РЎРѕР±РёСЂР°РµРј Р±СѓРєРµС‚
 		$vaza = false;
 		$rec1 = '';
 		$rec2 = '';
@@ -97,10 +97,10 @@ if($u->room['file']=='flower')
 				if(isset($itm['id'])) { 
 						if($vaza==true && isset($itm_data['data'])){ 
 								$itm_data = $u->lookStats($itm_data['data']);
-								$itm_data = array('srok'=>$itm_data['srok']); // Извлекаем только срок!
-								$itm_data['srok'] = (int)$itm_data['srok']; // Только Цифры!
+								$itm_data = array('srok'=>$itm_data['srok']); // РР·РІР»РµРєР°РµРј С‚РѕР»СЊРєРѕ СЃСЂРѕРє!
+								$itm_data['srok'] = (int)$itm_data['srok']; // РўРѕР»СЊРєРѕ Р¦РёС„СЂС‹!
 								if(isset($itm_data['srok']) and $itm_data['srok']>0){
-										$itm_data['srok'] = $itm_data['srok']*3; // В три раза больше срок хранения!
+										$itm_data['srok'] = $itm_data['srok']*3; // Р’ С‚СЂРё СЂР°Р·Р° Р±РѕР»СЊС€Рµ СЃСЂРѕРє С…СЂР°РЅРµРЅРёСЏ!
 										$itm_data = '|'.$u->impStats($itm_data);
 								}
 						} else {
@@ -109,15 +109,15 @@ if($u->room['file']=='flower')
 						
 						$u->addItem($itm['id'],$u->info['id'],$itm_data,NULL,NULL,true);
 						mysql_query('UPDATE `items_users` SET `delete` = "'.time().'",`inShop` = "0" WHERE '.$rec3.' LIMIT '.$rec3l);
-						$re = 'Предмет &quot;'.$itm['name'].'&quot; был успешно перемещен в инвентарь';
+						$re = 'РџСЂРµРґРјРµС‚ &quot;'.$itm['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РїРµСЂРµРјРµС‰РµРЅ РІ РёРЅРІРµРЅС‚Р°СЂСЊ';
 				}else{
-						$re = 'Не удалось получить предмет по рецепту...';
+						$re = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РїСЂРµРґРјРµС‚ РїРѕ СЂРµС†РµРїС‚Сѓ...';
 				}
 		} else {
 				if($u->info['admin']>0) {
 						echo '<div><b>ITM1:</b> '.$rec1.'</div><div><b>ITM2:</b> '.$rec2.'</div>';
 				}
-				$re = 'Подходящий рецепт не найден...';
+				$re = 'РџРѕРґС…РѕРґСЏС‰РёР№ СЂРµС†РµРїС‚ РЅРµ РЅР°Р№РґРµРЅ...';
 		}
 	}
 	
@@ -125,9 +125,9 @@ if($u->room['file']=='flower')
 	<script type="text/javascript">
 	function AddCount(name, txt)
 	{
-		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>Купить неск. штук</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
+		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>РљСѓРїРёС‚СЊ РЅРµСЃРє. С€С‚СѓРє</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
 		'<form method=post><table border=0 width=100% cellspacing=0 cellpadding=0 bgcolor="#FFF6DD"><tr><INPUT TYPE="hidden" name="set" value="'+name+'"><td colspan=2 align=center><B><I>'+txt+'</td></tr><tr><td width=80% align=right>'+
-		'Количество (шт.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" »» ">'+
+		'РљРѕР»РёС‡РµСЃС‚РІРѕ (С€С‚.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" В»В» ">'+
 		'</TD></TR></form></TABLE></td></tr></table>';
 		document.getElementById("hint4").style.visibility = 'visible';
 		document.getElementById("hint4").style.left = '100px';
@@ -179,7 +179,7 @@ if($u->room['file']=='flower')
 	}	
 	</style>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3">Цветочный магазин</div>
+	<tr><td valign="top"><div align="center" class="pH3">Р¦РІРµС‚РѕС‡РЅС‹Р№ РјР°РіР°Р·РёРЅ</div>
 	<?php
 	echo '<b style="color:red">'.$error.'</b>';
 	?>
@@ -188,17 +188,17 @@ if($u->room['file']=='flower')
 	<TR>
 	<form name="F1" method="post">
 	<TD valign="top" align="left">
-	<!--Магазин-->
+	<!--РњР°РіР°Р·РёРЅ-->
     <? if((int)$_GET['otdel']!=2){ ?>
 	<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#a5a5a5">
 	<div id="hint3" style="visibility:hidden"></div>
 	<tr>
 	<td align="center" height="21">
     <?php	
-		/*названия разделов (сверху)*/
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРІРµСЂС…Сѓ)*/
 		if(!isset($_GET['sale']) && !isset($_GET['gifts']) && isset($_GET['otdel'])) 
 		{
-			$otdels_small_array = array (1=>'<b>Отдел&nbsp;&quot;Общий зал&quot;</b>',2=>'<b>Отдел&nbsp;&quot;Составление букета&quot;</b>',3=>'<b>Отдел&nbsp;&quot;Венки&quot;</b>',4=>'<b>Отдел&nbsp;&quot;Вещи Валентая&quot;</b>',9=>'<b>Возможные&nbsp;букеты</b>');
+			$otdels_small_array = array (1=>'<b>РћС‚РґРµР»&nbsp;&quot;РћР±С‰РёР№ Р·Р°Р»&quot;</b>',2=>'<b>РћС‚РґРµР»&nbsp;&quot;РЎРѕСЃС‚Р°РІР»РµРЅРёРµ Р±СѓРєРµС‚Р°&quot;</b>',3=>'<b>РћС‚РґРµР»&nbsp;&quot;Р’РµРЅРєРё&quot;</b>',4=>'<b>РћС‚РґРµР»&nbsp;&quot;Р’РµС‰Рё Р’Р°Р»РµРЅС‚Р°СЏ&quot;</b>',9=>'<b>Р’РѕР·РјРѕР¶РЅС‹Рµ&nbsp;Р±СѓРєРµС‚С‹</b>');
 			if(isset($otdels_small_array[$_GET['otdel']]))
 			{
 				echo $otdels_small_array[$_GET['otdel']];	
@@ -207,10 +207,10 @@ if($u->room['file']=='flower')
 	?>
 	</tr>
 	<tr><td>
-	<!--Рюкзак / Прилавок-->
+	<!--Р СЋРєР·Р°Рє / РџСЂРёР»Р°РІРѕРє-->
 	<table width="100%" CELLSPACING="1" CELLPADDING="1" bgcolor="#a5a5a5">
     <?php
-		//Выводим вещи в магазине для покупки
+		//Р’С‹РІРѕРґРёРј РІРµС‰Рё РІ РјР°РіР°Р·РёРЅРµ РґР»СЏ РїРѕРєСѓРїРєРё
 		
 		
 		if(isset($_GET['otdel']) && $_GET['otdel']==9) {
@@ -227,10 +227,10 @@ if($u->room['file']=='flower')
 						<td width="300">';
 						$itm['srok'] = ($itm['srok']/60/60/24);
 						$is2.='<a target="_blank" href="http://xcombats.com/item/'.$pl['itm_add'].'">'.$itm['name'].'</a><br/>
-						    (Масса: 0.01)<br/>
-						    <b>Цена: '.$itm['price1'].' кр.</b><br/>
-						    Долговечность: 0/'.$itm['iznosMAXi'].'<br/>
-						    Срок годности: '.$itm['srok'].' дн.';
+						    (РњР°СЃСЃР°: 0.01)<br/>
+						    <b>Р¦РµРЅР°: '.$itm['price1'].' РєСЂ.</b><br/>
+						    Р”РѕР»РіРѕРІРµС‡РЅРѕСЃС‚СЊ: 0/'.$itm['iznosMAXi'].'<br/>
+						    РЎСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё: '.$itm['srok'].' РґРЅ.';
 						$is2.='</td>
 						<td>';
 						$treb = explode(',', $pl['itm_1']);
@@ -261,44 +261,44 @@ if($u->room['file']=='flower')
 	</TABLE>
     <? }else{
 	$itemsOk = $u->genInv(6,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" ORDER BY `lastUPD` DESC');
-	$itemsOk = $itemsOk[2]; //ингридиенты
-	$itemsAdd = ''; //выставленные предметы
-	$flowerAdd = ''; //выставленные ингридиенты
+	$itemsOk = $itemsOk[2]; //РёРЅРіСЂРёРґРёРµРЅС‚С‹
+	$itemsAdd = ''; //РІС‹СЃС‚Р°РІР»РµРЅРЅС‹Рµ РїСЂРµРґРјРµС‚С‹
+	$flowerAdd = ''; //РІС‹СЃС‚Р°РІР»РµРЅРЅС‹Рµ РёРЅРіСЂРёРґРёРµРЅС‚С‹
 	$sp = mysql_query('SELECT `u`.*,`m`.`name`,`m`.`type`,`m`.`img` FROM `items_users` AS `u` LEFT JOIN `items_main` AS `m` ON `u`.`item_id` = `m`.`id` WHERE `u`.`uid` = "'.$u->info['id'].'" AND `u`.`inShop` = "'.$sid.'" AND `u`.`delete` = "0" AND `u`.`data` LIKE "%fshop=1%"');
 	while($pl = mysql_fetch_array($sp)) {
-		$flowerAdd .= '<div style="float:left;width:80px;padding-bottom:5px;"><img src="http://img.xcombats.com/i/items/'.$pl['img'].'"><br>&nbsp;<input type="button" onclick="location=\'main.php?otdel=2&clear_itm_f='.$pl['id'].'&rnd='.$code.'\';return false;" value="Убрать"></div>';
+		$flowerAdd .= '<div style="float:left;width:80px;padding-bottom:5px;"><img src="http://img.xcombats.com/i/items/'.$pl['img'].'"><br>&nbsp;<input type="button" onclick="location=\'main.php?otdel=2&clear_itm_f='.$pl['id'].'&rnd='.$code.'\';return false;" value="РЈР±СЂР°С‚СЊ"></div>';
 	}
 	$sp = mysql_query('SELECT `u`.*,`m`.`name`,`m`.`type`,`m`.`img` FROM `items_users` AS `u` LEFT JOIN `items_main` AS `m` ON `u`.`item_id` = `m`.`id` WHERE `u`.`uid` = "'.$u->info['id'].'" AND `u`.`inShop` = "'.$sid.'" AND `u`.`delete` = "0" AND `u`.`data` LIKE "%fshop=2%"');
 	while($pl = mysql_fetch_array($sp)) {
-		$itemsAdd .= '<div style="float:left;width:80px;padding-top:5px;"><img src="http://img.xcombats.com/i/items/'.$pl['img'].'"><br>&nbsp;<input type="button" onclick="location=\'main.php?otdel=2&clear_itm_f='.$pl['id'].'&rnd='.$code.'\';return false;" value="Убрать"></div>';
+		$itemsAdd .= '<div style="float:left;width:80px;padding-top:5px;"><img src="http://img.xcombats.com/i/items/'.$pl['img'].'"><br>&nbsp;<input type="button" onclick="location=\'main.php?otdel=2&clear_itm_f='.$pl['id'].'&rnd='.$code.'\';return false;" value="РЈР±СЂР°С‚СЊ"></div>';
 	}
 	?>
     <table width="100%" style="border:1px solid #a5a5a5;" border="0" cellpadding="0" cellspacing="0" bgcolor="A5A5A5">
       <tr>
-        <td colspan="2" align="center"><b>Составление подарочного букета</b></td>
+        <td colspan="2" align="center"><b>РЎРѕСЃС‚Р°РІР»РµРЅРёРµ РїРѕРґР°СЂРѕС‡РЅРѕРіРѕ Р±СѓРєРµС‚Р°</b></td>
       </tr>
       <tr bgcolor="C7C7C7">
-        <td align="center" valign="top" width="180" nowrap="nowrap" ><b>Цветы для букета:</b><br />
+        <td align="center" valign="top" width="180" nowrap="nowrap" ><b>Р¦РІРµС‚С‹ РґР»СЏ Р±СѓРєРµС‚Р°:</b><br />
           <? echo $itemsAdd; ?>
           <br />
           <div style="float:left;width:180px;padding-top:5px;">
-          <input type="button"  style="width:170px;"value="Собрать букет" onclick="top.frames['main'].location='main.php?otdel=2&createFlowers';" />
+          <input type="button"  style="width:170px;"value="РЎРѕР±СЂР°С‚СЊ Р±СѓРєРµС‚" onclick="top.frames['main'].location='main.php?otdel=2&createFlowers';" />
           </div>
           </td>
           <td width="100%" align="left" valign="top">
-          <? if($flowerAdd == '') { ?>&nbsp;&nbsp;<center style="padding-right:180px;">Добавляйте сюда ингридиенты, из которых хотите составить букет</center>
+          <? if($flowerAdd == '') { ?>&nbsp;&nbsp;<center style="padding-right:180px;">Р”РѕР±Р°РІР»СЏР№С‚Рµ СЃСЋРґР° РёРЅРіСЂРёРґРёРµРЅС‚С‹, РёР· РєРѕС‚РѕСЂС‹С… С…РѕС‚РёС‚Рµ СЃРѕСЃС‚Р°РІРёС‚СЊ Р±СѓРєРµС‚</center>
           <? }else{ echo '<br>'.$flowerAdd; } ?> <br /></td>
       </tr>
       <tr>
-        <td colspan="2" align="center"><b>Цветы у вас в рюкзаке:</b></td>
+        <td colspan="2" align="center"><b>Р¦РІРµС‚С‹ Сѓ РІР°СЃ РІ СЂСЋРєР·Р°РєРµ:</b></td>
       </tr>
       <tr>
-        <td colspan="2"><!--Рюкзак-->
+        <td colspan="2"><!--Р СЋРєР·Р°Рє-->
           <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#A5A5A5">
             <tr>
               <td bgcolor="e2e0e0" align="center">			    
 				<? if($itemsOk==''){ ?>
-                <div style="padding:4px;">У вас нет подходящих предметов в рюкзаке</div>
+                <div style="padding:4px;">РЈ РІР°СЃ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ РІ СЂСЋРєР·Р°РєРµ</div>
                 <? }else{ echo $itemsOk; } ?>                
                 </td>
             </tr>
@@ -323,7 +323,7 @@ if($u->room['file']=='flower')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.11&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.11',1); ?>">Страшилкина улица</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.11&rnd=<? echo $code; ?>';" title="<? thisInfRm('1.180.0.11',1); ?>">РЎС‚СЂР°С€РёР»РєРёРЅР° СѓР»РёС†Р°</a></td>
 	</tr>
 	</table>
 	</td>
@@ -334,20 +334,20 @@ if($u->room['file']=='flower')
 	<div><br />
       <div align="right">
       <small>
-	  Масса: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
-	  У вас в наличии: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> кр.</b> &nbsp;
+	  РњР°СЃСЃР°: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
+	  РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> РєСЂ.</b> &nbsp;
       </small>
       </div>
 	  <br />
-    	<INPUT TYPE="button" value="Обновить" onclick="location = '<? echo $_SERVER['REQUEST_URI']; ?>';"><BR>
+    	<INPUT TYPE="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location = '<? echo $_SERVER['REQUEST_URI']; ?>';"><BR>
 	  </div>
-	<div style="background-color:#A5A5A5;padding:1"><center><B>Отделы магазина</B></center></div>
+	<div style="background-color:#A5A5A5;padding:1"><center><B>РћС‚РґРµР»С‹ РјР°РіР°Р·РёРЅР°</B></center></div>
 	<div style="line-height:17px;">
 	<?php
-		/*названия разделов (справа)*/
-		$otdels_array = array (1=>'Общий зал',2=>'Составление букета',3=>'Венки');
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРїСЂР°РІР°)*/
+		$otdels_array = array (1=>'РћР±С‰РёР№ Р·Р°Р»',2=>'РЎРѕСЃС‚Р°РІР»РµРЅРёРµ Р±СѓРєРµС‚Р°',3=>'Р’РµРЅРєРё');
 		if( $u->info['admin'] > 0 || ((int)date('m') == 2 && (int)date('d') >= 14) ) {
-			$otdels_array[4] = 'Вещи Валентая';
+			$otdels_array[4] = 'Р’РµС‰Рё Р’Р°Р»РµРЅС‚Р°СЏ';
 		}
 		$i=1;
 		while($i!=-1)
@@ -372,7 +372,7 @@ if($u->room['file']=='flower')
 		}
 		
 		if(isset($_GET['otdel']) && $_GET['otdel']==9){$color = 'C7C7C7';} else {$color = 'e2e0e0';}
-		echo '<div><A HREF="?otdel=9"><DIV style="background-color: #'.$color.'">Рецепты</A></DIV>';
+		echo '<div><A HREF="?otdel=9"><DIV style="background-color: #'.$color.'">Р РµС†РµРїС‚С‹</A></DIV>';
 		
 		
 		if(isset($_GET['gifts'])) 
@@ -381,7 +381,7 @@ if($u->room['file']=='flower')
 		}else{
 			$color = 'e2e0e0';	
 		}
-		//echo '<A HREF="?otdel=4&gifts=1"><DIV style="background-color: #'.$color.'">Подарить букет</A></DIV>';
+		//echo '<A HREF="?otdel=4&gifts=1"><DIV style="background-color: #'.$color.'">РџРѕРґР°СЂРёС‚СЊ Р±СѓРєРµС‚</A></DIV>';
 	?>
 	</div>
 	</td>

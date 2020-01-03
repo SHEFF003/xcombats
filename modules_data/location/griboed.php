@@ -15,7 +15,7 @@ if(isset($file) && $file[0]=='griboed.php')
 		if($u->newAct($_GET['sd4'])==true){
 			$re = $u->buyItem($sid,(int)$_GET['buy'],(int)$_GET['x'],'sudba='.$u->info['login'].'|frompisher='.$d->info['id2'].'|nosale=1');
 		}else{
-			$re = 'Вы уверены что хотите купить этот предмет?';
+			$re = 'Р’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ СЌС‚РѕС‚ РїСЂРµРґРјРµС‚?';
 		}
 	}elseif(isset($_GET['sale']) && isset($_GET['item']) && $u->newAct($_GET['sd4'])){
 		$id = (int)$_GET['item'];
@@ -29,15 +29,15 @@ if(isset($file) && $file[0]=='griboed.php')
 			$po['nosale'] = 1;
 		}
 		if( ($itm['gift'] != '' && $itm['gift'] != '0') && (  $itm['type'] == 37 || $itm['type'] ==  38 || $itm['type'] == 39 || $itm['type'] == 63 ) ) {
-			$error = 'Нельзя продавать подарки, они должны оставаться на память! :)';
+			$error = 'РќРµР»СЊР·СЏ РїСЂРѕРґР°РІР°С‚СЊ РїРѕРґР°СЂРєРё, РѕРЅРё РґРѕР»Р¶РЅС‹ РѕСЃС‚Р°РІР°С‚СЊСЃСЏ РЅР° РїР°РјСЏС‚СЊ! :)';
 		}elseif(isset($po['nosale'])){
-			$error = 'Не удалось продать предмет, запрет продажи данного предмета ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, Р·Р°РїСЂРµС‚ РїСЂРѕРґР°Р¶Рё РґР°РЅРЅРѕРіРѕ РїСЂРµРґРјРµС‚Р° ...';
 		}elseif($pl['type']<29 && ($po['srok'] > 0 || $pl['srok'] > 0) && $pl['type'] != 28){
-			$error = 'Не удалось продать предмет, вышел срок годности ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, РІС‹С€РµР» СЃСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё ...';
 		}elseif(isset($po['frompisher'])){
-			$error = 'Не удалось продать предмет, предмет из подземелья ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, РїСЂРµРґРјРµС‚ РёР· РїРѕРґР·РµРјРµР»СЊСЏ ...';
 		}elseif(isset($po['fromlaba'])){
-			$error = 'Не удалось продать предмет, предмет из лабиринта продается за воинственность ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, РїСЂРµРґРјРµС‚ РёР· Р»Р°Р±РёСЂРёРЅС‚Р° РїСЂРѕРґР°РµС‚СЃСЏ Р·Р° РІРѕРёРЅСЃС‚РІРµРЅРЅРѕСЃС‚СЊ ...';
 		}elseif(isset($itm['id'])){
 			if($itm['1price']>0){
 				$itm['price1'] = $itm['1price'];
@@ -80,18 +80,18 @@ if(isset($file) && $file[0]=='griboed.php')
 				$u->info['money'] += $shpCena;
 				$upd = mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				if($upd) {
-					$error = 'Вы успешно продали предмет &quot;'.$itm['name'].' (x'.$col.')&quot; за '.$shpCena.' кр.';
+					$error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРѕРґР°Р»Рё РїСЂРµРґРјРµС‚ &quot;'.$itm['name'].' (x'.$col.')&quot; Р·Р° '.$shpCena.' РєСЂ.';
 					mysql_query('UPDATE `items_users` SET `inGroup` = "0",`delete` = "'.time().'" WHERE `inGroup` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT '.$itm['group_max'].'');
-					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: Предмет &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] был продан в магазин за <B>'.$shpCena.' кр.</B>.',time(),$u->info['city'],'System.shop',0,0);
+					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] Р±С‹Р» РїСЂРѕРґР°РЅ РІ РјР°РіР°Р·РёРЅ Р·Р° <B>'.$shpCena.' РєСЂ.</B>.',time(),$u->info['city'],'System.shop',0,0);
 				} else {
-					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: Предмет &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] был продан в магазин за <B>'.$shpCena.' кр.</B> (кредиты не переведены).',time(),$u->info['city'],'System.shop',0,0);
-					$error = 'Не удалось продать предмет...';
+					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] Р±С‹Р» РїСЂРѕРґР°РЅ РІ РјР°РіР°Р·РёРЅ Р·Р° <B>'.$shpCena.' РєСЂ.</B> (РєСЂРµРґРёС‚С‹ РЅРµ РїРµСЂРµРІРµРґРµРЅС‹).',time(),$u->info['city'],'System.shop',0,0);
+					$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚...';
 				}
 			} else {
-				$error = 'Не удалось продать предмет...';
+				$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚...';
 			}
 		} else {
-			$error = 'Предмет не найден в инвентаре.';
+			$error = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ.';
 		}
 	} elseif(isset($_GET['sale']) && isset($_GET['item_rep']) && $u->newAct($_GET['sd4']) ) {
 		$id = (int)$_GET['item_rep'];
@@ -101,11 +101,11 @@ if(isset($file) && $file[0]=='griboed.php')
 			$po['nosale'] = 1;
 		}
 		if(isset($po['nosale'])){
-			$error = 'Не удалось продать предмет, запрет продажи данного предмета ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, Р·Р°РїСЂРµС‚ РїСЂРѕРґР°Р¶Рё РґР°РЅРЅРѕРіРѕ РїСЂРµРґРјРµС‚Р° ...';
 		}elseif($pl['type']<29 && ($po['srok'] > 0 || $pl['srok'] > 0)){
-			$error = 'Не удалось продать предмет, вышел срок годности ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, РІС‹С€РµР» СЃСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё ...';
 		}elseif(isset($po['frompisher'])){
-			$error = 'Не удалось продать предмет, предмет из подземелья ...';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРґР°С‚СЊ РїСЂРµРґРјРµС‚, РїСЂРµРґРјРµС‚ РёР· РїРѕРґР·РµРјРµР»СЊСЏ ...';
 		}elseif(isset($itm['id'])){
 			$shpCena = $itm['pricerep'];
 			
@@ -145,19 +145,19 @@ if(isset($file) && $file[0]=='griboed.php')
 				$u->rep['rep3'] += $shpCena;
 				$upd = mysql_query('UPDATE `rep` SET `rep3` = "'.$u->rep['rep3'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				if($upd){
-					$error = 'Вы успешно обменяли предмет &quot;'.$itm['name'].' (x'.$col.')&quot; на +'.$shpCena.' воинственности.<br>
-							  Ваша воинственность: '.($u->rep['rep3']-$u->rep['rep3_buy']).'';
+					$error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕР±РјРµРЅСЏР»Рё РїСЂРµРґРјРµС‚ &quot;'.$itm['name'].' (x'.$col.')&quot; РЅР° +'.$shpCena.' РІРѕРёРЅСЃС‚РІРµРЅРЅРѕСЃС‚Рё.<br>
+							  Р’Р°С€Р° РІРѕРёРЅСЃС‚РІРµРЅРЅРѕСЃС‚СЊ: '.($u->rep['rep3']-$u->rep['rep3_buy']).'';
 					mysql_query('UPDATE `items_users` SET `inGroup` = "0",`delete` = "'.time().'" WHERE `inGroup` = "'.$itm['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT '.$itm['group_max'].'');
-					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: Предмет &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] был продан в магазин за <B>'.$shpCena.' воинственность.</B>.',time(),$u->info['city'],'System.shop',0,0);
+					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] Р±С‹Р» РїСЂРѕРґР°РЅ РІ РјР°РіР°Р·РёРЅ Р·Р° <B>'.$shpCena.' РІРѕРёРЅСЃС‚РІРµРЅРЅРѕСЃС‚СЊ.</B>.',time(),$u->info['city'],'System.shop',0,0);
 				}else{
-					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: Предмет &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] был продан в магазин за <B>'.$shpCena.' воинственность.</B> (Репутация не переведена).',time(),$u->info['city'],'System.shop',0,0);
-					$error = 'Не удалось обменять предмет...';
+					$u->addDelo(2,$u->info['id'],'&quot;<font color="green">System.shop</font>&quot;: РџСЂРµРґРјРµС‚ &quot;'.$itm['name'].' (x'.$col.')&quot; [itm:'.$itm['id'].'] Р±С‹Р» РїСЂРѕРґР°РЅ РІ РјР°РіР°Р·РёРЅ Р·Р° <B>'.$shpCena.' РІРѕРёРЅСЃС‚РІРµРЅРЅРѕСЃС‚СЊ.</B> (Р РµРїСѓС‚Р°С†РёСЏ РЅРµ РїРµСЂРµРІРµРґРµРЅР°).',time(),$u->info['city'],'System.shop',0,0);
+					$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РѕР±РјРµРЅСЏС‚СЊ РїСЂРµРґРјРµС‚...';
 				}
 			}else{
-				$error = 'Не удалось обменять предмет...';
+				$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РѕР±РјРµРЅСЏС‚СЊ РїСЂРµРґРјРµС‚...';
 			}
 		}else{
-			$error = 'Подходящий предмет не найден в инвентаре.';
+			$error = 'РџРѕРґС…РѕРґСЏС‰РёР№ РїСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ РІ РёРЅРІРµРЅС‚Р°СЂРµ.';
 		}
 	}
 	
@@ -165,9 +165,9 @@ if(isset($file) && $file[0]=='griboed.php')
 	<script type="text/javascript">
 	function AddCount(name, txt)
 	{
-		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>Купить неск. штук</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
+		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>РљСѓРїРёС‚СЊ РЅРµСЃРє. С€С‚СѓРє</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
 		'<form method=post><table border=0 width=100% cellspacing=0 cellpadding=0 bgcolor="#FFF6DD"><tr><INPUT TYPE="hidden" name="set" value="'+name+'"><td colspan=2 align=center><B><I>'+txt+'</td></tr><tr><td width=80% align=right>'+
-		'Количество (шт.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" »» ">'+
+		'РљРѕР»РёС‡РµСЃС‚РІРѕ (С€С‚.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" В»В» ">'+
 		'</TD></TR></form></TABLE></td></tr></table>';
 		document.getElementById("hint4").style.visibility = 'visible';
 		document.getElementById("hint4").style.left = '100px';
@@ -227,20 +227,20 @@ if(isset($file) && $file[0]=='griboed.php')
 	<TR>
 	<form name="F1" method="post">
 	<TD valign="top" align="left">
-	<!--Магазин-->
+	<!--РњР°РіР°Р·РёРЅ-->
 	<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#a5a5a5">
 	<div id="hint3" style="visibility:hidden"></div>
 	<tr>
 	<td align="center" height="21">
     <?php	
-		/*названия разделов (сверху)*/
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРІРµСЂС…Сѓ)*/
 		if(!isset($_GET['sale']) && !isset($_GET['gifts']) && isset($_GET['otdel'])) {
 			$otdels_small_array = array (
 			'',
-			'<b>Отдел&nbsp;&quot;Пояса&quot;</b>',
-            '<b>Отдел&nbsp;&quot;Рубахи&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Кольца&quot;</b>',
-			'<b>Отдел&nbsp;&quot;Амуниция&quot;</b>'
+			'<b>РћС‚РґРµР»&nbsp;&quot;РџРѕСЏСЃР°&quot;</b>',
+            '<b>РћС‚РґРµР»&nbsp;&quot;Р СѓР±Р°С…Рё&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РљРѕР»СЊС†Р°&quot;</b>',
+			'<b>РћС‚РґРµР»&nbsp;&quot;РђРјСѓРЅРёС†РёСЏ&quot;</b>'
 			);
 			if(isset($otdels_small_array[$_GET['otdel']])){
 				echo $otdels_small_array[$_GET['otdel']];	
@@ -249,17 +249,17 @@ if(isset($file) && $file[0]=='griboed.php')
 	?>
 	</tr>
 	<tr><td>
-	<!--Рюкзак / Прилавок-->
+	<!--Р СЋРєР·Р°Рє / РџСЂРёР»Р°РІРѕРє-->
 	<table width="100%" CELLSPACING="1" CELLPADDING="1" bgcolor="#a5a5a5">
     <?php
 		if(!isset($_GET['sale'])){
-			//Выводим вещи в магазине для покупки
+			//Р’С‹РІРѕРґРёРј РІРµС‰Рё РІ РјР°РіР°Р·РёРЅРµ РґР»СЏ РїРѕРєСѓРїРєРё
 			$u->shopItems($sid);
 		}else{
-			//Выводим вещи в инвентаре для продажи
+			//Р’С‹РІРѕРґРёРј РІРµС‰Рё РІ РёРЅРІРµРЅС‚Р°СЂРµ РґР»СЏ РїСЂРѕРґР°Р¶Рё
 			$itmAll = $u->genInv(2,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" ORDER BY `lastUPD`  DESC');
 			if($itmAll[0]==0){
-				$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО</td></tr>';
+				$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ</td></tr>';
 			}else{
 				$itmAllSee = $itmAll[2];
 			}
@@ -287,7 +287,7 @@ if(isset($file) && $file[0]=='griboed.php')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?back=1&rnd=<?=$code?>';">Вернуться назад</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?back=1&rnd=<?=$code?>';">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</a></td>
 	</tr>
 	</table>
 	</td>
@@ -298,12 +298,12 @@ if(isset($file) && $file[0]=='griboed.php')
 	<div><br />
       <div align="right">
       <small>
-	  Масса: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
-	  У вас в наличии: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> кр.</b> &nbsp;
+	  РњР°СЃСЃР°: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
+	  РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> РєСЂ.</b> &nbsp;
       <?
 	  if($u->info['level'] < 8 && $c['zuby'] == true) {
 		?>
-        <br />Зубов: <?=$u->zuby($u->info['money4'])?> &nbsp; &nbsp;
+        <br />Р—СѓР±РѕРІ: <?=$u->zuby($u->info['money4'])?> &nbsp; &nbsp;
         <?  
 	  }
 	  ?>
@@ -311,26 +311,26 @@ if(isset($file) && $file[0]=='griboed.php')
       </div>
 	  <br />
 	  <?php
-	/*кнопочки*/
+	/*РєРЅРѕРїРѕС‡РєРё*/
 	/*if( !isset($_GET['sale']) ) {
-		echo '<INPUT class="btnnew" TYPE="button" value="Продать вещи" onclick="location=\'?otdel='.$_GET['otdel'].'&sale=1\'">&nbsp;';
+		echo '<INPUT class="btnnew" TYPE="button" value="РџСЂРѕРґР°С‚СЊ РІРµС‰Рё" onclick="location=\'?otdel='.$_GET['otdel'].'&sale=1\'">&nbsp;';
 	} else {
-		echo '<INPUT class="btnnew" TYPE="button" value="Купить вещи" onclick="location=\'?otdel='.$_GET['otdel'].'\'">&nbsp;';
+		echo '<INPUT class="btnnew" TYPE="button" value="РљСѓРїРёС‚СЊ РІРµС‰Рё" onclick="location=\'?otdel='.$_GET['otdel'].'\'">&nbsp;';
 	}*/
 	?>
-    <INPUT class="btnnew" TYPE="button" value="Обновить" onclick="location = '<? echo str_replace('item','',str_replace('buy','',$_SERVER['REQUEST_URI'])); ?>';"><BR>
+    <INPUT class="btnnew" TYPE="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location = '<? echo str_replace('item','',str_replace('buy','',$_SERVER['REQUEST_URI'])); ?>';"><BR>
 	  </div>
-	<div style="background-color:#A5A5A5;padding:1"><center><B>Отделы магазина</B></center></div>
+	<div style="background-color:#A5A5A5;padding:1"><center><B>РћС‚РґРµР»С‹ РјР°РіР°Р·РёРЅР°</B></center></div>
 	<div style="line-height:17px;">
     <style>.shop_menu_txt { background-color: #d5d5d5; }</style>
 	<?php
-		/*названия разделов (справа)*/
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРїСЂР°РІР°)*/
 		$otdels_array = array (
 		'',
-		'&nbsp;&nbsp;Пояса',
-		'&nbsp;&nbsp;Рубахи',
-		'&nbsp;&nbsp;Кольца',
-		'&nbsp;&nbsp;Амуниция',
+		'&nbsp;&nbsp;РџРѕСЏСЃР°',
+		'&nbsp;&nbsp;Р СѓР±Р°С…Рё',
+		'&nbsp;&nbsp;РљРѕР»СЊС†Р°',
+		'&nbsp;&nbsp;РђРјСѓРЅРёС†РёСЏ',
 		'');
 		$i=1;
 		while ($i!=-1)
@@ -344,11 +344,11 @@ if(isset($file) && $file[0]=='griboed.php')
 				$color = 'e2e0e0';
 				}
 			if($i == 1) {
-			  echo '<div class="shop_menu_txt"><img height="12" width="12" src="i/shop_ico/2.png"> <b>Одежда:</b></div>';
+			  echo '<div class="shop_menu_txt"><img height="12" width="12" src="i/shop_ico/2.png"> <b>РћРґРµР¶РґР°:</b></div>';
 			} elseif($i == 3) {
-			  echo '<div class="shop_menu_txt"><img height="12" width="12" src="i/shop_ico/4.png"> <b>Ювелирные товары:</b></div>';
+			  echo '<div class="shop_menu_txt"><img height="12" width="12" src="i/shop_ico/4.png"> <b>Р®РІРµР»РёСЂРЅС‹Рµ С‚РѕРІР°СЂС‹:</b></div>';
 			} elseif($i == 4) {
-			  echo '<div class="shop_menu_txt"><img height="12" width="12" src="i/shop_ico/7.png"> <b>Амуниция:</b></div>';
+			  echo '<div class="shop_menu_txt"><img height="12" width="12" src="i/shop_ico/7.png"> <b>РђРјСѓРЅРёС†РёСЏ:</b></div>';
 			}
 			echo '
 			<A HREF="?otdel='.$i.'"><DIV style="background-color: #'.$color.'">

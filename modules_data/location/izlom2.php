@@ -23,7 +23,7 @@ if(isset($_POST['level']))
 				echo '...';
 			}
 		}else{
-			echo '<font color="red"><b>Вы не можете начать новый поход пока действует эффект &quot;Касание Хаоса&quot;</b></font>';
+			echo '<font color="red"><b>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РЅР°С‡Р°С‚СЊ РЅРѕРІС‹Р№ РїРѕС…РѕРґ РїРѕРєР° РґРµР№СЃС‚РІСѓРµС‚ СЌС„С„РµРєС‚ &quot;РљР°СЃР°РЅРёРµ РҐР°РѕСЃР°&quot;</b></font>';
 		}
 	}
 }
@@ -72,7 +72,7 @@ if(isset($_POST['level']))
 	<div align="right"><? if($re!=''){ echo '<font color="red"><b>'.$re.'</b></font>'; } ?></div>
 	<div id="hint3" style="visibility:hidden"></div>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3">Излом Хаоса</div>
+	<tr><td valign="top"><div align="center" class="pH3">РР·Р»РѕРј РҐР°РѕСЃР°</div>
 	<td width="280" valign="top"><table cellspacing="0" cellpadding="0">
 		<tr>
 		  <td width="100%">&nbsp;</td>
@@ -86,11 +86,11 @@ if(isset($_POST['level']))
 						<td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 							<tr>
 							  <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.353&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.353',1); ?>">Излом Хаоса - 16</a></td>
+							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.353&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.353',1); ?>">РР·Р»РѕРј РҐР°РѕСЃР° - 16</a></td>
 							</tr>
 							<tr>
 							  <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.270&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.270',1); ?>">Магазин Излома</a></td>
+							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.270&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.270',1); ?>">РњР°РіР°Р·РёРЅ РР·Р»РѕРјР°</a></td>
 							</tr>
 						</table></td>
 					  </tr>					  <tr>
@@ -107,10 +107,10 @@ if(isset($_POST['level']))
 	<div id="textgo" style="visibility:hidden;"></div>
 <FORM method="post">
     <input checked="checked" type="radio" name="level" value="7" <? if($u->info['level']<7){ echo 'disabled'; } ?>>
-    Проход в &laquo;Излом Хаоса&raquo;<br/>
-    <INPUT type='submit' value='Начать поход'>
+    РџСЂРѕС…РѕРґ РІ &laquo;РР·Р»РѕРј РҐР°РѕСЃР°&raquo;<br/>
+    <INPUT type='submit' value='РќР°С‡Р°С‚СЊ РїРѕС…РѕРґ'>
 </FORM>	
-  <p><b>Рейтинг походов &laquo;Излом Хаоса&raquo;:</b><br /><?
+  <p><b>Р РµР№С‚РёРЅРі РїРѕС…РѕРґРѕРІ &laquo;РР·Р»РѕРј РҐР°РѕСЃР°&raquo;:</b><br /><?
   $i = 0; $sp = mysql_query('SELECT * FROM `izlom_rating` ORDER BY `voln` DESC LIMIT 50');
   $uidz = array();
   while($pl = mysql_fetch_array($sp))
@@ -118,12 +118,12 @@ if(isset($_POST['level']))
 	  if(!isset($uidz[$pl['uid']]))
 	  {
 	  	$i++; $uidz[$pl['uid']] = $i;
-	  	$text .= $i.'. <span class="date">'.date('d.m.Y H:i',$pl['time']).'</span>, Волна: <b>'.$pl['voln'].'</b>, '.$u->microLogin($pl['uid'],1).'<br>';
+	  	$text .= $i.'. <span class="date">'.date('d.m.Y H:i',$pl['time']).'</span>, Р’РѕР»РЅР°: <b>'.$pl['voln'].'</b>, '.$u->microLogin($pl['uid'],1).'<br>';
 	  }
   }
   if(!isset($text))
   {
-	 $text = 'История пуста, скорее всего не нашлось смельчаков...'; 
+	 $text = 'РСЃС‚РѕСЂРёСЏ РїСѓСЃС‚Р°, СЃРєРѕСЂРµРµ РІСЃРµРіРѕ РЅРµ РЅР°С€Р»РѕСЃСЊ СЃРјРµР»СЊС‡Р°РєРѕРІ...'; 
   }
   echo $text;
   unset($text);

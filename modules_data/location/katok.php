@@ -9,10 +9,10 @@ $tcount = 0 + $tcount[0];
 //	
 if(isset($_POST['join'])) {
 	if($tcount >= 12) {
-		$u->error = 'Группа сформирована! Сечас начнется этот туринр и вы сможете подать заявку на новый!';
+		$u->error = 'Р“СЂСѓРїРїР° СЃС„РѕСЂРјРёСЂРѕРІР°РЅР°! РЎРµС‡Р°СЃ РЅР°С‡РЅРµС‚СЃСЏ СЌС‚РѕС‚ С‚СѓСЂРёРЅСЂ Рё РІС‹ СЃРјРѕР¶РµС‚Рµ РїРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° РЅРѕРІС‹Р№!';
 	}elseif(!isset($ku['id'])) {
 		//
-		$team = 0; //Не профессиональный турнир
+		$team = 0; //РќРµ РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹Р№ С‚СѓСЂРЅРёСЂ
 		//
 		mysql_query('INSERT INTO `katok_zv` (
 			`uid`,`time`,`team`
@@ -25,29 +25,29 @@ if(isset($_POST['join'])) {
 			$tcount++;
 		}
 		//
-		$u->error = 'Вы успешно приняли заявку на участие в турнире!';
+		$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРЅСЏР»Рё Р·Р°СЏРІРєСѓ РЅР° СѓС‡Р°СЃС‚РёРµ РІ С‚СѓСЂРЅРёСЂРµ!';
 	}
 }elseif(isset($_POST['cancel'])) {
 	if(isset($ku['id'])) {
 		mysql_query('DELETE FROM `katok_zv` WHERE `uid` = "'.$u->info['id'].'"');
 		unset($ku);
 		$tcount--;
-		$u->error = 'Вы отменили заявку на участие в турнире.';
+		$u->error = 'Р’С‹ РѕС‚РјРµРЅРёР»Рё Р·Р°СЏРІРєСѓ РЅР° СѓС‡Р°СЃС‚РёРµ РІ С‚СѓСЂРЅРёСЂРµ.';
 	}
 }
 
 if($tcount >= 6 ) {
 	
-	//Создаем пещеру
+	//РЎРѕР·РґР°РµРј РїРµС‰РµСЂСѓ
 	mysql_query('INSERT INTO `dungeon_now` (
 		`id2` , `name` , `time_start` , `time_finish` , `uid` , `city` , `type` , `bsid`
 	) VALUES (
-		"15" , "Хоккей" , "'.time().'" , "0" , "0" , "'.$u->info['city'].'" , "0" , "2015"
+		"15" , "РҐРѕРєРєРµР№" , "'.time().'" , "0" , "0" , "'.$u->info['city'].'" , "0" , "2015"
 	)');
 	$dnew = mysql_insert_id();	
 	
-	//Расставляем обьекты: Сундуки, Ворота + Шайба (должна быть предметом) , Полынь , Двери
-	//Добавляем обьекты
+	//Р Р°СЃСЃС‚Р°РІР»СЏРµРј РѕР±СЊРµРєС‚С‹: РЎСѓРЅРґСѓРєРё, Р’РѕСЂРѕС‚Р° + РЁР°Р№Р±Р° (РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїСЂРµРґРјРµС‚РѕРј) , РџРѕР»С‹РЅСЊ , Р”РІРµСЂРё
+	//Р”РѕР±Р°РІР»СЏРµРј РѕР±СЊРµРєС‚С‹
     $vls32 = '';
 	$sphj = mysql_query('SELECT * FROM `dungeon_obj` WHERE `for_dn` = "15"');
 	while($plhj = mysql_fetch_array($sphj)) {
@@ -60,10 +60,10 @@ if($tcount >= 6 ) {
 	unset($vls32,$ins232);
 
 	
-	//Расставляем тренеров
+	//Р Р°СЃСЃС‚Р°РІР»СЏРµРј С‚СЂРµРЅРµСЂРѕРІ
 	
 	
-	//Расставляем игроков (создаем ботов и кидаем их на позиции) и вселяем игроков + телепортация в хоккей
+	//Р Р°СЃСЃС‚Р°РІР»СЏРµРј РёРіСЂРѕРєРѕРІ (СЃРѕР·РґР°РµРј Р±РѕС‚РѕРІ Рё РєРёРґР°РµРј РёС… РЅР° РїРѕР·РёС†РёРё) Рё РІСЃРµР»СЏРµРј РёРіСЂРѕРєРѕРІ + С‚РµР»РµРїРѕСЂС‚Р°С†РёСЏ РІ С…РѕРєРєРµР№
 	$sp = mysql_query('SELECT * FROM `katok_zv`');
 	$tmr = rand(1,2);
 	while($pl = mysql_fetch_array($sp)) {
@@ -76,7 +76,7 @@ if($tcount >= 6 ) {
 			}
 			//
 			$pl['team'] = $tmr;
-			//Создаем бота + выдаем предметы
+			//РЎРѕР·РґР°РµРј Р±РѕС‚Р° + РІС‹РґР°РµРј РїСЂРµРґРјРµС‚С‹
 			if( $bus['align'] >= 1 && $bus['align'] < 2 ) {
 				$bus['align'] = 1;
 			}elseif( $bus['align'] >= 3 && $bus['align'] < 4 ) {
@@ -96,11 +96,11 @@ if($tcount >= 6 ) {
 			mysql_query('INSERT INTO `users` (`obraz`,`chatColor`,`align`,`inTurnir`,`molch1`,`molch2`,`activ`,`login`,`room`,`name`,`sex`,`level`,`bithday`) VALUES (
 				"'.$obraz.'","'.$bus['chatColor'].'","'.$bus['align'].'","'.$pl['id'].'","'.$bus['molch1'].'","'.$bus['molch2'].'","0","'.$bus['login'].'","411","'.$bus['name'].'","'.$bus['sex'].'","4","'.date('d.m.Y').'")');
 			//
-			$inbot = mysql_insert_id(); //айди бота
+			$inbot = mysql_insert_id(); //Р°Р№РґРё Р±РѕС‚Р°
 			if( $inbot > 0 ) {
-				//Бот
+				//Р‘РѕС‚
 				$mp = rand(0,count($mapu)-1);
-				// X: 9,Y: 14 или 1 , 0
+				// X: 9,Y: 14 РёР»Рё 1 , 0
 				if( $pl['team'] == 1 ) {
 					$x1 = 1;
 					$y1 = 0;
@@ -121,7 +121,7 @@ if($tcount >= 6 ) {
 					"s1=3|s2=3|s3=3|s4=7|s5=0|s6=0|rinv=40|m9=5|m6=10","0",
 					"39","5","'.$x1.'","'.$y1.'"
 				)');
-				//Выдаем амуницию
+				//Р’С‹РґР°РµРј Р°РјСѓРЅРёС†РёСЋ
 				$u->addItem(4815,$inbot);
 				if($pl['team'] == 1) {
 					$u->addItem(4816,$inbot);
@@ -140,14 +140,14 @@ if($tcount >= 6 ) {
 				mysql_query('UPDATE `users` SET `room` = "410", `inUser` = "'.$inbot.'" WHERE `id` = "'.$bus['id'].'" LIMIT 1');
 				//
 			}
-			//Добавляем путы
+			//Р”РѕР±Р°РІР»СЏРµРј РїСѓС‚С‹
 			//
 			mysql_query('INSERT INTO `eff_users` (`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`,`img2`) VALUES (
-				"2","'.$inbot.'","Путы","add_speedhp=30000|add_speedmp=30000|puti='.(time()+180).'","1","'.(time()+180).'","chains.gif"
+				"2","'.$inbot.'","РџСѓС‚С‹","add_speedhp=30000|add_speedmp=30000|puti='.(time()+180).'","1","'.(time()+180).'","chains.gif"
 			) ');
 			//			
 		}
-		//Удаляем заявку
+		//РЈРґР°Р»СЏРµРј Р·Р°СЏРІРєСѓ
 		mysql_query('DELETE FROM `katok_zv` WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 		//
 		mysql_query('INSERT INTO `katok_now` (
@@ -157,7 +157,7 @@ if($tcount >= 6 ) {
 		)');
 		//
 	}	
-	die('<font color=red>Начало матча...</font><script>setTimeout("location.href=\'/main.php\';",2000);</script>');
+	die('<font color=red>РќР°С‡Р°Р»Рѕ РјР°С‚С‡Р°...</font><script>setTimeout("location.href=\'/main.php\';",2000);</script>');
 }
 
 ?>
@@ -185,19 +185,19 @@ body {
       <tr>
         <td valign="top"><form id="from" autocomplete="off" name="from" action="main.php?join=<? echo $code; ?>" method="post">
           <fieldset style='padding-left: 5; width=50%'>
-            <legend><b> Группа </b></legend>
-            <b>Всего заявок:</b> <?=$tcount?> &nbsp; <? if(!isset($ku['id'])){ ?><input type="submit" name="join" value="Присоед." /><? }else{ ?><input type="submit" name="cancel" value="Отменить" /><? } ?> &nbsp; <input onclick="location.href='/main.php';" type="button" name="cancel" value="Обновить" />
+            <legend><b> Р“СЂСѓРїРїР° </b></legend>
+            <b>Р’СЃРµРіРѕ Р·Р°СЏРІРѕРє:</b> <?=$tcount?> &nbsp; <? if(!isset($ku['id'])){ ?><input type="submit" name="join" value="РџСЂРёСЃРѕРµРґ." /><? }else{ ?><input type="submit" name="cancel" value="РћС‚РјРµРЅРёС‚СЊ" /><? } ?> &nbsp; <input onclick="location.href='/main.php';" type="button" name="cancel" value="РћР±РЅРѕРІРёС‚СЊ" />
           </fieldset>
         </form></td>
       </tr>
     </table>
     <br />
-    <b>Правила участия:</b><br />
-    <br /><font color=red>&bull; На время тестов требуется 6 игроков для старта!</font><br />
-	&bull; Для начала игры необходимо набрать 12 заявок - это 2 команды по 6 участников. Уровень игроков значения не имеет т.к. в начале игры все персонажи переселяются в новые тела [4] уровня. 
-	<Br />&bull; Как только набирается 12 заявок, автоматически создаётся 2 команды и начинается Матч. Игроки распределяются в команды рандомно.
-    <br />&bull; Задержка на посещение 1 час после выхода с хоккея, если вы вышли во время игры, тогда вы не сможете посещать каток еще 4 часа.
-    <br />&bull; Вы не сможете выйти с катка пока не завершится игра
+    <b>РџСЂР°РІРёР»Р° СѓС‡Р°СЃС‚РёСЏ:</b><br />
+    <br /><font color=red>&bull; РќР° РІСЂРµРјСЏ С‚РµСЃС‚РѕРІ С‚СЂРµР±СѓРµС‚СЃСЏ 6 РёРіСЂРѕРєРѕРІ РґР»СЏ СЃС‚Р°СЂС‚Р°!</font><br />
+	&bull; Р”Р»СЏ РЅР°С‡Р°Р»Р° РёРіСЂС‹ РЅРµРѕР±С…РѕРґРёРјРѕ РЅР°Р±СЂР°С‚СЊ 12 Р·Р°СЏРІРѕРє - СЌС‚Рѕ 2 РєРѕРјР°РЅРґС‹ РїРѕ 6 СѓС‡Р°СЃС‚РЅРёРєРѕРІ. РЈСЂРѕРІРµРЅСЊ РёРіСЂРѕРєРѕРІ Р·РЅР°С‡РµРЅРёСЏ РЅРµ РёРјРµРµС‚ С‚.Рє. РІ РЅР°С‡Р°Р»Рµ РёРіСЂС‹ РІСЃРµ РїРµСЂСЃРѕРЅР°Р¶Рё РїРµСЂРµСЃРµР»СЏСЋС‚СЃСЏ РІ РЅРѕРІС‹Рµ С‚РµР»Р° [4] СѓСЂРѕРІРЅСЏ. 
+	<Br />&bull; РљР°Рє С‚РѕР»СЊРєРѕ РЅР°Р±РёСЂР°РµС‚СЃСЏ 12 Р·Р°СЏРІРѕРє, Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё СЃРѕР·РґР°С‘С‚СЃСЏ 2 РєРѕРјР°РЅРґС‹ Рё РЅР°С‡РёРЅР°РµС‚СЃСЏ РњР°С‚С‡. РРіСЂРѕРєРё СЂР°СЃРїСЂРµРґРµР»СЏСЋС‚СЃСЏ РІ РєРѕРјР°РЅРґС‹ СЂР°РЅРґРѕРјРЅРѕ.
+    <br />&bull; Р—Р°РґРµСЂР¶РєР° РЅР° РїРѕСЃРµС‰РµРЅРёРµ 1 С‡Р°СЃ РїРѕСЃР»Рµ РІС‹С…РѕРґР° СЃ С…РѕРєРєРµСЏ, РµСЃР»Рё РІС‹ РІС‹С€Р»Рё РІРѕ РІСЂРµРјСЏ РёРіСЂС‹, С‚РѕРіРґР° РІС‹ РЅРµ СЃРјРѕР¶РµС‚Рµ РїРѕСЃРµС‰Р°С‚СЊ РєР°С‚РѕРє РµС‰Рµ 4 С‡Р°СЃР°.
+    <br />&bull; Р’С‹ РЅРµ СЃРјРѕР¶РµС‚Рµ РІС‹Р№С‚Рё СЃ РєР°С‚РєР° РїРѕРєР° РЅРµ Р·Р°РІРµСЂС€РёС‚СЃСЏ РёРіСЂР°
     </td>
     <td width="200" valign="top"><div align="right">
       <table cellspacing="0" cellpadding="0">
@@ -214,7 +214,7 @@ body {
                         <td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                             <tr>
 								<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-								<td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.323&rnd=<? echo $code; ?>';">Выход с катка</a></td>
+								<td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=1.180.0.323&rnd=<? echo $code; ?>';">Р’С‹С…РѕРґ СЃ РєР°С‚РєР°</a></td>
                             </tr>
                         </table>
 						</td>

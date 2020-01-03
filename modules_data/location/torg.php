@@ -25,7 +25,7 @@ if($u->room['file']=='torg')
 
 <div style="position:absolute; left:118px; top:175px; width:101px; height:37px; z-index:90;"><img  <? thisInfRm('1.180.0.222'); ?> onclick="location='main.php?loc=1.180.0.222';" onmouseover="this.className='aFilterhover';" onmouseout="this.className='aFilter';" src="http://img.xcombats.com/i/images/300x225/map_sec3.gif" width="101" height="37"  class="aFilter"  /></div>
 					  
-                      <div style="position:absolute; left:251px; top:181px; width:16px; height:18px; z-index:90;"><img src="http://img.xcombats.com/i/images/300x225/fl1.gif" width="16" height="18" title="Вы находитесь в '<? echo $u->room['name']; ?>'" /></div>
+                      <div style="position:absolute; left:251px; top:181px; width:16px; height:18px; z-index:90;"><img src="http://img.xcombats.com/i/images/300x225/fl1.gif" width="16" height="18" title="Р’С‹ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ '<? echo $u->room['name']; ?>'" /></div>
 					  <div style="position:absolute; left:281px; top:173px; width:122px; height:31px; z-index:90;"><img onmouseover="this.className='aFilterhover';" onmouseout="this.className='aFilter';" src="http://img.xcombats.com/i/images/300x225/map_sec5.gif" width="122" height="31"  class="aFilter"  /></div>
                       <div style="position:absolute; left:23px; top:116px; width:120px; height:35px; z-index:90;"><img <? thisInfRm('1.180.0.220'); ?> onclick="location='main.php?loc=1.180.0.220';" onmouseover="this.className='aFilterhover';" onmouseout="this.className='aFilter';" src="http://img.xcombats.com/i/images/300x225/map_2stair.gif" width="120" height="35"  class="aFilter"  /></div>
                      
@@ -42,32 +42,32 @@ if($u->room['file']=='torg')
                   </tr>
                 </table>  
                 <div style="display:none; height:0px " id="moveto"></div>      
-              <div align="right" style="padding: 3px;"><small>&laquo;<? echo $c['title3']; ?>&raquo; приветствует Вас, <b><? echo $u->info['login']; ?></b>.<br />
+              <div align="right" style="padding: 3px;"><small>&laquo;<? echo $c['title3']; ?>&raquo; РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ Р’Р°СЃ, <b><? echo $u->info['login']; ?></b>.<br />
 			  	<?php
              	 if($u->info['level']<6) 
               	 {
                	 	echo '
-                 	Вам все время кажется что за вами следят? Чудится, что случайный попутчик мечтает всадить вам топор в спину? При совершении очередной покупки в гос. магазине мучает ощущение, что вас обманули? Кажется, что симпатичная девушка напротив смотрит на вас как на пищу? Успокойтесь, это не паранойя. Это реалии Capital city. Города Тьмы.
+                 	Р’Р°Рј РІСЃРµ РІСЂРµРјСЏ РєР°Р¶РµС‚СЃСЏ С‡С‚Рѕ Р·Р° РІР°РјРё СЃР»РµРґСЏС‚? Р§СѓРґРёС‚СЃСЏ, С‡С‚Рѕ СЃР»СѓС‡Р°Р№РЅС‹Р№ РїРѕРїСѓС‚С‡РёРє РјРµС‡С‚Р°РµС‚ РІСЃР°РґРёС‚СЊ РІР°Рј С‚РѕРїРѕСЂ РІ СЃРїРёРЅСѓ? РџСЂРё СЃРѕРІРµСЂС€РµРЅРёРё РѕС‡РµСЂРµРґРЅРѕР№ РїРѕРєСѓРїРєРё РІ РіРѕСЃ. РјР°РіР°Р·РёРЅРµ РјСѓС‡Р°РµС‚ РѕС‰СѓС‰РµРЅРёРµ, С‡С‚Рѕ РІР°СЃ РѕР±РјР°РЅСѓР»Рё? РљР°Р¶РµС‚СЃСЏ, С‡С‚Рѕ СЃРёРјРїР°С‚РёС‡РЅР°СЏ РґРµРІСѓС€РєР° РЅР°РїСЂРѕС‚РёРІ СЃРјРѕС‚СЂРёС‚ РЅР° РІР°СЃ РєР°Рє РЅР° РїРёС‰Сѓ? РЈСЃРїРѕРєРѕР№С‚РµСЃСЊ, СЌС‚Рѕ РЅРµ РїР°СЂР°РЅРѕР№СЏ. Р­С‚Рѕ СЂРµР°Р»РёРё Capital city. Р“РѕСЂРѕРґР° РўСЊРјС‹.
                  	';
                  }else{
-                 	echo 'Возможно, вы ошиблись этажом - настоящие сражения проходят этажом выше.';
+                 	echo 'Р’РѕР·РјРѕР¶РЅРѕ, РІС‹ РѕС€РёР±Р»РёСЃСЊ СЌС‚Р°Р¶РѕРј - РЅР°СЃС‚РѕСЏС‰РёРµ СЃСЂР°Р¶РµРЅРёСЏ РїСЂРѕС…РѕРґСЏС‚ СЌС‚Р°Р¶РѕРј РІС‹С€Рµ.';
                  } ?>
             </small></div></td>
           <td>
-              <!-- <br /><span class="menutop"><nobr>Комната для новичков</nobr></span>-->
+              <!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ</nobr></span>-->
           </td>
         </tr>
       </table>
       	<small>
         <HR>
-		  <? $hgo = $u->testHome(); if(!isset($hgo['id'])){ ?><INPUT onclick="location.href='main.php?homeworld=<? echo $code; ?>';" class="btn" value="Возврат" type="button" name="combats2"><? } unset($hgo); ?>
-          <INPUT onclick="location.href='main.php?clubmap=<? echo $code; ?>';" class="btn" value="Карта клуба" type="button" name="combats2">
-          <INPUT id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Форум" type="button" name="forum">
-          <INPUT class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="Подсказка" type="button">
-          <INPUT class="btn" value="Объекты" type="button">
+		  <? $hgo = $u->testHome(); if(!isset($hgo['id'])){ ?><INPUT onclick="location.href='main.php?homeworld=<? echo $code; ?>';" class="btn" value="Р’РѕР·РІСЂР°С‚" type="button" name="combats2"><? } unset($hgo); ?>
+          <INPUT onclick="location.href='main.php?clubmap=<? echo $code; ?>';" class="btn" value="РљР°СЂС‚Р° РєР»СѓР±Р°" type="button" name="combats2">
+          <INPUT id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Р¤РѕСЂСѓРј" type="button" name="forum">
+          <INPUT class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="РџРѕРґСЃРєР°Р·РєР°" type="button">
+          <INPUT class="btn" value="РћР±СЉРµРєС‚С‹" type="button">
         <br />
-        <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<BR>
-        <em>Администрация.</em></small> <BR>
+        <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° "РЅРѕРІС‹Р№ РіРѕСЂРѕРґ", "Р»РѕС‚РµСЂРµСЏ", "С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ". РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<BR>
+        <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <BR>
        <? echo $rowonmax; ?><BR>
         
       </div></td>
