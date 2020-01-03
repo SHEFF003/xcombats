@@ -1,8 +1,8 @@
 <?php
 /*
 
-	Обновление данных о курсе внутреней валюты
-ыыыы
+	РћР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ РєСѓСЂСЃРµ РІРЅСѓС‚СЂРµРЅРµР№ РІР°Р»СЋС‚С‹
+С‹С‹С‹С‹
 */
 
 die();
@@ -17,9 +17,9 @@ function error($e)
 	 global $c;
 	 die('<html><head>
 	 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-	 <meta http-equiv="Content-Language" content="ru"><TITLE>Активация игрового аккаунта</TITLE></HEAD>
+	 <meta http-equiv="Content-Language" content="ru"><TITLE>РђРєС‚РёРІР°С†РёСЏ РёРіСЂРѕРІРѕРіРѕ Р°РєРєР°СѓРЅС‚Р°</TITLE></HEAD>
 	 <BODY text="#FFFFFF"><p><font color=black>
-	 Произошло событие: <pre>'.$e.'</pre><b><p><a href="http://xcombats.com/">Назад</b></a><HR>
+	 РџСЂРѕРёР·РѕС€Р»Рѕ СЃРѕР±С‹С‚РёРµ: <pre>'.$e.'</pre><b><p><a href="http://xcombats.com/">РќР°Р·Р°Рґ</b></a><HR>
 	 <p align="right">(c) <a href="http://'.$c['host'].'/">'.$c['name'].'</a></p>
 	 <!--Rating@Mail.ru counter--><!--// Rating@Mail.ru counter-->
 	 </body></html>');
@@ -28,24 +28,24 @@ function error($e)
 $u  = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login`="'.mysql_real_escape_string($_COOKIE['login']).'" AND `pass`="'.mysql_real_escape_string($_COOKIE['pass']).'"'));
 if(isset($u['id'])) {
 	if($u['send'] == '0') {
-		error('Необходимо ввести <b>e-mail</b> для активации персонажа.<br>Откройте эту ссылку в браузере, в котором Вы авторизированны со своего персонажа.');
+		error('РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё <b>e-mail</b> РґР»СЏ Р°РєС‚РёРІР°С†РёРё РїРµСЂСЃРѕРЅР°Р¶Р°.<br>РћС‚РєСЂРѕР№С‚Рµ СЌС‚Сѓ СЃСЃС‹Р»РєСѓ РІ Р±СЂР°СѓР·РµСЂРµ, РІ РєРѕС‚РѕСЂРѕРј Р’С‹ Р°РІС‚РѕСЂРёР·РёСЂРѕРІР°РЅРЅС‹ СЃРѕ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°.');
 	}elseif($u['activ'] == 0) {
-		error('Персонаж &quot;'.$u['login'].'&quot; был активирован ранее.');
+		error('РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$u['login'].'&quot; Р±С‹Р» Р°РєС‚РёРІРёСЂРѕРІР°РЅ СЂР°РЅРµРµ.');
 	}else{
 		if($_GET['code'] == md5($u['login'].'&[xcombats.com]') || $_GET['code'] == 'ILIKECOMBATS') {
 			mysql_query('UPDATE `users` SET `activ` = "0" WHERE `id` = "'.$u['id'].'" LIMIT 1');
-			error('Вы успешно активировали персонажа, успехов в нашем мире!');
+			error('Р’С‹ СѓСЃРїРµС€РЅРѕ Р°РєС‚РёРІРёСЂРѕРІР°Р»Рё РїРµСЂСЃРѕРЅР°Р¶Р°, СѓСЃРїРµС…РѕРІ РІ РЅР°С€РµРј РјРёСЂРµ!');
 		}else{
-			error('Не верный код активации.');
+			error('РќРµ РІРµСЂРЅС‹Р№ РєРѕРґ Р°РєС‚РёРІР°С†РёРё.');
 		}
 	}
 }else{
 	error('<form method="post" action="enter.php">'.
-    'Введите логин и пароль от персонажа:<br>'.
-    'Логин: &nbsp;<input name="login" type="text" style="width:200px;"><br />'.
-    'Пароль: <input name="pass" type="password" style="width:200px;">'.
+    'Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ Рё РїР°СЂРѕР»СЊ РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р°:<br>'.
+    'Р›РѕРіРёРЅ: &nbsp;<input name="login" type="text" style="width:200px;"><br />'.
+    'РџР°СЂРѕР»СЊ: <input name="pass" type="password" style="width:200px;">'.
     '<input name="active_code_key" type="hidden" value="'.htmlspecialchars($_GET['code'],NULL,'cp1251').'" /><br />'.
-    '<input value="Активировать персонажа" type="submit" />'.
+    '<input value="РђРєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°" type="submit" />'.
     '</form>');
 }
 ?>

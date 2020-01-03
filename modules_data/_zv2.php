@@ -26,22 +26,22 @@ include('_incl_data/class/__zv.php');
 <TR><TD colspan=8 align=right>
 <div style="float:left">
 	<?
-	echo ' &nbsp; &nbsp; <b style="color:grey">(Удаленный просмотр)</b>';
+	echo ' &nbsp; &nbsp; <b style="color:grey">(РЈРґР°Р»РµРЅРЅС‹Р№ РїСЂРѕСЃРјРѕС‚СЂ)</b>';
 	?>
 </div>
 <div style="float:right">
-  <INPUT TYPE=button value="Вернуться" onClick="location.href='main.php?rnd=<? echo $code; ?>';">
+  <INPUT TYPE=button value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onClick="location.href='main.php?rnd=<? echo $code; ?>';">
 </div>
 </TD></TR>
 <TR>
-<TD class=m width=40>&nbsp;<B>Бои:</B></TD>
-<TD width="15%" class="<? if($_GET['r']==1){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=1&rnd=<? echo $code; ?>">Новички</A></TD>
-<TD width="15%" class="<? if($_GET['r']==2){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=2&rnd=<? echo $code; ?>">Физические</A></TD>
-<TD width="14%" class="<? if($_GET['r']==3){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=3&rnd=<? echo $code; ?>">Договорные</A></TD>
-<TD width="14%" class="<? if($_GET['r']==4){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=4&rnd=<? echo $code; ?>">Групповые</A></TD>
-<TD width="14%" class="<? if($_GET['r']==5){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=5&rnd=<? echo $code; ?>">Хаотичные</A></TD>
-<TD width="14%" class="<? if($_GET['r']==6){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=6&rnd=<? echo $code; ?>">Текущие</A></TD>
-<TD width="14%" class="<? if($_GET['r']==7){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=7&rnd=<? echo $code; ?>">Завершенные</A></TD>
+<TD class=m width=40>&nbsp;<B>Р‘РѕРё:</B></TD>
+<TD width="15%" class="<? if($_GET['r']==1){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=1&rnd=<? echo $code; ?>">РќРѕРІРёС‡РєРё</A></TD>
+<TD width="15%" class="<? if($_GET['r']==2){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=2&rnd=<? echo $code; ?>">Р¤РёР·РёС‡РµСЃРєРёРµ</A></TD>
+<TD width="14%" class="<? if($_GET['r']==3){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=3&rnd=<? echo $code; ?>">Р”РѕРіРѕРІРѕСЂРЅС‹Рµ</A></TD>
+<TD width="14%" class="<? if($_GET['r']==4){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=4&rnd=<? echo $code; ?>">Р“СЂСѓРїРїРѕРІС‹Рµ</A></TD>
+<TD width="14%" class="<? if($_GET['r']==5){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=5&rnd=<? echo $code; ?>">РҐР°РѕС‚РёС‡РЅС‹Рµ</A></TD>
+<TD width="14%" class="<? if($_GET['r']==6){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=6&rnd=<? echo $code; ?>">РўРµРєСѓС‰РёРµ</A></TD>
+<TD width="14%" class="<? if($_GET['r']==7){ echo 's'; }else{ echo 'm'; } ?>"><A HREF="main.php?zayvka=1&r=7&rnd=<? echo $code; ?>">Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ</A></TD>
 </TR></TR></TABLE>
 <table style="padding:2px;" width="100%" border="0" cellspacing="0" cellpadding="2">
   <tr>

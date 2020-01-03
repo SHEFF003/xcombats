@@ -1,4 +1,4 @@
-<?
+<?php
 header('Content-Type: text/html; charset=windows-1251');
 function GetRealIp(){
 	if (!empty($_SERVER['HTTP_CLIENT_IP']))
@@ -13,16 +13,16 @@ include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');	
 include('_incl_data/class/__user.php');
 
-// регистрационная информация (пароль #2)
+// СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ (РїР°СЂРѕР»СЊ #2)
 // registration info (password #2)
 $mrh_pass2 = "q7eklnmi";
 
-//установка текущего времени
+//СѓСЃС‚Р°РЅРѕРІРєР° С‚РµРєСѓС‰РµРіРѕ РІСЂРµРјРµРЅРё
 //current date
 $tm=getdate(time()+9*3600);
 $date="$tm[year]-$tm[mon]-$tm[mday] $tm[hours]:$tm[minutes]:$tm[seconds]";
 
-// чтение параметров
+// С‡С‚РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ
 // read parameters
 $out_summ = $_REQUEST["OutSum"];
 $inv_id = $_REQUEST["InvId"];
@@ -33,7 +33,7 @@ $crc = strtoupper($crc);
 
 $my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass2:Shp_item=$shp_item"));
 
-// проверка корректности подписи
+// РїСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РїРѕРґРїРёСЃРё
 // check signature
 if ($my_crc !=$crc)
 {
@@ -41,18 +41,18 @@ if ($my_crc !=$crc)
   exit();
 }
 
-// признак успешно проведенной операции
+// РїСЂРёР·РЅР°Рє СѓСЃРїРµС€РЅРѕ РїСЂРѕРІРµРґРµРЅРЅРѕР№ РѕРїРµСЂР°С†РёРё
 // success
 echo "OK$inv_id\n";
 
-// запись в файл информации о проведенной операции
+// Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р» РёРЅС„РѕСЂРјР°С†РёРё Рѕ РїСЂРѕРІРµРґРµРЅРЅРѕР№ РѕРїРµСЂР°С†РёРё
 // save order info to file
 /*$f=@fopen("order.txt","a+") or
           die("error");
 fputs($f,"order_num :$inv_id;Summ :$out_summ;Date :$date\n");
 fclose($f);*/
 
-//Проверяем все и зачисляем деньги на счет
+//РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ Рё Р·Р°С‡РёСЃР»СЏРµРј РґРµРЅСЊРіРё РЅР° СЃС‡РµС‚
 $pay = mysql_fetch_array(mysql_query('SELECT * FROM `pay_operation` WHERE `id` = "'.mysql_real_escape_string((int)$shp_item).'" LIMIT 1'));
 //
 $bank = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `id` = "'.$pay['bank'].'" LIMIT 1'));
@@ -66,38 +66,38 @@ $bank2 = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$r
 if( $pay['good'] == 0 ) {
 	//
 	if(isset($ref['id']) && true == false) {
-		//Бонус за реферала
-		$r = '<span class=date>'.date('d.m.Y H:i').'</span> <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Банк</b> &laquo;Старого Бойцовского клуба&raquo; / Автооплата</u> сообщает: ';				
+		//Р‘РѕРЅСѓСЃ Р·Р° СЂРµС„РµСЂР°Р»Р°
+		$r = '<span class=date>'.date('d.m.Y H:i').'</span> <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Р‘Р°РЅРє</b> &laquo;РЎС‚Р°СЂРѕРіРѕ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РєР»СѓР±Р°&raquo; / РђРІС‚РѕРѕРїР»Р°С‚Р°</u> СЃРѕРѕР±С‰Р°РµС‚: ';				
 		if( floor($pay['ekr']*0.10) > 0 && $bank2['id'] > 0 ) {
 			if($ref['sex'] == 1) {
-				$r .= 'Уважаемая';
+				$r .= 'РЈРІР°Р¶Р°РµРјР°СЏ';
 			}else{
-				$r .= 'Уважаемый';
+				$r .= 'РЈРІР°Р¶Р°РµРјС‹Р№';
 			}
-			$r .= ' <b>'.$ref['login'].'</b>, на Ваш банковский счет №'.$bank2['id'].' зачислено '.floor($pay['ekr']*0.10).' Ekr. (Ваш реферал <b>'.$user['login'].'</b> приобрел Ekr.)';
+			$r .= ' <b>'.$ref['login'].'</b>, РЅР° Р’Р°С€ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.$bank2['id'].' Р·Р°С‡РёСЃР»РµРЅРѕ '.floor($pay['ekr']*0.10).' Ekr. (Р’Р°С€ СЂРµС„РµСЂР°Р» <b>'.$user['login'].'</b> РїСЂРёРѕР±СЂРµР» Ekr.)';
 			mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$ref['city']."','".$ref['room']."','','".$ref['login']."','".$r."','-1','5','0')");
 			mysql_query('UPDATE `bank` SET `money2` = "'.mysql_real_escape_string($bank2['money2']+floor($pay['ekr']*0.10)).'" WHERE `id` = "'.$bank2['id'].'" LIMIT 1');
 		}
 	}
 	//
-	$r = '<span class=date>'.date('d.m.Y H:i').'</span> <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Банк</b> &laquo;Старого Бойцовского клуба&raquo; / Автооплата</u> сообщает: ';				
+	$r = '<span class=date>'.date('d.m.Y H:i').'</span> <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Р‘Р°РЅРє</b> &laquo;РЎС‚Р°СЂРѕРіРѕ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РєР»СѓР±Р°&raquo; / РђРІС‚РѕРѕРїР»Р°С‚Р°</u> СЃРѕРѕР±С‰Р°РµС‚: ';				
 	if($user['sex'] == 1) {
-		$r .= 'Уважаемая';
+		$r .= 'РЈРІР°Р¶Р°РµРјР°СЏ';
 	}else{
-		$r .= 'Уважаемый';
+		$r .= 'РЈРІР°Р¶Р°РµРјС‹Р№';
 	}						
-	$r .= ' <b>'.$user['login'].'</b>, на Ваш банковский счет №'.$bank['id'].' зачислено '.$pay['ekr'].' Ekr. Благодарим Вас за покупку!';
+	$r .= ' <b>'.$user['login'].'</b>, РЅР° Р’Р°С€ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.$bank['id'].' Р·Р°С‡РёСЃР»РµРЅРѕ '.$pay['ekr'].' Ekr. Р‘Р»Р°РіРѕРґР°СЂРёРј Р’Р°СЃ Р·Р° РїРѕРєСѓРїРєСѓ!';
 	mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$user['city']."','".$user['room']."','','".$user['login']."','".$r."','-1','5','0')");
 	//
 	$bnsts = mysql_fetch_array(mysql_query('SELECT `id` FROM `bank` WHERE `uid` = "'.$user['id'].'" AND `moneyBuy` > 0 LIMIT 1'));
 	if(!isset($bnsts['id']) && date('d.m.Y') == '08.01.2017') {
 		$bank['money2'] += $pay['ekr'];
 		mysql_query('UPDATE `bank` SET `shara` = "'.mysql_real_escape_string($bank['shara']+$pay['ekr']).'" WHERE `id` = "'.$bank['id'].'" LIMIT 1');
-		$r .= ' <b>'.$user['login'].'</b>, на Ваш банковский счет №'.$bank['id'].' зачислено '.$pay['ekr'].' Ekr. (Бонус)';
+		$r .= ' <b>'.$user['login'].'</b>, РЅР° Р’Р°С€ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.$bank['id'].' Р·Р°С‡РёСЃР»РµРЅРѕ '.$pay['ekr'].' Ekr. (Р‘РѕРЅСѓСЃ)';
 		mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$user['city']."','".$user['room']."','','".$user['login']."','".$r."','-1','5','0')");
 	}
 	//
-	$text_msg = 'Алхимик <b><font color=red>Robokassa</font></b> совершил продажу <b>'.$pay['ekr'].'</b> екр. (скидка 0% , задолжность 0$). Покупатель: '.$u->microLogin($user['id'],1).'. Банковский счет покупателя: № <b>'.$bank['id'].'</b>.';
+	$text_msg = 'РђР»С…РёРјРёРє <b><font color=red>Robokassa</font></b> СЃРѕРІРµСЂС€РёР» РїСЂРѕРґР°Р¶Сѓ <b>'.$pay['ekr'].'</b> РµРєСЂ. (СЃРєРёРґРєР° 0% , Р·Р°РґРѕР»Р¶РЅРѕСЃС‚СЊ 0$). РџРѕРєСѓРїР°С‚РµР»СЊ: '.$u->microLogin($user['id'],1).'. Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ РїРѕРєСѓРїР°С‚РµР»СЏ: в„– <b>'.$bank['id'].'</b>.';
 	$money = $pay['ekr']*$pay['cur'];			
 	$balance = mysql_fetch_array(mysql_query('SELECT SUM(`money`) FROM `balance_money` WHERE `cancel` = 0'));
 	$balance = $balance[0]+$money;

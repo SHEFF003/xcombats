@@ -21,7 +21,7 @@ include('_incl_data/class/__user.php');
 include('_incl_data/class/__magic.php');
 //
 $cfg = array(
-	'H' => 17 //время старта по серверу
+	'H' => 17 //РІСЂРµРјСЏ СЃС‚Р°СЂС‚Р° РїРѕ СЃРµСЂРІРµСЂСѓ
 );
 //
 function send_chat($type,$from,$text,$time) {
@@ -29,8 +29,8 @@ function send_chat($type,$from,$text,$time) {
 	echo '[SEND_CHAT]';
 }
 //
-$bot1 = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "Мусорщик" LIMIT 1'));
-$bot2 = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "Мироздатель" LIMIT 1'));
+$bot1 = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "РњСѓСЃРѕСЂС‰РёРє" LIMIT 1'));
+$bot2 = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "РњРёСЂРѕР·РґР°С‚РµР»СЊ" LIMIT 1'));
 //
 $st1 = mysql_fetch_array(mysql_query('SELECT * FROM `stats` WHERE `id` = "'.$bot1['id'].'" LIMIT 1'));
 $st2 = mysql_fetch_array(mysql_query('SELECT * FROM `stats` WHERE `id` = "'.$bot2['id'].'" LIMIT 1'));
@@ -38,7 +38,7 @@ $st2 = mysql_fetch_array(mysql_query('SELECT * FROM `stats` WHERE `id` = "'.$bot
 $td = mysql_fetch_array(mysql_query('SELECT * FROM `vs_stat` WHERE (`d` = "'.date('d').'" AND `m` = "'.date('m').'" AND `y` = "'.date('Y').'") OR `winner` = -1 ORDER BY `time` ASC LIMIT 1'));
 //
 if(!isset($td['id'])) {
-	//Создаем
+	//РЎРѕР·РґР°РµРј
 	$ins = mysql_query('INSERT INTO `vs_stat` (
 		`time`,`d`,`m`,`y`,`act`,`type`,`uid`
 	) VALUES (
@@ -58,9 +58,9 @@ if(isset($td['id'])) {
 	//
 	if( $td['type'] == 0 ) {
 		if( date('H') == $cfg['H'] ) {
-			send_chat(1,'','<font color=green>Бой бессмертных проходит на Центральной Площади, займите свою сторону в этой битве и получите награду за победу!',time());
-			send_chat(1,'','<font color=red><b>Мусорщик</b>: Что-то у меня душа, в последнее время, не на месте</font> :vamp:',time());
-			send_chat(1,'','<font color=blue><b>Мироздатель</b>:Я явился чтобы спасти этот мир</font> :grace:',time());	
+			send_chat(1,'','<font color=green>Р‘РѕР№ Р±РµСЃСЃРјРµСЂС‚РЅС‹С… РїСЂРѕС…РѕРґРёС‚ РЅР° Р¦РµРЅС‚СЂР°Р»СЊРЅРѕР№ РџР»РѕС‰Р°РґРё, Р·Р°Р№РјРёС‚Рµ СЃРІРѕСЋ СЃС‚РѕСЂРѕРЅСѓ РІ СЌС‚РѕР№ Р±РёС‚РІРµ Рё РїРѕР»СѓС‡РёС‚Рµ РЅР°РіСЂР°РґСѓ Р·Р° РїРѕР±РµРґСѓ!',time());
+			send_chat(1,'','<font color=red><b>РњСѓСЃРѕСЂС‰РёРє</b>: Р§С‚Рѕ-С‚Рѕ Сѓ РјРµРЅСЏ РґСѓС€Р°, РІ РїРѕСЃР»РµРґРЅРµРµ РІСЂРµРјСЏ, РЅРµ РЅР° РјРµСЃС‚Рµ</font> :vamp:',time());
+			send_chat(1,'','<font color=blue><b>РњРёСЂРѕР·РґР°С‚РµР»СЊ</b>:РЇ СЏРІРёР»СЃСЏ С‡С‚РѕР±С‹ СЃРїР°СЃС‚Рё СЌС‚РѕС‚ РјРёСЂ</font> :grace:',time());	
 			//
 			mysql_query('INSERT INTO `battle` (
 				`city`,`time_start`,`timeout`,`type`,`noinc`
@@ -97,10 +97,10 @@ if(isset($td['id'])) {
 		}
 		//
 		if( $st1['hpNow'] < 1 || $st2['hpNow'] < 1 || $bot1['battle'] == 0 || $bot2['battle'] == 0 ) {
-			//Завершаем поединок, кто-то победил
+			//Р—Р°РІРµСЂС€Р°РµРј РїРѕРµРґРёРЅРѕРє, РєС‚Рѕ-С‚Рѕ РїРѕР±РµРґРёР»
 			
 		}else{
-			//Бой идет, стены гнутся 
+			//Р‘РѕР№ РёРґРµС‚, СЃС‚РµРЅС‹ РіРЅСѓС‚СЃСЏ 
 			
 		}
 		//

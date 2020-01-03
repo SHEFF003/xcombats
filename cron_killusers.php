@@ -5,13 +5,13 @@ function getIP() {
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Получаем IP
+# РџРѕР»СѓС‡Р°РµРј IP
 function getIPblock() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Выполняем проверку безопасности. 
+# Р’С‹РїРѕР»РЅСЏРµРј РїСЂРѕРІРµСЂРєСѓ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё. 
 
 if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) {	die('Hello pussy!');   }
 if(getIPblock() != $_SERVER['SERVER_ADDR'] && getIPblock() != '127.0.0.1' && getIPblock() != '' && getIPblock() != '91.228.154.180') {
@@ -26,7 +26,7 @@ include('_incl_data/class/__db_connect.php');
 include('_incl_data/class/__user.php');
 
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","LEL","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","LEL","6","1","-1")');
 }
 
 function send_chat($type,$from,$text,$time) {
@@ -93,7 +93,7 @@ function addUser($userData) {
   return $query;
 }
 
-//Удаляем эффекты и предметы (не нужные)
+//РЈРґР°Р»СЏРµРј СЌС„С„РµРєС‚С‹ Рё РїСЂРµРґРјРµС‚С‹ (РЅРµ РЅСѓР¶РЅС‹Рµ)
 mysql_query('DELETE FROM `eff_users` WHERE `delete` > "1392211522" AND `delete` < "'.time().'"');
 mysql_query('DELETE FROM `items_users` WHERE `delete` > "1392211522" AND `delete` < "'.time().'"');
 
@@ -111,7 +111,7 @@ while( $lvl <= 21 ) {
 			}
 		}
 		
-		//Собираем данные сколько ценностей было на персонаже
+		//РЎРѕР±РёСЂР°РµРј РґР°РЅРЅС‹Рµ СЃРєРѕР»СЊРєРѕ С†РµРЅРЅРѕСЃС‚РµР№ Р±С‹Р»Рѕ РЅР° РїРµСЂСЃРѕРЅР°Р¶Рµ
 		$pl['bank'] = mysql_fetch_array(mysql_query('SELECT SUM(`money1`),SUM(`money2`) FROM `bank` WHERE `uid` = "'.$pl['id'].'" LIMIT 1'));
 		$pl['money'] += $pl['bank'][0];
 		$pl['money2'] += $pl['bank'][1];
@@ -131,7 +131,7 @@ while( $lvl <= 21 ) {
 			}
 		}
 		if($pl['id'] > 0) {
-			//Удаляем все данные о персонаже на проекте
+			//РЈРґР°Р»СЏРµРј РІСЃРµ РґР°РЅРЅС‹Рµ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ РЅР° РїСЂРѕРµРєС‚Рµ
 			mysql_query('DELETE FROM `aaa_znahar` WHERE `uid` = "'.$pl['id'].'"');
 			mysql_query('DELETE FROM `actions` WHERE `uid` = "'.$pl['id'].'"');
 			mysql_query('DELETE FROM `add_smiles` WHERE `uid` = "'.$pl['id'].'"');
@@ -182,7 +182,7 @@ while( $lvl <= 21 ) {
 			echo '&bull;'.$pl['login'].'<br>';
 		}
 		
-		//Заносим данные в базу
+		//Р—Р°РЅРѕСЃРёРј РґР°РЅРЅС‹Рµ РІ Р±Р°Р·Сѓ
 		$usrData = array(
 			'`uid`' => $pl['id'],
 			'`money1`' => $pl['money'],

@@ -1,4 +1,4 @@
-<?
+<?php
 header('location: pay.back.php?buy_ekr');
 die();
 //30.05.2060 07:25:06
@@ -17,8 +17,8 @@ if(isset($_GET['showcode'])) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>&laquo;СБК&raquo; Коммерческий отдел</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>&laquo;РЎР‘Рљ&raquo; РљРѕРјРјРµСЂС‡РµСЃРєРёР№ РѕС‚РґРµР»</title>
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/psi.js"></script>
 <link rel="stylesheet" href="styles/register.css?<?=time()?>" type="text/css" media="screen"/>
@@ -52,8 +52,8 @@ if(isset($_GET['showcode'])) {
         <td valign="top" width="682" height="401" class="psi_main_reg">
         <!-- main -->
         <div style="padding:20px;" align="center">
-        .: <? if(!isset($u->info['id'])) { ?>test<? }else{ echo 'Добро пожаловать, <b>'.$u->microLogin($u->info['id'],1).'</b> '.
-		':: <a href="http://xcombats.com/commerce/">Главная</a> :: <a href="http://xcombats.com/commerce/">Мои заявки</a>'.
+        .: <? if(!isset($u->info['id'])) { ?>test<? }else{ echo 'Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ, <b>'.$u->microLogin($u->info['id'],1).'</b> '.
+		':: <a href="http://xcombats.com/commerce/">Р“Р»Р°РІРЅР°СЏ</a> :: <a href="http://xcombats.com/commerce/">РњРѕРё Р·Р°СЏРІРєРё</a>'.
 		''; } ?> :.
         <hr style="border-color:#333;">
         </div>
@@ -77,18 +77,18 @@ if(isset($_GET['showcode'])) {
 <div style="width:660px;text-align:justify;">
 	<small>
         <hr><br>
-        «Старый Бойцовский Клуб» – это бесплатная увлекательная онлайн игра, в которой сконцентрировано все самое лучшее от современных онлайн игр. В этой браузерной игре заложены самые интересные традиции всем известной онлайн игры под названием «Combats 2004-2009», которая, кстати, стала первооткрывателем всех браузерных игр.
+        В«РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±В» вЂ“ СЌС‚Рѕ Р±РµСЃРїР»Р°С‚РЅР°СЏ СѓРІР»РµРєР°С‚РµР»СЊРЅР°СЏ РѕРЅР»Р°Р№РЅ РёРіСЂР°, РІ РєРѕС‚РѕСЂРѕР№ СЃРєРѕРЅС†РµРЅС‚СЂРёСЂРѕРІР°РЅРѕ РІСЃРµ СЃР°РјРѕРµ Р»СѓС‡С€РµРµ РѕС‚ СЃРѕРІСЂРµРјРµРЅРЅС‹С… РѕРЅР»Р°Р№РЅ РёРіСЂ. Р’ СЌС‚РѕР№ Р±СЂР°СѓР·РµСЂРЅРѕР№ РёРіСЂРµ Р·Р°Р»РѕР¶РµРЅС‹ СЃР°РјС‹Рµ РёРЅС‚РµСЂРµСЃРЅС‹Рµ С‚СЂР°РґРёС†РёРё РІСЃРµРј РёР·РІРµСЃС‚РЅРѕР№ РѕРЅР»Р°Р№РЅ РёРіСЂС‹ РїРѕРґ РЅР°Р·РІР°РЅРёРµРј В«Combats 2004-2009В», РєРѕС‚РѕСЂР°СЏ, РєСЃС‚Р°С‚Рё, СЃС‚Р°Р»Р° РїРµСЂРІРѕРѕС‚РєСЂС‹РІР°С‚РµР»РµРј РІСЃРµС… Р±СЂР°СѓР·РµСЂРЅС‹С… РёРіСЂ.
         <br><br>
-        В бесплатную браузерную игру версии вошли предыдущие стратегии и прибавились новые технические разработки, которые сделали эту mmorpg игру еще более увлекательной!
+        Р’ Р±РµСЃРїР»Р°С‚РЅСѓСЋ Р±СЂР°СѓР·РµСЂРЅСѓСЋ РёРіСЂСѓ РІРµСЂСЃРёРё РІРѕС€Р»Рё РїСЂРµРґС‹РґСѓС‰РёРµ СЃС‚СЂР°С‚РµРіРёРё Рё РїСЂРёР±Р°РІРёР»РёСЃСЊ РЅРѕРІС‹Рµ С‚РµС…РЅРёС‡РµСЃРєРёРµ СЂР°Р·СЂР°Р±РѕС‚РєРё, РєРѕС‚РѕСЂС‹Рµ СЃРґРµР»Р°Р»Рё СЌС‚Сѓ mmorpg РёРіСЂСѓ РµС‰Рµ Р±РѕР»РµРµ СѓРІР»РµРєР°С‚РµР»СЊРЅРѕР№!
         <br><br><hr>
     </small>
     <div style="float:left">
-        <a href="http://xcombats.com/">Главная</a> &nbsp; &nbsp; 
-        <a href="http://xcombats.com/news">Новости</a> &nbsp; &nbsp; 
-        <a href="http://xcombats.com/forum/">Форум</a> &nbsp; &nbsp; 
-        <a href="http://xcombats.com/lib/polzovatelskoe-soglashenie/">Соглашение</a>
+        <a href="http://xcombats.com/">Р“Р»Р°РІРЅР°СЏ</a> &nbsp; &nbsp; 
+        <a href="http://xcombats.com/news">РќРѕРІРѕСЃС‚Рё</a> &nbsp; &nbsp; 
+        <a href="http://xcombats.com/forum/">Р¤РѕСЂСѓРј</a> &nbsp; &nbsp; 
+        <a href="http://xcombats.com/lib/polzovatelskoe-soglashenie/">РЎРѕРіР»Р°С€РµРЅРёРµ</a>
     </div>
-    <div style="float:right">Старый Бойцовский Клуб &copy; 2016-<?=date('Y')?></div>
+    <div style="float:right">РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± &copy; 2016-<?=date('Y')?></div>
 </div>
 </div>
 <!-- test window -->

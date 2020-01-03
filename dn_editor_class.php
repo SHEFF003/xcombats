@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
@@ -7,7 +7,7 @@ if(!defined('GAME'))
 class dungeon
 {
 	public $bs,$info,$see,$error,$gs = 1,$map = array(
-				0 => array() //êàðòà
+				0 => array() //ÐºÐ°Ñ€Ñ‚Ð°
 			)	,$id_dng,$cord = array('x' => 0),$sg = array(1 => array(1=>1,2=>2,3=>3,4=>4),2 => array(1=>2,2=>3,3=>4,4=>1),3 => array(1=>3,2=>4,3=>1,4=>2),4 => array(1=>4,2=>1,3=>2,4=>3));
 	public function start()
 	{
@@ -15,7 +15,7 @@ class dungeon
 		$this->info = array(
 			'id2'	=> $id,
 			'id'	=> 0,
-			'name'	=> 'Ðåäàêòèðîâàíèå Ïåùåðû',
+			'name'	=> 'Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ ÐŸÐµÑ‰ÐµÑ€Ñ‹',
 			'room'	=> 0,
 			'time_start'	=> time(),
 			'time_start'	=> 0,
@@ -36,7 +36,7 @@ class dungeon
 			$this->bs = mysql_fetch_array(mysql_query('SELECT * FROM `bs_turnirs` WHERE `city` = "'.$u->info['city'].'" AND `id` = "'.$this->info['bsid'].'" AND `time_start` = "'.$this->info['time_start'].'" LIMIT 1'));
 			if(isset($this->bs['id']))
 			{
-				//Åñëè ÁÑ çàêîí÷åíà
+				//Ð•ÑÐ»Ð¸ Ð‘Ð¡ Ð·Ð°ÐºÐ¾Ð½Ñ‡ÐµÐ½Ð°
 				if($this->bs['users']-$this->bs['users_finish'] < 2)
 				{
 					$u->bsfinish($this->bs,false,NULL);
@@ -44,19 +44,19 @@ class dungeon
 			}
 		}
 		
-		/* ãåíåðèðóåì âèä ïåðñîíàæà (òîëüêî êàðòà)
-			$this->gs = 1; //ñìîòðèì ïðÿìî
-						2; //ñìîòðèì ëåâî
-						3; //ñìîòðèì âíèç
-						4; //ñìîòðèì ïðàâî
+		/* Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€ÑƒÐµÐ¼ Ð²Ð¸Ð´ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶Ð° (Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÐºÐ°Ñ€Ñ‚Ð°)
+			$this->gs = 1; //ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ð¿Ñ€ÑÐ¼Ð¾
+						2; //ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ð»ÐµÐ²Ð¾
+						3; //ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ð²Ð½Ð¸Ð·
+						4; //ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ð¿Ñ€Ð°Ð²Ð¾
 						( ( ( `y` >= '.$u->info['psevdo_y'].' && `y` <= '.($u->info['psevdo_y']+4).' ) && ( `x` >= '.($u->info['psevdo_x']-1).' && `x` <= '.($u->info['psevdo_x']+1).' ) ) || ( (`x` = '.($u->info['psevdo_x']+2).' || `x` = '.($u->info['psevdo_x']-2).') && ( `y` = '.($u->info['psevdo_y']+3).' || `y` = '.($u->info['psevdo_y']+4).' ) ) )
 		*/
 		
 		$whr = array(
-					1 => ' ((`x` <= '.($u->info['psevdo_x']+2).' && `x` >= '.($u->info['psevdo_x']-2).') && (`y` >= '.$u->info['psevdo_y'].' && `y` <= '.($u->info['psevdo_y']+4).')) ', //ïðÿìî 
-					3 => ' ((`x` <= '.($u->info['psevdo_x']+2).' && `x` >= '.($u->info['psevdo_x']-2).') && (`y` <= '.$u->info['psevdo_y'].' && `y` >= '.($u->info['psevdo_y']-4).')) ', //âíèç
-					2 => ' ((`x` <= '.$u->info['psevdo_x'].' && `x` >= '.($u->info['psevdo_x']-4).') && (`y` <= '.($u->info['psevdo_y']+2).' && `y` >= '.($u->info['psevdo_y']-2).')) ', //ëåâî				
-					4 => ' ((`x` >= '.$u->info['psevdo_x'].' && `x` <= '.($u->info['psevdo_x']+4).') && (`y` <= '.($u->info['psevdo_y']+2).' && `y` >= '.($u->info['psevdo_y']-2).')) ' //ïðàâî
+					1 => ' ((`x` <= '.($u->info['psevdo_x']+2).' && `x` >= '.($u->info['psevdo_x']-2).') && (`y` >= '.$u->info['psevdo_y'].' && `y` <= '.($u->info['psevdo_y']+4).')) ', //Ð¿Ñ€ÑÐ¼Ð¾ 
+					3 => ' ((`x` <= '.($u->info['psevdo_x']+2).' && `x` >= '.($u->info['psevdo_x']-2).') && (`y` <= '.$u->info['psevdo_y'].' && `y` >= '.($u->info['psevdo_y']-4).')) ', //Ð²Ð½Ð¸Ð·
+					2 => ' ((`x` <= '.$u->info['psevdo_x'].' && `x` >= '.($u->info['psevdo_x']-4).') && (`y` <= '.($u->info['psevdo_y']+2).' && `y` >= '.($u->info['psevdo_y']-2).')) ', //Ð»ÐµÐ²Ð¾				
+					4 => ' ((`x` >= '.$u->info['psevdo_x'].' && `x` <= '.($u->info['psevdo_x']+4).') && (`y` <= '.($u->info['psevdo_y']+2).' && `y` >= '.($u->info['psevdo_y']-2).')) ' //Ð¿Ñ€Ð°Ð²Ð¾
 				);
 		
 		$i = 1;
@@ -66,7 +66,7 @@ class dungeon
 			$this->map[0][$pl['y'].'_'.$pl['x']] = $pl;
 			$i++;
 		}
-		$this->map['good'] = $i; //öåëûõ êëåòîê
+		$this->map['good'] = $i; //Ñ†ÐµÐ»Ñ‹Ñ… ÐºÐ»ÐµÑ‚Ð¾Ðº
 		$this->map[1] = $this->genMatix();
 		$this->lookDungeon();
 		
@@ -77,43 +77,43 @@ class dungeon
 	{
 		global $u,$c;
 		$r = '';
-		/* îòîáðàæåíèå áîòîâ (áåñïîëåçíî â äàííîì ðåäàêòîðå) */
+		/* Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð±Ð¾Ñ‚Ð¾Ð² (Ð±ÐµÑÐ¿Ð¾Ð»ÐµÐ·Ð½Ð¾ Ð² Ð´Ð°Ð½Ð½Ð¾Ð¼ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€Ðµ) */
 	}
 		
 	public function atack($id)
 	{
 		global $u,$c,$code;
-		/* íàïàäåíèå, êàêîå íàïàäåíèå ìîæåò áûòü â ðåäàêòîðå? :) Íà ñàìîãî ñåáÿ, ñî ñòóëîì? :) */
+		/* Ð½Ð°Ð¿Ð°Ð´ÐµÐ½Ð¸Ðµ, ÐºÐ°ÐºÐ¾Ðµ Ð½Ð°Ð¿Ð°Ð´ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð² Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€Ðµ? :) ÐÐ° ÑÐ°Ð¼Ð¾Ð³Ð¾ ÑÐµÐ±Ñ, ÑÐ¾ ÑÑ‚ÑƒÐ»Ð¾Ð¼? :) */
 	}
 	
 	public function takeinv($id)
 	{
 		global $u,$c,$code;
-		/* Ýòî ðåäàêòîð, à íå ìàéíêðàôò, çäåñü íè÷åãî ñîáèðàòü íå íóæíî :) */
+		/* Ð­Ñ‚Ð¾ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€, Ð° Ð½Ðµ Ð¼Ð°Ð¹Ð½ÐºÑ€Ð°Ñ„Ñ‚, Ð·Ð´ÐµÑÑŒ Ð½Ð¸Ñ‡ÐµÐ³Ð¾ ÑÐ¾Ð±Ð¸Ñ€Ð°Ñ‚ÑŒ Ð½Ðµ Ð½ÑƒÐ¶Ð½Ð¾ :) */
 	}
 	
 	public function takeit($id)
 	{
 		global $u,$c,$code,$magic;
-		/* Â ðåäàêòîðå íè÷åãî íå ïàäàåò ;) */
+		/* Ð’ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€Ðµ Ð½Ð¸Ñ‡ÐµÐ³Ð¾ Ð½Ðµ Ð¿Ð°Ð´Ð°ÐµÑ‚ ;) */
 	}
 	
 	public function addItem($i)
 	{
-		//äîáàâëÿåì ïðåäìåò â ïåùåðó (âîçìîæíî âûïàë èç áîòà èëè èç ñóíäóêà)
-		/* À ÷òî åùå? Ïóëüò ê óïðàâëåíèþ Çåìëåé?! */
+		//Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚ Ð² Ð¿ÐµÑ‰ÐµÑ€Ñƒ (Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð²Ñ‹Ð¿Ð°Ð» Ð¸Ð· Ð±Ð¾Ñ‚Ð° Ð¸Ð»Ð¸ Ð¸Ð· ÑÑƒÐ½Ð´ÑƒÐºÐ°)
+		/* Ð Ñ‡Ñ‚Ð¾ ÐµÑ‰Ðµ? ÐŸÑƒÐ»ÑŒÑ‚ Ðº ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÑŽ Ð—ÐµÐ¼Ð»ÐµÐ¹?! */
 	}
 	
 	public function itemsMap()
 	{
 		global $u,$c,$code;
-		/* Äà íè÷åãî çäåñü íå ïàäàåò! Ãîâîðþ æå! */
+		/* Ð”Ð° Ð½Ð¸Ñ‡ÐµÐ³Ð¾ Ð·Ð´ÐµÑÑŒ Ð½Ðµ Ð¿Ð°Ð´Ð°ÐµÑ‚! Ð“Ð¾Ð²Ð¾Ñ€ÑŽ Ð¶Ðµ! */
 	}
 	
 	public function testLike($x1,$y1,$x2,$y2)
 	{
-		//èç $x1,$y1 â $x2,$y2
-		//äîñòóïíà-ëè ýòà êëåòêà äëÿ äåéñòâèé
+		//Ð¸Ð· $x1,$y1 Ð² $x2,$y2
+		//Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð°-Ð»Ð¸ ÑÑ‚Ð° ÐºÐ»ÐµÑ‚ÐºÐ° Ð´Ð»Ñ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ð¹
 		$r = 0;
 		$c1 = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$x1.'" AND `y` = "'.$y1.'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
 		$c2 = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$x2.'" AND `y` = "'.$y2.'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
@@ -122,16 +122,16 @@ class dungeon
 			if($x1==$x2 && $y1==$y2)
 			{
 				$r = 1;
-			}elseif($x1==$x2-1 && $c1['go_1']==1) //ïðàâî
+			}elseif($x1==$x2-1 && $c1['go_1']==1) //Ð¿Ñ€Ð°Ð²Ð¾
 			{
 				$r = 1;
-			}elseif($x1==$x2+1 && $c1['go_2']==1) //ëåâî
+			}elseif($x1==$x2+1 && $c1['go_2']==1) //Ð»ÐµÐ²Ð¾
 			{
 				$r = 1;
-			}elseif($y1==$y2-1 && $c1['go_3']==1) //âåðõ
+			}elseif($y1==$y2-1 && $c1['go_3']==1) //Ð²ÐµÑ€Ñ…
 			{
 				$r = 1;
-			}elseif($y1==$y2+1 && $c1['go_4']==1) //íèç
+			}elseif($y1==$y2+1 && $c1['go_4']==1) //Ð½Ð¸Ð·
 			{
 				$r = 1;
 			}	
@@ -142,22 +142,22 @@ class dungeon
 	public function genObjects() {
 		global $u,$c,$code;
 		////i:{id,name,mapPoint,action,img,type},
-		//'count':1,0:{0:1234,1:'Ñóíäóê',2:5,3:'',4:'test.gif',5:0,6:position,7:width,8:heigh,9:left,10:top},
-		//psition 0 - ïî öåíòðó , 1- ñâåðõó, 2- ñëåâà, 3- ñíèçó, 4- ñïðàâà
+		//'count':1,0:{0:1234,1:'Ð¡ÑƒÐ½Ð´ÑƒÐº',2:5,3:'',4:'test.gif',5:0,6:position,7:width,8:heigh,9:left,10:top},
+		//psition 0 - Ð¿Ð¾ Ñ†ÐµÐ½Ñ‚Ñ€Ñƒ , 1- ÑÐ²ÐµÑ€Ñ…Ñƒ, 2- ÑÐ»ÐµÐ²Ð°, 3- ÑÐ½Ð¸Ð·Ñƒ, 4- ÑÐ¿Ñ€Ð°Ð²Ð°
 		$r = '';
 		/*
 		$whr = array(
-			1 => ' ((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` >= '.($u->info['psevdo_y']+1).' && `u`.`y` <= '.($u->info['psevdo_y']+4).')) ', //ïðÿìî 
-			3 => ' ((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` <= '.($u->info['psevdo_y']-1).' && `u`.`y` >= '.($u->info['psevdo_y']-4).')) ', //âíèç
-			2 => ' ((`u`.`x` <= '.($u->info['psevdo_x']-1).' && `u`.`x` >= '.($u->info['psevdo_x']-4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) ', //ëåâî				
-			4 => ' ((`u`.`x` >= '.($u->info['psevdo_x']+1).' && `u`.`x` <= '.($u->info['psevdo_x']+4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) ' //ïðàâî
+			1 => ' ((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` >= '.($u->info['psevdo_y']+1).' && `u`.`y` <= '.($u->info['psevdo_y']+4).')) ', //Ð¿Ñ€ÑÐ¼Ð¾ 
+			3 => ' ((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` <= '.($u->info['psevdo_y']-1).' && `u`.`y` >= '.($u->info['psevdo_y']-4).')) ', //Ð²Ð½Ð¸Ð·
+			2 => ' ((`u`.`x` <= '.($u->info['psevdo_x']-1).' && `u`.`x` >= '.($u->info['psevdo_x']-4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) ', //Ð»ÐµÐ²Ð¾				
+			4 => ' ((`u`.`x` >= '.($u->info['psevdo_x']+1).' && `u`.`x` <= '.($u->info['psevdo_x']+4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) ' //Ð¿Ñ€Ð°Ð²Ð¾
 		);
 		*/
 		$whr = array(
-			1 => ' (((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` >= '.($u->info['psevdo_y']+1).' && `u`.`y` <= '.($u->info['psevdo_y']+4).')) OR (`u`.`y` = '.$u->info['psevdo_y'].' && `u`.`x` = '.$u->info['psevdo_x'].')) ', //ïðÿìî 
-			3 => ' (((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` <= '.($u->info['psevdo_y']-1).' && `u`.`y` >= '.($u->info['psevdo_y']-4).')) OR (`u`.`y` = '.$u->info['psevdo_y'].' && `u`.`x` = '.$u->info['psevdo_x'].')) ', //âíèç
-			2 => ' (((`u`.`x` <= '.($u->info['psevdo_x']-1).' && `u`.`x` >= '.($u->info['psevdo_x']-4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).'))OR (`u`.`y` = '.$u->info['psevdo_y'].' && `u`.`x` = '.$u->info['psevdo_x'].')) ', //ëåâî				
-			4 => ' (((`u`.`x` >= '.($u->info['psevdo_x']+1).' && `u`.`x` <= '.($u->info['psevdo_x']+4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) OR (`u`.`y` = '.$u->info['psevdo_y'].' && `u`.`x` = '.$u->info['psevdo_x'].')) ' //ïðàâî
+			1 => ' (((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` >= '.($u->info['psevdo_y']+1).' && `u`.`y` <= '.($u->info['psevdo_y']+4).')) OR (`u`.`y` = '.$u->info['psevdo_y'].' && `u`.`x` = '.$u->info['psevdo_x'].')) ', //Ð¿Ñ€ÑÐ¼Ð¾ 
+			3 => ' (((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` <= '.($u->info['psevdo_y']-1).' && `u`.`y` >= '.($u->info['psevdo_y']-4).')) OR (`u`.`y` = '.$u->info['psevdo_y'].' && `u`.`x` = '.$u->info['psevdo_x'].')) ', //Ð²Ð½Ð¸Ð·
+			2 => ' (((`u`.`x` <= '.($u->info['psevdo_x']-1).' && `u`.`x` >= '.($u->info['psevdo_x']-4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).'))OR (`u`.`y` = '.$u->info['psevdo_y'].' && `u`.`x` = '.$u->info['psevdo_x'].')) ', //Ð»ÐµÐ²Ð¾				
+			4 => ' (((`u`.`x` >= '.($u->info['psevdo_x']+1).' && `u`.`x` <= '.($u->info['psevdo_x']+4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) OR (`u`.`y` = '.$u->info['psevdo_y'].' && `u`.`x` = '.$u->info['psevdo_x'].')) ' //Ð¿Ñ€Ð°Ð²Ð¾
 		); 
 		$sp = mysql_query('SELECT `u`.* FROM `dungeon_obj` AS `u` WHERE `u`.`dn` = "0" AND `u`.`for_dn` = "'.$this->id_dng.'" AND ((`u`.`s` = "0" OR `u`.`s` = "'.$this->gs.'") OR `u`.`s2` = "'.$this->gs.'") AND '.$whr[$this->gs].' LIMIT 76');
 		# die('SELECT `u`.* FROM `dungeon_obj` AS `u` WHERE `u`.`dn` = "0" AND `u`.`for_dn` = "'.$this->id_dng.'" AND ((`u`.`s` = "0" OR `u`.`s` = "'.$this->gs.'") OR `u`.`s2` = "'.$this->gs.'") AND '.$whr[$this->gs].' LIMIT 76');
@@ -189,8 +189,8 @@ class dungeon
 						$da[$dt2[$is][0]] = $dt2[$is][1];
 						$is++;
 					}
-					#if(isset($da['rl2']))$da['rl2'] = -round((int)$da['rl2'] * 0.70); // Ñëåâà
-					if(isset($da['rl2']))$da['rl2'] = round((int)$da['rl2'] -230); // Ñëåâà
+					#if(isset($da['rl2']))$da['rl2'] = -round((int)$da['rl2'] * 0.70); // Ð¡Ð»ÐµÐ²Ð°
+					if(isset($da['rl2']))$da['rl2'] = round((int)$da['rl2'] -230); // Ð¡Ð»ÐµÐ²Ð°
 					if(isset($da['rl3']))$da['rl3'] = round((int)$da['rl3'] +160);
 					if(isset($da['rl4']))$da['rl4'] = round((int)$da['rl4'] -120);
 					$pl['date'] = str_replace('"', '', json_encode($da));
@@ -206,8 +206,8 @@ class dungeon
 						$da[$dt2[$is][0]] = $dt2[$is][1];
 						$is++;
 					} 
-					#if(isset($da['rl2']))$da['rl2'] = 355-round((int)$da['rl2'] * 0.30); // Ñïðàâà
-					if(isset($da['rl2']))$da['rl2'] = round((int)$da['rl2'] +230); // Ñïðàâà
+					#if(isset($da['rl2']))$da['rl2'] = 355-round((int)$da['rl2'] * 0.30); // Ð¡Ð¿Ñ€Ð°Ð²Ð°
+					if(isset($da['rl2']))$da['rl2'] = round((int)$da['rl2'] +230); // Ð¡Ð¿Ñ€Ð°Ð²Ð°
 					if(isset($da['rl3']))$da['rl3'] = round((int)$da['rl3'] -160);
 					if(isset($da['rl4']))$da['rl4'] = round((int)$da['rl4'] +120);
 					$pl['date'] = str_replace('"', '', json_encode($da));
@@ -226,13 +226,13 @@ class dungeon
 		//'count':1,0:{0:1015,1:'Test1',2:5,3:0,4:'1',5:'user',6:1},
 		$r = '';
 		$whr = array(
-			1 => ' ((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` >= '.$u->info['psevdo_y'].' && `u`.`y` <= '.($u->info['psevdo_y']+4).')) ', //ïðÿìî 
-			3 => ' ((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` <= '.$u->info['psevdo_y'].' && `u`.`y` >= '.($u->info['psevdo_y']-4).')) ', //âíèç
-			2 => ' ((`u`.`x` <= '.$u->info['psevdo_x'].' && `u`.`x` >= '.($u->info['psevdo_x']-4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) ', //ëåâî				
-			4 => ' ((`u`.`x` >= '.$u->info['psevdo_x'].' && `u`.`x` <= '.($u->info['psevdo_x']+4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) ' //ïðàâî
+			1 => ' ((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` >= '.$u->info['psevdo_y'].' && `u`.`y` <= '.($u->info['psevdo_y']+4).')) ', //Ð¿Ñ€ÑÐ¼Ð¾ 
+			3 => ' ((`u`.`x` <= '.($u->info['psevdo_x']+2).' && `u`.`x` >= '.($u->info['psevdo_x']-2).') && (`u`.`y` <= '.$u->info['psevdo_y'].' && `u`.`y` >= '.($u->info['psevdo_y']-4).')) ', //Ð²Ð½Ð¸Ð·
+			2 => ' ((`u`.`x` <= '.$u->info['psevdo_x'].' && `u`.`x` >= '.($u->info['psevdo_x']-4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) ', //Ð»ÐµÐ²Ð¾				
+			4 => ' ((`u`.`x` >= '.$u->info['psevdo_x'].' && `u`.`x` <= '.($u->info['psevdo_x']+4).') && (`u`.`y` <= '.($u->info['psevdo_y']+2).' && `u`.`y` >= '.($u->info['psevdo_y']-2).')) ' //Ð¿Ñ€Ð°Ð²Ð¾
 		);
 		$i = 0;
-		//îòîáðàæàåì áîòîâ
+		//Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶Ð°ÐµÐ¼ Ð±Ð¾Ñ‚Ð¾Ð²
 		$sp = mysql_query('SELECT `u`.*,`st`.* FROM `dungeon_bots` AS `u` LEFT JOIN `test_bot` AS `st` ON (`u`.`id_bot` = `st`.`id`) WHERE '.$whr[$this->gs].' AND `dn` = "0" AND `for_dn` = "'.$this->id_dng.'" AND `u`.`delete` = "0" LIMIT 50');
 		while($pl = mysql_fetch_array($sp)){
 			$i++; if(!isset($pos[$this->cord[$pl['y'].'_'.$pl['x']]])){ $pos[$this->cord[$pl['y'].'_'.$pl['x']]] = 0; } $pos[$this->cord[$pl['y'].'_'.$pl['x']]]++;
@@ -254,7 +254,7 @@ class dungeon
 			$btli = mysql_fetch_array(mysql_query('SELECT `id` FROM `battle` WHERE `id` = "'.$user['battle'].'" AND `team_win` = "-1" LIMIT 1'));
 		}
 		if(!isset($btli['id'])){
-			//Ñîçäàåì ïîåäèíîê
+			//Ð¡Ð¾Ð·Ð´Ð°ÐµÐ¼ Ð¿Ð¾ÐµÐ´Ð¸Ð½Ð¾Ðº
 				$btl_id = 0;
 				$expB = 0;
 				$btl = array(
@@ -288,7 +288,7 @@ class dungeon
 					$btl_id = mysql_insert_id();
 					
 					if($btl_id>0){
-						//Äîáàâëÿåì áîòîâ
+						//Ð”Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð±Ð¾Ñ‚Ð¾Ð²
 						$sp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `for_dn` = "0" AND `dn` = "'.$this->info['id'].'" AND `x` = "'.$bot['x'].'" AND `y` = "'.$bot['y'].'" LIMIT 50');
 						$j = 0; $logins_bot = array();
 						while($pl = mysql_fetch_array($sp)){
@@ -317,7 +317,7 @@ class dungeon
 						}
 					}
 		}else{
-			//Âìåøèâàåìñÿ â ïîåäèíîê
+			//Ð’Ð¼ÐµÑˆÐ¸Ð²Ð°ÐµÐ¼ÑÑ Ð² Ð¿Ð¾ÐµÐ´Ð¸Ð½Ð¾Ðº
 			
 		}
 	}
@@ -328,19 +328,19 @@ class dungeon
 		$go = 0;
 		if($id==1)
 		{
-			//âïåðåä
+			//Ð²Ð¿ÐµÑ€ÐµÐ´
 			$go = $this->sg[$this->gs][1];
 		}elseif($id==2)
 		{
-			//íàçàä
+			//Ð½Ð°Ð·Ð°Ð´
 			$go = $this->sg[$this->gs][3];
 		}elseif($id==3)
 		{
-			//íà ïðàâî
+			//Ð½Ð° Ð¿Ñ€Ð°Ð²Ð¾
 			$go = $this->sg[$this->gs][4];
 		}elseif($id==4)
 		{
-			//íà ëåâî
+			//Ð½Ð° Ð»ÐµÐ²Ð¾
 			$go = $this->sg[$this->gs][2];
 		}
 		$thp = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$u->info['psevdo_x'].'" AND `y` = "'.$u->info['psevdo_y'].'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
@@ -376,7 +376,7 @@ class dungeon
 		}
 		
 		$tmap = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$u->info['psevdo_x'].'" AND `y` = "'.$u->info['psevdo_y'].'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
-		//íàëè÷èå ïðåäìåòà
+		//Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ðµ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ð°
 		if($tmap['tr_items']!='')
 		{
 			$ti = explode(',',$tmap['tr_items']);
@@ -406,21 +406,21 @@ class dungeon
 			if($trnit!='')
 			{
 				$trnit = rtrim($trnit,', ');	
-				$this->error = 'Ó âàñ íåò ïîäõîäÿùåãî ïðåäìåòà. Òðåáóåòñÿ '.$trnit;
+				$this->error = 'Ð£ Ð²Ð°Ñ Ð½ÐµÑ‚ Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰ÐµÐ³Ð¾ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ð°. Ð¢Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ '.$trnit;
 			}
 		}
 		
-		$tmGo  = $u->info['timeGo']-time(); //ñêîëüêî ñåêóíä îñòàëîñü
+		$tmGo  = $u->info['timeGo']-time(); //ÑÐºÐ¾Ð»ÑŒÐºÐ¾ ÑÐµÐºÑƒÐ½Ð´ Ð¾ÑÑ‚Ð°Ð»Ð¾ÑÑŒ
 		if($tmGo>0)
 		{
 			$go = 0;
-			$this->error = 'Íå òàê áûñòðî...';	
+			$this->error = 'ÐÐµ Ñ‚Ð°Ðº Ð±Ñ‹ÑÑ‚Ñ€Ð¾...';	
 		}
 		
 		if($u->aves['now']>=$u->aves['max'])
 		{
 			$go = 0;
-			$this->error = 'Âû íå ìîæåòå ïåðåìåùàòüñÿ, ðþêçàê ïåðåïîëíåí ...';
+			$this->error = 'Ð’Ñ‹ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰Ð°Ñ‚ÑŒÑÑ, Ñ€ÑŽÐºÐ·Ð°Ðº Ð¿ÐµÑ€ÐµÐ¿Ð¾Ð»Ð½ÐµÐ½ ...';
 		}
 		
 		if($go>0)
@@ -450,19 +450,19 @@ class dungeon
 		$go = 0;
 		if($id==1)
 		{
-			//âïåðåä
+			//Ð²Ð¿ÐµÑ€ÐµÐ´
 			$go = $this->sg[$this->gs][1];
 		}elseif($id==2)
 		{
-			//íàçàä
+			//Ð½Ð°Ð·Ð°Ð´
 			$go = $this->sg[$this->gs][3];
 		}elseif($id==3)
 		{
-			//íà ïðàâî
+			//Ð½Ð° Ð¿Ñ€Ð°Ð²Ð¾
 			$go = $this->sg[$this->gs][4];
 		}elseif($id==4)
 		{
-			//íà ëåâî
+			//Ð½Ð° Ð»ÐµÐ²Ð¾
 			$go = $this->sg[$this->gs][2];
 		}
 		$thp = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$u->info['psevdo_x'].'" AND `y` = "'.$u->info['psevdo_y'].'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
@@ -498,7 +498,7 @@ class dungeon
 		}
 		
 		$tmap = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$u->info['psevdo_x'].'" AND `y` = "'.$u->info['psevdo_y'].'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
-		//íàëè÷èå ïðåäìåòà
+		//Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ðµ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ð°
 		/*
 		if($tmap['tr_items']!='')
 		{
@@ -533,7 +533,7 @@ class dungeon
 	public function testSt($id,$s)
 	{
 		$r = 0;
-		//çàìåíÿåì îòîáðàæåíèå ñòåí â çàâèñèìîñòè îò óãëà îáçîðà
+		//Ð·Ð°Ð¼ÐµÐ½ÑÐµÐ¼ Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÑ‚ÐµÐ½ Ð² Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¾Ñ‚ ÑƒÐ³Ð»Ð° Ð¾Ð±Ð·Ð¾Ñ€Ð°
 		$s = $this->sg[$this->gs][$s];
 		if(isset($this->map[1][$id]['id']))
 		{
@@ -545,7 +545,7 @@ class dungeon
 	public function lookDungeon()
 	{
 		global $u,$c,$code,$pd;
-		/* Ãåíåðèðóåì èçîáðàæåíèå êàðòû */
+		/* Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€ÑƒÐµÐ¼ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÐºÐ°Ñ€Ñ‚Ñ‹ */
 		/* LEVEL 1 */
 		if($this->testSt(2,4)>0 || $this->testSt(3,2)>0){ $pd[28] = 1; }
 		if($this->testSt(1,4)>0 || $this->testSt(2,2)>0){ $pd[27] = 1; }
@@ -578,9 +578,9 @@ class dungeon
 		if($this->testSt(16,4)>0 || $this->testSt(15,2)>0){ $pd[4] = 1; }
 		if($this->testSt(15,4)>0 || $this->testSt(17,2)>0){ $pd[3] = 1; }
 		
-		/* Ãåíåðèðóåì ïðåäìåòû íà êàðòå */
+		/* Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€ÑƒÐµÐ¼ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ñ‹ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ðµ */
 		
-		/* Ãåíåðèðóåì ïåðñîíàæåé è áîòîâ íà êàðòå */
+		/* Ð“ÐµÐ½ÐµÑ€Ð¸Ñ€ÑƒÐµÐ¼ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶ÐµÐ¹ Ð¸ Ð±Ð¾Ñ‚Ð¾Ð² Ð½Ð° ÐºÐ°Ñ€Ñ‚Ðµ */
 		
 	}
 
@@ -597,7 +597,7 @@ class dungeon
 		$r = array();
 		if($this->gs == 1)
 		{
-			//1; //ñìîòðèì ïðÿìî
+			//1; //ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ð¿Ñ€ÑÐ¼Ð¾
 			$r[1]  = $this->getMatrix(0,-1);
 			$r[2]  = $this->getMatrix(0,0);
 			$r[3]  = $this->getMatrix(0,1);
@@ -619,7 +619,7 @@ class dungeon
 			$r[19] = $this->getMatrix(4,-2);
 		}elseif($this->gs == 2)
 		{
-			//2; //ñìîòðèì ëåâî
+			//2; //ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ð»ÐµÐ²Ð¾
 			$r[1]  = $this->getMatrix(-1,0);
 			$r[2]  = $this->getMatrix(0,0);
 			$r[3]  = $this->getMatrix(1,0);
@@ -641,7 +641,7 @@ class dungeon
 			$r[19] = $this->getMatrix(-2,-4);
 		}elseif($this->gs == 3)
 		{
-			//3; //ñìîòðèì âíèç
+			//3; //ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ð²Ð½Ð¸Ð·
 			$r[1]  = $this->getMatrix(0,1);
 			$r[2]  = $this->getMatrix(0,0);
 			$r[3]  = $this->getMatrix(0,-1);
@@ -663,7 +663,7 @@ class dungeon
 			$r[19] = $this->getMatrix(-4,2);
 		}elseif($this->gs == 4)
 		{
-			//4; //ñìîòðèì ïðàâî
+			//4; //ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ð¼ Ð¿Ñ€Ð°Ð²Ð¾
 			$r[1]  = $this->getMatrix(1,0);
 			$r[2]  = $this->getMatrix(0,0);
 			$r[3]  = $this->getMatrix(-1,0);

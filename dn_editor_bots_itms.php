@@ -1,10 +1,10 @@
-<?
+<?php
 session_start();
 
 function er($e)
 {
 	 global $c;
-	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>Произошла ошибка: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">Назад</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
+	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">РќР°Р·Р°Рґ</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
 }
 
 function GetRealIp()
@@ -32,10 +32,10 @@ if($u->info['admin'] == 0) {
 
 ?>
 <form method="post" action="?gotonew">
-id бота: <input name="id_bot" value="<?=$_POST['id_bot']?>"><br>
-<input type="submit" value="Перейти">
+id Р±РѕС‚Р°: <input name="id_bot" value="<?=$_POST['id_bot']?>"><br>
+<input type="submit" value="РџРµСЂРµР№С‚Рё">
 </form>
---------------- Бот -------------<br>
+--------------- Р‘РѕС‚ -------------<br>
 <?
 $pl = mysql_fetch_array(mysql_query('SELECT * FROM `test_bot` WHERE `id` = "'.mysql_real_escape_string($_POST['id_bot']).'" LIMIT 1'));
 if(isset($pl['id'])) {
@@ -63,24 +63,24 @@ if(isset($pl['id'])) {
 	
 ?>
 <form method="post" action="?gotonew&save"><input type="hidden" name="id_bot" value="<?=$_POST['id_bot']?>">
-Логин: <input name="login" value="<?=$pl['login']?>"><br />
-Образ: <input name="obraz" value="<?=$pl['obraz']?>"><br />
-Уровень: <input name="level" value="<?=$pl['level']?>"><br />
-Пол: <input name="sex" value="<?=$pl['sex']?>"> (0 - муж. , 1 - жен.)<br />
-Имя: <input name="name" value="<?=$pl['name']?>"><br />
-Агрессия: <input name="agressor" value="<?=$pl['agressor']?>"> (0-100%)<br />
-Опыт (%): <input name="expB" value="<?=$pl['expB']?>"><br />
-Статы:<br />
+Р›РѕРіРёРЅ: <input name="login" value="<?=$pl['login']?>"><br />
+РћР±СЂР°Р·: <input name="obraz" value="<?=$pl['obraz']?>"><br />
+РЈСЂРѕРІРµРЅСЊ: <input name="level" value="<?=$pl['level']?>"><br />
+РџРѕР»: <input name="sex" value="<?=$pl['sex']?>"> (0 - РјСѓР¶. , 1 - Р¶РµРЅ.)<br />
+РРјСЏ: <input name="name" value="<?=$pl['name']?>"><br />
+РђРіСЂРµСЃСЃРёСЏ: <input name="agressor" value="<?=$pl['agressor']?>"> (0-100%)<br />
+РћРїС‹С‚ (%): <input name="expB" value="<?=$pl['expB']?>"><br />
+РЎС‚Р°С‚С‹:<br />
 <textarea rows="5" cols="75" name="stats"><?=$pl['stats']?></textarea>
 <br />
-Предметы (на боте, 2605 - использует приемы. Перечислять чреез запятую id предмета):<br />
+РџСЂРµРґРјРµС‚С‹ (РЅР° Р±РѕС‚Рµ, 2605 - РёСЃРїРѕР»СЊР·СѓРµС‚ РїСЂРёРµРјС‹. РџРµСЂРµС‡РёСЃР»СЏС‚СЊ С‡СЂРµРµР· Р·Р°РїСЏС‚СѓСЋ id РїСЂРµРґРјРµС‚Р°):<br />
 <textarea rows="5" cols="75" name="itemsUse"><?=$pl['itemsUse']?></textarea>
 <br />
-Предметы которые падают с бота:<br />
+РџСЂРµРґРјРµС‚С‹ РєРѕС‚РѕСЂС‹Рµ РїР°РґР°СЋС‚ СЃ Р±РѕС‚Р°:<br />
 <textarea rows="5" cols="75" name="p_items"><?=$pl['p_items']?></textarea>
-<br><input type="submit" value="Сохранить"></form>
+<br><input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ"></form>
 <?
 }elseif(isset($_POST['id_bot'])) {
-	echo 'Бот не найден';
+	echo 'Р‘РѕС‚ РЅРµ РЅР°Р№РґРµРЅ';
 }
 ?>

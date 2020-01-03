@@ -1,27 +1,27 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
 }
 			$tp = array(
-				1  => array('Образ',120,220,100),
-				2  => array('Заглушка (снизу)',120,40,15),
-				3  => array('Заглушка (сверху)',120,20,5),
-				4  => array('Шлем',60,60,25),
-				5  => array('Наручи',60,40,25),
-				6  => array('Левая рука',60,60,25),
-				7  => array('Правая рука',60,60,25),
-				8  => array('Броня',60,80,25),
-				9  => array('Пояс',60,40,25),
-				10 => array('Ботинки',60,40,25),
-				11 => array('Поножи',60,80,25),
-				12 => array('Перчатки',60,40,25),
-				13 => array('Кольца №1',20,20,10),
-				14 => array('Кулон',60,20,25),
-				15 => array('Серьги',60,20,25),						
-				16 => array('Заглушка под информацию о персонаже',244,287,5),						
-				17 => array('Кольцо №2',20,20,10),
-				18 => array('Кольцо №3',20,20,10)					
+				1  => array('РћР±СЂР°Р·',120,220,100),
+				2  => array('Р—Р°РіР»СѓС€РєР° (СЃРЅРёР·Сѓ)',120,40,15),
+				3  => array('Р—Р°РіР»СѓС€РєР° (СЃРІРµСЂС…Сѓ)',120,20,5),
+				4  => array('РЁР»РµРј',60,60,25),
+				5  => array('РќР°СЂСѓС‡Рё',60,40,25),
+				6  => array('Р›РµРІР°СЏ СЂСѓРєР°',60,60,25),
+				7  => array('РџСЂР°РІР°СЏ СЂСѓРєР°',60,60,25),
+				8  => array('Р‘СЂРѕРЅСЏ',60,80,25),
+				9  => array('РџРѕСЏСЃ',60,40,25),
+				10 => array('Р‘РѕС‚РёРЅРєРё',60,40,25),
+				11 => array('РџРѕРЅРѕР¶Рё',60,80,25),
+				12 => array('РџРµСЂС‡Р°С‚РєРё',60,40,25),
+				13 => array('РљРѕР»СЊС†Р° в„–1',20,20,10),
+				14 => array('РљСѓР»РѕРЅ',60,20,25),
+				15 => array('РЎРµСЂСЊРіРё',60,20,25),						
+				16 => array('Р—Р°РіР»СѓС€РєР° РїРѕРґ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ',244,287,5),						
+				17 => array('РљРѕР»СЊС†Рѕ в„–2',20,20,10),
+				18 => array('РљРѕР»СЊС†Рѕ в„–3',20,20,10)					
 			);
 			
 	
@@ -32,28 +32,28 @@ if(!defined('GAME'))
 			
 			$rtm = mysql_fetch_array(mysql_query('SELECT * FROM `items_img` WHERE `uid` = "'.$u->info['id'].'" AND `type` = "'.$img['type'].'" LIMIT 1'));
 			if(!isset($rtm['id'])) {
-				$error = 'Изображение было успешно установленно';
+				$error = 'РР·РѕР±СЂР°Р¶РµРЅРёРµ Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅРѕ';
 				echo '<meta http-equiv="refresh" content="0; URL=/main.php?galery&error=1">';
 				mysql_query('INSERT INTO `items_img` (`uid`,`img_id`,`type`) VALUES ("'.$u->info['id'].'","'.$img['id'].'","'.$img['type'].'")');
 			}elseif($rtm['img_id']!=$img['id']){
-				$error = 'Изображение было успешно установленно';
+				$error = 'РР·РѕР±СЂР°Р¶РµРЅРёРµ Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅРѕ';
 				echo '<meta http-equiv="refresh" content="0; URL=/main.php?galery&error=1">';
 				mysql_query('UPDATE `items_img` SET `img_id` = "'.$img['id'].'" WHERE `id` = "'.$rtm['id'].'" LIMIT 1');
 			}elseif($rtm['img_id']==$img['id']){
-				$error = 'Изображение было успешно снято';
+				$error = 'РР·РѕР±СЂР°Р¶РµРЅРёРµ Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ СЃРЅСЏС‚Рѕ';
 				echo '<meta http-equiv="refresh" content="0; URL=/main.php?galery&error=2">';
 				mysql_query('UPDATE `items_img` SET `img_id` = "0" WHERE `id` = "'.$rtm['id'].'" LIMIT 1');
 			}
 		}else{
-			$error = 'Вы не можете установить данное изображение';
+			$error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РґР°РЅРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ';
 		}
 	}
 	
 	if(isset($_GET['error'])) {
 		if($_GET['error'] == 1) {
-			$error = 'Изображение было успешно установленно';
+			$error = 'РР·РѕР±СЂР°Р¶РµРЅРёРµ Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅРѕ';
 		}else{
-			$error = 'Изображение было успешно снято';
+			$error = 'РР·РѕР±СЂР°Р¶РµРЅРёРµ Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ СЃРЅСЏС‚Рѕ';
 		}
 	}
 		
@@ -81,7 +81,7 @@ if(!defined('GAME'))
   <tr>
     <td width="250" valign="top" align="right"><div align="center"><? $usee = $u->getInfoPers($u->info['id'],0,0,1); if($usee!=false){ echo $usee[0]; }else{ echo 'information is lost.'; } ?></div></td>
   	<td valign="top">
-    	<h3>Доступные изображения</h3>
+    	<h3>Р”РѕСЃС‚СѓРїРЅС‹Рµ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ</h3>
        
        	<? 
 		if($error != '') {
@@ -114,12 +114,12 @@ if(!defined('GAME'))
         </div>
         <? $j++; } $i++; } 
 		if($j == 0) {
-			echo '<center style="padding:20px;">У вас нет доступных изображений.</center>';
+			echo '<center style="padding:20px;">РЈ РІР°СЃ РЅРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№.</center>';
 		}
 		?>
     </td>
     <td width="175" valign="top"><div style="padding:20px">
-    <input value="Обновить" onclick="location.href='main.php?galery';" type="button" /> <input value="Вернуться" onclick="location.href='main.php?inv=1';" type="button" />
+    <input value="РћР±РЅРѕРІРёС‚СЊ" onclick="location.href='main.php?galery';" type="button" /> <input value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onclick="location.href='main.php?inv=1';" type="button" />
     </div></td>
   </tr>
 </table>

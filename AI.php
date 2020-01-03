@@ -2,8 +2,8 @@
 
 /*
 
-	Ядро для обработки данных.
-	Обработка поединков, обработка заявок, обработка ботов, обработка пещер, обработка турниров, обработка временных генераций
+	РЇРґСЂРѕ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С….
+	РћР±СЂР°Р±РѕС‚РєР° РїРѕРµРґРёРЅРєРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° Р·Р°СЏРІРѕРє, РѕР±СЂР°Р±РѕС‚РєР° Р±РѕС‚РѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РїРµС‰РµСЂ, РѕР±СЂР°Р±РѕС‚РєР° С‚СѓСЂРЅРёСЂРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РІСЂРµРјРµРЅРЅС‹С… РіРµРЅРµСЂР°С†РёР№
 
 */
 
@@ -26,7 +26,7 @@ if(isset($_GET['test'])) {
 	*/
 }
 
-die('Отсутствует подключение к базе.');
+die('РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р±Р°Р·Рµ.');
 
 function getIP() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
@@ -57,13 +57,13 @@ if(isset($_GET['mail'])) {
 	}
 	$sp = mysql_query('SELECT * FROM `users_mail1` WHERE `login2` != "1" ORDER BY `online` DESC LIMIT 1');
 	while( $pl = mysql_fetch_array($sp)) {
-		echo 'E-mail:<br><br><b>'.$pl['mail'].'</b><br><br><br><a href="/AI.php?robot&mail&ok">СЛЕДУЮЩИЙ E-MAIL</a>';
+		echo 'E-mail:<br><br><b>'.$pl['mail'].'</b><br><br><br><a href="/AI.php?robot&mail&ok">РЎР›Р•Р”РЈР®Р©РР™ E-MAIL</a>';
 	}
 	$xx = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `users_mail1` WHERE `login2` = 1 LIMIT 1'));
 	$xx = $xx[0];
 	$xx2 = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `users_mail1` LIMIT 1'));
 	$xx2 = $xx2[0] + 7588;
-	echo '<Br><br>(Отправлено писем: '.$xx.' / '.$xx2.')';
+	echo '<Br><br>(РћС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃРµРј: '.$xx.' / '.$xx2.')';
 }
 
 include('_incl_data/class/__user.php');
@@ -71,7 +71,7 @@ include('_incl_data/class/bot.priem.php');
 include('_incl_data/class/bot.logic.php');
 
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","LEL","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","LEL","6","1","-1")');
 }
 
 $count = array(
@@ -136,7 +136,7 @@ while($pl = mysql_fetch_array($sp)) {
 		echo '*';
 	}
 	echo '+';
-	echo '['.$pl['login'].'] -> Действие: '.$pl['ipreg'].' , ожидаем: '.($pl['timeMain']-time()).' сек., заявка: '.$pl['zv'].', поединок: '.$pl['battle'].'';
+	echo '['.$pl['login'].'] -> Р”РµР№СЃС‚РІРёРµ: '.$pl['ipreg'].' , РѕР¶РёРґР°РµРј: '.($pl['timeMain']-time()).' СЃРµРє., Р·Р°СЏРІРєР°: '.$pl['zv'].', РїРѕРµРґРёРЅРѕРє: '.$pl['battle'].'';
 	echo '<hr>';
 }
 ?>

@@ -48,9 +48,9 @@ function error($e)
 	 global $c;
 	 die('<html><head>
 	 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-	 <meta http-equiv="Content-Language" content="ru"><TITLE>Произошла ошибка</TITLE></HEAD>
+	 <meta http-equiv="Content-Language" content="ru"><TITLE>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°</TITLE></HEAD>
 	 <BODY text="#FFFFFF"><p><font color=black>
-	 Произошла ошибка: <pre>'.$e.'</pre><b><p><a onClick="window.history.go(-1); return false;" href="#">Назад</b></a><HR>
+	 РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>'.$e.'</pre><b><p><a onClick="window.history.go(-1); return false;" href="#">РќР°Р·Р°Рґ</b></a><HR>
 	 <p align="right">(c) <a href="http://'.$c['host'].'/">'.$c['name'].'</a></p>
 	 <!--Rating@Mail.ru counter--><!--// Rating@Mail.ru counter-->
 	 </body></html>');
@@ -60,9 +60,9 @@ $socauth = false;
 
 if(isset($_GET['vk-auth'])) {
 	
-    $client_id = '5145826'; // ID приложения
-    $client_secret = 'V90yIzlgSglfgrnHw7Ny'; // Защищённый ключ
-    $redirect_uri = 'http://xcombats.com/enter?vk-auth'; // Адрес сайта
+    $client_id = '5145826'; // ID РїСЂРёР»РѕР¶РµРЅРёСЏ
+    $client_secret = 'V90yIzlgSglfgrnHw7Ny'; // Р—Р°С‰РёС‰С‘РЅРЅС‹Р№ РєР»СЋС‡
+    $redirect_uri = 'http://xcombats.com/enter?vk-auth'; // РђРґСЂРµСЃ СЃР°Р№С‚Р°
 
     $url = 'http://oauth.vk.com/authorize';
 
@@ -104,10 +104,10 @@ if(isset($_GET['vk-auth'])) {
 				$_POST['login'] = $scl['login'];
 				$socauth = true;
 			}else{
-				error('Ваш аккаунт ВКонтакте#'.$userInfo['uid'].' не прикреплен ни к одному из персонажей.');
+				error('Р’Р°С€ Р°РєРєР°СѓРЅС‚ Р’РљРѕРЅС‚Р°РєС‚Рµ#'.$userInfo['uid'].' РЅРµ РїСЂРёРєСЂРµРїР»РµРЅ РЅРё Рє РѕРґРЅРѕРјСѓ РёР· РїРµСЂСЃРѕРЅР°Р¶РµР№.');
 			}
 		}else{
-			error('Неудалось авторизироваться через социальную сеть ВКонтакте');
+			error('РќРµСѓРґР°Р»РѕСЃСЊ Р°РІС‚РѕСЂРёР·РёСЂРѕРІР°С‚СЊСЃСЏ С‡РµСЂРµР· СЃРѕС†РёР°Р»СЊРЅСѓСЋ СЃРµС‚СЊ Р’РљРѕРЅС‚Р°РєС‚Рµ');
 		}
 	}
 }
@@ -116,7 +116,7 @@ $u = mysql_fetch_array(mysql_query('SELECT `u`.`pass2`,`u`.`id`,`u`.`auth`,`u`.`
 
 $auth = mysql_fetch_array(mysql_query('SELECT * FROM `logs_auth` WHERE `uid` = "'.$u['id'].'" AND `ip` = "'.mysql_real_escape_string(IP).'" LIMIT 1'));
 if( $c['securetime'] > 0 && IP != $u['ip'] && IP != $u['ipreg'] && !isset($auth['id']) && $u['securetime'] < $c['securetime'] && $u['timereg'] < $c['securetime'] ) {
-	error('Вы не можете войти на персонажа "'.$_POST['login'].'".<br>Скорее всего вы давно не меняли пароль. Для смены перейдите по ссылке: <a href="/repass.php?login='.htmlspecialchars($_POST['login'],NULL,'cp1251').'">СМЕНА ПАРОЛЯ</a><br><br>Вам необходимо сменить пароль для безопасности персонажа, на почту по которой зарегистрирован персонаж придет новый случайно сгенерированный пароль.<br>Если у вас нет доступа к E-mail: Зарегистрируйте нового персонажа и обратитесь к Администрации, либо модераторам.');
+	error('Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РІРѕР№С‚Рё РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° "'.$_POST['login'].'".<br>РЎРєРѕСЂРµРµ РІСЃРµРіРѕ РІС‹ РґР°РІРЅРѕ РЅРµ РјРµРЅСЏР»Рё РїР°СЂРѕР»СЊ. Р”Р»СЏ СЃРјРµРЅС‹ РїРµСЂРµР№РґРёС‚Рµ РїРѕ СЃСЃС‹Р»РєРµ: <a href="/repass.php?login='.htmlspecialchars($_POST['login'],NULL,'cp1251').'">РЎРњР•РќРђ РџРђР РћР›РЇ</a><br><br>Р’Р°Рј РЅРµРѕР±С…РѕРґРёРјРѕ СЃРјРµРЅРёС‚СЊ РїР°СЂРѕР»СЊ РґР»СЏ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё РїРµСЂСЃРѕРЅР°Р¶Р°, РЅР° РїРѕС‡С‚Сѓ РїРѕ РєРѕС‚РѕСЂРѕР№ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ РїРµСЂСЃРѕРЅР°Р¶ РїСЂРёРґРµС‚ РЅРѕРІС‹Р№ СЃР»СѓС‡Р°Р№РЅРѕ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅС‹Р№ РїР°СЂРѕР»СЊ.<br>Р•СЃР»Рё Сѓ РІР°СЃ РЅРµС‚ РґРѕСЃС‚СѓРїР° Рє E-mail: Р—Р°СЂРµРіРёСЃС‚СЂРёСЂСѓР№С‚Рµ РЅРѕРІРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р° Рё РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё, Р»РёР±Рѕ РјРѕРґРµСЂР°С‚РѕСЂР°Рј.');
 }
 
 
@@ -125,7 +125,7 @@ if( $c['securetime'] > 0 && IP != $u['ip'] && IP != $u['ipreg'] && !isset($auth[
 	if($u['pass'] == md5($_POST['pass'])) {
 		$u['pass'] = $_POST['pass'];
 		mysql_query('UPDATE `users` SET `pass` = "'.mysql_real_escape_string($_POST['pass']).'",`online` = "'.time().'" WHERE `id` = "'.mysql_real_escape_string($u['id']).'" LIMIT 1');	
-		error('Войдите с главной странице еще раз. Пароль был расшифрован.');
+		error('Р’РѕР№РґРёС‚Рµ СЃ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ РµС‰Рµ СЂР°Р·. РџР°СЂРѕР»СЊ Р±С‹Р» СЂР°СЃС€РёС„СЂРѕРІР°РЅ.');
 	}
 }*/
 
@@ -135,27 +135,27 @@ if( md5(md5($_POST['pass'])) == $u['pass'] ) {
 
 if(!isset($u['id']))
 {
-	error('Логин "'.$_POST['login'].'" не найден в базе.');
+	error('Р›РѕРіРёРЅ "'.$_POST['login'].'" РЅРµ РЅР°Р№РґРµРЅ РІ Р±Р°Р·Рµ.');
 }elseif($u['pass']!=md5($_POST['pass']) && $socauth == false)
 {
-	error('Неверный пароль к персонажу "'.$_POST['login'].'".');
+	error('РќРµРІРµСЂРЅС‹Р№ РїР°СЂРѕР»СЊ Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ "'.$_POST['login'].'".');
 	mysql_query("INSERT INTO `logs_auth` (`country`,`uid`,`ip`,`browser`,`type`,`time`,`depass`) VALUES ('".mysql_real_escape_string($_SERVER["HTTP_CF_IPCOUNTRY"])."','".$u['id']."','".mysql_real_escape_string(IP)."','".mysql_real_escape_string($_SERVER['HTTP_USER_AGENT'])."','3','".time()."','".mysql_real_escape_string($_POST['pass'])."')");
 }elseif($u['banned']>0)
 {
 	$fm = mysql_fetch_array(mysql_query('SELECT * FROM `users_delo` WHERE `uid` = "'.$u['id'].'" AND `hb`!=0 ORDER BY `id` DESC LIMIT 1'));
 	if(!isset($fm['id'])) {
-		$fm['text'] = 'Причина блокировки: <i>Причина пока-что не указана.</i>';
+		$fm['text'] = 'РџСЂРёС‡РёРЅР° Р±Р»РѕРєРёСЂРѕРІРєРё: <i>РџСЂРёС‡РёРЅР° РїРѕРєР°-С‡С‚Рѕ РЅРµ СѓРєР°Р·Р°РЅР°.</i>';
 	}
 	error(
-		'Персонаж <b>'.$_POST['login'].'</b> заблокирован.'.
+		'РџРµСЂСЃРѕРЅР°Р¶ <b>'.$_POST['login'].'</b> Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ.'.
 		'<br>'.$fm['text'].'<br>'.
-		'<br><b>Внимание!</b> Если Вы уверены, что произошла ошибка и Вы ничего не нарушали, оставьте, пожалуйста, вашу заявку на <a href="mailto:support@xcombats.com">support@original.com</a>'.
-		'<br>Перед тем как писать, <b>ВНИМАТЕЛЬНО</b> ознакомитесь с <a target="_blank" href="http://xcombats.com/lib/zakon/">действующими законами</a> и <a target="_blank" href="http://xcombats.com/lib/polzovatelskoe-soglashenie/">пользовательским соглашением</a>.'
-		.'<br><br>Если Вы заблокированы правомерно, то у Вас есть шанс выйти из блока на платной основе (минимальная сумма 100 ЕКР, данная сумма идёт на баланс вашего игрового персонажа и внутри игры можно распоряжаться ею как угодно).'
+		'<br><b>Р’РЅРёРјР°РЅРёРµ!</b> Р•СЃР»Рё Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° Рё Р’С‹ РЅРёС‡РµРіРѕ РЅРµ РЅР°СЂСѓС€Р°Р»Рё, РѕСЃС‚Р°РІСЊС‚Рµ, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РІР°С€Сѓ Р·Р°СЏРІРєСѓ РЅР° <a href="mailto:support@xcombats.com">support@original.com</a>'.
+		'<br>РџРµСЂРµРґ С‚РµРј РєР°Рє РїРёСЃР°С‚СЊ, <b>Р’РќРРњРђРўР•Р›Р¬РќРћ</b> РѕР·РЅР°РєРѕРјРёС‚РµСЃСЊ СЃ <a target="_blank" href="http://xcombats.com/lib/zakon/">РґРµР№СЃС‚РІСѓСЋС‰РёРјРё Р·Р°РєРѕРЅР°РјРё</a> Рё <a target="_blank" href="http://xcombats.com/lib/polzovatelskoe-soglashenie/">РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРј СЃРѕРіР»Р°С€РµРЅРёРµРј</a>.'
+		.'<br><br>Р•СЃР»Рё Р’С‹ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅС‹ РїСЂР°РІРѕРјРµСЂРЅРѕ, С‚Рѕ Сѓ Р’Р°СЃ РµСЃС‚СЊ С€Р°РЅСЃ РІС‹Р№С‚Рё РёР· Р±Р»РѕРєР° РЅР° РїР»Р°С‚РЅРѕР№ РѕСЃРЅРѕРІРµ (РјРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° 100 Р•РљР , РґР°РЅРЅР°СЏ СЃСѓРјРјР° РёРґС‘С‚ РЅР° Р±Р°Р»Р°РЅСЃ РІР°С€РµРіРѕ РёРіСЂРѕРІРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р° Рё РІРЅСѓС‚СЂРё РёРіСЂС‹ РјРѕР¶РЅРѕ СЂР°СЃРїРѕСЂСЏР¶Р°С‚СЊСЃСЏ РµСЋ РєР°Рє СѓРіРѕРґРЅРѕ).'
 	);
 }else{
 	
-	//Второй пароль
+	//Р’С‚РѕСЂРѕР№ РїР°СЂРѕР»СЊ
 	if( $u['pass2'] != '' && $u['pass2'] != '0' ) {
 		$_SESSION['login'] = $_POST['login'];
 		$_SESSION['pass'] = $_POST['pass'];
@@ -166,7 +166,7 @@ if(!isset($u['id']))
 			$good2 = true;
 			unset($_SESSION['login'],$_SESSION['pass']);
 		}else{
-			$koko = 'Неверный второй пароль';
+			$koko = 'РќРµРІРµСЂРЅС‹Р№ РІС‚РѕСЂРѕР№ РїР°СЂРѕР»СЊ';
 			setcookie('login','',time()-60*60*24,'',$c['host']);
 			setcookie('pass','',time()-60*60*24,'',$c['host']);
 			setcookie('login','',time()-60*60*24);
@@ -184,10 +184,10 @@ if(!isset($u['id']))
 				<META Http-Equiv=Cache-Control Content=no-cache>
 				<meta http-equiv=PRAGMA content=NO-CACHE>
 				<META Http-Equiv=Expires Content=0>
-				<TITLE>Второй пароль</TITLE>
+				<TITLE>Р’С‚РѕСЂРѕР№ РїР°СЂРѕР»СЊ</TITLE>
 			</HEAD>
 			<body bgcolor=666666>
-			<H3><FONT COLOR="black">Запрос второго пароля к персонажу.</FONT></H3>
+			<H3><FONT COLOR="black">Р—Р°РїСЂРѕСЃ РІС‚РѕСЂРѕРіРѕ РїР°СЂРѕР»СЏ Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ.</FONT></H3>
 			<?=$koko?>
 			<div align="center">
 				<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="100%" height="100%">
@@ -227,7 +227,7 @@ if(!isset($u['id']))
 		setcookie('pass','',time()-60*60*24,'',$c['host']);
 	}
 	
-	//мульты
+	//РјСѓР»СЊС‚С‹
 	if($u['admin']==0)
 	{
 		$ipm1 = mysql_fetch_array(mysql_query('SELECT * FROM `logs_auth` WHERE `uid` = "'.mysql_real_escape_string($u['id']).'" AND `ip`!="'.mysql_real_escape_string($u['ip']).'" ORDER BY `id` ASC LIMIT 1'));
@@ -248,9 +248,9 @@ if(!isset($u['id']))
 			mysql_query('INSERT INTO `eff_users` (
 				`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`
 			) VALUES (
-				"365","'.$u['id'].'","День Рождения Клуба","add_speedhp=200|add_speedmp=200|add_exp=200","47","'.time().'"
+				"365","'.$u['id'].'","Р”РµРЅСЊ Р РѕР¶РґРµРЅРёСЏ РљР»СѓР±Р°","add_speedhp=200|add_speedmp=200|add_exp=200","47","'.time().'"
 			)');
-			$chat->send('',$u['room'],$u['city'],'',$u['login'],'В честь дня рождения проекта вы получаете эффект &quot;День Рождения Клуба&quot;! (Эффект обновляется каждый раз когда вы заходите на персонажа)',time(),6,0,0,0,1);
+			$chat->send('',$u['room'],$u['city'],'',$u['login'],'Р’ С‡РµСЃС‚СЊ РґРЅСЏ СЂРѕР¶РґРµРЅРёСЏ РїСЂРѕРµРєС‚Р° РІС‹ РїРѕР»СѓС‡Р°РµС‚Рµ СЌС„С„РµРєС‚ &quot;Р”РµРЅСЊ Р РѕР¶РґРµРЅРёСЏ РљР»СѓР±Р°&quot;! (Р­С„С„РµРєС‚ РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ РєР°Р¶РґС‹Р№ СЂР°Р· РєРѕРіРґР° РІС‹ Р·Р°С…РѕРґРёС‚Рµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°)',time(),6,0,0,0,1);
 		}
 	}*/
 	
@@ -270,7 +270,7 @@ if(!isset($u['id']))
 		while( $pl = mysql_fetch_array($sp) ) {
 			$usr = mysql_fetch_array(mysql_query('SELECT `id`,`online`,`login`,`city`,`room` FROM `users` WHERE `id` = "'.$pl['user'].'" LIMIT 1'));
 			if( isset($usr['id']) && $usr['online'] > time()-600 ) {
-				$chat->send('',$usr['room'],$usr['city'],'',$usr['login'],'Вас приветствует: <b>'.$u['login'].'</b>.',time(),6,0,0,0,1);
+				$chat->send('',$usr['room'],$usr['city'],'',$usr['login'],'Р’Р°СЃ РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚: <b>'.$u['login'].'</b>.',time(),6,0,0,0,1);
 			}
 		}
 	}
@@ -282,7 +282,7 @@ if(!isset($u['id']))
 	if($u['auth'] != md5($u['login'].'AUTH'.IP) || $_COOKIE['auth'] != md5($u['login'].'AUTH'.IP) || $u['auth']=='' || $u['auth']=='0')
 	{		
 		if($u['auth'] != '' && $u['auth'] != '0' && $u['ip'] != IP) {
-			mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','0','','".$u['login']."','В предыдущий раз этим персонажем заходили с другого компьютера ".date('d.m.Y H:i',$u['online']).". (Предыдущий ip: %".$u['ip'].")','-1','6','0')");
+			mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','0','','".$u['login']."','Р’ РїСЂРµРґС‹РґСѓС‰РёР№ СЂР°Р· СЌС‚РёРј РїРµСЂСЃРѕРЅР°Р¶РµРј Р·Р°С…РѕРґРёР»Рё СЃ РґСЂСѓРіРѕРіРѕ РєРѕРјРїСЊСЋС‚РµСЂР° ".date('d.m.Y H:i',$u['online']).". (РџСЂРµРґС‹РґСѓС‰РёР№ ip: %".$u['ip'].")','-1','6','0')");
 		}
 		$apu = "`auth` = '".md5($u['login'].'AUTH'.IP)."',";
 		setcookie('auth',md5($u['login'].'AUTH'.IP),time()+60*60*24*365,'','xcombats.com');

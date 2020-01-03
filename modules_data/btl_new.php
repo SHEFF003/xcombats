@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME')) {
 	die();
 }
@@ -67,12 +67,12 @@ var fight = {
 			timeout:1		
 		},
 	genmain:function() {
-			//Генирация персонажа
+			//Р“РµРЅРёСЂР°С†РёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
 			$('#u1').html( '<div id="uinf_' + this.data.me.id + '"></div>' );
 			this.returnUserInfo(this.data.me.id,false);
 			$('#u2').html( '<div id="uinf_' + this.data.me.enemy + '"></div>' );
 			this.returnUserInfo(this.data.me.enemy,false);
-			//Генирация команды
+			//Р“РµРЅРёСЂР°С†РёСЏ РєРѕРјР°РЅРґС‹
 			this.returnTeamInfo( false );
 		},
 	returnUserKey:function(id) {
@@ -136,7 +136,7 @@ var fight = {
 				while( i < t2.length ) {
 					if( t2[i] != undefined && t1[ t2[i] ] != undefined ) {
 						if( i != 0 ) {
-							r += ' &nbsp;<span class="CSSvs">против</span>&nbsp; ';
+							r += ' &nbsp;<span class="CSSvs">РїСЂРѕС‚РёРІ</span>&nbsp; ';
 						}
 						r += t1[ t2[i] ];
 					}
@@ -160,7 +160,7 @@ var fight = {
 			}
 			r += '<span class="CSSteam' + user.team + '">' + user.login + '</span><small> [' + user.hpNow + '/' + user.hpAll + ']</small>';
 		}else{
-			r = '<i>Персонаж ?</i>';
+			r = '<i>РџРµСЂСЃРѕРЅР°Р¶ ?</i>';
 		}
 		return r;
 	},
@@ -324,7 +324,7 @@ var fight = {
         <!-- -->
         <div style="padding-top:10px">&nbsp;</div>
         <!-- -->
-        <div id="u_error" class="uerror"><?=date('d.m.Y H:i:s')?> Произошла ошибка подключения к серверу</div>
+        <div id="u_error" class="uerror"><?=date('d.m.Y H:i:s')?> РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє СЃРµСЂРІРµСЂСѓ</div>
         <!-- -->
         <div id="u_magics">&nbsp;</div>
         <!-- -->
@@ -335,9 +335,9 @@ var fight = {
                 <!-- -->
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                   <tr>
-                    <td><div class="b_nml">Атака</div></td>
+                    <td><div class="b_nml">РђС‚Р°РєР°</div></td>
                     <td width="10">&nbsp;</td>
-                    <td><div class="b_nml">Защита</div></td>
+                    <td><div class="b_nml">Р—Р°С‰РёС‚Р°</div></td>
                   </tr>
                   <tr>
                     <td align="center">
@@ -434,19 +434,19 @@ var fight = {
                     <!-- -->
                     <table class="fl" border="0" cellspacing="0" cellpadding="2">
                       <tr>
-                        <td><label for="ua11">удар в голову</label></td>
+                        <td><label for="ua11">СѓРґР°СЂ РІ РіРѕР»РѕРІСѓ</label></td>
                       </tr>
                       <tr>
-                        <td><label for="ua12">удар в грудь</label></td>
+                        <td><label for="ua12">СѓРґР°СЂ РІ РіСЂСѓРґСЊ</label></td>
                       </tr>
                       <tr>
-                        <td><label for="ua13">удар в живот</label></td>
+                        <td><label for="ua13">СѓРґР°СЂ РІ Р¶РёРІРѕС‚</label></td>
                       </tr>
                       <tr>
-                        <td><label for="ua14">удар в пояс(пах)</label></td>
+                        <td><label for="ua14">СѓРґР°СЂ РІ РїРѕСЏСЃ(РїР°С…)</label></td>
                       </tr>
                       <tr>
-                        <td><label for="ua15">удар по ногам</label></td>
+                        <td><label for="ua15">СѓРґР°СЂ РїРѕ РЅРѕРіР°Рј</label></td>
                       </tr>
                     </table>
                     <!-- -->
@@ -456,19 +456,19 @@ var fight = {
                     <!-- -->
                     <table class="fr" border="0" cellspacing="0" cellpadding="2">
                       <tr>
-                        <td><label for="ub11">блок головы и груди</label></td>
+                        <td><label for="ub11">Р±Р»РѕРє РіРѕР»РѕРІС‹ Рё РіСЂСѓРґРё</label></td>
                       </tr>
                       <tr>
-                        <td><label for="ub12">блок груди и живота</label></td>
+                        <td><label for="ub12">Р±Р»РѕРє РіСЂСѓРґРё Рё Р¶РёРІРѕС‚Р°</label></td>
                       </tr>
                       <tr>
-                        <td><label for="ub13">блок живота и пояса</label></td>
+                        <td><label for="ub13">Р±Р»РѕРє Р¶РёРІРѕС‚Р° Рё РїРѕСЏСЃР°</label></td>
                       </tr>
                       <tr>
-                        <td><label for="ub14">блок пояса и ног</label></td>
+                        <td><label for="ub14">Р±Р»РѕРє РїРѕСЏСЃР° Рё РЅРѕРі</label></td>
                       </tr>
                       <tr>
-                        <td><label for="ub15">блок ног и головы</label></td>
+                        <td><label for="ub15">Р±Р»РѕРє РЅРѕРі Рё РіРѕР»РѕРІС‹</label></td>
                       </tr>
                     </table>
                     <!-- -->
@@ -504,10 +504,10 @@ var fight = {
                     <td width="20">&nbsp;</td>
                     <td width="20">&nbsp;</td>
                     <td align="center" valign="middle">
-                    	<input type="button" value="Вперёд!!!" />
+                    	<input type="button" value="Р’РїРµСЂС‘Рґ!!!" />
                     </td>
                     <td width="20">&nbsp;</td>
-                    <td width="20"><img onclick="fight.f5()" title="Обновить" src="http://img.xcombats.com/i/ico_refresh.gif" width="16" height="19" /></td>
+                    <td width="20"><img onclick="fight.f5()" title="РћР±РЅРѕРІРёС‚СЊ" src="http://img.xcombats.com/i/ico_refresh.gif" width="16" height="19" /></td>
                   </tr>
                   </table>
                 <!-- -->
@@ -529,8 +529,8 @@ var fight = {
   </tr>
   <tr>
     <td>
-    	<div style="float:left">На данный момент вами нанесено урона: <b><span id="u_atackhp">0</span> HP</b>.</div>
-        <div style="float:right">(Бой идет с таймаутом <b id="u_timeout">1</b> мин.)</div>
+    	<div style="float:left">РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РІР°РјРё РЅР°РЅРµСЃРµРЅРѕ СѓСЂРѕРЅР°: <b><span id="u_atackhp">0</span> HP</b>.</div>
+        <div style="float:right">(Р‘РѕР№ РёРґРµС‚ СЃ С‚Р°Р№РјР°СѓС‚РѕРј <b id="u_timeout">1</b> РјРёРЅ.)</div>
     </td>
   </tr>
 </table>

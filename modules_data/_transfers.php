@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME')) { die(); }
 //onmouseup="top.chat.inObj = trnLogin;"
 if(!isset($u->tfer['id'])) {
@@ -8,8 +8,8 @@ if(!isset($u->tfer['id'])) {
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="110" align="right">&nbsp;</td>
-    <td align="center">Передача предметов/кредитов другому игроку</td>
-    <td width="110" align="right"><input type="button" onClick="location='main.php?rnd=<? echo $code; ?>';" name="button" id="button" value="Вернуться"></td>
+    <td align="center">РџРµСЂРµРґР°С‡Р° РїСЂРµРґРјРµС‚РѕРІ/РєСЂРµРґРёС‚РѕРІ РґСЂСѓРіРѕРјСѓ РёРіСЂРѕРєСѓ</td>
+    <td width="110" align="right"><input type="button" onClick="location='main.php?rnd=<? echo $code; ?>';" name="button" id="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ"></td>
   </tr>
 </table>
 <?
@@ -24,23 +24,23 @@ if($u->error!='') {
     <td id="LoginLayer" valign="top" colspan="2"><table width="300" border="0" align="center" cellpadding="2" cellspacing="0" bgcolor="#d4d2d2">
       <tbody>
         <tr>
-          <td bgcolor="#a5a5a5" align="center"><strong>Укажите логин персонажа:</strong></td>
+          <td bgcolor="#a5a5a5" align="center"><strong>РЈРєР°Р¶РёС‚Рµ Р»РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°:</strong></td>
         </tr>
         <tr>
           <td align="center"><input id="trnLogin" type="text" style="width: 95%;" name="trnLogin" value="" />
-            <div align="center"><small style="font-size:10px;">(можно щелкнуть по логину в чате)</small></div>
+            <div align="center"><small style="font-size:10px;">(РјРѕР¶РЅРѕ С‰РµР»РєРЅСѓС‚СЊ РїРѕ Р»РѕРіРёРЅСѓ РІ С‡Р°С‚Рµ)</small></div>
           </td>
         </tr>
         <tr>
-          <td bgcolor="#a5a5a5" align="center"><strong>Пояснение</strong></td>
+          <td bgcolor="#a5a5a5" align="center"><strong>РџРѕСЏСЃРЅРµРЅРёРµ</strong></td>
         </tr>
         <tr>
           <td align="center"><textarea style="width:95%;" name="textarea"></textarea>
-            <div align="center"><small style="font-size:10px;">Максимальное число знаков: 200</small></div>
+            <div align="center"><small style="font-size:10px;">РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ Р·РЅР°РєРѕРІ: 200</small></div>
           </td>
         </tr>
         <tr>
-          <td bgcolor="#a5a5a5" align="center"><button>Отправить приглашение</button></td>
+          <td bgcolor="#a5a5a5" align="center"><button>РћС‚РїСЂР°РІРёС‚СЊ РїСЂРёРіР»Р°С€РµРЅРёРµ</button></td>
         </tr>
       </tbody>
     </table></td>
@@ -64,30 +64,30 @@ if($u->error!='') {
 		mysql_query('UPDATE `transfers` SET `r'.$rtdf.'` = "0", `good1`="0",`good2`="0" WHERE `id` = "'.$u->tfer['id'].'" LIMIT 1');
 		unset($rtdf);
 	}
-/*	echo '[Передача]<br>Присутствие: ';
+/*	echo '[РџРµСЂРµРґР°С‡Р°]<br>РџСЂРёСЃСѓС‚СЃС‚РІРёРµ: ';
 	if($u->tfer['start1']>0)
 	{
-		echo ' [U1: Присутствует]';		
+		echo ' [U1: РџСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚]';		
 	}
 	if($u->tfer['start2']>0)
 	{
-		echo ' [U2: Присутствует]';		
+		echo ' [U2: РџСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚]';		
 	}
-	echo '<br>Состояние: ';
+	echo '<br>РЎРѕСЃС‚РѕСЏРЅРёРµ: ';
 	if($u->tfer['good1']>0)
 	{
-		echo ' [U1: Согласен]';		
+		echo ' [U1: РЎРѕРіР»Р°СЃРµРЅ]';		
 	}else{
-		echo ' [U1: Ожидание]';
+		echo ' [U1: РћР¶РёРґР°РЅРёРµ]';
 	}
 	if($u->tfer['good2']>0)
 	{
-		echo ' [U2: Согласен]';		
+		echo ' [U2: РЎРѕРіР»Р°СЃРµРЅ]';		
 	}else{
-		echo ' [U2: Ожидание]';
+		echo ' [U2: РћР¶РёРґР°РЅРёРµ]';
 	}
 	
-	echo '<br><a href="main.php?transfer&exit_transfer='.$code.'">Выйти из передачи</a>';
+	echo '<br><a href="main.php?transfer&exit_transfer='.$code.'">Р’С‹Р№С‚Рё РёР· РїРµСЂРµРґР°С‡Рё</a>';
 */
 $az = array(1=>1,2=>2);
 if($u->tfer['uid2']==$u->info['id'])
@@ -215,8 +215,8 @@ function clickBtn1()
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="110" align="right">&nbsp;</td>
-        <td align="center">Передача предметов/кредитов между <? echo $tu[1].' и '.$tu[2]; ?></td>
-        <td width="110" align="right"><input type="button" onclick="location='main.php?transfer&exit_transfer&rnd=<? echo $code; ?>';" name="button2" id="button2" value="Вернуться" /></td>
+        <td align="center">РџРµСЂРµРґР°С‡Р° РїСЂРµРґРјРµС‚РѕРІ/РєСЂРµРґРёС‚РѕРІ РјРµР¶РґСѓ <? echo $tu[1].' Рё '.$tu[2]; ?></td>
+        <td width="110" align="right"><input type="button" onclick="location='main.php?transfer&exit_transfer&rnd=<? echo $code; ?>';" name="button2" id="button2" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" /></td>
       </tr>
     </table></td>
   </tr>
@@ -227,8 +227,8 @@ function clickBtn1()
             <td valign="top">
                 <table width="100%" style="border:1px solid #909090;" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td id="s2g1" style="color:#BABABA;background-color:#DCDCDE; border-bottom:1px solid #D0D0D5; border-right:1px solid #909090;"><span style="border-bottom:1px solid #909090;"><img id="gd1" style="float:right;display:none;" width="13" height="13" src="http://img.xcombats.com/i/ready.gif" title="Персонаж готов к обмену" /></span>&nbsp;<? echo $tu[2]; ?> отдаёт:<br />&nbsp;<span id="money1"><b>0</b>.<small><i>00</i></small></span> кр.</td>
-                    <td width="50%" bgcolor="#c0c0c5" style="border-bottom:1px solid #909090;"><img style="float:right;display:none;" width="13" height="13" id="gd2" src="http://img.xcombats.com/i/ready.gif" title="Персонаж готов к обмену" />&nbsp;Вы отдаёте:<br />&nbsp;<input id="money2" name="money2" type="text" style="width:37px;" value="0.00" /> кр. из <b><? echo $u->info['money']; ?></b></td>
+                    <td id="s2g1" style="color:#BABABA;background-color:#DCDCDE; border-bottom:1px solid #D0D0D5; border-right:1px solid #909090;"><span style="border-bottom:1px solid #909090;"><img id="gd1" style="float:right;display:none;" width="13" height="13" src="http://img.xcombats.com/i/ready.gif" title="РџРµСЂСЃРѕРЅР°Р¶ РіРѕС‚РѕРІ Рє РѕР±РјРµРЅСѓ" /></span>&nbsp;<? echo $tu[2]; ?> РѕС‚РґР°С‘С‚:<br />&nbsp;<span id="money1"><b>0</b>.<small><i>00</i></small></span> РєСЂ.</td>
+                    <td width="50%" bgcolor="#c0c0c5" style="border-bottom:1px solid #909090;"><img style="float:right;display:none;" width="13" height="13" id="gd2" src="http://img.xcombats.com/i/ready.gif" title="РџРµСЂСЃРѕРЅР°Р¶ РіРѕС‚РѕРІ Рє РѕР±РјРµРЅСѓ" />&nbsp;Р’С‹ РѕС‚РґР°С‘С‚Рµ:<br />&nbsp;<input id="money2" name="money2" type="text" style="width:37px;" value="0.00" /> РєСЂ. РёР· <b><? echo $u->info['money']; ?></b></td>
                   </tr>
                   <tr>
                     <td valign="top" id="s2g2" style="background-color:#EEEEEE; border-right:1px solid #909090;">&nbsp;</td>
@@ -237,7 +237,7 @@ function clickBtn1()
                 </table>
                 <table width="100%" style="border-left:1px solid #909090;border-right:1px solid #909090;border-bottom:1px solid #909090;" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td align="center" valign="top" bgcolor="#D0D0D5"><button id="btn1" onClick="clickBtn1();">Готов к обмену</button> &nbsp; <button id="btn2" onClick="clickBtn2();">Отмена</button></td>
+                    <td align="center" valign="top" bgcolor="#D0D0D5"><button id="btn1" onClick="clickBtn1();">Р“РѕС‚РѕРІ Рє РѕР±РјРµРЅСѓ</button> &nbsp; <button id="btn2" onClick="clickBtn2();">РћС‚РјРµРЅР°</button></td>
                   </tr>
                 </table>
             </td>
@@ -247,17 +247,17 @@ function clickBtn1()
                     <td bgcolor="#d4d2d2">
                     <table width="100%" border="0" cellspacing="0" cellpadding="3">
                       <tr>
-                        <td width="25%" id="invmn1" onclick="gorazdel(1);" align="center" style="background-color:#A5A5A5;"><a href="#">Обмундирование</a></td>
-                        <td width="25%" id="invmn2" onclick="gorazdel(2);" align="center"><a href="#">Заклятия</a></td>
-                        <td width="25%" id="invmn3" onclick="gorazdel(3);" align="center"><a href="#">Эликсиры</a></td>
-                        <td width="25%" id="invmn6" onclick="gorazdel(6);" align="center"><a href="#">Руны</a></td>
-                        <td width="25%" id="invmn4" onclick="gorazdel(4);" align="center"><a href="#">Прочее</a></td>
+                        <td width="25%" id="invmn1" onclick="gorazdel(1);" align="center" style="background-color:#A5A5A5;"><a href="#">РћР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ</a></td>
+                        <td width="25%" id="invmn2" onclick="gorazdel(2);" align="center"><a href="#">Р—Р°РєР»СЏС‚РёСЏ</a></td>
+                        <td width="25%" id="invmn3" onclick="gorazdel(3);" align="center"><a href="#">Р­Р»РёРєСЃРёСЂС‹</a></td>
+                        <td width="25%" id="invmn6" onclick="gorazdel(6);" align="center"><a href="#">Р СѓРЅС‹</a></td>
+                        <td width="25%" id="invmn4" onclick="gorazdel(4);" align="center"><a href="#">РџСЂРѕС‡РµРµ</a></td>
                       </tr>
                     </table>
                     </td>
                   </tr>
                   <tr>
-                    <td align="center" bgcolor="#a5a5a5"><strong>Рюкзак (масса: 0/0, предметов: 0)</strong></td>
+                    <td align="center" bgcolor="#a5a5a5"><strong>Р СЋРєР·Р°Рє (РјР°СЃСЃР°: 0/0, РїСЂРµРґРјРµС‚РѕРІ: 0)</strong></td>
                   </tr>
                   <tr>
                     <td bgcolor="#D4D2D2" style="border:1px solid #a5a5a5;">
@@ -286,6 +286,6 @@ function clickBtn1()
 		mysql_query('UPDATE `transfers` SET `finish2` = "0" WHERE `id` = "'.$u->tfer['id'].'" LIMIT 1');
 	}
 ?>
-{отображаем лог передач}
+{РѕС‚РѕР±СЂР°Р¶Р°РµРј Р»РѕРі РїРµСЂРµРґР°С‡}
 <? } ?>
 <div align="right"><? echo $c['counters']; ?></div>

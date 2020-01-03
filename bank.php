@@ -1,8 +1,8 @@
-<?
+<?php
 if(!isset($backdoor)) {
 	define('GAME',true);
 	
-	//10:05 Внимание! Вы успешно пополнили свой игровой счёт на <b>0.13 ЕКР</b>. Приятной Вам игры!
+	//10:05 Р’РЅРёРјР°РЅРёРµ! Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕРїРѕР»РЅРёР»Рё СЃРІРѕР№ РёРіСЂРѕРІРѕР№ СЃС‡С‘С‚ РЅР° <b>0.13 Р•РљР </b>. РџСЂРёСЏС‚РЅРѕР№ Р’Р°Рј РёРіСЂС‹!
 	
 	include('_incl_data/__config.php');
 	include('_incl_data/class/__db_connect.php');
@@ -30,15 +30,15 @@ if(!isset($backdoor)) {
 			}
 			
 			if( $mnw != 0 && $mnw > $width ) {
-				self::$error = 'Минимальная ширина картинки '.$mnw.' пикселей. (Размер этой картинки '.$width.'x'.$height.')';
+				self::$error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР° РєР°СЂС‚РёРЅРєРё '.$mnw.' РїРёРєСЃРµР»РµР№. (Р Р°Р·РјРµСЂ СЌС‚РѕР№ РєР°СЂС‚РёРЅРєРё '.$width.'x'.$height.')';
 			}elseif( $mxw != 0 && $mxw < $width ) {
-				self::$error = 'Максимальная ширина картинки '.$mxw.' пикселей. (Размер этой картинки '.$width.'x'.$height.')';
+				self::$error = 'РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР° РєР°СЂС‚РёРЅРєРё '.$mxw.' РїРёРєСЃРµР»РµР№. (Р Р°Р·РјРµСЂ СЌС‚РѕР№ РєР°СЂС‚РёРЅРєРё '.$width.'x'.$height.')';
 			}elseif( $mnh != 0 && $mnh > $height ) {
-				self::$error = 'Минимальная высота картинки '.$mnh.' пикселей. (Размер этой картинки '.$width.'x'.$height.')';
+				self::$error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р° РєР°СЂС‚РёРЅРєРё '.$mnh.' РїРёРєСЃРµР»РµР№. (Р Р°Р·РјРµСЂ СЌС‚РѕР№ РєР°СЂС‚РёРЅРєРё '.$width.'x'.$height.')';
 			}elseif( $mxh != 0 && $mxh < $height ) {
-				self::$error = 'Максимальная высота картинки '.$mxh.' пикселей. (Размер этой картинки '.$width.'x'.$height.')';
+				self::$error = 'РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р° РєР°СЂС‚РёРЅРєРё '.$mxh.' РїРёРєСЃРµР»РµР№. (Р Р°Р·РјРµСЂ СЌС‚РѕР№ РєР°СЂС‚РёРЅРєРё '.$width.'x'.$height.')';
 			}elseif( !is_dir( self::$save_path ) ) {
-				self::$error = 'Ошибка на стороне сервера!';
+				self::$error = 'РћС€РёР±РєР° РЅР° СЃС‚РѕСЂРѕРЅРµ СЃРµСЂРІРµСЂР°!';
 			}elseif (($f['size'] <= $max_mb*1024*1024) && ($f['size'] > 0)) {
 				if (
 					(preg_match('/\.('.$exts.')$/i',$f['name'],$ext))&&
@@ -53,21 +53,21 @@ if(!isset($backdoor)) {
 						$fn2 = $cnm;
 					}
 					if (move_uploaded_file($f['tmp_name'], self::$save_path . $fn)) {
-						// система изменения размера , требуется Rimage
+						// СЃРёСЃС‚РµРјР° РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂР° , С‚СЂРµР±СѓРµС‚СЃСЏ Rimage
 						//Rimage::resize(self::$save_path . $fn, self::$save_path . $fn2);
-						//@unlink(self::$save_path . $fn); // удаление файла
+						//@unlink(self::$save_path . $fn); // СѓРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°
 						return array($fn2,$fn,self::$save_path . $fn);
 					} else {
-						self::$error = 'Ошибка загрузки файла';
+						self::$error = 'РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»Р°';
 					}
 				} else {
-					self::$error = 'Неверный тип файла. Допустимые типы : '.$exts.'';
+					self::$error = 'РќРµРІРµСЂРЅС‹Р№ С‚РёРї С„Р°Р№Р»Р°. Р”РѕРїСѓСЃС‚РёРјС‹Рµ С‚РёРїС‹ : '.$exts.'';
 				}
 			} else {
-				self::$error = 'Неверный размер файла. Максимальный размер файла '.$max_mb.' МБ';
+				self::$error = 'РќРµРІРµСЂРЅС‹Р№ СЂР°Р·РјРµСЂ С„Р°Р№Р»Р°. РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ С„Р°Р№Р»Р° '.$max_mb.' РњР‘';
 			}
 		} else {
-			self::$error = 'Файл не найден';
+			self::$error = 'Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ';
 		}
 		return false;
 	} // end saveimg
@@ -81,8 +81,8 @@ if(!isset($backdoor)) {
 	$ball = 0+$ball[0];
 }
 
-$day1def = 50; //сколько екр. в день можно менять на кр.
-$day2def = 1000 * ($u->info['level']-8); //сколько кр. в день можно менять на екр.
+$day1def = 50; //СЃРєРѕР»СЊРєРѕ РµРєСЂ. РІ РґРµРЅСЊ РјРѕР¶РЅРѕ РјРµРЅСЏС‚СЊ РЅР° РєСЂ.
+$day2def = 1000 * ($u->info['level']-8); //СЃРєРѕР»СЊРєРѕ РєСЂ. РІ РґРµРЅСЊ РјРѕР¶РЅРѕ РјРµРЅСЏС‚СЊ РЅР° РµРєСЂ.
 
 $day1 = $day1def;
 $day2 = $day2def;
@@ -91,8 +91,8 @@ if( $day2 < 0 ) { $day2 = 0; }
 
 $timetoday = strtotime(date('d.m.Y'));
 //
-$dc1 = mysql_fetch_array(mysql_query('SELECT SUM(`money2`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "Обмен ЕКР на КР" LIMIT 1'));
-$dc2 = mysql_fetch_array(mysql_query('SELECT SUM(`money`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "Обмен КР на ЕКР" LIMIT 1'));
+$dc1 = mysql_fetch_array(mysql_query('SELECT SUM(`money2`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "РћР±РјРµРЅ Р•РљР  РЅР° РљР " LIMIT 1'));
+$dc2 = mysql_fetch_array(mysql_query('SELECT SUM(`money`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "РћР±РјРµРЅ РљР  РЅР° Р•РљР " LIMIT 1'));
 $dc1 = $dc1[0];
 $dc2 = $dc2[0];
 
@@ -103,7 +103,7 @@ if($day1 < 0) { $day1 = 0; }
 if($day2 < 0) { $day2 = 0; }
 
 
-$b1 = 0; //бонус накопительный
+$b1 = 0; //Р±РѕРЅСѓСЃ РЅР°РєРѕРїРёС‚РµР»СЊРЅС‹Р№
 
 $bt = mysql_fetch_array(mysql_query('SELECT * FROM `bank_table` ORDER BY `time` DESC LIMIT 1'));
 
@@ -168,9 +168,9 @@ if(!isset($backdoor)) {
 	if(isset($_POST['do']) && $_POST['do'] == 'newShadow') {
 		$o = mysql_fetch_array(mysql_query('SELECT * FROM `_obraz` WHERE `uid` = "'.$u->info['id'].'" AND `good` = 0 AND `cancel` = 0 AND `img` = "'.mysql_real_escape_string($_POST['ffinput']).'" LIMIT 1'));
 		if(!isset($o['id'])) {
-			$u->error = 'Данный образ не найден! Возможно он уже был подтвержден!';
+			$u->error = 'Р”Р°РЅРЅС‹Р№ РѕР±СЂР°Р· РЅРµ РЅР°Р№РґРµРЅ! Р’РѕР·РјРѕР¶РЅРѕ РѕРЅ СѓР¶Рµ Р±С‹Р» РїРѕРґС‚РІРµСЂР¶РґРµРЅ!';
 		}elseif( $o['price'] > $u->info['money2'] ) {
-			$u->error = 'На счету недостаточно ЕКР';
+			$u->error = 'РќР° СЃС‡РµС‚Сѓ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р•РљР ';
 		}else{
 			//
 			$u->info['money2'] -= $o['price'];
@@ -178,13 +178,13 @@ if(!isset($backdoor)) {
 			//
 			mysql_query('UPDATE `_obraz` SET `good` = "'.time().'" WHERE `id` = "'.$o['id'].'" LIMIT 1');
 			if( $o['type'] == 1 || $o['type'] == 2 ) {
-				//Личный или Клановый
+				//Р›РёС‡РЅС‹Р№ РёР»Рё РљР»Р°РЅРѕРІС‹Р№
 				copy('clan_prw/'.$o['img'],'../img.xcombats.com/i/obraz/'.$o['sex'].'/buy'.$o['id'].'.gif');
 			}elseif( $o['type'] == 3 ) {
-				//Питомец
+				//РџРёС‚РѕРјРµС†
 				copy('clan_prw/'.$o['img'],'../img.xcombats.com/pet/buy'.$o['id'].'.gif');
 			}elseif( $o['type'] == 5 ) {
-				//Смайлы
+				//РЎРјР°Р№Р»С‹
 				copy('clan_prw/'.$o['img'],'../img.xcombats.com/i/smile/s'.$o['id'].'.gif');
 			}
 			//
@@ -201,41 +201,41 @@ if(!isset($backdoor)) {
 			}
 			//
 			if( $o['type'] == 1 || $o['type'] == 2 ) {
-				//Личный и клановый
+				//Р›РёС‡РЅС‹Р№ Рё РєР»Р°РЅРѕРІС‹Р№
 				mysql_query('INSERT INTO `obraz` (
 					`sex`,`uid`,`img`,`usr_add`,`clan`
 				) VALUES (
 					"'.$o['sex'].'","'.$o['uid1'].'","buy'.$o['id'].'.gif","'.$o['uid'].'","'.$o['clan'].'"
 				)');
 			}elseif( $o['type'] == 3 ) {
-				//Питомца
+				//РџРёС‚РѕРјС†Р°
 				mysql_query('INSERT INTO `obraz_pet` (
 					`uid`,`time`,`img`
 				) VALUES (
 					"'.$u->info['id'].'","'.time().'","'.mysql_real_escape_string('buy'.$o['id'].'.gif').'"
 				)');
 			}elseif( $o['type'] == 5 ) {
-				//Смайлик
+				//РЎРјР°Р№Р»РёРє
 				$u->info['add_smiles'] .= ',s'.$o['id'].'';
 				$u->info['add_smiles'] = ltrim($u->info['add_smiles'],',');
 				mysql_query('UPDATE `users` SET `add_smiles` = "'.$u->info['add_smiles'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			}
 			//
 			if( $o['type'] == 1 ) {
-				$u->error = 'Личный образ успешно установлен! Можете выбрать его в инвентаре, в разделе Образ.';
+				$u->error = 'Р›РёС‡РЅС‹Р№ РѕР±СЂР°Р· СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅ! РњРѕР¶РµС‚Рµ РІС‹Р±СЂР°С‚СЊ РµРіРѕ РІ РёРЅРІРµРЅС‚Р°СЂРµ, РІ СЂР°Р·РґРµР»Рµ РћР±СЂР°Р·.';
 			}elseif( $o['type'] == 2 ) {
-				$u->error = 'Клановый образ успешно установлен! Можете выбрать его в инвентаре, в разделе Образ.';
+				$u->error = 'РљР»Р°РЅРѕРІС‹Р№ РѕР±СЂР°Р· СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅ! РњРѕР¶РµС‚Рµ РІС‹Р±СЂР°С‚СЊ РµРіРѕ РІ РёРЅРІРµРЅС‚Р°СЂРµ, РІ СЂР°Р·РґРµР»Рµ РћР±СЂР°Р·.';
 			}elseif( $o['type'] == 3 ) {
-				$u->error = 'Личный образ питомца успешно установлен! Можете выбрать его в инвентаре, в разделе Звери.';
+				$u->error = 'Р›РёС‡РЅС‹Р№ РѕР±СЂР°Р· РїРёС‚РѕРјС†Р° СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅ! РњРѕР¶РµС‚Рµ РІС‹Р±СЂР°С‚СЊ РµРіРѕ РІ РёРЅРІРµРЅС‚Р°СЂРµ, РІ СЂР°Р·РґРµР»Рµ Р—РІРµСЂРё.';
 			}elseif( $o['type'] == 5 ) {
-				$u->error = 'Личный смайлик успешно установлен! Можете выбрать его в разделе Личные смайлики. Код смайлика <b>:s'.$o['id'].':</b>';
+				$u->error = 'Р›РёС‡РЅС‹Р№ СЃРјР°Р№Р»РёРє СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅ! РњРѕР¶РµС‚Рµ РІС‹Р±СЂР°С‚СЊ РµРіРѕ РІ СЂР°Р·РґРµР»Рµ Р›РёС‡РЅС‹Рµ СЃРјР°Р№Р»РёРєРё. РљРѕРґ СЃРјР°Р№Р»РёРєР° <b>:s'.$o['id'].':</b>';
 			}
 		}
 	}elseif(isset($_FILES['img'])) {
-		//Личный образ
+		//Р›РёС‡РЅС‹Р№ РѕР±СЂР°Р·
 		$ekr = 49.99;
 		if( $u->info['money2'] < $ekr ) {
-			echo '{"err":"На счету недостаточно ЕКР"}';
+			echo '{"err":"РќР° СЃС‡РµС‚Сѓ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р•РљР "}';
 		}else{
 			$obraz = 'f_shadow1_'.$u->info['id'].'-'.md5((time()-rand(0,1000)).'#shadow1').'.gif';
 			//
@@ -262,10 +262,10 @@ if(!isset($backdoor)) {
 		}
 		die();
 	}elseif(isset($_FILES['img5'])) {
-		//Личный смайлик
+		//Р›РёС‡РЅС‹Р№ СЃРјР°Р№Р»РёРє
 		$ekr = 8.99;
 		if( $u->info['money2'] < $ekr ) {
-			echo '{"err":"На счету недостаточно ЕКР"}';
+			echo '{"err":"РќР° СЃС‡РµС‚Сѓ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р•РљР "}';
 		}else{
 			$obraz = 'f_smile_'.$u->info['id'].'-'.md5((time()-rand(0,1000)).'#smile').'.gif';
 			//
@@ -292,12 +292,12 @@ if(!isset($backdoor)) {
 		}
 		die();
 	}elseif(isset($_FILES['img2'])) {
-		//Клановый образ
+		//РљР»Р°РЅРѕРІС‹Р№ РѕР±СЂР°Р·
 		$ekr = 149.99;
 		if( $u->info['clan'] == 0 ) {
-			echo '{"err":"Вы должны состоять в клане"}';
+			echo '{"err":"Р’С‹ РґРѕР»Р¶РЅС‹ СЃРѕСЃС‚РѕСЏС‚СЊ РІ РєР»Р°РЅРµ"}';
 		}elseif( $u->info['money2'] < $ekr ) {
-			echo '{"err":"На счету недостаточно ЕКР"}';
+			echo '{"err":"РќР° СЃС‡РµС‚Сѓ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р•РљР "}';
 		}else{
 			$obraz = 'f_shadow2_'.$u->info['id'].'-'.md5((time()-rand(0,1000)).'#shadow2').'.gif';
 			//
@@ -324,10 +324,10 @@ if(!isset($backdoor)) {
 		}
 		die();
 	}elseif(isset($_FILES['img4'])) {
-		//Питомец образ
+		//РџРёС‚РѕРјРµС† РѕР±СЂР°Р·
 		$ekr = 14.99;
 		if( $u->info['money2'] < $ekr ) {
-			echo '{"err":"На счету недостаточно ЕКР"}';
+			echo '{"err":"РќР° СЃС‡РµС‚Сѓ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р•РљР "}';
 		}else{
 			$obraz = 'f_shadow3_'.$u->info['id'].'-'.md5((time()-rand(0,1000)).'#shadow3').'.gif';
 			//
@@ -354,63 +354,63 @@ if(!isset($backdoor)) {
 		}
 		die();
 	}elseif(isset($_POST['kr001'])) {
-		//Обмен екр на кр.
+		//РћР±РјРµРЅ РµРєСЂ РЅР° РєСЂ.
 		$kr = round($_POST['kr001'],2);
 		if( $c['crtoecr'] < 0.01 ) {
-			$u->error = 'Сегодня обменник закрыт.';
+			$u->error = 'РЎРµРіРѕРґРЅСЏ РѕР±РјРµРЅРЅРёРє Р·Р°РєСЂС‹С‚.';
 		}elseif( $day2 < 0.01 ) {
-			$u->error = 'Сегодня для вас обмен закрыт, приходите завтра.';
+			$u->error = 'РЎРµРіРѕРґРЅСЏ РґР»СЏ РІР°СЃ РѕР±РјРµРЅ Р·Р°РєСЂС‹С‚, РїСЂРёС…РѕРґРёС‚Рµ Р·Р°РІС‚СЂР°.';
 		}elseif( $kr < round($c['crtoecr']/100,2) ) {
-			$u->error = 'Минимальная сумма обмена '.round($c['crtoecr']/100,2).' КР.';
+			$u->error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РѕР±РјРµРЅР° '.round($c['crtoecr']/100,2).' РљР .';
 		}elseif( $kr > $day2 ) {
-			$u->error = 'Вы можете обменять еще '.$day2.' КР сегодня.';
+			$u->error = 'Р’С‹ РјРѕР¶РµС‚Рµ РѕР±РјРµРЅСЏС‚СЊ РµС‰Рµ '.$day2.' РљР  СЃРµРіРѕРґРЅСЏ.';
 		}elseif( $kr > $u->info['money']) {
-			$u->error = 'Недостаточно денег для обмена.';
+			$u->error = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі РґР»СЏ РѕР±РјРµРЅР°.';
 		}else{
 			$ekr = round($kr / $c['crtoecr'],2);
-			$u->error = 'Вы успешно обменяли '.$kr.' КР на '.$ekr.' ЕКР.';
+			$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕР±РјРµРЅСЏР»Рё '.$kr.' РљР  РЅР° '.$ekr.' Р•РљР .';
 			//
 			$u->info['money'] -= $kr;
 			$u->info['money2'] += $ekr;
 			//			
 			mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'",`money2` = "'.$u->info['money2'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			mysql_query('INSERT INTO `user_operation` ( `uid`,`time`,`money`,`money2`,`type`,`b1`,`b2` ) VALUES (
-				"'.$u->info['id'].'","'.time().'","'.round(-$kr,2).'","'.round($ekr,2).'","Обмен КР на ЕКР","'.$u->info['money'].'","'.$u->info['money2'].'"
+				"'.$u->info['id'].'","'.time().'","'.round(-$kr,2).'","'.round($ekr,2).'","РћР±РјРµРЅ РљР  РЅР° Р•РљР ","'.$u->info['money'].'","'.$u->info['money2'].'"
 			)');
 		}
-		$dc1 = mysql_fetch_array(mysql_query('SELECT SUM(`money2`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "Обмен ЕКР на КР" LIMIT 1'));
-		$dc2 = mysql_fetch_array(mysql_query('SELECT SUM(`money`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "Обмен КР на ЕКР" LIMIT 1'));
+		$dc1 = mysql_fetch_array(mysql_query('SELECT SUM(`money2`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "РћР±РјРµРЅ Р•РљР  РЅР° РљР " LIMIT 1'));
+		$dc2 = mysql_fetch_array(mysql_query('SELECT SUM(`money`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "РћР±РјРµРЅ РљР  РЅР° Р•РљР " LIMIT 1'));
 		$dc1 = $dc1[0];
 		$dc2 = $dc2[0];		
 		$day1 = round($day1def+$dc1,2);
 		$day2 = round($day2def+$dc2,2);
 	}elseif(isset($_POST['ekr2'])) {
-		//Обмен екр на кр.
+		//РћР±РјРµРЅ РµРєСЂ РЅР° РєСЂ.
 		$ekr = round($_POST['ekr2'],2);
 		if( $c['ecrtocr'] < 0.01 ) {
-			$u->error = 'Сегодня обменник закрыт.';
+			$u->error = 'РЎРµРіРѕРґРЅСЏ РѕР±РјРµРЅРЅРёРє Р·Р°РєСЂС‹С‚.';
 		}elseif( $day1 < 0.01 ) {
-			$u->error = 'Сегодня для вас обмен закрыт, приходите завтра.';
+			$u->error = 'РЎРµРіРѕРґРЅСЏ РґР»СЏ РІР°СЃ РѕР±РјРµРЅ Р·Р°РєСЂС‹С‚, РїСЂРёС…РѕРґРёС‚Рµ Р·Р°РІС‚СЂР°.';
 		}elseif( $ekr < 0.01 ) {
-			$u->error = 'Минимальная сумма обмена 0.01 ЕКР.';
+			$u->error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РѕР±РјРµРЅР° 0.01 Р•РљР .';
 		}elseif( $ekr > $day1 ) {
-			$u->error = 'Вы можете обменять еще '.$day1.' ЕКР сегодня.';
+			$u->error = 'Р’С‹ РјРѕР¶РµС‚Рµ РѕР±РјРµРЅСЏС‚СЊ РµС‰Рµ '.$day1.' Р•РљР  СЃРµРіРѕРґРЅСЏ.';
 		}elseif( $ekr > $u->info['money2']) {
-			$u->error = 'Недостаточно денег для обмена.';
+			$u->error = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі РґР»СЏ РѕР±РјРµРЅР°.';
 		}else{
 			$kr = round($ekr * $c['ecrtocr'],2);
-			$u->error = 'Вы успешно обменяли '.$ekr.' ЕКР на '.$kr.' КР.';
+			$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕР±РјРµРЅСЏР»Рё '.$ekr.' Р•РљР  РЅР° '.$kr.' РљР .';
 			//
 			$u->info['money'] += $kr;
 			$u->info['money2'] -= $ekr;
 			//			
 			mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'",`money2` = "'.$u->info['money2'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			mysql_query('INSERT INTO `user_operation` ( `uid`,`time`,`money`,`money2`,`type`,`b1`,`b2` ) VALUES (
-				"'.$u->info['id'].'","'.time().'","'.round($kr,2).'","'.round(-$ekr,2).'","Обмен ЕКР на КР","'.$u->info['money'].'","'.$u->info['money2'].'"
+				"'.$u->info['id'].'","'.time().'","'.round($kr,2).'","'.round(-$ekr,2).'","РћР±РјРµРЅ Р•РљР  РЅР° РљР ","'.$u->info['money'].'","'.$u->info['money2'].'"
 			)');
 		}
-		$dc1 = mysql_fetch_array(mysql_query('SELECT SUM(`money2`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "Обмен ЕКР на КР" LIMIT 1'));
-		$dc2 = mysql_fetch_array(mysql_query('SELECT SUM(`money`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "Обмен КР на ЕКР" LIMIT 1'));
+		$dc1 = mysql_fetch_array(mysql_query('SELECT SUM(`money2`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "РћР±РјРµРЅ Р•РљР  РЅР° РљР " LIMIT 1'));
+		$dc2 = mysql_fetch_array(mysql_query('SELECT SUM(`money`) FROM `user_operation` WHERE `time` >= "'.$timetoday.'" AND `uid` = "'.$u->info['id'].'" AND `type` = "РћР±РјРµРЅ РљР  РЅР° Р•РљР " LIMIT 1'));
 		$dc1 = $dc1[0];
 		$dc2 = $dc2[0];		
 		$day1 = round($day1def+$dc1,2);
@@ -420,7 +420,7 @@ if(!isset($backdoor)) {
 		function en_ru($txt) {
 			$g = false;
 			$en = preg_match("/^(([0-9a-zA-Z _-])+)$/i", $txt);
-			$ru = preg_match("/^(([0-9а-яА-Я _-])+)$/i", $txt);
+			$ru = preg_match("/^(([0-9Р°-СЏРђ-РЇ _-])+)$/i", $txt);
 			if(($ru && $en) || (!$ru && !$en)) {
 				$g = true;
 			}
@@ -428,7 +428,7 @@ if(!isset($backdoor)) {
 		}
 		//
 		function testBad($txt) {
-			$white = '-_ 0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮёйцукенгшщзхъфывапролджэячсмитьбю';
+			$white = '-_ 0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMРЃР™Р¦РЈРљР•РќР“РЁР©Р—РҐРЄР¤Р«Р’РђРџР РћР›Р”Р–Р­РЇР§РЎРњРРўР¬Р‘Р®С‘Р№С†СѓРєРµРЅРіС€С‰Р·С…СЉС„С‹РІР°РїСЂРѕР»РґР¶СЌСЏС‡СЃРјРёС‚СЊР±СЋ';
 			$r = false;
 			$i = 0;
 			while( $i != -1 ) {
@@ -462,8 +462,8 @@ if(!isset($backdoor)) {
 			$login = htmlspecialchars($login,NULL,'cp1251');
 			//
 			$bad = array(
-				'Мусорщик' => 1,
-				'Мироздатель' => 1
+				'РњСѓСЃРѕСЂС‰РёРє' => 1,
+				'РњРёСЂРѕР·РґР°С‚РµР»СЊ' => 1
 			);
 			//
 			$login_db = mysql_fetch_array(mysql_query('SELECT `id` FROM `users` WHERE `login` = "'.mysql_real_escape_string($login).'" LIMIT 1'));
@@ -473,8 +473,8 @@ if(!isset($backdoor)) {
 				$true = true;
 				//
 				/*
-				Логин может содержать от 2 до 16 символов, и состоять только из букв русского ИЛИ английского алфавита, цифр, символов '_', '-' и пробела. 
-				Логин не может начинаться или заканчиваться символами '_', '-' или пробелом.
+				Р›РѕРіРёРЅ РјРѕР¶РµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ РѕС‚ 2 РґРѕ 16 СЃРёРјРІРѕР»РѕРІ, Рё СЃРѕСЃС‚РѕСЏС‚СЊ С‚РѕР»СЊРєРѕ РёР· Р±СѓРєРІ СЂСѓСЃСЃРєРѕРіРѕ РР›Р Р°РЅРіР»РёР№СЃРєРѕРіРѕ Р°Р»С„Р°РІРёС‚Р°, С†РёС„СЂ, СЃРёРјРІРѕР»РѕРІ '_', '-' Рё РїСЂРѕР±РµР»Р°. 
+				Р›РѕРіРёРЅ РЅРµ РјРѕР¶РµС‚ РЅР°С‡РёРЅР°С‚СЊСЃСЏ РёР»Рё Р·Р°РєР°РЅС‡РёРІР°С‚СЊСЃСЏ СЃРёРјРІРѕР»Р°РјРё '_', '-' РёР»Рё РїСЂРѕР±РµР»РѕРј.
 				*/
 				//
 				$login = str_replace('	',' ',$login);
@@ -495,7 +495,7 @@ if(!isset($backdoor)) {
 					$true = false;
 				}elseif( testBad($login) == true ) {
 					$true = false;
-				}elseif( en_ru(str_replace('ё','е',str_replace('Ё','Е',$login))) == true ) {
+				}elseif( en_ru(str_replace('С‘','Рµ',str_replace('РЃ','Р•',$login))) == true ) {
 					$true = false;
 				}
 				//
@@ -509,9 +509,9 @@ if(!isset($backdoor)) {
 		}
 		$ekr = 14.99;
 		if( $u->info['login'] == $_POST['login'] ) {
-			$u->error = 'Выберите другой логин...';
+			$u->error = 'Р’С‹Р±РµСЂРёС‚Рµ РґСЂСѓРіРѕР№ Р»РѕРіРёРЅ...';
 		}elseif( $u->info['money2'] < $ekr ) {
-			$u->error = 'Недостаточно средств.';
+			$u->error = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ.';
 		}else{
 			$login = htmlspecialchars($_POST['login'],NULL,'cp1251');
 			if( is_login($login) == true ) {
@@ -525,9 +525,9 @@ if(!isset($backdoor)) {
 				mysql_query("UPDATE `items_users` SET `data` = replace( `data` , 'sudba=".$u->info['login_last']."', 'sudba=".mysql_real_escape_string($u->info['login'])."') WHERE `data` LIKE '%sudba=".mysql_real_escape_string($u->info['login_last'])."%' AND `uid` = '".$u->info['id']."'");
 				//				
 				mysql_query('UPDATE `users` SET `login` = "'.mysql_real_escape_string($u->info['login']).'", `money2` = "'.$u->info['money2'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				$u->error = 'Вы успешно сменили логин на &quot;'.$u->info['login'].'&quot; перезайдите в игру с главной страницы.';
+				$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРјРµРЅРёР»Рё Р»РѕРіРёРЅ РЅР° &quot;'.$u->info['login'].'&quot; РїРµСЂРµР·Р°Р№РґРёС‚Рµ РІ РёРіСЂСѓ СЃ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹.';
 			}else{
-				$u->error = 'Выберите другой логин...';
+				$u->error = 'Р’С‹Р±РµСЂРёС‚Рµ РґСЂСѓРіРѕР№ Р»РѕРіРёРЅ...';
 			}
 		}
 	}elseif(isset($_GET['buy_ekr'])) {
@@ -543,11 +543,11 @@ if(!isset($backdoor)) {
 			$out_ekr = 0;
 		}
 		$out_summ = round($out_ekr*$bt['cur'],2);
-		$inv_desc = 'Приобрести '.$out_ekr.' екр., персонаж №'.$u->info['id'].', дилер №'.round((int)$_POST['ref']).'';
+		$inv_desc = 'РџСЂРёРѕР±СЂРµСЃС‚Рё '.$out_ekr.' РµРєСЂ., РїРµСЂСЃРѕРЅР°Р¶ в„–'.$u->info['id'].', РґРёР»РµСЂ в„–'.round((int)$_POST['ref']).'';
 		//
 		$shp_item = 0;
 		//
-		//Бонус опытовый, первичный и накопительный
+		//Р‘РѕРЅСѓСЃ РѕРїС‹С‚РѕРІС‹Р№, РїРµСЂРІРёС‡РЅС‹Р№ Рё РЅР°РєРѕРїРёС‚РµР»СЊРЅС‹Р№
 		$out_ekr0 = $out_ekr;
 		//
 		$out_ekr += round($out_ekr0/100*$bns[$b1][1],2);
@@ -563,7 +563,7 @@ if(!isset($backdoor)) {
 			$out_ekr += round($out_ekr0/100*20,2);
 		}
 		//
-		//Добавляем в базу
+		//Р”РѕР±Р°РІР»СЏРµРј РІ Р±Р°Р·Сѓ
 		mysql_query('INSERT INTO `pay_operation` (
 			`uid`,`bank`,`code`,`ekr`,`time`,`good`,`cur`,`var`,`val`,`ref`,`ref2`,`ip`,`date`
 		) VALUES (
@@ -575,27 +575,27 @@ if(!isset($backdoor)) {
 		$shp_item = mysql_insert_id();
 		
 		if($shp_item > 0) {
-			//ожидаем оплаты
+			//РѕР¶РёРґР°РµРј РѕРїР»Р°С‚С‹
 		}else{
-			die('Ошибка в обработке платежа, обратитесь к Администрации');
+			die('РћС€РёР±РєР° РІ РѕР±СЂР°Р±РѕС‚РєРµ РїР»Р°С‚РµР¶Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё');
 		}
 		if($out_ekr < 1) {
-			die('Минимальная сумма покупки 1 екр.');
+			die('РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РїРѕРєСѓРїРєРё 1 РµРєСЂ.');
 		}
 		//
-		// предлагаемая валюта платежа
+		// РїСЂРµРґР»Р°РіР°РµРјР°СЏ РІР°Р»СЋС‚Р° РїР»Р°С‚РµР¶Р°
 		// default payment e-currency
 		$in_curr = "";
 		
-		// язык
+		// СЏР·С‹Рє
 		// language
 		$culture = "ru";
 		
-		// формирование подписи
+		// С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РїРѕРґРїРёСЃРё
 		// generate signature
 		$crc  = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1:Shp_item=$shp_item");
 		
-		// форма оплаты товара
+		// С„РѕСЂРјР° РѕРїР»Р°С‚С‹ С‚РѕРІР°СЂР°
 		// payment form
 		$url  = 'http://www.free-kassa.ru/merchant/cash.php?';
 		$url .= 'MrchLogin='.$mrh_login.'&';
@@ -611,7 +611,7 @@ if(!isset($backdoor)) {
 		die();
 		print "<html>".
 			  "<script type=\"text/javascript\" src=\"js/jquery.js\"></script><form id=\'F1\' action='http://www.free-kassa.ru/merchant/cash.php' method=POST>".
-			  "Сумма платежа: ".$out_ekr." Екр. ".
+			  "РЎСѓРјРјР° РїР»Р°С‚РµР¶Р°: ".$out_ekr." Р•РєСЂ. ".
 			  "<input type=hidden name=MrchLogin value=$mrh_login>".
 			  "<input type=hidden name=OutSum value=$out_summ>".
 			  "<input type=hidden name=InvId value=$inv_id>".
@@ -620,12 +620,12 @@ if(!isset($backdoor)) {
 			  "<input type=hidden name=Shp_item value='$shp_item'>".
 			  "<input type=hidden name=IncCurrLabel value=$in_curr>".
 			  "<input type=hidden name=Culture value=$culture>".
-			  "<input type=submit value='Оплатить'><Br>".
-			  "(Все средства идут на развитие и улучшение игры)".
+			  "<input type=submit value='РћРїР»Р°С‚РёС‚СЊ'><Br>".
+			  "(Р’СЃРµ СЃСЂРµРґСЃС‚РІР° РёРґСѓС‚ РЅР° СЂР°Р·РІРёС‚РёРµ Рё СѓР»СѓС‡С€РµРЅРёРµ РёРіСЂС‹)".
 			  "</form><script>$('#F1').sumbit();</script></html>";
 		die();
 	}
-	//цены
+	//С†РµРЅС‹
 	$ekr_pet = 14.99;
 	$ekr_shadow = 49.99;
 	$ekr_clan_shadow = 149.99;
@@ -636,7 +636,7 @@ if(!isset($backdoor)) {
 ?>
 <HTML>
 <HEAD>
-  <title>Покупка ЕвроКредитов - Старый Бойцовский Клуб</title>
+  <title>РџРѕРєСѓРїРєР° Р•РІСЂРѕРљСЂРµРґРёС‚РѕРІ - РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±</title>
   <!--<link rel=stylesheet type="text/css" href="/i/main.css">-->
   <script type="text/javascript" src="http://xcombats.com/res/js/jquery-1.7.1.min.js"></script>
   <meta content="text/html; charset=windows-1251" http-equiv=Content-Type>
@@ -668,18 +668,18 @@ if(!isset($backdoor)) {
 <div id="main">
 
 <!--<br />
-<h3>Покупка ЕвроКредитов</h3>
+<h3>РџРѕРєСѓРїРєР° Р•РІСЂРѕРљСЂРµРґРёС‚РѕРІ</h3>
                              -->
 <table style="width:98%; margin: auto;">
 <!--
-<tr><td colspan="2" style='font-weight:bold; color:red; padding: 10px 0 10px 0; font-size: 1.5em;'><center>Пополнение ЕКР временно приостановлено!</center></td></tr>
+<tr><td colspan="2" style='font-weight:bold; color:red; padding: 10px 0 10px 0; font-size: 1.5em;'><center>РџРѕРїРѕР»РЅРµРЅРёРµ Р•РљР  РІСЂРµРјРµРЅРЅРѕ РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅРѕ!</center></td></tr>
 -->
   <? if($ball == 0) { ?>
-  <tr><td colspan="2" style='font-weight:bold; color:brown; padding: 10px 0 10px 0; font-size: 1.2em;'><center style="color:red">Акция! При первом пополнении баланса,<br />Вы получаете дополнительно 20% ЕКР к сумме покупки БЕСПЛАТНО.</center></td></tr>
+  <tr><td colspan="2" style='font-weight:bold; color:brown; padding: 10px 0 10px 0; font-size: 1.2em;'><center style="color:red">РђРєС†РёСЏ! РџСЂРё РїРµСЂРІРѕРј РїРѕРїРѕР»РЅРµРЅРёРё Р±Р°Р»Р°РЅСЃР°,<br />Р’С‹ РїРѕР»СѓС‡Р°РµС‚Рµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ 20% Р•РљР  Рє СЃСѓРјРјРµ РїРѕРєСѓРїРєРё Р‘Р•РЎРџР›РђРўРќРћ.</center></td></tr>
   <? }
   	
 	if(isset($u->info['id'])) { ?>
-  <center class="h3css"><? echo '<div style="padding:10px; border-bottom:1px solid #fff;">Персонаж: '.$u->microLogin($u->info['id'],1).'</div>';?></center>
+  <center class="h3css"><? echo '<div style="padding:10px; border-bottom:1px solid #fff;">РџРµСЂСЃРѕРЅР°Р¶: '.$u->microLogin($u->info['id'],1).'</div>';?></center>
   <? }
   if( $u->error != '' ) {
 	 echo '<div style="padding:10px;"><b><font color="red">'.$u->error.'</font></b></div>'; 
@@ -688,16 +688,16 @@ if(!isset($backdoor)) {
   <tr>
   <td style="width: 500px; padding: 10px; vertical-align: top;">
     <fieldset style="border: 1px solid white; padding: 10px;margin-top:15px;">
-    <b><span style='color:#8F0000;'>Ваш накопительный бонус:</span> <font color=green><?=$bns[$b1][1]?>% (<?=$ball?> ЕКР)</font></b>
+    <b><span style='color:#8F0000;'>Р’Р°С€ РЅР°РєРѕРїРёС‚РµР»СЊРЅС‹Р№ Р±РѕРЅСѓСЃ:</span> <font color=green><?=$bns[$b1][1]?>% (<?=$ball?> Р•РљР )</font></b>
     </fieldset>
 
     <fieldset style="width:480px; border: 1px solid white; padding: 10px;margin-top:15px; padding-bottom:10px;">
-      <!--<legend style='font-weight:bold; color:#8F0000;'>Покупка ЕКР</legend>
+      <!--<legend style='font-weight:bold; color:#8F0000;'>РџРѕРєСѓРїРєР° Р•РљР </legend>
 
-      <form method="post" id="ekrform" action="ekr.php?buy_ekr=1" onsubmit="if(document.getElementById('ch_1').checked==false) {alert('Вы не согласились с пользовательским соглашением.');return false;} else {if(document.getElementById('ch_2').checked==false) {alert('Вы не согласились с условиями оплаты.');return false;};}; if(document.getElementById('ekr').value<1) {alert('Нельзя купить менее 1 ЕКР!');return false;};">
-      <b>Сумма ЕКР:</b> <input type="text" name="ekr" id="ekr" value="" size="8" onchange="calc();" onkeyup="if(event.keyCode<35||event.keyCode>40) calc();"> &nbsp; <input type="submit" class="btn btn-success" value="Пополнить баланс"><br />
+      <form method="post" id="ekrform" action="ekr.php?buy_ekr=1" onsubmit="if(document.getElementById('ch_1').checked==false) {alert('Р’С‹ РЅРµ СЃРѕРіР»Р°СЃРёР»РёСЃСЊ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРј СЃРѕРіР»Р°С€РµРЅРёРµРј.');return false;} else {if(document.getElementById('ch_2').checked==false) {alert('Р’С‹ РЅРµ СЃРѕРіР»Р°СЃРёР»РёСЃСЊ СЃ СѓСЃР»РѕРІРёСЏРјРё РѕРїР»Р°С‚С‹.');return false;};}; if(document.getElementById('ekr').value<1) {alert('РќРµР»СЊР·СЏ РєСѓРїРёС‚СЊ РјРµРЅРµРµ 1 Р•РљР !');return false;};">
+      <b>РЎСѓРјРјР° Р•РљР :</b> <input type="text" name="ekr" id="ekr" value="" size="8" onchange="calc();" onkeyup="if(event.keyCode<35||event.keyCode>40) calc();"> &nbsp; <input type="submit" class="btn btn-success" value="РџРѕРїРѕР»РЅРёС‚СЊ Р±Р°Р»Р°РЅСЃ"><br />
 
-      <!--<input type="button" class="btn btn-primary" value="Оплатить с помощью VISA / MASTERCARD" onclick="$('#ekrform').attr('action','ekr_fk_go.php'); $('#ekrform').submit();" style="width: 461px;">--><script>
+      <!--<input type="button" class="btn btn-primary" value="РћРїР»Р°С‚РёС‚СЊ СЃ РїРѕРјРѕС‰СЊСЋ VISA / MASTERCARD" onclick="$('#ekrform').attr('action','ekr_fk_go.php'); $('#ekrform').submit();" style="width: 461px;">--><script>
       function bonus_n(a) { var pr = <?=(0+$bns[$b1][1])?>; return (Math.floor( (a*pr/100) *100)/100);};
       function bonus_s(a) { if(a>=100) {pr=10;} else if(a>=90) {pr=9;} else if(a>=80) {pr=8;} else if(a>=70) {pr=7;} else if(a>=60) {pr=6;} else if(a>=50) {pr=5;} else if(a>=40) {pr=4;} else if(a>=30) {pr=3;} else if(a>=20) {pr=2;} else if(a>=10) {pr=1;} else {pr=0;} return (Math.floor( (a*pr/100) *100)/100);};
       function calc() {
@@ -727,71 +727,71 @@ if(!isset($backdoor)) {
         var ekrr = ekr + ekr2 + ekr3 + ekr7;
         ekrr = Math.round(ekrr*100)/100;
 
-        //document.getElementById('calc').innerHTML = ekr+' + '+ekr2+' + '+ekr3+' = '+ekrr+' ЕКР';        
-        document.getElementById('calc').innerHTML = 'Накопительный бонус: <font color=green>'+ekr2+' ЕКР</font><br />Оптовый бонус: <font color=green>'+ekr3+' ЕКР</font><? if($ball == 0) { ?><br />Акция на 1-ое пополнение: <font color=red>'+ekr7+' ЕКР</font><? } ?><br />Итого: <font color=green>'+ekrr+' ЕКР</font>';
+        //document.getElementById('calc').innerHTML = ekr+' + '+ekr2+' + '+ekr3+' = '+ekrr+' Р•РљР ';        
+        document.getElementById('calc').innerHTML = 'РќР°РєРѕРїРёС‚РµР»СЊРЅС‹Р№ Р±РѕРЅСѓСЃ: <font color=green>'+ekr2+' Р•РљР </font><br />РћРїС‚РѕРІС‹Р№ Р±РѕРЅСѓСЃ: <font color=green>'+ekr3+' Р•РљР </font><? if($ball == 0) { ?><br />РђРєС†РёСЏ РЅР° 1-РѕРµ РїРѕРїРѕР»РЅРµРЅРёРµ: <font color=red>'+ekr7+' Р•РљР </font><? } ?><br />РС‚РѕРіРѕ: <font color=green>'+ekrr+' Р•РљР </font>';
         }
       calc();
       </script>
 
       <table style="border: 1px solid white; margin: auto; width: 400px;">
-        <tr style="border-bottom: 1px solid white;"><td style="border-right: 1px solid white;padding:2px;">1 ЕКР</td><td style="padding:2px;"><?=round($bt['cur'],2)?> Рублей</td></tr>
-        <tr style="border-bottom: 1px solid white;"><td style="border-right: 1px solid white;padding:2px;">1 ЕКР</td><td style="padding:2px;"><?=round($bt['cur']/$bt['USD'],2)?> Доллара *</td></tr>
+        <tr style="border-bottom: 1px solid white;"><td style="border-right: 1px solid white;padding:2px;">1 Р•РљР </td><td style="padding:2px;"><?=round($bt['cur'],2)?> Р СѓР±Р»РµР№</td></tr>
+        <tr style="border-bottom: 1px solid white;"><td style="border-right: 1px solid white;padding:2px;">1 Р•РљР </td><td style="padding:2px;"><?=round($bt['cur']/$bt['USD'],2)?> Р”РѕР»Р»Р°СЂР° *</td></tr>
               </table>
     <fieldset style="border: 1px solid white; padding: 20px 11px 21px 11px;margin-top:15px;">
-      <legend style='font-weight:bold; color:#8F0000;'>Накопительные бонусы</legend>
+      <legend style='font-weight:bold; color:#8F0000;'>РќР°РєРѕРїРёС‚РµР»СЊРЅС‹Рµ Р±РѕРЅСѓСЃС‹</legend>
             <table class="t" style="width: 100%; margin: auto;">
-        <tr class="b"><td>ЕКР</td><td class="bright ">Бонус</td><td>ЕКР</td><td>Бонус</td></tr>
+        <tr class="b"><td>Р•РљР </td><td class="bright ">Р‘РѕРЅСѓСЃ</td><td>Р•РљР </td><td>Р‘РѕРЅСѓСЃ</td></tr>
         <tr>
-          <td class="">2 400 ЕКР</td><td class="bright ">10%</td>
-          <td class="">9 000 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">30%</td></tr>
+          <td class="">2 400 Р•РљР </td><td class="bright ">10%</td>
+          <td class="">9 000 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">30%</td></tr>
         <tr>
-          <td class="">2 100 ЕКР</td><td class="bright ">9%</td>
-          <td class="">7 500 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">27%</td></tr>
+          <td class="">2 100 Р•РљР </td><td class="bright ">9%</td>
+          <td class="">7 500 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">27%</td></tr>
         <tr>
-          <td class="">1 800 ЕКР</td><td class="bright ">8%</td>
-          <td class="">6 000 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">25%</td></tr>
+          <td class="">1 800 Р•РљР </td><td class="bright ">8%</td>
+          <td class="">6 000 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">25%</td></tr>
         <tr>
-          <td class="">1 500 ЕКР</td><td class="bright ">7%</td>
-          <td class="">5 100 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">23%</td></tr>
+          <td class="">1 500 Р•РљР </td><td class="bright ">7%</td>
+          <td class="">5 100 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">23%</td></tr>
         <tr>
-          <td class="">1 200 ЕКР</td><td class="bright ">6%</td>
-          <td class="">4 500 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">21%</td></tr>
+          <td class="">1 200 Р•РљР </td><td class="bright ">6%</td>
+          <td class="">4 500 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">21%</td></tr>
         <tr>
-          <td class="">900 ЕКР</td><td class="bright ">5%</td>
-          <td class="">3 900 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">19%</td></tr>
+          <td class="">900 Р•РљР </td><td class="bright ">5%</td>
+          <td class="">3 900 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">19%</td></tr>
         <tr>
-          <td class="">600 ЕКР</td><td class="bright ">4%</td>
-          <td class="">3 600 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">17%</td></tr>
+          <td class="">600 Р•РљР </td><td class="bright ">4%</td>
+          <td class="">3 600 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">17%</td></tr>
         <tr>
-          <td class="">300 ЕКР</td><td class="bright ">3%</td>
-          <td class="">3 300 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">15%</td></tr>
+          <td class="">300 Р•РљР </td><td class="bright ">3%</td>
+          <td class="">3 300 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">15%</td></tr>
         <tr>
-          <td class="">150 ЕКР</td><td class="bright ">2%</td>
-          <td class="">3 000 ЕКР <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">13%</td></tr>
+          <td class="">150 Р•РљР </td><td class="bright ">2%</td>
+          <td class="">3 000 Р•РљР  <img src="/res/img/medals/vip.gif" title="VIP" width=20 style="margin-top:2px;" /></td><td class="">13%</td></tr>
         <tr>
-          <td class="">30 ЕКР</td><td class="bright ">1%</td>
-          <td class="">2 700 ЕКР</td><td class="">11%</td></tr>
+          <td class="">30 Р•РљР </td><td class="bright ">1%</td>
+          <td class="">2 700 Р•РљР </td><td class="">11%</td></tr>
       </table>
     </fieldset>
      <!-- <small>
-      * - зависит от текущих курсов валют<br />
-      <b>Доставка игровой валюты производится в автоматическом режиме, сразу же  после оплаты!</b>
+      * - Р·Р°РІРёСЃРёС‚ РѕС‚ С‚РµРєСѓС‰РёС… РєСѓСЂСЃРѕРІ РІР°Р»СЋС‚<br />
+      <b>Р”РѕСЃС‚Р°РІРєР° РёРіСЂРѕРІРѕР№ РІР°Р»СЋС‚С‹ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РІ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРј СЂРµР¶РёРјРµ, СЃСЂР°Р·Сѓ Р¶Рµ  РїРѕСЃР»Рµ РѕРїР»Р°С‚С‹!</b>
       <br /><br />
-      При оплате могут возникать задержки на пополнение, обычно не более 1 часа. Если по истечению нескольких часов деньги так и не поступили на ваш баланс, то необходимо обратиться в <a href="http://www.free-kassa.ru/support.php" target="_blank">службу поддержки FREE-KASSA</a>.
+      РџСЂРё РѕРїР»Р°С‚Рµ РјРѕРіСѓС‚ РІРѕР·РЅРёРєР°С‚СЊ Р·Р°РґРµСЂР¶РєРё РЅР° РїРѕРїРѕР»РЅРµРЅРёРµ, РѕР±С‹С‡РЅРѕ РЅРµ Р±РѕР»РµРµ 1 С‡Р°СЃР°. Р•СЃР»Рё РїРѕ РёСЃС‚РµС‡РµРЅРёСЋ РЅРµСЃРєРѕР»СЊРєРёС… С‡Р°СЃРѕРІ РґРµРЅСЊРіРё С‚Р°Рє Рё РЅРµ РїРѕСЃС‚СѓРїРёР»Рё РЅР° РІР°С€ Р±Р°Р»Р°РЅСЃ, С‚Рѕ РЅРµРѕР±С…РѕРґРёРјРѕ РѕР±СЂР°С‚РёС‚СЊСЃСЏ РІ <a href="http://www.free-kassa.ru/support.php" target="_blank">СЃР»СѓР¶Р±Сѓ РїРѕРґРґРµСЂР¶РєРё FREE-KASSA</a>.
       </small>
       <br /><br />
       </form>
 
       <small>
-      <label><input type="checkbox" name="ch1" id="ch_1" /> Внимание! При пополнении баланса вы соглашаетесь с <a href="http://xcombats.com/encicl/law2.html" target="_blank">соглашением о предоставлении сервиса игры &laquo;Легендарный Бойцовский Клуб&raquo;</a>.</label>
+      <label><input type="checkbox" name="ch1" id="ch_1" /> Р’РЅРёРјР°РЅРёРµ! РџСЂРё РїРѕРїРѕР»РЅРµРЅРёРё Р±Р°Р»Р°РЅСЃР° РІС‹ СЃРѕРіР»Р°С€Р°РµС‚РµСЃСЊ СЃ <a href="http://xcombats.com/encicl/law2.html" target="_blank">СЃРѕРіР»Р°С€РµРЅРёРµРј Рѕ РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёРё СЃРµСЂРІРёСЃР° РёРіСЂС‹ &laquo;Р›РµРіРµРЅРґР°СЂРЅС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±&raquo;</a>.</label>
       
       <br />
-      <label><input type="checkbox" name="ch2" id="ch_2" /> Все комиссии платёжных систем Вы оплачиваете за свой счёт.</label>
+      <label><input type="checkbox" name="ch2" id="ch_2" /> Р’СЃРµ РєРѕРјРёСЃСЃРёРё РїР»Р°С‚С‘Р¶РЅС‹С… СЃРёСЃС‚РµРј Р’С‹ РѕРїР»Р°С‡РёРІР°РµС‚Рµ Р·Р° СЃРІРѕР№ СЃС‡С‘С‚.</label>
       
       <br /><br />
-      Если Вы очень хотели бы положить деньги на игровой счёт, но нет подходящей платёжной системы, можем посоветовать воспользоваться <a href="http://www.bestchange.ru" target="_blank">обменными пунктами</a>, либо воспользоваться услугами <b>дилеров</b>.
+      Р•СЃР»Рё Р’С‹ РѕС‡РµРЅСЊ С…РѕС‚РµР»Рё Р±С‹ РїРѕР»РѕР¶РёС‚СЊ РґРµРЅСЊРіРё РЅР° РёРіСЂРѕРІРѕР№ СЃС‡С‘С‚, РЅРѕ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РµР№ РїР»Р°С‚С‘Р¶РЅРѕР№ СЃРёСЃС‚РµРјС‹, РјРѕР¶РµРј РїРѕСЃРѕРІРµС‚РѕРІР°С‚СЊ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ <a href="http://www.bestchange.ru" target="_blank">РѕР±РјРµРЅРЅС‹РјРё РїСѓРЅРєС‚Р°РјРё</a>, Р»РёР±Рѕ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СѓСЃР»СѓРіР°РјРё <b>РґРёР»РµСЂРѕРІ</b>.
       <br /><br />
-      <b>Пополняя свой игровой счёт, Вы тем самым спонсируете проект. ВСЕ ваши вложенные деньги в игру будут идти ТОЛЬКО на её же развитие.</b>
+      <b>РџРѕРїРѕР»РЅСЏСЏ СЃРІРѕР№ РёРіСЂРѕРІРѕР№ СЃС‡С‘С‚, Р’С‹ С‚РµРј СЃР°РјС‹Рј СЃРїРѕРЅСЃРёСЂСѓРµС‚Рµ РїСЂРѕРµРєС‚. Р’РЎР• РІР°С€Рё РІР»РѕР¶РµРЅРЅС‹Рµ РґРµРЅСЊРіРё РІ РёРіСЂСѓ Р±СѓРґСѓС‚ РёРґС‚Рё РўРћР›Р¬РљРћ РЅР° РµС‘ Р¶Рµ СЂР°Р·РІРёС‚РёРµ.</b>
       </small>-->
 	  
     </fieldset></td>
@@ -799,17 +799,17 @@ if(!isset($backdoor)) {
 
   <td style="padding: 10px; vertical-align: top;">
     <fieldset style="border: 1px solid white; padding: 10px;margin-top:15px;">
-    <b><span style='color:#8F0000;'>Ваш баланс счёта: <font color=green><b><?=$u->info['money2']?> ЕКР</b></font> и <font color=black><b><?=$u->info['money']?> КР</b></font>.</span></b>
+    <b><span style='color:#8F0000;'>Р’Р°С€ Р±Р°Р»Р°РЅСЃ СЃС‡С‘С‚Р°: <font color=green><b><?=$u->info['money2']?> Р•РљР </b></font> Рё <font color=black><b><?=$u->info['money']?> РљР </b></font>.</span></b>
     </fieldset>
 
     <fieldset style="border: 1px solid white; padding: 10px;margin-top:15px;">
-      <legend style='font-weight:bold; color:#8F0000;'>Обмен</legend>
-      <form method="post" action="ekr.php" onsubmit="if(document.getElementById('ekr2').value><?=$day1?>) {alert('Сегодня вы можете еще обменять не более <?=$day1?> ЕКР');return false;} else if(document.getElementById('ekr2').value<0.01||document.getElementById('ekr2').value><?=$day1?>) {alert('За 1 раз Вы можете обменять сумму от 0.01 до <?=$day1?> ЕКР.');return false;} else {return confirm('Вы действительно хотите обменять '+document.getElementById('ekr2').value+' ЕКР на '+(document.getElementById('ekr2').value*<?=$c['ecrtocr']?>)+' КР ? В обратном направлении обмен с КР на ЕКР будет невозможен.');};">
-      Обменять ЕКР на КР по курсу <b>1ЕКР=<?=$c['ecrtocr']?>КР</b>: &nbsp; <input style="font-size:10pt;padding:5px;" type="text" name="ekr2" id="ekr2" value="" size="5" placeholder="<?=$day1?> max" onchange="calc22();" onkeyup="if(event.keyCode<35||event.keyCode>40) calc22();"> &nbsp; <input type="submit" class="btnnew" name="submit" id="calc2" value="Обменять"><br />
+      <legend style='font-weight:bold; color:#8F0000;'>РћР±РјРµРЅ</legend>
+      <form method="post" action="ekr.php" onsubmit="if(document.getElementById('ekr2').value><?=$day1?>) {alert('РЎРµРіРѕРґРЅСЏ РІС‹ РјРѕР¶РµС‚Рµ РµС‰Рµ РѕР±РјРµРЅСЏС‚СЊ РЅРµ Р±РѕР»РµРµ <?=$day1?> Р•РљР ');return false;} else if(document.getElementById('ekr2').value<0.01||document.getElementById('ekr2').value><?=$day1?>) {alert('Р—Р° 1 СЂР°Р· Р’С‹ РјРѕР¶РµС‚Рµ РѕР±РјРµРЅСЏС‚СЊ СЃСѓРјРјСѓ РѕС‚ 0.01 РґРѕ <?=$day1?> Р•РљР .');return false;} else {return confirm('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РѕР±РјРµРЅСЏС‚СЊ '+document.getElementById('ekr2').value+' Р•РљР  РЅР° '+(document.getElementById('ekr2').value*<?=$c['ecrtocr']?>)+' РљР  ? Р’ РѕР±СЂР°С‚РЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё РѕР±РјРµРЅ СЃ РљР  РЅР° Р•РљР  Р±СѓРґРµС‚ РЅРµРІРѕР·РјРѕР¶РµРЅ.');};">
+      РћР±РјРµРЅСЏС‚СЊ Р•РљР  РЅР° РљР  РїРѕ РєСѓСЂСЃСѓ <b>1Р•РљР =<?=$c['ecrtocr']?>РљР </b>: &nbsp; <input style="font-size:10pt;padding:5px;" type="text" name="ekr2" id="ekr2" value="" size="5" placeholder="<?=$day1?> max" onchange="calc22();" onkeyup="if(event.keyCode<35||event.keyCode>40) calc22();"> &nbsp; <input type="submit" class="btnnew" name="submit" id="calc2" value="РћР±РјРµРЅСЏС‚СЊ"><br />
       </form>
       <? if( $c['crtoecr'] > 0 ) { ?>
-      <form method="post" action="ekr.php" onsubmit="if(document.getElementById('kr001').value<<?=round($c['crtoecr']/100,2)?>) {alert('Минимальная сумма обмена <?=round($c['crtoecr']/100,2)?> КР');return false;}else if(document.getElementById('kr001').value><?=$day2?>) {alert('Сегодня вы можете еще обменять не более <?=$day2?> КР');return false;} else {return confirm('Вы действительно хотите обменять '+document.getElementById('kr001').value+' КР на '+(Math.round(document.getElementById('kr001').value/10)/100)+' ЕКР? Отменить операцию обмена будет невозможно.');};">
-      Обменять КР на ЕКР по курсу <b><?=$c['crtoecr']?>КР=1ЕКР</b>: <input type="text" style="font-size:10pt;padding:5px;margin-left:1px;" name="kr001" id="kr001" value="" placeholder="<?=$day2?> max" size="5" onchange="calc24();" onkeyup="if(event.keyCode<35||event.keyCode>40) calc23();"> &nbsp; <input type="submit" class="btnnew" name="submit" id="calc3" value="Обменять"><br />
+      <form method="post" action="ekr.php" onsubmit="if(document.getElementById('kr001').value<<?=round($c['crtoecr']/100,2)?>) {alert('РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РѕР±РјРµРЅР° <?=round($c['crtoecr']/100,2)?> РљР ');return false;}else if(document.getElementById('kr001').value><?=$day2?>) {alert('РЎРµРіРѕРґРЅСЏ РІС‹ РјРѕР¶РµС‚Рµ РµС‰Рµ РѕР±РјРµРЅСЏС‚СЊ РЅРµ Р±РѕР»РµРµ <?=$day2?> РљР ');return false;} else {return confirm('Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РѕР±РјРµРЅСЏС‚СЊ '+document.getElementById('kr001').value+' РљР  РЅР° '+(Math.round(document.getElementById('kr001').value/10)/100)+' Р•РљР ? РћС‚РјРµРЅРёС‚СЊ РѕРїРµСЂР°С†РёСЋ РѕР±РјРµРЅР° Р±СѓРґРµС‚ РЅРµРІРѕР·РјРѕР¶РЅРѕ.');};">
+      РћР±РјРµРЅСЏС‚СЊ РљР  РЅР° Р•РљР  РїРѕ РєСѓСЂСЃСѓ <b><?=$c['crtoecr']?>РљР =1Р•РљР </b>: <input type="text" style="font-size:10pt;padding:5px;margin-left:1px;" name="kr001" id="kr001" value="" placeholder="<?=$day2?> max" size="5" onchange="calc24();" onkeyup="if(event.keyCode<35||event.keyCode>40) calc23();"> &nbsp; <input type="submit" class="btnnew" name="submit" id="calc3" value="РћР±РјРµРЅСЏС‚СЊ"><br />
       </form>
       <? } ?>
       <script>
@@ -822,7 +822,7 @@ if(!isset($backdoor)) {
 
           //document.getElementById('kr001').value = kr001;
           
-          document.getElementById('calc3').value = 'Обменять '+kr001+' КР на '+kr001ekr+' ЕКР';
+          document.getElementById('calc3').value = 'РћР±РјРµРЅСЏС‚СЊ '+kr001+' РљР  РЅР° '+kr001ekr+' Р•РљР ';
           return kr001;
           }
 
@@ -843,30 +843,30 @@ if(!isset($backdoor)) {
           if(document.getElementById('ekr2').value!=ekre) { document.getElementById('ekr2').value=ekr4; }
           var kre = parseFloat(ekre) * <?=$c['ecrtocr']?>;
 
-          document.getElementById('calc2').value = 'Обменять '+ekre+' ЕКР на '+kre.toFixed(0)+' КР';
+          document.getElementById('calc2').value = 'РћР±РјРµРЅСЏС‚СЊ '+ekre+' Р•РљР  РЅР° '+kre.toFixed(0)+' РљР ';
           }
       calc22();
       </script>
     </fieldset>
 
     <fieldset style="border: 1px solid white; padding: 18px 12px 18px 12px;margin-top:15px;">
-      <legend style='font-weight:bold; color:#8F0000;'>Оптовые бонусы</legend>
+      <legend style='font-weight:bold; color:#8F0000;'>РћРїС‚РѕРІС‹Рµ Р±РѕРЅСѓСЃС‹</legend>
 
       <table class="t" style="width: 500px; margin: auto;">
-        <tr class="b light"><td>Бонус</td><td>1%</td><td>2%</td><td>3%</td><td>4%</td><td>5%</td></tr>
-        <tr style="border-bottom: 2px solid black;"><td class="b">Сумма</td>
-        <td>30 ЕКР</td>
-        <td>60 ЕКР</td>
-        <td>90 ЕКР</td>
-        <td>120 ЕКР</td>
-        <td>150 ЕКР</td></tr>
-        <tr class="b light"><td class="b">Бонус</td><td>6%</td><td>7%</td><td>8%</td><td>9%</td><td>10%</td></tr>
-        <tr><td class="b">Сумма</td>
-        <td>180 ЕКР</td>
-        <td>210 ЕКР</td>
-        <td>240 ЕКР</td>
-        <td>270 ЕКР</td>
-        <td>300 ЕКР</td></tr>
+        <tr class="b light"><td>Р‘РѕРЅСѓСЃ</td><td>1%</td><td>2%</td><td>3%</td><td>4%</td><td>5%</td></tr>
+        <tr style="border-bottom: 2px solid black;"><td class="b">РЎСѓРјРјР°</td>
+        <td>30 Р•РљР </td>
+        <td>60 Р•РљР </td>
+        <td>90 Р•РљР </td>
+        <td>120 Р•РљР </td>
+        <td>150 Р•РљР </td></tr>
+        <tr class="b light"><td class="b">Р‘РѕРЅСѓСЃ</td><td>6%</td><td>7%</td><td>8%</td><td>9%</td><td>10%</td></tr>
+        <tr><td class="b">РЎСѓРјРјР°</td>
+        <td>180 Р•РљР </td>
+        <td>210 Р•РљР </td>
+        <td>240 Р•РљР </td>
+        <td>270 Р•РљР </td>
+        <td>300 Р•РљР </td></tr>
       </table>
     </fieldset>
 
@@ -874,16 +874,16 @@ if(!isset($backdoor)) {
 </tr>
 
 <!--
-<tr><td colspan="2" style='font-weight:bold; padding: 10px; font-size: 0.8em;'><center>При оплате с кредитных карт могут возникать задержки на пополнение, обычно не более 1 часа. Так же часто происходит отказ в пополнении через кредитные карты, для этого необходимо выбрать в списке ДРУГОЙ сервис пополнения с кредитных карт, либо пополнять более мелкими частями.</center></td></tr>
+<tr><td colspan="2" style='font-weight:bold; padding: 10px; font-size: 0.8em;'><center>РџСЂРё РѕРїР»Р°С‚Рµ СЃ РєСЂРµРґРёС‚РЅС‹С… РєР°СЂС‚ РјРѕРіСѓС‚ РІРѕР·РЅРёРєР°С‚СЊ Р·Р°РґРµСЂР¶РєРё РЅР° РїРѕРїРѕР»РЅРµРЅРёРµ, РѕР±С‹С‡РЅРѕ РЅРµ Р±РѕР»РµРµ 1 С‡Р°СЃР°. РўР°Рє Р¶Рµ С‡Р°СЃС‚Рѕ РїСЂРѕРёСЃС…РѕРґРёС‚ РѕС‚РєР°Р· РІ РїРѕРїРѕР»РЅРµРЅРёРё С‡РµСЂРµР· РєСЂРµРґРёС‚РЅС‹Рµ РєР°СЂС‚С‹, РґР»СЏ СЌС‚РѕРіРѕ РЅРµРѕР±С…РѕРґРёРјРѕ РІС‹Р±СЂР°С‚СЊ РІ СЃРїРёСЃРєРµ Р”Р РЈР“РћР™ СЃРµСЂРІРёСЃ РїРѕРїРѕР»РЅРµРЅРёСЏ СЃ РєСЂРµРґРёС‚РЅС‹С… РєР°СЂС‚, Р»РёР±Рѕ РїРѕРїРѕР»РЅСЏС‚СЊ Р±РѕР»РµРµ РјРµР»РєРёРјРё С‡Р°СЃС‚СЏРјРё.</center></td></tr>
 -->
 
-<tr><td colspan="2" style='font-weight:bold; color:#8F0000; padding: 10px 0 10px 0; font-size: 1.5em;'><center>Коммерческие услуги</center></td></tr>
+<tr><td colspan="2" style='font-weight:bold; color:#8F0000; padding: 10px 0 10px 0; font-size: 1.5em;'><center>РљРѕРјРјРµСЂС‡РµСЃРєРёРµ СѓСЃР»СѓРіРё</center></td></tr>
 <tr><td style="padding: 10px; vertical-align: top;">
 
     <!-- komplekt form -->
   				<div class="komplekt-form" id="theLayer" style="position: absolute; left: -300px; top: 160px; visibility:hidden; width: 150px; height:320px;">
     				<div class="form-title" id="titleBar">
-    				 <label id="ftitle">Просмотр</label>
+    				 <label id="ftitle">РџСЂРѕСЃРјРѕС‚СЂ</label>
     				 <button type="button" class="close" onclick="document.getElementById('theLayer').style.visibility = 'hidden';return false" data-dismiss="modal" aria-hidden="true">x</button>
     				</div>
     				<div class="form">
@@ -894,13 +894,13 @@ if(!isset($backdoor)) {
                 <img src="" id="ffimg" width="120" height="220" style="margin-bottom: 5px;" /><br>
                  <div style="padding:5px;">
                   <select name="ffsex" id="ffsex">
-                    <option value="0" <? if($u->info['sex'] == 0) { echo 'selected="selected"'; }?> >Мужской образ</option>
-                    <option value="1" <? if($u->info['sex'] == 1) { echo 'selected="selected"'; }?> >Женский образ</option>
+                    <option value="0" <? if($u->info['sex'] == 0) { echo 'selected="selected"'; }?> >РњСѓР¶СЃРєРѕР№ РѕР±СЂР°Р·</option>
+                    <option value="1" <? if($u->info['sex'] == 1) { echo 'selected="selected"'; }?> >Р–РµРЅСЃРєРёР№ РѕР±СЂР°Р·</option>
                   </select>
 				</div>
                 <div style="width:240px; margin-left:-6px;background:#cbc4aa;padding:5px 0px 5px 0px;border:1px solid #cbc4aa;background-color:#eee;border:1px solid #999;border:1px solid rgba(0,0,0,0.3);*border:1px solid #999;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;outline:none;-webkit-box-shadow:0 3px 7px rgba(0,0,0,0.3);-moz-box-shadow:0 3px 7px rgba(0,0,0,0.3);box-shadow:0 3px 7px rgba(0,0,0,0.3);-webkit-background-clip:padding-box;-moz-background-clip:padding-box;background-clip:padding-box;">
-                <input type="button" class="btn btn-success" value="Подтвердить" style="height: 28px; line-height: 20px; width: 100px;font-size:13px;" onclick="if(confirm('Действительно хотите купить это изображение?')) $('#fform').submit();" />
-                <input type="button" class="btn btn-danger" value="Отменить" onclick="document.getElementById('theLayer').style.visibility = 'hidden';return false" style="height: 28px; line-height: 20px; width: 100px;font-size:13px;" />
+                <input type="button" class="btn btn-success" value="РџРѕРґС‚РІРµСЂРґРёС‚СЊ" style="height: 28px; line-height: 20px; width: 100px;font-size:13px;" onclick="if(confirm('Р”РµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ СЌС‚Рѕ РёР·РѕР±СЂР°Р¶РµРЅРёРµ?')) $('#fform').submit();" />
+                <input type="button" class="btn btn-danger" value="РћС‚РјРµРЅРёС‚СЊ" onclick="document.getElementById('theLayer').style.visibility = 'hidden';return false" style="height: 28px; line-height: 20px; width: 100px;font-size:13px;" />
              	</div>
               </center>
               </form>
@@ -908,13 +908,13 @@ if(!isset($backdoor)) {
   			  </div>
 		  <!-- end komplekt form -->
     <fieldset style="width:480px; border: 1px solid white; padding: 10px;margin-top:15px;">
-      <legend style='font-weight:bold; color:#8F0000;'>Покупка личного образа</legend>
+      <legend style='font-weight:bold; color:#8F0000;'>РџРѕРєСѓРїРєР° Р»РёС‡РЅРѕРіРѕ РѕР±СЂР°Р·Р°</legend>
       <small>
-      <b>Стоимость услуги: <?=$ekr_shadow?> ЕКР</b><br>
-      Требования к персональному образу:<br />
-      GIF-картинка размером 120x220 (ШхВ) и весом до 300 Кб.<br />
+      <b>РЎС‚РѕРёРјРѕСЃС‚СЊ СѓСЃР»СѓРіРё: <?=$ekr_shadow?> Р•РљР </b><br>
+      РўСЂРµР±РѕРІР°РЅРёСЏ Рє РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕРјСѓ РѕР±СЂР°Р·Сѓ:<br />
+      GIF-РєР°СЂС‚РёРЅРєР° СЂР°Р·РјРµСЂРѕРј 120x220 (РЁС…Р’) Рё РІРµСЃРѕРј РґРѕ 300 РљР±.<br />
       <br>
-      Выберите картинку: <input type="file" id="imgFile" class="btnnew" />
+      Р’С‹Р±РµСЂРёС‚Рµ РєР°СЂС‚РёРЅРєСѓ: <input type="file" id="imgFile" class="btnnew" />
       <script>
 
       function showImgPreview(img) {
@@ -963,9 +963,9 @@ if(!isset($backdoor)) {
           data: fd,
           processData: false,
           contentType: false,
-          dataType: "json", // поменять на json
+          dataType: "json", // РїРѕРјРµРЅСЏС‚СЊ РЅР° json
           success: function(data) { if(data['img']!=undefined) { document.getElementById('ffsex').style.display = 'none';showImgPreview(data['img']) } else {alert(data['err']);} },
-          error: function(data) { alert('Ошибка AJAX.') }
+          error: function(data) { alert('РћС€РёР±РєР° AJAX.') }
           });
         })
       </script>
@@ -977,13 +977,13 @@ if(!isset($backdoor)) {
 
     
     <fieldset style="border: 1px solid white; padding: 10px;margin-top:15px; padding-bottom: 15px;">
-      <legend style='font-weight:bold; color:#8F0000;'>Покупка образа питомца</legend>
+      <legend style='font-weight:bold; color:#8F0000;'>РџРѕРєСѓРїРєР° РѕР±СЂР°Р·Р° РїРёС‚РѕРјС†Р°</legend>
       <small>
-      <b>Стоимость услуги: <?=$ekr_pet?> ЕКР</b><br>
-      Требования к образу питомца:<br />
-      GIF-картинка размером 120x220 (ШхВ) и весом до 300 Кб.<br />
+      <b>РЎС‚РѕРёРјРѕСЃС‚СЊ СѓСЃР»СѓРіРё: <?=$ekr_pet?> Р•РљР </b><br>
+      РўСЂРµР±РѕРІР°РЅРёСЏ Рє РѕР±СЂР°Р·Сѓ РїРёС‚РѕРјС†Р°:<br />
+      GIF-РєР°СЂС‚РёРЅРєР° СЂР°Р·РјРµСЂРѕРј 120x220 (РЁС…Р’) Рё РІРµСЃРѕРј РґРѕ 300 РљР±.<br />
       <br>
-      Выберите картинку: <input class="btnnew" type="file" id="imgFile4" />
+      Р’С‹Р±РµСЂРёС‚Рµ РєР°СЂС‚РёРЅРєСѓ: <input class="btnnew" type="file" id="imgFile4" />
       <script>
 
       $('#imgFile4').change(function(){
@@ -996,9 +996,9 @@ if(!isset($backdoor)) {
           data: fd,
           processData: false,
           contentType: false,
-          dataType: "json", // поменять на json
+          dataType: "json", // РїРѕРјРµРЅСЏС‚СЊ РЅР° json
           success: function(data) { if(data['img']!=undefined) { showImgPreviewPet(data['img']) } else {alert(data['err']);} },
-          error: function(data) { alert('Ошибка AJAX.'); }
+          error: function(data) { alert('РћС€РёР±РєР° AJAX.'); }
           });
         })
       </script>
@@ -1010,13 +1010,13 @@ if(!isset($backdoor)) {
     
     <fieldset style="border: 1px solid white; padding: 10px;margin-top:15px; padding-bottom: 15px;">
 
-      <legend style='font-weight:bold; color:#8F0000;'>Покупка личного смайлика</legend>
+      <legend style='font-weight:bold; color:#8F0000;'>РџРѕРєСѓРїРєР° Р»РёС‡РЅРѕРіРѕ СЃРјР°Р№Р»РёРєР°</legend>
       <small>
-      <b>Стоимость услуги: <?=$ekr_smile?> ЕКР</b><br>
-      Требования к смайлику:<br />
-      GIF-картинка размером от 15x15 до 95x45 (ШхВ) и весом до 30 Кб.<br />
+      <b>РЎС‚РѕРёРјРѕСЃС‚СЊ СѓСЃР»СѓРіРё: <?=$ekr_smile?> Р•РљР </b><br>
+      РўСЂРµР±РѕРІР°РЅРёСЏ Рє СЃРјР°Р№Р»РёРєСѓ:<br />
+      GIF-РєР°СЂС‚РёРЅРєР° СЂР°Р·РјРµСЂРѕРј РѕС‚ 15x15 РґРѕ 95x45 (РЁС…Р’) Рё РІРµСЃРѕРј РґРѕ 30 РљР±.<br />
       <br>
-      Выберите картинку: <input class="btnnew" type="file" id="imgFile5" />
+      Р’С‹Р±РµСЂРёС‚Рµ РєР°СЂС‚РёРЅРєСѓ: <input class="btnnew" type="file" id="imgFile5" />
       <script>
 
       $('#imgFile5').change(function(){
@@ -1029,9 +1029,9 @@ if(!isset($backdoor)) {
           data: fd,
           processData: false,
           contentType: false,
-          dataType: "json", // поменять на json
+          dataType: "json", // РїРѕРјРµРЅСЏС‚СЊ РЅР° json
           success: function(data) { if(data['img']!=undefined) { showImgPreviewSmile(data['img']) } else {alert(data['err']);} },
-          error: function(data) { alert('Ошибка AJAX.'); }
+          error: function(data) { alert('РћС€РёР±РєР° AJAX.'); }
           });
         })
       </script>
@@ -1048,13 +1048,13 @@ if(!isset($backdoor)) {
 
 
     <fieldset style="border: 1px solid white; padding: 10px;margin-top:15px;">
-      <legend style='font-weight:bold; color:#8F0000;'>Покупка кланового образа</legend>
+      <legend style='font-weight:bold; color:#8F0000;'>РџРѕРєСѓРїРєР° РєР»Р°РЅРѕРІРѕРіРѕ РѕР±СЂР°Р·Р°</legend>
       <small>
-      <b>Стоимость услуги: <?=$ekr_clan_shadow?> ЕКР</b><br>
-      Требования к клановому образу:<br />
-      GIF-картинка размером 120x220 (ШхВ) и весом до 300 Кб.<br />
+      <b>РЎС‚РѕРёРјРѕСЃС‚СЊ СѓСЃР»СѓРіРё: <?=$ekr_clan_shadow?> Р•РљР </b><br>
+      РўСЂРµР±РѕРІР°РЅРёСЏ Рє РєР»Р°РЅРѕРІРѕРјСѓ РѕР±СЂР°Р·Сѓ:<br />
+      GIF-РєР°СЂС‚РёРЅРєР° СЂР°Р·РјРµСЂРѕРј 120x220 (РЁС…Р’) Рё РІРµСЃРѕРј РґРѕ 300 РљР±.<br />
       <br>
-      Выберите картинку: <input class="btnnew" type="file" id="imgFile2" />
+      Р’С‹Р±РµСЂРёС‚Рµ РєР°СЂС‚РёРЅРєСѓ: <input class="btnnew" type="file" id="imgFile2" />
       <script>
 
       $('#imgFile2').change(function(){
@@ -1067,9 +1067,9 @@ if(!isset($backdoor)) {
           data: fd,
           processData: false,
           contentType: false,
-          dataType: "json", // поменять на json
+          dataType: "json", // РїРѕРјРµРЅСЏС‚СЊ РЅР° json
           success: function(data) { if(data['img']!=undefined) { document.getElementById('ffsex').style.display = 'block'; showImgPreview(data['img']) } else {alert(data['err']);} },
-          error: function(data) { alert('Ошибка AJAX.'); }
+          error: function(data) { alert('РћС€РёР±РєР° AJAX.'); }
           });
         })
       </script>
@@ -1078,18 +1078,18 @@ if(!isset($backdoor)) {
 
 
     <fieldset style="border: 1px solid white; padding: 10px;margin-top:15px;">
-      <legend style='font-weight:bold; color:#8F0000;'>Смена имени персонажа</legend>
+      <legend style='font-weight:bold; color:#8F0000;'>РЎРјРµРЅР° РёРјРµРЅРё РїРµСЂСЃРѕРЅР°Р¶Р°</legend>
       <small>
-      <b>Стоимость услуги: <?=$ekr_login?> ЕКР</b><br>
-      Текущее имя: <?=$u->info['login']?><br>
+      <b>РЎС‚РѕРёРјРѕСЃС‚СЊ СѓСЃР»СѓРіРё: <?=$ekr_login?> Р•РљР </b><br>
+      РўРµРєСѓС‰РµРµ РёРјСЏ: <?=$u->info['login']?><br>
       <form method="post" action="ekr.php" id="lform">
         <input type="hidden" name="do" value="changeLogin" />
-        <input type="text" name="login" id="llogin" onkeyup="check_login();" size=35 placeholder="Введите новое имя.." style="font-size:10pt;padding:5px;margin: 5px 0 5px 0;" /> <span id="ajaxLogin"></span><br>
-        <input type="button" class="btnnew" value="Сменить имя" onclick="if(confirm('Действительно хотите сменить имя?')) $('#lform').submit();" />
+        <input type="text" name="login" id="llogin" onkeyup="check_login();" size=35 placeholder="Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РёРјСЏ.." style="font-size:10pt;padding:5px;margin: 5px 0 5px 0;" /> <span id="ajaxLogin"></span><br>
+        <input type="button" class="btnnew" value="РЎРјРµРЅРёС‚СЊ РёРјСЏ" onclick="if(confirm('Р”РµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃРјРµРЅРёС‚СЊ РёРјСЏ?')) $('#lform').submit();" />
       </form>
       <script>
       function check_login() {
-        $("#ajaxLogin").html('<b>Проверка доступности...</b>');
+        $("#ajaxLogin").html('<b>РџСЂРѕРІРµСЂРєР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё...</b>');
         $.ajax({
           url: "ajax_checklogin.php?login="+$('#llogin').val(),
           cache: false
@@ -1106,13 +1106,13 @@ if(!isset($backdoor)) {
 		$price = 14.99;
 		
 		if($u->info['money2'] < $price) {
-			echo '<font color=red><b>У вас недостаточно средств :)</font>';
+			echo '<font color=red><b>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ :)</font>';
 		}else{
 			$u->info['money2'] -= $price;
 			mysql_query('UPDATE `clan` SET `align` = "1" WHERE `id` = "'.$u->info['clan'].'" LIMIT 1');
 			mysql_query('UPDATE `users` SET `align` = "1" WHERE `clan` = "'.$clan['id'].'"');
 			mysql_query('UPDATE `users` SET `money2` = "'.$u->info['money2'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-			echo '<font color=red><b>Вы успешно сменили склонность клану <img src=http://'.$c['img'].'/i/align/align'.$clan['align'].'.gif><img src=http://'.$c['img'].'/i/clan/'.$clan['name'].'.gif>'.$clan['name'].'</font></b><br> <font color=green><b> С вас снятно <u>'.$price.'</u> ЕКР.</font></b>';
+			echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРјРµРЅРёР»Рё СЃРєР»РѕРЅРЅРѕСЃС‚СЊ РєР»Р°РЅСѓ <img src=http://'.$c['img'].'/i/align/align'.$clan['align'].'.gif><img src=http://'.$c['img'].'/i/clan/'.$clan['name'].'.gif>'.$clan['name'].'</font></b><br> <font color=green><b> РЎ РІР°СЃ СЃРЅСЏС‚РЅРѕ <u>'.$price.'</u> Р•РљР .</font></b>';
 		}
 	}
 	
@@ -1120,13 +1120,13 @@ if(!isset($backdoor)) {
 		$clan = mysql_fetch_array(mysql_query('SELECT `id`,`name`,`align` FROM `clan` WHERE `id` = "'.$u->info['clan'].'" LIMIT 1'));	
 		$price = 14.99;		
 		if($u->info['money2'] < $price) {
-			echo '<font color=red><b>У вас недостаточно средств :)</font>';
+			echo '<font color=red><b>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ :)</font>';
 		}else{
 			$u->info['money2'] -= $price;
 			mysql_query('UPDATE `clan` SET `align` = "7" WHERE `id` = "'.$u->info['clan'].'" LIMIT 1');
 			mysql_query('UPDATE `users` SET `align` = "7" WHERE `clan` = "'.$clan['id'].'"');
 			mysql_query('UPDATE `users` SET `money2` = "'.$u->info['money2'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-			echo '<font color=red><b>Вы успешно сменили склонность клану <img src=http://'.$c['img'].'/i/align/align'.$clan['align'].'.gif><img src=http://'.$c['img'].'/i/clan/'.$clan['name'].'.gif>'.$clan['name'].'</font></b><br> <font color=green><b> С вас снятно <u>'.$price.'</u> ЕКР.</font></b>';
+			echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРјРµРЅРёР»Рё СЃРєР»РѕРЅРЅРѕСЃС‚СЊ РєР»Р°РЅСѓ <img src=http://'.$c['img'].'/i/align/align'.$clan['align'].'.gif><img src=http://'.$c['img'].'/i/clan/'.$clan['name'].'.gif>'.$clan['name'].'</font></b><br> <font color=green><b> РЎ РІР°СЃ СЃРЅСЏС‚РЅРѕ <u>'.$price.'</u> Р•РљР .</font></b>';
 		}
 	}
 	
@@ -1134,32 +1134,32 @@ if(!isset($backdoor)) {
 		$clan = mysql_fetch_array(mysql_query('SELECT `id`,`name`,`align` FROM `clan` WHERE `id` = "'.$u->info['clan'].'" LIMIT 1'));
 		$price = 4.99;
 		if($u->info['money2'] < $price) {
-			echo '<font color=red><b>У вас недостаточно средств :)</font>';
+			echo '<font color=red><b>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ :)</font>';
 		}elseif($clan['align'] == 3) {
-			echo '<font color=red><b>У вашего клана Темная склонность...</font></b>';
+			echo '<font color=red><b>РЈ РІР°С€РµРіРѕ РєР»Р°РЅР° РўРµРјРЅР°СЏ СЃРєР»РѕРЅРЅРѕСЃС‚СЊ...</font></b>';
 		}else{
 			$u->info['money2'] -= $price;
 			mysql_query('UPDATE `clan` SET `align` = "3" WHERE `id` = "'.$u->info['clan'].'" LIMIT 1');
 			mysql_query('UPDATE `users` SET `align` = "3" WHERE `clan` = "'.$clan['id'].'"');
 			mysql_query('UPDATE `users` SET `money2` = "'.$u->info['money2'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-			echo '<font color=red><b>Вы успешно сменили склонность клану <img src=http://'.$c['img'].'/i/align/align'.$clan['align'].'.gif><img src=http://'.$c['img'].'/i/clan/'.$clan['name'].'.gif>'.$clan['name'].'</font></b><br> <font color=green><b> С вас снятно <u>'.$price.'</u> ЕКР.</font></b>';
+			echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРјРµРЅРёР»Рё СЃРєР»РѕРЅРЅРѕСЃС‚СЊ РєР»Р°РЅСѓ <img src=http://'.$c['img'].'/i/align/align'.$clan['align'].'.gif><img src=http://'.$c['img'].'/i/clan/'.$clan['name'].'.gif>'.$clan['name'].'</font></b><br> <font color=green><b> РЎ РІР°СЃ СЃРЅСЏС‚РЅРѕ <u>'.$price.'</u> Р•РљР .</font></b>';
 		}
 	}
 	?>
 	<? if($u->info['clan_prava'] == 'glava') { ?>
 	<fieldset style="border: 1px solid white; padding: 10px;margin-top:15px;">
-      <legend style='font-weight:bold; color:#8F0000;'>Изменение склонности клана:</legend>
-	  <b>Стоимость услуги: <?=$ekr_align?> ЕКР</b><br>
+      <legend style='font-weight:bold; color:#8F0000;'>РР·РјРµРЅРµРЅРёРµ СЃРєР»РѕРЅРЅРѕСЃС‚Рё РєР»Р°РЅР°:</legend>
+	  <b>РЎС‚РѕРёРјРѕСЃС‚СЊ СѓСЃР»СѓРіРё: <?=$ekr_align?> Р•РљР </b><br>
  <img src = "http://img.xcombats.com/i/align/align1.gif"> -
- <input type=button value="Выбрать склонность" class="btnnew" onClick="location.href='ekr.php?align1=1'"> 
+ <input type=button value="Р’С‹Р±СЂР°С‚СЊ СЃРєР»РѕРЅРЅРѕСЃС‚СЊ" class="btnnew" onClick="location.href='ekr.php?align1=1'"> 
  - 
-<b><u>Светлая</b></u> &nbsp;<br><hr><br>
+<b><u>РЎРІРµС‚Р»Р°СЏ</b></u> &nbsp;<br><hr><br>
  <img src = "http://img.xcombats.com/i/align/align7.gif"> -
- <input type=button value="Выбрать склонность" class="btnnew" onClick="location.href='ekr.php?align7=7'">
-<b>- <u>Нейтральная</b></u> &nbsp;<br><hr><br>
+ <input type=button value="Р’С‹Р±СЂР°С‚СЊ СЃРєР»РѕРЅРЅРѕСЃС‚СЊ" class="btnnew" onClick="location.href='ekr.php?align7=7'">
+<b>- <u>РќРµР№С‚СЂР°Р»СЊРЅР°СЏ</b></u> &nbsp;<br><hr><br>
  <img src = "http://img.xcombats.com/i/align/align3.gif"> -
- <input type=button value="Выбрать склонность" class="btnnew" onClick="location.href='ekr.php?align3=3'">
-<b>- <u>Темная</b></u>  &nbsp;<br><hr><br>
+ <input type=button value="Р’С‹Р±СЂР°С‚СЊ СЃРєР»РѕРЅРЅРѕСЃС‚СЊ" class="btnnew" onClick="location.href='ekr.php?align3=3'">
+<b>- <u>РўРµРјРЅР°СЏ</b></u>  &nbsp;<br><hr><br>
     </fieldset>
 	<?}?>
     

@@ -1,7 +1,7 @@
 <?php
 /*
 
-	Обновление данных о курсе внутреней валюты
+	РћР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ РєСѓСЂСЃРµ РІРЅСѓС‚СЂРµРЅРµР№ РІР°Р»СЋС‚С‹
 
 */
 
@@ -10,13 +10,13 @@ function getIP() {
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Получаем IP
+# РџРѕР»СѓС‡Р°РµРј IP
 function getIPblock() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Выполняем проверку безопасности. 
+# Р’С‹РїРѕР»РЅСЏРµРј РїСЂРѕРІРµСЂРєСѓ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё. 
 
 if(!isset($_GET['kill'])) {
 	//if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) {	die('Hello pussy!');   }
@@ -26,7 +26,7 @@ if(!isset($_GET['kill'])) {
 }
 
 
-//$curency = 5.21; //курст 1 екр. к 1 руб. рф.
+//$curency = 5.21; //РєСѓСЂСЃС‚ 1 РµРєСЂ. Рє 1 СЂСѓР±. СЂС„.
 $true = array(
 	'AUD' => true,
 	'AZN' => true,
@@ -72,7 +72,7 @@ setlocale(LC_CTYPE ,"ru_RU.CP1251");
 include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');
 
-//Обнуление передач раз в сутки
+//РћР±РЅСѓР»РµРЅРёРµ РїРµСЂРµРґР°С‡ СЂР°Р· РІ СЃСѓС‚РєРё
 mysql_query('UPDATE `stats` SET `transfers` = 200 WHERE `transfers` < 200');
 
 	function str_count($str,$col) { 
@@ -84,33 +84,33 @@ mysql_query('UPDATE `stats` SET `transfers` = 200 WHERE `transfers` < 200');
 	}
 	
 function getCurs(){
-    // создаем объект для работы с XML
+    // СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ XML
     $xml = new DOMDocument();
-    // ссылка на сайт банка
+    // СЃСЃС‹Р»РєР° РЅР° СЃР°Р№С‚ Р±Р°РЅРєР°
     $url = 'http://www.cbr.ru/scripts/XML_daily.asp?date_req=' . date('d.m.Y');
-    // получаем xml с курсами всех валют
+    // РїРѕР»СѓС‡Р°РµРј xml СЃ РєСѓСЂСЃР°РјРё РІСЃРµС… РІР°Р»СЋС‚
     if ($xml->load($url)){
-        // массив для хранения курсов валют
+        // РјР°СЃСЃРёРІ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РєСѓСЂСЃРѕРІ РІР°Р»СЋС‚
         $result = array(); 
-        // разбираем xml
+        // СЂР°Р·Р±РёСЂР°РµРј xml
         $root = $xml->documentElement;
-        // берем все теги 'Valute' и их содержимое
+        // Р±РµСЂРµРј РІСЃРµ С‚РµРіРё 'Valute' Рё РёС… СЃРѕРґРµСЂР¶РёРјРѕРµ
         $items = $root->getElementsByTagName('Valute');
-        // переберем теги 'Valute' по одному
+        // РїРµСЂРµР±РµСЂРµРј С‚РµРіРё 'Valute' РїРѕ РѕРґРЅРѕРјСѓ
         foreach ($items as $item){
-            // получаем код валюты
+            // РїРѕР»СѓС‡Р°РµРј РєРѕРґ РІР°Р»СЋС‚С‹
             $code = $item->getElementsByTagName('CharCode')->item(0)->nodeValue;
-            // получаем значение курса валюты, относительно рубля
+            // РїРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРёРµ РєСѓСЂСЃР° РІР°Р»СЋС‚С‹, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ СЂСѓР±Р»СЏ
             $value = $item->getElementsByTagName('Value')->item(0)->nodeValue;
-			// номинал
+			// РЅРѕРјРёРЅР°Р»
 			$nominal = $item->getElementsByTagName('Nominal')->item(0)->nodeValue;
-            // записываем в массив, предварительно заменив запятую на точку
+            // Р·Р°РїРёСЃС‹РІР°РµРј РІ РјР°СЃСЃРёРІ, РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ Р·Р°РјРµРЅРёРІ Р·Р°РїСЏС‚СѓСЋ РЅР° С‚РѕС‡РєСѓ
             $result[$code] = round(str_replace(',', '.', $value),5)/$nominal;
         }
-        // возвращаем значение курса, для запрошенной валюты
+        // РІРѕР·РІСЂР°С‰Р°РµРј Р·РЅР°С‡РµРЅРёРµ РєСѓСЂСЃР°, РґР»СЏ Р·Р°РїСЂРѕС€РµРЅРЅРѕР№ РІР°Р»СЋС‚С‹
         return $result;
     }else{
-        // если не получили xml возвращаем false
+        // РµСЃР»Рё РЅРµ РїРѕР»СѓС‡РёР»Рё xml РІРѕР·РІСЂР°С‰Р°РµРј false
         return false;
     }
 }

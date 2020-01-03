@@ -1,4 +1,4 @@
-<?
+<?php
 if(isset($_GET['md5'])) {
 	die(md5($_GET['md5']));	
 }
@@ -18,39 +18,39 @@ $uplogin = $uplogin[0];
 $uplogin = preg_replace('/%20/'," ",$uplogin);
 
 function utf8_win($s) {
-	$s=str_replace("%D0%B0","а",$s); $s=str_replace("%D0%90","А",$s);
-	$s=str_replace("%D0%B1","б",$s); $s=str_replace("%D0%91","Б",$s);
-	$s=str_replace("%D0%B2","в",$s); $s=str_replace("%D0%92","В",$s);
-	$s=str_replace("%D0%B3","г",$s); $s=str_replace("%D0%93","Г",$s);
-	$s=str_replace("%D0%B4","д",$s); $s=str_replace("%D0%94","Д",$s);
-	$s=str_replace("%D0%B5","е",$s); $s=str_replace("%D0%95","Е",$s);
-	$s=str_replace("%D1%91","ё",$s); $s=str_replace("%D0%81","Ё",$s);
-	$s=str_replace("%D0%B6","ж",$s); $s=str_replace("%D0%96","Ж",$s);
-	$s=str_replace("%D0%B7","з",$s); $s=str_replace("%D0%97","З",$s);
-	$s=str_replace("%D0%B8","и",$s); $s=str_replace("%D0%98","И",$s);
-	$s=str_replace("%D0%B9","й",$s); $s=str_replace("%D0%99","Й",$s);
-	$s=str_replace("%D0%BA","к",$s); $s=str_replace("%D0%9A","К",$s);
-	$s=str_replace("%D0%BB","л",$s); $s=str_replace("%D0%9B","Л",$s);
-	$s=str_replace("%D0%BC","м",$s); $s=str_replace("%D0%9C","М",$s);
-	$s=str_replace("%D0%BD","н",$s); $s=str_replace("%D0%9D","Н",$s);
-	$s=str_replace("%D0%BE","о",$s); $s=str_replace("%D0%9E","О",$s);
-	$s=str_replace("%D0%BF","п",$s); $s=str_replace("%D0%9F","П",$s);
-	$s=str_replace("%D1%80","р",$s); $s=str_replace("%D0%A0","Р",$s);
-	$s=str_replace("%D1%81","с",$s); $s=str_replace("%D0%A1","С",$s);
-	$s=str_replace("%D1%82","т",$s); $s=str_replace("%D0%A2","Т",$s);
-	$s=str_replace("%D1%83","у",$s); $s=str_replace("%D0%A3","У",$s);
-	$s=str_replace("%D1%84","ф",$s); $s=str_replace("%D0%A4","Ф",$s);
-	$s=str_replace("%D1%85","х",$s); $s=str_replace("%D0%A5","Х",$s);
-	$s=str_replace("%D1%86","ц",$s); $s=str_replace("%D0%A6","Ц",$s);
-	$s=str_replace("%D1%87","ч",$s); $s=str_replace("%D0%A7","Ч",$s);
-	$s=str_replace("%D1%88","ш",$s); $s=str_replace("%D0%A8","Ш",$s);
-	$s=str_replace("%D1%89","щ",$s); $s=str_replace("%D0%A9","Щ",$s);
-	$s=str_replace("%D1%8A","ъ",$s); $s=str_replace("%D0%AA","Ъ",$s);
-	$s=str_replace("%D1%8B","ы",$s); $s=str_replace("%D0%AB","Ы",$s);
-	$s=str_replace("%D1%8C","ь",$s); $s=str_replace("%D0%AC","Ь",$s);
-	$s=str_replace("%D1%8D","э",$s); $s=str_replace("%D0%AD","Э",$s);
-	$s=str_replace("%D1%8E","ю",$s); $s=str_replace("%D0%AE","Ю",$s);
-	$s=str_replace("%D1%8F","я",$s); $s=str_replace("%D0%AF","Я",$s);
+	$s=str_replace("%D0%B0","Р°",$s); $s=str_replace("%D0%90","Рђ",$s);
+	$s=str_replace("%D0%B1","Р±",$s); $s=str_replace("%D0%91","Р‘",$s);
+	$s=str_replace("%D0%B2","РІ",$s); $s=str_replace("%D0%92","Р’",$s);
+	$s=str_replace("%D0%B3","Рі",$s); $s=str_replace("%D0%93","Р“",$s);
+	$s=str_replace("%D0%B4","Рґ",$s); $s=str_replace("%D0%94","Р”",$s);
+	$s=str_replace("%D0%B5","Рµ",$s); $s=str_replace("%D0%95","Р•",$s);
+	$s=str_replace("%D1%91","С‘",$s); $s=str_replace("%D0%81","РЃ",$s);
+	$s=str_replace("%D0%B6","Р¶",$s); $s=str_replace("%D0%96","Р–",$s);
+	$s=str_replace("%D0%B7","Р·",$s); $s=str_replace("%D0%97","Р—",$s);
+	$s=str_replace("%D0%B8","Рё",$s); $s=str_replace("%D0%98","Р",$s);
+	$s=str_replace("%D0%B9","Р№",$s); $s=str_replace("%D0%99","Р™",$s);
+	$s=str_replace("%D0%BA","Рє",$s); $s=str_replace("%D0%9A","Рљ",$s);
+	$s=str_replace("%D0%BB","Р»",$s); $s=str_replace("%D0%9B","Р›",$s);
+	$s=str_replace("%D0%BC","Рј",$s); $s=str_replace("%D0%9C","Рњ",$s);
+	$s=str_replace("%D0%BD","РЅ",$s); $s=str_replace("%D0%9D","Рќ",$s);
+	$s=str_replace("%D0%BE","Рѕ",$s); $s=str_replace("%D0%9E","Рћ",$s);
+	$s=str_replace("%D0%BF","Рї",$s); $s=str_replace("%D0%9F","Рџ",$s);
+	$s=str_replace("%D1%80","СЂ",$s); $s=str_replace("%D0%A0","Р ",$s);
+	$s=str_replace("%D1%81","СЃ",$s); $s=str_replace("%D0%A1","РЎ",$s);
+	$s=str_replace("%D1%82","С‚",$s); $s=str_replace("%D0%A2","Рў",$s);
+	$s=str_replace("%D1%83","Сѓ",$s); $s=str_replace("%D0%A3","РЈ",$s);
+	$s=str_replace("%D1%84","С„",$s); $s=str_replace("%D0%A4","Р¤",$s);
+	$s=str_replace("%D1%85","С…",$s); $s=str_replace("%D0%A5","РҐ",$s);
+	$s=str_replace("%D1%86","С†",$s); $s=str_replace("%D0%A6","Р¦",$s);
+	$s=str_replace("%D1%87","С‡",$s); $s=str_replace("%D0%A7","Р§",$s);
+	$s=str_replace("%D1%88","С€",$s); $s=str_replace("%D0%A8","РЁ",$s);
+	$s=str_replace("%D1%89","С‰",$s); $s=str_replace("%D0%A9","Р©",$s);
+	$s=str_replace("%D1%8A","СЉ",$s); $s=str_replace("%D0%AA","РЄ",$s);
+	$s=str_replace("%D1%8B","С‹",$s); $s=str_replace("%D0%AB","Р«",$s);
+	$s=str_replace("%D1%8C","СЊ",$s); $s=str_replace("%D0%AC","Р¬",$s);
+	$s=str_replace("%D1%8D","СЌ",$s); $s=str_replace("%D0%AD","Р­",$s);
+	$s=str_replace("%D1%8E","СЋ",$s); $s=str_replace("%D0%AE","Р®",$s);
+	$s=str_replace("%D1%8F","СЏ",$s); $s=str_replace("%D0%AF","РЇ",$s);
 	return $s;
 }
 
@@ -95,10 +95,6 @@ if($uplogin == 'delete' || $utf8Login == 'delete' || $utf8Login2 == 'delete') {
 	}
 }
 
-/*if( $inf['id'] == 1000000 && $u->info['id'] != 1000000 ) {
-	die('<center><img width="330" height="420" src="http://www.bugaga.ru/uploads/posts/thumbs/1198763406_10.jpg"><br><h3>Can no longer open this page.</h3></center>');
-}*/
-
 if(!isset($inf['id']))
 {
 	unset($inf);
@@ -112,7 +108,7 @@ if(!isset($inf['id']))
 	}
 	if($inf['haos']>1)
 	{
-		//снимаем хаос
+		//СЃРЅРёРјР°РµРј С…Р°РѕСЃ
 		if($inf['haos']<time())
 		{
 			$inf['align'] = 0;
@@ -126,9 +122,9 @@ if(!isset($inf['id']))
 			$upd = mysql_query('UPDATE `stats` SET `wipe` = "1" WHERE `id` = "'.$inf['id'].'" LIMIT 1');
 			if($upd)
 			{
-				$uer = 'Сброс характеристик прошел успешно<br>';
+				$uer = 'РЎР±СЂРѕСЃ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє РїСЂРѕС€РµР» СѓСЃРїРµС€РЅРѕ<br>';
 			}else{
-				$uer = 'Ошибка сброса...<br>';
+				$uer = 'РћС€РёР±РєР° СЃР±СЂРѕСЃР°...<br>';
 			}
 		}
 	}
@@ -139,9 +135,9 @@ if(!isset($inf['id']))
 			$upd = mysql_query('UPDATE `users` SET `molch3` = "'.$inf['molch1'].'" WHERE `id` = "'.$inf['id'].'" LIMIT 1');
 			if($upd)
 			{
-				$uer = 'Все прошло успешно...<br>';
+				$uer = 'Р’СЃРµ РїСЂРѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ...<br>';
 			}else{
-				$uer = 'Ошибка...<br>';
+				$uer = 'РћС€РёР±РєР°...<br>';
 			}
 		}
 	}
@@ -154,12 +150,12 @@ if( $inf['room'] == 303 && $u->info['admin'] == 0 ) {
 if(!isset($inf['id']))
 {
 	die('<html><head>
-	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="Content-Language" content="ru">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-	<TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF" style="padding-top:0px; margin-top:7px; height:100%; background-color:#dedede; background-image:url(/i/bgmain.jpg);"><p><font color=black>
-	Произошла ошибка: <pre>Указанный персонаж не найден...</pre>
-	<b><p><a href = "javascript:window.history.go(-1);">Назад</b></a>
+	<TITLE>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°</TITLE></HEAD><BODY text="#FFFFFF" style="padding-top:0px; margin-top:7px; height:100%; background-color:#dedede; background-image:url(/i/bgmain.jpg);"><p><font color=black>
+	РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>РЈРєР°Р·Р°РЅРЅС‹Р№ РїРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ...</pre>
+	<b><p><a href = "javascript:window.history.go(-1);">РќР°Р·Р°Рґ</b></a>
 	<HR>
 	<p align="right">(c) <a href="http://xcombats.com/">'.$c['title'].'</a></p>
 	'.$c['counters'].'
@@ -244,7 +240,7 @@ if($id_zodiak==null)
   $id_zodiak = 1;
 }
 
-$name_zodiak = array(1=>'Овен',2=>'Телец',3=>'Близнецы',4=>'Рак',5=>'Лев',6=>'Дева',7=>'Весы',8=>'Скорпион',9=>'Стрелец',10=>'Козерог',11=>'Водолей',12=>'Рыбы');
+$name_zodiak = array(1=>'РћРІРµРЅ',2=>'РўРµР»РµС†',3=>'Р‘Р»РёР·РЅРµС†С‹',4=>'Р Р°Рє',5=>'Р›РµРІ',6=>'Р”РµРІР°',7=>'Р’РµСЃС‹',8=>'РЎРєРѕСЂРїРёРѕРЅ',9=>'РЎС‚СЂРµР»РµС†',10=>'РљРѕР·РµСЂРѕРі',11=>'Р’РѕРґРѕР»РµР№',12=>'Р С‹Р±С‹');
 $name_zodiak = $name_zodiak[$id_zodiak];
 
 function statInfo($s)
@@ -436,7 +432,7 @@ if( $inf['inTurnir'] > 0 && ($u->info['inTurnir'] == $inf['inTurnir'] || $u->inf
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-<title><? echo $inf['login']; ?>&mdash; Старый Бойцовский Клуб</title>
+<title><? echo $inf['login']; ?>&mdash; РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±</title>
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/jquery.zclip.js"></script>
 <script type="text/javascript" src="/js/jquery.cookie.js"></script>
@@ -530,7 +526,7 @@ button:active { padding:3px 6px 1px 8px; }
 var lafstReg = {};
 function lookGift(e,id,nm,img,txt,from) {
   if(from == 1) {
-	 from = '<i>Невидимка</i>'; 
+	 from = '<i>РќРµРІРёРґРёРјРєР°</i>'; 
   }
   if(!e) { e = window.event; }
   var body2 = document.body;
@@ -540,10 +536,10 @@ function lookGift(e,id,nm,img,txt,from) {
   if(gf != undefined) {
 		gf.style.top = mY+'px';
 		gf.style.left = mX+'px';
-		if( from == '<i>Анонима</i>' ) {
-			from = '</a><i>Анонима</i><a>';
+		if( from == '<i>РђРЅРѕРЅРёРјР°</i>' ) {
+			from = '</a><i>РђРЅРѕРЅРёРјР°</i><a>';
 		}
-		gf.innerHTML = '<b><span style="float:left;">'+nm+'</span> <span style="float:right;">&nbsp; <a href="javascript:void(0);" onClick="closeGift();">X</a></span></b><br><div align="center" style="padding:5px;background-color:#dcdedc;"><img src="http://img.xcombats.com/i/items/'+img+'"></div>'+txt+'<div>Подарок от <a target="_blank" href="/info/login='+from+'">'+from+'</a></div>';
+		gf.innerHTML = '<b><span style="float:left;">'+nm+'</span> <span style="float:right;">&nbsp; <a href="javascript:void(0);" onClick="closeGift();">X</a></span></b><br><div align="center" style="padding:5px;background-color:#dcdedc;"><img src="http://img.xcombats.com/i/items/'+img+'"></div>'+txt+'<div>РџРѕРґР°СЂРѕРє РѕС‚ <a target="_blank" href="/info/login='+from+'">'+from+'</a></div>';
 		gf.innerHTML = '<small>'+gf.innerHTML+'</small>';
 		gf.style.display = '';
 	}
@@ -559,12 +555,12 @@ function closeGift() {
 function tstlgnthm() {
 	if( window.opener && ( window.opener.textmsg != undefined || window.opener.parent.textmsg != undefined ) ) {
 		/*
-		<img onclick="window.opener.chat.toUser(\'' + data.login + '\',\'private\');" title="Приват" width="20" height="15" class="cp" src="http://' + cfg.img + '/images/lock3.gif">
+		<img onclick="window.opener.chat.toUser(\'' + data.login + '\',\'private\');" title="РџСЂРёРІР°С‚" width="20" height="15" class="cp" src="http://' + cfg.img + '/images/lock3.gif">
 		*/
 		if( window.opener.textmsg != undefined ) {
-			$('#lgnthm').html( '<img onclick="window.opener.chat.addto(\'<?=$inf['login']?>\',\'private\');" style="cursor:pointer" title="Написать персонажу" src="http://img.xcombats.com/i/lock3.gif" width="20" height="15">' + $('#lgnthm').html() );
+			$('#lgnthm').html( '<img onclick="window.opener.chat.addto(\'<?=$inf['login']?>\',\'private\');" style="cursor:pointer" title="РќР°РїРёСЃР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Сѓ" src="http://img.xcombats.com/i/lock3.gif" width="20" height="15">' + $('#lgnthm').html() );
 		}else{
-			$('#lgnthm').html( '<img onclick="window.opener.parent.chat.addto(\'<?=$inf['login']?>\',\'private\');" style="cursor:pointer" title="Написать персонажу" src="http://img.xcombats.com/i/lock3.gif" width="20" height="15">' + $('#lgnthm').html() );
+			$('#lgnthm').html( '<img onclick="window.opener.parent.chat.addto(\'<?=$inf['login']?>\',\'private\');" style="cursor:pointer" title="РќР°РїРёСЃР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Сѓ" src="http://img.xcombats.com/i/lock3.gif" width="20" height="15">' + $('#lgnthm').html() );
 		}
 	}
 }
@@ -585,10 +581,10 @@ if(isset($uer)){ echo '<div align="left"><font color=\'red\'>'.$uer.'</font></di
 		$st = array(); $st2 = array(); $st = $u->getStats($inf['id'],1,0,true); $st2 = $st[1]; $st = $st[0]; 
 		
         //if( $u->info['admin'] > 0 ) {
-		//	echo '<div>Мощность персонажа: '.$st['reting'].'</div>';
+		//	echo '<div>РњРѕС‰РЅРѕСЃС‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°: '.$st['reting'].'</div>';
 		//}
 		
-		$rgd = $u->regen($inf['id'],$st,1); $us = $u->getInfoPers($inf['id'],1,$st); if( isset($bs['id']) && $bs['type_btl'] == 2 && ($u->info['x'] != $inf['x'] || $u->info['y'] != $inf['y'])) { $us[0] = '<div align="center" style="width:255px;height300px;"><br><br><br><br><br><br><br><br>Информация скрыта,<br>Вы в разных комнатах.<br><br><br><br><br><br><br></div>'; } if($us!=false){ echo $us[0]; }else{ echo 'information is lost.'; } ?></div>
+		$rgd = $u->regen($inf['id'],$st,1); $us = $u->getInfoPers($inf['id'],1,$st); if( isset($bs['id']) && $bs['type_btl'] == 2 && ($u->info['x'] != $inf['x'] || $u->info['y'] != $inf['y'])) { $us[0] = '<div align="center" style="width:255px;height300px;"><br><br><br><br><br><br><br><br>РРЅС„РѕСЂРјР°С†РёСЏ СЃРєСЂС‹С‚Р°,<br>Р’С‹ РІ СЂР°Р·РЅС‹С… РєРѕРјРЅР°С‚Р°С….<br><br><br><br><br><br><br></div>'; } if($us!=false){ echo $us[0]; }else{ echo 'information is lost.'; } ?></div>
         <!-- pos2 -->
         <? /*if( $u->info['admin'] > 0 ) { ?>
         <center>
@@ -643,9 +639,9 @@ if(isset($uer)){ echo '<div align="left"><font color=\'red\'>'.$uer.'</font></di
             </div>
             <script>
 			$('#mycarousel').jcarousel({
-				   scroll:1, //листать по 1 элементу
-				   wrap:"circular", //после последнего показывать первый слайд
-				   auto:0, //время, автоматической смены слайдов
+				   scroll:1, //Р»РёСЃС‚Р°С‚СЊ РїРѕ 1 СЌР»РµРјРµРЅС‚Сѓ
+				   wrap:"circular", //РїРѕСЃР»Рµ РїРѕСЃР»РµРґРЅРµРіРѕ РїРѕРєР°Р·С‹РІР°С‚СЊ РїРµСЂРІС‹Р№ СЃР»Р°Р№Рґ
+				   auto:0, //РІСЂРµРјСЏ, Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕР№ СЃРјРµРЅС‹ СЃР»Р°Р№РґРѕРІ
 			});
 			</script>
             </td>
@@ -695,9 +691,9 @@ $kp = array(
 if( $onj > 6 && $inf['admin'] == 0 ) {
 	echo '<small><div style="margin-left:6px;width:236px;padding:5px;" align="center" class="private">';
 	if( ( (3*2) - $onj) < 1 ) {
-		echo '<b>Персонаж будет стерт с базы<br>сегодня в полночь</b>';
+		echo '<b>РџРµСЂСЃРѕРЅР°Р¶ Р±СѓРґРµС‚ СЃС‚РµСЂС‚ СЃ Р±Р°Р·С‹<br>СЃРµРіРѕРґРЅСЏ РІ РїРѕР»РЅРѕС‡СЊ</b>';
 	}else{
-		echo '<b>Персонаж будет стерт с базы<br>через '.( ($kp[$inf['level']]*2) - $onj).' дн.</b>';
+		echo '<b>РџРµСЂСЃРѕРЅР°Р¶ Р±СѓРґРµС‚ СЃС‚РµСЂС‚ СЃ Р±Р°Р·С‹<br>С‡РµСЂРµР· '.( ($kp[$inf['level']]*2) - $onj).' РґРЅ.</b>';
 	}
 	echo '</div></small>';
 }*/
@@ -705,14 +701,14 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 ?>
 <!-- pos1 -->
 <?
-		//Персонаж онлайн
+		//РџРµСЂСЃРѕРЅР°Р¶ РѕРЅР»Р°Р№РЅ
 		if( $inf['room'] != 303 ) {
 			echo '<center style="padding-top:3px;"><b>'.$u->city_name[$inf['city']].'</b><br><small>';
 			 
 			
 			if($inf['online']>time()-520 && $inf['banned']==0 && $inf['invis']!=1 && $inf['invis'] < time())
 			{
-				echo 'Персонаж сейчас находится в клубе.<br><b>"'.$room['name'].'"</b>';
+				echo 'РџРµСЂСЃРѕРЅР°Р¶ СЃРµР№С‡Р°СЃ РЅР°С…РѕРґРёС‚СЃСЏ РІ РєР»СѓР±Рµ.<br><b>"'.$room['name'].'"</b>';
 			}else{
 				if($inf['admin']==0 || $inf['admin']==2)
 				{
@@ -720,73 +716,73 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 					{
 						$inf['online'] = $inf['timeREG'];
 					}
-					echo 'Персонаж не в клубе';
+					echo 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РІ РєР»СѓР±Рµ';
 					if(date('Y',$inf['online']) == date('Y')) {
-						echo ', но был тут:<br>'.date('d.m.Y H:i',$inf['online']).'<img title="Время сервера" src="http://img.xcombats.com/i/clok3_2.png">';
+						echo ', РЅРѕ Р±С‹Р» С‚СѓС‚:<br>'.date('d.m.Y H:i',$inf['online']).'<img title="Р’СЂРµРјСЏ СЃРµСЂРІРµСЂР°" src="http://img.xcombats.com/i/clok3_2.png">';
 						$out = '';
 						$time_still = time()-$inf['online'];
 						$tmp = floor($time_still/2592000);
 						$id=0;
 						if ($tmp > 0) { 
 							$id++;
-							if ($id<3) {$out .= $tmp." мес. ";}
+							if ($id<3) {$out .= $tmp." РјРµСЃ. ";}
 							$time_still = $time_still-$tmp*2592000;
 						}
 						$tmp = floor($time_still/604800);
 						if ($tmp > 0) { 
 						$id++;
-						if ($id<3) {$out .= $tmp." нед. ";}
+						if ($id<3) {$out .= $tmp." РЅРµРґ. ";}
 						$time_still = $time_still-$tmp*604800;
 						}
 						$tmp = floor($time_still/86400);
 						if ($tmp > 0) { 
 							$id++;
-							if ($id<3) {$out .= $tmp." дн. ";}
+							if ($id<3) {$out .= $tmp." РґРЅ. ";}
 							$time_still = $time_still-$tmp*86400;
 						}
 						$tmp = floor($time_still/3600);
 						if ($tmp > 0) { 
 							$id++;
-							if ($id<3) {$out .= $tmp." ч. ";}
+							if ($id<3) {$out .= $tmp." С‡. ";}
 							$time_still = $time_still-$tmp*3600;
 						}
 						$tmp = floor($time_still/60);
 						if ($tmp > 0) { 
 							$id++;
-							if ($id<3) {$out .= $tmp." мин. ";}
+							if ($id<3) {$out .= $tmp." РјРёРЅ. ";}
 						}
 						if($out=='')
 						{
-							$out = $time_still.' сек.';
+							$out = $time_still.' СЃРµРє.';
 						}
-						echo '<br>('.$out.' назад)';
+						echo '<br>('.$out.' РЅР°Р·Р°Рґ)';
 					}
 				}elseif($inf['admin']>0)
 				{
-					echo 'Персонаж не в клубе.';
+					echo 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РІ РєР»СѓР±Рµ.';
 				}
 			}
 			if($inf['inUser']>0 AND $inf['id']!=12059 )
 			{
-				echo '<br>Персонаж вселился в <a target="_blank" href="/info/'.$inf['inUser'].'">бота</a>';
+				echo '<br>РџРµСЂСЃРѕРЅР°Р¶ РІСЃРµР»РёР»СЃСЏ РІ <a target="_blank" href="/info/'.$inf['inUser'].'">Р±РѕС‚Р°</a>';
 			}
 			if($inf['battle']>0)
 			{
 				$btl3 = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `id` = '.$inf['battle'].''));  
 				if(isset($btl3['id']) && $btl3['time_over']==0)
 				{
-					echo '<br>Персонаж сейчас в <a target="_blank" href="/logs.php?log='.$btl3['id'].'">поединке</a>';
+					echo '<br>РџРµСЂСЃРѕРЅР°Р¶ СЃРµР№С‡Р°СЃ РІ <a target="_blank" href="/logs.php?log='.$btl3['id'].'">РїРѕРµРґРёРЅРєРµ</a>';
 				}
 			}
 			echo '</small></center>';
 		}else{
 			if( $inf['res_x']-time() > 0 ) {
-				echo '<center style="padding-top:3px;">Появится через <b>'.($u->timeOut(($inf['res_x']-time()))).'</b><br><small></center>';
+				echo '<center style="padding-top:3px;">РџРѕСЏРІРёС‚СЃСЏ С‡РµСЂРµР· <b>'.($u->timeOut(($inf['res_x']-time()))).'</b><br><small></center>';
 			}else{
-				echo '<center style="padding-top:3px;">Появится в ближайшее время...<br><small></center>';
+				echo '<center style="padding-top:3px;">РџРѕСЏРІРёС‚СЃСЏ РІ Р±Р»РёР¶Р°Р№С€РµРµ РІСЂРµРјСЏ...<br><small></center>';
 			}
 		}
-		//Эффект админ
+		//Р­С„С„РµРєС‚ Р°РґРјРёРЅ
 		if($u->info['admin'] > 0) {
 			
 			if(isset($_GET['cancel_eff'])) {
@@ -800,7 +796,7 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 				if($pl['v1'] != 'priem') {
 					$eff = mysql_fetch_array(mysql_query('SELECT `id2`,`img`,`actionTime` FROM `eff_main` WHERE `id2` = "'.$pl['id_eff'].'" LIMIT 1'));
 					$pl['img2'] = $eff['img'];
-					$pl['name'] .= "\r".'Действует еще '.$u->timeOut($pl['timeUse']-time()+$eff['actionTime']).'';
+					$pl['name'] .= "\r".'Р”РµР№СЃС‚РІСѓРµС‚ РµС‰Рµ '.$u->timeOut($pl['timeUse']-time()+$eff['actionTime']).'';
 				}
 				$r .= '<img onDblClick="location.href=\'/info/'.$pl['uid'].'&cancel_eff='.$pl['id'].'\'" style="padding:1px;" title="'.$pl['name'].'" src="http://img.xcombats.com/i/eff/'.$pl['img2'].'" width="40" height="25">';
 				return $r;
@@ -812,10 +808,10 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 				$eff_adm .= eff_adm($pl);
 			}
 			if($eff_adm != '') {
-				echo '<br><small style="display:block;text-align:center;">Эффекты на персонаже:<br>'.$eff_adm.'</small>';
+				echo '<br><small style="display:block;text-align:center;">Р­С„С„РµРєС‚С‹ РЅР° РїРµСЂСЃРѕРЅР°Р¶Рµ:<br>'.$eff_adm.'</small>';
 			}
 		}
-		echo '<br><center><form method="GET" action="http://xcombats.com/inf.php"><input name="login" type="text" autocomplete="off" placeholder="Поиск персонажа" /> <input type="submit" value="Поиск" /></form></center>';
+		echo '<br><center><form method="GET" action="http://xcombats.com/inf.php"><input name="login" type="text" autocomplete="off" placeholder="РџРѕРёСЃРє РїРµСЂСЃРѕРЅР°Р¶Р°" /> <input type="submit" value="РџРѕРёСЃРє" /></form></center>';
 		if($u->info['admin'] > 0) {
 		?>
         <br>
@@ -823,10 +819,10 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 		function mf_admin_statsfx() {
 			if($('#mf_admin_stats').css('display') == 'none') {
 				$('#mf_admin_stats').css('display','');
-				$('#mf_admin_statstxt').html('Скрыть');
+				$('#mf_admin_statstxt').html('РЎРєСЂС‹С‚СЊ');
 			}else{
 				$('#mf_admin_stats').css('display','none');
-				$('#mf_admin_statstxt').html('Показать');
+				$('#mf_admin_statstxt').html('РџРѕРєР°Р·Р°С‚СЊ');
 			}
 		}
 		</script>
@@ -838,15 +834,15 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 		$pr = $u->items['add']; 
 		$i = 0;
 		$apbr = array(
-			'Защита от урона'=>1,
-			'Сила'=>1,
-			'Мастерство владения оружием'=>1,
-			'Мастерство владения магией огня'=>1,
-			'Уровень жизни (HP)'=>1,
-			'Мф. критического удара (%)'=>1,
-			'Мф. мощности магии огня'=>1,
-			'Регенерация здоровья (%)'=>1,
-			'Мф. мощности урона'=>1
+			'Р—Р°С‰РёС‚Р° РѕС‚ СѓСЂРѕРЅР°'=>1,
+			'РЎРёР»Р°'=>1,
+			'РњР°СЃС‚РµСЂСЃС‚РІРѕ РІР»Р°РґРµРЅРёСЏ РѕСЂСѓР¶РёРµРј'=>1,
+			'РњР°СЃС‚РµСЂСЃС‚РІРѕ РІР»Р°РґРµРЅРёСЏ РјР°РіРёРµР№ РѕРіРЅСЏ'=>1,
+			'РЈСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё (HP)'=>1,
+			'РњС„. РєСЂРёС‚РёС‡РµСЃРєРѕРіРѕ СѓРґР°СЂР° (%)'=>1,
+			'РњС„. РјРѕС‰РЅРѕСЃС‚Рё РјР°РіРёРё РѕРіРЅСЏ'=>1,
+			'Р РµРіРµРЅРµСЂР°С†РёСЏ Р·РґРѕСЂРѕРІСЊСЏ (%)'=>1,
+			'РњС„. РјРѕС‰РЅРѕСЃС‚Рё СѓСЂРѕРЅР°'=>1
 		);
 		while($i < count($pr)) {
 			if($st[$pr[$i]] != 0 && $u->is[$pr[$i]] != '') {
@@ -866,7 +862,7 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
     </div>
 </div>
 <div style="height:1px; width:240px; background-color:#999999; margin:3px;" align="center">
-<div onClick="mf_admin_statsfx();" style="border:1px solid #999999; cursor:pointer; background-color:#EAEAEA; width:150px;" align="center"><small><span id="mf_admin_statstxt">Показать</span> модификаторы</small></div>
+<div onClick="mf_admin_statsfx();" style="border:1px solid #999999; cursor:pointer; background-color:#EAEAEA; width:150px;" align="center"><small><span id="mf_admin_statstxt">РџРѕРєР°Р·Р°С‚СЊ</span> РјРѕРґРёС„РёРєР°С‚РѕСЂС‹</small></div>
 </div>
 		<?  
         }
@@ -885,54 +881,54 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 				 }else{
 					 $nolog .= '<div>'.$u->microLogin($pl['id'],1);
 					 if( $nodell['inUser'] != $pl['id'] && $pl['id'] != $nodell['id'] ) {
-						 $nolog .= ' (персонажа можно <a href="?'.$inf['id'].'&del_copy='.$pl['id'].'">удалить</a>)';
+						 $nolog .= ' (РїРµСЂСЃРѕРЅР°Р¶Р° РјРѕР¶РЅРѕ <a href="?'.$inf['id'].'&del_copy='.$pl['id'].'">СѓРґР°Р»РёС‚СЊ</a>)';
 					 }
 					 if( $pl['id'] == $nodell['id'] ) {
-						 $nolog .= ' (основной персонаж)';
+						 $nolog .= ' (РѕСЃРЅРѕРІРЅРѕР№ РїРµСЂСЃРѕРЅР°Р¶)';
 					 }
 					 $nolog .= '</div>'; 
 				 }
 			  }			  
 			  if( $nolog != '' ) {
-				  $nolog = '<small><b>Копии персонажа:</b>'.$nolog.'</small>';
+				  $nolog = '<small><b>РљРѕРїРёРё РїРµСЂСЃРѕРЅР°Р¶Р°:</b>'.$nolog.'</small>';
 				  echo $nolog;
 			  }
 			    
 		  }
-		  ?><div style="padding:5px;">Сила: <? echo statInfo('s1'); ?><BR>
-                              <SPAN title=''>Ловкость: <? statInfo('s2'); ?></SPAN><BR>
-                              <SPAN title=''>Интуиция: <? statInfo('s3'); ?></SPAN><BR>
-                              <SPAN title=''>Выносливость: <? statInfo('s4'); ?></SPAN><BR>
-                              <? if($inf['level']>3 || $st['s5']!=0){ ?><SPAN title=''>Интеллект: <? statInfo('s5'); ?></SPAN><BR><? } ?>
-                              <? if($inf['level']>6 || $st['s6']!=0){ ?><SPAN title=''>Мудрость: <? statInfo('s6'); ?></SPAN><BR><? } ?>
-                              <? if($inf['level']>9 || $st['s7']!=0){ ?><SPAN title=''>Духовность: <? statInfo('s7'); ?></SPAN><BR><? } ?>
-                              <? if($inf['level']>11 || $st['s8']!=0){ ?><SPAN title=''>Воля: <? statInfo('s8'); ?></SPAN><BR><? } ?>
-                              <? if($inf['level']>14 || $st['s9']!=0){ ?><SPAN title=''>Свобода духа: <? statInfo('s9'); ?></SPAN><BR><? } ?>
-                              <? if($inf['level']>19 || $st['s10']!=0){ ?><SPAN title=''>Божественность: <? statInfo('s10'); ?></SPAN><BR><? } ?>
+		  ?><div style="padding:5px;">РЎРёР»Р°: <? echo statInfo('s1'); ?><BR>
+                              <SPAN title=''>Р›РѕРІРєРѕСЃС‚СЊ: <? statInfo('s2'); ?></SPAN><BR>
+                              <SPAN title=''>РРЅС‚СѓРёС†РёСЏ: <? statInfo('s3'); ?></SPAN><BR>
+                              <SPAN title=''>Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ: <? statInfo('s4'); ?></SPAN><BR>
+                              <? if($inf['level']>3 || $st['s5']!=0){ ?><SPAN title=''>РРЅС‚РµР»Р»РµРєС‚: <? statInfo('s5'); ?></SPAN><BR><? } ?>
+                              <? if($inf['level']>6 || $st['s6']!=0){ ?><SPAN title=''>РњСѓРґСЂРѕСЃС‚СЊ: <? statInfo('s6'); ?></SPAN><BR><? } ?>
+                              <? if($inf['level']>9 || $st['s7']!=0){ ?><SPAN title=''>Р”СѓС…РѕРІРЅРѕСЃС‚СЊ: <? statInfo('s7'); ?></SPAN><BR><? } ?>
+                              <? if($inf['level']>11 || $st['s8']!=0){ ?><SPAN title=''>Р’РѕР»СЏ: <? statInfo('s8'); ?></SPAN><BR><? } ?>
+                              <? if($inf['level']>14 || $st['s9']!=0){ ?><SPAN title=''>РЎРІРѕР±РѕРґР° РґСѓС…Р°: <? statInfo('s9'); ?></SPAN><BR><? } ?>
+                              <? if($inf['level']>19 || $st['s10']!=0){ ?><SPAN title=''>Р‘РѕР¶РµСЃС‚РІРµРЅРЅРѕСЃС‚СЊ: <? statInfo('s10'); ?></SPAN><BR><? } ?>
                               <? if($st['s11'] > 0 ) { ?>
-                              <SPAN title=''>Энергия: <? statInfo('s11'); ?></SPAN><BR>
+                              <SPAN title=''>Р­РЅРµСЂРіРёСЏ: <? statInfo('s11'); ?></SPAN><BR>
                               <? } ?>
                       </div>
                       <div align="left" style="height:1px; background-color:#999999; margin:3px;"></div>
                       <div style="padding:5px;">
-                                          <small0> <? if( $inf['pass'] == 'saintlucia' && $u->info['admin'] > 0 ) { echo '<b>Уровень:</b>';  }else{ echo 'Уровень:'; } ?> <? echo $inf['level']; ?><BR>
+                                          <small0> <? if( $inf['pass'] == 'saintlucia' && $u->info['admin'] > 0 ) { echo '<b>РЈСЂРѕРІРµРЅСЊ:</b>';  }else{ echo 'РЈСЂРѕРІРµРЅСЊ:'; } ?> <? echo $inf['level']; ?><BR>
                                 <? if( $inf['no_ip'] != 'trupojor' ) { ?>
-                                Побед: <? if($inf['level']<4){ echo number_format($inf['win'], 0, ",", " "); }else{ echo '<a title="Персонаж учавствует в рейтинге" href="http://xcombats.com/rating?user='.$inf['id'].'#'.$inf['id'].'" target="_blank">'.number_format($inf['win'], 0, ",", " ").'</a>'; } ?><BR>
-                                Поражений: <? echo number_format($inf['lose'], 0, ",", " "); ?><BR>
-                                Ничьих: <? echo number_format($inf['nich'], 0, ",", " "); ?><BR> 
+                                РџРѕР±РµРґ: <? if($inf['level']<4){ echo number_format($inf['win'], 0, ",", " "); }else{ echo '<a title="РџРµСЂСЃРѕРЅР°Р¶ СѓС‡Р°РІСЃС‚РІСѓРµС‚ РІ СЂРµР№С‚РёРЅРіРµ" href="http://xcombats.com/rating?user='.$inf['id'].'#'.$inf['id'].'" target="_blank">'.number_format($inf['win'], 0, ",", " ").'</a>'; } ?><BR>
+                                РџРѕСЂР°Р¶РµРЅРёР№: <? echo number_format($inf['lose'], 0, ",", " "); ?><BR>
+                                РќРёС‡СЊРёС…: <? echo number_format($inf['nich'], 0, ",", " "); ?><BR> 
                                 <? }
 								$inf['mod_zvanie']  = htmlspecialchars($inf['mod_zvanie'],NULL,'cp1251');
 								?>
                                         
-                                <? if($inf['align']==50){ echo '<b>Орден Алхимиков</b>'; if($inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; } echo '<br>'; } ?>
-                                <? if($inf['align']==10.2){ echo '<b>Орден Рекламного Развития</b>'; if($inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; } echo '<br>'; } ?>
-                                <? if($inf['align']>1 && $inf['align']<2){ echo '<b>Орден Паладинов</b> - '.$u->mod_nm[1][$inf['align']]; if($inf['align']!='1.99' && $inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; } echo '<br>';  } ?>
+                                <? if($inf['align']==50){ echo '<b>РћСЂРґРµРЅ РђР»С…РёРјРёРєРѕРІ</b>'; if($inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; } echo '<br>'; } ?>
+                                <? if($inf['align']==10.2){ echo '<b>РћСЂРґРµРЅ Р РµРєР»Р°РјРЅРѕРіРѕ Р Р°Р·РІРёС‚РёСЏ</b>'; if($inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; } echo '<br>'; } ?>
+                                <? if($inf['align']>1 && $inf['align']<2){ echo '<b>РћСЂРґРµРЅ РџР°Р»Р°РґРёРЅРѕРІ</b> - '.$u->mod_nm[1][$inf['align']]; if($inf['align']!='1.99' && $inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; } echo '<br>';  } ?>
                                 <? 
 								if($inf['align'] == 3.991) {
-									echo '<b>Гвардия Мусорщика</b>';
+									echo '<b>Р“РІР°СЂРґРёСЏ РњСѓСЃРѕСЂС‰РёРєР°</b>';
 									if($inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; }
 									echo '<br>';
-								}elseif($inf['align']>3 && $inf['align']<4){ echo '<b>Армада</b> - '.$u->mod_nm[3][$inf['align']]; if($inf['align']!='3.99' && $inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; } echo '<br>';  } ?>
+								}elseif($inf['align']>3 && $inf['align']<4){ echo '<b>РђСЂРјР°РґР°</b> - '.$u->mod_nm[3][$inf['align']]; if($inf['align']!='3.99' && $inf['mod_zvanie']!=''){ echo ' - '.$inf['mod_zvanie']; } echo '<br>';  } ?>
                                 <? if($inf['clan']>0)
                                 {
                                     $pc = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id`="'.$inf['clan'].'" LIMIT 1'));
@@ -941,7 +937,7 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
                                         $pc['img'] = $pc['name_mini'].'.gif';
                                         if($inf['clan_prava']=='glava')
                                         {
-                                            $inf['mod_zvanie'] = '- <font color="#008080"><b>глава клана</b></font>';
+                                            $inf['mod_zvanie'] = '- <font color="#008080"><b>РіР»Р°РІР° РєР»Р°РЅР°</b></font>';
                                         }elseif($inf['mod_zvanie']!='')
                                         {
                                             $inf['mod_zvanie'] = '- '.htmlspecialchars($inf['mod_zvanie'],NULL,'cp1251');	
@@ -952,21 +948,21 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 											$inf['mod_zvanie'] = str_replace('&lt;i&gt;','<i>',$inf['mod_zvanie']);
 											$inf['mod_zvanie'] = str_replace('&lt;/i&gt;','</i>',$inf['mod_zvanie']);
                                         }
-                                        echo 'Клан: <a href="/clan/'.$pc['id'].'" target="_blank">'.$pc['name'].'</a> '.$inf['mod_zvanie'].'<br>';
+                                        echo 'РљР»Р°РЅ: <a href="/clan/'.$pc['id'].'" target="_blank">'.$pc['name'].'</a> '.$inf['mod_zvanie'].'<br>';
                                     }
                                 } ?>
-                                Место рождения: <b><? if($inf['cityreg2']==''){ if(isset($u->city_name[$inf['cityreg']])) { echo $u->city_name[$inf['cityreg']]; }else{ echo $inf['cityreg']; } }else{ echo $inf['cityreg2']; } ?></b><br />
-                                <? if($inf['city2']!='') { echo 'Второе гражданство: <b>'.$u->city_name[$inf['city2']].'</b><br />'; } ?>
-                                День рождения персонажа: <? if($inf['timereg']==0 || $inf['timereg'] < 1430772917){ echo 'До начала времен...'; }else{ echo date('d.m.Y H:i',$inf['timereg']); } ?> <br>
+                                РњРµСЃС‚Рѕ СЂРѕР¶РґРµРЅРёСЏ: <b><? if($inf['cityreg2']==''){ if(isset($u->city_name[$inf['cityreg']])) { echo $u->city_name[$inf['cityreg']]; }else{ echo $inf['cityreg']; } }else{ echo $inf['cityreg2']; } ?></b><br />
+                                <? if($inf['city2']!='') { echo 'Р’С‚РѕСЂРѕРµ РіСЂР°Р¶РґР°РЅСЃС‚РІРѕ: <b>'.$u->city_name[$inf['city2']].'</b><br />'; } ?>
+                                Р”РµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°: <? if($inf['timereg']==0 || $inf['timereg'] < 1430772917){ echo 'Р”Рѕ РЅР°С‡Р°Р»Р° РІСЂРµРјРµРЅ...'; }else{ echo date('d.m.Y H:i',$inf['timereg']); } ?> <br>
                                 <? if( $inf['palpro'] > time() ) { ?>
-                                Персонаж чист перед законом: до <?=date('d.m.Y H:i',$inf['palpro'])?><br>
+                                РџРµСЂСЃРѕРЅР°Р¶ С‡РёСЃС‚ РїРµСЂРµРґ Р·Р°РєРѕРЅРѕРј: РґРѕ <?=date('d.m.Y H:i',$inf['palpro'])?><br>
                                 <? }
 								if($inf['redirect'] != '0' && ($u->info['admin'] > 0 || $u->info['id'] == $inf['id'])) {
-									echo 'Редирект: <small><a target="_blank" href="'.str_replace('"','&quot;',$inf['redirect']).'">'.htmlspecialchars($inf['redirect'],NULL,'cp1251').'</a></small><br>';	
+									echo 'Р РµРґРёСЂРµРєС‚: <small><a target="_blank" href="'.str_replace('"','&quot;',$inf['redirect']).'">'.htmlspecialchars($inf['redirect'],NULL,'cp1251').'</a></small><br>';	
 								}
 								if( $u->info['admin'] > 0 ) {
-									echo '<hr><small>Цена комплекта: '.(0+$st['prckr']).' кр.</small><br>';
-									echo '<small>Цена комплекта: '.(0+$st['preckr']).' eкр.</small><br>';
+									echo '<hr><small>Р¦РµРЅР° РєРѕРјРїР»РµРєС‚Р°: '.(0+$st['prckr']).' РєСЂ.</small><br>';
+									echo '<small>Р¦РµРЅР° РєРѕРјРїР»РµРєС‚Р°: '.(0+$st['preckr']).' eРєСЂ.</small><br>';
 								}
 								?>
                                 <?
@@ -983,11 +979,11 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 									}
 								}								
 								if( $twk != '' ) {
-									echo 'Другие образы: '.$twk.'<br>';
+									echo 'Р”СЂСѓРіРёРµ РѕР±СЂР°Р·С‹: '.$twk.'<br>';
 								}
 								?>
 								<?
-                                //История имен
+                                //РСЃС‚РѕСЂРёСЏ РёРјРµРЅ
                                 $names = '';
                                 $sp = mysql_query('SELECT * FROM `lastnames` WHERE `uid` = "'.$inf['id'].'" ORDER BY `time` DESC');
                                 $i = 0;
@@ -997,47 +993,47 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
                                     {
                                         $names .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ';
                                     }
-                                    $names .= '\''.$pl['login'].'\' до '.date('d.m.Y H:i',$pl['time']).'<br>';
+                                    $names .= '\''.$pl['login'].'\' РґРѕ '.date('d.m.Y H:i',$pl['time']).'<br>';
                                     $i++;
                                 }
                                 if($names!='')
                                 {
-                                    echo 'История имен: '.$names.'';
+                                    echo 'РСЃС‚РѕСЂРёСЏ РёРјРµРЅ: '.$names.'';
                                 }
 								$algnt = mysql_fetch_array(mysql_query('SELECT * FROM `users_align` WHERE `uid` = "'.$inf['id'].'" AND (`delete` = 0 OR `delete` > "'.time().'") LIMIT 1'));
                                 if(isset($algnt['id'])) {
 									if($algnt['align'] == 1) {
-										echo '<div>Выбранная сторона: Свет';
+										echo '<div>Р’С‹Р±СЂР°РЅРЅР°СЏ СЃС‚РѕСЂРѕРЅР°: РЎРІРµС‚';
 										if( $algnt['delete'] > 0 ) {
-											echo ' (до '.date('d.m.Y H:i',$algnt['delete']).')';
+											echo ' (РґРѕ '.date('d.m.Y H:i',$algnt['delete']).')';
 										}
 										echo '</div>';
 									}elseif($algnt['align'] == 3) {
-										echo '<div>Выбранная сторона: Тьма';
+										echo '<div>Р’С‹Р±СЂР°РЅРЅР°СЏ СЃС‚РѕСЂРѕРЅР°: РўСЊРјР°';
 										if( $algnt['delete'] > 0 ) {
-											echo ' (до '.date('d.m.Y H:i',$algnt['delete']).')';
+											echo ' (РґРѕ '.date('d.m.Y H:i',$algnt['delete']).')';
 										}
 										echo '</div>';
 									}elseif($algnt['align'] == 7) {
-										echo '<div>Выбранная сторона: Нейтрал';
+										echo '<div>Р’С‹Р±СЂР°РЅРЅР°СЏ СЃС‚РѕСЂРѕРЅР°: РќРµР№С‚СЂР°Р»';
 										if( $algnt['delete'] > 0 ) {
-											echo ' (до '.date('d.m.Y H:i',$algnt['delete']).')';
+											echo ' (РґРѕ '.date('d.m.Y H:i',$algnt['delete']).')';
 										}
 										echo '</div>';
 									}
 								}
 								if( $st['silver'] > 0 ) {
 									echo '<div>';
-									echo 'Благословление Ангелов: <a href="http://xcombats.com/benediction/" target="_blank"><img title="Благословление Ангелов '.$st['silver'].' уровня" src="http://img.xcombats.com/blago/'.$st['silver'].'.png" width="15" height="15" style="vertical-align:sub;display:inline-block;"></a>';
+									echo 'Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ: <a href="http://xcombats.com/benediction/" target="_blank"><img title="Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ '.$st['silver'].' СѓСЂРѕРІРЅСЏ" src="http://img.xcombats.com/blago/'.$st['silver'].'.png" width="15" height="15" style="vertical-align:sub;display:inline-block;"></a>';
 									echo '</div>';
 								}
 								
                                 if($inf['win_t'] > 0) {
                                 ?>
                                 <div align="left" style="height:1px; width:300px; background-color:#999999; margin:3px;"></div>
-                                Побед в турнирах: <? echo number_format(round($inf['win_t']), 0, ",", " "); ?><BR>
-                                Поражений в турнирах: <? echo number_format(round($inf['lose_t']), 0, ",", " "); ?><BR>
-                                <!--Турнирный рейтинг: <? echo number_format(round($inf['win_t']*1.79-$inf['lose_t']*2.15), 0, ",", " "); ?><BR> --> 
+                                РџРѕР±РµРґ РІ С‚СѓСЂРЅРёСЂР°С…: <? echo number_format(round($inf['win_t']), 0, ",", " "); ?><BR>
+                                РџРѕСЂР°Р¶РµРЅРёР№ РІ С‚СѓСЂРЅРёСЂР°С…: <? echo number_format(round($inf['lose_t']), 0, ",", " "); ?><BR>
+                                <!--РўСѓСЂРЅРёСЂРЅС‹Р№ СЂРµР№С‚РёРЅРі: <? echo number_format(round($inf['win_t']*1.79-$inf['lose_t']*2.15), 0, ",", " "); ?><BR> --> 
                                 <? }?>
             </div>  
                              <?
@@ -1050,17 +1046,17 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 										}else{
 											$bnk .= '<br><div style="display:inline-block;padding:5px;border-bottom:1px solid #AEAEAE">';
 										}
-										$bnk .= '&nbsp; &bull; <span style="display:inline-block;width:75px;"><small>№</small> '.$pl['id'].'</span>';
+										$bnk .= '&nbsp; &bull; <span style="display:inline-block;width:75px;"><small>в„–</small> '.$pl['id'].'</span>';
 										$bnk .= '</div>';
 									}
 									if($bnk != '') {
-										echo '<br><b>Банковские счета:</b> &nbsp;'.$bnk.'<br>';
+										echo '<br><b>Р‘Р°РЅРєРѕРІСЃРєРёРµ СЃС‡РµС‚Р°:</b> &nbsp;'.$bnk.'<br>';
 									}
 									echo '</div>';
 							  }
 							  ?>
                       <div align="left" style="height:1px; background-color:#999999; margin:3px;"></div>
-            <!-- значки --></td>
+            <!-- Р·РЅР°С‡РєРё --></td>
           </tr>
         </table>
               <?
@@ -1068,7 +1064,7 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 				 {
 					  $abnk = mysql_fetch_array(mysql_query('SELECT * FROM `bank_alh` WHERE `uid` = "'.$inf['id'].'" LIMIT 1'));
 					  ?>
-					  <img src="http://img.xcombats.com/alchemy1.gif" onMouseOver="top.hi(this,'Регистрированный алхимик.<Br>Имеет право продавать игровые услуги на сумму <b><?=(0+$abnk['ekr'])?> екр.</b>',event,0,0,1,0,'');" onMouseOut="top.hic();" onMouseDown="top.hic();">
+					  <img src="http://img.xcombats.com/alchemy1.gif" onMouseOver="top.hi(this,'Р РµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Р№ Р°Р»С…РёРјРёРє.<Br>РРјРµРµС‚ РїСЂР°РІРѕ РїСЂРѕРґР°РІР°С‚СЊ РёРіСЂРѕРІС‹Рµ СѓСЃР»СѓРіРё РЅР° СЃСѓРјРјСѓ <b><?=(0+$abnk['ekr'])?> РµРєСЂ.</b>',event,0,0,1,0,'');" onMouseOut="top.hic();" onMouseDown="top.hic();">
 					  <?
 				 }
 				
@@ -1084,16 +1080,16 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 						$mrtxt = '';
 						if($inf['sex']==0)
 						{
-							$mrtxt = 'Женат на';
+							$mrtxt = 'Р–РµРЅР°С‚ РЅР°';
 						}else{
-							$mrtxt = 'Замужем за';
+							$mrtxt = 'Р—Р°РјСѓР¶РµРј Р·Р°';
 						}
 						$ico[1] .= '<a href="/info/'.$marry['id'].'"><img src="http://img.xcombats.com/i/i_marry.gif" onMouseOver="top.hi(this,\''.$mrtxt.' <b>'.$marry['login'].'</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					}
 				 } 
 				 
 				 
-				 //значок регистратора
+				 //Р·РЅР°С‡РѕРє СЂРµРіРёСЃС‚СЂР°С‚РѕСЂР°
 				 /*$uref = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `users` WHERE `host_reg` = "'.$inf['id'].'" AND `level` > 0 LIMIT 1000'));			 
 				 $uref = $uref[0];
 				 if($uref>9)
@@ -1105,10 +1101,10 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 					 
 					 if($rico>0)
 					 {
-						$stp = array(21=>'XXI степень<br><small>новичок</small>',
-									 20=>'XX степень<br><small>новичок</small>',
-									 19=>'IXX степень<br><small>новичок</small>');
-						echo '<a href="#'.$uref.'"><img src="http://img.xcombats.com/reg_ico_'.$rico.'.png" onMouseOver="top.hi(this,\'Орден Регатов, '.$stp[$rico].'\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						$stp = array(21=>'XXI СЃС‚РµРїРµРЅСЊ<br><small>РЅРѕРІРёС‡РѕРє</small>',
+									 20=>'XX СЃС‚РµРїРµРЅСЊ<br><small>РЅРѕРІРёС‡РѕРє</small>',
+									 19=>'IXX СЃС‚РµРїРµРЅСЊ<br><small>РЅРѕРІРёС‡РѕРє</small>');
+						echo '<a href="#'.$uref.'"><img src="http://img.xcombats.com/reg_ico_'.$rico.'.png" onMouseOver="top.hi(this,\'РћСЂРґРµРЅ Р РµРіР°С‚РѕРІ, '.$stp[$rico].'\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 				 }
 				 */
@@ -1143,156 +1139,156 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
                  $ico[1] .= '<img src="http://'.$c['img'].'/i/items/Gold.gif" onMouseOver="top.hi(this,\'<b>Gold Premium Account</b>\',event,3,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"> ';
               }
 				 
-				 //сильвер
+				 //СЃРёР»СЊРІРµСЂ
 				 if($st['silver']>0) {
-					// $ico[1] .= ' <a href="http://xcombats.com/library/Vip/" target="_blank"><img src="http://img.xcombats.com/i/vip2.gif" onMouseOver="top.hi(this,\'VIP игрок Бойцовского Клуба\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a> ';
+					// $ico[1] .= ' <a href="http://xcombats.com/library/Vip/" target="_blank"><img src="http://img.xcombats.com/i/vip2.gif" onMouseOver="top.hi(this,\'VIP РёРіСЂРѕРє Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a> ';
 				 }
 				 
-				 //сильвер
+				 //СЃРёР»СЊРІРµСЂ
 				 /*if($st['naemnik']>0) {
-				 	echo '<img src="http://img.xcombats.com/naim.gif" onMouseOver="top.hi(this,\'<b>Лицензия наемника</b><br>Участвует в рейтинге наемников\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"> ';
+				 	echo '<img src="http://img.xcombats.com/naim.gif" onMouseOver="top.hi(this,\'<b>Р›РёС†РµРЅР·РёСЏ РЅР°РµРјРЅРёРєР°</b><br>РЈС‡Р°СЃС‚РІСѓРµС‚ РІ СЂРµР№С‚РёРЅРіРµ РЅР°РµРјРЅРёРєРѕРІ\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"> ';
 				 }*/
 				 
 				/*if($inf['activ'] == 0) {
-					echo '<img src="http://img.xcombats.com/realpers1.gif" onMouseOver="top.hi(this,\'<b>Реальный игрок</b><br>Уровень подтверждения: Персональные данные\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();">';
+					echo '<img src="http://img.xcombats.com/realpers1.gif" onMouseOver="top.hi(this,\'<b>Р РµР°Р»СЊРЅС‹Р№ РёРіСЂРѕРє</b><br>РЈСЂРѕРІРµРЅСЊ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ: РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();">';
 				}*/
 				 
-				 //«»
+				 //В«В»
 				 
 				 $irep = mysql_fetch_array(mysql_query('SELECT * FROM `rep` WHERE `id` = "'.$inf['id'].'" LIMIT 1'));
 				 if(isset($irep['id']))
 				 {	
-                    //Водосток
+                    //Р’РѕРґРѕСЃС‚РѕРє
 					  if($irep['repdreamscity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/i/ico/ric_kanal3.gif" onMouseOver="top.hi(this,\'<b>Водосток</b><br>Рыцарь третьего круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/i/ico/ric_kanal3.gif" onMouseOver="top.hi(this,\'<b>Р’РѕРґРѕСЃС‚РѕРє</b><br>Р С‹С†Р°СЂСЊ С‚СЂРµС‚СЊРµРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repdreamscity']>4999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/i/ico/ric_kanal2.gif" onMouseOver="top.hi(this,\'<b>Водосток</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/i/ico/ric_kanal2.gif" onMouseOver="top.hi(this,\'<b>Р’РѕРґРѕСЃС‚РѕРє</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 elseif($irep['repdreamscity']>999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/i/ico/ric_kanal1.gif" onMouseOver="top.hi(this,\'<b>Водосток</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/i/ico/ric_kanal1.gif" onMouseOver="top.hi(this,\'<b>Р’РѕРґРѕСЃС‚РѕРє</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }			 
 					
-					 //Храм знаний
+					 //РҐСЂР°Рј Р·РЅР°РЅРёР№
 					 if($irep['rep1']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/znrune_3.gif" onMouseOver="top.hi(this,\'<b>Храм Знаний</b><br>Посвященный третьего круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/znrune_3.gif" onMouseOver="top.hi(this,\'<b>РҐСЂР°Рј Р—РЅР°РЅРёР№</b><br>РџРѕСЃРІСЏС‰РµРЅРЅС‹Р№ С‚СЂРµС‚СЊРµРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['rep1']>999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/znrune_2.gif" onMouseOver="top.hi(this,\'<b>Храм Знаний</b><br>Посвященный второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/znrune_2.gif" onMouseOver="top.hi(this,\'<b>РҐСЂР°Рј Р—РЅР°РЅРёР№</b><br>РџРѕСЃРІСЏС‰РµРЅРЅС‹Р№ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['rep1']>99)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/znrune_1.gif" onMouseOver="top.hi(this,\'<b>Храм Знаний</b><br>Посвященный первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/znrune_1.gif" onMouseOver="top.hi(this,\'<b>РҐСЂР°Рј Р—РЅР°РЅРёР№</b><br>РџРѕСЃРІСЏС‰РµРЅРЅС‹Р№ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
-					 //Алтарь крови
+					 //РђР»С‚Р°СЂСЊ РєСЂРѕРІРё
 					 if($irep['rep2']>99)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/znbl_1.gif" onMouseOver="top.hi(this,\'<b>Алтарь Крови</b><br>Посвященный первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/znbl_1.gif" onMouseOver="top.hi(this,\'<b>РђР»С‚Р°СЂСЊ РљСЂРѕРІРё</b><br>РџРѕСЃРІСЏС‰РµРЅРЅС‹Р№ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
-					 //Излом хаоса
+					 //РР·Р»РѕРј С…Р°РѕСЃР°
 					 if($irep['repizlom']>99)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/iz_zn_ver10_1.gif" onMouseOver="top.hi(this,\'<b>Излом Хаоса</b><br>Аттестованный боец\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/iz_zn_ver10_1.gif" onMouseOver="top.hi(this,\'<b>РР·Р»РѕРј РҐР°РѕСЃР°</b><br>РђС‚С‚РµСЃС‚РѕРІР°РЅРЅС‹Р№ Р±РѕРµС†\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					
 					 //capitalcity
 					 if($irep['repcapitalcity']>24999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn1_2.gif" onMouseOver="top.hi(this,\'<b>Capital city</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn1_2.gif" onMouseOver="top.hi(this,\'<b>Capital city</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repcapitalcity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn1_1.gif" onMouseOver="top.hi(this,\'<b>Capital city</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn1_1.gif" onMouseOver="top.hi(this,\'<b>Capital city</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
 					 //angelscity
 					 if($irep['repangelscity']>24999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn2_2.gif" onMouseOver="top.hi(this,\'<b>Angels city</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn2_2.gif" onMouseOver="top.hi(this,\'<b>Angels city</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repangelscity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn2_1.gif" onMouseOver="top.hi(this,\'<b>Angels city</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn2_1.gif" onMouseOver="top.hi(this,\'<b>Angels city</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
 					 //demonscity
 					 if($irep['repdemonscity']>24999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn3_2.gif" onMouseOver="top.hi(this,\'<b>Demons city</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn3_2.gif" onMouseOver="top.hi(this,\'<b>Demons city</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repdemonscity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn3_1.gif" onMouseOver="top.hi(this,\'<b>Demons city</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn3_1.gif" onMouseOver="top.hi(this,\'<b>Demons city</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
 					 //devilscity
 					 if($irep['repdevilscity']>24999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn4_2.gif" onMouseOver="top.hi(this,\'<b>Devils city</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn4_2.gif" onMouseOver="top.hi(this,\'<b>Devils city</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repdevilscity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn4_1.gif" onMouseOver="top.hi(this,\'<b>Devils city</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn4_1.gif" onMouseOver="top.hi(this,\'<b>Devils city</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
 					 //suncity
 					 if($irep['repsuncity']>24999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn5_2.gif" onMouseOver="top.hi(this,\'<b>Suncity</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn5_2.gif" onMouseOver="top.hi(this,\'<b>Suncity</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repsuncity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn5_1.gif" onMouseOver="top.hi(this,\'<b>Suncity</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn5_1.gif" onMouseOver="top.hi(this,\'<b>Suncity</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
 					 //emeraldscity
 					 if($irep['repemeraldscity']>24999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn6_2.gif" onMouseOver="top.hi(this,\'<b>Emeralds city</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn6_2.gif" onMouseOver="top.hi(this,\'<b>Emeralds city</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repemeraldscity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn6_1.gif" onMouseOver="top.hi(this,\'<b>Emeralds city</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn6_1.gif" onMouseOver="top.hi(this,\'<b>Emeralds city</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
 					 //sandcity
 					 if($irep['repsandcity']>24999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn7_2.gif" onMouseOver="top.hi(this,\'<b>Sand city</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn7_2.gif" onMouseOver="top.hi(this,\'<b>Sand city</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repsandcity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn7_1.gif" onMouseOver="top.hi(this,\'<b>Sand city</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn7_1.gif" onMouseOver="top.hi(this,\'<b>Sand city</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 					 
 					 //mooncity
 					 if($irep['repmooncity']>24999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn9_2.gif" onMouseOver="top.hi(this,\'<b>Moon city</b><br>Рыцарь второго круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn9_2.gif" onMouseOver="top.hi(this,\'<b>Moon city</b><br>Р С‹С†Р°СЂСЊ РІС‚РѕСЂРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($irep['repmooncity']>9999)
 					 {
-						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn9_1.gif" onMouseOver="top.hi(this,\'<b>Moon city</b><br>Рыцарь первого круга\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[1] .= '<a href="#"><img src="http://img.xcombats.com/zn9_1.gif" onMouseOver="top.hi(this,\'<b>Moon city</b><br>Р С‹С†Р°СЂСЊ РїРµСЂРІРѕРіРѕ РєСЂСѓРіР°\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }
 				 }
-				 //Турниры
+				 //РўСѓСЂРЅРёСЂС‹
 				/* if($inf['win_t']>99)
 					 {
-						 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur100.jpg" onMouseOver="top.hi(this,\'<b>100 побед в Турнире!\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+						 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur100.jpg" onMouseOver="top.hi(this,\'<b>100 РїРѕР±РµРґ РІ РўСѓСЂРЅРёСЂРµ!\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($inf['win_t']>89)
 					 {
-					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur90.jpg" onMouseOver="top.hi(this,\'<b>90 побед в Турнире!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur90.jpg" onMouseOver="top.hi(this,\'<b>90 РїРѕР±РµРґ РІ РўСѓСЂРЅРёСЂРµ!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($inf['win_t']>69)
 					 {
-					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur70.jpg" onMouseOver="top.hi(this,\'<b>70 побед в Турнире!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur70.jpg" onMouseOver="top.hi(this,\'<b>70 РїРѕР±РµРґ РІ РўСѓСЂРЅРёСЂРµ!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($inf['win_t']>39)
 					 {
-					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur40.jpg" onMouseOver="top.hi(this,\'<b>40 побед в Турнире!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur40.jpg" onMouseOver="top.hi(this,\'<b>40 РїРѕР±РµРґ РІ РўСѓСЂРЅРёСЂРµ!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($inf['win_t']>29)
 					 {
-					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur30.gif" onMouseOver="top.hi(this,\'<b>30 побед в Турнире!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur30.gif" onMouseOver="top.hi(this,\'<b>30 РїРѕР±РµРґ РІ РўСѓСЂРЅРёСЂРµ!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($inf['win_t']>19)
 					 {
-					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur20.jpg" onMouseOver="top.hi(this,\'<b>20 побед в Турнире!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur20.jpg" onMouseOver="top.hi(this,\'<b>20 РїРѕР±РµРґ РІ РўСѓСЂРЅРёСЂРµ!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }elseif($inf['win_t']>9)
 					 {
-					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur10.jpg" onMouseOver="top.hi(this,\'<b>10 побед в Турнире!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
+					 $ico[2] .= '<a href="#"><img src="http://img.xcombats.com/img/turnir_podvig/win_tur10.jpg" onMouseOver="top.hi(this,\'<b>10 РїРѕР±РµРґ РІ РўСѓСЂРЅРёСЂРµ!</b>\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();"></a>';
 					 }*/
 			  			  
 				function timeOut($ttm,$travm=false)
@@ -1305,35 +1301,35 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 					if ($tmp > 0) 
 					{ 
 						$id++;
-						if ($id<3) {$out .= $tmp." мес. ";}
+						if ($id<3) {$out .= $tmp." РјРµСЃ. ";}
 						$time_still = $time_still-$tmp*2592000;
 					}
 					$tmp = floor($time_still/604800);
 					if ($tmp > 0) 
 					{ 
 						$id++;
-						if ($id<3) {$out .= $tmp." нед. ";}
+						if ($id<3) {$out .= $tmp." РЅРµРґ. ";}
 						$time_still = $time_still-$tmp*604800;
 					}
 					$tmp = floor($time_still/86400);
 					if ($tmp > 0) 
 					{ 
 						$id++;
-						if ($id<3) {$out .= $tmp." дн. ";}
+						if ($id<3) {$out .= $tmp." РґРЅ. ";}
 						$time_still = $time_still-$tmp*86400;
 					}
 					$tmp = floor($time_still/3600);
 					if ($tmp > 0) 
 					{ 
 						$id++;
-						if ($id<3) {$out .= $tmp." ч. ";}
+						if ($id<3) {$out .= $tmp." С‡. ";}
 						$time_still = $time_still-$tmp*3600;
 					}
 					$tmp = floor($time_still/60);
 					if ($tmp > 0) 
 					{ 
 						$id++;
-						if ($id<3) {$out .= $tmp." мин. ";}
+						if ($id<3) {$out .= $tmp." РјРёРЅ. ";}
 					}
 					if($out=='')
 					{
@@ -1341,7 +1337,7 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 						{
 							$time_still = 0;
 						}
-						$out = $time_still.' сек.';
+						$out = $time_still.' СЃРµРє.';
 					}
 					}else{
 					}
@@ -1350,51 +1346,51 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 			  				
 				if( $ico[1] != '' ) {
 					echo '<div style="padding-top:2px;">';
-					//echo '<div style="padding-bottom:2px;">Рыцарство и значки:</div>';
+					//echo '<div style="padding-bottom:2px;">Р С‹С†Р°СЂСЃС‚РІРѕ Рё Р·РЅР°С‡РєРё:</div>';
 					echo ''.$ico[1].'</div>';
 				}
 				
 				echo '<small>';
 				if($inf['jail']>time())
 				{
-					echo '<br><img src="http://img.xcombats.com/i/jail.gif"> Персонаж находится в заточении еще '.timeOut($inf['jail']-time()).' ';
+					echo '<br><img src="http://img.xcombats.com/i/jail.gif"> РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ Р·Р°С‚РѕС‡РµРЅРёРё РµС‰Рµ '.timeOut($inf['jail']-time()).' ';
 				}
 				if(isset($st['puti']))
 				{
-					echo '<br><img src="http://img.xcombats.com/i/items/chains.gif"> Персонаж не может передвигаться еще '.timeOut($st['puti']-time()).' ';
+					echo '<br><img src="http://img.xcombats.com/i/items/chains.gif"> РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РјРѕР¶РµС‚ РїРµСЂРµРґРІРёРіР°С‚СЊСЃСЏ РµС‰Рµ '.timeOut($st['puti']-time()).' ';
 				}
 				if($inf['molch1']>time())
 				{
-					echo '<br><img src="http://img.xcombats.com/i/sleeps'.$inf['sex'].'.gif"> На персонажа наложено заклятие молчания. Будет молчать еще '.timeOut($inf['molch1']-time()).' ';
+					echo '<br><img src="http://img.xcombats.com/i/sleeps'.$inf['sex'].'.gif"> РќР° РїРµСЂСЃРѕРЅР°Р¶Р° РЅР°Р»РѕР¶РµРЅРѕ Р·Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ. Р‘СѓРґРµС‚ РјРѕР»С‡Р°С‚СЊ РµС‰Рµ '.timeOut($inf['molch1']-time()).' ';
 				}
 				if($inf['molch2']>time())
 				{
-					echo '<br><img src="http://img.xcombats.com/i/fsleeps'.$inf['sex'].'.gif"> На персонажа наложено заклятие молчания на форуме. Будет молчать еще '.timeOut($inf['molch2']-time()).' ';
+					echo '<br><img src="http://img.xcombats.com/i/fsleeps'.$inf['sex'].'.gif"> РќР° РїРµСЂСЃРѕРЅР°Р¶Р° РЅР°Р»РѕР¶РµРЅРѕ Р·Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ РЅР° С„РѕСЂСѓРјРµ. Р‘СѓРґРµС‚ РјРѕР»С‡Р°С‚СЊ РµС‰Рµ '.timeOut($inf['molch2']-time()).' ';
 				}
 				if($inf['info_delete'] > time() || $inf['info_delete'] == 1)
 				{
-					echo '<br><img src="http://img.xcombats.com/stopinfo.png"> На персонажа наложено заклятие обезличивания.';
+					echo '<br><img src="http://img.xcombats.com/stopinfo.png"> РќР° РїРµСЂСЃРѕРЅР°Р¶Р° РЅР°Р»РѕР¶РµРЅРѕ Р·Р°РєР»СЏС‚РёРµ РѕР±РµР·Р»РёС‡РёРІР°РЅРёСЏ.';
 					if( $inf['info_delete'] > 1 ) {
-						echo ' Будет обезличен еще '.timeOut($inf['info_delete']-time()).'';
+						echo ' Р‘СѓРґРµС‚ РѕР±РµР·Р»РёС‡РµРЅ РµС‰Рµ '.timeOut($inf['info_delete']-time()).'';
 					}
 				}
 				if($inf['banned'] > 0)
 				{
-					echo '<br><img src="http://img.xcombats.com/block.png"> На персонажа наложено заклятие смерти.';
+					echo '<br><img src="http://img.xcombats.com/block.png"> РќР° РїРµСЂСЃРѕРЅР°Р¶Р° РЅР°Р»РѕР¶РµРЅРѕ Р·Р°РєР»СЏС‚РёРµ СЃРјРµСЂС‚Рё.';
 					if( $inf['info_delete'] > 1 ) {
-						echo ' Еще '.timeOut($inf['info_delete']-time()).'';
+						echo ' Р•С‰Рµ '.timeOut($inf['info_delete']-time()).'';
 					}
 				}
-				//Если у персонажа есть травмы, физ. и маг. травмы
+				//Р•СЃР»Рё Сѓ РїРµСЂСЃРѕРЅР°Р¶Р° РµСЃС‚СЊ С‚СЂР°РІРјС‹, С„РёР·. Рё РјР°Рі. С‚СЂР°РІРјС‹
 				$sp = mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$inf['id'].'" AND (`id_eff` = "4" OR `id_eff` = "6") AND `delete` = "0" ORDER BY `id_eff` ASC LIMIT 6');
 				while($pl = mysql_fetch_array($sp))
 				{
 					//$pln = array();
 					//$pln = array(0=>$pln[0],1=>$pln[1]);
-					echo '<br><img src="http://img.xcombats.com/i/travma2.gif"> У персонажа - &quot;<b>'.$pl['name'].'</b>&quot; еще '.$u->timeOut($pl['timeUse']-time()+$pl['timeAce']);
+					echo '<br><img src="http://img.xcombats.com/i/travma2.gif"> РЈ РїРµСЂСЃРѕРЅР°Р¶Р° - &quot;<b>'.$pl['name'].'</b>&quot; РµС‰Рµ '.$u->timeOut($pl['timeUse']-time()+$pl['timeAce']);
 				}
 				
-				//Персонаж ослаблен из-за смерти в бою, еще 4 мин. 24 сек. 
+				//РџРµСЂСЃРѕРЅР°Р¶ РѕСЃР»Р°Р±Р»РµРЅ РёР·-Р·Р° СЃРјРµСЂС‚Рё РІ Р±РѕСЋ, РµС‰Рµ 4 РјРёРЅ. 24 СЃРµРє. 
 				if($inf['level']>=4)
 				{
 					$nn = 0;
@@ -1404,7 +1400,7 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 						{							
 							
 							$osl = mysql_fetch_array(mysql_query('SELECT `id2`,`actionTime` FROM `eff_main` WHERE `id2` = "5" LIMIT 1'));
-							echo '<br><img src="http://img.xcombats.com/i/travma2.gif"> Персонаж ослаблен из-за смерти в бою, еще '.timeOut($st['effects'][$nn]['timeUse']+$st['effects'][$nn]['timeAce']+$osl['actionTime']-time()).' ';
+							echo '<br><img src="http://img.xcombats.com/i/travma2.gif"> РџРµСЂСЃРѕРЅР°Р¶ РѕСЃР»Р°Р±Р»РµРЅ РёР·-Р·Р° СЃРјРµСЂС‚Рё РІ Р±РѕСЋ, РµС‰Рµ '.timeOut($st['effects'][$nn]['timeUse']+$st['effects'][$nn]['timeAce']+$osl['actionTime']-time()).' ';
 							$nn = count($st['effects'])+1;
 						}
 						$nn++;
@@ -1424,21 +1420,21 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 				}
 				
 				if( $igon2 == 3 ) {
-					$ico[3] = '<img src="http://img.xcombats.com/bronze11.png" onMouseOver="top.hi(this,\'Третье место в гонке уровней\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();">'.$ico[3];
+					$ico[3] = '<img src="http://img.xcombats.com/bronze11.png" onMouseOver="top.hi(this,\'РўСЂРµС‚СЊРµ РјРµСЃС‚Рѕ РІ РіРѕРЅРєРµ СѓСЂРѕРІРЅРµР№\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();">'.$ico[3];
 				}
 				if( $igon2 == 2 ) {
-					$ico[3] = '<img src="http://img.xcombats.com/silver11.png" onMouseOver="top.hi(this,\'Второе место в гонке уровней\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();">'.$ico[3];
+					$ico[3] = '<img src="http://img.xcombats.com/silver11.png" onMouseOver="top.hi(this,\'Р’С‚РѕСЂРѕРµ РјРµСЃС‚Рѕ РІ РіРѕРЅРєРµ СѓСЂРѕРІРЅРµР№\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();">'.$ico[3];
 				}
 				if( $igon2 == 1 ) {
-					$ico[3] = '<img src="http://img.xcombats.com/gold11.png" onMouseOver="top.hi(this,\'Первое место в гонке уровней\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();">'.$ico[3];
+					$ico[3] = '<img src="http://img.xcombats.com/gold11.png" onMouseOver="top.hi(this,\'РџРµСЂРІРѕРµ РјРµСЃС‚Рѕ РІ РіРѕРЅРєРµ СѓСЂРѕРІРЅРµР№\',event,0,0,1,0,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();">'.$ico[3];
 				}*/
 				
 				if( $ico[3] != '' ) {
-					echo '<div style="padding-top:20px;"><div style="padding-bottom:2px;">Достижения персонажа:</div>'.$ico[3].'</div>';
+					echo '<div style="padding-top:20px;"><div style="padding-bottom:2px;">Р”РѕСЃС‚РёР¶РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°:</div>'.$ico[3].'</div>';
 				}
 				
 				if( $ico[2] != '' ) {
-					echo '<div style="padding-top:20px;"><div style="padding-bottom:2px;">Подвиги персонажа:</div>'.$ico[2].'</div>';
+					echo '<div style="padding-top:20px;"><div style="padding-bottom:2px;">РџРѕРґРІРёРіРё РїРµСЂСЃРѕРЅР°Р¶Р°:</div>'.$ico[2].'</div>';
 				}
 				unset($ico);
 				
@@ -1447,45 +1443,45 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 					$to = '';
 					if($inf['align']>=2 && $inf['align'] < 3 && ($inf['haos']>time() || $inf['haos']==1))
 					{
-						$to = 'хаос';
+						$to = 'С…Р°РѕСЃ';
 					}
 					if($inf['banned']>0)
 					{
 						if($to='')
 						{
-							$to = 'блок';
+							$to = 'Р±Р»РѕРє';
 						}else{
-							$to = $to.'/блок';
+							$to = $to.'/Р±Р»РѕРє';
 						}
 					}
 					$fm = mysql_fetch_array(mysql_query('SELECT `id`,`hb`,`text` FROM `users_delo` WHERE `uid` = "'.$inf['id'].'" AND `hb`!=0 ORDER BY `id` DESC LIMIT 1'));
 					echo '<br><br>';
 					if(isset($fm['id']))
 					{
-						$from = 'паладинов';
+						$from = 'РїР°Р»Р°РґРёРЅРѕРІ';
 						if($fm['hb']==2)
 						{
-							$from = 'Ангелов';
+							$from = 'РђРЅРіРµР»РѕРІ';
 						}elseif($fm['hb']==3)
 						{
-							$from = 'тарманов';
+							$from = 'С‚Р°СЂРјР°РЅРѕРІ';
 						}
-						echo 'Сообщение от '.$from.' о причине отправки в '.$to.':<br>';
-						//$fm['text'] = ltrim($fm['text'],"Ангел \&quot\;".$fm['login']."\&quot\; \<b\>сообщает\<\/b\>\:");
+						echo 'РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚ '.$from.' Рѕ РїСЂРёС‡РёРЅРµ РѕС‚РїСЂР°РІРєРё РІ '.$to.':<br>';
+						//$fm['text'] = ltrim($fm['text'],"РђРЅРіРµР» \&quot\;".$fm['login']."\&quot\; \<b\>СЃРѕРѕР±С‰Р°РµС‚\<\/b\>\:");
 						echo '<font color="red" style="background-color:#fae0e0;"><b>'.$fm['text'].'</b></font><br>';
 					}
 					if($inf['align']>=2 && $inf['align'] < 3 && ($inf['haos']>time() || $inf['haos']==1))
 					{
 						if($inf['haos']==1)
 						{
-							echo 'Хаос <i>бессрочно</i>.';
+							echo 'РҐР°РѕСЃ <i>Р±РµСЃСЃСЂРѕС‡РЅРѕ</i>.';
 						}else{
-							echo 'Хаос еще <i>'.timeOut($inf['haos']-time()).'</i>';
+							echo 'РҐР°РѕСЃ РµС‰Рµ <i>'.timeOut($inf['haos']-time()).'</i>';
 						}
 					}
 				}
 			  				
-				//подарки
+				//РїРѕРґР°СЂРєРё
 				if(($inf['info_delete']<time() && $inf['info_delete']!=1) || ($u->info['align']>1 && $u->info['align']<2 || $u->info['align']>3 && $u->info['align']<4 || $u->info['admin']>0 || $u->info['nadmin']>0)){
 				$gs = array('','',''); $glim = 20; $i = 0;
 				//$_GET['maxgift']=1;
@@ -1503,20 +1499,20 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 							if( $pl_gift > 0 ) {
 								$pl_gift = mysql_fetch_array(mysql_query('SELECT `name`,`img`,`id` FROM `users_gifts` WHERE `id` = "'.mysql_real_escape_string($pl_gift).'" LIMIT 1'));
 								if( isset($pl_gift['id']) ) {
-									//Именной подарок
+									//РРјРµРЅРЅРѕР№ РїРѕРґР°СЂРѕРє
 									$pl['name'] = $pl_gift['name'];
 									$pl['img'] = $pl_gift['img'];
 								}
 							}
 						}
-						//подарки
+						//РїРѕРґР°СЂРєРё
 						if( $pl['gift'] == 1 ) {
-							$pl['gift2'] = 'Невидимка';
+							$pl['gift2'] = 'РќРµРІРёРґРёРјРєР°';
 						}else{
 							$pl['gift2'] = $pl['gift'];
 						}
 						$gs[0] .= '<img src="http://img.xcombats.com/i/items/'.$pl['img'].'" style="margin:1px 1px 0 0;display:block;float:left;cursor:pointer;" onClick="lookGift(event,0,\''.$pl['name'].'\',\''.$pl['img'].'\',\''.$pl['gtxt1'].'\',\''.$pl['gift'].'\');" title="'.$pl['gtxt1'].'
-Подарок от '.$pl['gift2'].'" />';
+РџРѕРґР°СЂРѕРє РѕС‚ '.$pl['gift2'].'" />';
 					$ij1++;
 				}
 				$ij2 = 1;
@@ -1524,14 +1520,14 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 				while($pl = mysql_fetch_array($sp))
 				{
 					//if($pl['type'] == 63 || $pl['type'] == 37) {
-						//открытки
+						//РѕС‚РєСЂС‹С‚РєРё
 						if( $pl['gift'] == 1 ) {
-							$pl['gift2'] = 'Невидимка';
+							$pl['gift2'] = 'РќРµРІРёРґРёРјРєР°';
 						}else{
 							$pl['gift2'] = $pl['gift'];
 						}
 						$gs[1] .= '<img src="http://img.xcombats.com/i/items/'.$pl['img'].'" style="margin:1px 1px 0 0;display:block;float:left;cursor:pointer;" onClick="lookGift(event,0,\''.$pl['name'].'\',\''.$pl['img'].'\',\''.$pl['gtxt1'].'\',\''.$pl['gift'].'\');" title="'.$pl['gtxt1'].'
-Подарок от '.$pl['gift2'].'" />';
+РџРѕРґР°СЂРѕРє РѕС‚ '.$pl['gift2'].'" />';
 					//}
 					$ij2++;
 				}
@@ -1540,30 +1536,30 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 				while($pl = mysql_fetch_array($sp))
 				{
 					if($pl['type'] == 28) {
-						//Букеты
+						//Р‘СѓРєРµС‚С‹
 						if( $pl['gift'] == 1 ) {
-							$pl['gift2'] = 'Невидимка';
+							$pl['gift2'] = 'РќРµРІРёРґРёРјРєР°';
 						}else{
 							$pl['gift2'] = $pl['gift'];
 						}
 						$gs[2] .= '<img src="http://img.xcombats.com/i/items/'.$pl['img'].'" style="margin:1px 1px 0 0;display:block;float:left;cursor:pointer;" onClick="lookGift(event,0,\''.$pl['name'].'\',\''.$pl['img'].'\',\''.$pl['gtxt1'].'\',\''.$pl['gift'].'\');" title="'.$pl['gtxt1'].'
-Подарок от '.$pl['gift2'].'" />';
+РџРѕРґР°СЂРѕРє РѕС‚ '.$pl['gift2'].'" />';
 					}
 					$ij3++;
 				}
 				
 				if($gs[0]!='' || $gs[1]!='' || $gs[2]!=''){
 					if($gs[2] != '') {
-						$gs[2] = '<tr><td style="padding-bottom:17px;">Букеты:<br>'.$gs[2].'</td></tr>';
+						$gs[2] = '<tr><td style="padding-bottom:17px;">Р‘СѓРєРµС‚С‹:<br>'.$gs[2].'</td></tr>';
 					}
-					echo '<br><br><table style="max-width:1260px">'.$gs[2].'<tr><td>Подарки:<br>'.$gs[0].'</td></tr><tr><td style="padding-top:7px;">'.$gs[1].'</td></tr></table>';
+					echo '<br><br><table style="max-width:1260px">'.$gs[2].'<tr><td>РџРѕРґР°СЂРєРё:<br>'.$gs[0].'</td></tr><tr><td style="padding-top:7px;">'.$gs[1].'</td></tr></table>';
 					$ij4 = mysql_fetch_array(mysql_query('SELECT COUNT(`iu`.`id`) FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE (`im`.`type` = 28 OR `im`.`type` = 63 OR `im`.`type` = 38 OR `im`.`type` = 64 OR `im`.`type` = 37 OR `iu`.`data` LIKE "%|giftsee=1%" OR `iu`.`data` LIKE "%|giftsee=2%") AND `iu`.`uid` = "'.$inf['id'].'" AND `iu`.`gift` != "" AND `iu`.`delete` = "0" AND `iu`.`inOdet` = "0" LIMIT 1'));
 					$ij4 = $ij4[0];
 					if($ij1+$ij2+$ij3 < $ij4) {
 						if(!isset($_GET['maxgift'])){
-							echo '<small><a href="/info/'.$inf['id'].'&maxgift=1">Нажмите сюда, чтобы увидеть все подарки...</a></small>';
+							echo '<small><a href="/info/'.$inf['id'].'&maxgift=1">РќР°Р¶РјРёС‚Рµ СЃСЋРґР°, С‡С‚РѕР±С‹ СѓРІРёРґРµС‚СЊ РІСЃРµ РїРѕРґР°СЂРєРё...</a></small>';
 						}else{
-							echo '<small><a href="/info/'.$inf['id'].'">Нажмите сюда, чтобы скрыть подарки</a></small>';
+							echo '<small><a href="/info/'.$inf['id'].'">РќР°Р¶РјРёС‚Рµ СЃСЋРґР°, С‡С‚РѕР±С‹ СЃРєСЂС‹С‚СЊ РїРѕРґР°СЂРєРё</a></small>';
 						}
 					}
 				}
@@ -1686,72 +1682,72 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 								WHERE `id` = "'.mysql_real_escape_string($monster['id']).'" LIMIT 1');
 							}
 							
-							echo '<font color=red><b>Новые данные были успешно сохранены!</b></font>';	
+							echo '<font color=red><b>РќРѕРІС‹Рµ РґР°РЅРЅС‹Рµ Р±С‹Р»Рё СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹!</b></font>';	
 						}
 						
 				?>
-                <b style="color:red">Параметры монстра:</b><br>
+                <b style="color:red">РџР°СЂР°РјРµС‚СЂС‹ РјРѕРЅСЃС‚СЂР°:</b><br>
               <form method="post" action="/info/<?=$inf['id']?>&emonster">
               <table style="padding-left:10px;" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td>Место появления (id комнаты): 
+                    <td>РњРµСЃС‚Рѕ РїРѕСЏРІР»РµРЅРёСЏ (id РєРѕРјРЅР°С‚С‹): 
                     <input type="text" name="bot_sroom" id="bot_sroom" value="<?=$monster['start_room']?>">
-                    &nbsp; <input value="Обнулить ожидание" type="button" onclick="location.href='/info/<?=$inf['id']?>&emonster&restartmonster'" />
+                    &nbsp; <input value="РћР±РЅСѓР»РёС‚СЊ РѕР¶РёРґР°РЅРёРµ" type="button" onclick="location.href='/info/<?=$inf['id']?>&emonster&restartmonster'" />
                     </td>
                 </tr>
                 <tr>
-                    <td>Время ожидания после поражения бота: <input name="bot_trs" id="bot_trs" value="<?=$monster['time_restart']?>" type="text"> мин.</td>
+                    <td>Р’СЂРµРјСЏ РѕР¶РёРґР°РЅРёСЏ РїРѕСЃР»Рµ РїРѕСЂР°Р¶РµРЅРёСЏ Р±РѕС‚Р°: <input name="bot_trs" id="bot_trs" value="<?=$monster['time_restart']?>" type="text"> РјРёРЅ.</td>
                 </tr>
                 <tr>
-                    <td>Исчезнет после своей победы:                    
+                    <td>РСЃС‡РµР·РЅРµС‚ РїРѕСЃР»Рµ СЃРІРѕРµР№ РїРѕР±РµРґС‹:                    
                       <select name="bot_winback" id="bot_winback">
-                        <option value="0">Нет</option>
-                        <option <? if( $monster['win_back'] == 1 ) { echo 'selected'; } ?> value="1">Да</option>
+                        <option value="0">РќРµС‚</option>
+                        <option <? if( $monster['win_back'] == 1 ) { echo 'selected'; } ?> value="1">Р”Р°</option>
                     </select></td>
                 </tr>
                 <tr>
                   <td><div align="left" style="height:1px; width:300px; background-color:#999999; margin:3px;"></div></td>
                 </tr>
                 <tr>
-                    <td>Появляется, 
-                      ДН 
+                    <td>РџРѕСЏРІР»СЏРµС‚СЃСЏ, 
+                      Р”Рќ 
                       <select name="bot_sday" id="bot_sday">
-                        <option value="-1">&bull; День недели</option>
-                        <option <? if( $monster['start_day'] == 1 ) { echo 'selected'; } ?> value="1">Понедельник</option>
-                        <option <? if( $monster['start_day'] == 2 ) { echo 'selected'; } ?> value="2">Вторник</option>
-                        <option <? if( $monster['start_day'] == 3 ) { echo 'selected'; } ?> value="3">Среда</option>
-                        <option <? if( $monster['start_day'] == 4 ) { echo 'selected'; } ?> value="4">Четверг</option>
-                        <option <? if( $monster['start_day'] == 5 ) { echo 'selected'; } ?> value="5">Пятница</option>
-                        <option <? if( $monster['start_day'] == 6 ) { echo 'selected'; } ?> value="6">Суббота</option>
-                        <option <? if( $monster['start_day'] == 7 ) { echo 'selected'; } ?> value="7">Воскресенье</option>
+                        <option value="-1">&bull; Р”РµРЅСЊ РЅРµРґРµР»Рё</option>
+                        <option <? if( $monster['start_day'] == 1 ) { echo 'selected'; } ?> value="1">РџРѕРЅРµРґРµР»СЊРЅРёРє</option>
+                        <option <? if( $monster['start_day'] == 2 ) { echo 'selected'; } ?> value="2">Р’С‚РѕСЂРЅРёРє</option>
+                        <option <? if( $monster['start_day'] == 3 ) { echo 'selected'; } ?> value="3">РЎСЂРµРґР°</option>
+                        <option <? if( $monster['start_day'] == 4 ) { echo 'selected'; } ?> value="4">Р§РµС‚РІРµСЂРі</option>
+                        <option <? if( $monster['start_day'] == 5 ) { echo 'selected'; } ?> value="5">РџСЏС‚РЅРёС†Р°</option>
+                        <option <? if( $monster['start_day'] == 6 ) { echo 'selected'; } ?> value="6">РЎСѓР±Р±РѕС‚Р°</option>
+                        <option <? if( $monster['start_day'] == 7 ) { echo 'selected'; } ?> value="7">Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ</option>
                     </select>
-                     Д
+                     Р”
 					
 					 <select name="bot_sdd" id="bot_sdd">
-					   <option value="-1">&bull; День</option>
+					   <option value="-1">&bull; Р”РµРЅСЊ</option>
 					   <? $i = 0; while($i < 31) { $i++; ?>
 					   <option <? if( $monster['start_dd'] == $i ) { echo 'selected'; } ?> value="<?=$i?>">
 					     <?=$i?>
 				       </option>
 					   <? } ?>
 				      </select>
-                      М 
+                      Рњ 
 					  <select name="bot_smm" id="bot_smm">
-                      <option value="-1">&bull; Месяц</option>
+                      <option value="-1">&bull; РњРµСЃСЏС†</option>
                         <? $i = 0; while($i < 12) { $i++; ?>
                         <option <? if( $monster['start_mm'] == $i ) { echo 'selected'; } ?> value="<?=$i?>"><?=$i?></option>
                         <? } ?>
                     </select>
-                      Ч 
+                      Р§ 
 					 <select name="bot_shh" id="bot_shh">
-                      <option value="-1">&bull; Час</option>
+                      <option value="-1">&bull; Р§Р°СЃ</option>
                         <? $i = -1; while($i < 23) { $i++; ?>
                         <option <? if( $monster['start_hh'] == $i ) { echo 'selected'; } ?> value="<?=$i?>"><?=$i?></option>
                         <? } ?>
                     </select>
-                      Мин 
+                      РњРёРЅ 
 					 <select name="bot_smin" id="bot_smin">
-                      <option value="-1">&bull; Мин</option>
+                      <option value="-1">&bull; РњРёРЅ</option>
                         <? $i = -1; while($i < 58) { $i++; ?>
                         <option <? if( $monster['start_min'] == $i ) { echo 'selected'; } ?> value="<?=$i?>"><?=$i?></option>
                         <? } ?>
@@ -1759,44 +1755,44 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
                   </td>
                 </tr>
                 <tr>
-                  <td>Исчезает, &nbsp; &nbsp;ДН 
+                  <td>РСЃС‡РµР·Р°РµС‚, &nbsp; &nbsp;Р”Рќ 
                       <select name="bot_bday" id="bot_bday">
-                        <option value="-1">&bull; День недели</option>
-                        <option <? if( $monster['back_day'] == 1 ) { echo 'selected'; } ?> value="1">Понедельник</option>
-                        <option <? if( $monster['back_day'] == 2 ) { echo 'selected'; } ?> value="2">Вторник</option>
-                        <option <? if( $monster['back_day'] == 3 ) { echo 'selected'; } ?> value="3">Среда</option>
-                        <option <? if( $monster['back_day'] == 4 ) { echo 'selected'; } ?> value="4">Четверг</option>
-                        <option <? if( $monster['back_day'] == 5 ) { echo 'selected'; } ?> value="5">Пятница</option>
-                        <option <? if( $monster['back_day'] == 6 ) { echo 'selected'; } ?> value="6">Суббота</option>
-                        <option <? if( $monster['back_day'] == 7 ) { echo 'selected'; } ?> value="7">Воскресенье</option>
+                        <option value="-1">&bull; Р”РµРЅСЊ РЅРµРґРµР»Рё</option>
+                        <option <? if( $monster['back_day'] == 1 ) { echo 'selected'; } ?> value="1">РџРѕРЅРµРґРµР»СЊРЅРёРє</option>
+                        <option <? if( $monster['back_day'] == 2 ) { echo 'selected'; } ?> value="2">Р’С‚РѕСЂРЅРёРє</option>
+                        <option <? if( $monster['back_day'] == 3 ) { echo 'selected'; } ?> value="3">РЎСЂРµРґР°</option>
+                        <option <? if( $monster['back_day'] == 4 ) { echo 'selected'; } ?> value="4">Р§РµС‚РІРµСЂРі</option>
+                        <option <? if( $monster['back_day'] == 5 ) { echo 'selected'; } ?> value="5">РџСЏС‚РЅРёС†Р°</option>
+                        <option <? if( $monster['back_day'] == 6 ) { echo 'selected'; } ?> value="6">РЎСѓР±Р±РѕС‚Р°</option>
+                        <option <? if( $monster['back_day'] == 7 ) { echo 'selected'; } ?> value="7">Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ</option>
                     </select>
-                     Д
+                     Р”
 					
 					 <select name="bot_bdd" id="bot_bdd">
-					   <option value="-1">&bull; День</option>
+					   <option value="-1">&bull; Р”РµРЅСЊ</option>
 					   <? $i = 0; while($i < 31) { $i++; ?>
 					   <option <? if( $monster['back_dd'] == $i ) { echo 'selected'; } ?> value="<?=$i?>">
 					     <?=$i?>
 				       </option>
 					   <? } ?>
 			        </select>
-                      М 
+                      Рњ 
 					  <select name="bot_bmm" id="bot_bmm">
-                      <option value="-1">&bull; Месяц</option>
+                      <option value="-1">&bull; РњРµСЃСЏС†</option>
                         <? $i = 0; while($i < 12) { $i++; ?>
                         <option <? if( $monster['back_mm'] == $i ) { echo 'selected'; } ?> value="<?=$i?>"><?=$i?></option>
                         <? } ?>
                     </select>
-                      Ч 
+                      Р§ 
 					 <select name="bot_bhh" id="bot_bhh">
-                      <option value="-1">&bull; Час</option>
+                      <option value="-1">&bull; Р§Р°СЃ</option>
                         <? $i = -1; while($i < 23) { $i++; ?>
                         <option <? if( $monster['back_hh'] == $i ) { echo 'selected'; } ?> value="<?=$i?>"><?=$i?></option>
                         <? } ?>
                     </select>
-                      Мин 
+                      РњРёРЅ 
 					 <select name="bot_bmin" id="bot_bmin">
-                      <option value="-1">&bull; Мин</option>
+                      <option value="-1">&bull; РњРёРЅ</option>
                         <? $i = -1; while($i < 58) { $i++; ?>
                         <option <? if( $monster['back_min'] == $i ) { echo 'selected'; } ?> value="<?=$i?>"><?=$i?></option>
                         <? } ?>
@@ -1806,132 +1802,132 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
                   <td><div align="left" style="height:1px; width:300px; background-color:#999999; margin:3px;"></div></td>
                 </tr>
                 <tr>
-                  <td>Текст появления (Логин бота <b>{b}</b>, Логины игроков <b>{u}</b>):</td>
+                  <td>РўРµРєСЃС‚ РїРѕСЏРІР»РµРЅРёСЏ (Р›РѕРіРёРЅ Р±РѕС‚Р° <b>{b}</b>, Р›РѕРіРёРЅС‹ РёРіСЂРѕРєРѕРІ <b>{u}</b>):</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['start_text']?>" name="bot_stext" type="text" id="bot_stext" size="100" maxlength="250"></td>
                 </tr>
                 <tr>
-                  <td>Текст исчезновения:</td>
+                  <td>РўРµРєСЃС‚ РёСЃС‡РµР·РЅРѕРІРµРЅРёСЏ:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['back_text']?>" name="bot_btext" type="text" id="bot_btext" size="100" maxlength="250"></td>
                 </tr>
                 <tr>
-                  <td>Текст победы игрока:</td>
+                  <td>РўРµРєСЃС‚ РїРѕР±РµРґС‹ РёРіСЂРѕРєР°:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['win_text']?>" name="bot_wintext" type="text" id="bot_wintext" size="100" maxlength="250"></td>
                 </tr>
                 <tr>
-                  <td>Текст поражения игрока:</td>
+                  <td>РўРµРєСЃС‚ РїРѕСЂР°Р¶РµРЅРёСЏ РёРіСЂРѕРєР°:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['lose_text']?>" name="bot_losetext" type="text" id="bot_losetext" size="100" maxlength="250"></td>
                 </tr>
                 <tr>
-                  <td>Текст ничьей:</td>
+                  <td>РўРµРєСЃС‚ РЅРёС‡СЊРµР№:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['nich_text']?>" name="bot_nichtext" type="text" id="bot_nichtext" size="100" maxlength="250"></td>
                 </tr>
                 <tr>
-                  <td><div align="left" style="height:1px; width:300px; background-color:#999999; margin:3px;"></div>                    <b>Награда (победа игрока):</b></td>
+                  <td><div align="left" style="height:1px; width:300px; background-color:#999999; margin:3px;"></div>                    <b>РќР°РіСЂР°РґР° (РїРѕР±РµРґР° РёРіСЂРѕРєР°):</b></td>
                 </tr>
                 <tr>
-                  <td>Кр.: </td>
+                  <td>РљСЂ.: </td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['win_money1']?>" name="bot_winmoney1" type="text" id="bot_winmoney1" size="100" maxlength="17"></td>
                 </tr>
                 <tr>
-                  <td>Екр.: </td>
+                  <td>Р•РєСЂ.: </td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['win_money2']?>" name="bot_winmoney2" type="text" id="bot_winmoney2" size="100" maxlength="10"></td>
                 </tr>
                 <tr>
-                  <td>Опыт (За 100% НР монстра): </td>
+                  <td>РћРїС‹С‚ (Р—Р° 100% РќР  РјРѕРЅСЃС‚СЂР°): </td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['win_exp']?>" name="bot_winexp" type="text" id="bot_winexp" size="100" maxlength="17"></td>
                 </tr>
                 <tr>
-                  <td>Предметы (id@kolvo@data, ...):</td>
+                  <td>РџСЂРµРґРјРµС‚С‹ (id@kolvo@data, ...):</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['win_itm']?>" name="bot_winitm" type="text" id="bot_winitm" size="100" maxlength="500"></td>
                 </tr>
                 <tr>
-                  <td>Эффект:</td>
+                  <td>Р­С„С„РµРєС‚:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['win_eff']?>" name="bot_wineff" type="text" id="bot_wineff" size="100" maxlength="500"></td>
                 </tr>
                 <tr>
-                  <td>Подвиги:</td>
+                  <td>РџРѕРґРІРёРіРё:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['win_ico']?>" name="bot_winico" type="text" id="bot_winico" size="100" maxlength="500"></td>
                 </tr>
                 <tr>
-                  <td><div align="left" style="height:1px; width:300px; background-color:#999999; margin:3px;"></div><b>Награда (поражение игрока):</b></td>
+                  <td><div align="left" style="height:1px; width:300px; background-color:#999999; margin:3px;"></div><b>РќР°РіСЂР°РґР° (РїРѕСЂР°Р¶РµРЅРёРµ РёРіСЂРѕРєР°):</b></td>
                 </tr>
                 <tr>
-                  <td>Кр.: </td>
+                  <td>РљСЂ.: </td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['lose_money1']?>" name="bot_losemoney1" type="text" id="bot_losemoney1" size="100" maxlength="10"></td>
                 </tr>
                 <tr>
-                  <td>Екр.: </td>
+                  <td>Р•РєСЂ.: </td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['lose_money2']?>" name="bot_losemoney2" type="text" id="bot_losemoney2" size="100" maxlength="10"></td>
                 </tr>
                 <tr>
-                  <td>Опыт: </td>
+                  <td>РћРїС‹С‚: </td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['lose_exp']?>" name="bot_loseexp" type="text" id="bot_loseexp" size="100" maxlength="17"></td>
                 </tr>
                 <tr>
-                  <td>Предметы:</td>
+                  <td>РџСЂРµРґРјРµС‚С‹:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['lose_itm']?>" name="bot_loseitm" type="text" id="bot_loseitm" size="100" maxlength="500"></td>
                 </tr>
                 <tr>
-                  <td>Эффект:</td>
+                  <td>Р­С„С„РµРєС‚:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['lose_eff']?>" name="bot_loseeff" type="text" id="bot_loseeff" size="100" maxlength="500"></td>
                 </tr>
                 <tr>
-                  <td>Подвиги:</td>
+                  <td>РџРѕРґРІРёРіРё:</td>
                 </tr>
                 <tr>
                   <td><input value="<?=$monster['lose_ico']?>" name="bot_loseico" type="text" id="bot_loseico" size="100" maxlength="500"></td>
                 </tr>
             </table>
             <div style="padding-left:120px;">
-            	<input type="submit" value="Сохранить" />
+            	<input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ" />
             </div>
             <br><br>
             </form>
 <div style="height:1px; width:300px; background-color:#999999; margin:3px;" align="center">
-<div onClick="location.href='/info/<?=$inf['id']?>'" style="border:1px solid #999999; cursor:pointer; background-color:#EAEAEA; width:150px;" align="center"><small>Скрыть</small></div>
+<div onClick="location.href='/info/<?=$inf['id']?>'" style="border:1px solid #999999; cursor:pointer; background-color:#EAEAEA; width:150px;" align="center"><small>РЎРєСЂС‹С‚СЊ</small></div>
 </div>
 <?
 					}else{
 ?>
 <div style="height:1px; width:300px; background-color:#999999; margin:3px;" align="center">
-<div onClick="location.href='/info/<?=$inf['id']?>&emonster'" style="border:1px solid #999999; cursor:pointer; background-color:#EAEAEA; width:150px;" align="center"><small>Настройка монстра</small></div>
+<div onClick="location.href='/info/<?=$inf['id']?>&emonster'" style="border:1px solid #999999; cursor:pointer; background-color:#EAEAEA; width:150px;" align="center"><small>РќР°СЃС‚СЂРѕР№РєР° РјРѕРЅСЃС‚СЂР°</small></div>
 </div>
 <?
 					}
 				}
-				//темные делишки :D
+				//С‚РµРјРЅС‹Рµ РґРµР»РёС€РєРё :D
 				if($inf['id'] == 1 || $inf['id'] == 15 ) {
 					
 				}elseif($inf['no_ip'] != 'trupojor' && (($u->info['align']>=1.1 && $u->info['align']<=1.99 && $inf['admin']<1) || ($u->info['align']>=3.05 && $u->info['align']<=3.99 && $inf['admin']<1) || $u->info['admin']>0 || $u->info['nadmin']>0)) 
@@ -1962,16 +1958,16 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 					}
 					
 					if( $nopal == true ) {
-						echo '<h3>Вы не можете просматривать информацию старшего по званию...</h3>';
+						echo '<h3>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїСЂРѕСЃРјР°С‚СЂРёРІР°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ СЃС‚Р°СЂС€РµРіРѕ РїРѕ Р·РІР°РЅРёСЋ...</h3>';
 					} elseif ($u->info['admin']==0 && (($u->info['admin']==0 && (floor($u->info['align'])==1 && $inf['align']>=3.01 && $inf['align']<=3.99) || (floor($u->info['align'])==3 && $inf['align']>=1.1 && $inf['align']<=1.99)) || ($u->info['admin']==0 && $inf['admin']>0)))  
 					{
-						echo '<h3>Персонаж носит вражескую склонность...</h3>';
+						echo '<h3>РџРµСЂСЃРѕРЅР°Р¶ РЅРѕСЃРёС‚ РІСЂР°Р¶РµСЃРєСѓСЋ СЃРєР»РѕРЅРЅРѕСЃС‚СЊ...</h3>';
 					}else{
-						echo '<br /><br /><div style="color:#828282;">За игроком замечены следующие темные делишки:<br /><small><span class=dsc>';
+						echo '<br /><br /><div style="color:#828282;">Р—Р° РёРіСЂРѕРєРѕРј Р·Р°РјРµС‡РµРЅС‹ СЃР»РµРґСѓСЋС‰РёРµ С‚РµРјРЅС‹Рµ РґРµР»РёС€РєРё:<br /><small><span class=dsc>';
 						if(!isset($_GET['mod_inf'])) {
-							echo '<a href="/info/'.$inf['id'].'&mod_inf">Показать личное дело</a>';
+							echo '<a href="/info/'.$inf['id'].'&mod_inf">РџРѕРєР°Р·Р°С‚СЊ Р»РёС‡РЅРѕРµ РґРµР»Рѕ</a>';
 						}else{
-							//Личное дело персонажа
+							//Р›РёС‡РЅРѕРµ РґРµР»Рѕ РїРµСЂСЃРѕРЅР°Р¶Р°
 							$log = mysql_query('SELECT * FROM `users_delo` WHERE `uid`="'.$inf['id'].'" AND `type`="0" ORDER by `id` DESC LIMIT 21');
 							$i = 0;
 							while ($log_w = mysql_fetch_array($log))
@@ -1979,21 +1975,21 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 								echo ''.date("d.m.Y H:i:s",$log_w['time']).'&nbsp;'.$log_w['text'].' <br />';
 								$i++;
 							}
-							echo '<a href="/info/'.$inf['id'].'">Скрыть личное дело</a>';
+							echo '<a href="/info/'.$inf['id'].'">РЎРєСЂС‹С‚СЊ Р»РёС‡РЅРѕРµ РґРµР»Рѕ</a>';
 						}
 						echo '</small><br>';
-						//Информация для паладинов\тарманов\ангелов
+						//РРЅС„РѕСЂРјР°С†РёСЏ РґР»СЏ РїР°Р»Р°РґРёРЅРѕРІ\С‚Р°СЂРјР°РЅРѕРІ\Р°РЅРіРµР»РѕРІ
 						if(($u->info['align']>=1.4 && $u->info['align']<=1.99 && $u->info['align']!=1.6 && $u->info['align']!=1.75 && $inf['admin']<1) || ($u->info['align']>=3.05 && $u->info['align']<=3.99 && $u->info['align']!=3.06 && $inf['admin']<1) || $u->info['admin']>0) 
 						{
 							if ((int)$u->info['align']==1) 
 							{ 
-								$rang = 'Паладинов'; 
+								$rang = 'РџР°Р»Р°РґРёРЅРѕРІ'; 
 							} elseif ((int)$u->info['align']==3) 
 							{
-								$rang = 'Тарманов'; 
+								$rang = 'РўР°СЂРјР°РЅРѕРІ'; 
 							} else 
 							{ 
-								$rang = 'Ангелов'; 
+								$rang = 'РђРЅРіРµР»РѕРІ'; 
 							}					
 							
 							/*
@@ -2004,14 +2000,14 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 								$pr = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`level` FROM `users` WHERE `id` = "'.$pr1['uid'].'" LIMIT 1'));
 								if(isset($pr['id']))
 								{
-									$pr['login'] = 'Персонажа пригласили: <b>'.$pr['login'].'</b> ['.$pr['level'].'] <a href="/info/'.$pr['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="Инф. о '.$pr['login'].'"></a><br>';
+									$pr['login'] = 'РџРµСЂСЃРѕРЅР°Р¶Р° РїСЂРёРіР»Р°СЃРёР»Рё: <b>'.$pr['login'].'</b> ['.$pr['level'].'] <a href="/info/'.$pr['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="РРЅС„. Рѕ '.$pr['login'].'"></a><br>';
 								}else{
-									$pr['login'] = 'Персонажа пригласили: #<i>'.$pr1['uid'].'</i><br>';
+									$pr['login'] = 'РџРµСЂСЃРѕРЅР°Р¶Р° РїСЂРёРіР»Р°СЃРёР»Рё: #<i>'.$pr1['uid'].'</i><br>';
 								}
 							}
 							*/
 							if($u->info['admin'] == 1) {
-							  echo 'Комната: '.$inf['room'].'<br />';
+							  echo 'РљРѕРјРЅР°С‚Р°: '.$inf['room'].'<br />';
 							}
 							if((int)$inf['host_reg'] >= 1){
 								$inf['ref'] = $u->microLogin((int)$inf['host_reg'],1);
@@ -2021,8 +2017,8 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 							if(!isset($inf['ipReg'])){ $inf['ipReg'] = '--'; }	
 							echo '
 							<br />
-							<b style="color:red"><u>Только для '.$rang.'</u></b><br />
-							<i>День рождения: '.$inf['bithday'].'<br />';
+							<b style="color:red"><u>РўРѕР»СЊРєРѕ РґР»СЏ '.$rang.'</u></b><br />
+							<i>Р”РµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ: '.$inf['bithday'].'<br />';
 							
 							if($u->info['admin'] > 0) {
 								  if( $inf['activ'] == 0 ) {
@@ -2031,7 +2027,7 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 								  
 								  $mls = mysql_fetch_array(mysql_query('SELECT * FROM `users_rbk` WHERE `email` = "'.mysql_real_escape_string($inf['mail']).'" LIMIT 1'));
 								  if(isset($mls['name'])) {
-									 echo '<u>E-mail: '.$inf['mail'].'</u> (РАССЫЛКА)'; 
+									 echo '<u>E-mail: '.$inf['mail'].'</u> (Р РђРЎРЎР«Р›РљРђ)'; 
 								  }else{
 									 echo 'E-mail: '.$inf['mail'].'';
 								  }
@@ -2043,9 +2039,9 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 								  }
 							}else{
 								  if( $inf['activ'] == 0 ) {
-									 echo '<font color=green><b>Персонаж активирован</b></font>';  
+									 echo '<font color=green><b>РџРµСЂСЃРѕРЅР°Р¶ Р°РєС‚РёРІРёСЂРѕРІР°РЅ</b></font>';  
 								  }else{
-									 echo '<font color=red><b>Персонаж не активирован</b></font>'; 
+									 echo '<font color=red><b>РџРµСЂСЃРѕРЅР°Р¶ РЅРµ Р°РєС‚РёРІРёСЂРѕРІР°РЅ</b></font>'; 
 								  }
 								  echo '<br>';
 							}
@@ -2053,50 +2049,50 @@ if( $onj > 6 && $inf['admin'] == 0 ) {
 								$inf['ipReg'] = $inf['no_ip'];
 								$inf['ip'] = $inf['no_ip'];
 							}
-							echo 'Персонажа пригласили: '.$inf['ref'].'<br />
-							Последний раз заходил в клуб: '.date('d.m.Y H:i',$inf['online']).'<br />
-							'.$pr['login'].'IP при регистрации: <img width="16" height="16" title="'.$inf['country_reg'].'" src="/flat/16/'.$inf['country_reg'].'.png"> '.$inf['ipReg'].'<br />';
+							echo 'РџРµСЂСЃРѕРЅР°Р¶Р° РїСЂРёРіР»Р°СЃРёР»Рё: '.$inf['ref'].'<br />
+							РџРѕСЃР»РµРґРЅРёР№ СЂР°Р· Р·Р°С…РѕРґРёР» РІ РєР»СѓР±: '.date('d.m.Y H:i',$inf['online']).'<br />
+							'.$pr['login'].'IP РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё: <img width="16" height="16" title="'.$inf['country_reg'].'" src="/flat/16/'.$inf['country_reg'].'.png"> '.$inf['ipReg'].'<br />';
 							if($inf['no_ip'] == '' || $u->info['admin']>0) {
-								echo 'IP последние: <img width="16" height="16" title="'.$inf['country'].'" src="/flat/16/'.$inf['country'].'.png"> <b>'.$inf['ip'].'</b>';
+								echo 'IP РїРѕСЃР»РµРґРЅРёРµ: <img width="16" height="16" title="'.$inf['country'].'" src="/flat/16/'.$inf['country'].'.png"> <b>'.$inf['ip'].'</b>';
 								$auth = mysql_query('SELECT * FROM `logs_auth` WHERE `uid`="'.$inf['id'].'" AND `type`="1" ORDER by `id` DESC LIMIT 10');
 								$country = '';
 								while ($auth_w = mysql_fetch_array($auth)) {
 									echo '<br /><img width="16" height="16" title="'.$auth_w['country'].'" src="/flat/16/'.$auth_w['country'].'.png"> '.$auth_w['ip'].' <small><b>('.date('d.m.Y H:i',$auth_w['time']).')</b></small>';
 								}
 							}else{
-								echo 'IP последние: <img width="16" height="16" title="??" src="/flat/16/??.png"> <b>'.$inf['no_ip'].'</b>';
+								echo 'IP РїРѕСЃР»РµРґРЅРёРµ: <img width="16" height="16" title="??" src="/flat/16/??.png"> <b>'.$inf['no_ip'].'</b>';
 							}
 							
 							
 function user_browser($agent) {
-	preg_match("/(MSIE|Opera|Firefox|Chrome|Version|Opera Mini|Netscape|Konqueror|SeaMonkey|Camino|Minefield|Iceweasel|K-Meleon|Maxthon)(?:\/| )([0-9.]+)/", $agent, $browser_info); // регулярное выражение, которое позволяет отпределить 90% браузеров
-        list(,$browser,$version) = $browser_info; // получаем данные из массива в переменную
-        if (preg_match("/Opera ([0-9.]+)/i", $agent, $opera)) return 'Opera '.$opera[1]; // определение _очень_старых_ версий Оперы (до 8.50), при желании можно убрать
-        if ($browser == 'MSIE') { // если браузер определён как IE
-                preg_match("/(Maxthon|Avant Browser|MyIE2)/i", $agent, $ie); // проверяем, не разработка ли это на основе IE
-                if ($ie) return $ie[1].' based on IE '.$version; // если да, то возвращаем сообщение об этом
-                return 'IE '.$version; // иначе просто возвращаем IE и номер версии
+	preg_match("/(MSIE|Opera|Firefox|Chrome|Version|Opera Mini|Netscape|Konqueror|SeaMonkey|Camino|Minefield|Iceweasel|K-Meleon|Maxthon)(?:\/| )([0-9.]+)/", $agent, $browser_info); // СЂРµРіСѓР»СЏСЂРЅРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ РїРѕР·РІРѕР»СЏРµС‚ РѕС‚РїСЂРµРґРµР»РёС‚СЊ 90% Р±СЂР°СѓР·РµСЂРѕРІ
+        list(,$browser,$version) = $browser_info; // РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РёР· РјР°СЃСЃРёРІР° РІ РїРµСЂРµРјРµРЅРЅСѓСЋ
+        if (preg_match("/Opera ([0-9.]+)/i", $agent, $opera)) return 'Opera '.$opera[1]; // РѕРїСЂРµРґРµР»РµРЅРёРµ _РѕС‡РµРЅСЊ_СЃС‚Р°СЂС‹С…_ РІРµСЂСЃРёР№ РћРїРµСЂС‹ (РґРѕ 8.50), РїСЂРё Р¶РµР»Р°РЅРёРё РјРѕР¶РЅРѕ СѓР±СЂР°С‚СЊ
+        if ($browser == 'MSIE') { // РµСЃР»Рё Р±СЂР°СѓР·РµСЂ РѕРїСЂРµРґРµР»С‘РЅ РєР°Рє IE
+                preg_match("/(Maxthon|Avant Browser|MyIE2)/i", $agent, $ie); // РїСЂРѕРІРµСЂСЏРµРј, РЅРµ СЂР°Р·СЂР°Р±РѕС‚РєР° Р»Рё СЌС‚Рѕ РЅР° РѕСЃРЅРѕРІРµ IE
+                if ($ie) return $ie[1].' based on IE '.$version; // РµСЃР»Рё РґР°, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ РѕР± СЌС‚РѕРј
+                return 'IE '.$version; // РёРЅР°С‡Рµ РїСЂРѕСЃС‚Рѕ РІРѕР·РІСЂР°С‰Р°РµРј IE Рё РЅРѕРјРµСЂ РІРµСЂСЃРёРё
         }
-        if ($browser == 'Firefox') { // если браузер определён как Firefox
-                preg_match("/(Flock|Navigator|Epiphany)\/([0-9.]+)/", $agent, $ff); // проверяем, не разработка ли это на основе Firefox
-                if ($ff) return $ff[1].' '.$ff[2]; // если да, то выводим номер и версию
+        if ($browser == 'Firefox') { // РµСЃР»Рё Р±СЂР°СѓР·РµСЂ РѕРїСЂРµРґРµР»С‘РЅ РєР°Рє Firefox
+                preg_match("/(Flock|Navigator|Epiphany)\/([0-9.]+)/", $agent, $ff); // РїСЂРѕРІРµСЂСЏРµРј, РЅРµ СЂР°Р·СЂР°Р±РѕС‚РєР° Р»Рё СЌС‚Рѕ РЅР° РѕСЃРЅРѕРІРµ Firefox
+                if ($ff) return $ff[1].' '.$ff[2]; // РµСЃР»Рё РґР°, С‚Рѕ РІС‹РІРѕРґРёРј РЅРѕРјРµСЂ Рё РІРµСЂСЃРёСЋ
         }
-        if ($browser == 'Opera' && $version == '9.80') return 'Opera '.substr($agent,-5); // если браузер определён как Opera 9.80, берём версию Оперы из конца строки
-        if ($browser == 'Version') return 'Safari '.$version; // определяем Сафари
-        if (!$browser && strpos($agent, 'Gecko')) return 'Browser based on Gecko'; // для неопознанных браузеров проверяем, если они на движке Gecko, и возращаем сообщение об этом
-        return $browser.' '.$version; // для всех остальных возвращаем браузер и версию
+        if ($browser == 'Opera' && $version == '9.80') return 'Opera '.substr($agent,-5); // РµСЃР»Рё Р±СЂР°СѓР·РµСЂ РѕРїСЂРµРґРµР»С‘РЅ РєР°Рє Opera 9.80, Р±РµСЂС‘Рј РІРµСЂСЃРёСЋ РћРїРµСЂС‹ РёР· РєРѕРЅС†Р° СЃС‚СЂРѕРєРё
+        if ($browser == 'Version') return 'Safari '.$version; // РѕРїСЂРµРґРµР»СЏРµРј РЎР°С„Р°СЂРё
+        if (!$browser && strpos($agent, 'Gecko')) return 'Browser based on Gecko'; // РґР»СЏ РЅРµРѕРїРѕР·РЅР°РЅРЅС‹С… Р±СЂР°СѓР·РµСЂРѕРІ РїСЂРѕРІРµСЂСЏРµРј, РµСЃР»Рё РѕРЅРё РЅР° РґРІРёР¶РєРµ Gecko, Рё РІРѕР·СЂР°С‰Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ РѕР± СЌС‚РѕРј
+        return $browser.' '.$version; // РґР»СЏ РІСЃРµС… РѕСЃС‚Р°Р»СЊРЅС‹С… РІРѕР·РІСЂР°С‰Р°РµРј Р±СЂР°СѓР·РµСЂ Рё РІРµСЂСЃРёСЋ
 }
 							
 							
 							echo'
 							<br />
-							Браузер: <b style="color:#0E0F0E">'.user_browser($inf['dateEnter']).'</b><br />
+							Р‘СЂР°СѓР·РµСЂ: <b style="color:#0E0F0E">'.user_browser($inf['dateEnter']).'</b><br />
 							';
 														
 							if($inf['no_ip'] == '' || $u->info['admin']>0) {
 								if($mults!='' && $inf['admin']==0){
 									$mults = trim($mults,', ');
-									echo 'Другие ники этого бойца:  '.$mults.'<br />';
+									echo 'Р”СЂСѓРіРёРµ РЅРёРєРё СЌС‚РѕРіРѕ Р±РѕР№С†Р°:  '.$mults.'<br />';
 								}
 							}
 							
@@ -2105,29 +2101,29 @@ function user_browser($agent) {
 							
 							$sp = mysql_query('SELECT `id`,`login`,`ip`,`ipreg`,`timereg`,`online`,`country_reg`,`country` FROM `users` WHERE `host_reg` = "'.$inf['id'].'" AND `activ` = "0" ORDER BY `timereg` DESC');
 							while( $pl = mysql_fetch_array($sp) ) {
-								$referalos .= '<br><img width="16" height="16" title="'.$pl['country'].'" src="/flat/16/'.$pl['country'].'.png"> Дата рег.: '.date('d.m.Y H:i',$pl['timereg']).' / Был тут: '.date('d.m.Y H:i',$pl['online']).' &nbsp; '.$u->microLogin($pl['id'],1).' <small>( '.$pl['ip'].' , '.$pl['ipreg'].' )</small>';
+								$referalos .= '<br><img width="16" height="16" title="'.$pl['country'].'" src="/flat/16/'.$pl['country'].'.png"> Р”Р°С‚Р° СЂРµРі.: '.date('d.m.Y H:i',$pl['timereg']).' / Р‘С‹Р» С‚СѓС‚: '.date('d.m.Y H:i',$pl['online']).' &nbsp; '.$u->microLogin($pl['id'],1).' <small>( '.$pl['ip'].' , '.$pl['ipreg'].' )</small>';
 								$rfs++;
 							}
 							
 							if( $referalos == '' ) {
-								$referalos = '<i>Отсутствуют</i>';
+								$referalos = '<i>РћС‚СЃСѓС‚СЃС‚РІСѓСЋС‚</i>';
 							}
-							echo '<hr><b>Рефералы бойца:</b>'.$referalos.'<hr>';
+							echo '<hr><b>Р РµС„РµСЂР°Р»С‹ Р±РѕР№С†Р°:</b>'.$referalos.'<hr>';
 							if($u->info['admin']>0)
 							{
-								echo 'Доп. возможности: <small><a href="/info/'.$inf['id'].'&wipe&sd4='.$u->info['nextAct'].'">сбросить характеристики</a></small><br>';
+								echo 'Р”РѕРї. РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё: <small><a href="/info/'.$inf['id'].'&wipe&sd4='.$u->info['nextAct'].'">СЃР±СЂРѕСЃРёС‚СЊ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё</a></small><br>';
 								$on1 = mysql_fetch_array(mysql_query('SELECT `time_all`,`time_today` FROM `online` WHERE `uid` = "'.$inf['id'].'" LIMIT 1'));
-								echo 'Время в онлайне (всего): '.timeOut($on1['time_all']).'<br>Время в онлайне (сегодня): '.timeOut($on1['time_today']).'<br>';
+								echo 'Р’СЂРµРјСЏ РІ РѕРЅР»Р°Р№РЅРµ (РІСЃРµРіРѕ): '.timeOut($on1['time_all']).'<br>Р’СЂРµРјСЏ РІ РѕРЅР»Р°Р№РЅРµ (СЃРµРіРѕРґРЅСЏ): '.timeOut($on1['time_today']).'<br>';
 							}	
 							if($inf['molch3']<time() && $inf['molch1'] > time())
 							{
-								echo '<small><a href="/info/'.$inf['id'].'&molchMax&sd4='.$u->info['nextAct'].'">Запретить персонажу отправлять сообщения с молчанкой</a></small><br>';
+								echo '<small><a href="/info/'.$inf['id'].'&molchMax&sd4='.$u->info['nextAct'].'">Р—Р°РїСЂРµС‚РёС‚СЊ РїРµСЂСЃРѕРЅР°Р¶Сѓ РѕС‚РїСЂР°РІР»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ СЃ РјРѕР»С‡Р°РЅРєРѕР№</a></small><br>';
 							}
 							
 							echo'	
-							Опыт: '.$inf['exp'].' <br />
-							Число неиспользованных UP-ов: '.$inf['ability'].' <br />
-							<b>Кредитов:</b> '.$inf['money'].'<br><b>Зубов:</b> <small>'.$u->zuby($inf['money4']).'</small>';
+							РћРїС‹С‚: '.$inf['exp'].' <br />
+							Р§РёСЃР»Рѕ РЅРµРёСЃРїРѕР»СЊР·РѕРІР°РЅРЅС‹С… UP-РѕРІ: '.$inf['ability'].' <br />
+							<b>РљСЂРµРґРёС‚РѕРІ:</b> '.$inf['money'].'<br><b>Р—СѓР±РѕРІ:</b> <small>'.$u->zuby($inf['money4']).'</small>';
 							$bnk = ''; $bmn1 = 0; $bmn2 = 0;
 							$sp = mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$inf['id'].'"');
 							while($pl = mysql_fetch_array($sp)) {
@@ -2136,30 +2132,30 @@ function user_browser($agent) {
 								}else{
 									$bnk .= '<div style="padding:5px;border-bottom:1px solid #AEAEAE">';
 								}
-								$bnk .= '&nbsp; &bull; <span style="display:inline-block;width:75px;"><small>№</small> '.$pl['id'].'</span>';
-								$bnk .= '<span style="display:inline-block;width:100px;"><small>'.$pl['money1'].' кр.</small></span>';
-								$bnk .= '<span style="display:inline-block;width:100px;"><small>'.$pl['money2'].' екр.</small></span>';
+								$bnk .= '&nbsp; &bull; <span style="display:inline-block;width:75px;"><small>в„–</small> '.$pl['id'].'</span>';
+								$bnk .= '<span style="display:inline-block;width:100px;"><small>'.$pl['money1'].' РєСЂ.</small></span>';
+								$bnk .= '<span style="display:inline-block;width:100px;"><small>'.$pl['money2'].' РµРєСЂ.</small></span>';
 								if($u->info['admin'] > 0) {
-									$bnk .= '<span style="display:inline-block;"><small>Пароль: '.htmlspecialchars($pl['pass'],NULL,'cp1251').'</small></span>';
+									$bnk .= '<span style="display:inline-block;"><small>РџР°СЂРѕР»СЊ: '.htmlspecialchars($pl['pass'],NULL,'cp1251').'</small></span>';
 								}
 								if($pl['moneyBuy'] >= 0) {
-								  $ds = '<b><i><u>Персонаж покупал еврокредиты</u></i></b>&nbsp;&nbsp;Сумма : '.$pl['moneyBuy'].'<br />';
+								  $ds = '<b><i><u>РџРµСЂСЃРѕРЅР°Р¶ РїРѕРєСѓРїР°Р» РµРІСЂРѕРєСЂРµРґРёС‚С‹</u></i></b>&nbsp;&nbsp;РЎСѓРјРјР° : '.$pl['moneyBuy'].'<br />';
 								}
-								$ds .= '<b><i><u>Заработано екр. (не покупал)</u></i></b>&nbsp;&nbsp;Сумма : '.$pl['shara'].'<br />';
+								$ds .= '<b><i><u>Р—Р°СЂР°Р±РѕС‚Р°РЅРѕ РµРєСЂ. (РЅРµ РїРѕРєСѓРїР°Р»)</u></i></b>&nbsp;&nbsp;РЎСѓРјРјР° : '.$pl['shara'].'<br />';
 								$bmn1 += $pl['money1'];
 								$bmn2 += $pl['money2'];
 								$bnk .= '</div>';
 							}
 							if($bnk != '') {
-								echo '<br><b>Банковские счета:</b>'.$bnk.' &nbsp; <small><b>Деньги (Всего в банке):</b> &nbsp; '.$bmn1.' кр. &nbsp; &nbsp; '.$bmn2.' екр.</small><br/>'.$ds;
+								echo '<br><b>Р‘Р°РЅРєРѕРІСЃРєРёРµ СЃС‡РµС‚Р°:</b>'.$bnk.' &nbsp; <small><b>Р”РµРЅСЊРіРё (Р’СЃРµРіРѕ РІ Р±Р°РЅРєРµ):</b> &nbsp; '.$bmn1.' РєСЂ. &nbsp; &nbsp; '.$bmn2.' РµРєСЂ.</small><br/>'.$ds;
 							}
 							if($u->info['admin']>0 && $inf['admin']>0) {
 								echo '<br><small>admin: '.$inf['admin'].'</small>';
 							}
 							if($inf['active']!=''){
-							echo '<br><font color=red>Внимание!Если персонаж не получает письма с активацией отправте ему письмо вручную.</red>';
+							echo '<br><font color=red>Р’РЅРёРјР°РЅРёРµ!Р•СЃР»Рё РїРµСЂСЃРѕРЅР°Р¶ РЅРµ РїРѕР»СѓС‡Р°РµС‚ РїРёСЃСЊРјР° СЃ Р°РєС‚РёРІР°С†РёРµР№ РѕС‚РїСЂР°РІС‚Рµ РµРјСѓ РїРёСЃСЊРјРѕ РІСЂСѓС‡РЅСѓСЋ.</red>';
 							echo '<br><input type=text value="'.$inf['mail'].'">';
-							echo "<br><textarea cols=60 rows=5>Здравствуйте! Мы очень рады новому персонажу в нашем Мире! \r\n Ваш персонаж: ".$inf['login']."  \r\n Ссылка для активации: http://capitalcity.xcombats.com/bk?active=".$inf['active'].".\r\n\r\nС уважением, Администрация xcombats.com!</textarea><br>";
+							echo "<br><textarea cols=60 rows=5>Р—РґСЂР°РІСЃС‚РІСѓР№С‚Рµ! РњС‹ РѕС‡РµРЅСЊ СЂР°РґС‹ РЅРѕРІРѕРјСѓ РїРµСЂСЃРѕРЅР°Р¶Сѓ РІ РЅР°С€РµРј РњРёСЂРµ! \r\n Р’Р°С€ РїРµСЂСЃРѕРЅР°Р¶: ".$inf['login']."  \r\n РЎСЃС‹Р»РєР° РґР»СЏ Р°РєС‚РёРІР°С†РёРё: http://capitalcity.xcombats.com/bk?active=".$inf['active'].".\r\n\r\nРЎ СѓРІР°Р¶РµРЅРёРµРј, РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ xcombats.com!</textarea><br>";
 							}
 							echo '</div>';
 						}
@@ -2170,7 +2166,7 @@ function user_browser($agent) {
         <div style="float:right">
         <table cellspacing=0 cellpadding=0>
           <tr>
-            <td width="111" style='text-align: center; padding-bottom: 18; '><!-- Зодиак -->
+            <td width="111" style='text-align: center; padding-bottom: 18; '><!-- Р—РѕРґРёР°Рє -->
                   <img width="100" height="99" title="<? echo $name_zodiak; ?>" style="margin-bottom: 25; padding:5px;" src='http://img.xcombats.com/i/zodiac/<? echo $id_zodiak; ?>.gif' border=0><BR>
                   <BR>
               	  
@@ -2178,16 +2174,16 @@ function user_browser($agent) {
                     
                     <? }elseif($inf['align']>1 && $inf['align']<2) { ?>
                   <A href='http://paladins.<? echo $c['host']; ?>/' target='_blank'><img width="100" height="97" style="padding:5px;" src='http://img.xcombats.com/i/flag_light.gif' border=0></A><BR>
-                  <A href='http://paladins.<? echo $c['host']; ?>/' target='_blank'><small>Орден Света</small></A>
+                  <A href='http://paladins.<? echo $c['host']; ?>/' target='_blank'><small>РћСЂРґРµРЅ РЎРІРµС‚Р°</small></A>
                     <? }elseif($inf['align']>=3.01 && $inf['align']<=3.99) { ?>
                   <A target='_blank' href='http://tarmans.<? echo $c['host']; ?>/'><img width="100" height="97" style="padding:5px;" src='http://img.xcombats.com/i/flag_dark.gif' border=0></A><BR>
-                  <A href='http://tarmans.<? echo $c['host']; ?>/' target='_blank'><small>Армада</small></A>
+                  <A href='http://tarmans.<? echo $c['host']; ?>/' target='_blank'><small>РђСЂРјР°РґР°</small></A>
                     <? }elseif($inf['align']>=2 && $inf['align']<3) { ?>
                   <A target='_blank' href='http://chaos.<? echo $c['host']; ?>/'><img width="100" height="97" style="padding:5px;" src='http://img.xcombats.com/i/flag_haos.gif' border=0></A><BR>
-                  <A href='http://chaos.<? echo $c['host']; ?>/' target='_blank'><small>Цитадель Хаоса</small></A>
+                  <A href='http://chaos.<? echo $c['host']; ?>/' target='_blank'><small>Р¦РёС‚Р°РґРµР»СЊ РҐР°РѕСЃР°</small></A>
                     <? }else{ ?>
                   <A target='_blank' href='http://xcombats.com/news/'> <img width="100" height="97" style="padding:5px;" src='http://img.xcombats.com/i/flag_gray.gif'></a><BR>
-                  <A href='http://xcombats.com/news/' target='_blank'><small>Новости</small></A><br>
+                  <A href='http://xcombats.com/news/' target='_blank'><small>РќРѕРІРѕСЃС‚Рё</small></A><br>
                     <? } ?>
             </td>
           </tr>
@@ -2200,7 +2196,7 @@ function user_browser($agent) {
 if($inf['info_delete']!=0)
 {
 ?>
-<H3 align="center" style="color:#8f0000">Персонаж обезличен <? if($inf['info_delete']>1){ echo 'до '.date('d.m.Y H:i',$inf['info_delete']).'.'; }else{ echo '.'; } ?></H3>
+<H3 align="center" style="color:#8f0000">РџРµСЂСЃРѕРЅР°Р¶ РѕР±РµР·Р»РёС‡РµРЅ <? if($inf['info_delete']>1){ echo 'РґРѕ '.date('d.m.Y H:i',$inf['info_delete']).'.'; }else{ echo '.'; } ?></H3>
 <?
 	if($u->info['align']>1 && $u->info['align']<2 || $u->info['align']>3 && $u->info['align']<4 || $u->info['admin']>0)
 	{
@@ -2212,25 +2208,25 @@ if($inf['info_delete']==0 || (($u->info['align']>1 && $u->info['align']<2) || ($
 ?> 
 <div style="line-height:11pt;"> 
 <hr style="border-color:#999999;">
-<? if($inf['info_delete']==0){ ?><H3 align="center" style="color:#8f0000">Анкетные данные</H3><? } ?>
+<? if($inf['info_delete']==0){ ?><H3 align="center" style="color:#8f0000">РђРЅРєРµС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ</H3><? } ?>
 <?
 if($inf['name'] != '') {
 ?>
-<b style="color:#444">Имя:</b> <? echo $inf['name']; ?><BR><? } ?>
-<b style="color:#444">Пол:</b>
-<? $sex[0] = 'Мужской'; $sex[1] = 'Женский'; echo $sex[$inf['sex']]; ?><BR>
+<b style="color:#444">РРјСЏ:</b> <? echo $inf['name']; ?><BR><? } ?>
+<b style="color:#444">РџРѕР»:</b>
+<? $sex[0] = 'РњСѓР¶СЃРєРѕР№'; $sex[1] = 'Р–РµРЅСЃРєРёР№'; echo $sex[$inf['sex']]; ?><BR>
 <? if($inf['city_real']!=''){ ?>
-<b style="color:#444">Город:</b> <? echo $inf['city_real']; ?><BR><? } ?>
-<? if($inf['icq']>0 && $inf['icq_hide']==0){ echo 'ICQ: '.$inf['icq'].' <img style="display:inline-block;vertical-align:bottom;" height="13" width="13" title="Статус ICQ" src="http://web.icq.com/whitepages/online?img=26&icq='.$inf['icq'].'"><br />'; } ?>
-<? if($inf['skype']!='' && $inf['skype_hide']==0){ echo 'Skype: '.$inf['skype'].' <img height="13" width="13" style="display:inline-block;vertical-align:bottom;" title="Статус Skype" src="http://mystatus.skype.com/smallicon/'.$inf['skype'].'"><br />'; } ?>
+<b style="color:#444">Р“РѕСЂРѕРґ:</b> <? echo $inf['city_real']; ?><BR><? } ?>
+<? if($inf['icq']>0 && $inf['icq_hide']==0){ echo 'ICQ: '.$inf['icq'].' <img style="display:inline-block;vertical-align:bottom;" height="13" width="13" title="РЎС‚Р°С‚СѓСЃ ICQ" src="http://web.icq.com/whitepages/online?img=26&icq='.$inf['icq'].'"><br />'; } ?>
+<? if($inf['skype']!='' && $inf['skype_hide']==0){ echo 'Skype: '.$inf['skype'].' <img height="13" width="13" style="display:inline-block;vertical-align:bottom;" title="РЎС‚Р°С‚СѓСЃ Skype" src="http://mystatus.skype.com/smallicon/'.$inf['skype'].'"><br />'; } ?>
 <? if(isset($inf['homepage']) && $inf['homepage']!='' && $inf['level']>4) { 
 $url = ((substr($inf['homepage'],0,4)=='http'?"":"http://").$inf['homepage']);
 ?>
-<b style="color:#444">Домашняя страница:</b> <A HREF="<? echo $url; ?>" target="_blank"><? echo $url; ?></A><BR> <? } ?>
+<b style="color:#444">Р”РѕРјР°С€РЅСЏСЏ СЃС‚СЂР°РЅРёС†Р°:</b> <A HREF="<? echo $url; ?>" target="_blank"><? echo $url; ?></A><BR> <? } ?>
 <? if($inf['deviz']!=''){ ?>
-<b style="color:#444">Девиз:</b> <code><? echo $inf['deviz']; ?></code><BR>  <? } ?>
+<b style="color:#444">Р”РµРІРёР·:</b> <code><? echo $inf['deviz']; ?></code><BR>  <? } ?>
 <? if($inf['hobby']!=''){ ?>  
-<b style="color:#444">Увлечения / хобби:</b><BR>
+<b style="color:#444">РЈРІР»РµС‡РµРЅРёСЏ / С…РѕР±Р±Рё:</b><BR>
 <? 
 		echo str_replace("\n",'<br>',$inf['hobby']); 
 	}
@@ -2243,7 +2239,7 @@ echo '<br><br><div align="right">'.$c['counters_noFrm'].'</div>';
 ?>
 </div>
 <div align="right"><br>
-Старый БК &copy; <?=date('Y')?>, «www.xcombats.com» &nbsp; &nbsp;</div>
+РЎС‚Р°СЂС‹Р№ Р‘Рљ &copy; <?=date('Y')?>, В«www.xcombats.comВ» &nbsp; &nbsp;</div>
 <br /><br />
 </body>
 </html>

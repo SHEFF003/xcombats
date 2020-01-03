@@ -1,4 +1,4 @@
-<?
+<?php
 define('GAME',true);
 include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');
@@ -7,7 +7,7 @@ include('_incl_data/class/__user.php');
 /*
 <tr height="20">
 <td>1</td>
-<td><a target="_blank" href="http://capitalcity.combats.com/encicl/alignment.html" title="Повелитель Огня"><img src="http://img.combats.ru/i/align20.gif" width="12" height="15" border="0" /></a><a target="_blank" href="http://dungeon.combats.com/clans_inf.pl?Mercenaries" title="Информация о клане Mercenaries"><img src="http://img.combats.ru/i/klan/Mercenaries.gif" width="24" height="15" border="0" /></a><strong>SeDuCeR</strong>&nbsp;[12]<a href="http://dungeon.combats.com/inf.pl?1069870465" title="Информация о SeDuCeR" target="_blank"><img src="http://img.combats.ru/i/inf.gif" width="12" height="11" border="0" /></a></td>
+<td><a target="_blank" href="http://capitalcity.combats.com/encicl/alignment.html" title="РџРѕРІРµР»РёС‚РµР»СЊ РћРіРЅСЏ"><img src="http://img.combats.ru/i/align20.gif" width="12" height="15" border="0" /></a><a target="_blank" href="http://dungeon.combats.com/clans_inf.pl?Mercenaries" title="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєР»Р°РЅРµ Mercenaries"><img src="http://img.combats.ru/i/klan/Mercenaries.gif" width="24" height="15" border="0" /></a><strong>SeDuCeR</strong>&nbsp;[12]<a href="http://dungeon.combats.com/inf.pl?1069870465" title="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ SeDuCeR" target="_blank"><img src="http://img.combats.ru/i/inf.gif" width="12" height="11" border="0" /></a></td>
 <td>243</td>
 <td>47748</td>
 <td><a href="http://dungeon.combats.com/logs.pl?log=1425817576.94166">&raquo;&raquo;</a></td>
@@ -17,16 +17,16 @@ include('_incl_data/class/__user.php');
 $r1 = '';
 $r2 = '';
 $lvl = 8;
-$lvl_name = 'Любители';
+$lvl_name = 'Р›СЋР±РёС‚РµР»Рё';
 if( $_GET['level'] == 9 ) {
 	$lvl = 9;
-	$lvl_name = 'Бывалые';
+	$lvl_name = 'Р‘С‹РІР°Р»С‹Рµ';
 }elseif( $_GET['level'] == 10 ) {
 	$lvl = 10;
-	$lvl_name = 'Профессионалы';
+	$lvl_name = 'РџСЂРѕС„РµСЃСЃРёРѕРЅР°Р»С‹';
 }elseif( $_GET['level'] == 11 ) {
 	$lvl = 11;
-	$lvl_name = 'Жители';
+	$lvl_name = 'Р–РёС‚РµР»Рё';
 }
 
 $i = 1;
@@ -96,57 +96,57 @@ if( $pl['uid'] == 1000000 ) {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Архив: Поединки</title>
+<title>РђСЂС…РёРІ: РџРѕРµРґРёРЅРєРё</title>
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 </head>
 
 <body bgcolor="#E2E0E0">
 <h4>
   <center>
-    Излом Хаоса
+    РР·Р»РѕРј РҐР°РѕСЃР°
       <table width="100%">
         <tbody>
           <tr>
             <td valign="top"><fieldset>
               <legend>
-              <h5><?=$lvl_name?> - лучшие за месяц</h5>
+              <h5><?=$lvl_name?> - Р»СѓС‡С€РёРµ Р·Р° РјРµСЃСЏС†</h5>
               </legend>
               <? if( $r1 != '' ) { ?>
               <table align="center">
                 <tbody>
                   <tr>
-                    <td><h6>Место</h6></td>
-                    <td><h6>Боец</h6></td>
-                    <td><h6>Последняя волна</h6></td>
-                    <td><h6>Рейтинг</h6></td>
-                    <td><h6>Лог боя</h6></td>
+                    <td><h6>РњРµСЃС‚Рѕ</h6></td>
+                    <td><h6>Р‘РѕРµС†</h6></td>
+                    <td><h6>РџРѕСЃР»РµРґРЅСЏСЏ РІРѕР»РЅР°</h6></td>
+                    <td><h6>Р РµР№С‚РёРЅРі</h6></td>
+                    <td><h6>Р›РѕРі Р±РѕСЏ</h6></td>
                   </tr>
                   <?=$r1?>
                 </tbody>
               </table>
               <? }else{
-				echo 'История пуста, скорее всего не нашлось смельчаков...';  
+				echo 'РСЃС‚РѕСЂРёСЏ РїСѓСЃС‚Р°, СЃРєРѕСЂРµРµ РІСЃРµРіРѕ РЅРµ РЅР°С€Р»РѕСЃСЊ СЃРјРµР»СЊС‡Р°РєРѕРІ...';  
 			  } ?>
             </fieldset></td>
             <td valign="top"><fieldset>
               <legend>
-              <h5>Бывалые - лучшие за день</h5>
+              <h5>Р‘С‹РІР°Р»С‹Рµ - Р»СѓС‡С€РёРµ Р·Р° РґРµРЅСЊ</h5>
               </legend>
               <? if( $r2 != '' ) { ?>
               <table align="center">
                 <tbody>
                   <tr>
-                    <td><h6>Место</h6></td>
-                    <td><h6>Боец</h6></td>
-                    <td><h6>Последняя волна</h6></td>
-                    <td><h6>Рейтинг</h6></td>
-                    <td><h6>Лог боя</h6></td>
+                    <td><h6>РњРµСЃС‚Рѕ</h6></td>
+                    <td><h6>Р‘РѕРµС†</h6></td>
+                    <td><h6>РџРѕСЃР»РµРґРЅСЏСЏ РІРѕР»РЅР°</h6></td>
+                    <td><h6>Р РµР№С‚РёРЅРі</h6></td>
+                    <td><h6>Р›РѕРі Р±РѕСЏ</h6></td>
                   </tr>
                   <?=$r2?>
                 </tbody>
               </table>
               <? }else{
-				echo 'История пуста, скорее всего не нашлось смельчаков...';  
+				echo 'РСЃС‚РѕСЂРёСЏ РїСѓСЃС‚Р°, СЃРєРѕСЂРµРµ РІСЃРµРіРѕ РЅРµ РЅР°С€Р»РѕСЃСЊ СЃРјРµР»СЊС‡Р°РєРѕРІ...';  
 			  } ?>
             </fieldset></td>
           </tr>

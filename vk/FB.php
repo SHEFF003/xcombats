@@ -12,7 +12,7 @@ class OAuthFB {
 
     const APP_ID = 902955353157156; //App ID/API Key
     const APP_SECRET = '7c7540c3e593a802969be88d0a6553d4'; //App Secret
-    const URL_CALLBACK = 'http://xcombats.com/social.php?fbconnect'; //URL Вашего сайта, на который произойдет перенаправление 
+    const URL_CALLBACK = 'http://xcombats.com/social.php?fbconnect'; //URL Р’Р°С€РµРіРѕ СЃР°Р№С‚Р°, РЅР° РєРѕС‚РѕСЂС‹Р№ РїСЂРѕРёР·РѕР№РґРµС‚ РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ 
     const URL_OATH = 'https://www.facebook.com/dialog/oauth';
     const URL_ACCESS_TOKEN = 'https://graph.facebook.com/oauth/access_token';
     const URL_GET_ME = 'https://graph.facebook.com/me';
@@ -56,7 +56,7 @@ class OAuthFB {
     }
 
     /**
-     * Если данных недостаточно, то посмотрите что можно ещё запросить по этой ссылке
+     * Р•СЃР»Рё РґР°РЅРЅС‹С… РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ, С‚Рѕ РїРѕСЃРјРѕС‚СЂРёС‚Рµ С‡С‚Рѕ РјРѕР¶РЅРѕ РµС‰С‘ Р·Р°РїСЂРѕСЃРёС‚СЊ РїРѕ СЌС‚РѕР№ СЃСЃС‹Р»РєРµ
      * @url https://developers.facebook.com/docs/graph-api/reference/user
      */
     public static function getUser() {

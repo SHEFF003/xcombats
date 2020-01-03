@@ -1,6 +1,6 @@
-<?
+<?php
 
-die('Что-то тут не так...');
+die('Р§С‚Рѕ-С‚Рѕ С‚СѓС‚ РЅРµ С‚Р°Рє...');
 
 define('GAME',true);
 include('_incl_data/__config.php');
@@ -25,8 +25,8 @@ if($u->info['admin'] > 0) {
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Тестирование ботов</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р±РѕС‚РѕРІ</title>
 <script src="http://img.xcombats.com/js/Lite/gameEngine.js" type="text/javascript"></script>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/ion.rangeSlider.js"></script>
@@ -98,7 +98,7 @@ function eff(user,id) {
 <body bgcolor="#E2E0E0">
 <div id="ttl" class="ttl_css" style="display:none;z-index:1111;" /></div>
 <div id="gi" class="gifin" style="display:none;"></div>
-<H3>Создать тестовый бой (Записать icq персу и скрыть: 17768719)</H3>
+<H3>РЎРѕР·РґР°С‚СЊ С‚РµСЃС‚РѕРІС‹Р№ Р±РѕР№ (Р—Р°РїРёСЃР°С‚СЊ icq РїРµСЂСЃСѓ Рё СЃРєСЂС‹С‚СЊ: 17768719)</H3>
 <br>
 <br>
 <center>
@@ -121,8 +121,8 @@ if(isset($_POST['botadminatack2'])) {
 		)');		
 		$logid = mysql_insert_id();		
 		//
-		$user1['login'] = $user1['login'].' (Бот для боя '.$logid.')';
-		$user2['login'] = $user2['login'].' (Бот для боя '.$logid.')';
+		$user1['login'] = $user1['login'].' (Р‘РѕС‚ РґР»СЏ Р±РѕСЏ '.$logid.')';
+		$user2['login'] = $user2['login'].' (Р‘РѕС‚ РґР»СЏ Р±РѕСЏ '.$logid.')';
 		//
 		$bot1 = $u->addNewbot(0,NULL,$user1,false,false);
 		$bot2 = $u->addNewbot(0,NULL,$user2,false,false);		
@@ -134,10 +134,10 @@ if(isset($_POST['botadminatack2'])) {
 		mysql_query('INSERT INTO `battle_logs` (
 			`time`,`battle`,`id_hod`,`type`,`text`
 		) VALUES (
-			"'.time().'","'.$logid.'","1","1","Часы показывали <b>'.date('d.m.Y H:i:s').'</b>, когда <b>'.$user1['login'].'</b> и <b>'.$user2['login'].'</b> бросили вызов друг другу."
+			"'.time().'","'.$logid.'","1","1","Р§Р°СЃС‹ РїРѕРєР°Р·С‹РІР°Р»Рё <b>'.date('d.m.Y H:i:s').'</b>, РєРѕРіРґР° <b>'.$user1['login'].'</b> Рё <b>'.$user2['login'].'</b> Р±СЂРѕСЃРёР»Рё РІС‹Р·РѕРІ РґСЂСѓРі РґСЂСѓРіСѓ."
 		)');
 		//
-		//Эффекты
+		//Р­С„С„РµРєС‚С‹
 		$i = 0;
 		while( $i < 1000 ) {
 			//
@@ -169,9 +169,9 @@ if(isset($_POST['botadminatack2'])) {
 			inuser_go_btl($user1);
 		}	
 		//
-		$error = 'Бой между <u>'.$user1['login'].'</u> ['.$user1['level'].'] <a  target="_blank" href="/inf.php?'.$bot1.'"><img src="http://img.xcombats.com/i/inf_capitalcity.gif"></a> и <u>'.$user2['login'].'</u> ['.$user2['level'].'] <a href="/inf.php?'.$bot2.'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif"></a> начался! <a href="/logs.php?log='.$logid.'" target="_blank">Лог боя</a>';
+		$error = 'Р‘РѕР№ РјРµР¶РґСѓ <u>'.$user1['login'].'</u> ['.$user1['level'].'] <a  target="_blank" href="/inf.php?'.$bot1.'"><img src="http://img.xcombats.com/i/inf_capitalcity.gif"></a> Рё <u>'.$user2['login'].'</u> ['.$user2['level'].'] <a href="/inf.php?'.$bot2.'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif"></a> РЅР°С‡Р°Р»СЃСЏ! <a href="/logs.php?log='.$logid.'" target="_blank">Р›РѕРі Р±РѕСЏ</a>';
 	}else{
-		$error = 'Один из персонажей не найден в базе.';
+		$error = 'РћРґРёРЅ РёР· РїРµСЂСЃРѕРЅР°Р¶РµР№ РЅРµ РЅР°Р№РґРµРЅ РІ Р±Р°Р·Рµ.';
 	}
 	
 	echo '<div style="color:red"><b>'.$error.'</b></div>';
@@ -185,7 +185,7 @@ $i = 0;
 while( $pl = mysql_fetch_array($sp) ) {
 	$i++;
 	//
-	//Действие эффекта
+	//Р”РµР№СЃС‚РІРёРµ СЌС„С„РµРєС‚Р°
 	$ei = '';
 	$tr = ''; $t = $u->items['add'];
 	$x = 0; $ed = $u->lookStats($pl['mdata']);	
@@ -204,7 +204,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 		$ei .= $tr;
 	}
 	if($e['info']!='') {
-		$ei .= '<br><i>Информация:</i><br>'.$e['info'];
+		$ei .= '<br><i>РРЅС„РѕСЂРјР°С†РёСЏ:</i><br>'.$e['info'];
 	}
 	//
 	$ef = '<img onmouseover="hi(this,\'<b>'.$pl['mname'].'</b>'.$ei.'\',event,3,1,1,1,\'\');" onMouseOut="hic();" onMouseDown="hic();" src="http://img.xcombats.com/i/eff/'.$pl['img'].'" width="40" height="25">';
@@ -214,14 +214,14 @@ while( $pl = mysql_fetch_array($sp) ) {
 //
 $dv = '';
 $da = '';
-$dv .= '<select style="font-size:12px;" name="botadminatack2"><option value="0">------ Выберите клона из списка ------</option>';
+$dv .= '<select style="font-size:12px;" name="botadminatack2"><option value="0">------ Р’С‹Р±РµСЂРёС‚Рµ РєР»РѕРЅР° РёР· СЃРїРёСЃРєР° ------</option>';
 $sp_m = mysql_query('SELECT * FROM `users` WHERE `icq` = "17768719" ORDER BY `id` ASC');
 while($pl_m = mysql_fetch_array($sp_m) ) {
 	$dv .= '<option value="'.$pl_m['id'].'">'.$pl_m['id'].' [ '.$pl_m['align'].' ] - '.$pl_m['login'].' ['.$pl_m['level'].']</option>';
 	$da .= '<option value="'.$pl_m['id'].'">'.$pl_m['id'].' [ '.$pl_m['align'].' ] - '.$pl_m['login'].' ['.$pl_m['level'].']</option>';
 }
 $dv .= '</select>';
-$da = '<select style="font-size:12px;" name="botadminatack1"><option value="0">------ Выберите клона из списка ------</option>'.$da.'</select>';
+$da = '<select style="font-size:12px;" name="botadminatack1"><option value="0">------ Р’С‹Р±РµСЂРёС‚Рµ РєР»РѕРЅР° РёР· СЃРїРёСЃРєР° ------</option>'.$da.'</select>';
 ?>
 <table width="700" border="0" cellpadding="10" cellspacing="10">
   <tr>
@@ -230,7 +230,7 @@ $da = '<select style="font-size:12px;" name="botadminatack1"><option value="0">-
         <?=$da?>
         &nbsp;</p>
       <p>&nbsp;</p></td>
-    <td align="center" valign="middle">&nbsp; <b>против</b> &nbsp;</td>
+    <td align="center" valign="middle">&nbsp; <b>РїСЂРѕС‚РёРІ</b> &nbsp;</td>
     <td width="350" align="center" valign="middle">&nbsp;
       <p>
         <?=$dv?>
@@ -239,12 +239,12 @@ $da = '<select style="font-size:12px;" name="botadminatack1"><option value="0">-
   </tr>
   <tr>
     <td align="center" valign="middle"><?=$ef1?></td>
-    <td align="center" valign="middle">&nbsp;<b style="color:#03C">эффекты<br></b>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;<b style="color:#03C">СЌС„С„РµРєС‚С‹<br></b>&nbsp;</td>
     <td align="center" valign="middle"><?=$ef2?></td>
   </tr>
   <tr>
     <td align="center" valign="middle">&nbsp;</td>
-    <td align="center" valign="middle"><br><br><input class="btnnew" type="submit" value="Начать!"></td>
+    <td align="center" valign="middle"><br><br><input class="btnnew" type="submit" value="РќР°С‡Р°С‚СЊ!"></td>
     <td align="center" valign="middle">&nbsp;</td>
   </tr>
   </table>

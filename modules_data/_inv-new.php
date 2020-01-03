@@ -5,7 +5,7 @@ if(!defined('GAME')) {
 }
 
 if( !isset( $_GET['otdel'] ) || ( $_GET['otdel']<1 && $_GET['otdel']>6 ) ) {
-	$_GET['otdel'] = 1; // Если раздел не указан.
+	$_GET['otdel'] = 1; // Р•СЃР»Рё СЂР°Р·РґРµР» РЅРµ СѓРєР°Р·Р°РЅ.
 	$_GET['paged'] = $_SESSION['paged'] = 0;
 }
 
@@ -13,15 +13,15 @@ if( isset($_GET['otdel']) ) {
 	if( !isset($_GET['paged']) && (isset($_GET['use_pid']) || isset($_GET['sid']) || isset($_GET['oid']) || isset($_GET['usecopr']) || isset($_GET['delcop'])) ) {
 		$_GET['paged'] = $_SESSION['paged']; // use item and load old paging
 	} elseif(isset($_GET['paged']) && $_GET['paged']!='') {
-		$_SESSION['paged'] = $_GET['paged']; // Задаем новую страницу.
+		$_SESSION['paged'] = $_GET['paged']; // Р—Р°РґР°РµРј РЅРѕРІСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ.
 	} elseif(isset($_SESSION['paged']) && $_SESSION['paged']!='' && $_SESSION['otdel']==$_GET['otdel']) {
-		$_GET['paged'] = $_SESSION['paged']; // Если страница уже имеется в сессии, возвращаем её в текущую.
+		$_GET['paged'] = $_SESSION['paged']; // Р•СЃР»Рё СЃС‚СЂР°РЅРёС†Р° СѓР¶Рµ РёРјРµРµС‚СЃСЏ РІ СЃРµСЃСЃРёРё, РІРѕР·РІСЂР°С‰Р°РµРј РµС‘ РІ С‚РµРєСѓС‰СѓСЋ.
 	} else {
 		$_GET['paged'] = $_SESSION['paged'] = 0;
 	}
 }
 
-$_SESSION['otdel'] = $_GET['otdel']; // для отладки.
+$_SESSION['otdel'] = $_GET['otdel']; // РґР»СЏ РѕС‚Р»Р°РґРєРё.
 
 if( isset($_GET['delcop']) ) {
 	mysql_query('DELETE FROM `complects_priem` WHERE `id` = "'.mysql_real_escape_string($_GET['delcop']).'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
@@ -33,14 +33,14 @@ if( isset($_GET['delcop']) ) {
 	}
 }
 
-//сохраняем комплект
+//СЃРѕС…СЂР°РЅСЏРµРј РєРѕРјРїР»РµРєС‚
 if( isset($_POST['compname']) ) {
 	$_POST['compname'] = htmlspecialchars($_POST['compname'],NULL,'cp1251');
 	$_POST['compname'] = str_replace("'",'',$_POST['compname']);
 	$_POST['compname'] = str_replace('"','',$_POST['compname']);
 	$ptst = str_replace(' ','',$_POST['compname']);
 	if( $ptst!='' ) {
-		//Добавляем комплект
+		//Р”РѕР±Р°РІР»СЏРµРј РєРѕРјРїР»РµРєС‚
 		$ptst = '';
 		$sp = mysql_query('SELECT `inOdet`,`id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inOdet` > 0 AND `inShop` = "0" ORDER BY `inOdet` ASC LIMIT 250');
 		while ( $pl = mysql_fetch_array($sp) ) {
@@ -48,21 +48,21 @@ if( isset($_POST['compname']) ) {
 		}
 		$tcm = mysql_fetch_array(mysql_query('SELECT * FROM `save_com` WHERE `uid` = "'.$u->info['id'].'" AND `name` = "'.mysql_real_escape_string($_POST['compname']).'" AND `delete` = "0" LIMIT 1'));
 		if( !isset($tcm['id']) ) {
-			//добавляем новый комплект
+			//РґРѕР±Р°РІР»СЏРµРј РЅРѕРІС‹Р№ РєРѕРјРїР»РµРєС‚
 			$ins = mysql_query('INSERT INTO `save_com` (`uid`,`time`,`name`,`val`,`type`) VALUES ("'.$u->info['id'].'","'.time().'","'.mysql_real_escape_string($_POST['compname']).'","'.$ptst.'","0")');
 			if($ins) {
-				$u->error = 'Комплект &quot;'.$_POST['compname'].'&quot; был успешно сохранен';
+				$u->error = 'РљРѕРјРїР»РµРєС‚ &quot;'.$_POST['compname'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅ';
 			} else {
-				$u->error = 'Не удалось сохранить комплект по техническим причинам';	
+				$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕС…СЂР°РЅРёС‚СЊ РєРѕРјРїР»РµРєС‚ РїРѕ С‚РµС…РЅРёС‡РµСЃРєРёРј РїСЂРёС‡РёРЅР°Рј';	
 			}
 		}else{
-			//изменяем существующий
+			//РёР·РјРµРЅСЏРµРј СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№
 			$ins = mysql_query('UPDATE `save_com` SET `val` = "'.$ptst.'" WHERE `id` = "'.$tcm['id'].'" LIMIT 1');
 			if($ins)
 			{
-				$u->error = 'Комплект &quot;'.$_POST['compname'].'&quot; был успешно изменен';
+				$u->error = 'РљРѕРјРїР»РµРєС‚ &quot;'.$_POST['compname'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РёР·РјРµРЅРµРЅ';
 			}else{
-				$u->error = 'Не удалось изменить комплект по техническим причинам';	
+				$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РёР·РјРµРЅРёС‚СЊ РєРѕРјРїР»РµРєС‚ РїРѕ С‚РµС…РЅРёС‡РµСЃРєРёРј РїСЂРёС‡РёРЅР°Рј';	
 			}	
 		}
 		unset($ptst,$tcm,$inc);
@@ -71,7 +71,7 @@ if( isset($_POST['compname']) ) {
 	$cmpl = mysql_query('UPDATE `save_com` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `id` = "'.mysql_real_escape_string($_GET['delc1']).'" LIMIT 1');
 	if($cmpl)
 	{
-		$u->error = 'Комплект был успешно удален';		
+		$u->error = 'РљРѕРјРїР»РµРєС‚ Р±С‹Р» СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ';		
 	}
 }
 $filt='`iu`.`lastUPD` DESC';
@@ -97,10 +97,10 @@ $pgs = mysql_fetch_array(mysql_query('SELECT COUNT(`iu`.`id`) FROM `items_users`
 $pgs = $pgs[0];
 $page_look = '';
 $inventorySortBox = '<div id="inventorySortBox">
-	Сортировка: <br/>
-		<input type="button" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&boxsort=name&otdel=' . intval($_GET['otdel']) . '\');" value="названию" />
-		<input type="button" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&boxsort=cost&otdel=' . intval($_GET['otdel']) . '\');" value="цене" />
-		<input type="button" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&boxsort=type&otdel=' . intval($_GET['otdel']) . '\');" value="типу" />
+	РЎРѕСЂС‚РёСЂРѕРІРєР°: <br/>
+		<input type="button" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&boxsort=name&otdel=' . intval($_GET['otdel']) . '\');" value="РЅР°Р·РІР°РЅРёСЋ" />
+		<input type="button" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&boxsort=cost&otdel=' . intval($_GET['otdel']) . '\');" value="С†РµРЅРµ" />
+		<input type="button" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&boxsort=type&otdel=' . intval($_GET['otdel']) . '\');" value="С‚РёРїСѓ" />
 </div>';
 
 if(isset($_SESSION['paged']))$page_look = '<!-- PAGED SEE '.round((int)@$_SESSION['paged']).'-->'; else $page_look = '<!-- PAGED '.$_SESSION['paged'].' -->';
@@ -108,7 +108,7 @@ if($pgs > $pc) {
 	$nlim = ' LIMIT '.$pxc.' , '.$pc.'';
 	#$page_look .= '<table border=0 cellpadding=0 cellspacing=0 width=100% bgcolor="#A5A5A5"><tr><td width=99% align=center>';
 	$page_look .= '<div style="padding:0px;">';
-	$page_look .= 'Страницы: ';
+	$page_look .= 'РЎС‚СЂР°РЅРёС†С‹: ';
 	$i = 1;
 	echo '<style>.pgdas { display:inline-block;background-color:#dadada; padding:2px 4px 1px 4px; font-size:12px;} .pgdas1 { display:inline-block;background-color:#a5a5a5; padding:2px 4px 1px 4px;  font-size:12px;}
 	.pgdas { background: #dadada;background: -moz-linear-gradient(top,  #dadada 50%, #a5a5a5 99%);background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#dadada), color-stop(99%,#a5a5a5));background: -webkit-linear-gradient(top,  #dadada 50%,#a5a5a5 99%);background: -o-linear-gradient(top,  #dadada 50%,#a5a5a5 99%);background: -ms-linear-gradient(top,  #dadada 50%,#a5a5a5 99%);background: linear-gradient(to bottom,  #dadada 50%,#a5a5a5 99%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#dadada\', endColorstr=\'#a5a5a5\',GradientType=0 );
@@ -150,7 +150,7 @@ if( isset($_GET['boxsort']) && $_GET['otdel']==5 ) {
 	$itmAll = $u->genInv(1,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `im`.`inRazdel`="'.mysql_real_escape_string($_GET['otdel']).'" ORDER BY '.$filt.''.$nlim);
 }
 
-$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО</td></tr>';
+$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ</td></tr>';
 if($itmAll[0] > 0)
 	$itmAllSee = $itmAll[2];
 	
@@ -158,30 +158,30 @@ $showItems = '<table width="100%" cellspacing="0" cellpadding="0">
   <tr>
     <td valign="top"><table style="border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;" width="100%" cellspacing="0" cellpadding="5" bgcolor="#c8c8c8">
       <tr>
-        <td width="20%"  ' . (($_GET['otdel'] != 1) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-right: 1px solid #A5A5A5;"') .'  align=center bgcolor="' . (($_GET['otdel'] == 1) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=1&rn=1.1\');">Обмундирование</a></td>
-        <td width="20%"  ' . (($_GET['otdel'] != 2) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;"') .'  align=center bgcolor="' . (($_GET['otdel'] == 2) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=2&rn=2.1\');">Заклятия</a></td>
-        <td width="20%" ' . (($_GET['otdel'] != 3) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;"') .' align=center bgcolor="' . (($_GET['otdel'] == 3) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=3&rn=3.1\');">Эликсиры</a></td>
-        <td width="20%"  ' . (($_GET['otdel'] != 6) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;"') .'  align=center bgcolor="' . (($_GET['otdel'] == 6) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=6&rn=6.1\');">Руны</a></td>
-        <td width="20%"  ' . (($_GET['otdel'] != 4) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-left: 1px solid #A5A5A5;" ') .'  align=center bgcolor="' . (($_GET['otdel'] == 4) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=4&rn=4.1\');">Прочее</a></td>
+        <td width="20%"  ' . (($_GET['otdel'] != 1) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-right: 1px solid #A5A5A5;"') .'  align=center bgcolor="' . (($_GET['otdel'] == 1) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=1&rn=1.1\');">РћР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ</a></td>
+        <td width="20%"  ' . (($_GET['otdel'] != 2) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;"') .'  align=center bgcolor="' . (($_GET['otdel'] == 2) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=2&rn=2.1\');">Р—Р°РєР»СЏС‚РёСЏ</a></td>
+        <td width="20%" ' . (($_GET['otdel'] != 3) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;"') .' align=center bgcolor="' . (($_GET['otdel'] == 3) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=3&rn=3.1\');">Р­Р»РёРєСЃРёСЂС‹</a></td>
+        <td width="20%"  ' . (($_GET['otdel'] != 6) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;"') .'  align=center bgcolor="' . (($_GET['otdel'] == 6) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=6&rn=6.1\');">Р СѓРЅС‹</a></td>
+        <td width="20%"  ' . (($_GET['otdel'] != 4) ? 'style="border-bottom: 1px solid #A5A5A5;"' : 'style="border-left: 1px solid #A5A5A5;" ') .'  align=center bgcolor="' . (($_GET['otdel'] == 4) ? '#dadada' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?inv=1&mAjax=true&otdel=4&rn=4.1\');">РџСЂРѕС‡РµРµ</a></td>
       </tr>
     </table></td>
   </tr>
   <tr>
     <td align="center" ><table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top:0px; border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;" bgcolor="#dadada">
       <tr>
-        <td align="left" valign="middle" style="color:#2b2c2c; height: 18px;font-size:12px; padding-left:4px;"><b>масса:' . (0+$u->aves['now']) . ' / ' . $u->aves['max'] . ' <!--, предметов: ' . $u->aves['items'] . '--></b></td>
+        <td align="left" valign="middle" style="color:#2b2c2c; height: 18px;font-size:12px; padding-left:4px;"><b>РјР°СЃСЃР°:' . (0+$u->aves['now']) . ' / ' . $u->aves['max'] . ' <!--, РїСЂРµРґРјРµС‚РѕРІ: ' . $u->aves['items'] . '--></b></td>
 		<td align="center" valign="middle" style="color:#2b2c2c; font-size:12px">' . $page_look . '</td>
 		<td align="right" valign="middle" style="color:#2b2c2c; font-size:12px; position:relative;">
 		<form id="line_filter" style="display:inline;" onsubmit="return false;" prc_adsf="true">
-			Поиск по имени: <div style="display:inline-block; position:relative; ">
-			<input type="text" id="inpFilterName"  placeholder="Введите название предмета..."  autofocus="autofocus" 	size="44" autocomplete="off">
-			<img style="position:absolute; cursor:pointer; right: 2px; top: 3px; width: 12px; height: 12px;" onclick="document.getElementById(\'inpFilterName\').value=\'\';" title="Убрать фильтр (клавиша Esc)"  src="http://img.xcombats.com/i/clear.gif">
-			<input type="submit" style="display: none" id="inpFilterName_submit" value="Фильтр" onclick="return false">
+			РџРѕРёСЃРє РїРѕ РёРјРµРЅРё: <div style="display:inline-block; position:relative; ">
+			<input type="text" id="inpFilterName"  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїСЂРµРґРјРµС‚Р°..."  autofocus="autofocus" 	size="44" autocomplete="off">
+			<img style="position:absolute; cursor:pointer; right: 2px; top: 3px; width: 12px; height: 12px;" onclick="document.getElementById(\'inpFilterName\').value=\'\';" title="РЈР±СЂР°С‚СЊ С„РёР»СЊС‚СЂ (РєР»Р°РІРёС€Р° Esc)"  src="http://img.xcombats.com/i/clear.gif">
+			<input type="submit" style="display: none" id="inpFilterName_submit" value="Р¤РёР»СЊС‚СЂ" onclick="return false">
 			<div class="autocomplete-suggestions" style="position: absolute; display: none;top: 15px; left:0px; margin:0px auto; right: 0px; font-size:12px; font-family: Tahoma; max-height: 300px; z-index: 9999;"></div>
 			</div>
 		</form>
 		
-			<input type="button" onclick="inventorySort(this);" style="margin:0px 2px;" value="Сортировка" />
+			<input type="button" onclick="inventorySort(this);" style="margin:0px 2px;" value="РЎРѕСЂС‚РёСЂРѕРІРєР°" />
 			'.$inventorySortBox.'
 		</td>
       </tr>
@@ -189,7 +189,7 @@ $showItems = '<table width="100%" cellspacing="0" cellpadding="0">
   </tr>
   <tr>
     <td valign="top" align="center">
-		<div style="height:350px; border-bottom: 1px solid #A5A5A5;border-top: 1px solid #A5A5A5; overflow-y:scroll; overflow-x: hidden;" id="itmAllSee"><table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">' . (( $u->info['invBlock'] == 0 ) ? $itmAllSee : '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Рюкзак закрыт.</b><br><img title="Замок для рюкзака" src="http://img.xcombats.com/i/items/box_lock.gif"> Введите пароль: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="Открыть"></form></div>' ) . '</table></div></td>
+		<div style="height:350px; border-bottom: 1px solid #A5A5A5;border-top: 1px solid #A5A5A5; overflow-y:scroll; overflow-x: hidden;" id="itmAllSee"><table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">' . (( $u->info['invBlock'] == 0 ) ? $itmAllSee : '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Р СЋРєР·Р°Рє Р·Р°РєСЂС‹С‚.</b><br><img title="Р—Р°РјРѕРє РґР»СЏ СЂСЋРєР·Р°РєР°" src="http://img.xcombats.com/i/items/box_lock.gif"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="РћС‚РєСЂС‹С‚СЊ"></form></div>' ) . '</table></div></td>
   </tr>
 </table>
 <script language="JavaScript">
@@ -290,7 +290,7 @@ $(window).resize(function(){
 });
 
 function inventoryAjax(url){
-	$('#ShowInventory').html('<div align="center" style="padding:10px;background-color:#A5A5A5;"><b>Загрузка...</b></div>');
+	$('#ShowInventory').html('<div align="center" style="padding:10px;background-color:#A5A5A5;"><b>Р—Р°РіСЂСѓР·РєР°...</b></div>');
 	$.ajax({
 		url: url,
 		cache: false,
@@ -314,23 +314,23 @@ function seetext(id) {
 	<tr>
 		<td colspan="3">
 			<div style="z-index: 2; position: relative; width:100%; display:table; box-sizing: border-box; margin: 0px; padding: 0px 5px 3px 5px; -webkit-box-shadow: 0px 4px 6px -3px rgba(0, 0, 0, 0.6); -moz-box-shadow: 0px 4px 6px -3px rgba(0, 0, 0, 0.6); box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.6);">
-				<div style="display:table-cell;"><!-- Кнопки возврата и другие--></div>
+				<div style="display:table-cell;"><!-- РљРЅРѕРїРєРё РІРѕР·РІСЂР°С‚Р° Рё РґСЂСѓРіРёРµ--></div>
 				<div style="display:table-cell; text-align: right;">
 					<?
 					if($u->info['animal'] != 0) {
-						echo '<input class="btnnew" type="button" onclick="top.frames[\'main\'].location=\'main.php?pet=1&rnd='.$code.'\'" value="Зверь" />';
+						echo '<input class="btnnew" type="button" onclick="top.frames[\'main\'].location=\'main.php?pet=1&rnd='.$code.'\'" value="Р—РІРµСЂСЊ" />';
 					}
-					?><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?skills&amp;side=1&amp;rn=<? echo $code; ?>'"  value="Умения" /><?
-					if ($u->info['inTurnir'] == 0) { ?><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?obraz&rnd=<? echo $code; ?>'" value="Образ" /><? }
+					?><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?skills&amp;side=1&amp;rn=<? echo $code; ?>'"  value="РЈРјРµРЅРёСЏ" /><?
+					if ($u->info['inTurnir'] == 0) { ?><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?obraz&rnd=<? echo $code; ?>'" value="РћР±СЂР°Р·" /><? }
 					$gl = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `reimage` WHERE ((`uid` = "'.$u->info['id'].'" AND `clan` = "0") OR `clan` = "'.$u->info['clan'].'") AND `good` > 0 AND `bad` = "0" LIMIT 1'));
-					if($gl[0] > 0) { ?><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?galery&rnd=<? echo $code; ?>'" value="Галерея" /><? } unset($gl); 
-					if ($u->info['inTurnir'] == 0) { ?><input class="btnnew2" type="button" onclick="location.href='main.php?referals'" value="Наставничество" /><? }
-					?><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php'" value="Вернуться" />
+					if($gl[0] > 0) { ?><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?galery&rnd=<? echo $code; ?>'" value="Р“Р°Р»РµСЂРµСЏ" /><? } unset($gl); 
+					if ($u->info['inTurnir'] == 0) { ?><input class="btnnew2" type="button" onclick="location.href='main.php?referals'" value="РќР°СЃС‚Р°РІРЅРёС‡РµСЃС‚РІРѕ" /><? }
+					?><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php'" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" />
 					<!--
-					<input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?anketa&amp;rn=<? echo $code; ?>'" value="Анкета" />
-					<input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?act_trf=1&amp;rn=<? echo $code; ?>'" value="Отчет о переводах" />
-					<input class="btnnew" type="button" style="font-weight:bold;" value="Безопасность" onclick="top.frames['main'].location='main.php?security&amp;rn=<? echo $code; ?>'" />
-					<input class="btnnew" type="button" style="background-color:#A9AFC0" onClick="alert('Раздел отсутствует');" value="Подсказки" />
+					<input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?anketa&amp;rn=<? echo $code; ?>'" value="РђРЅРєРµС‚Р°" />
+					<input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?act_trf=1&amp;rn=<? echo $code; ?>'" value="РћС‚С‡РµС‚ Рѕ РїРµСЂРµРІРѕРґР°С…" />
+					<input class="btnnew" type="button" style="font-weight:bold;" value="Р‘РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ" onclick="top.frames['main'].location='main.php?security&amp;rn=<? echo $code; ?>'" />
+					<input class="btnnew" type="button" style="background-color:#A9AFC0" onClick="alert('Р Р°Р·РґРµР» РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚');" value="РџРѕРґСЃРєР°Р·РєРё" />
 					-->
 				</div>
 			</div>
@@ -343,13 +343,13 @@ function seetext(id) {
 			$priem->seeMy(1);
 		}
 		if( $u->info['inTurnir'] > 0 ) {
-			echo '<center><a href="/main.php?inv&remitem&otdel='.round((int)$_GET['otdel']).'">Снять все</a></center>';
+			echo '<center><a href="/main.php?inv&remitem&otdel='.round((int)$_GET['otdel']).'">РЎРЅСЏС‚СЊ РІСЃРµ</a></center>';
 		}
 		echo '<br>'.$u->info_remont();
 		if( $u->info['inTurnir'] == 0 ) {
 			/*$bns = mysql_fetch_array(mysql_query('SELECT `id`,`time` FROM `aaa_bonus` WHERE `uid` = "'.$u->info['id'].'" AND `time` > '.time().' LIMIT 1'));
 			if(isset($bns['id'])) {
-				$bns2 = 'через '.$u->timeOut($bns['time']-time());
+				$bns2 = 'С‡РµСЂРµР· '.$u->timeOut($bns['time']-time());
 				$bns1 = '0';
 				$bns3 = '';
 			}else{
@@ -359,7 +359,7 @@ function seetext(id) {
 			}
 			if(isset($_GET['takebns']) && $u->newAct($_GET['takebns'])==true && !isset($bns['id'])) {
 				$u->takeBonus();
-				$bns2 = '<div style="width:112px" align="center">через '.$u->timeOut( 2 * 3600 ).'</div>';
+				$bns2 = '<div style="width:112px" align="center">С‡РµСЂРµР· '.$u->timeOut( 2 * 3600 ).'</div>';
 				$bns1 = '0';
 				$bns3 = '';
 			}

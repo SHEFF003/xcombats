@@ -1,4 +1,4 @@
-<?
+<?php
 
 define('GAME',true);
 include('../_incl_data/__config.php');
@@ -32,12 +32,12 @@ function  microLogin($id,$t,$nnz = 1) {
 	if($inf['cityreg'] == '') {
 		$inf['cityreg'] = 'capitalcity';
 	}
-	$r .= ' <b>'.$inf['login'].'</b> ['.$inf['level'].']<a target="_blank" href="http://xcombats.com/inf.php?'.$inf['id'].'"><img title="Инф. о '.$inf['login'].'" src="http://img.xcombats.com/i/inf_'.$inf['cityreg'].'.gif" /></a>';	
+	$r .= ' <b>'.$inf['login'].'</b> ['.$inf['level'].']<a target="_blank" href="http://xcombats.com/inf.php?'.$inf['id'].'"><img title="РРЅС„. Рѕ '.$inf['login'].'" src="http://img.xcombats.com/i/inf_'.$inf['cityreg'].'.gif" /></a>';	
 	return $r;
 }
 
 ?>
-<HTML><HEAD><TITLE>Бойцовский клуб</TITLE>
+<HTML><HEAD><TITLE>Р‘РѕР№С†РѕРІСЃРєРёР№ РєР»СѓР±</TITLE>
 <META content=INDEX,FOLLOW name=robots>
 <META content="1 days" name=revisit-after>
 <META http-equiv=Content-Type content="text/html; charset=windows-1251">
@@ -111,8 +111,8 @@ list-style-type:decimal;
               <td bgcolor="#F2E5B1">
                 <td valign=top><br><BR>
                 	<TABLE width=100%>
-                	  <td>&nbsp; &nbsp; Рейтинг персонажей <? if(isset($_GET['type']) && $_GET['type'] == 2) { ?><a title="Нажмите чтобы посмотреть рейтинг за полночь" href="?user=<?=$p['id']?>&type=1">сейчас</a><? }else{ ?><a title="Нажмите чтобы посмотреть текущий рейтинг" href="?user=<?=$p['id']?>&type=2">в полночь</a><? } ?>.<!--Рейтинг <? if($_GET['t'] == 1 || !isset($_GET['t'])) { ?><B>бойцов</B> и <a href="?t=2">магов</a><? }else{ ?><a href="?t=1">бойцов</a> и <B>магов</B><? } ?>--> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
-                      <TD align=right>Статистика на <span class="style8"><code><? if(isset($_GET['type']) && $_GET['type'] == 2) { ?><?php echo date('d.m.o H:i'); ?><? }else{ echo date('d.m.o').' 00:00'; } ?></code></span></TABLE>
+                	  <td>&nbsp; &nbsp; Р РµР№С‚РёРЅРі РїРµСЂСЃРѕРЅР°Р¶РµР№ <? if(isset($_GET['type']) && $_GET['type'] == 2) { ?><a title="РќР°Р¶РјРёС‚Рµ С‡С‚РѕР±С‹ РїРѕСЃРјРѕС‚СЂРµС‚СЊ СЂРµР№С‚РёРЅРі Р·Р° РїРѕР»РЅРѕС‡СЊ" href="?user=<?=$p['id']?>&type=1">СЃРµР№С‡Р°СЃ</a><? }else{ ?><a title="РќР°Р¶РјРёС‚Рµ С‡С‚РѕР±С‹ РїРѕСЃРјРѕС‚СЂРµС‚СЊ С‚РµРєСѓС‰РёР№ СЂРµР№С‚РёРЅРі" href="?user=<?=$p['id']?>&type=2">РІ РїРѕР»РЅРѕС‡СЊ</a><? } ?>.<!--Р РµР№С‚РёРЅРі <? if($_GET['t'] == 1 || !isset($_GET['t'])) { ?><B>Р±РѕР№С†РѕРІ</B> Рё <a href="?t=2">РјР°РіРѕРІ</a><? }else{ ?><a href="?t=1">Р±РѕР№С†РѕРІ</a> Рё <B>РјР°РіРѕРІ</B><? } ?>--> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+                      <TD align=right>РЎС‚Р°С‚РёСЃС‚РёРєР° РЅР° <span class="style8"><code><? if(isset($_GET['type']) && $_GET['type'] == 2) { ?><?php echo date('d.m.o H:i'); ?><? }else{ echo date('d.m.o').' 00:00'; } ?></code></span></TABLE>
 <P>
 
 <P>
@@ -128,9 +128,9 @@ list-style-type:decimal;
 <td colspan="5"></td>
 </tr>
 <tr bgcolor="#ECDFAA">
-<td><b>№</b></td>
+<td><b>в„–</b></td>
 <td><b></b></td>
-<td align="right"><b>рейтинг </b></td>
+<td align="right"><b>СЂРµР№С‚РёРЅРі </b></td>
 <td>&nbsp;</td>
 </tr>
 <tr bgcolor="#3D3D3B">
@@ -144,7 +144,7 @@ list-style-type:decimal;
 <?php
 $r = '';
 
-//рейтинг персонажей
+//СЂРµР№С‚РёРЅРі РїРµСЂСЃРѕРЅР°Р¶РµР№
 $r = '';
 $i = 1;
 $j = 0;
@@ -179,7 +179,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 		}else{
 			$r .= '<tr height="20" bgcolor="#ECDFAA">';
 		}
-		//№
+		//в„–
 		$numb = '';
 		$numbi = '';
 		if($i != $pl['last'] && ($j+$pl['last']-$i) != 0 && ($pl['last']-$i+$j) != 0) {
@@ -203,7 +203,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 		$r .= '<td height="20" style="font-size:10pt" align=center valign="top" class="mystrong">&nbsp;'.$numbi.$i.$numb.'&nbsp;</td>';
 		//login
 		$r .= '<td height="20" align=left valign="top" class="mystrong">&nbsp;&nbsp;'.microLogin($user,1).'&nbsp;</td>';
-		//рейтинг
+		//СЂРµР№С‚РёРЅРі
 		$r .= '<td height="20" align=right valign="top" class="mystrong">'.$pl[$rt_type].'</td>';
 		//
 		$r .= '</tr>';	
@@ -213,11 +213,11 @@ while( $pl = mysql_fetch_array($sp) ) {
 
 if($r == '') {
 	$r = '<tr  bgcolor="#ECDFAA">';
-	//№
+	//в„–
 	$r .= '<td align=right valign="top" class="mystrong"></td>';
 	//login
-	$r .= '<td align=center valign="top" class="mystrong">К сожалению рейтинг пуст</td>';
-	//рейтинг
+	$r .= '<td align=center valign="top" class="mystrong">Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ СЂРµР№С‚РёРЅРі РїСѓСЃС‚</td>';
+	//СЂРµР№С‚РёРЅРі
 	$r .= '<td align=right valign="top" class="mystrong"></td>';
 	//
 	$r .= '</tr>';	
@@ -244,7 +244,7 @@ echo $r;
 </table>
 <center>
 <small>
-Рейтинг плавающий. Зависит от ваших активных боевых действий за последние 3 месяца.</small>
+Р РµР№С‚РёРЅРі РїР»Р°РІР°СЋС‰РёР№. Р—Р°РІРёСЃРёС‚ РѕС‚ РІР°С€РёС… Р°РєС‚РёРІРЅС‹С… Р±РѕРµРІС‹С… РґРµР№СЃС‚РІРёР№ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 3 РјРµСЃСЏС†Р°.</small>
 </center>
 </p>
 </FORM>
@@ -278,7 +278,7 @@ echo $r;
 </div>
 </td>
 <td align=center><br>
-<div align="center" style="padding-bottom:15px;"><NOBR><span class="style6">Copyright © www.xcombats.com</span></NOBR></div>
+<div align="center" style="padding-bottom:15px;"><NOBR><span class="style6">Copyright В© www.xcombats.com</span></NOBR></div>
 </td>
 <td width="20%">
 </td>

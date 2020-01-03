@@ -6,30 +6,30 @@ $res = mysql_fetch_array(mysql_query("SELECT * FROM `clan` WHERE `id` = '".mysql
 $cpr = explode('|', $u->info['clan_prava']);
 
 if(!isset($res['id'])) {
-  die('Клан был расформирован.');
+  die('РљР»Р°РЅ Р±С‹Р» СЂР°СЃС„РѕСЂРјРёСЂРѕРІР°РЅ.');
 }
 
 if(!isset($_GET['events']) && !isset($_GET['diplom']) && !isset($_GET['control']) && !isset($_GET['deposit']) && !isset($_GET['titul']) && !isset($_GET['rules']) && !isset($_GET['info']) && !isset($_GET['members'])) {
   $_GET['events'] = 1;
 }
 
-//Возможности текущего титула
+//Р’РѕР·РјРѕР¶РЅРѕСЃС‚Рё С‚РµРєСѓС‰РµРіРѕ С‚РёС‚СѓР»Р°
 $tt = array(
-	0	=>	array('000000000','Доступные каналы'),
-	1	=>	array(0,'Просмотр событий клана'),
-	2	=>	array(0,'Создание событий клана'),
-	3	=>	array(0,'Просмотр хранилища'),
-	4	=>	array(0,'Использование вещей из хранилища'),
-	5	=>	array(0,'Изъятие предметов из хранилища'),
-	6	=>	array(0,'Просмотр казны и списка игроков, пополнявших казну'),
-	7	=>	array(0,'Пополнение казны'),
-	8	=>	array(0,'Использование казны'),
-	9	=>	array(0,'Прием в клан'),
-	10	=>	array(0,'Изгнание из клана'),
-	11	=>	array(0,'Редактирование информации о клане'),
-	12	=>	array(0,'Клановые союзы и альянсы'),
-	13	=>	array(0,'Управление клановыми союзами и альянсами'),
-	14	=>	array(0,'Обьявление войны'),
+	0	=>	array('000000000','Р”РѕСЃС‚СѓРїРЅС‹Рµ РєР°РЅР°Р»С‹'),
+	1	=>	array(0,'РџСЂРѕСЃРјРѕС‚СЂ СЃРѕР±С‹С‚РёР№ РєР»Р°РЅР°'),
+	2	=>	array(0,'РЎРѕР·РґР°РЅРёРµ СЃРѕР±С‹С‚РёР№ РєР»Р°РЅР°'),
+	3	=>	array(0,'РџСЂРѕСЃРјРѕС‚СЂ С…СЂР°РЅРёР»РёС‰Р°'),
+	4	=>	array(0,'РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РІРµС‰РµР№ РёР· С…СЂР°РЅРёР»РёС‰Р°'),
+	5	=>	array(0,'РР·СЉСЏС‚РёРµ РїСЂРµРґРјРµС‚РѕРІ РёР· С…СЂР°РЅРёР»РёС‰Р°'),
+	6	=>	array(0,'РџСЂРѕСЃРјРѕС‚СЂ РєР°Р·РЅС‹ Рё СЃРїРёСЃРєР° РёРіСЂРѕРєРѕРІ, РїРѕРїРѕР»РЅСЏРІС€РёС… РєР°Р·РЅСѓ'),
+	7	=>	array(0,'РџРѕРїРѕР»РЅРµРЅРёРµ РєР°Р·РЅС‹'),
+	8	=>	array(0,'РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РєР°Р·РЅС‹'),
+	9	=>	array(0,'РџСЂРёРµРј РІ РєР»Р°РЅ'),
+	10	=>	array(0,'РР·РіРЅР°РЅРёРµ РёР· РєР»Р°РЅР°'),
+	11	=>	array(0,'Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєР»Р°РЅРµ'),
+	12	=>	array(0,'РљР»Р°РЅРѕРІС‹Рµ СЃРѕСЋР·С‹ Рё Р°Р»СЊСЏРЅСЃС‹'),
+	13	=>	array(0,'РЈРїСЂР°РІР»РµРЅРёРµ РєР»Р°РЅРѕРІС‹РјРё СЃРѕСЋР·Р°РјРё Рё Р°Р»СЊСЏРЅСЃР°РјРё'),
+	14	=>	array(0,'РћР±СЊСЏРІР»РµРЅРёРµ РІРѕР№РЅС‹'),
 	15	=>	array(0,0),
 	15	=>	array(0,0),
 	16	=>	array(0,0),
@@ -60,7 +60,7 @@ if(isset($utitl['id'])) {
 
 $u->info['tt'] = $tt;
 
-//Уровень клана
+//РЈСЂРѕРІРµРЅСЊ РєР»Р°РЅР°
 $lvl_exp = array(
 	0 => 0,
 	1 => 500000,
@@ -76,11 +76,11 @@ if($res['exp'] >= $lvl_exp[$res['level']+1]) {
 	$res['level']++;
 	mysql_query('UPDATE `clan` SET `level` = "'.$res['level'].'" WHERE `id` = "'.$res['id'].'" LIMIT 1');
 	mysql_query('INSERT INTO `clan_news` (`clan`,`time`,`ddmmyyyy`,`uid`,`ip`,`login`,`title`,`text`) VALUES (
-	"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","Администрация","Клановое сообщение","Ваш клан достиг уровня '.$res['level'].'!"
+	"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ","РљР»Р°РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ","Р’Р°С€ РєР»Р°РЅ РґРѕСЃС‚РёРі СѓСЂРѕРІРЅСЏ '.$res['level'].'!"
 	)');
 }
 
-//Права клана
+//РџСЂР°РІР° РєР»Р°РЅР°
 $lvl_prava = array(
 	0  => array(8,0,0,0,0,50,20,200),
 	1  => array(12,1,0,0,0,50,20,200),
@@ -219,7 +219,7 @@ padding:10px;
 function openMod(title, dat) {
   var d = document.getElementById('useMagic');
   if(d != undefined) {
-    document.getElementById('modtitle').innerHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="top">'+title+'</td><td width="30" valign="top"><div align="right"><a title="Закрыть" onClick="closeMod(); return false;" href="#">x</a></div></td></tr></table>';
+    document.getElementById('modtitle').innerHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="top">'+title+'</td><td width="30" valign="top"><div align="right"><a title="Р—Р°РєСЂС‹С‚СЊ" onClick="closeMod(); return false;" href="#">x</a></div></td></tr></table>';
     document.getElementById('moddata').innerHTML = dat;
     d.style.display = '';
   }
@@ -237,13 +237,13 @@ function closeMod() {
 }
 
 function addNewEvent() {
-  openMod('Добавить событие',
-	'<form method="post" action="main.php?clan&events&add=<?=$code?>">Заголовок: <input name="titleadd" value="" style="width:335px;" type="text"><br><textarea name="textadd" style="width:412px;" rows="5"></textarea><br><div align="right"><input type="submit" value="Добавить событие"></div></form>');
+  openMod('Р”РѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ',
+	'<form method="post" action="main.php?clan&events&add=<?=$code?>">Р—Р°РіРѕР»РѕРІРѕРє: <input name="titleadd" value="" style="width:335px;" type="text"><br><textarea name="textadd" style="width:412px;" rows="5"></textarea><br><div align="right"><input type="submit" value="Р”РѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ"></div></form>');
 }
 
 function addNewTitul() {
-  openMod('Добавить титул',
-	'<form method="post" action="main.php?clan&titul&add=<?=$code?>">Название титула: <input name="tituladd" value="" style="width:235px;" type="text"><br><small style="float:left">(не более 30-ти символов)</small><input style="float:right" type="submit" value="Добавить титул"></div></form>');
+  openMod('Р”РѕР±Р°РІРёС‚СЊ С‚РёС‚СѓР»',
+	'<form method="post" action="main.php?clan&titul&add=<?=$code?>">РќР°Р·РІР°РЅРёРµ С‚РёС‚СѓР»Р°: <input name="tituladd" value="" style="width:235px;" type="text"><br><small style="float:left">(РЅРµ Р±РѕР»РµРµ 30-С‚Рё СЃРёРјРІРѕР»РѕРІ)</small><input style="float:right" type="submit" value="Р”РѕР±Р°РІРёС‚СЊ С‚РёС‚СѓР»"></div></form>');
 }
 
 </script>
@@ -252,39 +252,39 @@ function addNewTitul() {
  <div class="mt" id="modtitle"></div>
  <div class="md" id="moddata"></div>
 </div>
-<input class="btnnew" style="float:right;margin:1px" type="button" value="Вернуться" onClick="document.location='main.php'">
-<input class="btnnew" style="float:right;margin:1px" type="button" value="Обновить" onClick="document.location='<?=$_SERVER['REQUEST_URI']?>'">
+<input class="btnnew" style="float:right;margin:1px" type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onClick="document.location='main.php'">
+<input class="btnnew" style="float:right;margin:1px" type="button" value="РћР±РЅРѕРІРёС‚СЊ" onClick="document.location='<?=$_SERVER['REQUEST_URI']?>'">
 <?
 if($u->info['clan_prava'] != 'glava') {
   if(isset($_GET['clan_exit']) && $u->newAct($_GET['sd4']) == true) {
     if($u->info['money'] >= 50) {
-	  $txt = 'Игрок <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="Инф. о '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> покинул клан. (50 кр.)';
-	  mysql_query('INSERT INTO `clan_news` (`clan`, `time`, `ddmmyyyy`, `uid`, `ip`, `login`, `title`, `text`) VALUES ("'.$res['id'].'", "'.time().'", "'.date('d.m.Y').'", "0", "127.0.0.1", "Администрация", "Клановое сообщение", "'.mysql_real_escape_string($txt).'")');
+	  $txt = 'РРіСЂРѕРє <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> РїРѕРєРёРЅСѓР» РєР»Р°РЅ. (50 РєСЂ.)';
+	  mysql_query('INSERT INTO `clan_news` (`clan`, `time`, `ddmmyyyy`, `uid`, `ip`, `login`, `title`, `text`) VALUES ("'.$res['id'].'", "'.time().'", "'.date('d.m.Y').'", "0", "127.0.0.1", "РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ", "РљР»Р°РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ", "'.mysql_real_escape_string($txt).'")');
 	  mysql_query('UPDATE `users` SET `palpro` = 0, `clan` = 0, `align` = 0, `clan_prava` = "0|0|0|0", `money` = `money` - 50 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 	  $ar = $u->rem_itm_cl($u->info, $res['id'], 7);
     } else {
-	  echo '<script>setTimeout("alert(\'Для выхода из клана требуется наличие 50 кр.\');",500)</script>';
+	  echo '<script>setTimeout("alert(\'Р”Р»СЏ РІС‹С…РѕРґР° РёР· РєР»Р°РЅР° С‚СЂРµР±СѓРµС‚СЃСЏ РЅР°Р»РёС‡РёРµ 50 РєСЂ.\');",500)</script>';
 	}
   }
 ?>
-<input class="btnnew" style="float:right;margin:1px;margin-right:50px;color:red;" type="button" value="Покинуть клан (50 кр.)" onClick="document.location='main.php?clan&clan_exit=1&sd4=<?=$u->info['nextAct']?>'">
+<input class="btnnew" style="float:right;margin:1px;margin-right:50px;color:red;" type="button" value="РџРѕРєРёРЅСѓС‚СЊ РєР»Р°РЅ (50 РєСЂ.)" onClick="document.location='main.php?clan&clan_exit=1&sd4=<?=$u->info['nextAct']?>'">
 <? } ?>
 <br>
 <div class="section">
 <div id="clanpanel">
   <div class="head" style="position:relative"><img src="http://img.xcombats.com/i/align/align<?=$res['align'];?>.gif" style="position:absolute;top:23px;left:40px;" /></div>
     <div class="panel" style="white-space:nowrap;min-width:1000px;">
-      <div class="name" onclick='location.href="main.php?clan&events"' title="События клана" style="cursor:pointer"><img class="clanicon" src="http://img.xcombats.com/i/clan/<?=$res['name_mini'];?>.gif"><?=$res['name'];?></div>
+      <div class="name" onclick='location.href="main.php?clan&events"' title="РЎРѕР±С‹С‚РёСЏ РєР»Р°РЅР°" style="cursor:pointer"><img class="clanicon" src="http://img.xcombats.com/i/clan/<?=$res['name_mini'];?>.gif"><?=$res['name'];?></div>
       <ul class="tabs">
-      <!--<li class="events"><a href="main.php?clan&events">События</a></li>-->
-      <? if($tt[11][0] == 1) { ?><li class="control"><a href="main.php?clan&control">Управление</a></li><? } ?>
-      <? if($tt[3][0] == 1) { ?><li class="deposit"><a href="main.php?clan&deposit">Хранилище</a></li><? } ?>
-      <? if($tt[11][0] > 0) { ?><li class="clanart"><a href="main.php?clan&titul">Титулы</a></li><? } ?>
-      <li class="rules"><a href="main.php?clan&rules">Права</a></li>
-      <li class="info"><a href="main.php?clan&info">О клане</a></li>
-      <li class="members"><a href="main.php?clan&members">Соклановцы</a></li>
+      <!--<li class="events"><a href="main.php?clan&events">РЎРѕР±С‹С‚РёСЏ</a></li>-->
+      <? if($tt[11][0] == 1) { ?><li class="control"><a href="main.php?clan&control">РЈРїСЂР°РІР»РµРЅРёРµ</a></li><? } ?>
+      <? if($tt[3][0] == 1) { ?><li class="deposit"><a href="main.php?clan&deposit">РҐСЂР°РЅРёР»РёС‰Рµ</a></li><? } ?>
+      <? if($tt[11][0] > 0) { ?><li class="clanart"><a href="main.php?clan&titul">РўРёС‚СѓР»С‹</a></li><? } ?>
+      <li class="rules"><a href="main.php?clan&rules">РџСЂР°РІР°</a></li>
+      <li class="info"><a href="main.php?clan&info">Рћ РєР»Р°РЅРµ</a></li>
+      <li class="members"><a href="main.php?clan&members">РЎРѕРєР»Р°РЅРѕРІС†С‹</a></li>
       <? if($tt[12][0] == 1) { ?>
-      <li class="rules"><a href="main.php?clan&diplom">Дипломатия</a></li>
+      <li class="rules"><a href="main.php?clan&diplom">Р”РёРїР»РѕРјР°С‚РёСЏ</a></li>
       <? } ?>
       <li class="last"></li>
       </ul>
@@ -294,12 +294,12 @@ if($u->info['clan_prava'] != 'glava') {
    <div class="box visible">
    <style>
    .leftimg {
-    float:left; /* Выравнивание по левому краю */
-    margin: 17px 17px 17px 7px; /* Отступы вокруг картинки */
+    float:left; /* Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ Р»РµРІРѕРјСѓ РєСЂР°СЋ */
+    margin: 17px 17px 17px 7px; /* РћС‚СЃС‚СѓРїС‹ РІРѕРєСЂСѓРі РєР°СЂС‚РёРЅРєРё */
    }
    .rightimg  {
-    float: right; /* Выравнивание по правому краю  */ 
-    margin: 17px 7px 17px 17px; /* Отступы вокруг картинки */
+    float: right; /* Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ РїСЂР°РІРѕРјСѓ РєСЂР°СЋ  */ 
+    margin: 17px 7px 17px 17px; /* РћС‚СЃС‚СѓРїС‹ РІРѕРєСЂСѓРі РєР°СЂС‚РёРЅРєРё */
    }
    .dnbx {
 	   width:25px;
@@ -358,7 +358,7 @@ if($u->info['clan_prava'] != 'glava') {
    }
    </style>
     <fieldset style="border:1px dashed #eeeeee">
-      <legend><span class="legtitle">События</span></legend>
+      <legend><span class="legtitle">РЎРѕР±С‹С‚РёСЏ</span></legend>
       <?
 	  	  
 	  $c_r = ''; $c_c = ''; $c_p = '';	 
@@ -366,28 +366,28 @@ if($u->info['clan_prava'] != 'glava') {
 	  if(isset($_GET['add'],$_POST['textadd']) && $tt[2][0] == 1) {
 		 $lmsg = mysql_fetch_array(mysql_query('SELECT `id` FROM `clan_news` WHERE `uid` = "'.$u->info['id'].'" AND `time` > '.(time()-10).' LIMIT 1'));
 		 if(isset($lmsg['id'])) {
-			 $c_r .= '<font color="#FF0000"><b>Нельзя добавлять сообщения чаще одного раза в 10 секунд</b></font><br>'; 
+			 $c_r .= '<font color="#FF0000"><b>РќРµР»СЊР·СЏ РґРѕР±Р°РІР»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ С‡Р°С‰Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ 10 СЃРµРєСѓРЅРґ</b></font><br>'; 
 		 }else{
 			 $tadd = htmlspecialchars($_POST['textadd'],NULL,'cp1251');
 			 $ttadd = htmlspecialchars($_POST['titleadd'],NULL,'cp1251');
 			 if(str_replace(' ','',str_replace('	','',$tadd)) == '') {
-				 $c_r .= '<font color="#FF0000"><b>Нельзя отправлять пустое событие</b></font><br>';  
+				 $c_r .= '<font color="#FF0000"><b>РќРµР»СЊР·СЏ РѕС‚РїСЂР°РІР»СЏС‚СЊ РїСѓСЃС‚РѕРµ СЃРѕР±С‹С‚РёРµ</b></font><br>';  
 			 }elseif(str_replace(' ','',str_replace('	','',$ttadd)) == '') {
-				 $c_r .= '<font color="#FF0000"><b>Нельзя отправлять пустой заголовок</b></font><br>';  
+				 $c_r .= '<font color="#FF0000"><b>РќРµР»СЊР·СЏ РѕС‚РїСЂР°РІР»СЏС‚СЊ РїСѓСЃС‚РѕР№ Р·Р°РіРѕР»РѕРІРѕРє</b></font><br>';  
 			 }else{
 				$tadd = str_replace("\n",'<br>',$tadd);
 				mysql_query('INSERT INTO `clan_news` (`clan`,`time`,`ddmmyyyy`,`uid`,`ip`,`login`,`title`,`text`) VALUES (
 				"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","'.$u->info['id'].'","'.$u->info['ip'].'","'.$u->info['login'].'","'.mysql_real_escape_string($ttadd).'","'.mysql_real_escape_string($tadd).'"
 				)');
-				$c_r .= '<font color="#FF0000"><b>Событие было успешно добавлено</b></font><br>'; 
+				$c_r .= '<font color="#FF0000"><b>РЎРѕР±С‹С‚РёРµ Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ</b></font><br>'; 
 			 }
 		 }
 	  }elseif(isset($_GET['delete']) && $tt[2][0] == 1) {
 		  $upd = mysql_query('UPDATE `clan_news` SET `delete` = "'.$u->info['id'].'" WHERE `clan` = "'.$res['id'].'" AND `delete` = "0" AND `uid` != "0" AND `id` = "'.mysql_real_escape_string($_GET['delete']).'" LIMIT 1');
 		  if($upd) {
-			 $c_r .= '<font color="#FF0000"><b>Событие было успешно удалено</b></font><br>';  
+			 $c_r .= '<font color="#FF0000"><b>РЎРѕР±С‹С‚РёРµ Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅРѕ</b></font><br>';  
 		  }else{
-			  $c_r .= '<font color="#FF0000"><b>Событие не найдено</b></font><br>';  
+			  $c_r .= '<font color="#FF0000"><b>РЎРѕР±С‹С‚РёРµ РЅРµ РЅР°Р№РґРµРЅРѕ</b></font><br>';  
 		  }
 	  }
 	   
@@ -417,8 +417,8 @@ if($u->info['clan_prava'] != 'glava') {
 		$yyr++;
 		$mmr = 1;  
 	  }	
-	  $dds = array('','пн','вт','ср','чт','пт','<font color="#981115">сб</font>','<font color="#981115">вс</font>');
-	  $mms = array('','январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь');
+	  $dds = array('','РїРЅ','РІС‚','СЃСЂ','С‡С‚','РїС‚','<font color="#981115">СЃР±</font>','<font color="#981115">РІСЃ</font>');
+	  $mms = array('','СЏРЅРІР°СЂСЊ','С„РµРІСЂР°Р»СЊ','РјР°СЂС‚','Р°РїСЂРµР»СЊ','РјР°Р№','РёСЋРЅСЊ','РёСЋР»СЊ','Р°РІРіСѓСЃС‚','СЃРµРЅС‚СЏР±СЂСЊ','РѕРєС‚СЏР±СЂСЊ','РЅРѕСЏР±СЂСЊ','РґРµРєР°Р±СЂСЊ');
 	  $num = 0; $lday = 0;
 	  for($i = 0; $i < 7; $i++)
 	  {
@@ -455,7 +455,7 @@ if($u->info['clan_prava'] != 'glava') {
 	  $i = 1;
 	  $c_c .= '<div style="width:260px;border:1px solid #9d9d9d;padding:10px;background-color:#ecebe7">';
 	  if($tt[2][0] > 0) {
-	  	$c_c .= '<center><input type="button" value="Добавить событие" onClick="addNewEvent();"></center><br>';
+	  	$c_c .= '<center><input type="button" value="Р”РѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ" onClick="addNewEvent();"></center><br>';
 	  }
 	  $c_c .= '<div><span style="float:left" class="dnbx" title="'.$mms[$mml].' '.$yyl.'" onclick="location=\'?clan&events&mm='.$mml.'&yy='.$yyl.'\'">&lt;</span><span style="float:right" class="dnbx" onclick="location=\'?clan&events&mm='.$mmr.'&yy='.$yyr.'\'" title="'.$mms[$mmr].' '.$yyr.'">&gt;</span><center class="dnbx5">'.$yy.' '.$mms[ceil($mm)].'</center></div><br>';
 	  while($i <= 49) {
@@ -535,7 +535,7 @@ if($u->info['clan_prava'] != 'glava') {
 			}
 			
 			if($c_p != '') {
-				$c_p = 'Страицы: '.$c_p;
+				$c_p = 'РЎС‚СЂР°РёС†С‹: '.$c_p;
 			}
 		  
 		  $sp = mysql_query('SELECT * FROM `clan_news` WHERE `clan` = "'.$res['id'].'" AND `delete` < 1'.$cnftr.' ORDER BY `id` DESC LIMIT '.mysql_real_escape_string($pgssee).',5');
@@ -543,7 +543,7 @@ if($u->info['clan_prava'] != 'glava') {
 			  if($pl['uid'] > 0) {
 				$login = $u->microLogin($pl['uid'],1);
 				if($tt[2][0] == 1){
-					$pl['text'] = '<img src="http://img.xcombats.com/i/clear.gif" width="13" height="13" title="Удалить событие" class="leftimg" style="cursor:pointer" onclick="location=\'main.php?clan&events&pg='.ceil($pg).'&delete='.$pl['id'].'\'">'.$pl['text'];
+					$pl['text'] = '<img src="http://img.xcombats.com/i/clear.gif" width="13" height="13" title="РЈРґР°Р»РёС‚СЊ СЃРѕР±С‹С‚РёРµ" class="leftimg" style="cursor:pointer" onclick="location=\'main.php?clan&events&pg='.ceil($pg).'&delete='.$pl['id'].'\'">'.$pl['text'];
 				}
 			  }else{
 				$login = '';  
@@ -561,7 +561,7 @@ if($u->info['clan_prava'] != 'glava') {
 		  }	 
 	  }
 	  if($c_r == '') {
-		 $c_r .= '<br><br><br><br><br><br><br><br><center><b>Событий пока нет или глава клана не предоставил вам к ним доступ</b></center>'; 
+		 $c_r .= '<br><br><br><br><br><br><br><br><center><b>РЎРѕР±С‹С‚РёР№ РїРѕРєР° РЅРµС‚ РёР»Рё РіР»Р°РІР° РєР»Р°РЅР° РЅРµ РїСЂРµРґРѕСЃС‚Р°РІРёР» РІР°Рј Рє РЅРёРј РґРѕСЃС‚СѓРї</b></center>'; 
 	  }
 	   
 	  ?>
@@ -585,7 +585,7 @@ if($u->info['clan_prava'] != 'glava') {
 	  $('#sn_zvanie').val($('#slg'+selid).attr('vzvanie'));
 	  $('#sn_canals').val($('#slg'+selid).attr('vcanals'));
 	  
-	  if($('#slg'+selid).attr('vtitul') == 'глава клана') {
+	  if($('#slg'+selid).attr('vtitul') == 'РіР»Р°РІР° РєР»Р°РЅР°') {
 		  $('#rp_titul').attr({'disabled':'disabled'});
 		  $('#sn_zvanie').attr({'disabled':'disabled'});
 		  $('#sn_canals').attr({'disabled':'disabled'});
@@ -600,17 +600,17 @@ if($u->info['clan_prava'] != 'glava') {
    </script>
    <div class="box visible">
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-		Тип управления кланом: <a href="javascript:void(0)"><? if($res['politic'] == 1) { ?>Диктатура<? }else{ ?>Демократия<? } ?></a>
+		РўРёРї СѓРїСЂР°РІР»РµРЅРёСЏ РєР»Р°РЅРѕРј: <a href="javascript:void(0)"><? if($res['politic'] == 1) { ?>Р”РёРєС‚Р°С‚СѓСЂР°<? }else{ ?>Р”РµРјРѕРєСЂР°С‚РёСЏ<? } ?></a>
     </div>
     <?
 	$c_pr = array(
-		100, //принять
-		50, //выгнать
-		100 //сменить главу
+		100, //РїСЂРёРЅСЏС‚СЊ
+		50, //РІС‹РіРЅР°С‚СЊ
+		100 //СЃРјРµРЅРёС‚СЊ РіР»Р°РІСѓ
 	);
  
 	if(isset($_POST['svb_canals']) && $tt[11][0] == 1) {
-		echo '<font color="#FF0000"><b>Каналы чата сохранены</b></font><br>';
+		echo '<font color="#FF0000"><b>РљР°РЅР°Р»С‹ С‡Р°С‚Р° СЃРѕС…СЂР°РЅРµРЅС‹</b></font><br>';
 		$res['canals'] = $_POST['svb_canals'];
 		$rce = explode();
 		$i = 1;
@@ -623,11 +623,11 @@ if($u->info['clan_prava'] != 'glava') {
 		$mn = round((int)$_POST['svb_give_money'],2);
 		if($mn >= 0.01) {
 			if($res['money1'] < $mn) {
-				echo '<font color="#FF0000"><b>В клане недостаточно средств</b></font><br>';
+				echo '<font color="#FF0000"><b>Р’ РєР»Р°РЅРµ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ</b></font><br>';
 			}else{
 				$res['money1'] -= $mn;
 				$u->info['money'] += $mn;
-				echo '<font color="#FF0000"><b>Вы успешно сняли с казны клана '.$mn.' кр.</b></font><br>';
+				echo '<font color="#FF0000"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРЅСЏР»Рё СЃ РєР°Р·РЅС‹ РєР»Р°РЅР° '.$mn.' РєСЂ.</b></font><br>';
 				mysql_query('UPDATE `clan` SET `money1` = "'.mysql_real_escape_string($res['money1']).'" WHERE `id` = "'.$res['id'].'" LIMIT 1');
 				mysql_query('UPDATE `users` SET `money` = "'.mysql_real_escape_string($u->info['money']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				mysql_query('INSERT INTO `clan_operations` (`clan`,`time`,`type`,`text`,`val`,`uid`) VALUES ("'.$res['id'].'","'.time().'","1","'.$u->info['login'].'","'.mysql_real_escape_string($mn).'","'.$u->info['id'].'")');
@@ -637,80 +637,80 @@ if($u->info['clan_prava'] != 'glava') {
 		$mn = round((int)$_POST['svb_take_money'],2);
 		if($mn >= 0.01) {
 			if($u->info['money'] < $mn) {
-				echo '<font color="#FF0000"><b>У вас недостаточно средств</b></font><br>';
+				echo '<font color="#FF0000"><b>РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ</b></font><br>';
 			}else{
 				$res['money1'] += $mn;
 				$u->info['money'] -= $mn;
-				echo '<font color="#FF0000"><b>Вы успешно положили в казну клана '.$mn.' кр.</b></font><br>';
+				echo '<font color="#FF0000"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»РѕР¶РёР»Рё РІ РєР°Р·РЅСѓ РєР»Р°РЅР° '.$mn.' РєСЂ.</b></font><br>';
 				mysql_query('UPDATE `clan` SET `money1` = "'.mysql_real_escape_string($res['money1']).'" WHERE `id` = "'.$res['id'].'" LIMIT 1');
 				mysql_query('UPDATE `users` SET `money` = "'.mysql_real_escape_string($u->info['money']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				mysql_query('INSERT INTO `clan_operations` (`clan`,`time`,`type`,`text`,`val`,`uid`) VALUES ("'.$res['id'].'","'.time().'","2","'.$u->info['login'].'","'.mysql_real_escape_string($mn).'","'.$u->info['id'].'")');
 			}
 		}
-	}elseif(isset($_POST['invite']) && ($_POST['invite'] == 'Принять' || $_POST['invite'] == 'Выгнать' || $_POST['invite'] == 'Назначить') && $tt[11][0] == 1) {
-		if($_POST['invite'] == "Выгнать" && $tt[10][0] == 1) {
+	}elseif(isset($_POST['invite']) && ($_POST['invite'] == 'РџСЂРёРЅСЏС‚СЊ' || $_POST['invite'] == 'Р’С‹РіРЅР°С‚СЊ' || $_POST['invite'] == 'РќР°Р·РЅР°С‡РёС‚СЊ') && $tt[11][0] == 1) {
+		if($_POST['invite'] == "Р’С‹РіРЅР°С‚СЊ" && $tt[10][0] == 1) {
 			$usr = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "'.mysql_real_escape_string($_POST['logingo']).'" AND `clan` = "'.$res['id'].'" LIMIT 1'));
 			//$ttus = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `id` = "'.$usr['clan_prava'].'" LIMIT 1'));
 			if(!isset($usr['id'])) {
-				echo '<font color="#FF0000"><b>Игрок не найден в клане</b></font><br>';
+				echo '<font color="#FF0000"><b>РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ РІ РєР»Р°РЅРµ</b></font><br>';
 			} elseif($tt['prioritet'] >= $utitl['prioritet']) {
-				echo '<font color="#FF0000"><b>Игрок старше вас по званию, либо звания совпадают</b></font><br>';
+				echo '<font color="#FF0000"><b>РРіСЂРѕРє СЃС‚Р°СЂС€Рµ РІР°СЃ РїРѕ Р·РІР°РЅРёСЋ, Р»РёР±Рѕ Р·РІР°РЅРёСЏ СЃРѕРІРїР°РґР°СЋС‚</b></font><br>';
 			} elseif($u->info['money'] < $c_pr[1]) {
-				echo '<font color="#FF0000"><b>У вас не достаточно кр. для исключения игрока из клана (Требуется: '.$c_pr[1].' кр.)</b></font><br>';
+				echo '<font color="#FF0000"><b>РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂ. РґР»СЏ РёСЃРєР»СЋС‡РµРЅРёСЏ РёРіСЂРѕРєР° РёР· РєР»Р°РЅР° (РўСЂРµР±СѓРµС‚СЃСЏ: '.$c_pr[1].' РєСЂ.)</b></font><br>';
 			} elseif($usr['clan_prava'] == 'galva' && $u->info['clan_prava'] != 'glava') {
-				echo '<font color="#FF0000"><b>Игрок старше вас по званию, либо звания совпадают</b></font><br>';
+				echo '<font color="#FF0000"><b>РРіСЂРѕРє СЃС‚Р°СЂС€Рµ РІР°СЃ РїРѕ Р·РІР°РЅРёСЋ, Р»РёР±Рѕ Р·РІР°РЅРёСЏ СЃРѕРІРїР°РґР°СЋС‚</b></font><br>';
 			} else {
 			  $ar = $u->rem_itm_cl($usr, $res['id'], 8);
 				mysql_query('UPDATE `users` SET `palpro` = 0, `clan_prava` = 0, `clan` = 0, `mod_zvanie` = "", `align` = 0 WHERE `id` = "'.$usr['id'].'" LIMIT 1');
 				$u->info['money'] -= $c_pr[1];
 				mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				$c_r .= '<font color="#FF0000"><b>Игрок &quot;'.$usr['login'].'&quot; был исключен из клана за '.$c_pr[1].' кр.</b></font><br>'; 
-				$txt = 'Игрок <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="Инф. о '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> исключил из клана игрока <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="Инф. о '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a>';
+				$c_r .= '<font color="#FF0000"><b>РРіСЂРѕРє &quot;'.$usr['login'].'&quot; Р±С‹Р» РёСЃРєР»СЋС‡РµРЅ РёР· РєР»Р°РЅР° Р·Р° '.$c_pr[1].' РєСЂ.</b></font><br>'; 
+				$txt = 'РРіСЂРѕРє <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> РёСЃРєР»СЋС‡РёР» РёР· РєР»Р°РЅР° РёРіСЂРѕРєР° <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a>';
 				mysql_query('INSERT INTO `clan_news` (`clan`,`time`,`ddmmyyyy`,`uid`,`ip`,`login`,`title`,`text`) VALUES (
-				"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","Администрация","Клановое сообщение","'.mysql_real_escape_string($txt).'"
+				"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ","РљР»Р°РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ","'.mysql_real_escape_string($txt).'"
 				)');
 			}
-		}elseif($_POST['invite'] == "Назначить" && $u->info['clan_prava'] == 'glava') {
+		}elseif($_POST['invite'] == "РќР°Р·РЅР°С‡РёС‚СЊ" && $u->info['clan_prava'] == 'glava') {
 			$usr = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "'.mysql_real_escape_string($_POST['logingo']).'" AND `clan` = "'.$res['id'].'" AND `banned` = "0" LIMIT 1'));
 			if(!isset($usr['id'])) {
-				echo '<font color="#FF0000"><b>Игрок не найден в клане</b></font><br>';
+				echo '<font color="#FF0000"><b>РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ РІ РєР»Р°РЅРµ</b></font><br>';
 			}elseif($u->info['money'] < $c_pr[2]) {
-				echo '<font color="#FF0000"><b>У вас не достаточно кр. для назначения игрока на пост главы клана (Требуется: '.$c_pr[2].' кр.)</b></font><br>';
+				echo '<font color="#FF0000"><b>РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂ. РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ РёРіСЂРѕРєР° РЅР° РїРѕСЃС‚ РіР»Р°РІС‹ РєР»Р°РЅР° (РўСЂРµР±СѓРµС‚СЃСЏ: '.$c_pr[2].' РєСЂ.)</b></font><br>';
 			}elseif($usr['clan_prava'] == 'galva') {
-				echo '<font color="#FF0000"><b>Игрок уже является главой клана</b></font><br>';
+				echo '<font color="#FF0000"><b>РРіСЂРѕРє СѓР¶Рµ СЏРІР»СЏРµС‚СЃСЏ РіР»Р°РІРѕР№ РєР»Р°РЅР°</b></font><br>';
 			}else{
-				mysql_query('UPDATE `users` SET `clan_prava` = "glava", `clan` = "'.$res['id'].'", `mod_zvanie` = "глава клана", `align` = "'.$res['align'].'" WHERE `id` = "'.$usr['id'].'" LIMIT 1');
+				mysql_query('UPDATE `users` SET `clan_prava` = "glava", `clan` = "'.$res['id'].'", `mod_zvanie` = "РіР»Р°РІР° РєР»Р°РЅР°", `align` = "'.$res['align'].'" WHERE `id` = "'.$usr['id'].'" LIMIT 1');
 				$u->info['money'] -= $c_pr[2];
-				mysql_query('UPDATE `users` SET `clan_prava` = "2", `mod_zvanie` = "новичок", `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				$c_r .= '<font color="#FF0000"><b>Игрок &quot;'.$usr['login'].'&quot; был назначен главой клан за '.$c_pr[0].' кр.</b></font><br>'; 
-				$txt = 'Игрок <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="Инф. о '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> назначил игрока <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="Инф. о '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a> на должность <b>Главы клана</b>';
+				mysql_query('UPDATE `users` SET `clan_prava` = "2", `mod_zvanie` = "РЅРѕРІРёС‡РѕРє", `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
+				$c_r .= '<font color="#FF0000"><b>РРіСЂРѕРє &quot;'.$usr['login'].'&quot; Р±С‹Р» РЅР°Р·РЅР°С‡РµРЅ РіР»Р°РІРѕР№ РєР»Р°РЅ Р·Р° '.$c_pr[0].' РєСЂ.</b></font><br>'; 
+				$txt = 'РРіСЂРѕРє <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> РЅР°Р·РЅР°С‡РёР» РёРіСЂРѕРєР° <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a> РЅР° РґРѕР»Р¶РЅРѕСЃС‚СЊ <b>Р“Р»Р°РІС‹ РєР»Р°РЅР°</b>';
 				mysql_query('INSERT INTO `clan_news` (`clan`,`time`,`ddmmyyyy`,`uid`,`ip`,`login`,`title`,`text`) VALUES (
-				"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","Администрация","Клановое сообщение","'.mysql_real_escape_string($txt).'"
+				"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ","РљР»Р°РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ","'.mysql_real_escape_string($txt).'"
 				)');
 			}
-		}elseif($_POST['invite'] == "Принять" && $tt[9][0] == 1) {
+		}elseif($_POST['invite'] == "РџСЂРёРЅСЏС‚СЊ" && $tt[9][0] == 1) {
             $is_cl = mysql_fetch_row(mysql_query("SELECT COUNT(*) FROM `users` WHERE `clan` = '".$res['id']."'"));
             $usr = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "'.mysql_real_escape_string($_POST['logingo']).'" AND `clan` != "'.$res['id'].'" LIMIT 1'));
 			if(!isset($usr['id'])) {
-				echo '<font color="#FF0000"><b>Подходящий игрок не найден, либо не прошел проверку на чистоту</b></font><br>';
+				echo '<font color="#FF0000"><b>РџРѕРґС…РѕРґСЏС‰РёР№ РёРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ, Р»РёР±Рѕ РЅРµ РїСЂРѕС€РµР» РїСЂРѕРІРµСЂРєСѓ РЅР° С‡РёСЃС‚РѕС‚Сѓ</b></font><br>';
 			}elseif($usr['clan_prava'] == 'galva') {
-				echo '<font color="#FF0000"><b>Игрок уже является главой клана</b></font><br>';
+				echo '<font color="#FF0000"><b>РРіСЂРѕРє СѓР¶Рµ СЏРІР»СЏРµС‚СЃСЏ РіР»Р°РІРѕР№ РєР»Р°РЅР°</b></font><br>';
 			}elseif($usr['palpro'] < time()) {
-				echo '<font color="#FF0000"><b>Игрок должен пройти проверку у паладинов</b></font><br>';
+				echo '<font color="#FF0000"><b>РРіСЂРѕРє РґРѕР»Р¶РµРЅ РїСЂРѕР№С‚Рё РїСЂРѕРІРµСЂРєСѓ Сѓ РїР°Р»Р°РґРёРЅРѕРІ</b></font><br>';
 			}elseif($u->info['money'] < $c_pr[0]) {
-				echo '<font color="#FF0000"><b>У вас не достаточно кр. для приема игрока в клан (Требуется: '.$c_pr[0].' кр.)</b></font><br>';
+				echo '<font color="#FF0000"><b>РЈ РІР°СЃ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂ. РґР»СЏ РїСЂРёРµРјР° РёРіСЂРѕРєР° РІ РєР»Р°РЅ (РўСЂРµР±СѓРµС‚СЃСЏ: '.$c_pr[0].' РєСЂ.)</b></font><br>';
 			}elseif($usr['clan'] != '0' || $usr['align'] != '0') {
-				echo '<font color="#FF0000"><b>Персонаж уже находится в клане, либо имеет склонность</b></font><br>';
+				echo '<font color="#FF0000"><b>РџРµСЂСЃРѕРЅР°Р¶ СѓР¶Рµ РЅР°С…РѕРґРёС‚СЃСЏ РІ РєР»Р°РЅРµ, Р»РёР±Рѕ РёРјРµРµС‚ СЃРєР»РѕРЅРЅРѕСЃС‚СЊ</b></font><br>';
             } elseif($is_cl[0] >= $lvl_prava[$res['level']][0]) {
-                echo '<font color="#FF0000"><b>Достигнут лимит приглашений. Повысте уровень клана.</b></font><br>';
+                echo '<font color="#FF0000"><b>Р”РѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ РїСЂРёРіР»Р°С€РµРЅРёР№. РџРѕРІС‹СЃС‚Рµ СѓСЂРѕРІРµРЅСЊ РєР»Р°РЅР°.</b></font><br>';
 			}else{
 				mysql_query('UPDATE `users` SET `palpro` = "0",`clan_prava` = "2",`clan` = "'.$res['id'].'",`mod_zvanie` = "",`align` = "'.$res['align'].'" WHERE `id` = "'.$usr['id'].'" LIMIT 1');
 				$u->info['money'] -= $c_pr[0];
 				mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				echo '<font color="#FF0000"><b>Игрок &quot;'.$usr['login'].'&quot; был принят в клан за '.$c_pr[0].' кр.</b></font><br>'; 
-				$txt = 'Игрок <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="Инф. о '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> принял в клан игрока <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="Инф. о '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a>';
+				echo '<font color="#FF0000"><b>РРіСЂРѕРє &quot;'.$usr['login'].'&quot; Р±С‹Р» РїСЂРёРЅСЏС‚ РІ РєР»Р°РЅ Р·Р° '.$c_pr[0].' РєСЂ.</b></font><br>'; 
+				$txt = 'РРіСЂРѕРє <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> РїСЂРёРЅСЏР» РІ РєР»Р°РЅ РёРіСЂРѕРєР° <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a>';
 				mysql_query('INSERT INTO `clan_news` (`clan`,`time`,`ddmmyyyy`,`uid`,`ip`,`login`,`title`,`text`) VALUES (
-				"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","Администрация","Клановое сообщение","'.mysql_real_escape_string($txt).'"
+				"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ","РљР»Р°РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ","'.mysql_real_escape_string($txt).'"
 				)');
 			}
 		}
@@ -718,25 +718,25 @@ if($u->info['clan_prava'] != 'glava') {
 	?>
     <? if($tt[9][0] > 0) { ?>
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-	<input class="btnnew" style="width:144px;" value="Пригласить в клан" onClick="openMod('<b>Пригласить игрока в клан</b>','<form action=\'main.php?clan&control&priem\' method=\'post\'>Логин: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Принять\'></form>');" type="button" /> 
-	(это вам обойдется в <?=$c_pr[0]?><b> кр.</b>)<br />
-    (перед приемом в клан, персонаж должен пройти проверку у паладинов)<br />
+	<input class="btnnew" style="width:144px;" value="РџСЂРёРіР»Р°СЃРёС‚СЊ РІ РєР»Р°РЅ" onClick="openMod('<b>РџСЂРёРіР»Р°СЃРёС‚СЊ РёРіСЂРѕРєР° РІ РєР»Р°РЅ</b>','<form action=\'main.php?clan&control&priem\' method=\'post\'>Р›РѕРіРёРЅ: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'РџСЂРёРЅСЏС‚СЊ\'></form>');" type="button" /> 
+	(СЌС‚Рѕ РІР°Рј РѕР±РѕР№РґРµС‚СЃСЏ РІ <?=$c_pr[0]?><b> РєСЂ.</b>)<br />
+    (РїРµСЂРµРґ РїСЂРёРµРјРѕРј РІ РєР»Р°РЅ, РїРµСЂСЃРѕРЅР°Р¶ РґРѕР»Р¶РµРЅ РїСЂРѕР№С‚Рё РїСЂРѕРІРµСЂРєСѓ Сѓ РїР°Р»Р°РґРёРЅРѕРІ)<br />
     </div>
     <? } ?>
     <? if($tt[10][0] > 0) { ?>
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-    <input class="btnnew" type="button" style="width:144px;" value="Выгнать из клана" onClick="openMod('<b>Выгнать игрока из клана</b>','<form action=\'main.php?clan&control&unpriem\' method=\'post\'>Логин: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Выгнать\'></form>');"> 
-    (это вам обойдется в <?=$c_pr[1]?><b> кр.</b>)<br />
+    <input class="btnnew" type="button" style="width:144px;" value="Р’С‹РіРЅР°С‚СЊ РёР· РєР»Р°РЅР°" onClick="openMod('<b>Р’С‹РіРЅР°С‚СЊ РёРіСЂРѕРєР° РёР· РєР»Р°РЅР°</b>','<form action=\'main.php?clan&control&unpriem\' method=\'post\'>Р›РѕРіРёРЅ: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Р’С‹РіРЅР°С‚СЊ\'></form>');"> 
+    (СЌС‚Рѕ РІР°Рј РѕР±РѕР№РґРµС‚СЃСЏ РІ <?=$c_pr[1]?><b> РєСЂ.</b>)<br />
     </div>
     <? } ?>
     <? if($u->info['clan_prava'] == 'glava') { ?>
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-	<input class="btnnew" style="width:144px;" value="Сменить главу клана" onClick="openMod('<b>Назначить главу клана</b>','<form action=\'main.php?clan&control&newglava\' method=\'post\'>Логин: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Назначить\'></form>');" type="button" /> (глава клана вправе сложить с себя полномочия, назначив главой клана другого персонажа)<br />
+	<input class="btnnew" style="width:144px;" value="РЎРјРµРЅРёС‚СЊ РіР»Р°РІСѓ РєР»Р°РЅР°" onClick="openMod('<b>РќР°Р·РЅР°С‡РёС‚СЊ РіР»Р°РІСѓ РєР»Р°РЅР°</b>','<form action=\'main.php?clan&control&newglava\' method=\'post\'>Р›РѕРіРёРЅ: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'РќР°Р·РЅР°С‡РёС‚СЊ\'></form>');" type="button" /> (РіР»Р°РІР° РєР»Р°РЅР° РІРїСЂР°РІРµ СЃР»РѕР¶РёС‚СЊ СЃ СЃРµР±СЏ РїРѕР»РЅРѕРјРѕС‡РёСЏ, РЅР°Р·РЅР°С‡РёРІ РіР»Р°РІРѕР№ РєР»Р°РЅР° РґСЂСѓРіРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°)<br />
 	</div>
     <? } ?>
     <? if($tt[11][0] > 0) { ?>
     <fieldset>
-      <legend><span class="legtitle">Редактирование статуса персонажа</span></legend>
+      <legend><span class="legtitle">Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ СЃС‚Р°С‚СѓСЃР° РїРµСЂСЃРѕРЅР°Р¶Р°</span></legend>
       <?
 	  if(isset($_GET['saveuser']) && $tt[11][0] == 1) {
 		 //[rp_login] => 0 [rp_titul] => 0 [rp_zvanie] => [rp_canals] => 
@@ -746,68 +746,68 @@ if($u->info['clan_prava'] != 'glava') {
 			 if($usr['clan_prava'] != 'glava') {
 			 	$tt = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `id` = "'.$usr['clan_prava'].'" LIMIT 1'));
 				if($tt['prioritet'] < $utitl['prioritet']) {
-					//новый титул
+					//РЅРѕРІС‹Р№ С‚РёС‚СѓР»
 					if((int)$_POST['rp_titul'] > 0) {
 						$tt_new = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `id` = "'.mysql_real_escape_string($_POST['rp_titul']).'" AND `clan` = "'.$res['id'].'" LIMIT 1'));
 						if(isset($tt_new['id'])) {
 							if($tt_new['prioritet'] < $utitl['prioritet']) {
 								mysql_query('UPDATE `users` SET `clan_prava` = "'.$tt_new['id'].'" WHERE `id` = "'.$usr['id'].'" LIMIT 1');
-								$c_r .= '<font color="#FF0000"><b>Игроку &quot;'.$usr['login'].'&quot; был присвоен титул &quot;'.$tt_new['name'].'&quot;</b></font><br>'; 
+								$c_r .= '<font color="#FF0000"><b>РРіСЂРѕРєСѓ &quot;'.$usr['login'].'&quot; Р±С‹Р» РїСЂРёСЃРІРѕРµРЅ С‚РёС‚СѓР» &quot;'.$tt_new['name'].'&quot;</b></font><br>'; 
 								if($tt_new['prioritet'] < $tt['prioritet']) {
-									//понижен
-									$txt = 'Игрок <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="Инф. о '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> понизил титул игроку <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="Инф. о '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a> до &quot;<b>'.$tt_new['name'].'</b>&quot;';
+									//РїРѕРЅРёР¶РµРЅ
+									$txt = 'РРіСЂРѕРє <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> РїРѕРЅРёР·РёР» С‚РёС‚СѓР» РёРіСЂРѕРєСѓ <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a> РґРѕ &quot;<b>'.$tt_new['name'].'</b>&quot;';
 								}else{
-									//присвоен
-									$txt = 'Игрок <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="Инф. о '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> присвоил титул &quot;<b>'.$tt_new['name'].'</b>&quot; игроку <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="Инф. о '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a>';
+									//РїСЂРёСЃРІРѕРµРЅ
+									$txt = 'РРіСЂРѕРє <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$u->info['login'].'</a>['.$u->info['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$u->info['login'].'" href="info/'.$u->info['id'].'"><img src="http://img.xcombats.com/i/inf_'.$u->info['cityreg'].'.gif"></a> РїСЂРёСЃРІРѕРёР» С‚РёС‚СѓР» &quot;<b>'.$tt_new['name'].'</b>&quot; РёРіСЂРѕРєСѓ <img src="http://img.xcombats.com/i/align/align'.$u->info['align'].'.gif" style="vertical-align:bottom"><img src="http://img.xcombats.com/i/clan/'.$res['name'].'.gif" style="vertical-align:bottom"><a href="javascript:void(0)">'.$usr['login'].'</a>['.$usr['level'].']<a target="_blank" title="РРЅС„. Рѕ '.$usr['login'].'" href="info/'.$usr['id'].'"><img src="http://img.xcombats.com/i/inf_'.$usr['cityreg'].'.gif"></a>';
 								}
 								
 								mysql_query('INSERT INTO `clan_news` (`clan`,`time`,`ddmmyyyy`,`uid`,`ip`,`login`,`title`,`text`) VALUES (
-								"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","Администрация","Клановое сообщение","'.mysql_real_escape_string($txt).'"
+								"'.$res['id'].'","'.time().'","'.date('d.m.Y').'","0","127.0.0.1","РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ","РљР»Р°РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ","'.mysql_real_escape_string($txt).'"
 								)');
 								
 							}else{
-								$c_r .= '<font color="#FF0000"><b>Вы не можете назначать титул старше вашего титула</b></font><br>'; 
+								$c_r .= '<font color="#FF0000"><b>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РЅР°Р·РЅР°С‡Р°С‚СЊ С‚РёС‚СѓР» СЃС‚Р°СЂС€Рµ РІР°С€РµРіРѕ С‚РёС‚СѓР»Р°</b></font><br>'; 
 							}
 						}
 					}
 					$u->info['mod_zvanie'] = htmlspecialchars($_POST['rp_zvanie'],NULL,'cp1251');
 					mysql_query('UPDATE `users` SET `mod_zvanie` = "'.mysql_real_escape_string($_POST['rp_zvanie']).'",`ccanals` = "'.mysql_real_escape_string($_POST['rp_canals']).'" WHERE `id` = "'.$usr['id'].'" LIMIT 1');
 					echo 'UPDATE `users` SET `mod_zvanie` = "'.mysql_real_escape_string($_POST['rp_zvanie']).'",`ccanals` = "'.mysql_real_escape_string($_POST['rp_canals']).'" WHERE `id` = "'.$usr['id'].'" LIMIT 1';
-					$c_r .= '<font color="#FF0000"><b>Информация успешно сохранена</b></font><br>';					
+					$c_r .= '<font color="#FF0000"><b>РРЅС„РѕСЂРјР°С†РёСЏ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅР°</b></font><br>';					
 					
 				}else{
-					$c_r .= '<font color="#FF0000"><b>Игрок старше вас по званию, либо звания совпадают</b></font><br>'; 
+					$c_r .= '<font color="#FF0000"><b>РРіСЂРѕРє СЃС‚Р°СЂС€Рµ РІР°СЃ РїРѕ Р·РІР°РЅРёСЋ, Р»РёР±Рѕ Р·РІР°РЅРёСЏ СЃРѕРІРїР°РґР°СЋС‚</b></font><br>'; 
 				}
 			 }else{
-				$c_r .= '<font color="#FF0000"><b>Игрок старше вас по званию, либо звания совпадают</b></font><br>'; 
+				$c_r .= '<font color="#FF0000"><b>РРіСЂРѕРє СЃС‚Р°СЂС€Рµ РІР°СЃ РїРѕ Р·РІР°РЅРёСЋ, Р»РёР±Рѕ Р·РІР°РЅРёСЏ СЃРѕРІРїР°РґР°СЋС‚</b></font><br>'; 
 			 }
 		 }else{
-			 $c_r .= '<font color="#FF0000"><b>Игрок не состоит в клане '.$res['name'].'</b></font><br>';  
+			 $c_r .= '<font color="#FF0000"><b>РРіСЂРѕРє РЅРµ СЃРѕСЃС‚РѕРёС‚ РІ РєР»Р°РЅРµ '.$res['name'].'</b></font><br>';  
 		 }
 	  }
 	  echo $c_r;
 	  ?>
       <form method="post" action="main.php?clan&control&saveuser">
       <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-      <div style="display:inline-block;width:150px;">Логин:</div><select onchange="changeLogin(this);" style="width:211px;" name="rp_login">
-      <option value="0" style="color:#CCCCCC">выберите логин</option>
+      <div style="display:inline-block;width:150px;">Р›РѕРіРёРЅ:</div><select onchange="changeLogin(this);" style="width:211px;" name="rp_login">
+      <option value="0" style="color:#CCCCCC">РІС‹Р±РµСЂРёС‚Рµ Р»РѕРіРёРЅ</option>
 	  <?
       $sp = mysql_query('SELECT `id`,`login`,`clan_prava`,`ccanals`,`mod_zvanie` FROM `users` WHERE `clan` = "'.$res['id'].'"');
 	  while($pl = mysql_fetch_array($sp)) {
 		  $cp = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `id` = "'.mysql_real_escape_string($pl['clan_prava']).'" LIMIT 1'));
 		  if($pl['clan_prava'] == 'glava') {
-			 $cp['name'] = 'глава клана'; 
+			 $cp['name'] = 'РіР»Р°РІР° РєР»Р°РЅР°'; 
 		  }
 		  echo '<option id="slg'.$pl['id'].'" value="'.$pl['id'].'" vtitul="'.$cp['name'].'" vzvanie="'.$pl['mod_zvanie'].'" vcanals="'.$pl['ccanals'].'">'.$pl['login'].'</option>';
 	  }
 	  ?></select>
       </div>
       <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-      <div style="display:inline-block;width:150px;">Титул:</div><input id="sn_titul" style="width:211px;" disabled="disabled" name="rp_canals" type="text" />
+      <div style="display:inline-block;width:150px;">РўРёС‚СѓР»:</div><input id="sn_titul" style="width:211px;" disabled="disabled" name="rp_canals" type="text" />
       </div>
       <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-      <div style="display:inline-block;width:150px;">Присвоить титул:</div><select style="width:211px;" id="rp_titul" name="rp_titul">
-	  <option value="0" style="color:#CCCCCC">не менять</option>
+      <div style="display:inline-block;width:150px;">РџСЂРёСЃРІРѕРёС‚СЊ С‚РёС‚СѓР»:</div><select style="width:211px;" id="rp_titul" name="rp_titul">
+	  <option value="0" style="color:#CCCCCC">РЅРµ РјРµРЅСЏС‚СЊ</option>
 	  <?
       $sp = mysql_query('SELECT * FROM `clan_tituls` WHERE `clan` = "'.$res['id'].'" AND `delete` = "0" LIMIT 25');
 	  while($pl = mysql_fetch_array($sp)) {
@@ -816,34 +816,34 @@ if($u->info['clan_prava'] != 'glava') {
 	  ?></select>
       </div>
       <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-      <div style="display:inline-block;width:150px;">Реликты</div>
+      <div style="display:inline-block;width:150px;">Р РµР»РёРєС‚С‹</div>
       </div>
       <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-      <div style="display:inline-block;width:150px;">Звание в клане:</div><input style="width:211px;" id="sn_zvanie" name="rp_zvanie" type="text" />
+      <div style="display:inline-block;width:150px;">Р—РІР°РЅРёРµ РІ РєР»Р°РЅРµ:</div><input style="width:211px;" id="sn_zvanie" name="rp_zvanie" type="text" />
       </div>
       <div>
-      <div style="display:inline-block;width:150px;">Каналы чата:</div><input style="width:211px;" id="sn_canals" name="rp_canals" type="text" /><br />
-      <small>(Перепешите через запятую номера доступных каналов. Например: 1,3,7. Доступные каналы: 1-9)</small> <input class="btnnew" name="Отправить" type="submit" id="rp_save" value="Сохранить" />
+      <div style="display:inline-block;width:150px;">РљР°РЅР°Р»С‹ С‡Р°С‚Р°:</div><input style="width:211px;" id="sn_canals" name="rp_canals" type="text" /><br />
+      <small>(РџРµСЂРµРїРµС€РёС‚Рµ С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ РЅРѕРјРµСЂР° РґРѕСЃС‚СѓРїРЅС‹С… РєР°РЅР°Р»РѕРІ. РќР°РїСЂРёРјРµСЂ: 1,3,7. Р”РѕСЃС‚СѓРїРЅС‹Рµ РєР°РЅР°Р»С‹: 1-9)</small> <input class="btnnew" name="РћС‚РїСЂР°РІРёС‚СЊ" type="submit" id="rp_save" value="РЎРѕС…СЂР°РЅРёС‚СЊ" />
       </div>
       </form>
     </fieldset>
       <form method="post" enctype="multipart/form-data" action="?clan&control&save_canals">
       <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-top:10px;padding-bottom:5px;">
-      <div style="display:inline-block;width:150px;">Каналы чата:</div><input style="width:211px;" id="svb_canals" value="<?=$res['canals']?>" name="svb_canals" type="text" /> <input class="btnnew" name="Отправить" type="submit" id="rp_save" value="Сохранить" /><br />
-      <small>(Перепешите через запятую номера открытых каналов. Например: 2,4,8. Доступные каналы: 1-9)</small>
+      <div style="display:inline-block;width:150px;">РљР°РЅР°Р»С‹ С‡Р°С‚Р°:</div><input style="width:211px;" id="svb_canals" value="<?=$res['canals']?>" name="svb_canals" type="text" /> <input class="btnnew" name="РћС‚РїСЂР°РІРёС‚СЊ" type="submit" id="rp_save" value="РЎРѕС…СЂР°РЅРёС‚СЊ" /><br />
+      <small>(РџРµСЂРµРїРµС€РёС‚Рµ С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ РЅРѕРјРµСЂР° РѕС‚РєСЂС‹С‚С‹С… РєР°РЅР°Р»РѕРІ. РќР°РїСЂРёРјРµСЂ: 2,4,8. Р”РѕСЃС‚СѓРїРЅС‹Рµ РєР°РЅР°Р»С‹: 1-9)</small>
       </div>
       </form>
       <? } ?>
     <? if($tt[5][0] == 1) { ?>
     <? if($tt[7][0] > 0 && $res['money2'] > 0) { ?>
     <fieldset>
-      <legend><span class="legtitle">Заказать изображение</span></legend>
+      <legend><span class="legtitle">Р—Р°РєР°Р·Р°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ</span></legend>
       <form action="?clan&control&buy_imgae" method="post" enctype="multipart/form-data">
       	<?
-		/* Обработка изображения и данных */
+		/* РћР±СЂР°Р±РѕС‚РєР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ Рё РґР°РЅРЅС‹С… */
 		
 		if(isset($_GET['gdload'])) {
-			echo '<b style="color:red">Изображение было успешно загружено на сервер! Воспользоваться им возможно в инвентаре, в разделе &quot;Галерея&quot;.</b><br>';
+			echo '<b style="color:red">РР·РѕР±СЂР°Р¶РµРЅРёРµ Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅРѕ РЅР° СЃРµСЂРІРµСЂ! Р’РѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РёРј РІРѕР·РјРѕР¶РЅРѕ РІ РёРЅРІРµРЅС‚Р°СЂРµ, РІ СЂР°Р·РґРµР»Рµ &quot;Р“Р°Р»РµСЂРµСЏ&quot;.</b><br>';
 		}elseif(isset($_POST['img_load1type'])) {
 			
 		class upload {
@@ -866,21 +866,21 @@ if($u->info['clan_prava'] != 'glava') {
 						$fn = uniqid('f_',true).'_'.$cnm.'.'.$ext[1];
 						$fn2 = uniqid('f_',true).'';
 						if (move_uploaded_file($f['tmp_name'], self::$save_path . $fn)) {
-							// система изменения размера , требуется Rimage
+							// СЃРёСЃС‚РµРјР° РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂР° , С‚СЂРµР±СѓРµС‚СЃСЏ Rimage
 							//Rimage::resize(self::$save_path . $fn, self::$save_path . $fn2);
-							//@unlink(self::$save_path . $fn); // удаление файла
+							//@unlink(self::$save_path . $fn); // СѓРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°
 							return array($fn2,$fn,self::$save_path . $fn);
 						} else {
-							self::$error = 'Ошибка загрузки файла';
+							self::$error = 'РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»Р°';
 						}
 					} else {
-						self::$error = 'Неверный тип файла. Допустимые типы : <b>'.$exts.'</b>';
+						self::$error = 'РќРµРІРµСЂРЅС‹Р№ С‚РёРї С„Р°Р№Р»Р°. Р”РѕРїСѓСЃС‚РёРјС‹Рµ С‚РёРїС‹ : <b>'.$exts.'</b>';
 					}
 				} else {
-					self::$error = 'Неверный размер файла. Максимальный размер файла <b>'.$max_mb.' МБ</b>';
+					self::$error = 'РќРµРІРµСЂРЅС‹Р№ СЂР°Р·РјРµСЂ С„Р°Р№Р»Р°. РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ С„Р°Р№Р»Р° <b>'.$max_mb.' РњР‘</b>';
 				}
 			} else {
-				self::$error = 'Файл не найден';
+				self::$error = 'Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ';
 			}
 			return false;
 		} // end saveimg
@@ -899,11 +899,11 @@ if($u->info['clan_prava'] != 'glava') {
 			$ers = '';
 			
 			if($data['sex'] != 0 && $data['sex'] != 1) {
-				$ers = 'Ошибка! Вы не выбрали пол кому будет доступно изображение!';
+				$ers = 'РћС€РёР±РєР°! Р’С‹ РЅРµ РІС‹Р±СЂР°Р»Рё РїРѕР» РєРѕРјСѓ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРЅРѕ РёР·РѕР±СЂР°Р¶РµРЅРёРµ!';
 			}elseif($data['animation'] != 0 && $data['animation'] != 1) {
-				$ers = 'Ошибка! Вы не выбрали тип изображения: Анимированное, не анимированное!';
+				$ers = 'РћС€РёР±РєР°! Р’С‹ РЅРµ РІС‹Р±СЂР°Р»Рё С‚РёРї РёР·РѕР±СЂР°Р¶РµРЅРёСЏ: РђРЅРёРјРёСЂРѕРІР°РЅРЅРѕРµ, РЅРµ Р°РЅРёРјРёСЂРѕРІР°РЅРЅРѕРµ!';
 			}elseif($data['type'] < 1 || $data['type'] > 18) {
-				$ers = 'Ошибка! Вы не выбрали тип слота замещения изображения!';
+				$ers = 'РћС€РёР±РєР°! Р’С‹ РЅРµ РІС‹Р±СЂР°Р»Рё С‚РёРї СЃР»РѕС‚Р° Р·Р°РјРµС‰РµРЅРёСЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ!';
 			}
 			
 			if($res['id'] !=2) {
@@ -911,37 +911,37 @@ if($u->info['clan_prava'] != 'glava') {
 			}
 			
 			$types = array(
-				1  => array('Образ',120,220,100),
-				2  => array('Заглушка (снизу)',120,40,15),
-				3  => array('Заглушка (сверху)',120,20,5),
-				4  => array('Шлем',60,60,25),
-				5  => array('Наручи',60,40,25),
-				6  => array('Левая рука',60,60,25),
-				7  => array('Правая рука',60,60,25),
-				8  => array('Броня',60,80,25),
-				9  => array('Пояс',60,40,25),
-				10 => array('Ботинки',60,40,25),
-				11 => array('Поножи',60,80,25),
-				12 => array('Перчатки',60,40,25),
-				13 => array('Кольца №1',20,20,10),
-				14 => array('Кулон',60,20,25),
-				15 => array('Серьги',60,20,25),						
-				16 => array('Заглушка под информацию о персонаже',244,287,5),						
-				17 => array('Кольцо №2',20,20,10),
-				18 => array('Кольцо №3',20,20,10)						
+				1  => array('РћР±СЂР°Р·',120,220,100),
+				2  => array('Р—Р°РіР»СѓС€РєР° (СЃРЅРёР·Сѓ)',120,40,15),
+				3  => array('Р—Р°РіР»СѓС€РєР° (СЃРІРµСЂС…Сѓ)',120,20,5),
+				4  => array('РЁР»РµРј',60,60,25),
+				5  => array('РќР°СЂСѓС‡Рё',60,40,25),
+				6  => array('Р›РµРІР°СЏ СЂСѓРєР°',60,60,25),
+				7  => array('РџСЂР°РІР°СЏ СЂСѓРєР°',60,60,25),
+				8  => array('Р‘СЂРѕРЅСЏ',60,80,25),
+				9  => array('РџРѕСЏСЃ',60,40,25),
+				10 => array('Р‘РѕС‚РёРЅРєРё',60,40,25),
+				11 => array('РџРѕРЅРѕР¶Рё',60,80,25),
+				12 => array('РџРµСЂС‡Р°С‚РєРё',60,40,25),
+				13 => array('РљРѕР»СЊС†Р° в„–1',20,20,10),
+				14 => array('РљСѓР»РѕРЅ',60,20,25),
+				15 => array('РЎРµСЂСЊРіРё',60,20,25),						
+				16 => array('Р—Р°РіР»СѓС€РєР° РїРѕРґ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ',244,287,5),						
+				17 => array('РљРѕР»СЊС†Рѕ в„–2',20,20,10),
+				18 => array('РљРѕР»СЊС†Рѕ в„–3',20,20,10)						
 			);
 			
 			$data['price'] = $types[$data['type']][3];
 				
 				
 			if($data['price'] > $res['money2']) {
-				$ers = 'Ошибка! В казне клана недостаточно Евро-кредитов для приобретения данного изображения.';
+				$ers = 'РћС€РёР±РєР°! Р’ РєР°Р·РЅРµ РєР»Р°РЅР° РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р•РІСЂРѕ-РєСЂРµРґРёС‚РѕРІ РґР»СЏ РїСЂРёРѕР±СЂРµС‚РµРЅРёСЏ РґР°РЅРЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ.';
 			}
 			
 			if($ers != '') {
 				echo '<b style="color:red">'.$ers.'</b><br>';
 			}else{
-				/* Сохраняем изображение */
+				/* РЎРѕС…СЂР°РЅСЏРµРј РёР·РѕР±СЂР°Р¶РµРЅРёРµ */
 				$imgname = md5(rand(0,1000000000000).'&'.rand(0,10000000).'&'.microtime());
 				if($file = upload::saveimg('load_image1',0.35,'jpg|png|jpeg|gif',$imgname)) {
 					$size = getimagesize ("http://xcombats.com/clan_prw/".htmlspecialchars($file[1],NULL,'cp1251')."");
@@ -977,51 +977,51 @@ if($u->info['clan_prava'] != 'glava') {
 		
 		?>
         <select name="img_load1type">
-      	  <option value="0"><b>Выберите тип изображения</b></option>
-      	  <option value="0"><b>Образ</b></option>
-      	  <option value="1">- Образ [Размер: 120x220] (100 екр.)</option>
-      	  <option value="2">- Заглушка (снизу) [Размер: 120x40] (15 екр.)</option>
-      	  <option value="3">- Заглушка (сверху) [Размер: 120x20] (5 екр.)</option>
-      	  <option value="0"><b>Слоты под обмундирование</b></option>
-      	  <option value="4">- Шлем [Размер: 60x60] (25 екр.)</option>
-      	  <option value="5">- Наручи [Размер: 60x40] (25 екр.)</option>
-      	  <option value="6">- Левая рука [Размер: 60x60] (25 екр.)</option>
-      	  <option value="7">- Правая рука [Размер: 60x60] (25 екр.)</option>
-      	  <option value="8">- Броня [Размер: 60x80] (25 екр.)</option>
-      	  <option value="9">- Пояс [Размер: 60x40] (25 екр.)</option>
-      	  <option value="10">- Ботинки [Размер: 60x40] (25 екр.)</option>
-      	  <option value="11">- Поножи [Размер: 60x80] (25 екр.)</option>
-      	  <option value="12">- Перчатки [Размер: 60x40] (25 екр.)</option>
-      	  <option value="13">- Кольца №1 [Размер: 20x20] (10 екр.)</option>
-          <option value="17">- Кольца №2 [Размер: 20x20] (10 екр.)</option>
-          <option value="18">- Кольца №3 [Размер: 20x20] (10 екр.)</option>
-      	  <option value="14">- Кулон [Размер: 60x20] (25 екр.)</option>
-      	  <option value="15">- Серьги [Размер: 60x20] (25 екр.)</option>
-      	  <option value="16">Заглушка под информацию о персонаже [Размер: 244x287] (5 екр.)</option>
+      	  <option value="0"><b>Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РёР·РѕР±СЂР°Р¶РµРЅРёСЏ</b></option>
+      	  <option value="0"><b>РћР±СЂР°Р·</b></option>
+      	  <option value="1">- РћР±СЂР°Р· [Р Р°Р·РјРµСЂ: 120x220] (100 РµРєСЂ.)</option>
+      	  <option value="2">- Р—Р°РіР»СѓС€РєР° (СЃРЅРёР·Сѓ) [Р Р°Р·РјРµСЂ: 120x40] (15 РµРєСЂ.)</option>
+      	  <option value="3">- Р—Р°РіР»СѓС€РєР° (СЃРІРµСЂС…Сѓ) [Р Р°Р·РјРµСЂ: 120x20] (5 РµРєСЂ.)</option>
+      	  <option value="0"><b>РЎР»РѕС‚С‹ РїРѕРґ РѕР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ</b></option>
+      	  <option value="4">- РЁР»РµРј [Р Р°Р·РјРµСЂ: 60x60] (25 РµРєСЂ.)</option>
+      	  <option value="5">- РќР°СЂСѓС‡Рё [Р Р°Р·РјРµСЂ: 60x40] (25 РµРєСЂ.)</option>
+      	  <option value="6">- Р›РµРІР°СЏ СЂСѓРєР° [Р Р°Р·РјРµСЂ: 60x60] (25 РµРєСЂ.)</option>
+      	  <option value="7">- РџСЂР°РІР°СЏ СЂСѓРєР° [Р Р°Р·РјРµСЂ: 60x60] (25 РµРєСЂ.)</option>
+      	  <option value="8">- Р‘СЂРѕРЅСЏ [Р Р°Р·РјРµСЂ: 60x80] (25 РµРєСЂ.)</option>
+      	  <option value="9">- РџРѕСЏСЃ [Р Р°Р·РјРµСЂ: 60x40] (25 РµРєСЂ.)</option>
+      	  <option value="10">- Р‘РѕС‚РёРЅРєРё [Р Р°Р·РјРµСЂ: 60x40] (25 РµРєСЂ.)</option>
+      	  <option value="11">- РџРѕРЅРѕР¶Рё [Р Р°Р·РјРµСЂ: 60x80] (25 РµРєСЂ.)</option>
+      	  <option value="12">- РџРµСЂС‡Р°С‚РєРё [Р Р°Р·РјРµСЂ: 60x40] (25 РµРєСЂ.)</option>
+      	  <option value="13">- РљРѕР»СЊС†Р° в„–1 [Р Р°Р·РјРµСЂ: 20x20] (10 РµРєСЂ.)</option>
+          <option value="17">- РљРѕР»СЊС†Р° в„–2 [Р Р°Р·РјРµСЂ: 20x20] (10 РµРєСЂ.)</option>
+          <option value="18">- РљРѕР»СЊС†Р° в„–3 [Р Р°Р·РјРµСЂ: 20x20] (10 РµРєСЂ.)</option>
+      	  <option value="14">- РљСѓР»РѕРЅ [Р Р°Р·РјРµСЂ: 60x20] (25 РµРєСЂ.)</option>
+      	  <option value="15">- РЎРµСЂСЊРіРё [Р Р°Р·РјРµСЂ: 60x20] (25 РµРєСЂ.)</option>
+      	  <option value="16">Р—Р°РіР»СѓС€РєР° РїРѕРґ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ [Р Р°Р·РјРµСЂ: 244x287] (5 РµРєСЂ.)</option>
    	    </select><br />
       	<select name="img_load2type" id="img_load2type">
-      	  <option value="0">Анимация (Отключена)</option>
-      	  <option>Анимация (Включена)(СТОИМОСТЬ ИЗОБРАЖЕНИЯ УДВАИВАЕТСЯ)</option>
+      	  <option value="0">РђРЅРёРјР°С†РёСЏ (РћС‚РєР»СЋС‡РµРЅР°)</option>
+      	  <option>РђРЅРёРјР°С†РёСЏ (Р’РєР»СЋС‡РµРЅР°)(РЎРўРћРРњРћРЎРўР¬ РР—РћР‘Р РђР–Р•РќРРЇ РЈР”Р’РђРР’РђР•РўРЎРЇ)</option>
    	    </select><br />
       	<select name="img_load3type" id="img_load3type">
-          <option value="-1">Выберите пол</option>
-      	  <option value="0">Для мужчин</option>
-      	  <option value="1">Для женщин</option>
+          <option value="-1">Р’С‹Р±РµСЂРёС‚Рµ РїРѕР»</option>
+      	  <option value="0">Р”Р»СЏ РјСѓР¶С‡РёРЅ</option>
+      	  <option value="1">Р”Р»СЏ Р¶РµРЅС‰РёРЅ</option>
    	    </select><br />
-        <small style="color:red;">Размер изображения не должен привышать 350 кб!</small>
+        <small style="color:red;">Р Р°Р·РјРµСЂ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РЅРµ РґРѕР»Р¶РµРЅ РїСЂРёРІС‹С€Р°С‚СЊ 350 РєР±!</small>
       	<br />
-        <input type="file" name="load_image1" id="load_image1" /> <button class="btnnew" type="submit">Отправить</button><br />
-        <small style="color:red;">Внимание!</small>
-        <small> Изображения нарушающие правила игры, <a href="#">правила публикации изображения</a>, либо содержащие элементы оскорбляющие достоинство других людей будут блокироваться без компенсации денежных средств и без возможности замены изображения на новое.</small>
+        <input type="file" name="load_image1" id="load_image1" /> <button class="btnnew" type="submit">РћС‚РїСЂР°РІРёС‚СЊ</button><br />
+        <small style="color:red;">Р’РЅРёРјР°РЅРёРµ!</small>
+        <small> РР·РѕР±СЂР°Р¶РµРЅРёСЏ РЅР°СЂСѓС€Р°СЋС‰РёРµ РїСЂР°РІРёР»Р° РёРіСЂС‹, <a href="#">РїСЂР°РІРёР»Р° РїСѓР±Р»РёРєР°С†РёРё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ</a>, Р»РёР±Рѕ СЃРѕРґРµСЂР¶Р°С‰РёРµ СЌР»РµРјРµРЅС‚С‹ РѕСЃРєРѕСЂР±Р»СЏСЋС‰РёРµ РґРѕСЃС‚РѕРёРЅСЃС‚РІРѕ РґСЂСѓРіРёС… Р»СЋРґРµР№ Р±СѓРґСѓС‚ Р±Р»РѕРєРёСЂРѕРІР°С‚СЊСЃСЏ Р±РµР· РєРѕРјРїРµРЅСЃР°С†РёРё РґРµРЅРµР¶РЅС‹С… СЃСЂРµРґСЃС‚РІ Рё Р±РµР· РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё Р·Р°РјРµРЅС‹ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° РЅРѕРІРѕРµ.</small>
       </form>      
     </fieldset>
     <? } ?>
     <? if(false == true) { ?>
     <fieldset>
-      <legend><span class="legtitle">Заклятия</span></legend>
+      <legend><span class="legtitle">Р—Р°РєР»СЏС‚РёСЏ</span></legend>
 <?
 $p['m1'] = 1;
-$srok = array(15=>'15 минут',30=>'30 минут',60=>'один час',180=>'три часа',360=>'шесть часов',720=>'двенадцать часов',1440=>'одни сутки',4320=>'трое суток');
+$srok = array(15=>'15 РјРёРЅСѓС‚',30=>'30 РјРёРЅСѓС‚',60=>'РѕРґРёРЅ С‡Р°СЃ',180=>'С‚СЂРё С‡Р°СЃР°',360=>'С€РµСЃС‚СЊ С‡Р°СЃРѕРІ',720=>'РґРІРµРЅР°РґС†Р°С‚СЊ С‡Р°СЃРѕРІ',1440=>'РѕРґРЅРё СЃСѓС‚РєРё',4320=>'С‚СЂРѕРµ СЃСѓС‚РѕРє');
 		
 if(isset($_GET['usemod']))
 {
@@ -1035,25 +1035,25 @@ if(isset($_GET['usemod']))
 }
 ?>
 <table>
-<a href="#" onClick="openMod('<b>Заклятие молчания</b>','<form action=\'main.php?<? echo 'clan=1&control&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Время заклятия: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'5\'>5 минут</option><option value=\'30\'>30 минут</option><option value=\'60\'>1 час</option><option value=\'4320\'>3 суток</option></select> <input type=\'submit\' name=\'usem1\' value=\'Исп-ть\'></form>');"><img src="http://img.xcombats.com/i/items/silence30.gif" title="Заклятие молчания" /></a>
+<a href="#" onClick="openMod('<b>Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</b>','<form action=\'main.php?<? echo 'clan=1&control&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Р’СЂРµРјСЏ Р·Р°РєР»СЏС‚РёСЏ: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'5\'>5 РјРёРЅСѓС‚</option><option value=\'30\'>30 РјРёРЅСѓС‚</option><option value=\'60\'>1 С‡Р°СЃ</option><option value=\'4320\'>3 СЃСѓС‚РѕРє</option></select> <input type=\'submit\' name=\'usem1\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://img.xcombats.com/i/items/silence30.gif" title="Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ" /></a>
 &nbsp;
-<a onClick="openMod('<b>Телепортация</b>','<form action=\'main.php?<? echo 'clan=1&control&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\' value=\'<? echo $u->info['login']; ?>\'><br>Город: &nbsp; <select style=\'margin-left:2px;\' name=\'city\'><option value=\'capitalcity\'>capitalcity</option><option value=\'angelscity\'>angelscity</option><option value=\'demonscity\'>demonscity</option><option value=\'devilscity\'>devilscity</option><option value=\'suncity\'>suncity</option><option value=\'emeraldscity\'>emeraldscity</option><option value=\'sandcity\'>sandcity</option><option value=\'mooncity\'>mooncity</option><option value=\'eastcity\'>eastcity</option><option value=\'abandonedplain\'>abandonedplain</option><option value=\'dreamscity\'>dreamscity</option><option value=\'lowcity\'>devilscity</option><option value=\'oldcity\'>devilscity</option><option value=\'newcapitalcity\'>newcapital</option></select> <input type=\'submit\' name=\'teleport\' value=\'Исп-ть\'></form>');" href="#"><img src="http://img.xcombats.com/i/items/teleport.gif" title="Телепортация" /></a></table>
+<a onClick="openMod('<b>РўРµР»РµРїРѕСЂС‚Р°С†РёСЏ</b>','<form action=\'main.php?<? echo 'clan=1&control&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\' value=\'<? echo $u->info['login']; ?>\'><br>Р“РѕСЂРѕРґ: &nbsp; <select style=\'margin-left:2px;\' name=\'city\'><option value=\'capitalcity\'>capitalcity</option><option value=\'angelscity\'>angelscity</option><option value=\'demonscity\'>demonscity</option><option value=\'devilscity\'>devilscity</option><option value=\'suncity\'>suncity</option><option value=\'emeraldscity\'>emeraldscity</option><option value=\'sandcity\'>sandcity</option><option value=\'mooncity\'>mooncity</option><option value=\'eastcity\'>eastcity</option><option value=\'abandonedplain\'>abandonedplain</option><option value=\'dreamscity\'>dreamscity</option><option value=\'lowcity\'>devilscity</option><option value=\'oldcity\'>devilscity</option><option value=\'newcapitalcity\'>newcapital</option></select> <input type=\'submit\' name=\'teleport\' value=\'РСЃРї-С‚СЊ\'></form>');" href="#"><img src="http://img.xcombats.com/i/items/teleport.gif" title="РўРµР»РµРїРѕСЂС‚Р°С†РёСЏ" /></a></table>
     </fieldset>
     <? } ?>
     <fieldset>
-      <legend><span class="legtitle">Казна клана</span></legend>
+      <legend><span class="legtitle">РљР°Р·РЅР° РєР»Р°РЅР°</span></legend>
       <form method="post" action="?clan&control&give_money">
-      Деньги в казне клана: <?=$res['money1']?> кр. <? if($res['money2'] > 0) { ?><br />
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <?=$res['money2']?> екр. <input class="btnnew" type="button" value="Список операций" /><? } ?><br />
+      Р”РµРЅСЊРіРё РІ РєР°Р·РЅРµ РєР»Р°РЅР°: <?=$res['money1']?> РєСЂ. <? if($res['money2'] > 0) { ?><br />
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <?=$res['money2']?> РµРєСЂ. <input class="btnnew" type="button" value="РЎРїРёСЃРѕРє РѕРїРµСЂР°С†РёР№" /><? } ?><br />
       <? if($tt[7][0] > 0) { ?>
-      Забрать из казны: <input id="svb_give_money" name="svb_give_money" value="0" type="text" /> <input class="btnnew" type="submit" value=">>" />
+      Р—Р°Р±СЂР°С‚СЊ РёР· РєР°Р·РЅС‹: <input id="svb_give_money" name="svb_give_money" value="0" type="text" /> <input class="btnnew" type="submit" value=">>" />
       <? } ?>
       </form>
       <? if($tt[6][0] > 0) { ?>
       <form method="post" action="?clan&control&take_money">
       <div style="border-top:1px solid #cac9c7;margin-top:5px;padding-top:5px;">
-      Положить деньги в казну: <input id="svb_take_money" name="svb_take_money" value="0" type="text" /> <input class="btnnew" type="submit" value=">>" />
-      <small>(при себе: <?=$u->info['money']?>кр.)</small>
+      РџРѕР»РѕР¶РёС‚СЊ РґРµРЅСЊРіРё РІ РєР°Р·РЅСѓ: <input id="svb_take_money" name="svb_take_money" value="0" type="text" /> <input class="btnnew" type="submit" value=">>" />
+      <small>(РїСЂРё СЃРµР±Рµ: <?=$u->info['money']?>РєСЂ.)</small>
       </div>
       </form>
       <? } ?>
@@ -1062,7 +1062,7 @@ if(isset($_GET['usemod']))
       <? if($tt[11][0] > 0 && $tt[3][0] == 1) { ?>
       <form method="post" action="?clan&control&vipiska">
       <div style="margin-top:5px;padding-top:5px;">
-      Заказать выписку для хранилища: <small>(услуга стоит 1кр.)</small> <input id="svb_vipiska" name="svb_vipiska" value="<?=date('d.m.Y')?>" type="text" /> <input class="btnnew" type="submit" value="Заказать" />
+      Р—Р°РєР°Р·Р°С‚СЊ РІС‹РїРёСЃРєСѓ РґР»СЏ С…СЂР°РЅРёР»РёС‰Р°: <small>(СѓСЃР»СѓРіР° СЃС‚РѕРёС‚ 1РєСЂ.)</small> <input id="svb_vipiska" name="svb_vipiska" value="<?=date('d.m.Y')?>" type="text" /> <input class="btnnew" type="submit" value="Р—Р°РєР°Р·Р°С‚СЊ" />
       </div>
       </form>
       <? } ?>
@@ -1078,14 +1078,14 @@ if(isset($_GET['usemod']))
 				if($cln['id'] == $res['id']) {
 					
 					$rn = array(
-					'<font color="#FF0000"><b>Остроумно, но здесь так делать нельзя :-)</b></font><br>',
-					'<font color="#FF0000"><b>Это будет очень сложно сделать, Ваши сокланы против!</b></font><br>',
-					'<font color="#FF0000"><b>Не уподобляйтесь большинству, защищайте интересы своего клана!</b></font><br>');					
+					'<font color="#FF0000"><b>РћСЃС‚СЂРѕСѓРјРЅРѕ, РЅРѕ Р·РґРµСЃСЊ С‚Р°Рє РґРµР»Р°С‚СЊ РЅРµР»СЊР·СЏ :-)</b></font><br>',
+					'<font color="#FF0000"><b>Р­С‚Рѕ Р±СѓРґРµС‚ РѕС‡РµРЅСЊ СЃР»РѕР¶РЅРѕ СЃРґРµР»Р°С‚СЊ, Р’Р°С€Рё СЃРѕРєР»Р°РЅС‹ РїСЂРѕС‚РёРІ!</b></font><br>',
+					'<font color="#FF0000"><b>РќРµ СѓРїРѕРґРѕР±Р»СЏР№С‚РµСЃСЊ Р±РѕР»СЊС€РёРЅСЃС‚РІСѓ, Р·Р°С‰РёС‰Р°Р№С‚Рµ РёРЅС‚РµСЂРµСЃС‹ СЃРІРѕРµРіРѕ РєР»Р°РЅР°!</b></font><br>');					
 					echo $rn[rand(0,2)];				
 				}elseif($cln['join1'] == $res['join1'] && $res['join1'] > 0) {
-					echo '<font color="#FF0000"><b>Вы состоите в союзе с этим кланом</b></font><br>';				
+					echo '<font color="#FF0000"><b>Р’С‹ СЃРѕСЃС‚РѕРёС‚Рµ РІ СЃРѕСЋР·Рµ СЃ СЌС‚РёРј РєР»Р°РЅРѕРј</b></font><br>';				
 				}elseif($cln['join2'] == $res['join2'] && $res['join2'] > 0) {
-					echo '<font color="#FF0000"><b>Вы состоите в альянсе с этим кланом</b></font><br>';		
+					echo '<font color="#FF0000"><b>Р’С‹ СЃРѕСЃС‚РѕРёС‚Рµ РІ Р°Р»СЊСЏРЅСЃРµ СЃ СЌС‚РёРј РєР»Р°РЅРѕРј</b></font><br>';		
 				}else{
 					$lwar = mysql_fetch_array(mysql_query('SELECT * FROM `clan_wars` WHERE `time_finish` > '.time().' AND ((`clan1` = "'.$cln['id'].'" AND `clan2` = "'.$res['id'].'") OR (`clan2` = "'.$cln['id'].'" AND `clan1` = "'.$res['id'].'")) LIMIT 1 '));
 					if(!isset($lwar['id'])) {
@@ -1094,21 +1094,21 @@ if(isset($_GET['usemod']))
 							$mkr = 600; $tpcw = 2;
 						}
 						if( true == false ) {
-							echo '<font color="#FF0000"><b>Нельзя обьявить войну прямо сейчас</b></font><br>';
+							echo '<font color="#FF0000"><b>РќРµР»СЊР·СЏ РѕР±СЊСЏРІРёС‚СЊ РІРѕР№РЅСѓ РїСЂСЏРјРѕ СЃРµР№С‡Р°СЃ</b></font><br>';
 						}elseif($mkr > $res['money1']) {
-							echo '<font color="#FF0000"><b>В казне клана не достаточно средств</b></font><br>';
+							echo '<font color="#FF0000"><b>Р’ РєР°Р·РЅРµ РєР»Р°РЅР° РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ</b></font><br>';
 						}else{
 							mysql_query('UPDATE `clan` SET `money1` = `money1` - '.$mkr.' WHERE `id` = "'.$res['id'].'" LIMIT 1');
-							mysql_query('INSERT INTO `clan_wars` (`clan1`,`clan2`,`time_start`,`time_finish`,`type`,`text`) VALUES ("'.$res['id'].'","'.$cln['id'].'","'.time().'","'.(time()+60*60*24*3).'","'.$tpcw.'","Война!")');
+							mysql_query('INSERT INTO `clan_wars` (`clan1`,`clan2`,`time_start`,`time_finish`,`type`,`text`) VALUES ("'.$res['id'].'","'.$cln['id'].'","'.time().'","'.(time()+60*60*24*3).'","'.$tpcw.'","Р’РѕР№РЅР°!")');
 							mysql_query('INSERT INTO `clan_operations` (`clan`,`time`,`type`,`text`,`val`,`uid`) VALUES ("'.$res['id'].'","'.time().'","4","'.$u->info['login'].'","clanwar_'.$mkr.'_'.$cln['id'].'","'.$u->info['id'].'")');
-							echo '<font color="#FF0000"><b>Вы успешно обьявили войну клану &quot;'.$cln['name'].'&quot; за '.$mkr.' кр.</b></font><br>';
+							echo '<font color="#FF0000"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РѕР±СЊСЏРІРёР»Рё РІРѕР№РЅСѓ РєР»Р°РЅСѓ &quot;'.$cln['name'].'&quot; Р·Р° '.$mkr.' РєСЂ.</b></font><br>';
 						}
 					}else{
-						echo '<font color="#FF0000"><b>Вы уже ведете войну с данным кланом</b></font><br>';
+						echo '<font color="#FF0000"><b>Р’С‹ СѓР¶Рµ РІРµРґРµС‚Рµ РІРѕР№РЅСѓ СЃ РґР°РЅРЅС‹Рј РєР»Р°РЅРѕРј</b></font><br>';
 					}
 				}
 			}else{
-				echo '<font color="#FF0000"><b>Клан с таким названием не найден</b></font><br>';
+				echo '<font color="#FF0000"><b>РљР»Р°РЅ СЃ С‚Р°РєРёРј РЅР°Р·РІР°РЅРёРµРј РЅРµ РЅР°Р№РґРµРЅ</b></font><br>';
 			}
 		}
 	}
@@ -1116,9 +1116,9 @@ if(isset($_GET['usemod']))
    ?>
     <br /><br />
     <fieldset>
-      <legend><span class="legtitle">Клановые войны</span></legend>
+      <legend><span class="legtitle">РљР»Р°РЅРѕРІС‹Рµ РІРѕР№РЅС‹</span></legend>
       <? if($tt[14][0] == 1){ ?>
-      <input onClick="openMod('<b>Объявить войну клану</b>','<form action=\'main.php?clan&diplom&clanwars\' method=\'post\'>Название клана: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br><label><input type=\'radio\' name=\'RadioGroup1\' value=\'1\' id=\'RadioGroup1_0\'>Обычная война (300 кр.)</label><br><span style=\'float:left\'><label><input type=\'radio\' name=\'RadioGroup1\' value=\'2\' id=\'RadioGroup1_1\'>Кровавая война (600кр.)</label></span><input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Принять\'></form>');" type="submit" name="button" id="button" value="Начать войну" />
+      <input onClick="openMod('<b>РћР±СЉСЏРІРёС‚СЊ РІРѕР№РЅСѓ РєР»Р°РЅСѓ</b>','<form action=\'main.php?clan&diplom&clanwars\' method=\'post\'>РќР°Р·РІР°РЅРёРµ РєР»Р°РЅР°: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br><label><input type=\'radio\' name=\'RadioGroup1\' value=\'1\' id=\'RadioGroup1_0\'>РћР±С‹С‡РЅР°СЏ РІРѕР№РЅР° (300 РєСЂ.)</label><br><span style=\'float:left\'><label><input type=\'radio\' name=\'RadioGroup1\' value=\'2\' id=\'RadioGroup1_1\'>РљСЂРѕРІР°РІР°СЏ РІРѕР№РЅР° (600РєСЂ.)</label></span><input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'РџСЂРёРЅСЏС‚СЊ\'></form>');" type="submit" name="button" id="button" value="РќР°С‡Р°С‚СЊ РІРѕР№РЅСѓ" />
       <? } ?>
       <br />
       <div style="border:1px solid #CECECE;padding:10px;">
@@ -1128,15 +1128,15 @@ if(isset($_GET['usemod']))
 	  while($pl = mysql_fetch_array($sp)) {
 		  $cln1 = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$pl['clan1'].'" LIMIT 1'));
 		  $cln2 = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$pl['clan2'].'" LIMIT 1'));
-		  $ms .= '<div style="border:1px solid #CECECE;padding:10px;">Война между кланами <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$cln1['name_mini'].'.gif">'.$cln1['name'].'</b> и <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$cln2['name_mini'].'.gif">'.$cln2['name'].'</b>.<br>';
+		  $ms .= '<div style="border:1px solid #CECECE;padding:10px;">Р’РѕР№РЅР° РјРµР¶РґСѓ РєР»Р°РЅР°РјРё <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$cln1['name_mini'].'.gif">'.$cln1['name'].'</b> Рё <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$cln2['name_mini'].'.gif">'.$cln2['name'].'</b>.<br>';
 		  if($pl['text'] != '') {
-			$ms .= 'Причина войны: <i>'.$pl['text'].'</i><br>';  
+			$ms .= 'РџСЂРёС‡РёРЅР° РІРѕР№РЅС‹: <i>'.$pl['text'].'</i><br>';  
 		  }
-		  $ms .= 'Время войны: '.date('d.m.Y H:i',$pl['time_start']).' - '.date('d.m.Y H:i',$pl['time_finish']).'</div>';
+		  $ms .= 'Р’СЂРµРјСЏ РІРѕР№РЅС‹: '.date('d.m.Y H:i',$pl['time_start']).' - '.date('d.m.Y H:i',$pl['time_finish']).'</div>';
 	  }
 	  if($ms == '') {
 	  ?>
-      	В данный момент Ваш клан не ведет войн.
+      	Р’ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ Р’Р°С€ РєР»Р°РЅ РЅРµ РІРµРґРµС‚ РІРѕР№РЅ.
       <?
 	  }else{
 		 echo $ms; 
@@ -1145,57 +1145,57 @@ if(isset($_GET['usemod']))
       </div>
     </fieldset>
   <fieldset>
-    <legend><span class="legtitle">Союзы и альянсы</span></legend>
+    <legend><span class="legtitle">РЎРѕСЋР·С‹ Рё Р°Р»СЊСЏРЅСЃС‹</span></legend>
       <? if($tt[13][0] == 1) {
 	  if(isset($_GET['joint']) && $tt[13][0] == 1) {
 		  if($_GET['joint'] == 1) {
-			 //вступление в союз
+			 //РІСЃС‚СѓРїР»РµРЅРёРµ РІ СЃРѕСЋР·
 			  $nm = htmlspecialchars($_POST['logingo'],NULL,'cp1251');
 			  $cnm = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `name` = "'.mysql_real_escape_string($nm).'" AND `type` = "1" LIMIT 1'));
 			  if(isset($cnm['id'])) {
 				$cnmz = mysql_fetch_array(mysql_query('SELECT * FROM `clan_join` WHERE `alians` = "'.$cnm['id'].'" AND `clan` = "'.$res['id'].'" AND `time_end` = "0" AND `time_start` = "0" AND `type` = "1" LIMIT 1'));
 				if(isset($cnmz['id'])) {
-					echo '<font color="#FF0000"><b>Ваш клан уже подал заявку в данный союз</b></font><br>';
+					echo '<font color="#FF0000"><b>Р’Р°С€ РєР»Р°РЅ СѓР¶Рµ РїРѕРґР°Р» Р·Р°СЏРІРєСѓ РІ РґР°РЅРЅС‹Р№ СЃРѕСЋР·</b></font><br>';
 				}elseif($res['join1'] > 0) {
-					echo '<font color="#FF0000"><b>Ваш клан уже находится в союзе</b></font><br>'; 
+					echo '<font color="#FF0000"><b>Р’Р°С€ РєР»Р°РЅ СѓР¶Рµ РЅР°С…РѕРґРёС‚СЃСЏ РІ СЃРѕСЋР·Рµ</b></font><br>'; 
 				}else{
 					mysql_query('UPDATE `clan` SET `join1` = "'.$cnm['id'].'" WHERE `id` = "'.$res['id'].'" LIMIT 1');
-					echo '<font color="#FF0000"><b>Вы успешно подали заявку в союз &quot;'.$cnm['name'].'&quot;</b></font><br>';
+					echo '<font color="#FF0000"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕРґР°Р»Рё Р·Р°СЏРІРєСѓ РІ СЃРѕСЋР· &quot;'.$cnm['name'].'&quot;</b></font><br>';
 					mysql_query('INSERT INTO `clan_join` (`clan`,`alians`,`time`,`type`) VALUES ("'.$res['id'].'","'.$cnm['id'].'","'.time().'","1")');
 				}
 			  }else{
-				 echo '<font color="#FF0000"><b>Альянс или союз с такиим названием не существует</b></font><br>'; 
+				 echo '<font color="#FF0000"><b>РђР»СЊСЏРЅСЃ РёР»Рё СЃРѕСЋР· СЃ С‚Р°РєРёРёРј РЅР°Р·РІР°РЅРёРµРј РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚</b></font><br>'; 
 			  }
 		  }else{
-			 //вступление в альянс
+			 //РІСЃС‚СѓРїР»РµРЅРёРµ РІ Р°Р»СЊСЏРЅСЃ
 			  $nm = htmlspecialchars($_POST['logingo'],NULL,'cp1251');
 			  $cnm = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `name` = "'.mysql_real_escape_string($nm).'" AND `type` = "2" LIMIT 1'));
 			  if(isset($cnm['id'])) {
 				$cnmz = mysql_fetch_array(mysql_query('SELECT * FROM `clan_join` WHERE `alians` = "'.$cnm['id'].'" AND `clan` = "'.$res['id'].'" AND `time_end` = "0" AND `time_start` = "0" AND `type` = "2" LIMIT 1'));
 				if(isset($cnmz['id'])) {
-					echo '<font color="#FF0000"><b>Ваш клан уже подал заявку в данный альянс</b></font><br>';
+					echo '<font color="#FF0000"><b>Р’Р°С€ РєР»Р°РЅ СѓР¶Рµ РїРѕРґР°Р» Р·Р°СЏРІРєСѓ РІ РґР°РЅРЅС‹Р№ Р°Р»СЊСЏРЅСЃ</b></font><br>';
 				}elseif($res['join1'] == 0) {
-					echo '<font color="#FF0000"><b>Для вступления в альянс требуется вступить в союз</b></font><br>'; 
+					echo '<font color="#FF0000"><b>Р”Р»СЏ РІСЃС‚СѓРїР»РµРЅРёСЏ РІ Р°Р»СЊСЏРЅСЃ С‚СЂРµР±СѓРµС‚СЃСЏ РІСЃС‚СѓРїРёС‚СЊ РІ СЃРѕСЋР·</b></font><br>'; 
 				}elseif($res['join2'] > 0) {
-					echo '<font color="#FF0000"><b>Ваш клан уже находится в альянсе</b></font><br>'; 
+					echo '<font color="#FF0000"><b>Р’Р°С€ РєР»Р°РЅ СѓР¶Рµ РЅР°С…РѕРґРёС‚СЃСЏ РІ Р°Р»СЊСЏРЅСЃРµ</b></font><br>'; 
 				}else{
 					mysql_query('UPDATE `clan` SET `join1` = "'.$cnm['id'].'" WHERE `id` = "'.$res['id'].'" LIMIT 1');
-					echo '<font color="#FF0000"><b>Вы успешно подали заявку в альянс &quot;'.$cnm['name'].'&quot;</b></font><br>';
+					echo '<font color="#FF0000"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕРґР°Р»Рё Р·Р°СЏРІРєСѓ РІ Р°Р»СЊСЏРЅСЃ &quot;'.$cnm['name'].'&quot;</b></font><br>';
 					mysql_query('INSERT INTO `clan_join` (`clan`,`alians`,`time`,`type`) VALUES ("'.$res['id'].'","'.$cnm['id'].'","'.time().'","2")');
 				}
 			  }else{
-				 echo '<font color="#FF0000"><b>Альянс или союз с такиим названием не существует</b></font><br>'; 
+				 echo '<font color="#FF0000"><b>РђР»СЊСЏРЅСЃ РёР»Рё СЃРѕСЋР· СЃ С‚Р°РєРёРёРј РЅР°Р·РІР°РЅРёРµРј РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚</b></font><br>'; 
 			  }
 		  }
 	  }elseif(isset($_GET['newjoint']) && $tt[13][0] == 1) {
 		if($_GET['newjoint'] == 1) {
-			//союзы
+			//СЃРѕСЋР·С‹
 			if($res['join1'] > 0) {
-				echo '<font color="#FF0000"><b>Ваш клан уже состоит в союзе</b></font><br>';
+				echo '<font color="#FF0000"><b>Р’Р°С€ РєР»Р°РЅ СѓР¶Рµ СЃРѕСЃС‚РѕРёС‚ РІ СЃРѕСЋР·Рµ</b></font><br>';
 			}else{
 				$nm = htmlspecialchars($_POST['logingo'],NULL,'cp1251');
 				if(str_replace(' ','',str_replace('	','',$nm)) == '') {
-					echo '<font color="#FF0000"><b>Введите название союза</b></font><br>';
+					echo '<font color="#FF0000"><b>Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЃРѕСЋР·Р°</b></font><br>';
 				}else{
 					$cnm = mysql_fetch_array(mysql_query('SELECT `id` FROM `clan_joint` WHERE `name` = "'.mysql_real_escape_string($nm).'" LIMIT 1'));
 					if(!isset($cnm['id'])) {
@@ -1204,22 +1204,22 @@ if(isset($_GET['usemod']))
 						$res['join1'] = $id;
 						mysql_query('INSERT INTO `clan_join` (`clan`,`alians`,`time`,`type`,`time_start`) VALUES ("'.$res['id'].'","'.$id.'","'.time().'","1","'.time().'")');
 						mysql_query('UPDATE `clan` SET `join1` = "'.$id.'" WHERE `id` = "'.$res['id'].'" LIMIT 1');
-						echo '<font color="#FF0000"><b>Вы успешно создали союз &quot;'.$nm.'&quot;</b></font><br>';
+						echo '<font color="#FF0000"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°Р»Рё СЃРѕСЋР· &quot;'.$nm.'&quot;</b></font><br>';
 					}else{
-						echo '<font color="#FF0000"><b>Альянс или союз с такиим названием уже существует</b></font><br>';
+						echo '<font color="#FF0000"><b>РђР»СЊСЏРЅСЃ РёР»Рё СЃРѕСЋР· СЃ С‚Р°РєРёРёРј РЅР°Р·РІР°РЅРёРµРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚</b></font><br>';
 					}
 				}
 			}
 		}else{
-			//альянсы
+			//Р°Р»СЊСЏРЅСЃС‹
 			if($res['join1'] == 0) {
-				echo '<font color="#FF0000"><b>Ваш клан должен состоять в союзе</b></font><br>';
+				echo '<font color="#FF0000"><b>Р’Р°С€ РєР»Р°РЅ РґРѕР»Р¶РµРЅ СЃРѕСЃС‚РѕСЏС‚СЊ РІ СЃРѕСЋР·Рµ</b></font><br>';
 			}elseif($res['join2'] > 0) {
-				echo '<font color="#FF0000"><b>Ваш клан уже состоит в альянсе</b></font><br>';
+				echo '<font color="#FF0000"><b>Р’Р°С€ РєР»Р°РЅ СѓР¶Рµ СЃРѕСЃС‚РѕРёС‚ РІ Р°Р»СЊСЏРЅСЃРµ</b></font><br>';
 			}else{
 				$nm = htmlspecialchars($_POST['logingo'],NULL,'cp1251');
 				if(str_replace(' ','',str_replace('	','',$nm)) == '') {
-					echo '<font color="#FF0000"><b>Введите название альянса</b></font><br>';
+					echo '<font color="#FF0000"><b>Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р°Р»СЊСЏРЅСЃР°</b></font><br>';
 				}else{
 					$cnm = mysql_fetch_array(mysql_query('SELECT `id` FROM `clan_joint` WHERE `name` = "'.mysql_real_escape_string($nm).'" LIMIT 1'));
 					if(!isset($cnm['id'])) {
@@ -1228,9 +1228,9 @@ if(isset($_GET['usemod']))
 						$res['join2'] = $id;
 						mysql_query('INSERT INTO `clan_join` (`clan`,`alians`,`time`,`type`,`time_start`) VALUES ("'.$res['id'].'","'.$id.'","'.time().'","2","'.time().'")');
 						mysql_query('UPDATE `clan` SET `join2` = "'.$id.'" WHERE `id` = "'.$res['id'].'" LIMIT 1');
-						echo '<font color="#FF0000"><b>Вы успешно создали альянс &quot;'.$nm.'&quot;</b></font><br>';
+						echo '<font color="#FF0000"><b>Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°Р»Рё Р°Р»СЊСЏРЅСЃ &quot;'.$nm.'&quot;</b></font><br>';
 					}else{
-						echo '<font color="#FF0000"><b>Альянс или союз с такиим названием уже существует</b></font><br>';
+						echo '<font color="#FF0000"><b>РђР»СЊСЏРЅСЃ РёР»Рё СЃРѕСЋР· СЃ С‚Р°РєРёРёРј РЅР°Р·РІР°РЅРёРµРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚</b></font><br>';
 					}
 				}
 			}
@@ -1238,27 +1238,27 @@ if(isset($_GET['usemod']))
 	  }elseif(isset($_GET['cancel']) && $tt[13][0] == 1) {
 		 $zvn = mysql_fetch_array(mysql_query('SELECT * FROM `clan_join` WHERE `id` = "'.mysql_real_escape_string($_GET['cancel']).'" AND `time_start` = "0" AND `time_end` = "0" LIMIT 1')); 
 		 if(!isset($zvn['id'])) {
-			 echo '<font color="#FF0000"><b>Заявка на вступление не найдена</b></font><br>';
+			 echo '<font color="#FF0000"><b>Р—Р°СЏРІРєР° РЅР° РІСЃС‚СѓРїР»РµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅР°</b></font><br>';
 		 }else{
 			 $rzv = '';
 			if($zvn['clan'] == $res['id']) {
-				//отмена присоединения
+				//РѕС‚РјРµРЅР° РїСЂРёСЃРѕРµРґРёРЅРµРЅРёСЏ
 				$szu = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$zvn['alians'].'" LIMIT 1'));
 				if($szu['type'] == 1) {
-					$rzv = 'Клан <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif">'.$res['name'].'</b> отказался от присоединения к союзу <b>'.$szu['name'].'</b>.';
+					$rzv = 'РљР»Р°РЅ <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif">'.$res['name'].'</b> РѕС‚РєР°Р·Р°Р»СЃСЏ РѕС‚ РїСЂРёСЃРѕРµРґРёРЅРµРЅРёСЏ Рє СЃРѕСЋР·Сѓ <b>'.$szu['name'].'</b>.';
 				}else{
-					$rzv = 'Клан <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif">'.$res['name'].'</b> отказался от присоединения к альянсу <b>'.$szu['name'].'</b>.';
+					$rzv = 'РљР»Р°РЅ <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif">'.$res['name'].'</b> РѕС‚РєР°Р·Р°Р»СЃСЏ РѕС‚ РїСЂРёСЃРѕРµРґРёРЅРµРЅРёСЏ Рє Р°Р»СЊСЏРЅСЃСѓ <b>'.$szu['name'].'</b>.';
 				}
 			}elseif($zvn['alians'] == $res['join1']) {
-				//отказ в присоединении к союзу
+				//РѕС‚РєР°Р· РІ РїСЂРёСЃРѕРµРґРёРЅРµРЅРёРё Рє СЃРѕСЋР·Сѓ
 				$szu = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$zvn['alians'].'" LIMIT 1'));
 				$zvy = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$zvn['clan'].'" LIMIT 1'));
-				$rzv = 'Союз <b>'.$szu['name'].'</b> отказал клану <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$zvy['name_mini'].'.gif">'.$zvy['name'].'</b> в присоединении.';
+				$rzv = 'РЎРѕСЋР· <b>'.$szu['name'].'</b> РѕС‚РєР°Р·Р°Р» РєР»Р°РЅСѓ <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$zvy['name_mini'].'.gif">'.$zvy['name'].'</b> РІ РїСЂРёСЃРѕРµРґРёРЅРµРЅРёРё.';
 			}elseif($zvn['alians'] == $res['join2']) {
-				//отказ в присоединении к альянсу
+				//РѕС‚РєР°Р· РІ РїСЂРёСЃРѕРµРґРёРЅРµРЅРёРё Рє Р°Р»СЊСЏРЅСЃСѓ
 				$szu = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$zvn['alians'].'" LIMIT 1'));
 				$zvy = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$zvn['clan'].'" LIMIT 1'));
-				$rzv = 'Альянс <b>'.$szu['name'].'</b> отказал клану <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$zvy['name_mini'].'.gif">'.$zvy['name'].'</b> в присоединении.';
+				$rzv = 'РђР»СЊСЏРЅСЃ <b>'.$szu['name'].'</b> РѕС‚РєР°Р·Р°Р» РєР»Р°РЅСѓ <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$zvy['name_mini'].'.gif">'.$zvy['name'].'</b> РІ РїСЂРёСЃРѕРµРґРёРЅРµРЅРёРё.';
 			}
 			if($rzv != '') {
 				echo '<font color="#FF0000"><b>'.$rzv.'</b></font><br>';
@@ -1268,22 +1268,22 @@ if(isset($_GET['usemod']))
 	  }elseif(isset($_GET['ok']) && $tt[13][0] == 1) {
 		 $zvn = mysql_fetch_array(mysql_query('SELECT * FROM `clan_join` WHERE `id` = "'.mysql_real_escape_string($_GET['ok']).'" AND `time_start` = "0" AND `time_end` = "0" LIMIT 1')); 
 		 if(!isset($zvn['id'])) {
-			 echo '<font color="#FF0000"><b>Заявка на вступление не найдена</b></font><br>';
+			 echo '<font color="#FF0000"><b>Р—Р°СЏРІРєР° РЅР° РІСЃС‚СѓРїР»РµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅР°</b></font><br>';
 		 }else{
 			 $rzv = '';
 			if($zvn['alians'] == $res['join1']) {
-				//присоединение к союзу
+				//РїСЂРёСЃРѕРµРґРёРЅРµРЅРёРµ Рє СЃРѕСЋР·Сѓ
 				$szu = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$zvn['alians'].'" LIMIT 1'));
 				$zvy = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$zvn['clan'].'" LIMIT 1'));
-				$rzv = 'Союз <b>'.$szu['name'].'</b> принял клан <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$zvy['name_mini'].'.gif">'.$zvy['name'].'</b>.';
+				$rzv = 'РЎРѕСЋР· <b>'.$szu['name'].'</b> РїСЂРёРЅСЏР» РєР»Р°РЅ <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$zvy['name_mini'].'.gif">'.$zvy['name'].'</b>.';
 				mysql_query('UPDATE `clan_join` SET `time_end` = "'.time().'" WHERE `id` != "'.$zvn['id'].'" AND `clan` = "'.$szu['clan'].'" AND `type` = "1"');
 				//mysql_query('INSERT INTO `clan_join` (`clan`,`alians`,`time`,`type`) VALUES ("'.$res['id'].'","'.$szu['id'].'","'.time().'","1")');
 				mysql_query('UPDATE `clan` SET `join1` = "'.$zvn['alians'].'" WHERE `id` = "'.$szu['id'].'"');
 			}elseif($zvn['alians'] == $res['join2']) {
-				//присоединение к альянсу
+				//РїСЂРёСЃРѕРµРґРёРЅРµРЅРёРµ Рє Р°Р»СЊСЏРЅСЃСѓ
 				$szu = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$zvn['alians'].'" LIMIT 1'));
 				$zvy = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$zvn['clan'].'" LIMIT 1'));
-				$rzv = 'Альянс <b>'.$szu['name'].'</b> принял клан <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$zvy['name_mini'].'.gif">'.$zvy['name'].'</b>.';
+				$rzv = 'РђР»СЊСЏРЅСЃ <b>'.$szu['name'].'</b> РїСЂРёРЅСЏР» РєР»Р°РЅ <b><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$zvy['name_mini'].'.gif">'.$zvy['name'].'</b>.';
 				mysql_query('UPDATE `clan_join` SET `time_end` = "'.time().'" WHERE `id` != "'.$zvn['id'].'" AND `clan` = "'.$szu['clan'].'" AND `type` = "2" AND `time_end` = "0"');
 				//mysql_query('INSERT INTO `clan_join` (`clan`,`alians`,`time`,`type`) VALUES ("'.$res['id'].'","'.$szu['id'].'","'.time().'","2")');
 				mysql_query('UPDATE `clan` SET `join2` = "'.$zvn['alians'].'" WHERE `id` = "'.$szu['id'].'"');
@@ -1296,28 +1296,28 @@ if(isset($_GET['usemod']))
 	  }
 	  ?>
       <? if($res['join1'] == 0 && $res['level'] > 0) { ?>
-      <input class="btnnew" type="submit" name="button" id="button" value="Создать союз" onClick="openMod('<b>Создать союз</b>','<form action=\'main.php?clan&diplom&newjoint=1\' method=\'post\'>Название: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Принять\'></form>');" />
-      <input class="btnnew" type="submit" name="button" id="button" value="Присоединиться к союзу" onClick="openMod('<b>Присоединиться к союзу</b>','<form action=\'main.php?clan&diplom&joint=1\' method=\'post\'>Название: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Принять\'></form>');" />
+      <input class="btnnew" type="submit" name="button" id="button" value="РЎРѕР·РґР°С‚СЊ СЃРѕСЋР·" onClick="openMod('<b>РЎРѕР·РґР°С‚СЊ СЃРѕСЋР·</b>','<form action=\'main.php?clan&diplom&newjoint=1\' method=\'post\'>РќР°Р·РІР°РЅРёРµ: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'РџСЂРёРЅСЏС‚СЊ\'></form>');" />
+      <input class="btnnew" type="submit" name="button" id="button" value="РџСЂРёСЃРѕРµРґРёРЅРёС‚СЊСЃСЏ Рє СЃРѕСЋР·Сѓ" onClick="openMod('<b>РџСЂРёСЃРѕРµРґРёРЅРёС‚СЊСЃСЏ Рє СЃРѕСЋР·Сѓ</b>','<form action=\'main.php?clan&diplom&joint=1\' method=\'post\'>РќР°Р·РІР°РЅРёРµ: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'РџСЂРёРЅСЏС‚СЊ\'></form>');" />
       <? }
 	  
 	  if($res['join2'] == 0 && $res['level'] > 0) { ?>
-      <input class="btnnew" type="submit" name="button" id="button" value="Присоединиться к альянсу" onClick="openMod('<b>Присоединиться к альянсу</b>','<form action=\'main.php?clan&diplom&joint=2\' method=\'post\'>Название: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Принять\'></form>');" />
-      <input class="btnnew" type="submit" name="button" id="button" value="Создать альянс" onClick="openMod('<b>Создать альянс</b>','<form action=\'main.php?clan&diplom&newjoint=2\' method=\'post\'>Название: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'Принять\'></form>');" />      
+      <input class="btnnew" type="submit" name="button" id="button" value="РџСЂРёСЃРѕРµРґРёРЅРёС‚СЊСЃСЏ Рє Р°Р»СЊСЏРЅСЃСѓ" onClick="openMod('<b>РџСЂРёСЃРѕРµРґРёРЅРёС‚СЊСЃСЏ Рє Р°Р»СЊСЏРЅСЃСѓ</b>','<form action=\'main.php?clan&diplom&joint=2\' method=\'post\'>РќР°Р·РІР°РЅРёРµ: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'РџСЂРёРЅСЏС‚СЊ\'></form>');" />
+      <input class="btnnew" type="submit" name="button" id="button" value="РЎРѕР·РґР°С‚СЊ Р°Р»СЊСЏРЅСЃ" onClick="openMod('<b>РЎРѕР·РґР°С‚СЊ Р°Р»СЊСЏРЅСЃ</b>','<form action=\'main.php?clan&diplom&newjoint=2\' method=\'post\'>РќР°Р·РІР°РЅРёРµ: <input type=\'text\' style=\'width:244px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'invite\' value=\'РџСЂРёРЅСЏС‚СЊ\'></form>');" />      
       <br /><br /><? } ?><? } ?>
       <div style="border:1px solid #CECECE;padding:10px;">
       	<? 
 		$ms = '';
 		
-		//Собственные союзы и альянсы
+		//РЎРѕР±СЃС‚РІРµРЅРЅС‹Рµ СЃРѕСЋР·С‹ Рё Р°Р»СЊСЏРЅСЃС‹
 		if($res['join1'] > 0) {
 			$j1 = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$res['join1'].'" LIMIT 1'));
 			if(isset($j1['id'])) {
 				$ms .= '<div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">';
-				$ms .= 'Вы состоите в клановом союзе <b>'.$j1['name'].'</b>.';
+				$ms .= 'Р’С‹ СЃРѕСЃС‚РѕРёС‚Рµ РІ РєР»Р°РЅРѕРІРѕРј СЃРѕСЋР·Рµ <b>'.$j1['name'].'</b>.';
 				if( $j1['clan_glava'] != $res['id'] ) { 
-					$ms .= ' <a href="main.php?clan&diplom&delclanme=1"><img title="Покинуть союз" width="13" height="13" src="http://img.xcombats.com/i/clear.gif"></a>';
+					$ms .= ' <a href="main.php?clan&diplom&delclanme=1"><img title="РџРѕРєРёРЅСѓС‚СЊ СЃРѕСЋР·" width="13" height="13" src="http://img.xcombats.com/i/clear.gif"></a>';
 				}
-				$ms .= '<Br>Состав союза: ';
+				$ms .= '<Br>РЎРѕСЃС‚Р°РІ СЃРѕСЋР·Р°: ';
 				//$ms .= '<a href="javascript:void(0)"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif">'.$res['name'].'</a>';
 				$i = 0;
 				if( isset($_GET['delclanme']) ) {
@@ -1326,14 +1326,14 @@ if(isset($_GET['usemod']))
 						if(isset($dels['id'])) {
 							mysql_query('UPDATE `clan` SET `join1` = "0" WHERE `id` = "'.$res['id'].'" LIMIT 1');
 							mysql_query('UPDATE `clan_join` SET `time_end` = "'.time().'" WHERE `id` = "'.$dels['id'].'" LIMIT 1');
-							echo '<div><b><font color=red>Вы успешно покинули союз &quot;'.$j1['name'].'&quot;</font></b></div>';
+							echo '<div><b><font color=red>Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕРєРёРЅСѓР»Рё СЃРѕСЋР· &quot;'.$j1['name'].'&quot;</font></b></div>';
 							header('location: main.php?clan&diplom');
 						}else{
-							echo '<div><b><font color=red>Ваш клан не состоит в данном союзе</font></b></div>';
+							echo '<div><b><font color=red>Р’Р°С€ РєР»Р°РЅ РЅРµ СЃРѕСЃС‚РѕРёС‚ РІ РґР°РЅРЅРѕРј СЃРѕСЋР·Рµ</font></b></div>';
 						
 						}
 					}else{
-						echo '<div><b><font color=red>Вы не можете покинуть данный союз</font></b></div>';
+						echo '<div><b><font color=red>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРєРёРЅСѓС‚СЊ РґР°РЅРЅС‹Р№ СЃРѕСЋР·</font></b></div>';
 					}
 				}elseif( $j1['clan_glava'] == $res['id'] && ($u->info['clan_prava'] == 'glava' || $u->info['admin'] > 0) ) {
 					if( isset($_GET['delclan']) ) {
@@ -1344,13 +1344,13 @@ if(isset($_GET['usemod']))
 							if( $delc['id'] != $res['id'] ) {
 								mysql_query('UPDATE `clan` SET `join1` = "0" WHERE `id` = "'.$dels['id'].'" LIMIT 1');
 								mysql_query('UPDATE `clan_join` SET `time_end` = "'.time().'" WHERE `id` = "'.$dels['id'].'" LIMIT 1');
-								echo '<div><b><font color=red>Клан &quot;'.$delc['name'].'&quot; был исключен из данного союза</font></b></div>';
+								echo '<div><b><font color=red>РљР»Р°РЅ &quot;'.$delc['name'].'&quot; Р±С‹Р» РёСЃРєР»СЋС‡РµРЅ РёР· РґР°РЅРЅРѕРіРѕ СЃРѕСЋР·Р°</font></b></div>';
 								header('location: main.php?clan&diplom');
 							}else{
-								echo '<div><b><font color=red>Клан ответственный за союз не может покинуть данный союз</font></b></div>';
+								echo '<div><b><font color=red>РљР»Р°РЅ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅС‹Р№ Р·Р° СЃРѕСЋР· РЅРµ РјРѕР¶РµС‚ РїРѕРєРёРЅСѓС‚СЊ РґР°РЅРЅС‹Р№ СЃРѕСЋР·</font></b></div>';
 							}
 						}else{
-							echo '<div><b><font color=red>Клан не состоит в данном союзе</font></b></div>';
+							echo '<div><b><font color=red>РљР»Р°РЅ РЅРµ СЃРѕСЃС‚РѕРёС‚ РІ РґР°РЅРЅРѕРј СЃРѕСЋР·Рµ</font></b></div>';
 						}
 					}
 				}
@@ -1363,22 +1363,22 @@ if(isset($_GET['usemod']))
 					if( $j1['clan_glava'] == $res['id'] ) {
 						if($res['id'] != $pl1['clan']) { 
 							if($u->info['clan_prava'] == 'glava' || $u->info['admin'] > 0) {
-								$ms .= ' <a title="Выгнать из союза" href="main.php?clan&diplom&delclan='.$pl1['clan'].'"><img width="13" height="13" src="http://img.xcombats.com/i/clear.gif"></a>';
+								$ms .= ' <a title="Р’С‹РіРЅР°С‚СЊ РёР· СЃРѕСЋР·Р°" href="main.php?clan&diplom&delclan='.$pl1['clan'].'"><img width="13" height="13" src="http://img.xcombats.com/i/clear.gif"></a>';
 							}
 						}
 					}
 					$i++;
 				}
 				if( $j1['clan_glava'] == $res['id'] && ($u->info['clan_prava'] == 'glava' || $u->info['admin'] > 0) ) {
-					$ms .= '<br>Вы основатель союза, можете ограничить каналы союза чата:<br>';
-					$cnls = '<i>выключено</i>';
-					//$ms .= '<form method="post" action="?clan&diplom&savecanals='.$res['id'].'"><a style="display:inline-block;width:210px;" href="javascript:void(0)"><img src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif">'.$res['name'].'</a> &nbsp; '.$cnls.' &nbsp; <input type="submit" value="сохранить"></form>';
+					$ms .= '<br>Р’С‹ РѕСЃРЅРѕРІР°С‚РµР»СЊ СЃРѕСЋР·Р°, РјРѕР¶РµС‚Рµ РѕРіСЂР°РЅРёС‡РёС‚СЊ РєР°РЅР°Р»С‹ СЃРѕСЋР·Р° С‡Р°С‚Р°:<br>';
+					$cnls = '<i>РІС‹РєР»СЋС‡РµРЅРѕ</i>';
+					//$ms .= '<form method="post" action="?clan&diplom&savecanals='.$res['id'].'"><a style="display:inline-block;width:210px;" href="javascript:void(0)"><img src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif">'.$res['name'].'</a> &nbsp; '.$cnls.' &nbsp; <input type="submit" value="СЃРѕС…СЂР°РЅРёС‚СЊ"></form>';
 					$sp1 = mysql_query('SELECT `u`.*,`s`.* FROM `clan_join` AS `u` LEFT JOIN `clan` AS `s` ON `s`.`id` = `u`.`clan` WHERE `u`.`alians` = "'.$j1['id'].'" AND `u`.`time_end` = "0" AND `u`.`time_start` > 0');
 					while($pl1 = mysql_fetch_array($sp1)) {
-						$ms .= '<form method="post" action="?clan&diplom&savecanals='.$pl1['id'].'"><a style="display:inline-block;width:210px;" href="javascript:void(0)"><img src="http://img.xcombats.com/i/clan/'.$pl1['name_mini'].'.gif">'.$pl1['name'].'</a> &nbsp; '.$cnls.' &nbsp; <input type="submit" value="сохранить"></form>';
+						$ms .= '<form method="post" action="?clan&diplom&savecanals='.$pl1['id'].'"><a style="display:inline-block;width:210px;" href="javascript:void(0)"><img src="http://img.xcombats.com/i/clan/'.$pl1['name_mini'].'.gif">'.$pl1['name'].'</a> &nbsp; '.$cnls.' &nbsp; <input type="submit" value="СЃРѕС…СЂР°РЅРёС‚СЊ"></form>';
 					}
 				}
-				//Перечисляем открытые каналы клана
+				//РџРµСЂРµС‡РёСЃР»СЏРµРј РѕС‚РєСЂС‹С‚С‹Рµ РєР°РЅР°Р»С‹ РєР»Р°РЅР°
 				
 				$ms .= '</div>';
 			}
@@ -1387,7 +1387,7 @@ if(isset($_GET['usemod']))
 			$j1 = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$res['join2'].'" LIMIT 1'));
 			if(isset($j1['id'])) {
 				$ms .= '<div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">';
-				$ms .= 'Вы состоите в клановом альянсе <b>'.$j1['name'].'</b>. Состав альянса: ';
+				$ms .= 'Р’С‹ СЃРѕСЃС‚РѕРёС‚Рµ РІ РєР»Р°РЅРѕРІРѕРј Р°Р»СЊСЏРЅСЃРµ <b>'.$j1['name'].'</b>. РЎРѕСЃС‚Р°РІ Р°Р»СЊСЏРЅСЃР°: ';
 				//$ms .= '<a href="javascript:void(0)"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif">'.$res['name'].'</a>';
 				$sp1 = mysql_query('SELECT `u`.*,`s`.* FROM `clan_join` AS `u` LEFT JOIN `clan` AS `s` ON `s`.`id` = `u`.`clan` WHERE `u`.`alians` = "'.$j1['id'].'" AND `u`.`time_end` = "0" AND `u`.`time_start` > 0');
 				$i = 0;
@@ -1398,28 +1398,28 @@ if(isset($_GET['usemod']))
 					$ms .= '<a href="javascript:void(0)"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$pl1['name_mini'].'.gif">'.$pl1['name'].'</a>';
 					$i++;
 				}
-				$ms .= '<br>Вы основатель альянса.<br>';				
+				$ms .= '<br>Р’С‹ РѕСЃРЅРѕРІР°С‚РµР»СЊ Р°Р»СЊСЏРЅСЃР°.<br>';				
 				$ms .= '</div>';
 			}
 		}
 		
-		//Союзы и альянсы в которых состоит клан
+		//РЎРѕСЋР·С‹ Рё Р°Р»СЊСЏРЅСЃС‹ РІ РєРѕС‚РѕСЂС‹С… СЃРѕСЃС‚РѕРёС‚ РєР»Р°РЅ
 		
 		
 		if($ms == '') {
 		?>
-        <center>В данный момент у вашего клана нет дипломатических отношений.</center>
+        <center>Р’ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ Сѓ РІР°С€РµРіРѕ РєР»Р°РЅР° РЅРµС‚ РґРёРїР»РѕРјР°С‚РёС‡РµСЃРєРёС… РѕС‚РЅРѕС€РµРЅРёР№.</center>
         <? }else{ echo $ms; } ?>
       </div>
       <? if($tt[13][0] == 1) { ?>
       <br />
-      <center>Заявки на союзы</center>
+      <center>Р—Р°СЏРІРєРё РЅР° СЃРѕСЋР·С‹</center>
       <br />
       <table width="100%" border="0" cellspacing="0" cellpadding="2">
         <tr>
           <td width="50%" align="center" valign="top">
           	<div style="border:1px solid #CECECE;padding:10px;">
-            	<a href="javascript:void(0)">Ваши заявки на установление союза</a>
+            	<a href="javascript:void(0)">Р’Р°С€Рё Р·Р°СЏРІРєРё РЅР° СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЃРѕСЋР·Р°</a>
                 <br />
                 <br />
                 <?
@@ -1427,17 +1427,17 @@ if(isset($_GET['usemod']))
 				$sp = mysql_query('SELECT * FROM `clan_join` WHERE `clan` = "'.mysql_real_escape_string($res['id']).'" AND `time_start` = "0" AND `time_end` = "0" AND `type` = "1"');
 				while($pl = mysql_fetch_array($sp)) {
 					$suz = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$pl['alians'].'" LIMIT 1'));
-					$ms .= '<div style="border-bottom:1px solid #cac9c7;text-align:left;margin-bottom:5px;padding-bottom:5px;">Вы подали заявку на вступление в союз <b>'.$suz['name'].'</b>.<br><div style="float:left;">Время подачи заявки: '.date('d.m.Y H:i',$pl['time']).'</div><a style="float:right;" href="?clan&diplom&cancel='.$pl['id'].'">Отменить</a><br></div>';
+					$ms .= '<div style="border-bottom:1px solid #cac9c7;text-align:left;margin-bottom:5px;padding-bottom:5px;">Р’С‹ РїРѕРґР°Р»Рё Р·Р°СЏРІРєСѓ РЅР° РІСЃС‚СѓРїР»РµРЅРёРµ РІ СЃРѕСЋР· <b>'.$suz['name'].'</b>.<br><div style="float:left;">Р’СЂРµРјСЏ РїРѕРґР°С‡Рё Р·Р°СЏРІРєРё: '.date('d.m.Y H:i',$pl['time']).'</div><a style="float:right;" href="?clan&diplom&cancel='.$pl['id'].'">РћС‚РјРµРЅРёС‚СЊ</a><br></div>';
 				}
 				if($ms == '') {
 				?>
-                С Вами никто не подавал заявки
+                РЎ Р’Р°РјРё РЅРёРєС‚Рѕ РЅРµ РїРѕРґР°РІР°Р» Р·Р°СЏРІРєРё
                 <? }else{ echo $ms; } ?>
             </div>
           </td>
           <td align="center" valign="top">
           	<div style="border:1px solid #CECECE;padding:10px;">
-            	<a href="javascript:void(0)">Заявки на установление союза с вами</a>
+            	<a href="javascript:void(0)">Р—Р°СЏРІРєРё РЅР° СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЃРѕСЋР·Р° СЃ РІР°РјРё</a>
                 <br />
                 <br />
                 <?
@@ -1446,24 +1446,24 @@ if(isset($_GET['usemod']))
 				while($pl = mysql_fetch_array($sp)) {
 					$suz = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$pl['alians'].'" LIMIT 1'));
 					$clz = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$pl['clan'].'" LIMIT 1'));
-					$ms .= '<div style="border-bottom:1px solid #cac9c7;text-align:left;margin-bottom:5px;padding-bottom:5px;">Клан <a href="javascript:void(0)"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$clz['name_mini'].'.gif">'.$clz['name'].'</a> подал заявку на вступление в Ваш союз <b>'.$suz['name'].'</b>.<br><div style="float:left;">Время подачи заявки: '.date('d.m.Y H:i',$pl['time']).'</div><div style="float:right;"><a href="?clan&diplom&ok='.$pl['id'].'">Принять</a> &nbsp; <a href="?clan&diplom&cancel='.$pl['id'].'">Отказать</a></div><br></div>';
+					$ms .= '<div style="border-bottom:1px solid #cac9c7;text-align:left;margin-bottom:5px;padding-bottom:5px;">РљР»Р°РЅ <a href="javascript:void(0)"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$clz['name_mini'].'.gif">'.$clz['name'].'</a> РїРѕРґР°Р» Р·Р°СЏРІРєСѓ РЅР° РІСЃС‚СѓРїР»РµРЅРёРµ РІ Р’Р°С€ СЃРѕСЋР· <b>'.$suz['name'].'</b>.<br><div style="float:left;">Р’СЂРµРјСЏ РїРѕРґР°С‡Рё Р·Р°СЏРІРєРё: '.date('d.m.Y H:i',$pl['time']).'</div><div style="float:right;"><a href="?clan&diplom&ok='.$pl['id'].'">РџСЂРёРЅСЏС‚СЊ</a> &nbsp; <a href="?clan&diplom&cancel='.$pl['id'].'">РћС‚РєР°Р·Р°С‚СЊ</a></div><br></div>';
 				}
 				if($ms == '') {
 				?>
-                С Вами никто не подавал заявки
+                РЎ Р’Р°РјРё РЅРёРєС‚Рѕ РЅРµ РїРѕРґР°РІР°Р» Р·Р°СЏРІРєРё
                 <? }else{ echo $ms; } ?>
             </div>
           </td>
         </tr>
       </table>
     <br />
-    <center>Заявки на альянсы</center>     
+    <center>Р—Р°СЏРІРєРё РЅР° Р°Р»СЊСЏРЅСЃС‹</center>     
     <br />
     <table width="100%" border="0" cellspacing="0" cellpadding="2">
         <tr>
           <td width="50%" align="center" valign="top">
           	<div style="border:1px solid #CECECE;padding:10px;">
-            	<a href="javascript:void(0)">Ваши заявки на установление альянса</a>
+            	<a href="javascript:void(0)">Р’Р°С€Рё Р·Р°СЏРІРєРё РЅР° СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р°Р»СЊСЏРЅСЃР°</a>
                 <br />
                 <br />
                 <?
@@ -1471,17 +1471,17 @@ if(isset($_GET['usemod']))
 				$sp = mysql_query('SELECT * FROM `clan_join` WHERE `clan` = "'.mysql_real_escape_string($res['id']).'" AND `time_start` = "0" AND `time_end` = "0" AND `type` = "2"');
 				while($pl = mysql_fetch_array($sp)) {
 					$suz = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$pl['alians'].'" LIMIT 1'));
-					$ms .= '<div style="border-bottom:1px solid #cac9c7;text-align:left;margin-bottom:5px;padding-bottom:5px;">Вы подали заявку на вступление в альянс <b>'.$suz['name'].'</b>.<br><div style="float:left;">Время подачи заявки: '.date('d.m.Y H:i',$pl['time']).'</div><a style="float:right;" href="?clan&diplom&cancel='.$pl['id'].'">Отменить</a><br></div>';
+					$ms .= '<div style="border-bottom:1px solid #cac9c7;text-align:left;margin-bottom:5px;padding-bottom:5px;">Р’С‹ РїРѕРґР°Р»Рё Р·Р°СЏРІРєСѓ РЅР° РІСЃС‚СѓРїР»РµРЅРёРµ РІ Р°Р»СЊСЏРЅСЃ <b>'.$suz['name'].'</b>.<br><div style="float:left;">Р’СЂРµРјСЏ РїРѕРґР°С‡Рё Р·Р°СЏРІРєРё: '.date('d.m.Y H:i',$pl['time']).'</div><a style="float:right;" href="?clan&diplom&cancel='.$pl['id'].'">РћС‚РјРµРЅРёС‚СЊ</a><br></div>';
 				}
 				if($ms == '') {
 				?>
-                С Вами никто не подавал заявки
+                РЎ Р’Р°РјРё РЅРёРєС‚Рѕ РЅРµ РїРѕРґР°РІР°Р» Р·Р°СЏРІРєРё
                 <? }else{ echo $ms; } ?>
             </div>
           </td>
           <td align="center" valign="top">
           	<div style="border:1px solid #CECECE;padding:10px;">
-            	<a href="javascript:void(0)">Заявки на установление альянса с вами</a>
+            	<a href="javascript:void(0)">Р—Р°СЏРІРєРё РЅР° СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р°Р»СЊСЏРЅСЃР° СЃ РІР°РјРё</a>
                 <br />
                 <br />
                 <?
@@ -1490,11 +1490,11 @@ if(isset($_GET['usemod']))
 				while($pl = mysql_fetch_array($sp)) {
 					$suz = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$pl['alians'].'" LIMIT 1'));
 					$clz = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$pl['clan'].'" LIMIT 1'));
-					$ms .= '<div style="border-bottom:1px solid #cac9c7;text-align:left;margin-bottom:5px;padding-bottom:5px;">Клан <a href="javascript:void(0)"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$clz['name_mini'].'.gif">'.$clz['name'].'</a> подал заявку на вступление в Ваш альянс <b>'.$suz['name'].'</b>.<br><div style="float:left;">Время подачи заявки: '.date('d.m.Y H:i',$pl['time']).'</div><div style="float:right;"><a href="?clan&diplom&ok='.$pl['id'].'">Принять</a> &nbsp; <a href="?clan&diplom&cancel='.$pl['id'].'">Отказать</a></div><br></div>';
+					$ms .= '<div style="border-bottom:1px solid #cac9c7;text-align:left;margin-bottom:5px;padding-bottom:5px;">РљР»Р°РЅ <a href="javascript:void(0)"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$clz['name_mini'].'.gif">'.$clz['name'].'</a> РїРѕРґР°Р» Р·Р°СЏРІРєСѓ РЅР° РІСЃС‚СѓРїР»РµРЅРёРµ РІ Р’Р°С€ Р°Р»СЊСЏРЅСЃ <b>'.$suz['name'].'</b>.<br><div style="float:left;">Р’СЂРµРјСЏ РїРѕРґР°С‡Рё Р·Р°СЏРІРєРё: '.date('d.m.Y H:i',$pl['time']).'</div><div style="float:right;"><a href="?clan&diplom&ok='.$pl['id'].'">РџСЂРёРЅСЏС‚СЊ</a> &nbsp; <a href="?clan&diplom&cancel='.$pl['id'].'">РћС‚РєР°Р·Р°С‚СЊ</a></div><br></div>';
 				}
 				if($ms == '') {
 				?>
-                С Вами никто не подавал заявки
+                РЎ Р’Р°РјРё РЅРёРєС‚Рѕ РЅРµ РїРѕРґР°РІР°Р» Р·Р°СЏРІРєРё
                 <? }else{ echo $ms; } ?>
             </div>
           </td>
@@ -1517,7 +1517,7 @@ if(isset($_GET['usemod']))
 		if(isset($itm['id'])) {
 			$btlud = mysql_fetch_array(mysql_query('SELECT `id`,`battle` FROM `users` WHERE `id` = "'.$itm['uid'].'" LIMIT 1'));
 			if( $u->testBattle($btlud['battle']) == true ) {
-				echo '<font color="#FF0000"><b>Нельзя изымать предметы с персонажа в бою</b></font><br>';
+				echo '<font color="#FF0000"><b>РќРµР»СЊР·СЏ РёР·С‹РјР°С‚СЊ РїСЂРµРґРјРµС‚С‹ СЃ РїРµСЂСЃРѕРЅР°Р¶Р° РІ Р±РѕСЋ</b></font><br>';
 			}else{
 			 	echo $u->ungive_itm_cl($_GET['ungive_itm'], $u->info, $res['id']);
 			}
@@ -1532,7 +1532,7 @@ if(isset($_GET['usemod']))
       $itm = mysql_fetch_array(mysql_query('SELECT `iu`.*,`im`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON `iu`.`item_id` = `im`.`id` WHERE `iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `im`.`inslot` > 0 AND `iu`.`gift` = "" AND `iu`.`data` NOT LIKE "%frompisher=%"
 		AND `iu`.`id` = "'.mysql_real_escape_string($_GET['give_itm']).'" LIMIT 1'));
 		if($itmc >= $lvl_prava[$res['level']][5]) {
-			echo '<font color="#FF0000"><b>Хранилище переполнено</b></font><br>';
+			echo '<font color="#FF0000"><b>РҐСЂР°РЅРёР»РёС‰Рµ РїРµСЂРµРїРѕР»РЅРµРЅРѕ</b></font><br>';
 		} elseif(isset($itm['id'])) {
 		  echo $u->set_cl_item($_GET['give_itm'], $u->info, $res['id']);
 		}
@@ -1540,7 +1540,7 @@ if(isset($_GET['usemod']))
 	if($tt[4][0] == 1) {
 		$itm_clan = $u->genInv(66, '(`iu`.`uid` = "-21'.$u->info['clan'].'" OR `iu`.`data` LIKE "%toclan='.$u->info['clan'].'#%") AND `iu`.`delete` = 0 AND `iu`.`inShop` = 0 ORDER BY `lastUPD` DESC');
 	} else {
-		$itm_clan[2] = '<br /><br /><center>У вас нет доступа к использованию хранилища</center>';
+		$itm_clan[2] = '<br /><br /><center>РЈ РІР°СЃ РЅРµС‚ РґРѕСЃС‚СѓРїР° Рє РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ С…СЂР°РЅРёР»РёС‰Р°</center>';
 	}
 	$itm_user = $u->genInv(65, '`iu`.`uid` = '.$u->info['id'].' AND `iu`.`delete` = 0 AND `iu`.`inOdet` = 0 AND `iu`.`inShop` = 0 AND `im`.`inslot` > 0 AND `iu`.`gift` = "" AND `iu`.`data` NOT LIKE "%frompisher=%" ORDER BY `lastUPD` DESC');
    
@@ -1550,22 +1550,22 @@ if(isset($_GET['usemod']))
        <tr>
          <td width="50%" valign="top">
     <fieldset style="margin:0;padding:0">
-      <legend><span class="legtitle">Хранилище (предметов : <?=$itmc?>/<?=$lvl_prava[$res['level']][5]?>)</span></legend>
+      <legend><span class="legtitle">РҐСЂР°РЅРёР»РёС‰Рµ (РїСЂРµРґРјРµС‚РѕРІ : <?=$itmc?>/<?=$lvl_prava[$res['level']][5]?>)</span></legend>
       <? if($itm_clan[2] != '') { ?>
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	  <?=$itm_clan[2]?>
       </table>
-      <? }else{ echo '<center><br />Хранилище клана пусто<br /><br /></center>'; } ?>
+      <? }else{ echo '<center><br />РҐСЂР°РЅРёР»РёС‰Рµ РєР»Р°РЅР° РїСѓСЃС‚Рѕ<br /><br /></center>'; } ?>
     </fieldset>
          </td>
          <td width="50%" valign="top">
     <fieldset style="margin:0;padding:0">
-      <legend><span class="legtitle">Рюкзак</span></legend>
+      <legend><span class="legtitle">Р СЋРєР·Р°Рє</span></legend>
       <? if($itm_user[2] != '') { ?>
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	  <?=$itm_user[2]?>
       </table>
-      <? }else{ echo '<center><br />Рюкзак пуст<br /><br /></center>'; } ?>
+      <? }else{ echo '<center><br />Р СЋРєР·Р°Рє РїСѓСЃС‚<br /><br /></center>'; } ?>
     </fieldset>
          </td>
        </tr>
@@ -1584,21 +1584,21 @@ if(isset($_GET['usemod']))
    <div class="box visible">
         <?
 		if(isset($_POST['tituladd'])) {
-			//Добавляем новый титул
+			//Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІС‹Р№ С‚РёС‚СѓР»
 			$tc = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `clan_tituls` WHERE `clan` = "'.$res['id'].'" AND `delete` = "0" LIMIT 25'));
 			if($tc[0] >= 20) {
-				echo '<font color="#FF0000"><b>Нельзя добавлять более 25-ти титулов, для добавления нового сотрите старые</b></font><br>';
+				echo '<font color="#FF0000"><b>РќРµР»СЊР·СЏ РґРѕР±Р°РІР»СЏС‚СЊ Р±РѕР»РµРµ 25-С‚Рё С‚РёС‚СѓР»РѕРІ, РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕРіРѕ СЃРѕС‚СЂРёС‚Рµ СЃС‚Р°СЂС‹Рµ</b></font><br>';
 			}else{
 				$nm = htmlspecialchars($_POST['tituladd'],NULL,'cp1251');
 				if(str_replace(' ','',str_replace('	','',$nm)) == '') {
-					echo '<font color="#FF0000"><b>Название титула не должно быть пустым</b></font><br>';
+					echo '<font color="#FF0000"><b>РќР°Р·РІР°РЅРёРµ С‚РёС‚СѓР»Р° РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј</b></font><br>';
 				}else{
 					mysql_query('INSERT INTO `clan_tituls` (`clan`,`user_add`,`time_add`,`name`) VALUES ("'.$res['id'].'","'.$u->info['id'].'","'.time().'","'.mysql_real_escape_string($nm).'")');
-					echo '<font color="#FF0000"><b>Титул был успешно добавлен</b></font><br>';
+					echo '<font color="#FF0000"><b>РўРёС‚СѓР» Р±С‹Р» СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ</b></font><br>';
 				}
 			}
 		}elseif(isset($_GET['save'])) {
-			//сохраняем титул
+			//СЃРѕС…СЂР°РЅСЏРµРј С‚РёС‚СѓР»
 			$tc = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `clan` = "'.$res['id'].'" AND `id` = "'.mysql_real_escape_string($_GET['save']).'" AND `delete` = "0" LIMIT 1'));
 			if(isset($tc['id'])) {
 				$tc['info'] = htmlspecialchars($_POST['t_info'],NULL,'cp1251');
@@ -1622,25 +1622,25 @@ if(isset($_GET['usemod']))
 					}
 					$i++;
 				}
-				$_POST['colorsp'] = preg_replace('/[^a-zа-яё0-9]/i','',$_POST['colorsp']);
+				$_POST['colorsp'] = preg_replace('/[^a-zР°-СЏС‘0-9]/i','',$_POST['colorsp']);
 				mysql_query('UPDATE `clan_tituls` SET `info` = "'.mysql_real_escape_string($tc['info']).'", `color` = "'.mysql_real_escape_string($_POST['colorsp']).'", `canals` = "'.$tc['canals'].'", `prava` = "'.$tc['prava'].'" WHERE `id` = "'.$tc['id'].'" LIMIT 1');
-				echo '<font color="#FF0000"><b>Титул был успешно сохранен</b></font><br>';
+				echo '<font color="#FF0000"><b>РўРёС‚СѓР» Р±С‹Р» СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅ</b></font><br>';
 			}else{
-				echo '<font color="#FF0000"><b>Титул не найден</b></font><br>';
+				echo '<font color="#FF0000"><b>РўРёС‚СѓР» РЅРµ РЅР°Р№РґРµРЅ</b></font><br>';
 			}
 		}elseif(isset($_GET['delete'])) {
 			$tc = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `clan` = "'.$res['id'].'" AND `id` = "'.mysql_real_escape_string($_GET['delete']).'" AND `delete` = "0" LIMIT 1'));
 			if(isset($tc['id'])) {
 				mysql_query('UPDATE `clan_tituls` SET `delete` = "'.$u->info['id'].'" WHERE `id` = "'.$tc['id'].'" LIMIT 1');
-				echo '<font color="#FF0000"><b>Титул был удален</b></font><br>';
+				echo '<font color="#FF0000"><b>РўРёС‚СѓР» Р±С‹Р» СѓРґР°Р»РµРЅ</b></font><br>';
 			}else{
-				echo '<font color="#FF0000"><b>Титул не найден</b></font><br>';
+				echo '<font color="#FF0000"><b>РўРёС‚СѓР» РЅРµ РЅР°Р№РґРµРЅ</b></font><br>';
 			}
 		}
 ?>
 <div id="clrttl" style="display:none">
 <br /><br />
-<center><a onclick="ssclrttl()" href="javascript:void(0)">таблицей цветов - скрыть</a></center>
+<center><a onclick="ssclrttl()" href="javascript:void(0)">С‚Р°Р±Р»РёС†РµР№ С†РІРµС‚РѕРІ - СЃРєСЂС‹С‚СЊ</a></center>
 <br /><br />
 <table width="100%" cellpadding="10" cellspacing="5">
   <tbody>
@@ -2240,14 +2240,14 @@ function ssclrttl() {
 		<div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
         
         <b style="color:#<?=$pl['color']?>">*</b> &nbsp; <a style="display:inline-block;width:250px;" onclick="editTitul(<?=$pl['id']?>)" href="javascript:void(0)"><?=$pl['name']?></a><font color="#999999"><i><?=$pl['info']?></i></font>
-        <img src="http://img.xcombats.com/i/clear.gif" title="Удалить титул" onclick="location='main.php?clan&titul&delete=<?=$pl['id']?>'" style="float:right;cursor:pointer;">
+        <img src="http://img.xcombats.com/i/clear.gif" title="РЈРґР°Р»РёС‚СЊ С‚РёС‚СѓР»" onclick="location='main.php?clan&titul&delete=<?=$pl['id']?>'" style="float:right;cursor:pointer;">
         <div id="edpnltitul<?=$pl['id']?>" style="display:none;margin:10px;border:1px solid #9e9e9e;padding:10px;">
            <form method="post" action="?clan&titul&save=<?=$pl['id']?>">
            <span style="float:right"><a onclick="editTitul(<?=$pl['id']?>)" href="javascript:void(0)">x</a></span>
-                <center>Редактирование титула <a onclick="editTitul(<?=$pl['id']?>)" href="javascript:void(0)"><?=$pl['name']?></a></center><br>
-                Описание: <input style="width:360px;" value="<?=$pl['info']?>" type="text" name="t_info"><br>
+                <center>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ С‚РёС‚СѓР»Р° <a onclick="editTitul(<?=$pl['id']?>)" href="javascript:void(0)"><?=$pl['name']?></a></center><br>
+                РћРїРёСЃР°РЅРёРµ: <input style="width:360px;" value="<?=$pl['info']?>" type="text" name="t_info"><br>
                 <br>
-                Каналы чата: 
+                РљР°РЅР°Р»С‹ С‡Р°С‚Р°: 
                 <? $j = 1;
 				while($j <= 9) {
 						if($pl['canals'][$j-1] == 1) {
@@ -2277,11 +2277,11 @@ function ssclrttl() {
 				}
 				?>
                 <br>
-                Картинка: *<br>
-                Цвет: &nbsp; &nbsp; &nbsp; <div style="cursor:pointer;display:inline-block;width:20px;height:15px;background-color:#<?=$pl['color']?>">&nbsp;</div> #<input name="colorsp" maxlength="6" type="text" value="<?=$pl['color']?>" /><br />
-                <small>(вы можете воспользовать <a onclick="ssclrttl()" href="javascript:void(0)">таблицей цветов - показать/скрыть</a>)</small><br />
+                РљР°СЂС‚РёРЅРєР°: *<br>
+                Р¦РІРµС‚: &nbsp; &nbsp; &nbsp; <div style="cursor:pointer;display:inline-block;width:20px;height:15px;background-color:#<?=$pl['color']?>">&nbsp;</div> #<input name="colorsp" maxlength="6" type="text" value="<?=$pl['color']?>" /><br />
+                <small>(РІС‹ РјРѕР¶РµС‚Рµ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊ <a onclick="ssclrttl()" href="javascript:void(0)">С‚Р°Р±Р»РёС†РµР№ С†РІРµС‚РѕРІ - РїРѕРєР°Р·Р°С‚СЊ/СЃРєСЂС‹С‚СЊ</a>)</small><br />
        		 <br><br>
-                <input type="submit" value="Сохранить">
+                <input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ">
           </form>
           </div>
         </div>
@@ -2290,31 +2290,31 @@ function ssclrttl() {
 		}
 
 		if($i == 0) {
-			echo 'В клане нет ни одного титула';
+			echo 'Р’ РєР»Р°РЅРµ РЅРµС‚ РЅРё РѕРґРЅРѕРіРѕ С‚РёС‚СѓР»Р°';
 		}
 		?>
-        <input class="btnnew" type="button" onclick="addNewTitul()" value="Добавить титул">
+        <input class="btnnew" type="button" onclick="addNewTitul()" value="Р”РѕР±Р°РІРёС‚СЊ С‚РёС‚СѓР»">
    </div>
    <? }elseif(isset($_GET['rules'])) { ?>
    <div  class="box visible">
     <fieldset style="border:1px dashed #eeeeee">
-      <legend><span class="legtitle">Права персонажа &quot;<?=$u->info['login']?>&quot;</span></legend>
+      <legend><span class="legtitle">РџСЂР°РІР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;<?=$u->info['login']?>&quot;</span></legend>
       <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-      Звание в клане: <b><?
+      Р—РІР°РЅРёРµ РІ РєР»Р°РЅРµ: <b><?
       
 	  if($u->info['clan_prava'] != 'glava') {
 		echo $u->info['moder_zvanie'];  
 	  }else{
-		echo '<b style="color:#008097">глава клана</b>'; 
+		echo '<b style="color:#008097">РіР»Р°РІР° РєР»Р°РЅР°</b>'; 
 	  }
 	  
 	  ?></b>
       </div>
       <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-      Титул: <b><?=$utitl['name']?></b> &nbsp; - &nbsp; <font color="#999999"><?=$utitl['info']?></font>
+      РўРёС‚СѓР»: <b><?=$utitl['name']?></b> &nbsp; - &nbsp; <font color="#999999"><?=$utitl['info']?></font>
       </div>
                 <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-                Каналы чата: 
+                РљР°РЅР°Р»С‹ С‡Р°С‚Р°: 
                 <? $j = 1;
 				while($j <= 9) {
 					if($utitl['canals'][$j-1] == 1) {
@@ -2330,9 +2330,9 @@ function ssclrttl() {
 				while($j < count($tt)) {
 					if($tt[$j][1] != '0') {
 						if($utitl['prava'][$j] == 1) {
-							$utitl['check'] = 'Да';
+							$utitl['check'] = 'Р”Р°';
 						}else{
-							$utitl['check'] = 'Нет';
+							$utitl['check'] = 'РќРµС‚';
 						}
 						?>
                 <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
@@ -2348,7 +2348,7 @@ function ssclrttl() {
    </div>
    <? }elseif(isset($_GET['info'])) {
 	  
-	  //полученный опыт
+	  //РїРѕР»СѓС‡РµРЅРЅС‹Р№ РѕРїС‹С‚
 	  $edd = mysql_fetch_array(mysql_query('SELECT SUM(`exp`) FROM `clan_exp` WHERE `clan` = "'.$res['id'].'" AND `dd` = "'.ceil(date('d')).'" AND `mm` = "'.ceil(date('m')).'" AND `yyyy` = "'.ceil(date('Y')).'"'));
 	  $eww = mysql_fetch_array(mysql_query('SELECT SUM(`exp`) FROM `clan_exp` WHERE `clan` = "'.$res['id'].'" AND `ww` = "'.ceil(date('W')).'" AND `yyyy` = "'.ceil(date('Y')).'"'));
 	  $emm = mysql_fetch_array(mysql_query('SELECT SUM(`exp`) FROM `clan_exp` WHERE `clan` = "'.$res['id'].'" AND `mm` = "'.ceil(date('m')).'" AND `yyyy` = "'.ceil(date('Y')).'"'));
@@ -2359,13 +2359,13 @@ function ssclrttl() {
    ?>   
    <div class="box visible">
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-    Название клана: <img src="http://img.xcombats.com/i/clan/<?=$res['name_mini']?>.gif" style="vertical-align:bottom" width="24" height="15"><a href="javascript:void(0)"><?=$res['name']?></a> (<?=$res['name_mini']?>)
+    РќР°Р·РІР°РЅРёРµ РєР»Р°РЅР°: <img src="http://img.xcombats.com/i/clan/<?=$res['name_mini']?>.gif" style="vertical-align:bottom" width="24" height="15"><a href="javascript:void(0)"><?=$res['name']?></a> (<?=$res['name_mini']?>)
     </div>
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-    Уровень клана: <?=$res['level']?>
+    РЈСЂРѕРІРµРЅСЊ РєР»Р°РЅР°: <?=$res['level']?>
     </div>
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
-    Опыт клана: <?=number_format($res['exp'], 0, ",", " ")?> / <?=number_format($lvl_exp[$res['level']+1], 0, ",", " ")?>
+    РћРїС‹С‚ РєР»Р°РЅР°: <?=number_format($res['exp'], 0, ",", " ")?> / <?=number_format($lvl_exp[$res['level']+1], 0, ",", " ")?>
     <div style="width:200px;display:inline-block;border:1px solid #aeaeae">
     	<div style="width:<?=ceil(($res['exp']-$lvl_exp[$res['level']])/$lvl_exp[$res['level']+1]*200)?>px;display:inline-block;padding-left:4px;padding-right:4px;text-align:right;background-color:#E9F7E8;color:#1B3618">
         <b><?=ceil(($res['exp']-$lvl_exp[$res['level']])/$lvl_exp[$res['level']+1]*100)?>%</b>
@@ -2375,18 +2375,18 @@ function ssclrttl() {
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
     <table width="500" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="220">Статистика кланового опыта:</td>
-        <td width="100">&bull; За сегодня:</td>
+        <td width="220">РЎС‚Р°С‚РёСЃС‚РёРєР° РєР»Р°РЅРѕРІРѕРіРѕ РѕРїС‹С‚Р°:</td>
+        <td width="100">&bull; Р—Р° СЃРµРіРѕРґРЅСЏ:</td>
         <td><b style="color:#0033a1"><?=$edd?></b></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td>&bull; За неделю:</td>
+        <td>&bull; Р—Р° РЅРµРґРµР»СЋ:</td>
         <td><b style="color:#0033a1"><?=$eww?></b></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td>&bull; За месяц:</td>
+        <td>&bull; Р—Р° РјРµСЃСЏС†:</td>
         <td><b style="color:#0033a1"><?=$emm?></b></td>
       </tr>
     </table>
@@ -2394,19 +2394,19 @@ function ssclrttl() {
     <div style="border-bottom:1px solid #cac9c7;margin-bottom:5px;padding-bottom:5px;">
     <table width="100%" border="0" style="border:1px solid #232323;" cellspacing="0" cellpadding="5">
   <tr>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>Уровень</strong></td>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>Игроки</strong></td>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>Союз</strong></td>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>Создать союз</strong></td>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>Альянс</strong></td>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>Создать альянс</strong></td>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>Хранилище</strong></td>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>Передач на игрока</strong></td>
-    <td align="center" valign="middle" style="border-bottom:1px solid #232323;" bgcolor="#cccccc"><strong>Передач всего</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>РЈСЂРѕРІРµРЅСЊ</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>РРіСЂРѕРєРё</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>РЎРѕСЋР·</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>РЎРѕР·РґР°С‚СЊ СЃРѕСЋР·</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>РђР»СЊСЏРЅСЃ</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>РЎРѕР·РґР°С‚СЊ Р°Р»СЊСЏРЅСЃ</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>РҐСЂР°РЅРёР»РёС‰Рµ</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;border-right:1px solid #232323;" bgcolor="#cccccc"><strong>РџРµСЂРµРґР°С‡ РЅР° РёРіСЂРѕРєР°</strong></td>
+    <td align="center" valign="middle" style="border-bottom:1px solid #232323;" bgcolor="#cccccc"><strong>РџРµСЂРµРґР°С‡ РІСЃРµРіРѕ</strong></td>
   </tr>
   <?
   $i = 0;
-  $yn = array('Нет','Да');
+  $yn = array('РќРµС‚','Р”Р°');
   while($i < count($lvl_prava)) {
 	  $bgclr = '';
 	  if($res['level'] >= $i) {
@@ -2451,11 +2451,11 @@ function ssclrttl() {
    <? }elseif(isset($_GET['members'])) { ?>
    <div  class="box visible">
     <fieldset style="border:1px dashed #eeeeee">
-      <legend align="center"><span class="legtitle"><img title="Приватно" onClick="top.chat.addto('klan','private')" style="vertical-align:bottom;cursor:pointer;" src="http://img.xcombats.com/i/lock.gif" width="20" height="15"> Соклановцы</span></legend>
+      <legend align="center"><span class="legtitle"><img title="РџСЂРёРІР°С‚РЅРѕ" onClick="top.chat.addto('klan','private')" style="vertical-align:bottom;cursor:pointer;" src="http://img.xcombats.com/i/lock.gif" width="20" height="15"> РЎРѕРєР»Р°РЅРѕРІС†С‹</span></legend>
       <? if(!isset($_GET['online'])) { ?>
-      <input onClick="location='main.php?clan&members&online'" type="button" value="Только online" style="float:right">
+      <input onClick="location='main.php?clan&members&online'" type="button" value="РўРѕР»СЊРєРѕ online" style="float:right">
       <? }else{ ?>
-      <input onClick="location='main.php?clan&members'" type="button" value="Показать всех" style="float:right">
+      <input onClick="location='main.php?clan&members'" type="button" value="РџРѕРєР°Р·Р°С‚СЊ РІСЃРµС…" style="float:right">
       <? } ?>
       <br>
       <?
@@ -2463,7 +2463,7 @@ function ssclrttl() {
 	  $r = '<br>'; $j = 0; $i = 0;
 	  if($res['join1'] > 0 || $res['join2'] > 0) {
 		 $r .= '<fieldset style="border:1px dashed #eeeeee;margin-top:5px;">
-      <legend align="left"><span class="legtitle">Основной состав</span></legend>'; 
+      <legend align="left"><span class="legtitle">РћСЃРЅРѕРІРЅРѕР№ СЃРѕСЃС‚Р°РІ</span></legend>'; 
 	  }
 	  while($pl = mysql_fetch_array($sp)) {
 		  if(!isset($_GET['online']) || $pl['online'] > time()-120) {
@@ -2486,10 +2486,10 @@ function ssclrttl() {
 			  $zvn = str_replace('=]','">',$zvn);
 			  $zvn = str_replace('[/c]','</font>',$zvn);
 			  if($pl['clan_prava'] == 'glava') {
-				 if($zvn == 'Стажер' || $zvn == '') {
-					 $zvn = '<b style="color:#008097">глава клана</b>';
+				 if($zvn == 'РЎС‚Р°Р¶РµСЂ' || $zvn == '') {
+					 $zvn = '<b style="color:#008097">РіР»Р°РІР° РєР»Р°РЅР°</b>';
 				 }
-				 $zvn = '<img style="vertical-align:top" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif" width="24" title="Глава клана">'.$zvn; 
+				 $zvn = '<img style="vertical-align:top" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif" width="24" title="Р“Р»Р°РІР° РєР»Р°РЅР°">'.$zvn; 
 			  }
 			  $ttl = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `clan` = "'.$res['id'].'" AND `id` = "'.$pl['clan_prava'].'" LIMIT 1'));
 			  if(isset($ttl['id'])) {
@@ -2501,12 +2501,12 @@ function ssclrttl() {
 					 $zvn .= ' - <i>'.$rm['name'].'</i>'; 
 				  }
 			  }else{
-				  $zvn .= ' - <i><font color="grey">персонаж сейчас не в клубе</font></i>';
+				  $zvn .= ' - <i><font color="grey">РїРµСЂСЃРѕРЅР°Р¶ СЃРµР№С‡Р°СЃ РЅРµ РІ РєР»СѓР±Рµ</font></i>';
 			  }
 			  if($pl['battle'] > 0) {
-				$zvn .= ' <a href="logs.php?id='.$pl['battle'].'" target="_blank"><img width="20" height="20" style="vertical-align:bottom"src="http://img.xcombats.com/i/fighttype0.gif" title="Открыть лог поединка"></a>';  
+				$zvn .= ' <a href="logs.php?id='.$pl['battle'].'" target="_blank"><img width="20" height="20" style="vertical-align:bottom"src="http://img.xcombats.com/i/fighttype0.gif" title="РћС‚РєСЂС‹С‚СЊ Р»РѕРі РїРѕРµРґРёРЅРєР°"></a>';  
 			  }
-			$r .= '<div style="padding:5px;background-color:#efedee"><span style="display:inline-block;width:350px;">'.$ico.' &nbsp;&nbsp; &nbsp; <img src="http://img.xcombats.com/i/align/align'.$pl['align'].'.gif" width="12" height="15" style="vertical-align:bottom"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif" width="24" height="15"><a onClick="top.chat.addto(\''.$pl['login'].'\',\'to\')" style="color:'.$pl['textcolor1'].'" href="javascript:void(0)">'.$pl['login'].'</a><font color="'.$pl['textcolor1'].'">['.$pl['level'].']<a href="http://xcombats.com/info/'.$pl['id'].'" title="Инф. о '.$pl['login'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_'.$pl['cityreg'].'.gif" width="12" height="11"></a></font></span>'.$zvn.'</div>';
+			$r .= '<div style="padding:5px;background-color:#efedee"><span style="display:inline-block;width:350px;">'.$ico.' &nbsp;&nbsp; &nbsp; <img src="http://img.xcombats.com/i/align/align'.$pl['align'].'.gif" width="12" height="15" style="vertical-align:bottom"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif" width="24" height="15"><a onClick="top.chat.addto(\''.$pl['login'].'\',\'to\')" style="color:'.$pl['textcolor1'].'" href="javascript:void(0)">'.$pl['login'].'</a><font color="'.$pl['textcolor1'].'">['.$pl['level'].']<a href="http://xcombats.com/info/'.$pl['id'].'" title="РРЅС„. Рѕ '.$pl['login'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_'.$pl['cityreg'].'.gif" width="12" height="11"></a></font></span>'.$zvn.'</div>';
 		  }
 		  $i++;
 	  }
@@ -2524,7 +2524,7 @@ function ssclrttl() {
 			  $clnf = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.$cn_pl['clan'].'" LIMIT 1'));
 			  $sp = mysql_query('SELECT `id`,`battle`,`login`,`clan`,`level`,`room`,`cityreg`,`align`,`clan_prava`,`mod_zvanie`,`sex`,`city`,`online`,`banned` FROM `users` WHERE `clan` = "'.$cn_pl['clan'].'"');
 			  $r .= '<fieldset style="border:1px dashed #eeeeee;margin-top:5px;">
-      <legend align="left"><span class="legtitle">Состав &quot;'.$clna['name'].'&quot;</span></legend>';
+      <legend align="left"><span class="legtitle">РЎРѕСЃС‚Р°РІ &quot;'.$clna['name'].'&quot;</span></legend>';
 			  $j = 0; $i = 0;
 			  while($pl = mysql_fetch_array($sp)) {
 				  if(!isset($_GET['online']) || $pl['online'] > time()-120) {
@@ -2547,10 +2547,10 @@ function ssclrttl() {
 					  $zvn = str_replace('=]','">',$zvn);
 					  $zvn = str_replace('[/c]','</font>',$zvn);
 					  if($pl['clan_prava'] == 'glava') {
-						 if($zvn == 'Стажер' || $zvn == '') {
-							 $zvn = '<b style="color:#008097">глава клана</b>';
+						 if($zvn == 'РЎС‚Р°Р¶РµСЂ' || $zvn == '') {
+							 $zvn = '<b style="color:#008097">РіР»Р°РІР° РєР»Р°РЅР°</b>';
 						 }
-						 $zvn = '<img style="vertical-align:top" src="http://img.xcombats.com/i/clan/'.$clnf['name_mini'].'.gif" width="24" title="Глава клана">'.$zvn; 
+						 $zvn = '<img style="vertical-align:top" src="http://img.xcombats.com/i/clan/'.$clnf['name_mini'].'.gif" width="24" title="Р“Р»Р°РІР° РєР»Р°РЅР°">'.$zvn; 
 					  }
 					  $ttl = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `clan` = "'.$clnf['id'].'" AND `id` = "'.$pl['clan_prava'].'" LIMIT 1'));
 					  if(isset($ttl['id'])) {
@@ -2562,12 +2562,12 @@ function ssclrttl() {
 							 $zvn .= ' - <i>'.$rm['name'].'</i>'; 
 						  }
 					  }else{
-						  $zvn .= ' - <i><font color="grey">персонаж сейчас не в клубе</font></i>';
+						  $zvn .= ' - <i><font color="grey">РїРµСЂСЃРѕРЅР°Р¶ СЃРµР№С‡Р°СЃ РЅРµ РІ РєР»СѓР±Рµ</font></i>';
 					  }
 					  if($pl['battle'] > 0) {
-						$zvn .= ' <a href="logs.php?id='.$pl['battle'].'" target="_blank"><img width="20" height="20" style="vertical-align:bottom"src="http://img.xcombats.com/i/fighttype0.gif" title="Открыть лог поединка"></a>';  
+						$zvn .= ' <a href="logs.php?id='.$pl['battle'].'" target="_blank"><img width="20" height="20" style="vertical-align:bottom"src="http://img.xcombats.com/i/fighttype0.gif" title="РћС‚РєСЂС‹С‚СЊ Р»РѕРі РїРѕРµРґРёРЅРєР°"></a>';  
 					  }
-					$r .= '<div style="padding:5px;background-color:#efedee"><span style="display:inline-block;width:350px;">'.$ico.' &nbsp;&nbsp; &nbsp; <img src="http://img.xcombats.com/i/align/align'.$pl['align'].'.gif" width="12" height="15" style="vertical-align:bottom"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$clnf['name_mini'].'.gif" width="24" height="15"><a onClick="top.chat.addto(\''.$pl['login'].'\',\'to\')" style="color:'.$pl['textcolor1'].'" href="javascript:void(0)">'.$pl['login'].'</a><font color="'.$pl['textcolor1'].'">['.$pl['level'].']<a href="http://xcombats.com/info/'.$pl['id'].'" title="Инф. о '.$pl['login'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_'.$pl['cityreg'].'.gif" width="12" height="11"></a></font></span>'.$zvn.'</div>';
+					$r .= '<div style="padding:5px;background-color:#efedee"><span style="display:inline-block;width:350px;">'.$ico.' &nbsp;&nbsp; &nbsp; <img src="http://img.xcombats.com/i/align/align'.$pl['align'].'.gif" width="12" height="15" style="vertical-align:bottom"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$clnf['name_mini'].'.gif" width="24" height="15"><a onClick="top.chat.addto(\''.$pl['login'].'\',\'to\')" style="color:'.$pl['textcolor1'].'" href="javascript:void(0)">'.$pl['login'].'</a><font color="'.$pl['textcolor1'].'">['.$pl['level'].']<a href="http://xcombats.com/info/'.$pl['id'].'" title="РРЅС„. Рѕ '.$pl['login'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_'.$pl['cityreg'].'.gif" width="12" height="11"></a></font></span>'.$zvn.'</div>';
 				  }
 				  $i++;
 			  }
@@ -2584,7 +2584,7 @@ function ssclrttl() {
 			  $clna = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$res['join2'].'" LIMIT 1'));
 			  $sp = mysql_query('SELECT `id`,`battle`,`login`,`clan`,`level`,`room`,`cityreg`,`align`,`clan_prava`,`mod_zvanie`,`sex`,`city`,`online`,`banned` FROM `users` WHERE `clan` = "'.$cn_pl['clan'].'"');
 			  $r .= '<fieldset style="border:1px dashed #eeeeee;margin-top:5px;">
-      <legend align="left"><span class="legtitle">Состав &quot;'.$clna['name'].'&quot;</span></legend>';
+      <legend align="left"><span class="legtitle">РЎРѕСЃС‚Р°РІ &quot;'.$clna['name'].'&quot;</span></legend>';
 			  $j = 0; $i = 0;
 			  while($pl = mysql_fetch_array($sp)) {
 				  if(!isset($_GET['online']) || $pl['online'] > time()-120) {
@@ -2607,10 +2607,10 @@ function ssclrttl() {
 					  $zvn = str_replace('=]','">',$zvn);
 					  $zvn = str_replace('[/c]','</font>',$zvn);
 					  if($pl['clan_prava'] == 'glava') {
-						 if($zvn == 'Стажер' || $zvn == '') {
-							 $zvn = '<b style="color:#008097">глава клана</b>';
+						 if($zvn == 'РЎС‚Р°Р¶РµСЂ' || $zvn == '') {
+							 $zvn = '<b style="color:#008097">РіР»Р°РІР° РєР»Р°РЅР°</b>';
 						 }
-						 $zvn = '<img style="vertical-align:top" src="http://img.xcombats.com/i/clan/'.$clnf['name_mini'].'.gif" width="24" title="Глава клана">'.$zvn; 
+						 $zvn = '<img style="vertical-align:top" src="http://img.xcombats.com/i/clan/'.$clnf['name_mini'].'.gif" width="24" title="Р“Р»Р°РІР° РєР»Р°РЅР°">'.$zvn; 
 					  }
 					  $ttl = mysql_fetch_array(mysql_query('SELECT * FROM `clan_tituls` WHERE `clan` = "'.$clnf['id'].'" AND `id` = "'.$pl['clan_prava'].'" LIMIT 1'));
 					  if(isset($ttl['id'])) {
@@ -2622,12 +2622,12 @@ function ssclrttl() {
 							 $zvn .= ' - <i>'.$rm['name'].'</i>'; 
 						  }
 					  }else{
-						  $zvn .= ' - <i><font color="grey">персонаж сейчас не в клубе</font></i>';
+						  $zvn .= ' - <i><font color="grey">РїРµСЂСЃРѕРЅР°Р¶ СЃРµР№С‡Р°СЃ РЅРµ РІ РєР»СѓР±Рµ</font></i>';
 					  }
 					  if($pl['battle'] > 0) {
-						$zvn .= ' <a href="logs.php?id='.$pl['battle'].'" target="_blank"><img width="20" height="20" style="vertical-align:bottom"src="http://img.xcombats.com/i/fighttype0.gif" title="Открыть лог поединка"></a>';  
+						$zvn .= ' <a href="logs.php?id='.$pl['battle'].'" target="_blank"><img width="20" height="20" style="vertical-align:bottom"src="http://img.xcombats.com/i/fighttype0.gif" title="РћС‚РєСЂС‹С‚СЊ Р»РѕРі РїРѕРµРґРёРЅРєР°"></a>';  
 					  }
-					$r .= '<div style="padding:5px;background-color:#efedee"><span style="display:inline-block;width:350px;">'.$ico.' &nbsp;&nbsp; &nbsp; <img src="http://img.xcombats.com/i/align/align'.$pl['align'].'.gif" width="12" height="15" style="vertical-align:bottom"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$clnf['name_mini'].'.gif" width="24" height="15"><a onClick="top.chat.addto(\''.$pl['login'].'\',\'to\')" style="color:'.$pl['textcolor1'].'" href="javascript:void(0)">'.$pl['login'].'</a><font color="'.$pl['textcolor1'].'">['.$pl['level'].']<a href="http://xcombats.com/info/'.$pl['id'].'" title="Инф. о '.$pl['login'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_'.$pl['cityreg'].'.gif" width="12" height="11"></a></font></span>'.$zvn.'</div>';
+					$r .= '<div style="padding:5px;background-color:#efedee"><span style="display:inline-block;width:350px;">'.$ico.' &nbsp;&nbsp; &nbsp; <img src="http://img.xcombats.com/i/align/align'.$pl['align'].'.gif" width="12" height="15" style="vertical-align:bottom"><img style="vertical-align:bottom" src="http://img.xcombats.com/i/clan/'.$clnf['name_mini'].'.gif" width="24" height="15"><a onClick="top.chat.addto(\''.$pl['login'].'\',\'to\')" style="color:'.$pl['textcolor1'].'" href="javascript:void(0)">'.$pl['login'].'</a><font color="'.$pl['textcolor1'].'">['.$pl['level'].']<a href="http://xcombats.com/info/'.$pl['id'].'" title="РРЅС„. Рѕ '.$pl['login'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_'.$pl['cityreg'].'.gif" width="12" height="11"></a></font></span>'.$zvn.'</div>';
 				  }
 				  $i++;
 			  }
@@ -2636,7 +2636,7 @@ function ssclrttl() {
 		}
 	  }
 	  
-	  $r .= '<br>Online: <a href="main.php?clan&members&online">'.$j.'</a><br>Всего: <a href="main.php?clan&members">'.$i.'</a><br><small>(список обновляется <s>в полночь</s>)</small>';
+	  $r .= '<br>Online: <a href="main.php?clan&members&online">'.$j.'</a><br>Р’СЃРµРіРѕ: <a href="main.php?clan&members">'.$i.'</a><br><small>(СЃРїРёСЃРѕРє РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ <s>РІ РїРѕР»РЅРѕС‡СЊ</s>)</small>';
 	  echo $r;
 	  ?>
     </fieldset>

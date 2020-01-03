@@ -1,50 +1,50 @@
 <?php
 header("Content-type: image/png"); 
-// ñîçäàåì êàðòèíêó ðàçìåðîì 172X52
+// ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÑƒ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð¾Ð¼ 172X52
 $img = imagecreatetruecolor(107, 26) or die('Cannot create image');
 $orange = imageColorAllocate($img, 107, 26, 64);
-// çàïîëíÿåì ôîí êàðòèíêè 
+// Ð·Ð°Ð¿Ð¾Ð»Ð½ÑÐµÐ¼ Ñ„Ð¾Ð½ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸ 
 imagefill($img, 0, 0, 0x616161); 
 $x=-20;
 $i = 1;
 $sum = "";
-//öâåò òåêñòà
+//Ñ†Ð²ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð°
 $color_RGB = rand(180,200);
 while ($i++ <=5000) 
 {
  imageSetPixel($img, rand(0,105), rand(0,24),0x515151);
 }
 
-//ðèñóåì 2 ëèíèè
+//Ñ€Ð¸ÑÑƒÐµÐ¼ 2 Ð»Ð¸Ð½Ð¸Ð¸
 imageLine($img, rand(0,10), rand(0,50), rand(95,105), rand(0,26), 0x909090);
 imageLine($img, rand(0,10), rand(0,50), rand(95,105), rand(0,26), 0x909090);
 
-//ðàìêà
+//Ñ€Ð°Ð¼ÐºÐ°
 imageRectangle($img,0,0,105,24,0x343434);
 
 $fonts = array ('fonts/FRSCRIPT.ttf','fonts/CHILLER.ttf','fonts/Bradley Hand ITC.ttf','fonts/de_Manu_2_Regular.ttf','fonts/Edgar_da_cool_Regular.ttf','fonts/Hurryup_Hurryup.ttf','fonts/Fh_Script_Regular.ttf','fonts/Gabo4_Gabo4.ttf','fonts/JAMI_Regular.ttf','fonts/Justy1_Regular.ttf');
 $font = '../'.$fonts[rand(0, sizeof($fonts)-1)];
 
-  // Èíèöèèðóåì ñåññèþ
+  // Ð˜Ð½Ð¸Ñ†Ð¸Ð¸Ñ€ÑƒÐµÐ¼ ÑÐµÑÑÐ¸ÑŽ
 session_start();
-// âûâîäèì îäíó öèôðó çà îäèí ïðîõîä öèêëà (âñåãî 6 öèôð)
+// Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ð¼ Ð¾Ð´Ð½Ñƒ Ñ†Ð¸Ñ„Ñ€Ñƒ Ð·Ð° Ð¾Ð´Ð¸Ð½ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´ Ñ†Ð¸ÐºÐ»Ð° (Ð²ÑÐµÐ³Ð¾ 6 Ñ†Ð¸Ñ„Ñ€)
 $i = 1;
 while ($i++ <= 4)
 {
-   // âûâîäèì òåêñò ïîâåðõ êàðòèíêè
+   // Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ð¼ Ñ‚ÐµÐºÑÑ‚ Ð¿Ð¾Ð²ÐµÑ€Ñ… ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸
    imagettftext($img, 15, 0, $x=$x+25, 20, 
    imagecolorallocate($img, $color_RGB,$color_RGB,$color_RGB), $font, $rnd = rand(0,9)); 
-   // Ñîáèðàåì â îäíó ñòðîêó âñå ñèìâîëû íà êàðòèíêå
+   // Ð¡Ð¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð² Ð¾Ð´Ð½Ñƒ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð²ÑÐµ ÑÐ¸Ð¼Ð²Ð¾Ð»Ñ‹ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐµ
    $sum = $sum.(string)$rnd;
 }
 
  
-//Íå çàáóäüòå $sum çàïèñàòü â òàáëèöó êàê STR1
+//ÐÐµ Ð·Ð°Ð±ÑƒÐ´ÑŒÑ‚Ðµ $sum Ð·Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ ÐºÐ°Ðº STR1
  
-// âûâîäèì ãîòîâóþ êàðòèíêó â ôîðìàòå PNG
+// Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ð¼ Ð³Ð¾Ñ‚Ð¾Ð²ÑƒÑŽ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÑƒ Ð² Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ðµ PNG
 imagepng($img);
-// îñâîáîæäàåì ïàìÿòü, âûäåëåííóþ äëÿ êàðòèíêè
+// Ð¾ÑÐ²Ð¾Ð±Ð¾Ð¶Ð´Ð°ÐµÐ¼ Ð¿Ð°Ð¼ÑÑ‚ÑŒ, Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð½ÑƒÑŽ Ð´Ð»Ñ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸
 imagedestroy($img);
-// Ïîìåùàåì çàùèòíûé êîä â ñåññèþ
+// ÐŸÐ¾Ð¼ÐµÑ‰Ð°ÐµÐ¼ Ð·Ð°Ñ‰Ð¸Ñ‚Ð½Ñ‹Ð¹ ÐºÐ¾Ð´ Ð² ÑÐµÑÑÐ¸ÑŽ
 $_SESSION['code'] = $sum;
 ?>

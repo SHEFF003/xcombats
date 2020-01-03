@@ -1,4 +1,4 @@
-<?
+<?php
 function GetRealIp(){
 	if (!empty($_SERVER['HTTP_CLIENT_IP']))
 		return $_SERVER['HTTP_CLIENT_IP'];
@@ -15,36 +15,36 @@ include('_incl_data/class/__db_connect.php');
 if(isset($_GET['mail'])) {
 	$key = md5('mailconf*15+'.$_GET['mail']);
 	if($_GET['key'] != $key) {
-		echo 'Ключ не совпадает, напишите Администрации по E-mail: admin@xcombats.com';
+		echo 'РљР»СЋС‡ РЅРµ СЃРѕРІРїР°РґР°РµС‚, РЅР°РїРёС€РёС‚Рµ РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РїРѕ E-mail: admin@xcombats.com';
 	}elseif(isset($_GET['cancel'])) {
-		//Отказ от рассылки
-		echo 'Вы отказались от рассылки на эл.почту: <b>'.$_GET['mail'].'</b>.';
+		//РћС‚РєР°Р· РѕС‚ СЂР°СЃСЃС‹Р»РєРё
+		echo 'Р’С‹ РѕС‚РєР°Р·Р°Р»РёСЃСЊ РѕС‚ СЂР°СЃСЃС‹Р»РєРё РЅР° СЌР».РїРѕС‡С‚Сѓ: <b>'.$_GET['mail'].'</b>.';
 	}else{
 		//
 		$mcf = mysql_fetch_array(mysql_query('SELECT * FROM `mini_actions` WHERE `var` = "'.mysql_real_escape_string($_GET['mail']).'" LIMIT 1'));
 		$user = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$mcf['uid'].'" LIMIT 1'));
-		//Подписание на рассылку
+		//РџРѕРґРїРёСЃР°РЅРёРµ РЅР° СЂР°СЃСЃС‹Р»РєСѓ
 		if(!isset($user['id'])) {
-			echo 'Зарегистрируйтесь чтобы привязать эл.почту <b>'.$_GET['mail'].'</b> к персонажу.';
+			echo 'Р—Р°СЂРµРіРёСЃС‚СЂРёСЂСѓР№С‚РµСЃСЊ С‡С‚РѕР±С‹ РїСЂРёРІСЏР·Р°С‚СЊ СЌР».РїРѕС‡С‚Сѓ <b>'.$_GET['mail'].'</b> Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ.';
 		}else{
 			$bank = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$mcf['uid'].'" ORDER BY `id` DESC LIMIT 1'));
 			if($mcf['ok'] > 0) {
-				echo 'Вы уже подтверждали этот E-mail ранее! <b>'.date('d.m.Y H:i:s',$mcf['ok']).'</b>';
+				echo 'Р’С‹ СѓР¶Рµ РїРѕРґС‚РІРµСЂР¶РґР°Р»Рё СЌС‚РѕС‚ E-mail СЂР°РЅРµРµ! <b>'.date('d.m.Y H:i:s',$mcf['ok']).'</b>';
 			}elseif(!isset($bank['id'])) {
-				echo 'Сначала создайте счет в игровом банке, чтобы мы смогли перевести туда 1 екр.';
+				echo 'РЎРЅР°С‡Р°Р»Р° СЃРѕР·РґР°Р№С‚Рµ СЃС‡РµС‚ РІ РёРіСЂРѕРІРѕРј Р±Р°РЅРєРµ, С‡С‚РѕР±С‹ РјС‹ СЃРјРѕРіР»Рё РїРµСЂРµРІРµСЃС‚Рё С‚СѓРґР° 1 РµРєСЂ.';
 			}else{
 				//
 				mysql_query('UPDATE `mini_actions` SET `ok` = "'.time().'" WHERE `id` = "'.$mcf['id'].'" LIMIT 1');
 				mysql_query('UPDATE `bank` SET `money2` = `money2` + 1 WHERE `id` = "'.$bank['id'].'" LIMIT 1');
 				//
-				echo 'Вы успешно подписались на рассылку новостей для эл.почты <b>'.$_GET['mail'].'</b>, на счет персонажа <b>'.$user['login'].'</b> зачислен 1 екр.';
+				echo 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕРґРїРёСЃР°Р»РёСЃСЊ РЅР° СЂР°СЃСЃС‹Р»РєСѓ РЅРѕРІРѕСЃС‚РµР№ РґР»СЏ СЌР».РїРѕС‡С‚С‹ <b>'.$_GET['mail'].'</b>, РЅР° СЃС‡РµС‚ РїРµСЂСЃРѕРЅР°Р¶Р° <b>'.$user['login'].'</b> Р·Р°С‡РёСЃР»РµРЅ 1 РµРєСЂ.';
 			}
 		}
 	}
 }else{
-	echo 'E-mail не найден.';
+	echo 'E-mail РЅРµ РЅР°Р№РґРµРЅ.';
 }
 
-echo '<br><br>- - - - - - -<br><br>С уважением,<br>Администрация СБК &copy; <a href="http://xcombats.com/">xcombats.com</a>';
+echo '<br><br>- - - - - - -<br><br>РЎ СѓРІР°Р¶РµРЅРёРµРј,<br>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ РЎР‘Рљ &copy; <a href="http://xcombats.com/">xcombats.com</a>';
 
 ?>

@@ -45,7 +45,7 @@ function changeSleep($uid,$sleep_action){
 	//$sleep = $u->testAction('`vars` = "sleep" AND `uid` = "'.$uid.'" LIMIT 1', 1);
 }
 
-//Время рестарта
+//Р’СЂРµРјСЏ СЂРµСЃС‚Р°СЂС‚Р°
 $cnfg = array(
 	'time_restart' => 2,
 	'time_puti' => 240
@@ -82,7 +82,7 @@ function addItem($id,$uid,$md = NULL,$dn = NULL,$mxiznos = NULL) {
 		if(isset($i['id']))
 		{
 			$d = mysql_fetch_array(mysql_query('SELECT `id`,`items_id`,`data` FROM `items_main_data` WHERE `items_id` = "'.$i['id'].'" LIMIT 1'));		
-			//новая дата
+			//РЅРѕРІР°СЏ РґР°С‚Р°
 			$data = $d['data'];	
 			if($i['ts']>0)
 			{
@@ -97,7 +97,7 @@ function addItem($id,$uid,$md = NULL,$dn = NULL,$mxiznos = NULL) {
 	
 			if($dn!=NULL)
 			{
-				//предмет с настройками из подземелья
+				//РїСЂРµРґРјРµС‚ СЃ РЅР°СЃС‚СЂРѕР№РєР°РјРё РёР· РїРѕРґР·РµРјРµР»СЊСЏ
 				if($dn['del']>0)
 				{
 					$i['dn_delete'] = 1;
@@ -137,7 +137,7 @@ function timeOut($ttm) {
 		if ($tmp > 0) 
 		{ 
 			$id++;
-			if ($id<3) {$out .= $tmp." мес. ";}
+			if ($id<3) {$out .= $tmp." РјРµСЃ. ";}
 			$time_still = $time_still-$tmp*2592000;
 		}
 		/*
@@ -145,7 +145,7 @@ function timeOut($ttm) {
 		if ($tmp > 0) 
 		{ 
 			$id++;
-			if ($id<3) {$out .= $tmp." нед. ";}
+			if ($id<3) {$out .= $tmp." РЅРµРґ. ";}
 			$time_still = $time_still-$tmp*604800;
 		}
 		*/
@@ -153,21 +153,21 @@ function timeOut($ttm) {
 		if ($tmp > 0) 
 		{ 
 			$id++;
-			if ($id<3) {$out .= $tmp." дн. ";}
+			if ($id<3) {$out .= $tmp." РґРЅ. ";}
 			$time_still = $time_still-$tmp*86400;
 		}
 		$tmp = floor($time_still/3600);
 		if ($tmp > 0) 
 		{ 
 			$id++;
-			if ($id<3) {$out .= $tmp." ч. ";}
+			if ($id<3) {$out .= $tmp." С‡. ";}
 			$time_still = $time_still-$tmp*3600;
 		}
 		$tmp = floor($time_still/60);
 		if ($tmp > 0) 
 		{ 
 			$id++;
-			if ($id<3) {$out .= $tmp." мин. ";}
+			if ($id<3) {$out .= $tmp." РјРёРЅ. ";}
 		}
 		if($out=='')
 		{
@@ -175,7 +175,7 @@ function timeOut($ttm) {
 			{
 				$time_still = 0;
 			}
-			$out = $time_still.' сек.';
+			$out = $time_still.' СЃРµРє.';
 		}
 		return $out;
 }
@@ -185,10 +185,10 @@ function e($t) {
 }
 
 function e2($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("<font color=#cb0000>'.mysql_real_escape_string($t).'</font>","capitalcity","Мусорщик","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("<font color=#cb0000>'.mysql_real_escape_string($t).'</font>","capitalcity","РњСѓСЃРѕСЂС‰РёРє","6","1","-1")');
 }
 
-//Персонаж 1 нападает на 2
+//РџРµСЂСЃРѕРЅР°Р¶ 1 РЅР°РїР°РґР°РµС‚ РЅР° 2
 function bs_atack($bs,$u1,$u2) {
 	global $magic;
 	if( isset($u1['id'],$u2['id']) ) {
@@ -213,18 +213,18 @@ function bs_atack($bs,$u1,$u2) {
 			}
 		}
 		if( $u2['battle'] > 0 ) {
-			//Заносим в лог БС
+			//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 			if( $u1['sex'] == 0 ) {
-				$text = '{u1} вмешался в поединок против {u2} <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+				$text = '{u1} РІРјРµС€Р°Р»СЃСЏ РІ РїРѕРµРґРёРЅРѕРє РїСЂРѕС‚РёРІ {u2} <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 			}else{
-				$text = '{u1} вмешалась в поединок против {u2} <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+				$text = '{u1} РІРјРµС€Р°Р»Р°СЃСЊ РІ РїРѕРµРґРёРЅРѕРє РїСЂРѕС‚РёРІ {u2} <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 			}
 		}else{
-			//Заносим в лог БС
+			//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 			if( $u1['sex'] == 0 ) {
-				$text = '{u1} напал на {u2} завязался бой <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+				$text = '{u1} РЅР°РїР°Р» РЅР° {u2} Р·Р°РІСЏР·Р°Р»СЃСЏ Р±РѕР№ <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 			}else{
-				$text = '{u1} напала на {u2} завязался бой <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+				$text = '{u1} РЅР°РїР°Р»Р° РЅР° {u2} Р·Р°РІСЏР·Р°Р»СЃСЏ Р±РѕР№ <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 			}
 		}
 		if( isset($usr_real['id'])) {
@@ -237,7 +237,7 @@ function bs_atack($bs,$u1,$u2) {
 			}
 			$usrreal .= '<b>'.$usr_real['login'].'</b>['.$usr_real['level'].']<a target=_blank href=http://xcombats.com/info/'.$usr_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 		}else{
-			$mereal = '<i>Невидимка</i>[??]';
+			$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 		}
 		if( isset($me_real['id']) ) {
 			$mereal = '';
@@ -249,11 +249,11 @@ function bs_atack($bs,$u1,$u2) {
 			}
 			$mereal .= '<b>'.$me_real['login'].'</b>['.$me_real['level'].']<a target=_blank href=http://xcombats.com/info/'.$me_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 		}else{
-			$mereal = '<i>Невидимка</i>[??]';
+			$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 		}
 		$text = str_replace('{u1}',$mereal,$text);
 		$text = str_replace('{u2}',$usrreal,$text);
-		//Добавляем в лог БС
+		//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
 		mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 			"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$bs['id'].'", "'.$bs['count'].'", "'.$bs['city'].'",
 			"'.round($bs['money']*0.85,2).'","'.$i.'"
@@ -261,34 +261,34 @@ function bs_atack($bs,$u1,$u2) {
 	}
 }
 
-//Турнир не состоялся
+//РўСѓСЂРЅРёСЂ РЅРµ СЃРѕСЃС‚РѕСЏР»СЃСЏ
 function nostart($pl) {
 	global $cnfg;
 	$r = false;
 	if( $pl['users'] < 2 ) {
-		//Недостаточно игроков
+		//РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РёРіСЂРѕРєРѕРІ
 		$r = true;
 		$pl['time_start'] = time() + $cnfg['time_restart'] * (60*60);
 		if( $pl['users'] > 0 ) {
-			e('Турнир для '.$pl['to_lvl'].' уровней в <b>Башне Смерти</b> не начался по причине: Недостаточно участников. Начало следующего турнира через '.timeOut($pl['time_start']-time()).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>)');
+			e('РўСѓСЂРЅРёСЂ РґР»СЏ '.$pl['to_lvl'].' СѓСЂРѕРІРЅРµР№ РІ <b>Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</b> РЅРµ РЅР°С‡Р°Р»СЃСЏ РїРѕ РїСЂРёС‡РёРЅРµ: РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СѓС‡Р°СЃС‚РЅРёРєРѕРІ. РќР°С‡Р°Р»Рѕ СЃР»РµРґСѓСЋС‰РµРіРѕ С‚СѓСЂРЅРёСЂР° С‡РµСЂРµР· '.timeOut($pl['time_start']-time()).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>)');
 		}else{
-			//if( timeOut($pl['time_start']-time()) != '44 мин.' ) {
-				e('Начало турнира для '.$pl['to_lvl'].' уровней в <b>Башне Смерти</b> через '.timeOut($pl['time_start']-time()).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>), текущий призовой фонд: 0.00 кр., заявок: 0');
+			//if( timeOut($pl['time_start']-time()) != '44 РјРёРЅ.' ) {
+				e('РќР°С‡Р°Р»Рѕ С‚СѓСЂРЅРёСЂР° РґР»СЏ '.$pl['to_lvl'].' СѓСЂРѕРІРЅРµР№ РІ <b>Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</b> С‡РµСЂРµР· '.timeOut($pl['time_start']-time()).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>), С‚РµРєСѓС‰РёР№ РїСЂРёР·РѕРІРѕР№ С„РѕРЅРґ: 0.00 РєСЂ., Р·Р°СЏРІРѕРє: 0');
 			//}
 		}
-		//Возврат вкладов игроков
+		//Р’РѕР·РІСЂР°С‚ РІРєР»Р°РґРѕРІ РёРіСЂРѕРєРѕРІ
 		$sp = mysql_query('SELECT * FROM `bs_zv` WHERE `bsid` = "'.$pl['id'].'" AND `finish` = "0"');
 		while( $pu = mysql_fetch_array($sp) ) {
 			mysql_query('UPDATE `users` SET `money` = `money` + "'.$pu['money'].'" WHERE `id` = "'.$pu['uid'].'" LIMIT 1');
 			mysql_query('UPDATE `bs_zv` SET `finish` = "'.time().'" WHERE `id` = "'.$pu['id'].'" LIMIT 1');
 		}
-		//Обновление турнира
+		//РћР±РЅРѕРІР»РµРЅРёРµ С‚СѓСЂРЅРёСЂР°
 		mysql_query('UPDATE `bs_turnirs` SET `ch1` = "0",`ch2` = "0", `status` = "0", `money` = "0", `time_start` = "'.$pl['time_start'].'",`users` = "0",`users_finish` = "0" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 	}
 	return $r;
 }
 
-//Добавление "архивариуса"
+//Р”РѕР±Р°РІР»РµРЅРёРµ "Р°СЂС…РёРІР°СЂРёСѓСЃР°"
 function add_arhiv($pl,$user) {
 	$return = 0;
 	mysql_query('INSERT INTO `users` (`login`,`pass`,`level`,`inTurnir`,`sex`,`obraz`,`name`,`online`,`city`,`room`,`align`,`clan`,`cityreg`,`bithday`,`activ`) VALUES (
@@ -307,23 +307,23 @@ function add_arhiv($pl,$user) {
 	return $return;
 }
 
-//Завершаем текущий турнир
+//Р—Р°РІРµСЂС€Р°РµРј С‚РµРєСѓС‰РёР№ С‚СѓСЂРЅРёСЂ
 function backusers($pl) {
 	$sp = mysql_query('SELECT * FROM `bs_zv` WHERE `bsid` = "'.$pl['id'].'" AND `off` = "0" AND `inBot` > 0');
 	while( $pu = mysql_fetch_array($sp) ) {
-		//Удаление клона
+		//РЈРґР°Р»РµРЅРёРµ РєР»РѕРЅР°
 		mysql_query('DELETE FROM `users` WHERE `id` = "'.$pu['inBot'].'" LIMIT 1');
 		mysql_query('DELETE FROM `stats` WHERE `id` = "'.$pu['inBot'].'" LIMIT 1');
 		mysql_query('DELETE FROM `actions` WHERE `uid` = "'.$pu['inBot'].'"');
 		mysql_query('DELETE FROM `items_users` WHERE `uid` = "'.$pu['inBot'].'"');
 		mysql_query('DELETE FROM `eff_users` WHERE `uid` = "'.$pu['inBot'].'"');
 		mysql_query('DELETE FROM `users_delo` WHERE `uid` = "'.$pu['inBot'].'"');
-		//Обновление персонажа
+		//РћР±РЅРѕРІР»РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Р°
 		mysql_query('UPDATE `users` SET `inUser` = "0" WHERE `id` = "'.$pu['uid'].'" LIMIT 1');
-		//Обновляем заявку
+		//РћР±РЅРѕРІР»СЏРµРј Р·Р°СЏРІРєСѓ
 		mysql_query('UPDATE `bs_zv` SET `off` = "'.time().'" WHERE `id` = "'.$pu['id'].'" LIMIT 1');
 	}
-	//Архивариусы
+	//РђСЂС…РёРІР°СЂРёСѓСЃС‹
 	$sp = mysql_query('SELECT * FROM `users` WHERE `pass` = "bstowerbot" AND `inTurnir` = "'.$pl['id'].'" AND `room` = "362"');
 	while( $pu = mysql_fetch_array($sp) ) {
 		mysql_query('DELETE FROM `users` WHERE `id` = "'.$pu['id'].'" LIMIT 1');
@@ -333,11 +333,11 @@ function backusers($pl) {
 		mysql_query('DELETE FROM `eff_users` WHERE `uid` = "'.$pu['id'].'"');
 		mysql_query('DELETE FROM `users_delo` WHERE `uid` = "'.$pu['id'].'"');
 	}
-	//Удаляем предметы раскиданные по БС
+	//РЈРґР°Р»СЏРµРј РїСЂРµРґРјРµС‚С‹ СЂР°СЃРєРёРґР°РЅРЅС‹Рµ РїРѕ Р‘РЎ
 	mysql_query('DELETE FROM `bs_items` WHERE `bid` = "'.$pl['id'].'" AND `count` = "'.$pl['count'].'"');
-	//Удаляем события в БС
+	//РЈРґР°Р»СЏРµРј СЃРѕР±С‹С‚РёСЏ РІ Р‘РЎ
 	mysql_query('DELETE FROM `bs_actions` WHERE `bid` = "'.$pl['id'].'" AND `count` = "'.$pl['count'].'"');
-	//Удаляем ловушки в БС
+	//РЈРґР°Р»СЏРµРј Р»РѕРІСѓС€РєРё РІ Р‘РЎ
 	mysql_query('DELETE FROM `bs_trap` WHERE `bid` = "'.$pl['id'].'" AND `count` = "'.$pl['count'].'"');
 }
 
@@ -365,42 +365,42 @@ while( $pl = mysql_fetch_array($sp) ) {
 	if( $pl['level'] != $pl['level_max'] ) {
 		$pl['to_lvl'] .= '-'.$pl['level_max'].'';
 	}
-	$pl['to_lvl'] = 'всех';
+	$pl['to_lvl'] = 'РІСЃРµС…';
 	if( $pl['status'] == 1 ) {
 		//
 		$tcu = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `inTurnir` = "'.$pl['id'].'" AND `room` = "362"'));
 		$tcu = $tcu[0];
 		//
 		if( $pl['users'] != $tcu ) {
-			//Что-то сбилось
+			//Р§С‚Рѕ-С‚Рѕ СЃР±РёР»РѕСЃСЊ
 			$pl['users'] = $tcu;
 		}
 		//		
-		//Турнир идет, проверяем живых игроков, либо завершаем через 6 часов
+		//РўСѓСЂРЅРёСЂ РёРґРµС‚, РїСЂРѕРІРµСЂСЏРµРј Р¶РёРІС‹С… РёРіСЂРѕРєРѕРІ, Р»РёР±Рѕ Р·Р°РІРµСЂС€Р°РµРј С‡РµСЂРµР· 6 С‡Р°СЃРѕРІ
 		if( $pl['time_start'] < time() - 6*60*60 ) {
-			//Завершаем турнир по тайму
-			//Добавляем в лог БС
-			$text = 'Турнир завершен. Победитель: <i>Отсутствует</i> (Турнир завершился по таймауту). Призовой фонд: <b>'.round($pl['money']*0.85,2).'</b> кр.';
+			//Р—Р°РІРµСЂС€Р°РµРј С‚СѓСЂРЅРёСЂ РїРѕ С‚Р°Р№РјСѓ
+			//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
+			$text = 'РўСѓСЂРЅРёСЂ Р·Р°РІРµСЂС€РµРЅ. РџРѕР±РµРґРёС‚РµР»СЊ: <i>РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚</i> (РўСѓСЂРЅРёСЂ Р·Р°РІРµСЂС€РёР»СЃСЏ РїРѕ С‚Р°Р№РјР°СѓС‚Сѓ). РџСЂРёР·РѕРІРѕР№ С„РѕРЅРґ: <b>'.round($pl['money']*0.85,2).'</b> РєСЂ.';
 			mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 				"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$pl['id'].'", "'.$pl['count'].'", "'.$pl['city'].'",
 				"'.round($pl['money']*0.85,2).'","'.$i.'"
 			)');
 			//
-			//Сохраняем статистику
+			//РЎРѕС…СЂР°РЅСЏРµРј СЃС‚Р°С‚РёСЃС‚РёРєСѓ
 			mysql_query('INSERT INTO `bs_statistic` (`bsid`,`count`,`time_start`,`time_finish`,`time_sf`,`type_bs`,`money`,`wlogin`,`wuid`,`walign`,`wclan`) VALUES (
 				"'.$pl['id'].'","'.$pl['count'].'","'.$pl['time_start'].'","'.time().'","'.(time()-$pl['time_start']).'","'.$pl['type_btl'].'","'.round($pl['money']*0.85,2).'",
 				"2","0","0","0"
 			)');
 			$pl['time_start'] = time() + $cnfg['time_restart'] * (60*60);
-			e('Турнир для '.$pl['to_lvl'].' уровней в <b>Башне Смерти</b> завершился по таймауту. Начало нового турнира через '.timeOut($pl['time_start']-time()-3600).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>)');
+			e('РўСѓСЂРЅРёСЂ РґР»СЏ '.$pl['to_lvl'].' СѓСЂРѕРІРЅРµР№ РІ <b>Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</b> Р·Р°РІРµСЂС€РёР»СЃСЏ РїРѕ С‚Р°Р№РјР°СѓС‚Сѓ. РќР°С‡Р°Р»Рѕ РЅРѕРІРѕРіРѕ С‚СѓСЂРЅРёСЂР° С‡РµСЂРµР· '.timeOut($pl['time_start']-time()-3600).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>)');
 			backusers($pl);
 			$pl['count']++;
 			mysql_query('UPDATE `bs_turnirs` SET `money` = "0",`count` = "'.$pl['count'].'",`status` = "0",`time_start` = "'.$pl['time_start'].'",`users` = "0",`users_finish` = "0",`ch1` = "0",`arhiv` = "0" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 		}else{
 			mysql_query('UPDATE `users` SET `online` = "'.(time()+60*60*6).'" WHERE `inTurnir` = "'.$pl['id'].'" OR (`room` >= 362 AND `room` <= 366)  LIMIT '.($pl['users']+$pl['arhiv']));
-			//Проверяем живых игроков
+			//РџСЂРѕРІРµСЂСЏРµРј Р¶РёРІС‹С… РёРіСЂРѕРєРѕРІ
 			if(  $pl['users'] < 2 ) {
-				mysql_query('DELEE FROM `users` WHERE `login` LIKE "%(клон%" AND `inTurnir` = "'.$pl['id'].'" AND `room` = "362"');
+				mysql_query('DELEE FROM `users` WHERE `login` LIKE "%(РєР»РѕРЅ%" AND `inTurnir` = "'.$pl['id'].'" AND `room` = "362"');
 				if(  $pl['users'] == 1 ) {
 					$pl['usersn'] = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `inTurnir` = "'.$pl['id'].'" AND `room` = "362" LIMIT 1'));
 					$pl['usersn'] = $pl['usersn'][0];
@@ -408,17 +408,17 @@ while( $pl = mysql_fetch_array($sp) ) {
 						//$pl['users'] = $pl['usersn'];
 					}
 				}
-				//Доп. проверка живых
+				//Р”РѕРї. РїСЂРѕРІРµСЂРєР° Р¶РёРІС‹С…
 				if(  $pl['users'] == 1 ) {
-					//Завершаем турнир, есть 1 победитель
+					//Р—Р°РІРµСЂС€Р°РµРј С‚СѓСЂРЅРёСЂ, РµСЃС‚СЊ 1 РїРѕР±РµРґРёС‚РµР»СЊ
 					if( $pl['arhiv'] == 0 ) {
-						//Архивариуса нет, завершаем турнир
+						//РђСЂС…РёРІР°СЂРёСѓСЃР° РЅРµС‚, Р·Р°РІРµСЂС€Р°РµРј С‚СѓСЂРЅРёСЂ
 						$uwin_bot = mysql_fetch_array(mysql_query('SELECT `id`,`money`,`login`,`level`,`align`,`clan` FROM `users` WHERE `inTurnir` = "'.$pl['id'].'" AND `room` = "362" LIMIT 1'));
 						$swin_bot = mysql_fetch_array(mysql_query('SELECT `id`,`exp` FROM `stats` WHERE `id` = "'.$uwin_bot['id'].'" LIMIT 1'));
 						$uwin = mysql_fetch_array(mysql_query('SELECT `id`,`money`,`login`,`level`,`align`,`clan` FROM `users` WHERE `inUser` = "'.$uwin_bot['id'].'" AND `real` = "1" LIMIT 1'));
 						$swin = mysql_fetch_array(mysql_query('SELECT `id`,`exp` FROM `stats` WHERE `id` = "'.$uwin['id'].'" LIMIT 1'));
 						
-						//Опыт
+						//РћРїС‹С‚
 						$swin_bot['exp'] -= 30000;
 						$swin_bot['exp'] = round($swin_bot['exp']/2);
 						if( $swin_bot['exp'] < 0 ) {
@@ -426,7 +426,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 						}
 						$swin_bot['exp'] += 1500;
 						
-						//Сохраняем статистику
+						//РЎРѕС…СЂР°РЅСЏРµРј СЃС‚Р°С‚РёСЃС‚РёРєСѓ
 						mysql_query('INSERT INTO `bs_statistic` (`bsid`,`count`,`time_start`,`time_finish`,`time_sf`,`type_bs`,`money`,`wlogin`,`wuid`,`walign`,`wclan`,`wlevel`) VALUES (
 							"'.$pl['id'].'","'.$pl['count'].'","'.$pl['time_start'].'","'.time().'","'.(time()-$pl['time_start']).'","'.$pl['type_btl'].'","'.round($pl['money']*0.85,2).'",
 							"'.$uwin['login'].'","'.$uwin['id'].'","'.$uwin['align'].'","'.$uwin['clan'].'","'.$uwin['level'].'"
@@ -435,10 +435,10 @@ while( $pl = mysql_fetch_array($sp) ) {
 						if( isset($uwin['id']) ) {
 							mysql_query('UPDATE `users` SET `money` = "'.($uwin['money']+round($pl['money']*0.85,2)).'" WHERE `login` = "'.$uwin['login'].'"');
 							mysql_query('UPDATE `stats` SET `exp` = "'.($swin['exp']+$swin_bot['exp']).'" WHERE `id` = "'.$uwin['id'].'" LIMIT 1');
-							e('#'.$pl['usersn'].' Турнир для '.$pl['to_lvl'].' уровней в <b>Башне Смерти</b> завершился. Победитель: '.microLogin2($uwin).' (id'.$uwin['id'].'). Приз: <b>'.round($pl['money']*0.85,2).'</b> кр. и <b>'.round($swin_bot['exp']).'</b> опыта. Начало нового турнира через '.timeOut($pl['time_start']-time()-3600).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>)');
+							e('#'.$pl['usersn'].' РўСѓСЂРЅРёСЂ РґР»СЏ '.$pl['to_lvl'].' СѓСЂРѕРІРЅРµР№ РІ <b>Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</b> Р·Р°РІРµСЂС€РёР»СЃСЏ. РџРѕР±РµРґРёС‚РµР»СЊ: '.microLogin2($uwin).' (id'.$uwin['id'].'). РџСЂРёР·: <b>'.round($pl['money']*0.85,2).'</b> РєСЂ. Рё <b>'.round($swin_bot['exp']).'</b> РѕРїС‹С‚Р°. РќР°С‡Р°Р»Рѕ РЅРѕРІРѕРіРѕ С‚СѓСЂРЅРёСЂР° С‡РµСЂРµР· '.timeOut($pl['time_start']-time()-3600).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>)');
 						}
-						//Добавляем в лог БС
-						$text = 'Турнир завершен. Победитель: '.microLogin2($uwin).' ['.$uwin.'*'.$uwin_bot['login'].']. Приз: <b>'.round($pl['money']*0.85,2).'</b> кр. и <b>'.round($swin_bot['exp']).'</b> опыта.';
+						//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
+						$text = 'РўСѓСЂРЅРёСЂ Р·Р°РІРµСЂС€РµРЅ. РџРѕР±РµРґРёС‚РµР»СЊ: '.microLogin2($uwin).' ['.$uwin.'*'.$uwin_bot['login'].']. РџСЂРёР·: <b>'.round($pl['money']*0.85,2).'</b> РєСЂ. Рё <b>'.round($swin_bot['exp']).'</b> РѕРїС‹С‚Р°.';
 						mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 							"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$pl['id'].'", "'.$pl['count'].'", "'.$pl['city'].'",
 							"'.round($pl['money']*0.85,2).'","'.$i.'"
@@ -448,19 +448,19 @@ while( $pl = mysql_fetch_array($sp) ) {
 						$pl['count']++;
 						mysql_query('UPDATE `bs_turnirs` SET `money` = "0",`count` = "'.$pl['count'].'",`status` = "0",`time_start` = "'.$pl['time_start'].'",`users` = "0",`users_finish` = "0",`ch1` = "0",`arhiv` = "0" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 					}else{
-						//Ожидаем пока игрок убьет Архивариуса
+						//РћР¶РёРґР°РµРј РїРѕРєР° РёРіСЂРѕРє СѓР±СЊРµС‚ РђСЂС…РёРІР°СЂРёСѓСЃР°
 						
 					}
 				}else{
-					//Сохраняем статистику
+					//РЎРѕС…СЂР°РЅСЏРµРј СЃС‚Р°С‚РёСЃС‚РёРєСѓ
 					mysql_query('INSERT INTO `bs_statistic` (`bsid`,`count`,`time_start`,`time_finish`,`time_sf`,`type_bs`,`money`,`wlogin`,`wuid`,`walign`,`wclan`) VALUES (
 						"'.$pl['id'].'","'.$pl['count'].'","'.$pl['time_start'].'","'.time().'","'.(time()-$pl['time_start']).'","'.$pl['type_btl'].'","'.round($pl['money']*0.85,2).'",
 						"1","0","0","0"
 					)');
-					//Просто завершаем турнир, ничья
+					//РџСЂРѕСЃС‚Рѕ Р·Р°РІРµСЂС€Р°РµРј С‚СѓСЂРЅРёСЂ, РЅРёС‡СЊСЏ
 					$pl['time_start'] = time() + $cnfg['time_restart'] * (60*60);
-					//Добавляем в лог БС
-					$text = 'Турнир завершен. Победитель: <i>Отсутствует</i> (Никто не остался в живых). Призовой фонд: <b>'.round($pl['money']*0.85,2).'</b> кр.';
+					//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
+					$text = 'РўСѓСЂРЅРёСЂ Р·Р°РІРµСЂС€РµРЅ. РџРѕР±РµРґРёС‚РµР»СЊ: <i>РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚</i> (РќРёРєС‚Рѕ РЅРµ РѕСЃС‚Р°Р»СЃСЏ РІ Р¶РёРІС‹С…). РџСЂРёР·РѕРІРѕР№ С„РѕРЅРґ: <b>'.round($pl['money']*0.85,2).'</b> РєСЂ.';
 					mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 						"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$pl['id'].'", "'.$pl['count'].'", "'.$pl['city'].'",
 						"'.round($pl['money']*0.85,2).'","'.$i.'"
@@ -468,28 +468,28 @@ while( $pl = mysql_fetch_array($sp) ) {
 					//
 					backusers($pl);
 					$pl['count']++;
-					e('Турнир для '.$pl['to_lvl'].' уровней в <b>Башне Смерти</b> завершился. Победитель: <i>Отсутствует</i> (Никто не остался в живых). Призовой фонд <b>'.round($pl['money']*0.85,2).'</b> кр. Начало нового турнира через '.timeOut($pl['time_start']-time()-3600).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>)');
+					e('РўСѓСЂРЅРёСЂ РґР»СЏ '.$pl['to_lvl'].' СѓСЂРѕРІРЅРµР№ РІ <b>Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</b> Р·Р°РІРµСЂС€РёР»СЃСЏ. РџРѕР±РµРґРёС‚РµР»СЊ: <i>РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚</i> (РќРёРєС‚Рѕ РЅРµ РѕСЃС‚Р°Р»СЃСЏ РІ Р¶РёРІС‹С…). РџСЂРёР·РѕРІРѕР№ С„РѕРЅРґ <b>'.round($pl['money']*0.85,2).'</b> РєСЂ. РќР°С‡Р°Р»Рѕ РЅРѕРІРѕРіРѕ С‚СѓСЂРЅРёСЂР° С‡РµСЂРµР· '.timeOut($pl['time_start']-time()-3600).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>)');
 					mysql_query('UPDATE `bs_turnirs` SET `money` = "'.round($pl['money']*0.85,2).'",`count` = "'.$pl['count'].'",`status` = "0",`time_start` = "'.$pl['time_start'].'",`users` = "0",`users_finish` = "0",`ch1` = "0",`arhiv` = "0" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 				}
 			}else{
-				//Все живы
+				//Р’СЃРµ Р¶РёРІС‹
 				if( $pl['arhiv'] > 0 ) {
 					$a_sp = mysql_query('SELECT `s`.`timeGo`,`u`.`align`,`u`.`clan`,`u`.`sex`,`u`.`pass`,`u`.`id`,`u`.`level`,`u`.`login`,`u`.`battle`,`s`.`x`,`s`.`y` FROM `users` AS `u` LEFT JOIN `stats` AS `s` ON `s`.`id` = `u`.`id` WHERE `u`.`pass` = "bstowerbot" AND `u`.`inTurnir` = "'.mysql_real_escape_string($pl['id']).'" AND `u`.`room` = "362" LIMIT 10');
 					while( $a_pl = mysql_fetch_array($a_sp) ) {
 						$xy = mysql_fetch_array(mysql_query('SELECT * FROM `bs_map` WHERE `x` = "'.$a_pl['x'].'" AND `y` = "'.$a_pl['y'].'" LIMIT 1'));
 						if( isset($xy['id']) ) {
 							if( $a_pl['battle'] == 0 ) {
-								//Поднимаем предметы
+								//РџРѕРґРЅРёРјР°РµРј РїСЂРµРґРјРµС‚С‹
 								$sp_itm = mysql_query('SELECT * FROM `bs_items` WHERE `x` = "'.$a_pl['x'].'" AND `y` = "'.$a_pl['y'].'" AND `bid` = "'.$pl['id'].'" AND `count` = "'.$pl['count'].'" LIMIT 20');
 								while( $pl_itm = mysql_fetch_array( $sp_itm ) ) {
 									if( rand(0,100) < 21 ) {
-										//Поднимаем текущий предмет
+										//РџРѕРґРЅРёРјР°РµРј С‚РµРєСѓС‰РёР№ РїСЂРµРґРјРµС‚
 										$itm_id = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$pl_itm['item_id'].'" LIMIT 1'));
 										if( isset($itm_id['id']) ) {
 											$itm_id['odevaem'] = addItem($itm_id['id'],$a_pl['id']);
 											mysql_query('DELETE FROM `bs_items` WHERE `id` = "'.$pl_itm['id'].'" LIMIT 1');
 											if( $itm_id['level'] <= $a_pl['level'] && $itm_id['odevaem'] > 0 ) {
-												//надеваем
+												//РЅР°РґРµРІР°РµРј
 												if( $itm_id['inslot'] == 10 ) {
 													$itm_id['inslot'] = rand(10,12);
 												}
@@ -500,7 +500,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 									}
 								}
 								unset($itm_id,$sp_itm,$pl_itm);
-								//Нападаем/Вмешиваемся в поединок
+								//РќР°РїР°РґР°РµРј/Р’РјРµС€РёРІР°РµРјСЃСЏ РІ РїРѕРµРґРёРЅРѕРє
 								if( $pl['time_start'] < time() - $cnfg['time_puti'] ) {
 									$sp_usr = mysql_query('SELECT `u`.`id`,`u`.`battle`,`u`.`login`,`u`.`level`,`u`.`align`,`u`.`clan`,`u`.`sex`,`s`.`team` FROM `stats` AS `s` LEFT JOIN `users` AS `u` ON `u`.`id` = `s`.`id` WHERE `s`.`x` = "'.$a_pl['x'].'" AND `u`.`pass` != "'.$a_pl['pass'].'" AND `s`.`y` = "'.$a_pl['y'].'" ORDER BY `s`.`timeGo` ASC LIMIT 5');
 									while( $pl_usr = mysql_fetch_array($sp_usr) ) {
@@ -517,7 +517,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 									unset($sp_usr,$pl_usr);
 								
 									if( $a_pl['battle'] == 0 && rand(0,100) < 71 && $a_pl['timeGo'] < time()) {
-										//Передвигаемся
+										//РџРµСЂРµРґРІРёРіР°РµРјСЃСЏ
 										$stor = array();
 										if( $xy['up'] > 0 ) {
 											$stor[] = 'up';
@@ -564,7 +564,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 								}
 								
 							}else{
-								//Сражаемся
+								//РЎСЂР°Р¶Р°РµРјСЃСЏ
 								
 							}
 						}
@@ -573,10 +573,10 @@ while( $pl = mysql_fetch_array($sp) ) {
 			}
 		}
 	}elseif( $pl['status'] == 0 && $pl['time_start'] < time() ) {
-		//Начинаем турнир
+		//РќР°С‡РёРЅР°РµРј С‚СѓСЂРЅРёСЂ
 		if( nostart( $pl ) == false ) {
 						
-			//Начинаем турнир!
+			//РќР°С‡РёРЅР°РµРј С‚СѓСЂРЅРёСЂ!
 			$spm = mysql_query('SELECT `x`,`y` FROM `bs_map` WHERE `mid` = "'.$pl['type_map'].'"');
 			$maps = array( );
 			while( $plm = mysql_fetch_array($spm) ) {
@@ -586,14 +586,14 @@ while( $pl = mysql_fetch_array($sp) ) {
 			$ubss = '';
 			$sp_u = mysql_query('SELECT * FROM `bs_zv` WHERE `finish` = "0" AND `bsid` = "'.$pl['id'].'" ORDER BY `money` DESC');
 			//
-			//Создаем поход
+			//РЎРѕР·РґР°РµРј РїРѕС…РѕРґ
 			mysql_query('INSERT INTO `dungeon_now` (
 				`id2` , `name` , `time_start` , `time_finish` , `uid` , `city` , `type` , `bsid`
 			) VALUES (
-				"6" , "Башня Смерти" , "'.$pl['time_start'].'" , "0" , "0" , "'.$pl['city'].'" , "0" , "'.$pl['id'].'"
+				"6" , "Р‘Р°С€РЅСЏ РЎРјРµСЂС‚Рё" , "'.$pl['time_start'].'" , "0" , "0" , "'.$pl['city'].'" , "0" , "'.$pl['id'].'"
 			)');
 			$dnew = mysql_insert_id();	
-			//Добавляем обьекты
+			//Р”РѕР±Р°РІР»СЏРµРј РѕР±СЊРµРєС‚С‹
             $vls32 = '';
             $sphj = mysql_query('SELECT * FROM `dungeon_obj` WHERE `for_dn` = "6"');
             while($plhj = mysql_fetch_array($sphj))
@@ -606,7 +606,7 @@ while( $pl = mysql_fetch_array($sp) ) {
                 $ins232 = mysql_query('INSERT INTO `dungeon_obj` (`dn`,`name`,`img`,`x`,`y`,`action`,`type`,`w`,`h`,`s`,`s2`,`os1`,`os2`,`os3`,`os4`,`type2`,`top`,`left`,`date`) VALUES '.$vls32.'');
             }
 			unset($vls32,$ins232);
-			//Добавляем предметы
+			//Р”РѕР±Р°РІР»СЏРµРј РїСЂРµРґРјРµС‚С‹
 			$map = array();
 			$mapsp = mysql_query('SELECT `x`,`y` FROM `dungeon_map` WHERE `id_dng` = 6');
 			while( $mappl = mysql_fetch_array($mapsp) ) {
@@ -616,7 +616,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 			//
 			$ii1 = 0;
 			while($ii1 < count($map)) {
-				//На каждой клетке в среднем 2 предмета
+				//РќР° РєР°Р¶РґРѕР№ РєР»РµС‚РєРµ РІ СЃСЂРµРґРЅРµРј 2 РїСЂРµРґРјРµС‚Р°
 				$itbsrnd = $itbs[rand(0,count($itbs)-1)];
 				$mp = rand(0,count($map)-1);
 				//
@@ -630,12 +630,12 @@ while( $pl = mysql_fetch_array($sp) ) {
 				$ii1++;
 			}
 			
-			//Добавляем чеки на кр. и на екр. на карту
+			//Р”РѕР±Р°РІР»СЏРµРј С‡РµРєРё РЅР° РєСЂ. Рё РЅР° РµРєСЂ. РЅР° РєР°СЂС‚Сѓ
 			$m1 = $maps[rand(0,count($maps)-1)];
 			$x1 = round($m1[0]);
 			$y1 = round($m1[1]);
-			//$itm1 = array( 4174 , 4175 , 4176 , 4177 , 4178 , 4179 , 4180 ); //Перечисление кр. чеков
-			$itm1 = array( 4176 , 4177 , 4178 , 4179 , 4180 ); //Перечисление кр. чеков
+			//$itm1 = array( 4174 , 4175 , 4176 , 4177 , 4178 , 4179 , 4180 ); //РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РєСЂ. С‡РµРєРѕРІ
+			$itm1 = array( 4176 , 4177 , 4178 , 4179 , 4180 ); //РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РєСЂ. С‡РµРєРѕРІ
 			$itm1 = $itm1[rand(0,count($itm1)-1)];
 			if( $itm1 > 0 ) {
 				//
@@ -650,7 +650,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 				//
 			}
 			
-			//Добавляем монстров (Архивариусов)
+			//Р”РѕР±Р°РІР»СЏРµРј РјРѕРЅСЃС‚СЂРѕРІ (РђСЂС…РёРІР°СЂРёСѓСЃРѕРІ)
 			$vls0 = '';
             $zi1 = 0;
          	$id_bots = array(159,160,161);
@@ -669,11 +669,11 @@ while( $pl = mysql_fetch_array($sp) ) {
 			//
 			while( $pl_u = mysql_fetch_array($sp_u) ) {
 				if( $i < 40 && !isset($usrlst[$pl_u['uid']]) ) {
-					//Действующие участники
+					//Р”РµР№СЃС‚РІСѓСЋС‰РёРµ СѓС‡Р°СЃС‚РЅРёРєРё
 					$usrlst[$pl_u['uid']] = true;
 					$bus = mysql_fetch_array(mysql_query('SELECT `align`,`chatColor`,`molch1`,`molch2`,`id`,`login`,`clan`,`align`,`level`,`sex`,`online`,`room` FROM `users` WHERE `id` = "'.mysql_real_escape_string($pl_u['uid']).'" LIMIT 1'));
 					
-					//Замораживаем эффекты
+					//Р—Р°РјРѕСЂР°Р¶РёРІР°РµРј СЌС„С„РµРєС‚С‹
 					//changeSleep($bus['id'],1);
 					//mysql_query('UPDATE `eff_users` SET `sleeptime` = "'.time().'",`bs` = "1" WHERE `uid` = "'.$bus['id'].'" AND `delete` = "0" AND `no_Ace` = "0"');
 					//
@@ -688,7 +688,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 					$bus['login_BIG'] .= ''.$bus['login'].'</b>['.$bus['level'].']<a target=_blank href=http://xcombats.com/info/'.$bus['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 					$ubss .= ', '.$bus['login_BIG'];
 					//
-					//Вселяем персонажей в ботов
+					//Р’СЃРµР»СЏРµРј РїРµСЂСЃРѕРЅР°Р¶РµР№ РІ Р±РѕС‚РѕРІ
 					if( $bus['align'] >= 1 && $bus['align'] < 2 ) {
 						$bus['align'] = 1;
 					}elseif( $bus['align'] >= 3 && $bus['align'] < 4 ) {
@@ -701,9 +701,9 @@ while( $pl = mysql_fetch_array($sp) ) {
 					mysql_query('INSERT INTO `users` (`chatColor`,`align`,`inTurnir`,`molch1`,`molch2`,`activ`,`login`,`room`,`name`,`sex`,`level`,`bithday`) VALUES (
 						"'.$bus['chatColor'].'","'.$bus['align'].'","'.$pl['id'].'","'.$bus['molch1'].'","'.$bus['molch2'].'","0","'.$bus['login'].'","362","'.$bus['name'].'","'.$bus['sex'].'","'.$pl['level'].'","'.date('d.m.Y').'")');
 					//
-					$inbot = mysql_insert_id(); //айди бота
+					$inbot = mysql_insert_id(); //Р°Р№РґРё Р±РѕС‚Р°
 					if( $inbot > 0 ) {
-						//Бот
+						//Р‘РѕС‚
 						$mp = rand(0,count($mapu)-1);
 						//
 						$x1 = $mapu[$mp]['x'];
@@ -720,13 +720,13 @@ while( $pl = mysql_fetch_array($sp) ) {
 						)');
 						mysql_query('UPDATE `users` SET `inUser` = "'.$inbot.'" WHERE `id` = "'.$bus['id'].'" LIMIT 1');
 					}
-					//Добавляем путы
+					//Р”РѕР±Р°РІР»СЏРµРј РїСѓС‚С‹
 					//
 					mysql_query('INSERT INTO `eff_users` (`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`,`img2`) VALUES (
-						"2","'.$inbot.'","Путы","add_speedhp=30000|add_speedmp=30000|puti='.(time()+$cnfg['time_puti']).'","1","'.(time()+$cnfg['time_puti']).'","chains.gif"
+						"2","'.$inbot.'","РџСѓС‚С‹","add_speedhp=30000|add_speedmp=30000|puti='.(time()+$cnfg['time_puti']).'","1","'.(time()+$cnfg['time_puti']).'","chains.gif"
 					) ');
 					//
-					//Обновляем данные заявки БС
+					//РћР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ Р·Р°СЏРІРєРё Р‘РЎ
 					mysql_query('UPDATE `bs_zv` SET `finish` = "'.time().'",`inBot` = "'.$inbot.'" WHERE `id` = "'.$pl_u['id'].'" LIMIT 1');
 					//
 					unset($bus['login_BIG']);
@@ -735,7 +735,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 				$j++;
 			}
 			unset($sp_u,$pl_u,$bus,$usrlst);
-			//Выбираем тип БС
+			//Р’С‹Р±РёСЂР°РµРј С‚РёРї Р‘РЎ
 			$pl['type_btl'] = 0;
 			//
 			$m1 = $maps[rand(0,count($maps)-1)];
@@ -746,27 +746,27 @@ while( $pl = mysql_fetch_array($sp) ) {
 			//
 			$ubss = ltrim($ubss,', ');			
 			//
-			//Обновление статуса Башни Смерти и удаление заявок
+			//РћР±РЅРѕРІР»РµРЅРёРµ СЃС‚Р°С‚СѓСЃР° Р‘Р°С€РЅРё РЎРјРµСЂС‚Рё Рё СѓРґР°Р»РµРЅРёРµ Р·Р°СЏРІРѕРє
 			mysql_query('UPDATE `bs_turnirs` SET `type_btl` = "'.$pl['type_btl'].'", `status` = "1", `users` = "'.$i.'", `arhiv` = "'.$pl['arhiv'].'", `users_finish` = "0" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 			mysql_query('UPDATE `bs_zv` SET `finish` = "'.time().'" WHERE `bsid` = "'.$pl['id'].'" AND `finish` = "0" AND `inBot` = "0"');
-			//Добавляем в лог БС
-			$text = 'Начало турнира. Участники: '.$ubss;
+			//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
+			$text = 'РќР°С‡Р°Р»Рѕ С‚СѓСЂРЅРёСЂР°. РЈС‡Р°СЃС‚РЅРёРєРё: '.$ubss;
 			mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 				"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$pl['id'].'", "'.$pl['count'].'", "'.$pl['city'].'",
 				"'.round($pl['money']*0.85,2).'","'.$i.'"
 			)');
 			//
-			e('Начался турнир для '.$pl['to_lvl'].' уровней в <b>Башне Смерти</b>. Участники: '.$ubss.'.');
+			e('РќР°С‡Р°Р»СЃСЏ С‚СѓСЂРЅРёСЂ РґР»СЏ '.$pl['to_lvl'].' СѓСЂРѕРІРЅРµР№ РІ <b>Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</b>. РЈС‡Р°СЃС‚РЅРёРєРё: '.$ubss.'.');
 		}
 	}else{
-		//Оповещаем участников о начале турнира за 60 мин., а так-же за 10 мин.
+		//РћРїРѕРІРµС‰Р°РµРј СѓС‡Р°СЃС‚РЅРёРєРѕРІ Рѕ РЅР°С‡Р°Р»Рµ С‚СѓСЂРЅРёСЂР° Р·Р° 60 РјРёРЅ., Р° С‚Р°Рє-Р¶Рµ Р·Р° 10 РјРёРЅ.
 		if( $pl['status'] == 0 ) {
 			if( $pl['ch1'] == 0 && $pl['time_start'] - 60*60 < time()) {
 				mysql_query('UPDATE `bs_turnirs` SET `ch1` = `ch1` + 1 WHERE `id` = "'.$pl['id'].'" LIMIT 1');
-				//e('Начало турнира для '.$pl['to_lvl'].' уровней в <b>Башне Смерти</b> через '.timeOut($pl['time_start']-time()).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>), текущий призовой фонд: '.round($pl['money']*0.85,2).' кр., заявок: '.$pl['users'].'');
+				//e('РќР°С‡Р°Р»Рѕ С‚СѓСЂРЅРёСЂР° РґР»СЏ '.$pl['to_lvl'].' СѓСЂРѕРІРЅРµР№ РІ <b>Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</b> С‡РµСЂРµР· '.timeOut($pl['time_start']-time()).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>), С‚РµРєСѓС‰РёР№ РїСЂРёР·РѕРІРѕР№ С„РѕРЅРґ: '.round($pl['money']*0.85,2).' РєСЂ., Р·Р°СЏРІРѕРє: '.$pl['users'].'');
 			}elseif( $pl['ch1'] == 1 && $pl['time_start'] - 10*60 < time()) {
 				mysql_query('UPDATE `bs_turnirs` SET `ch1` = `ch1` + 1 WHERE `id` = "'.$pl['id'].'" LIMIT 1');
-				e('Начало турнира для '.$pl['to_lvl'].' уровней в <b>Башне Смерти</b> через '.timeOut($pl['time_start']-time()).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>), текущий призовой фонд: '.round($pl['money']*0.85,2).' кр., заявок: '.$pl['users'].'');
+				e('РќР°С‡Р°Р»Рѕ С‚СѓСЂРЅРёСЂР° РґР»СЏ '.$pl['to_lvl'].' СѓСЂРѕРІРЅРµР№ РІ <b>Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</b> С‡РµСЂРµР· '.timeOut($pl['time_start']-time()).' (<small>'.date('d.m.Y H:i',$pl['time_start']).'</small>), С‚РµРєСѓС‰РёР№ РїСЂРёР·РѕРІРѕР№ С„РѕРЅРґ: '.round($pl['money']*0.85,2).' РєСЂ., Р·Р°СЏРІРѕРє: '.$pl['users'].'');
 			}
 		}
 	}

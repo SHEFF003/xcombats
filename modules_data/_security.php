@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
@@ -12,12 +12,12 @@ if(!defined('GAME'))
 <body bgcolor=e2e0e0>
 <FORM ACTION="main.php?act_sec" METHOD=POST>
 <P align=right>
-<INPUT TYPE=button value="Вернуться" style='width: 75px' onclick="location.href='main.php'"></P>
-<H3>Отчет системы безопасности</H3>
-Вы можете получить отчет о заходах за указанный месяц<BR>
-Укажите месяц, на который хотите получить отчет <small>(в формате mm.yy)</small>: 
+<INPUT TYPE=button value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" style='width: 75px' onclick="location.href='main.php'"></P>
+<H3>РћС‚С‡РµС‚ СЃРёСЃС‚РµРјС‹ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё</H3>
+Р’С‹ РјРѕР¶РµС‚Рµ РїРѕР»СѓС‡РёС‚СЊ РѕС‚С‡РµС‚ Рѕ Р·Р°С…РѕРґР°С… Р·Р° СѓРєР°Р·Р°РЅРЅС‹Р№ РјРµСЃСЏС†<BR>
+РЈРєР°Р¶РёС‚Рµ РјРµСЃСЏС†, РЅР° РєРѕС‚РѕСЂС‹Р№ С…РѕС‚РёС‚Рµ РїРѕР»СѓС‡РёС‚СЊ РѕС‚С‡РµС‚ <small>(РІ С„РѕСЂРјР°С‚Рµ mm.yy)</small>: 
 <INPUT TYPE=text NAME=date value="<?echo date("m.y");?>"> 
-<INPUT TYPE=submit name=logenters value="Посмотреть">
+<INPUT TYPE=submit name=logenters value="РџРѕСЃРјРѕС‚СЂРµС‚СЊ">
 </FORM>
 <BR>
 <?
@@ -34,7 +34,7 @@ if ($m>0 && $y>0) {
 
 ?>
 <TABLE width=100% bgcolor=F0F0F0><TR><TD>
-<H3>Отчет системы безопасности за <? echo $m.".20".$y?></H3>
+<H3>РћС‚С‡РµС‚ СЃРёСЃС‚РµРјС‹ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё Р·Р° <? echo $m.".20".$y?></H3>
 <H4>Capital City</H4>
 <?
 $date = mktime(0, 0, 0, $m, 31, "20".$y);
@@ -46,7 +46,7 @@ $date1 = mktime(0, 0, 0, $m, 1, "20".$y);
     $i++;$s=mysql_fetch_array($res);
   	$dat=date("d.m.y H:i",$s['time']);
 	if($s['type']==1) {$s['ip'] = '<b>'.$s['ip'].'</b>';}
-    echo $dat.($s['type']==3?' <B>Неверный пароль</B>, ':' Входит "'.$u->info['login'].'" ').' <img src="/flat/16/'.$s['country'].'.png">'.$s['ip'].'<br>';
+    echo $dat.($s['type']==3?' <B>РќРµРІРµСЂРЅС‹Р№ РїР°СЂРѕР»СЊ</B>, ':' Р’С…РѕРґРёС‚ "'.$u->info['login'].'" ').' <img src="/flat/16/'.$s['country'].'.png">'.$s['ip'].'<br>';
 
 
   }

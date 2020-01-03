@@ -1,4 +1,4 @@
-<?
+<?php
 define('GAME',true);
 include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');
@@ -14,14 +14,14 @@ include('_incl_data/class/__user.php');
 <meta http-equiv=PRAGMA content=NO-CACHE>
 <meta http-equiv=Expires Content=0>
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
-<title>Монитор СБК - Хаоты, Башня смерти, Излом хаоса ,Физические бои, Хаотичные бои, Групповые бои, Текущие бои</title>
+<title>РњРѕРЅРёС‚РѕСЂ РЎР‘Рљ - РҐР°РѕС‚С‹, Р‘Р°С€РЅСЏ СЃРјРµСЂС‚Рё, РР·Р»РѕРј С…Р°РѕСЃР° ,Р¤РёР·РёС‡РµСЃРєРёРµ Р±РѕРё, РҐР°РѕС‚РёС‡РЅС‹Рµ Р±РѕРё, Р“СЂСѓРїРїРѕРІС‹Рµ Р±РѕРё, РўРµРєСѓС‰РёРµ Р±РѕРё</title>
 </head>
 <body style="padding-top:0px; margin-top:7px; height:100%; background-color:#dedede;">
 <script type="text/javascript" src="js/jquery.js"></script>
 
-<center style="float:right"><a class="btnnew" href="http://xcombats.com/hmonitor.php">Обновить</a></center>
+<center style="float:right"><a class="btnnew" href="http://xcombats.com/hmonitor.php">РћР±РЅРѕРІРёС‚СЊ</a></center>
 
-<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Заявки на хаотические поединки</h3>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Р—Р°СЏРІРєРё РЅР° С…Р°РѕС‚РёС‡РµСЃРєРёРµ РїРѕРµРґРёРЅРєРё</h3>
 <?
 $html = ''; $i = 0;
 $sp = mysql_query('SELECT * FROM `zayvki` WHERE `razdel` = 5 AND `cancel` = 0 AND `btl_id` = 0 ORDER BY `id` ASC');
@@ -36,35 +36,35 @@ while( $pl = mysql_fetch_array($sp) ) {
 	}
 	//
 	if( $users == '' ) {
-		$users = '<i><font color=grey><small>Поле боя ждет своих героев!</small></font></i>';
+		$users = '<i><font color=grey><small>РџРѕР»Рµ Р±РѕСЏ Р¶РґРµС‚ СЃРІРѕРёС… РіРµСЂРѕРµРІ!</small></font></i>';
 	}else{
 		$users = rtrim($users,',');
 	}
 	//
 	$html .= $i . '. <span class="date">'.date('H:i',$pl['time']).'</span> ';
 	$html .= ' <img title="'.$u->city_name[$pl['city']].'" src="http://img.xcombats.com/i/city_ico/'.$pl['city'].'.gif">';
-	$html .= ' ('.$users.') ('.$pl['min_lvl_1'].'-'.$pl['max_lvl_1'].') Тип боя: <img src="http://img.xcombats.com/i/fighttype'.$pl['type'].'.gif"> ';
+	$html .= ' ('.$users.') ('.$pl['min_lvl_1'].'-'.$pl['max_lvl_1'].') РўРёРї Р±РѕСЏ: <img src="http://img.xcombats.com/i/fighttype'.$pl['type'].'.gif"> ';
 	if( $pl['noinc'] > 0 ) {
-		$html .= '<img src="http://img.xcombats.com/closefight.gif" title="В поединок нельзя вмешаться">';
+		$html .= '<img src="http://img.xcombats.com/closefight.gif" title="Р’ РїРѕРµРґРёРЅРѕРє РЅРµР»СЊР·СЏ РІРјРµС€Р°С‚СЊСЃСЏ">';
 	}
 	if( $pl['fastfight'] > 0 ) {
-		$html .= '<img src="http://img.xcombats.com/fastfight.gif" title="Для старта поединка требуется минимум двое участников">';
+		$html .= '<img src="http://img.xcombats.com/fastfight.gif" title="Р”Р»СЏ СЃС‚Р°СЂС‚Р° РїРѕРµРґРёРЅРєР° С‚СЂРµР±СѓРµС‚СЃСЏ РјРёРЅРёРјСѓРј РґРІРѕРµ СѓС‡Р°СЃС‚РЅРёРєРѕРІ">';
 	}
 	if( $pl['arand'] > 0 ) {
-		$html .= '<img src="http://img.xcombats.com/arand.gif" title="Команды делятся на две равные команды (равные по количеству, но не по мощности)">';
+		$html .= '<img src="http://img.xcombats.com/arand.gif" title="РљРѕРјР°РЅРґС‹ РґРµР»СЏС‚СЃСЏ РЅР° РґРІРµ СЂР°РІРЅС‹Рµ РєРѕРјР°РЅРґС‹ (СЂР°РІРЅС‹Рµ РїРѕ РєРѕР»РёС‡РµСЃС‚РІСѓ, РЅРѕ РЅРµ РїРѕ РјРѕС‰РЅРѕСЃС‚Рё)">';
 	}
-	$html .= '<font color="grey">Бой начнется через <b>'.$u->timeOut($pl['time']+$pl['time_start']-time()).'</b>, таймаут '.$u->timeOut($pl['timeout']).'</font>';
+	$html .= '<font color="grey">Р‘РѕР№ РЅР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· <b>'.$u->timeOut($pl['time']+$pl['time_start']-time()).'</b>, С‚Р°Р№РјР°СѓС‚ '.$u->timeOut($pl['timeout']).'</font>';
 	if( $pl['priz'] > 0 ) {
-		$html .= '<a href="http://xcombats.com/lib/prizovoi-haot/" target="_blank"><span style="color:#e65700;" title="Участники получают жетоны, чем больше призовых хаотов за сутки, тем больше падает жетонов за победу "><b>(Призовой хаот)</b></span></a></font></i>';
+		$html .= '<a href="http://xcombats.com/lib/prizovoi-haot/" target="_blank"><span style="color:#e65700;" title="РЈС‡Р°СЃС‚РЅРёРєРё РїРѕР»СѓС‡Р°СЋС‚ Р¶РµС‚РѕРЅС‹, С‡РµРј Р±РѕР»СЊС€Рµ РїСЂРёР·РѕРІС‹С… С…Р°РѕС‚РѕРІ Р·Р° СЃСѓС‚РєРё, С‚РµРј Р±РѕР»СЊС€Рµ РїР°РґР°РµС‚ Р¶РµС‚РѕРЅРѕРІ Р·Р° РїРѕР±РµРґСѓ "><b>(РџСЂРёР·РѕРІРѕР№ С…Р°РѕС‚)</b></span></a></font></i>';
 	}
 	$html .= '<br>';
 }
 if( $html == '' ) {
-	$html = '<center>(Раздел пуст)</center>';
+	$html = '<center>(Р Р°Р·РґРµР» РїСѓСЃС‚)</center>';
 }
 echo $html; $html = '';
 ?>
-<h3>Текущие бои</h3>
+<h3>РўРµРєСѓС‰РёРµ Р±РѕРё</h3>
 <?
 $i = 0;
 $sp = mysql_query('SELECT * FROM `battle` WHERE `team_win` = -1');
@@ -86,7 +86,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 		$j = 0;
 		while( $j < count($userst) ) {
 			if( $users != '' ) {
-				$users .= ' &nbsp;<b><font color=red><small>против</small></font></b>&nbsp; ';
+				$users .= ' &nbsp;<b><font color=red><small>РїСЂРѕС‚РёРІ</small></font></b>&nbsp; ';
 			}
 			$users .= $usersa[$userst[$j]];
 			$users = rtrim($users,',');
@@ -98,19 +98,19 @@ while( $pl = mysql_fetch_array($sp) ) {
 		
 		$html .= $i . '. <span class="date">'.date('d.m.Y H:i',$pl['time_start']).'</span> ';
 		$html .= ' <img title="'.$u->city_name[$pl['city']].'" src="http://img.xcombats.com/i/city_ico/'.$pl['city'].'.gif">';
-		$html .= ' ('.$users.') Тип боя: <img src="http://img.xcombats.com/i/fighttype'.$pl['type'].'.gif"> ';
+		$html .= ' ('.$users.') РўРёРї Р±РѕСЏ: <img src="http://img.xcombats.com/i/fighttype'.$pl['type'].'.gif"> ';
 		if( $pl['noinc'] > 0 ) {
-			$html .= '<img src="http://img.xcombats.com/closefight.gif" title="В поединок нельзя вмешаться">';
+			$html .= '<img src="http://img.xcombats.com/closefight.gif" title="Р’ РїРѕРµРґРёРЅРѕРє РЅРµР»СЊР·СЏ РІРјРµС€Р°С‚СЊСЃСЏ">';
 		}
 		if( $pl['fastfight'] > 0 ) {
-			$html .= '<img src="http://img.xcombats.com/fastfight.gif" title="Для старта поединка требуется минимум двое участников">';
+			$html .= '<img src="http://img.xcombats.com/fastfight.gif" title="Р”Р»СЏ СЃС‚Р°СЂС‚Р° РїРѕРµРґРёРЅРєР° С‚СЂРµР±СѓРµС‚СЃСЏ РјРёРЅРёРјСѓРј РґРІРѕРµ СѓС‡Р°СЃС‚РЅРёРєРѕРІ">';
 		}
 		if( $pl['arand'] > 0 ) {
-			$html .= '<img src="http://img.xcombats.com/arand.gif" title="Команды делятся на две равные команды (равные по количеству, но не по мощности)">';
+			$html .= '<img src="http://img.xcombats.com/arand.gif" title="РљРѕРјР°РЅРґС‹ РґРµР»СЏС‚СЃСЏ РЅР° РґРІРµ СЂР°РІРЅС‹Рµ РєРѕРјР°РЅРґС‹ (СЂР°РІРЅС‹Рµ РїРѕ РєРѕР»РёС‡РµСЃС‚РІСѓ, РЅРѕ РЅРµ РїРѕ РјРѕС‰РЅРѕСЃС‚Рё)">';
 		}
-		$html .= '<font color="grey">, таймаут '.$u->timeOut($pl['timeout']).'</font>';
+		$html .= '<font color="grey">, С‚Р°Р№РјР°СѓС‚ '.$u->timeOut($pl['timeout']).'</font>';
 		if( $pl['priz'] > 0 ) {
-			$html .= '<a href="http://xcombats.com/lib/prizovoi-haot/" target="_blank"><span style="color:#e65700;" title="Участники получают жетоны, чем больше призовых хаотов за сутки, тем больше падает жетонов за победу "><b>(Призовой хаот)</b></span></a></font></i>';
+			$html .= '<a href="http://xcombats.com/lib/prizovoi-haot/" target="_blank"><span style="color:#e65700;" title="РЈС‡Р°СЃС‚РЅРёРєРё РїРѕР»СѓС‡Р°СЋС‚ Р¶РµС‚РѕРЅС‹, С‡РµРј Р±РѕР»СЊС€Рµ РїСЂРёР·РѕРІС‹С… С…Р°РѕС‚РѕРІ Р·Р° СЃСѓС‚РєРё, С‚РµРј Р±РѕР»СЊС€Рµ РїР°РґР°РµС‚ Р¶РµС‚РѕРЅРѕРІ Р·Р° РїРѕР±РµРґСѓ "><b>(РџСЂРёР·РѕРІРѕР№ С…Р°РѕС‚)</b></span></a></font></i>';
 		}
 		$html .= ' <a href="/logs.php?log='.$pl['id'].'" target="_blank">&raquo;&raquo;</a> ';
 		$html .= '<br>';
@@ -118,11 +118,11 @@ while( $pl = mysql_fetch_array($sp) ) {
 	//
 }
 if( $html == '' ) {
-	$html = '<center>(Раздел пуст)</center>';
+	$html = '<center>(Р Р°Р·РґРµР» РїСѓСЃС‚)</center>';
 }
 echo $html; $html = '';
 ?>
-<h3>Башня смерти</h3>
+<h3>Р‘Р°С€РЅСЏ СЃРјРµСЂС‚Рё</h3>
 <?
 $sp = mysql_query('SELECT * FROM `bs_turnirs`');
 $i = 0;
@@ -133,46 +133,46 @@ while( $pl = mysql_fetch_array($sp) ) {
 	//
 	$html .= ' ['.$pl['level'].']';
 	if( $pl['status'] == 0 ) {
-		//Ожидаем начала нового турнира
-		$html .= ' Начало турнира: <span class="date">'.date('d.m.Y H:i',$pl['time_start']).'</span> (<small> <font color=grey>Начнется через <b>'.$u->timeOut($pl['time_start']-time()).'</b></font></small>) Призовой фонд на текущий момент: <b>'.round(($pl['money']/100*85),2).'</b> кр. Всего подано заявок: <b>'.$pl['users'].'</b>';
+		//РћР¶РёРґР°РµРј РЅР°С‡Р°Р»Р° РЅРѕРІРѕРіРѕ С‚СѓСЂРЅРёСЂР°
+		$html .= ' РќР°С‡Р°Р»Рѕ С‚СѓСЂРЅРёСЂР°: <span class="date">'.date('d.m.Y H:i',$pl['time_start']).'</span> (<small> <font color=grey>РќР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· <b>'.$u->timeOut($pl['time_start']-time()).'</b></font></small>) РџСЂРёР·РѕРІРѕР№ С„РѕРЅРґ РЅР° С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚: <b>'.round(($pl['money']/100*85),2).'</b> РєСЂ. Р’СЃРµРіРѕ РїРѕРґР°РЅРѕ Р·Р°СЏРІРѕРє: <b>'.$pl['users'].'</b>';
 	}else{
-		//Уже идет турнир
+		//РЈР¶Рµ РёРґРµС‚ С‚СѓСЂРЅРёСЂ
 		$users = '';
 		$spu = mysql_query('SELECT `id` FROM `users` WHERE `inTurnir` = "'.$pl['id'].'"');
 		while( $plu = mysql_fetch_array($spu) ) {
 			$users .=  $u->microLogin($plu['id'],1). ',';
 		}
 		$users = rtrim($users,',');
-		$html .= ' <span title="['.$pl['status'].']">Турнир уже идет.</span>';
-		$html .= ' Участники: '.$users.', Лог турнира: <a href="/towerlog.php?towerid='.$pl['id'].'&id='.$pl['count'].'" target="_blank">&raquo;&raquo;</a>';
+		$html .= ' <span title="['.$pl['status'].']">РўСѓСЂРЅРёСЂ СѓР¶Рµ РёРґРµС‚.</span>';
+		$html .= ' РЈС‡Р°СЃС‚РЅРёРєРё: '.$users.', Р›РѕРі С‚СѓСЂРЅРёСЂР°: <a href="/towerlog.php?towerid='.$pl['id'].'&id='.$pl['count'].'" target="_blank">&raquo;&raquo;</a>';
 	}
 	//
 	$html .= '<br>';
 	//
 }
 if( $html == '' ) {
-	$html = '<center>(Раздел пуст)</center>';
+	$html = '<center>(Р Р°Р·РґРµР» РїСѓСЃС‚)</center>';
 }
 echo $html; $html = '';
 ?>
 
-<h3>Войны кланов</h3>
+<h3>Р’РѕР№РЅС‹ РєР»Р°РЅРѕРІ</h3>
 <?
 if( $html == '' ) {
-	$html = '<center>(Раздел пуст)</center>';
+	$html = '<center>(Р Р°Р·РґРµР» РїСѓСЃС‚)</center>';
 }
 echo $html; $html = '';
 ?>
 
-<h3>История Великих сражений</h3>
+<h3>РСЃС‚РѕСЂРёСЏ Р’РµР»РёРєРёС… СЃСЂР°Р¶РµРЅРёР№</h3>
 <?
 if( $html == '' ) {
-	$html = '<center>(Раздел пуст)</center>';
+	$html = '<center>(Р Р°Р·РґРµР» РїСѓСЃС‚)</center>';
 }
 echo $html; $html = '';
 ?>
 
-<div align="right"><font style="color:#999;" size="1" face="verdana" color="black"><hr style="border-color:#CCC;">Старый Бойцовский Клуб &copy; <?=date('Y')?>, «www.xcombats.com»™ &nbsp; &nbsp; </font></div>
+<div align="right"><font style="color:#999;" size="1" face="verdana" color="black"><hr style="border-color:#CCC;">РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± &copy; <?=date('Y')?>, В«www.xcombats.comВ»в„ў &nbsp; &nbsp; </font></div>
 <br /><br />
 
 <div align="right"><div style="display:none"><!--LiveInternet counter--><script type="text/javascript"><!--
@@ -182,8 +182,8 @@ echo $html; $html = '';
         ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
         screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
         ";"+Math.random()+
-        "' alt='' title='LiveInternet: показано число посетителей за"+
-        " сегодня' "+
+        "' alt='' title='LiveInternet: РїРѕРєР°Р·Р°РЅРѕ С‡РёСЃР»Рѕ РїРѕСЃРµС‚РёС‚РµР»РµР№ Р·Р°"+
+        " СЃРµРіРѕРґРЅСЏ' "+
         "border='0' width='88' height='15'><\/a>")
         //--></script><!--/LiveInternet-->
         <!-- Rating@Mail.ru counter -->
@@ -198,12 +198,12 @@ echo $html; $html = '';
           if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
         })(document, window, "topmailru-code");
         </script><noscript><div style="position:absolute;left:-10000px;">
-        <img src="//top-fwz1.mail.ru/counter?id=2658385;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
+        <img src="//top-fwz1.mail.ru/counter?id=2658385;js=na" style="border:0;" height="1" width="1" alt="Р РµР№С‚РёРЅРі@Mail.ru" />
         </div></noscript>
         <!-- //Rating@Mail.ru counter -->
         <!-- Rating@Mail.ru logo -->
         <a href="http://top.mail.ru/jump?from=2658385">
         <img src="//top-fwz1.mail.ru/counter?id=2658385;t=317;l=1" 
-        style="border:0;dispaly:inline-block; vertical-align:bottom;" height="15" width="88" alt="Рейтинг@Mail.ru" /></a>
+        style="border:0;dispaly:inline-block; vertical-align:bottom;" height="15" width="88" alt="Р РµР№С‚РёРЅРі@Mail.ru" /></a>
         <!-- //Rating@Mail.ru logo --></div></div></body>
 </html>

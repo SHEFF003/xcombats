@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME') || ($u->stats['bronze']<1 && $u->stats['silvers']<1 && $u->stats['gold']<1))
 {
 	die();
@@ -13,10 +13,10 @@ if($u->stats['bronze']>0) $account = 'bronze';  //Bronze Premium Account
 elseif($u->stats['silvers']>0) $account = 'silvers'; //Silver Premium Account
 elseif($u->stats['gold']>0) $account = 'gold'; //Gold Premium Account
 $vu = array(0,0,0,0,0,0,0);
-//Абилки $ability
+//РђР±РёР»РєРё $ability
 $ability = array(
     "bronze" => array(
-	//Свитки Bronze
+	//РЎРІРёС‚РєРё Bronze
 	array(4412,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
 	array(4413,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
 	array(4414,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
@@ -31,7 +31,7 @@ $ability = array(
 	array(1462,1,0,0,0,'tr_lvl=2|nohaos=1|onlyOne=1|oneType=24|musor=2|noremont=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
     ),
     "silvers" => array(
-	//Свитки Silver
+	//РЎРІРёС‚РєРё Silver
 	array(4412,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
 	array(4413,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
 	array(4414,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
@@ -51,7 +51,7 @@ $ability = array(
 	array(4930,1,0,0,0,'tr_lvl=7|onlyOne=1|musor=2|noremont=1|oneType=53|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
     ),
     "gold" => array(
-	//Свитки Gold
+	//РЎРІРёС‚РєРё Gold
 array(4412,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
 	array(4413,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
 	array(4414,3,0,0,0,'useOnLogin=1|noremont=1|musor=1|sudba='.$u->info['login'].'|srok=86400|nosale=1',5),
@@ -82,104 +82,104 @@ $vi = array(
 ?>
 <table width="100%">
     <tr>
-        <td align="center"><h3><img src="i/1.png">Добро пожаловать, <?=$u->info['login']?> [<?=$u->info['level']?>]<img src="i/2.png"></td></h3>
-        <td width="150" align="right"><input type="button" class="btn" value="Обновить" onclick="location='main.php?vip=1';" />   </div>   <input type="button" class="btn" value="Вернуться" onclick="location='main.php';" /></td>
+        <td align="center"><h3><img src="i/1.png">Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ, <?=$u->info['login']?> [<?=$u->info['level']?>]<img src="i/2.png"></td></h3>
+        <td width="150" align="right"><input type="button" class="btn" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location='main.php?vip=1';" />   </div>   <input type="button" class="btn" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onclick="location='main.php';" /></td>
 			<? if($account == 'bronze'){ ?>
             <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#E1E1E1">
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Восстановление жизни и манны +5%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Здроровье и мана восстанавливаются быстрее.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р¶РёР·РЅРё Рё РјР°РЅРЅС‹ +5%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Р—РґСЂРѕСЂРѕРІСЊРµ Рё РјР°РЅР° РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°СЋС‚СЃСЏ Р±С‹СЃС‚СЂРµРµ.</b></font></td>
                 </tr>
                 <tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Получаемый опыт в бою +5%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Повышение уровня персонажа станет быстрее.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РџРѕР»СѓС‡Р°РµРјС‹Р№ РѕРїС‹С‚ РІ Р±РѕСЋ +5%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>РџРѕРІС‹С€РµРЅРёРµ СѓСЂРѕРІРЅСЏ РїРµСЂСЃРѕРЅР°Р¶Р° СЃС‚Р°РЅРµС‚ Р±С‹СЃС‚СЂРµРµ.</b></font></td>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Скидка на ремонт +5%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Вы чините свои вещи на 5% дешевле.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РЎРєРёРґРєР° РЅР° СЂРµРјРѕРЅС‚ +5%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Р’С‹ С‡РёРЅРёС‚Рµ СЃРІРѕРё РІРµС‰Рё РЅР° 5% РґРµС€РµРІР»Рµ.</b></font></td>
 					</tr>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Увеличение рюкзака +10 </td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Увеличивает рюкзак на 10+ единиц.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РЈРІРµР»РёС‡РµРЅРёРµ СЂСЋРєР·Р°РєР° +10 </td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>РЈРІРµР»РёС‡РёРІР°РµС‚ СЂСЋРєР·Р°Рє РЅР° 10+ РµРґРёРЅРёС†.</b></font></td>
 					</tr>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Бонус Жизни +1 </td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>1 Выносливость = 1 ХП</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Р‘РѕРЅСѓСЃ Р–РёР·РЅРё +1 </td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>1 Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ = 1 РҐРџ</b></font></td>
 					</tr>
 			<?}?>
 			<? if($account == 'silvers'){ ?>
             <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#E1E1E1">
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Восстановление жизни и манны +10%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Здроровье и мана восстанавливаются быстрее.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р¶РёР·РЅРё Рё РјР°РЅРЅС‹ +10%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Р—РґСЂРѕСЂРѕРІСЊРµ Рё РјР°РЅР° РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°СЋС‚СЃСЏ Р±С‹СЃС‚СЂРµРµ.</b></font></td>
                 </tr>
                 <tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Получаемый опыт в бою +10%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Повышение уровня персонажа станет быстрее.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РџРѕР»СѓС‡Р°РµРјС‹Р№ РѕРїС‹С‚ РІ Р±РѕСЋ +10%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>РџРѕРІС‹С€РµРЅРёРµ СѓСЂРѕРІРЅСЏ РїРµСЂСЃРѕРЅР°Р¶Р° СЃС‚Р°РЅРµС‚ Р±С‹СЃС‚СЂРµРµ.</b></font></td>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Скидка на ремонт +10%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Вы чините свои вещи на 10% дешевле.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РЎРєРёРґРєР° РЅР° СЂРµРјРѕРЅС‚ +10%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Р’С‹ С‡РёРЅРёС‚Рµ СЃРІРѕРё РІРµС‰Рё РЅР° 10% РґРµС€РµРІР»Рµ.</b></font></td>
 					</tr>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Увеличение рюкзака +20 </td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Увеличивает рюкзак на 20+ единиц.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РЈРІРµР»РёС‡РµРЅРёРµ СЂСЋРєР·Р°РєР° +20 </td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>РЈРІРµР»РёС‡РёРІР°РµС‚ СЂСЋРєР·Р°Рє РЅР° 20+ РµРґРёРЅРёС†.</b></font></td>
 					</tr>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Скорость передвижения +5% </td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>По подземельям вы двигаетесь быстрее</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ +5% </td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>РџРѕ РїРѕРґР·РµРјРµР»СЊСЏРј РІС‹ РґРІРёРіР°РµС‚РµСЃСЊ Р±С‹СЃС‚СЂРµРµ</b></font></td>
 					</tr>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Бонус Жизни +2 </td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>1 Выносливость = 2 ХП</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Р‘РѕРЅСѓСЃ Р–РёР·РЅРё +2 </td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>1 Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ = 2 РҐРџ</b></font></td>
 					</tr>
 			<?}?>
 								<? if($account == 'gold'){ ?>
             <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#E1E1E1">
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Восстановление жизни и манны +25%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Здроровье и мана восстанавливаются быстрее.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р¶РёР·РЅРё Рё РјР°РЅРЅС‹ +25%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Р—РґСЂРѕСЂРѕРІСЊРµ Рё РјР°РЅР° РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°СЋС‚СЃСЏ Р±С‹СЃС‚СЂРµРµ.</b></font></td>
                 </tr>
                 <tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Получаемый опыт в бою +20%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Повышение уровня персонажа станет быстрее.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РџРѕР»СѓС‡Р°РµРјС‹Р№ РѕРїС‹С‚ РІ Р±РѕСЋ +20%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>РџРѕРІС‹С€РµРЅРёРµ СѓСЂРѕРІРЅСЏ РїРµСЂСЃРѕРЅР°Р¶Р° СЃС‚Р°РЅРµС‚ Р±С‹СЃС‚СЂРµРµ.</b></font></td>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Скидка на ремонт +15%</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Вы чините свои вещи на 15% дешевле.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РЎРєРёРґРєР° РЅР° СЂРµРјРѕРЅС‚ +15%</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Р’С‹ С‡РёРЅРёС‚Рµ СЃРІРѕРё РІРµС‰Рё РЅР° 15% РґРµС€РµРІР»Рµ.</b></font></td>
 					</tr>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Увеличение рюкзака +50 </td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>Увеличивает рюкзак на 50+ единиц.</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РЈРІРµР»РёС‡РµРЅРёРµ СЂСЋРєР·Р°РєР° +50 </td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>РЈРІРµР»РёС‡РёРІР°РµС‚ СЂСЋРєР·Р°Рє РЅР° 50+ РµРґРёРЅРёС†.</b></font></td>
 					</tr>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Скорость передвижения +15% </td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>По подземельям вы двигаетесь быстрее</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ +15% </td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>РџРѕ РїРѕРґР·РµРјРµР»СЊСЏРј РІС‹ РґРІРёРіР°РµС‚РµСЃСЊ Р±С‹СЃС‚СЂРµРµ</b></font></td>
 					</tr>
 					<tr>
-                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Бонус Жизни +3</td>
-                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Вечно</b></td>
-                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>1 Выносливость = 3 ХП</b></font></td>
+                    <td style="border-bottom:1px solid #CCCCCC;">&bull; Р‘РѕРЅСѓСЃ Р–РёР·РЅРё +3</td>
+                    <td width="75" align="center" valign="middle" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><b>Р’РµС‡РЅРѕ</b></td>
+                    <td style="border-bottom:1px solid #CCCCCC;"><font color=darkgreen><b>1 Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ = 3 РҐРџ</b></font></td>
 					</tr>
 					<?}?>
 
              </fieldset>
             </table>
-            <fieldset><p><b>Доступные предметы:</b><br /><small>(Чтобы забрать предмет просто нажмите на его изображение)</small></p>
+            <fieldset><p><b>Р”РѕСЃС‚СѓРїРЅС‹Рµ РїСЂРµРґРјРµС‚С‹:</b><br /><small>(Р§С‚РѕР±С‹ Р·Р°Р±СЂР°С‚СЊ РїСЂРµРґРјРµС‚ РїСЂРѕСЃС‚Рѕ РЅР°Р¶РјРёС‚Рµ РЅР° РµРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёРµ)</small></p>
             <p>
                 <?
                 $i = 0; $seet = '';
-                $vnr = array(0 => 'на сегодня',1 => ' всего');
+                $vnr = array(0 => 'РЅР° СЃРµРіРѕРґРЅСЏ',1 => ' РІСЃРµРіРѕ');
                 while($i < count($ability[$account])) {
 
                     if($ability[$account][$i][1]>0) {
@@ -189,12 +189,12 @@ $vi = array(
 
                             $vix = 0;
                             if($ability[$account][$i][4] == 0) {
-                                //за сегодня
+                                //Р·Р° СЃРµРіРѕРґРЅСЏ
                                 $vix = $u->testAction('`uid` = "'.$u->info['id'].'" AND `time`>='.strtotime('now 00:00:00').' AND `vars` = "vitm_'.$itm['id'].'"',2);
                                 $vix = $vix[0];
 
                             }else{
-                                //всего за действие премиума
+                                //РІСЃРµРіРѕ Р·Р° РґРµР№СЃС‚РІРёРµ РїСЂРµРјРёСѓРјР°
                                 $vix = $u->testAction('`uid` = "'.$u->info['id'].'" AND `time`>='.$vt['timeUse'].' AND `vars` = "vitm_'.$itm['id'].'" ',2);
                                 $vix = $vix[0];
                             }
@@ -206,15 +206,15 @@ $vi = array(
                                     if($ability[$account][6]>0) {
                                     }
                                     $u->addAction(time(),'vitm_'.$itm['id'],'');
-                                    echo '<font color="red">Предмет &quot;<b>'.$itm['name'].'</b>&quot; перемещен к Вам в инвентарь!</font><br><br>';
+                                    echo '<font color="red">РџСЂРµРґРјРµС‚ &quot;<b>'.$itm['name'].'</b>&quot; РїРµСЂРµРјРµС‰РµРЅ Рє Р’Р°Рј РІ РёРЅРІРµРЅС‚Р°СЂСЊ!</font><br><br>';
 
                                 }
                             }
 
                             $seet0 = '';
-							//Вывод предметов вип
+							//Р’С‹РІРѕРґ РїСЂРµРґРјРµС‚РѕРІ РІРёРї
                             $seet0 .= '<img '.$vix.' title="'.$itm['name'].'
-(Осталось '.$vnr[$ability[$i][4]].': '.($ability[$account][$i][1]-$vix).' шт.)" src="http://'.$c['img'].'/i/items/'.$itm['img'].'"> ';
+(РћСЃС‚Р°Р»РѕСЃСЊ '.$vnr[$ability[$i][4]].': '.($ability[$account][$i][1]-$vix).' С€С‚.)" src="http://'.$c['img'].'/i/items/'.$itm['img'].'"> ';
                             if($ability[$account][$i][1]-$vix > 0) {
                                 $seet0 = '<a href="main.php?vip=1&take_item_vip='.$itm['id'].'">'.$seet0.'</a>';
                             }else{

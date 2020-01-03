@@ -23,7 +23,7 @@ if(isset($_GET['cryshop']))
 		{
 			$re = $u->buyItem($sid,(int)$_GET['buy'],(int)$_GET['x']);
 		}else{
-			$re = 'Вы уверены что хотите купить этот предмет?';
+			$re = 'Р’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ СЌС‚РѕС‚ РїСЂРµРґРјРµС‚?';
 		}
 	}
 	
@@ -31,9 +31,9 @@ if(isset($_GET['cryshop']))
 	<script type="text/javascript">
 	function AddCount(name, txt)
 	{
-		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>Купить неск. штук</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
+		document.getElementById("hint4").innerHTML = '<table border=0 width=100% cellspacing=1 cellpadding=0 bgcolor="#CCC3AA"><tr><td align=center><B>РљСѓРїРёС‚СЊ РЅРµСЃРє. С€С‚СѓРє</td><td width=20 align=right valign=top style="cursor: pointer" onclick="closehint3();"><BIG><B>x</TD></tr><tr><td colspan=2>'+
 		'<form method=post><table border=0 width=100% cellspacing=0 cellpadding=0 bgcolor="#FFF6DD"><tr><INPUT TYPE="hidden" name="set" value="'+name+'"><td colspan=2 align=center><B><I>'+txt+'</td></tr><tr><td width=80% align=right>'+
-		'Количество (шт.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" »» ">'+
+		'РљРѕР»РёС‡РµСЃС‚РІРѕ (С€С‚.) <INPUT TYPE="text" NAME="count" id=count size=4></td><td width=20%>&nbsp;<INPUT TYPE="submit" value=" В»В» ">'+
 		'</TD></TR></form></TABLE></td></tr></table>';
 		document.getElementById("hint4").style.visibility = 'visible';
 		document.getElementById("hint4").style.left = '100px';
@@ -85,7 +85,7 @@ if(isset($_GET['cryshop']))
 	}	
 	</style>
 	<TABLE width="100%" cellspacing="0" cellpadding="0">
-	<tr><td valign="top"><div align="center" class="pH3">Магазин Самоцветов</div>
+	<tr><td valign="top"><div align="center" class="pH3">РњР°РіР°Р·РёРЅ РЎР°РјРѕС†РІРµС‚РѕРІ</div>
 	<?php
 	echo '<b style="color:red">'.$error.'</b>';
 	?>
@@ -94,11 +94,11 @@ if(isset($_GET['cryshop']))
 	<TR>
 	<form name="F1" method="post">
 	<TD valign="top" align="left">
-	<!--Магазин-->
+	<!--РњР°РіР°Р·РёРЅ-->
 	<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#a5a5a5">
 	<div id="hint3" style="visibility:hidden"></div>
 	<tr><td>
-	<!--Рюкзак / Прилавок-->
+	<!--Р СЋРєР·Р°Рє / РџСЂРёР»Р°РІРѕРє-->
 	<table width="100%" CELLSPACING="1" CELLPADDING="1" bgcolor="#a5a5a5">
     <?php
 		$u->shopItems($sid,'cryshop=1&');
@@ -113,15 +113,15 @@ if(isset($_GET['cryshop']))
 	<td width="280" valign="top"><div>
 	  <br />
 	  <br />
-	    <INPUT TYPE="button" value="Обновить" onclick="location = '<? echo $_SERVER['REQUEST_URI']; ?>';">
-	    <input type="button" value="Вернуться" onclick="location = 'main.php';" />
+	    <INPUT TYPE="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location = '<? echo $_SERVER['REQUEST_URI']; ?>';">
+	    <input type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onclick="location = 'main.php';" />
 	    <BR>
 	    </div>
-	<div style="background-color:#A5A5A5;padding:1"><center><B>Отделы магазина</B></center></div>
+	<div style="background-color:#A5A5A5;padding:1"><center><B>РћС‚РґРµР»С‹ РјР°РіР°Р·РёРЅР°</B></center></div>
 	<div style="line-height:17px;">
 	<?php
-		/*названия разделов (справа)*/
-		$otdels_array = array (1=>'Усиления: временные',2=>'&nbsp; &nbsp; постоянные',3=>'&nbsp; &nbsp; негативные',3=>'Эликсиры: на статы');
+		/*РЅР°Р·РІР°РЅРёСЏ СЂР°Р·РґРµР»РѕРІ (СЃРїСЂР°РІР°)*/
+		$otdels_array = array (1=>'РЈСЃРёР»РµРЅРёСЏ: РІСЂРµРјРµРЅРЅС‹Рµ',2=>'&nbsp; &nbsp; РїРѕСЃС‚РѕСЏРЅРЅС‹Рµ',3=>'&nbsp; &nbsp; РЅРµРіР°С‚РёРІРЅС‹Рµ',3=>'Р­Р»РёРєСЃРёСЂС‹: РЅР° СЃС‚Р°С‚С‹');
 		$i=1;
 		while ($i!=-1)
 		{

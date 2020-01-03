@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME')){
 	die();
 }
@@ -14,10 +14,10 @@ if(isset($u->error2)){
 if( isset($_GET['nightatack'])) {
 	if( date('H') >= 22 || date('H') < 6 ) {
 		if( 
-			$u->room['name'] == 'Центральная площадь' ||
-			$u->room['name'] == 'Страшилкина улица' ||
-			$u->room['name'] == 'Большая парковая улица' ||
-			$u->room['name'] == 'Большая паркоторговая улица'
+			$u->room['name'] == 'Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РїР»РѕС‰Р°РґСЊ' ||
+			$u->room['name'] == 'РЎС‚СЂР°С€РёР»РєРёРЅР° СѓР»РёС†Р°' ||
+			$u->room['name'] == 'Р‘РѕР»СЊС€Р°СЏ РїР°СЂРєРѕРІР°СЏ СѓР»РёС†Р°' ||
+			$u->room['name'] == 'Р‘РѕР»СЊС€Р°СЏ РїР°СЂРєРѕС‚РѕСЂРіРѕРІР°СЏ СѓР»РёС†Р°'
 		) {
 			
 			if($u->room['noatack'] == 0) {
@@ -25,8 +25,8 @@ if( isset($_GET['nightatack'])) {
 				$ua = mysql_fetch_array(mysql_query('SELECT `s`.*,`u`.* FROM `stats` AS `s` LEFT JOIN `users` AS `u` ON `s`.`id` = `u`.`id` WHERE `u`.`login` = "'.mysql_real_escape_string($_GET['login']).'" LIMIT 1'));
 				
 				if(isset($ua['id']) && $ua['online'] > time()-520){
-					$usta = $u->getStats($ua['id'],0); // статы цели
-					$minHp = $usta['hpAll']/100*33; // минимальный запас здоровья цели при котором можно напасть
+					$usta = $u->getStats($ua['id'],0); // СЃС‚Р°С‚С‹ С†РµР»Рё
+					$minHp = $usta['hpAll']/100*33; // РјРёРЅРёРјР°Р»СЊРЅС‹Р№ Р·Р°РїР°СЃ Р·РґРѕСЂРѕРІСЊСЏ С†РµР»Рё РїСЂРё РєРѕС‚РѕСЂРѕРј РјРѕР¶РЅРѕ РЅР°РїР°СЃС‚СЊ
 			
 					if( $ua['battle'] > 0 ){
 						$uabt = mysql_fetch_array(mysql_query('SELECT `id` FROM `battle` WHERE `id` = "'.$ua['battle'].'" AND `team_win` = "-1" LIMIT 1'));
@@ -36,7 +36,7 @@ if( isset($_GET['nightatack'])) {
 					}
 			
 					if( $ua['level'] < 4 ) {
-						$re = 'Новички находятся под защитой Мироздателя...';
+						$re = 'РќРѕРІРёС‡РєРё РЅР°С…РѕРґСЏС‚СЃСЏ РїРѕРґ Р·Р°С‰РёС‚РѕР№ РњРёСЂРѕР·РґР°С‚РµР»СЏ...';
 					}elseif($ua['room']==$u->info['room'] && ($minHp <= $usta['hpNow'] || $ua['battle'] > 0)){
 						if( $ua['type_pers'] == 0 ) {
 							if( $cruw == 2 ) {
@@ -51,9 +51,9 @@ if( isset($_GET['nightatack'])) {
 						$magic->atackUser($u->info['id'],$ua['id'],$ua['team'],$ua['battle'],$ua['bbexp'],$ua['type_pers']);
 						
 						if( $cruw == 2 ) {
-							$rtxt = '[img[items/pal_button9.gif]] &quot;'.$u->info['login'].'&quot; совершил'.$sx.' кровавое нападение на персонажа &quot;'.$ua['login'].'&quot;.';
+							$rtxt = '[img[items/pal_button9.gif]] &quot;'.$u->info['login'].'&quot; СЃРѕРІРµСЂС€РёР»'.$sx.' РєСЂРѕРІР°РІРѕРµ РЅР°РїР°РґРµРЅРёРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$ua['login'].'&quot;.';
 						}else{
-							$rtxt = '[img[items/pal_button8.gif]] &quot;'.$u->info['login'].'&quot; совершил'.$sx.' нападение на персонажа &quot;'.$ua['login'].'&quot;.';
+							$rtxt = '[img[items/pal_button8.gif]] &quot;'.$u->info['login'].'&quot; СЃРѕРІРµСЂС€РёР»'.$sx.' РЅР°РїР°РґРµРЅРёРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$ua['login'].'&quot;.';
 						}
 						mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");		
 						
@@ -61,25 +61,25 @@ if( isset($_GET['nightatack'])) {
 						die();
 					}else{
 						if($ua['room']!=$u->info['room']){
-						//Персонаж в другой комнате
-							$u->error = 'Персонаж находится в другой комнате';
+						//РџРµСЂСЃРѕРЅР°Р¶ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ
+							$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ';
 						}else{
-							$u->error = 'Персонаж имеет слишком малый уровень жизней.';
+							$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РёРјРµРµС‚ СЃР»РёС€РєРѕРј РјР°Р»С‹Р№ СѓСЂРѕРІРµРЅСЊ Р¶РёР·РЅРµР№.';
 						}
 					}
 				}else{
-					//На персонажа нельзя напасть
-					$u->error = 'Персонаж не в игре, либо на нем нет метки';
+					//РќР° РїРµСЂСЃРѕРЅР°Р¶Р° РЅРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ
+					$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РІ РёРіСЂРµ, Р»РёР±Рѕ РЅР° РЅРµРј РЅРµС‚ РјРµС‚РєРё';
 				}
 			}
-			$u->error = 'Вам запрещается атаковать без разрешения...';
+			$u->error = 'Р’Р°Рј Р·Р°РїСЂРµС‰Р°РµС‚СЃСЏ Р°С‚Р°РєРѕРІР°С‚СЊ Р±РµР· СЂР°Р·СЂРµС€РµРЅРёСЏ...';
 			$re = $u->error;
 			
 		}else{
-			$re = 'Нападать возможно только на улице...';
+			$re = 'РќР°РїР°РґР°С‚СЊ РІРѕР·РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ РЅР° СѓР»РёС†Рµ...';
 		}
 	}else{
-		$re = 'Нападения возможны только ночью...';
+		$re = 'РќР°РїР°РґРµРЅРёСЏ РІРѕР·РјРѕР¶РЅС‹ С‚РѕР»СЊРєРѕ РЅРѕС‡СЊСЋ...';
 	}
 }
 
@@ -87,16 +87,16 @@ function thisInfRm($id,$tp = NULL)
 {
 	global $u;
 	$rm = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `code` = "'.mysql_real_escape_string($id).'" AND `city` = "'.$u->info['city'].'" LIMIT 1'));
-	$inf = 'Здание было разрушено';
+	$inf = 'Р—РґР°РЅРёРµ Р±С‹Р»Рѕ СЂР°Р·СЂСѓС€РµРЅРѕ';
 	if(isset($rm['id']))
 	{
 		$rown = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `users` WHERE `online` > '.(time()-120).' AND `city` = "'.$u->info['city'].'" AND `room` = "'.$rm['id'].'"'));
 		if($tp==NULL)
 		{
-			$inf = '<b>'.$rm['name'].'</b><br>Сейчас в комнате '.(0+$rown[0]).' чел.';
+			$inf = '<b>'.$rm['name'].'</b><br>РЎРµР№С‡Р°СЃ РІ РєРѕРјРЅР°С‚Рµ '.(0+$rown[0]).' С‡РµР».';
 		}else{
 			$inf = ''.$rm['name'].'
-Сейчас в комнате '.(0+$rown[0]).' чел.';
+РЎРµР№С‡Р°СЃ РІ РєРѕРјРЅР°С‚Рµ '.(0+$rown[0]).' С‡РµР».';
 		}
 	}
 	if($tp==NULL)
@@ -114,13 +114,13 @@ if(isset($_GET['loc']))
 							//print_r($u->info);
 							}
 	if($u->info['align'] == 2 && $go['nochaos'] == 1){
-		$re = 'Проход для хаосников закрыт!';
+		$re = 'РџСЂРѕС…РѕРґ РґР»СЏ С…Р°РѕСЃРЅРёРєРѕРІ Р·Р°РєСЂС‹С‚!';
 	}elseif($u->info['inTurnir'] > 0){
-		$re = 'Вы не можете перемещаться, Вы приняли заявку на турнир ...';
-	}elseif($u->aves['now']>=$u->aves['max'] && $u->room['name']!='Общежитие' && $u->room['name']!='Общ. Этаж 1' && $u->room['name']!='Общ. Этаж 2' && $u->room['name']!='Общ. Этаж 3'){
-		$re = 'Вы не можете перемещаться, рюкзак переполнен ...';
-	}elseif($u->room['name']=='Комната для новичков' && $u->info['activ'] != '' && $u->info['activ'] != '0'){
-		echo '<script>alert("Для того чтобы перейти в город Вы должны активировать персонажа через Ваш E-mail.");</script>';
+		$re = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ, Р’С‹ РїСЂРёРЅСЏР»Рё Р·Р°СЏРІРєСѓ РЅР° С‚СѓСЂРЅРёСЂ ...';
+	}elseif($u->aves['now']>=$u->aves['max'] && $u->room['name']!='РћР±С‰РµР¶РёС‚РёРµ' && $u->room['name']!='РћР±С‰. Р­С‚Р°Р¶ 1' && $u->room['name']!='РћР±С‰. Р­С‚Р°Р¶ 2' && $u->room['name']!='РћР±С‰. Р­С‚Р°Р¶ 3'){
+		$re = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ, СЂСЋРєР·Р°Рє РїРµСЂРµРїРѕР»РЅРµРЅ ...';
+	}elseif($u->room['name']=='РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ' && $u->info['activ'] != '' && $u->info['activ'] != '0'){
+		echo '<script>alert("Р”Р»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ РїРµСЂРµР№С‚Рё РІ РіРѕСЂРѕРґ Р’С‹ РґРѕР»Р¶РЅС‹ Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р° С‡РµСЂРµР· Р’Р°С€ E-mail.");</script>';
 	}elseif(isset($go['id'])){
 		$rmgo = array();
 		$rg = explode(',',$u->room['roomGo']);
@@ -134,31 +134,31 @@ if(isset($_GET['loc']))
 		}
 		$sleep = $u->testAction('`vars` = "sleep" AND `uid` = "'.$u->info['id'].'" LIMIT 1',1);
 		if(isset($sleep['id']) && $sleep['vars']=='sleep'){
-			$re = 'Вы моежете перемещаться только когда бодрствуете.';
+			$re = 'Р’С‹ РјРѕРµР¶РµС‚Рµ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РєРѕРіРґР° Р±РѕРґСЂСЃС‚РІСѓРµС‚Рµ.';
 		}elseif($u->info['timeGo']>=time()){
-			$re = 'Вы не можете перемещаться еще '.($u->info['timeGo']-time()).' сек.';
+			$re = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ РµС‰Рµ '.($u->info['timeGo']-time()).' СЃРµРє.';
 		}elseif($rmgo[$go['id']]==1 || $u->info['admin']>0){
 			$alg = explode('-',$go['align']);
 			if(($alg[0] > $u->info['align'] || $alg[1] < $u->info['align']) && $go['align']!=0 && $u->info['admin'] == 0){
-				$re = 'Вы не можете попасть в эту комнату';
+				$re = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРїР°СЃС‚СЊ РІ СЌС‚Сѓ РєРѕРјРЅР°С‚Сѓ';
 			}elseif($u->info['zv']>0){
-				$re = 'Подали заявку и убегаем?.. Не хорошо!';
+				$re = 'РџРѕРґР°Р»Рё Р·Р°СЏРІРєСѓ Рё СѓР±РµРіР°РµРј?.. РќРµ С…РѕСЂРѕС€Рѕ!';
 			}elseif((($go['clan'] > 0 && $u->info['clan'] != $go['clan']) || ($go['clan'] == -1 && $u->info['clan'] == 0)) && $u->info['admin'] == 0){
-				$re = 'Вы не можете попасть в эту комнату';
+				$re = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРїР°СЃС‚СЊ РІ СЌС‚Сѓ РєРѕРјРЅР°С‚Сѓ';
 			}elseif($go['sex']>0 && $go['sex']-1!=$u->info['sex'] && $u->info['invis'] != 1 && $u->info['invis'] < time() && $u->info['admin'] == 0){
-				$re = 'Вы не можете попасть в эту комнату';
+				$re = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРїР°СЃС‚СЊ РІ СЌС‚Сѓ РєРѕРјРЅР°С‚Сѓ';
 			}elseif($mlvl[0]>$u->info['level'] && $u->info['admin']==0){
-				$re = 'Вы не можете попасть в эту комнату, уровень маловат ;)';
+				$re = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРїР°СЃС‚СЊ РІ СЌС‚Сѓ РєРѕРјРЅР°С‚Сѓ, СѓСЂРѕРІРµРЅСЊ РјР°Р»РѕРІР°С‚ ;)';
 			}elseif($mlvl[1]<$u->info['level'] && $u->info['admin']==0){
-				$re = 'Вы не можете попасть в эту комнату, уровень высоковат ;)';
+				$re = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРїР°СЃС‚СЊ РІ СЌС‚Сѓ РєРѕРјРЅР°С‚Сѓ, СѓСЂРѕРІРµРЅСЊ РІС‹СЃРѕРєРѕРІР°С‚ ;)';
 			}elseif($go['close']==0 || $u->info['admin']>0){
 				$travms = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u->info['id'].'" and (`v1`="2" or `v1`="3") and `delete`=0 ORDER by v1 DESC'));
                 
-				//замедление перемешения при травмах
-				$plus_timeGo=0; // добавочное время при травме
-				$tr_nogo=false; // нету запрещения перемещения по травме
+				//Р·Р°РјРµРґР»РµРЅРёРµ РїРµСЂРµРјРµС€РµРЅРёСЏ РїСЂРё С‚СЂР°РІРјР°С…
+				$plus_timeGo=0; // РґРѕР±Р°РІРѕС‡РЅРѕРµ РІСЂРµРјСЏ РїСЂРё С‚СЂР°РІРјРµ
+				$tr_nogo=false; // РЅРµС‚Сѓ Р·Р°РїСЂРµС‰РµРЅРёСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ РїРѕ С‚СЂР°РІРјРµ
 				if($travms['v1']==3){
-				// тяжелая травма
+				// С‚СЏР¶РµР»Р°СЏ С‚СЂР°РІРјР°
 				    $kostyls = mysql_query('SELECT * FROM `items_users` WHERE `uid`="'.$u->info['id'].'" and `inOdet`!="0" and (`item_id`="630" or `item_id`="631")');
 							if(mysql_num_rows($kostyls)==2){
 							$plus_timeGo=30;
@@ -167,7 +167,7 @@ if(isset($_GET['loc']))
 							}
 				
 				}elseif($travms['v1']==2){
-				//средняя
+				//СЃСЂРµРґРЅСЏСЏ
 				$plus_timeGo=20;
 				}
 				//end freez time go
@@ -181,7 +181,7 @@ if(isset($_GET['loc']))
 					$upd2 = mysql_query('UPDATE `users` SET `room` = "'.$go['id'].'",`online` = "'.time().'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					if($upd2){
 						if( $u->room['file'] == 'bsenter' && $go['file'] != 'bsenter' ) {
-							//Удаляем все ставки в БС
+							//РЈРґР°Р»СЏРµРј РІСЃРµ СЃС‚Р°РІРєРё РІ Р‘РЎ
 							$sp_bs = mysql_query('SELECT `id`,`bsid`,`money` FROM `bs_zv` WHERE `uid` = "'.$u->info['id'].'" AND `inBot` = "0" AND `finish` = "0"');
 							while( $pl_bs = mysql_fetch_array($sp_bs) ) {
 								mysql_query('UPDATE `bs_turnirs` SET `users` = `users` - 1 WHERE `id` = "'.$pl_bs['bsid'].'" LIMIT 1');
@@ -200,23 +200,23 @@ if(isset($_GET['loc']))
 						$u->room = $go;
 						echo '<script>top.chat.reflesh();</script>';
 					}else{
-						$re = 'Вы не смогли перейти в локацию, возможно она была разрушена';
+						$re = 'Р’С‹ РЅРµ СЃРјРѕРіР»Рё РїРµСЂРµР№С‚Рё РІ Р»РѕРєР°С†РёСЋ, РІРѕР·РјРѕР¶РЅРѕ РѕРЅР° Р±С‹Р»Р° СЂР°Р·СЂСѓС€РµРЅР°';
 					}
 				}elseif($tr_nogo==true){
-					$re = 'Вы травмированны. Не возможно с такими увечиями передвигатся без костылей.';
+					$re = 'Р’С‹ С‚СЂР°РІРјРёСЂРѕРІР°РЅРЅС‹. РќРµ РІРѕР·РјРѕР¶РЅРѕ СЃ С‚Р°РєРёРјРё СѓРІРµС‡РёСЏРјРё РїРµСЂРµРґРІРёРіР°С‚СЃСЏ Р±РµР· РєРѕСЃС‚С‹Р»РµР№.';
 				}else{
-					$re = 'Вы не смогли перейти в локацию';
+					$re = 'Р’С‹ РЅРµ СЃРјРѕРіР»Рё РїРµСЂРµР№С‚Рё РІ Р»РѕРєР°С†РёСЋ';
 				}
 			}elseif($go['destroy']==1){
-				$re = 'Здание было разрушено, в данный момент оно реставрируется';
+				$re = 'Р—РґР°РЅРёРµ Р±С‹Р»Рѕ СЂР°Р·СЂСѓС€РµРЅРѕ, РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РѕРЅРѕ СЂРµСЃС‚Р°РІСЂРёСЂСѓРµС‚СЃСЏ';
 			}else{
-				$re = 'Временно закрыто';
+				$re = 'Р’СЂРµРјРµРЅРЅРѕ Р·Р°РєСЂС‹С‚Рѕ';
 			}
 		}else{
-			$re = 'Проход не существует';
+			$re = 'РџСЂРѕС…РѕРґ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚';
 		}
 	}else{
-		$re = 'Проход не существует';
+		$re = 'РџСЂРѕС…РѕРґ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚';
 	}
 }
 
@@ -293,7 +293,7 @@ function locGoLine()
 			if(rgo_nm != '') {
 				if( $('#moveto').html() == '' ) {
 					$('#moveto').css({'display':'','height':'auto'});
-					$('#moveto').html('<div onclick="gotoLocationCancel();" style="cursor:pointer;padding:5px;">Вы перейдете в: <b>' + rgo_nm + '</b> (<a onclick="gotoLocationCancel();" href="javascript:void(0)">отмена</a>)</div>');
+					$('#moveto').html('<div onclick="gotoLocationCancel();" style="cursor:pointer;padding:5px;">Р’С‹ РїРµСЂРµР№РґРµС‚Рµ РІ: <b>' + rgo_nm + '</b> (<a onclick="gotoLocationCancel();" href="javascript:void(0)">РѕС‚РјРµРЅР°</a>)</div>');
 				}
 			}else{
 				$('#moveto').css({'display':'none','height':'1px'});
@@ -308,7 +308,7 @@ function goLocal(id,nm) {
 	if($('#moveto') != null && $('#moveto') != undefined && nm != undefined) {
 		if(rgo_nm != '') {
 			$('#moveto').css({'display':'','height':'auto'});
-			$('#moveto').html('<div onclick="gotoLocationCancel(); return false;" style="cursor:pointer;padding:5px;">Вы перейдете в: <b>' + nm + '</b> (<a onclick="gotoLocationCancel();" href="javascript:void(0)">отмена</a>)</div>');
+			$('#moveto').html('<div onclick="gotoLocationCancel(); return false;" style="cursor:pointer;padding:5px;">Р’С‹ РїРµСЂРµР№РґРµС‚Рµ РІ: <b>' + nm + '</b> (<a onclick="gotoLocationCancel();" href="javascript:void(0)">РѕС‚РјРµРЅР°</a>)</div>');
 			if(sLoc1 == 64) {
 				location = rgo_url;
 			}
@@ -380,7 +380,7 @@ function DrawWeather(room) {
 	var div = '';
 	for (i = 0; i < no; ++ i) {
 		SetVariable(i);
-		div += "<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: 30" + i +"; VISIBILITY: visible; TOP: " + 0 + "px; LEFT: " + 0 + "px;\"><img id=\"im"+ i +"\" src=\"" + (sty[i]<sp_rel ? snowflake2 : snowflake1 ) + "\" border=\"0\" alt=\"Снежинка\"></div>";
+		div += "<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: 30" + i +"; VISIBILITY: visible; TOP: " + 0 + "px; LEFT: " + 0 + "px;\"><img id=\"im"+ i +"\" src=\"" + (sty[i]<sp_rel ? snowflake2 : snowflake1 ) + "\" border=\"0\" alt=\"РЎРЅРµР¶РёРЅРєР°\"></div>";
 	}
 
 	document.getElementById('snow').innerHTML = div;
@@ -410,18 +410,18 @@ function WeatherBegin() {  // IE main animation function
 }
 
 if(isset($u->room['id'])){
-	$tmGo  = $u->info['timeGo']-time()+1; //сколько секунд осталось
-	$tmGol = $u->info['timeGo']-$u->info['timeGoL']+1; //сколько секунд идти всего
+	$tmGo  = $u->info['timeGo']-time()+1; //СЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ РѕСЃС‚Р°Р»РѕСЃСЊ
+	$tmGol = $u->info['timeGo']-$u->info['timeGoL']+1; //СЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ РёРґС‚Рё РІСЃРµРіРѕ
 	if($tmGo<0){
 		$tmGo = 0;
 	}
 	if($tmGol<1){
 		$tmGol = 1;
 	}
-	//онлайн в этой комнате
+	//РѕРЅР»Р°Р№РЅ РІ СЌС‚РѕР№ РєРѕРјРЅР°С‚Рµ
 	$goLis = '<table height="15" border="0" cellspacing="0" cellpadding="0">
                <tr>
-               <td id="locobobr" rowspan="3" valign="bottom"><a href="main.php?rnd='.$code.'"><img style="display:block;" src="http://img.xcombats.com/i/move/rel_1.gif" width="15" height="16" title="Обновить" border="0" /></a></td>
+               <td id="locobobr" rowspan="3" valign="bottom"><a href="main.php?rnd='.$code.'"><img style="display:block;" src="http://img.xcombats.com/i/move/rel_1.gif" width="15" height="16" title="РћР±РЅРѕРІРёС‚СЊ" border="0" /></a></td>
                <td colspan="3"><img style="display:block;" src="http://img.xcombats.com/i/move/navigatin_462s.gif" width="80" height="4" /></td>
                </tr>
                <tr>
@@ -442,15 +442,15 @@ if(isset($u->room['id'])){
 	$rowonmax2 = 0;
 	
 	$rowonmax2 = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `users` WHERE `online` > '.(time()-520).' AND `inUser` = "0" AND `city` = "'.$u->info['city'].'" AND `no_ip` != "trupojor" LIMIT 1'));
-	$rowonmax = 'Сейчас в городе: '.$rowonmax2[0].' чел.';
+	$rowonmax = 'РЎРµР№С‡Р°СЃ РІ РіРѕСЂРѕРґРµ: '.$rowonmax2[0].' С‡РµР».';
 	$rowonmax =  ''.$rowonmax.'';
 	$rowonmax2c = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `users` WHERE `online` > '.(time()-520).' AND `inUser` = "0" AND `no_ip` != "trupojor" LIMIT 1'));
 	$rowonmax3c = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `users` WHERE `online` > '.(time()-520).' AND `inUser` = "0" AND `no_ip` != "trupojor" LIMIT 1'));
-	$rowonmaxc = 'Всего в Игре: '.$rowonmax2c[0].' чел.';
+	$rowonmaxc = 'Р’СЃРµРіРѕ РІ РРіСЂРµ: '.$rowonmax2c[0].' С‡РµР».';
 	$rowonmaxc =  ''.$rowonmaxc.'';
 	
 	//$rowonmaxc = '';
-	//$rowonmax = '<span title="Сейчас в городе: '.$rowonmax3c[0].' чел.">'.$rowonmax.'</span>';
+	//$rowonmax = '<span title="РЎРµР№С‡Р°СЃ РІ РіРѕСЂРѕРґРµ: '.$rowonmax3c[0].' С‡РµР».">'.$rowonmax.'</span>';
 	unset($sil,$pil,$rowonmax2);	
 	if($u->room['file']!=''){
 		include_once('modules_data/location/'.$u->room['file'].'.php');

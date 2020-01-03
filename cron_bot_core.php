@@ -5,7 +5,7 @@ function getIP() {
    return $_SERVER['REMOTE_ADDR'];
 }
 
-//if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) { die('<center><br><h3>Сосать член;)</h3><img src="i/fack.jpg">'); }
+//if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) { die('<center><br><h3>РЎРѕСЃР°С‚СЊ С‡Р»РµРЅ;)</h3><img src="i/fack.jpg">'); }
 
 
 define('GAME',true);
@@ -28,7 +28,7 @@ $count = array(
 );
 
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","Арбидол","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","РђСЂР±РёРґРѕР»","6","1","-1")');
 }
 
 function inuser_go_btl($id) {

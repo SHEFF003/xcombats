@@ -6,7 +6,7 @@ include('../_incl_data/class/__db_connect.php');
 $url = explode('?',$_SERVER["REQUEST_URI"]);
 $url = explode('/',$url[0]);
 
-/* Пользователь */
+/* РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ */
 $u = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`banned`,`admin`,`clan`,`align`,`level`,`molch1`,`molch2` FROM `users` WHERE `login` = "'.mysql_real_escape_string($_COOKIE['login']).'" AND `pass` = "'.mysql_real_escape_string($_COOKIE['pass']).'" LIMIT 1'));
 
 if($url[2] > 0) {
@@ -48,7 +48,7 @@ if($u['admin']>0) {
 	$add = array(1);
 }
 
-/* Страница и тип страницы */
+/* РЎС‚СЂР°РЅРёС†Р° Рё С‚РёРї СЃС‚СЂР°РЅРёС†С‹ */
 if(isset($_GET['page_id'])) {
 	$p = (int)$_GET['page_id'];
 }
@@ -95,19 +95,19 @@ if($u['admin'] > 0 || in_array($u['align'], $pal_al) || in_array($u['align'], $t
 		header('location: '.$_SERVER['REQUEST_URI']);
 		die();
 	}elseif(isset($_GET['add_new_st'])) {
-		mysql_query('INSERT INTO `events_news` (`r`,`time`,`uid`,`title`,`text`) VALUES ("'.mysql_real_escape_string($p).'","'.time().'","'.$u['id'].'","Новая статья","Текст статьи в разработке...")');
+		mysql_query('INSERT INTO `events_news` (`r`,`time`,`uid`,`title`,`text`) VALUES ("'.mysql_real_escape_string($p).'","'.time().'","'.$u['id'].'","РќРѕРІР°СЏ СЃС‚Р°С‚СЊСЏ","РўРµРєСЃС‚ СЃС‚Р°С‚СЊРё РІ СЂР°Р·СЂР°Р±РѕС‚РєРµ...")');
 		header('location:http://xcombats.com/news/p/'.$pg.'');
 		die();
 	}
 }
 
 $rname = array(
-	1 => 'Новости',
-	2 => 'Анонсы',
-	3 => 'Конкурсы',
-	5 => 'Сервера',
-	6 => 'Партнерам',
-	7 => 'Блог разработчиков'
+	1 => 'РќРѕРІРѕСЃС‚Рё',
+	2 => 'РђРЅРѕРЅСЃС‹',
+	3 => 'РљРѕРЅРєСѓСЂСЃС‹',
+	5 => 'РЎРµСЂРІРµСЂР°',
+	6 => 'РџР°СЂС‚РЅРµСЂР°Рј',
+	7 => 'Р‘Р»РѕРі СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРѕРІ'
 );
 
 ?>
@@ -127,7 +127,7 @@ $rname = array(
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
 <meta name="viewport" content="width=device-width" />
-<title>Новости &mdash; Старый Бойцовский Клуб</title>
+<title>РќРѕРІРѕСЃС‚Рё &mdash; РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±</title>
 <link rel="stylesheet" type="text/css" media="all" href="/news_script/style.css" />
 <style>
 hr {border:0;border-bottom:1px solid #aeaeae; }
@@ -139,7 +139,7 @@ function drw_wfl(login, orden, rang, clan, level)
     var data = '';
 	
 	if(login == 'invisible') {
-	    return "<b><i>невидимка</i></b>";
+	    return "<b><i>РЅРµРІРёРґРёРјРєР°</i></b>";
 	}
 	
     if(orden != '' && orden != 0)
@@ -182,7 +182,7 @@ function save_new(id,id2) {
 }
 </script>
 <? } ?>
-<link rel='index' title='Сайт Событий' href='http://xcombats.com/news/' />
+<link rel='index' title='РЎР°Р№С‚ РЎРѕР±С‹С‚РёР№' href='http://xcombats.com/news/' />
 <link rel='canonical' href='http://xcombats.com/news/' />
 </head>
 <body class="home page page-id-166 page-parent page-template page-template-news-php singular two-column right-sidebar">
@@ -211,14 +211,14 @@ if($u['admin']>0) {
 			<nav style="float:none" id="access" role="navigation">
 <div class="menu-container">
 <ul id="menu" class="menu">
-	<li id="menu-item-1" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 1){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-1"><a href="http://xcombats.com/news/">Новости</a></li>
-	<!--<li id="menu-item-2" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 2){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-2"><a href="http://xcombats.com/news/announcement/">Анонсы</a></li>-->
+	<li id="menu-item-1" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 1){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-1"><a href="http://xcombats.com/news/">РќРѕРІРѕСЃС‚Рё</a></li>
+	<!--<li id="menu-item-2" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 2){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-2"><a href="http://xcombats.com/news/announcement/">РђРЅРѕРЅСЃС‹</a></li>-->
     <!--
-	<li id="menu-item-6" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 6){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-6"><a href="http://xcombats.com/news/?page_id=6">Партнерам</a></li>
-	<li id="menu-item-3" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 3){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-3"><a href="http://xcombats.com/news/?page_id=3">Конкурсы</a></li>
-	<? /* ?><li id="menu-item-4" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 4){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-4"><a href="http://xcombats.com/news/?page_id=4">Фоторепортажи</a></li><? */ ?>
-	<li id="menu-item-5" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 5){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-5"><a href="http://xcombats.com/news/?page_id=5">Сервера</a></li>
-	<li id="menu-item-7" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 7){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-7"><a href="http://xcombats.com/news/?page_id=7">Блог разработчиков</a></li>
+	<li id="menu-item-6" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 6){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-6"><a href="http://xcombats.com/news/?page_id=6">РџР°СЂС‚РЅРµСЂР°Рј</a></li>
+	<li id="menu-item-3" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 3){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-3"><a href="http://xcombats.com/news/?page_id=3">РљРѕРЅРєСѓСЂСЃС‹</a></li>
+	<? /* ?><li id="menu-item-4" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 4){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-4"><a href="http://xcombats.com/news/?page_id=4">Р¤РѕС‚РѕСЂРµРїРѕСЂС‚Р°Р¶Рё</a></li><? */ ?>
+	<li id="menu-item-5" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 5){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-5"><a href="http://xcombats.com/news/?page_id=5">РЎРµСЂРІРµСЂР°</a></li>
+	<li id="menu-item-7" class="menu-item menu-item-type-post_type menu-item-object-page <? if($p == 7){ echo 'current-menu-item page_item page-item-1 current_page_item'; } ?> menu-item-7"><a href="http://xcombats.com/news/?page_id=7">Р‘Р»РѕРі СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРѕРІ</a></li>
 -->
 </ul></div></nav><!-- #access -->
 	</header><!-- #branding -->
@@ -229,7 +229,7 @@ if($u['admin']>0) {
 		<div id="primary">
 			<div id="content" role="main">
 <? if($u['admin'] > 0) { ?>
-<div style="font-size: 12pt; float: left;"><small><a href="/news/add/<?=$pg?>/<?=$p?>">Добавить статью</a></small></div>
+<div style="font-size: 12pt; float: left;"><small><a href="/news/add/<?=$pg?>/<?=$p?>">Р”РѕР±Р°РІРёС‚СЊ СЃС‚Р°С‚СЊСЋ</a></small></div>
 <? } ?>
 <div style="font-size: 12pt; font-weight: bold; text-align: right;"><?=$rname[$p]?></div>
 <hr />
@@ -238,8 +238,8 @@ if( $p != 2 && $p != 5 && $p != 6) {
 ?> 
 	<!--<div align="right" id="search_box">
 	<form method="post" id="searchform" action="http://xcombats.com/news_script/">
-		<input type="text" class="field" name="sr" id="sr" placeholder="Поиск" />
-		<input type="submit" class="submit" name="submit" id="searchsubmit" value="Искать" />
+		<input type="text" class="field" name="sr" id="sr" placeholder="РџРѕРёСЃРє" />
+		<input type="submit" class="submit" name="submit" id="searchsubmit" value="РСЃРєР°С‚СЊ" />
 	</form>
 	</div>-->
 <? } ?>
@@ -249,7 +249,7 @@ if(isset($_GET['st'])) {
 ?>
 <!-- pnews -->
 <?
-//Новостная лента
+//РќРѕРІРѕСЃС‚РЅР°СЏ Р»РµРЅС‚Р°
 if ($p==1) {
 	$sp = mysql_query('SELECT * FROM `events_news` WHERE (`r` = "'.mysql_real_escape_string($p_my[0]).'" or `r` = "'.mysql_real_escape_string($p_my[1]).'") AND `delete` = "0" AND `comment` = "0" AND `id` = "'.mysql_real_escape_string((int)$_GET['st']).'" LIMIT 1');
 }elseif($p==2){
@@ -262,11 +262,11 @@ $pl = mysql_fetch_array($sp);
 if(isset($pl['id'])) {
 	if($url[3] == 'delete') {
 		if($url[4] > 0) {
-			//Удаляем комментарий
+			//РЈРґР°Р»СЏРµРј РєРѕРјРјРµРЅС‚Р°СЂРёР№
 			mysql_query('UPDATE `events_news` SET `delete` = "1" WHERE `id` = "'.mysql_real_escape_string($url[4]).'" LIMIT 1');
 			mysql_query('UPDATE `events_news` SET `comments` = `comments` - 1 WHERE `id` = "'.mysql_real_escape_string($url[2]).'" LIMIT 1');
 		}elseif(!isset($url[4])){
-			//Удаляем новость
+			//РЈРґР°Р»СЏРµРј РЅРѕРІРѕСЃС‚СЊ
 			mysql_query('UPDATE `events_news` SET `delete` = "1" WHERE `id` = "'.mysql_real_escape_string($url[2]).'" LIMIT 1');
 			unset($pl);
 		}
@@ -315,8 +315,8 @@ if(isset($u['id']) && $add[0]==1) {
 		<div style="float: left;"><a style="color: #FFF; font-weight: bold;" href="http://xcombats.com/news/<?=$pl['id']?>/" rel="bookmark" id="editable_title<?=$pl['id']?>"<? if($u['admin']>0){ ?>contenteditable="true"<? } ?>><?=$pl['title']?></a></div> 
 		<div style="float: right;"><a href="http://xcombats.com/news/<?=$pl['id']?>/" title="<?=date('H:i',$pl['time'])?>" rel="bookmark"><time class="entry-date" datetime="<?=date('Y',$pl['time'])?>-<?=date('m',$pl['time'])?>-<?=date('d',$pl['time'])?>T<?=date('h',$pl['time'])?>:<?=date('i',$pl['time'])?>:<?=date('s',$pl['time'])?>+00:00" pubdate><?=date('d.m.Y',$pl['time'])?></time></a></div>
 		<? if($u['admin']>0) { ?>
-        <div style="float: right;"><a href="http://xcombats.com/news/<?=$pl['id']?>/delete">Удалить</a> &nbsp; </div>
-        <div style="float: right;"><a href="javascript:void(0)" onClick="save_new(<?=$pl['id']?>,0)">Сохранить</a> &nbsp; </div>
+        <div style="float: right;"><a href="http://xcombats.com/news/<?=$pl['id']?>/delete">РЈРґР°Р»РёС‚СЊ</a> &nbsp; </div>
+        <div style="float: right;"><a href="javascript:void(0)" onClick="save_new(<?=$pl['id']?>,0)">РЎРѕС…СЂР°РЅРёС‚СЊ</a> &nbsp; </div>
         <? } ?>
         <div style="clear: both;"></div>
      </td>
@@ -347,7 +347,7 @@ if(isset($u['id']) && $add[0]==1) {
      <td align="left" width="8"><img src="http://xcombats.com/news_script/events/evn_news_16.gif" width="8" height="24"></td>
 	     <td width="100%">
 			<div style="float: left;position: relative; top: -2px;">
-						<span class="comments-link"><a href="http://xcombats.com/news/<?=$pl['id']?>/" title="Прокомментировать запись">Комментарии (<b><?=$pl['comments']?></b>)</a></span>						
+						<span class="comments-link"><a href="http://xcombats.com/news/<?=$pl['id']?>/" title="РџСЂРѕРєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ">РљРѕРјРјРµРЅС‚Р°СЂРёРё (<b><?=$pl['comments']?></b>)</a></span>						
 			</div>
 			<div style="float: right;"></div>
 			<div style="clear: both;"></div>
@@ -360,7 +360,7 @@ if(isset($u['id']) && $add[0]==1) {
 </table>
 <? if($pl['comments'] > 20) { ?>
 <br>
-<center><a href="javascript:void(0)">Показать еще комментарии</a></center>
+<center><a href="javascript:void(0)">РџРѕРєР°Р·Р°С‚СЊ РµС‰Рµ РєРѕРјРјРµРЅС‚Р°СЂРёРё</a></center>
 <? } ?>
 <br>
 <div id="ref_comments"></div>
@@ -386,8 +386,8 @@ while($plc = mysql_fetch_array($spc)) {
 			<td width="620">
 						<script type="text/javascript">document.write(drw_wfl('<?=$plc['login']?>', <?=(0+$plc['align'])?>, 0, <?=(0+$plc['clan'])?>, <?=(0+$plc['level'])?>));</script>
                         <? if($u['admin'] > 0 || in_array($u['align'], $pal_al) || in_array($u['align'], $pal_al)) { ?>
-        				<div style="float: right;"><a href="http://xcombats.com/news/<?=$pl['id']?>/delete/<?=$plc['id']?>">Удалить</a> &nbsp; </div>
-        				<div style="float: right;"><a href="javascript:void(0)" onClick="save_new(<?=$plc['id']?>,<?=$pl['id']?>)">Сохранить</a> &nbsp; </div>
+        				<div style="float: right;"><a href="http://xcombats.com/news/<?=$pl['id']?>/delete/<?=$plc['id']?>">РЈРґР°Р»РёС‚СЊ</a> &nbsp; </div>
+        				<div style="float: right;"><a href="javascript:void(0)" onClick="save_new(<?=$plc['id']?>,<?=$pl['id']?>)">РЎРѕС…СЂР°РЅРёС‚СЊ</a> &nbsp; </div>
                         <? } ?>
             </td>
 			<td align="right" style="color:#CFC59C"><center><?=date('d.m.Y H:i',$plc['time'])?></center></td></tr></tbody>
@@ -429,13 +429,13 @@ CKEDITOR.inline( 'editable<?=$plc['id']?>' );
 		<table cellspacing="1" cellpadding="3" width="550" border="0">
 		<tbody>
 		<tr>
-		<td bgcolor="#f7f3e7">Добавить комментарий</td>
+		<td bgcolor="#f7f3e7">Р”РѕР±Р°РІРёС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№</td>
 		</tr>
 		<tr>
 		<td bgcolor="#fbfaf6"><textarea name="text_com" id="text_com" style="border:1px #EDE9DA solid;width:548px" rows="4"></textarea></td>
 		</tr>
 		<tr>
-		  <td align="right" bgcolor="#fbfaf6" class="normaltext"><input type="submit" style="border:1px grey solid;" name="sendbt" id="sendbt" value="Отправить" /></td>
+		  <td align="right" bgcolor="#fbfaf6" class="normaltext"><input type="submit" style="border:1px grey solid;" name="sendbt" id="sendbt" value="РћС‚РїСЂР°РІРёС‚СЊ" /></td>
 		  </tr>		
 		</tbody>
 		</table>
@@ -446,13 +446,13 @@ CKEDITOR.inline( 'editable<?=$plc['id']?>' );
 </form>
 <? } else {
 	if($add[0] == -1) { 
-		echo '<br><center>Необходимо авторизироваться</center>';
+		echo '<br><center>РќРµРѕР±С…РѕРґРёРјРѕ Р°РІС‚РѕСЂРёР·РёСЂРѕРІР°С‚СЊСЃСЏ</center>';
 	} elseif($add[0] == -2) {
-		echo '<br><center>Вы заблокированы, либо на Вас наложено заклятие молчания.</center>';
+		echo '<br><center>Р’С‹ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅС‹, Р»РёР±Рѕ РЅР° Р’Р°СЃ РЅР°Р»РѕР¶РµРЅРѕ Р·Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ.</center>';
 	} elseif($add[0] == -3) {
-		echo '<br><center>Задержка на отправку комментариев. (Осталось: менее одной минуты)</center>';
+		echo '<br><center>Р—Р°РґРµСЂР¶РєР° РЅР° РѕС‚РїСЂР°РІРєСѓ РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ. (РћСЃС‚Р°Р»РѕСЃСЊ: РјРµРЅРµРµ РѕРґРЅРѕР№ РјРёРЅСѓС‚С‹)</center>';
 	} elseif($add[0] == -4) {
-		echo '<br><center>Оставлять комментарии разрешено только персонажам достигшим 5-го уровня</center>';
+		echo '<br><center>РћСЃС‚Р°РІР»СЏС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёРё СЂР°Р·СЂРµС€РµРЅРѕ С‚РѕР»СЊРєРѕ РїРµСЂСЃРѕРЅР°Р¶Р°Рј РґРѕСЃС‚РёРіС€РёРј 5-РіРѕ СѓСЂРѕРІРЅСЏ</center>';
 	}
 	
 }?>
@@ -468,7 +468,7 @@ CKEDITOR.inline( 'editable<?=$pl['id']?>' );
 }
 ?>
 <br />
-<? }else{ echo 'Статья не найдена.'; } ?>
+<? }else{ echo 'РЎС‚Р°С‚СЊСЏ РЅРµ РЅР°Р№РґРµРЅР°.'; } ?>
 <!-- pnews -->
 <?
 }elseif($p != 5 && $p != 6) {
@@ -485,7 +485,7 @@ CKEDITOR.inline( 'editable<?=$pl['id']?>' );
 			<table cellspacing="0" cellpadding="1" width="100%" border="0">
 			<tbody>
 			<tr>
-			<td width="80%"><b>Текущие клановые войны</b></td>
+			<td width="80%"><b>РўРµРєСѓС‰РёРµ РєР»Р°РЅРѕРІС‹Рµ РІРѕР№РЅС‹</b></td>
 			<td align="right">&nbsp;</td></tr></tbody>
 			</table>
 
@@ -495,9 +495,9 @@ CKEDITOR.inline( 'editable<?=$pl['id']?>' );
 		<td class="normaltext" bgcolor="#fbfaf6">
 			<table width="100%">
 				<tr>
-					<td style="font-weight: bold;">Атака</td>
-					<td style="font-weight: bold;">Оборона</td>
-					<td style="font-weight: bold;">Дата окончания</td>
+					<td style="font-weight: bold;">РђС‚Р°РєР°</td>
+					<td style="font-weight: bold;">РћР±РѕСЂРѕРЅР°</td>
+					<td style="font-weight: bold;">Р”Р°С‚Р° РѕРєРѕРЅС‡Р°РЅРёСЏ</td>
 				</tr>
 	 <tr><td>(K) <a class="cw_url" href="http://xcombats.com/k10" target="_blank"> Mercenaries [0]</a></td><td>(K) <a class="cw_url" href="http://xcombats.com/k3" target="_blank"> Devils [0]</a></td><td>12:55 07.01.2013</td></tr>		</table>
 		</td>
@@ -513,7 +513,7 @@ CKEDITOR.inline( 'editable<?=$pl['id']?>' );
 ?> 
 <!-- pnews -->
 <?
-//Новостная лента
+//РќРѕРІРѕСЃС‚РЅР°СЏ Р»РµРЅС‚Р°
 //$sp = mysql_query('SELECT * FROM `events_news` WHERE `r` = "'.mysql_real_escape_string($p).'" AND `delete` = "0" AND `comment` = "0" ORDER BY `time` DESC LIMIT '.((int)(10*$pg)).' , 10');
 if ($p==1) { 
 	$sp = mysql_query('SELECT * FROM `events_news` WHERE (`r` = "'.mysql_real_escape_string($p_my[0]).'" or `r` = "'.mysql_real_escape_string($p_my[1]).'")  AND `delete` = "0" AND `comment` = "0" ORDER BY `time` DESC LIMIT '.((int)(10*$pg)).' , 10');
@@ -534,8 +534,8 @@ while($pl = mysql_fetch_array($sp)) {
 		<div style="float: left;"><a style="color: #FFF; font-weight: bold;" href="http://xcombats.com/news/<?=$pl['id']?>/" rel="bookmark" id="editable_title<?=$pl['id']?>"<? if($u['admin']>0){ ?>contenteditable="true"<? } ?>><?=$pl['title']?></a></div> 
 		<div style="float: right;"><a href="http://xcombats.com/news/<?=$pl['id']?>/" title="<?=date('H:i',$pl['time'])?>" rel="bookmark"><time class="entry-date" datetime="<?=date('Y',$pl['time'])?>-<?=date('m',$pl['time'])?>-<?=date('d',$pl['time'])?>T<?=date('h',$pl['time'])?>:<?=date('i',$pl['time'])?>:<?=date('s',$pl['time'])?>+00:00" pubdate><?=date('d.m.Y',$pl['time'])?></time></a></div>
 		<? if($u['admin']>0) { ?>
-        <div style="float: right;"><a href="http://xcombats.com/news/p/<?=(0+$pg)?>/delete/<?=$pl['id']?>">Удалить</a> &nbsp; </div>
-        <div style="float: right;"><a href="javascript:void(0)" onClick="save_new(<?=$pl['id']?>,0)">Сохранить</a> &nbsp; </div>
+        <div style="float: right;"><a href="http://xcombats.com/news/p/<?=(0+$pg)?>/delete/<?=$pl['id']?>">РЈРґР°Р»РёС‚СЊ</a> &nbsp; </div>
+        <div style="float: right;"><a href="javascript:void(0)" onClick="save_new(<?=$pl['id']?>,0)">РЎРѕС…СЂР°РЅРёС‚СЊ</a> &nbsp; </div>
         <? } ?>
         <div style="clear: both;"></div>
      </td>
@@ -566,7 +566,7 @@ while($pl = mysql_fetch_array($sp)) {
      <td align="left" width="8"><img src="http://xcombats.com/news_script/events/evn_news_16.gif" width="8" height="24"></td>
 	     <td width="100%">
 			<div style="float: left;position: relative; top: -2px;">
-						<span class="comments-link"><a href="http://xcombats.com/news/<?=$pl['id']?>/" title="Прокомментировать запись">Комментарии (<b><?=$pl['comments']?></b>)</a></span>						
+						<span class="comments-link"><a href="http://xcombats.com/news/<?=$pl['id']?>/" title="РџСЂРѕРєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ">РљРѕРјРјРµРЅС‚Р°СЂРёРё (<b><?=$pl['comments']?></b>)</a></span>						
 			</div>
 			<div style="float: right;"></div>
 			<div style="clear: both;"></div>
@@ -597,8 +597,8 @@ if($p != 5 && $p != 6) {
 $cnt = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `events_news` WHERE `r` = "'.mysql_real_escape_string($p).'" AND `delete` = "0" AND `comment` = "0"'));
 ?> 
   		<nav id="nav-below">			
-            <div class="nav-previous"><? if($pg+1 < ceil($cnt[0]/10)) { ?><a href="http://xcombats.com/news_script/?paged=<?=($pg+1)?>&page_id=<?=$p?>"><span class="meta-nav">&larr;</span> Предыдущие записи</a><? } ?></div>            
-			<div class="nav-next"><? if($pg > 0) { ?><a href="http://xcombats.com/news_script/?paged=<?=($pg-1)?>&page_id=<?=$p?>">Следующие записи <span class="meta-nav">&rarr;</span></a><? } ?></div>			
+            <div class="nav-previous"><? if($pg+1 < ceil($cnt[0]/10)) { ?><a href="http://xcombats.com/news_script/?paged=<?=($pg+1)?>&page_id=<?=$p?>"><span class="meta-nav">&larr;</span> РџСЂРµРґС‹РґСѓС‰РёРµ Р·Р°РїРёСЃРё</a><? } ?></div>            
+			<div class="nav-next"><? if($pg > 0) { ?><a href="http://xcombats.com/news_script/?paged=<?=($pg-1)?>&page_id=<?=$p?>">РЎР»РµРґСѓСЋС‰РёРµ Р·Р°РїРёСЃРё <span class="meta-nav">&rarr;</span></a><? } ?></div>			
         </nav><!-- #nav-above -->
 <? } ?>
 		</div><!-- #content -->
@@ -626,14 +626,14 @@ $cnt = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `events_news` WHER
 			  //
 			?>
 			<div id="archives-3" class="widget">
-				<div style="width:200px;" class="widget-title">Статистика за <?=date('d.m.Y')?></div>
+				<div style="width:200px;" class="widget-title">РЎС‚Р°С‚РёСЃС‚РёРєР° Р·Р° <?=date('d.m.Y')?></div>
 				<div style="padding:10px;">
-                	Игроков за сегодня: <?=$cnt1?><br>
-                    Игроков online: <?=$cnt2?><br>
+                	РРіСЂРѕРєРѕРІ Р·Р° СЃРµРіРѕРґРЅСЏ: <?=$cnt1?><br>
+                    РРіСЂРѕРєРѕРІ online: <?=$cnt2?><br>
                     <hr class="hr1">
-                    Регистраций за сегодня: <?=$cnt4?><br>
-                    Регистраций за час: <?=$cnt5?><br>
-                    Регистраций всего: <?=$cnt3?><br>
+                    Р РµРіРёСЃС‚СЂР°С†РёР№ Р·Р° СЃРµРіРѕРґРЅСЏ: <?=$cnt4?><br>
+                    Р РµРіРёСЃС‚СЂР°С†РёР№ Р·Р° С‡Р°СЃ: <?=$cnt5?><br>
+                    Р РµРіРёСЃС‚СЂР°С†РёР№ РІСЃРµРіРѕ: <?=$cnt3?><br>
                 </div>
 			</div>
             <?
@@ -641,11 +641,11 @@ $cnt = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `events_news` WHER
 			$mcd2 = mysql_fetch_array(mysql_query('SELECT * FROM `events_mini` WHERE `id` = 2 LIMIT 1'));
 			?>
 			<div id="archives-3" class="widget">
-				<div style="width:200px;" class="widget-title">Текущие работы<? if($u['admin']>0){ ?>&nbsp;<a href="javascript:void(0)" onClick="save_new(-1,0)">save</a><? } ?></div>
+				<div style="width:200px;" class="widget-title">РўРµРєСѓС‰РёРµ СЂР°Р±РѕС‚С‹<? if($u['admin']>0){ ?>&nbsp;<a href="javascript:void(0)" onClick="save_new(-1,0)">save</a><? } ?></div>
 				<div style="padding:10px;" id="blockmini1" contenteditable="true"><?=$mcd1['text']?>
                 </div>
 			</div>
-			<div id="archives-3" class="widget"><div style="width:200px;" class="widget-title">Планы на будущее<? if($u['admin']>0){ ?>&nbsp;<a href="javascript:void(0)" onClick="save_new(-2,0)">save</a><? } ?></div>
+			<div id="archives-3" class="widget"><div style="width:200px;" class="widget-title">РџР»Р°РЅС‹ РЅР° Р±СѓРґСѓС‰РµРµ<? if($u['admin']>0){ ?>&nbsp;<a href="javascript:void(0)" onClick="save_new(-2,0)">save</a><? } ?></div>
 				<div style="padding:10px;" id="blockmini2" contenteditable="true"><?=$mcd2['text']?>
                 </div>
 			</div>
@@ -656,9 +656,9 @@ $cnt = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `events_news` WHER
 if($p != 5 && $p != 6) {
 ?> 
 		<div id="secondary" class="widget-area" style="display:none;" role="complementary">
-			<div id="archives-3" class="widget widget_archive"><div class="widget-title">Архивы</div>
+			<div id="archives-3" class="widget widget_archive"><div class="widget-title">РђСЂС…РёРІС‹</div>
                 <ul>
-                    <li><a href='http://xcombats.com/news_script/?m=201301&page_id=<?=$p?>' title='Январь 2013'>Январь 2013</a></li>
+                    <li><a href='http://xcombats.com/news_script/?m=201301&page_id=<?=$p?>' title='РЇРЅРІР°СЂСЊ 2013'>РЇРЅРІР°СЂСЊ 2013</a></li>
                 </ul>
         	</div>
         </div><!-- #secondary .widget-area -->
@@ -672,7 +672,7 @@ if($p != 5 && $p != 6) {
 </div><!-- #page -->
 <div style="clear: both;"></div>
 <div style="max-width:1000px;color:#FF0;" id="footer">
-<center>Новостная лента - Старый Бойцовский Клуб (XCombats) / xcombats.com &copy;</center>
+<center>РќРѕРІРѕСЃС‚РЅР°СЏ Р»РµРЅС‚Р° - РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± (XCombats) / xcombats.com &copy;</center>
 </div>	
 </body>
 </html>

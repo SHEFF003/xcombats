@@ -1,10 +1,10 @@
-<?
+<?php
 session_start();
 
 function er($e)
 {
 	 global $c;
-	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>Произошла ошибка: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">Назад</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
+	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">РќР°Р·Р°Рґ</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
 }
 
 function GetRealIp()
@@ -43,13 +43,13 @@ if( $_POST['new_bot_colvo'] < 1 ) {
 
 ?>
 <form method="post" action="?gotonew">
-id пещеры: <input name="id_dn" value="<?=$_POST['id_dn']?>"><br>
+id РїРµС‰РµСЂС‹: <input name="id_dn" value="<?=$_POST['id_dn']?>"><br>
 botlogin: <input name="botlogin" value="<?=$_POST['botlogin']?>"><br>
-<input type="submit" value="Перейти">
+<input type="submit" value="РџРµСЂРµР№С‚Рё">
 </form>
---------------- Боты -------------:<br>
+--------------- Р‘РѕС‚С‹ -------------:<br>
 <?
-$sp = mysql_query('SELECT * FROM `test_bot` WHERE login LIKE `%Рубака Глубин [8]%`');
+$sp = mysql_query('SELECT * FROM `test_bot` WHERE login LIKE `%Р СѓР±Р°РєР° Р“Р»СѓР±РёРЅ [8]%`');
 $i = 1;
 while($pl = mysql_fetch_array($sp)) {
 	//$bot = mysql_fetch_array(mysql_query('SELECT * FROM `test_bot` WHERE `id` = "'.$pl['id'].'" LIMIT 1'));

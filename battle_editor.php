@@ -1,4 +1,4 @@
-<?
+<?php
 define('GAME',true);
 include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');
@@ -19,8 +19,8 @@ if($u->info['admin'] > 0) {
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Настройка боевой системы</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>РќР°СЃС‚СЂРѕР№РєР° Р±РѕРµРІРѕР№ СЃРёСЃС‚РµРјС‹</title>
 <script src="http://img.xcombats.com/js/Lite/gameEngine.js" type="text/javascript"></script>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/ion.rangeSlider.js"></script>
@@ -48,7 +48,7 @@ h3 {
 </head>
 
 <body bgcolor="#E2E0E0">
-<H3>Настройка боевого балансa<br><br><a href="/battle_editor.php" class="btnnew">Обновить</a></H3>
+<H3>РќР°СЃС‚СЂРѕР№РєР° Р±РѕРµРІРѕРіРѕ Р±Р°Р»Р°РЅСЃa<br><br><a href="/battle_editor.php" class="btnnew">РћР±РЅРѕРІРёС‚СЊ</a></H3>
 <br>
 <?
 if( isset($_POST['val1']) ) {	
@@ -69,13 +69,13 @@ if( isset($_POST['val1']) ) {
 	fwrite($f, $html); 
 	fclose($f);
 
-	echo '<div><b><font color="red">Успешно сохранено</font></b></div>';
+	echo '<div><b><font color="red">РЈСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅРѕ</font></b></div>';
 }
 ?>
 <hr>
 <form method="post" action="battle_editor.php">
 <center>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Мф. уворота:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val1" id="val1"></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;РњС„. СѓРІРѕСЂРѕС‚Р°:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val1" id="val1"></div>
 <script>
     $(function () {
         $("#val1").ionRangeSlider({
@@ -93,7 +93,7 @@ if( isset($_POST['val1']) ) {
     });
 </script>
 <br>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Мф. против уворота:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val2" id="val2"></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;РњС„. РїСЂРѕС‚РёРІ СѓРІРѕСЂРѕС‚Р°:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val2" id="val2"></div>
 <script>
     $(function () {
         $("#val2").ionRangeSlider({
@@ -111,7 +111,7 @@ if( isset($_POST['val1']) ) {
     });
 </script>
 <hr>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Мф. крита:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val3" id="val3"></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;РњС„. РєСЂРёС‚Р°:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val3" id="val3"></div>
 <script>
     $(function () {
         $("#val3").ionRangeSlider({
@@ -129,7 +129,7 @@ if( isset($_POST['val1']) ) {
     });
 </script>
 <br>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Мф. против крита:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val4" id="val4"></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;РњС„. РїСЂРѕС‚РёРІ РєСЂРёС‚Р°:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val4" id="val4"></div>
 <script>
     $(function () {
         $("#val4").ionRangeSlider({
@@ -147,7 +147,7 @@ if( isset($_POST['val1']) ) {
     });
 </script>
 <hr>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;<b>Урон воинов (в итоге)</b>:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val5" id="val5"></span></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;<b>РЈСЂРѕРЅ РІРѕРёРЅРѕРІ (РІ РёС‚РѕРіРµ)</b>:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val5" id="val5"></span></div>
 <script>
     $(function () {
         $("#val5").ionRangeSlider({
@@ -165,7 +165,7 @@ if( isset($_POST['val1']) ) {
     });
 </script>
 <br>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;<b>Урон магов (в итоге)</b>:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val6" id="val6"></span></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;<b>РЈСЂРѕРЅ РјР°РіРѕРІ (РІ РёС‚РѕРіРµ)</b>:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val6" id="val6"></span></div>
 <script>
     $(function () {
         $("#val6").ionRangeSlider({
@@ -183,7 +183,7 @@ if( isset($_POST['val1']) ) {
     });
 </script>
 <hr>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Эффективность защиты от урона:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val7" id="val7"></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Р­С„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ Р·Р°С‰РёС‚С‹ РѕС‚ СѓСЂРѕРЅР°:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val7" id="val7"></div>
 <script>
     $(function () {
         $("#val7").ionRangeSlider({
@@ -201,7 +201,7 @@ if( isset($_POST['val1']) ) {
     });
 </script>
 <br>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Эффективность защиты от магии:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val8" id="val8"></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Р­С„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ Р·Р°С‰РёС‚С‹ РѕС‚ РјР°РіРёРё:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val8" id="val8"></div>
 <script>
     $(function () {
         $("#val8").ionRangeSlider({
@@ -219,7 +219,7 @@ if( isset($_POST['val1']) ) {
     });
 </script>
 <br>
-<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Эффективность брони:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val9" id="val9"></div>
+<span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;">&nbsp;&nbsp;Р­С„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ Р±СЂРѕРЅРё:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val9" id="val9"></div>
 <script>
     $(function () {
         $("#val9").ionRangeSlider({
@@ -238,7 +238,7 @@ if( isset($_POST['val1']) ) {
 </script>
 <hr>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Колющий урон:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val10"
+>&nbsp;&nbsp;РљРѕР»СЋС‰РёР№ СѓСЂРѕРЅ:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val10"
 id="val10"></span></div>
 <script>
     $(function () {
@@ -258,7 +258,7 @@ id="val10"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Рубящий урон:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val11"
+>&nbsp;&nbsp;Р СѓР±СЏС‰РёР№ СѓСЂРѕРЅ:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val11"
 id="val11"></span></div>
 <script>
     $(function () {
@@ -278,7 +278,7 @@ id="val11"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Режущий урон:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val12"
+>&nbsp;&nbsp;Р РµР¶СѓС‰РёР№ СѓСЂРѕРЅ:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val12"
 id="val12"></span></div>
 <script>
     $(function () {
@@ -298,7 +298,7 @@ id="val12"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Дробящий урон:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val13"
+>&nbsp;&nbsp;Р”СЂРѕР±СЏС‰РёР№ СѓСЂРѕРЅ:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val13"
 id="val13"></span></div>
 <script>
     $(function () {
@@ -318,7 +318,7 @@ id="val13"></span></div>
 </script>
 <hr>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон магией Огня:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val14"
+>&nbsp;&nbsp;РЈСЂРѕРЅ РјР°РіРёРµР№ РћРіРЅСЏ:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val14"
 id="val14"></span></div>
 <script>
     $(function () {
@@ -338,7 +338,7 @@ id="val14"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон магией Воды:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val15"
+>&nbsp;&nbsp;РЈСЂРѕРЅ РјР°РіРёРµР№ Р’РѕРґС‹:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val15"
 id="val15"></span></div>
 <script>
     $(function () {
@@ -358,7 +358,7 @@ id="val15"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон магией Земли:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val16"
+>&nbsp;&nbsp;РЈСЂРѕРЅ РјР°РіРёРµР№ Р—РµРјР»Рё:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val16"
 id="val16"></span></div>
 <script>
     $(function () {
@@ -378,7 +378,7 @@ id="val16"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон магией Воздуха:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val17"
+>&nbsp;&nbsp;РЈСЂРѕРЅ РјР°РіРёРµР№ Р’РѕР·РґСѓС…Р°:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val17"
 id="val17"></span></div>
 <script>
     $(function () {
@@ -398,7 +398,7 @@ id="val17"></span></div>
 </script>
 <hr>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Эффективность пробоя брони:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val18"
+>&nbsp;&nbsp;Р­С„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ РїСЂРѕР±РѕСЏ Р±СЂРѕРЅРё:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val18"
 id="val18"></span></div>
 <script>
     $(function () {
@@ -418,7 +418,7 @@ id="val18"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Эффективность парирования:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val19"
+>&nbsp;&nbsp;Р­С„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ РїР°СЂРёСЂРѕРІР°РЅРёСЏ:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val19"
 id="val19"></span></div>
 <script>
     $(function () {
@@ -438,7 +438,7 @@ id="val19"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Эффективность контрудара:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val20"
+>&nbsp;&nbsp;Р­С„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ РєРѕРЅС‚СЂСѓРґР°СЂР°:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val20"
 id="val20"></span></div>
 <script>
     $(function () {
@@ -458,7 +458,7 @@ id="val20"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Эффективность блока щитом:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val21"
+>&nbsp;&nbsp;Р­С„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ Р±Р»РѕРєР° С‰РёС‚РѕРј:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val21"
 id="val21"></span></div>
 <script>
     $(function () {
@@ -479,7 +479,7 @@ id="val21"></span></div>
 <hr>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Зависимость урона от умелок:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val22"
+>&nbsp;&nbsp;Р—Р°РІРёСЃРёРјРѕСЃС‚СЊ СѓСЂРѕРЅР° РѕС‚ СѓРјРµР»РѕРє:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val22"
 id="val22"></span></div>
 <script>
     $(function () {
@@ -500,24 +500,24 @@ id="val22"></span></div>
 <br>
 <?
 				/*
-					18 - нож \ кинжал
-					19 - топор \ секира
-					20 - молот \ дубина
-					21 - меч \ клинок
-					22 - магический посох
-					23 - лук
-					24 - арбалет
-					25 - боеприпасы \ стрелы
-					26 - костыли
-					27 - легендарное оружие
-					28 - цветы \ букеты \ ёлки
+					18 - РЅРѕР¶ \ РєРёРЅР¶Р°Р»
+					19 - С‚РѕРїРѕСЂ \ СЃРµРєРёСЂР°
+					20 - РјРѕР»РѕС‚ \ РґСѓР±РёРЅР°
+					21 - РјРµС‡ \ РєР»РёРЅРѕРє
+					22 - РјР°РіРёС‡РµСЃРєРёР№ РїРѕСЃРѕС…
+					23 - Р»СѓРє
+					24 - Р°СЂР±Р°Р»РµС‚
+					25 - Р±РѕРµРїСЂРёРїР°СЃС‹ \ СЃС‚СЂРµР»С‹
+					26 - РєРѕСЃС‚С‹Р»Рё
+					27 - Р»РµРіРµРЅРґР°СЂРЅРѕРµ РѕСЂСѓР¶РёРµ
+					28 - С†РІРµС‚С‹ \ Р±СѓРєРµС‚С‹ \ С‘Р»РєРё
 				*/
 ?>
 <br>
 <hr>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон оружием по типу нож\кинжал:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val23"
+>&nbsp;&nbsp;РЈСЂРѕРЅ РѕСЂСѓР¶РёРµРј РїРѕ С‚РёРїСѓ РЅРѕР¶\РєРёРЅР¶Р°Р»:&nbsp;&nbsp; </span><div style="display:inline-block;width:500px;"><input type="text" name="val23"
 id="val23"></span></div>
 <script>
     $(function () {
@@ -537,7 +537,7 @@ id="val23"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон оружием по типу топор\секира:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;РЈСЂРѕРЅ РѕСЂСѓР¶РёРµРј РїРѕ С‚РёРїСѓ С‚РѕРїРѕСЂ\СЃРµРєРёСЂР°:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val24"
 id="val24"></span></div>
 <script>
@@ -559,7 +559,7 @@ id="val24"></span></div>
 <br>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон оружием по типу молот\дубина:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;РЈСЂРѕРЅ РѕСЂСѓР¶РёРµРј РїРѕ С‚РёРїСѓ РјРѕР»РѕС‚\РґСѓР±РёРЅР°:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val25"
 id="val25"></span></div>
 <script>
@@ -581,7 +581,7 @@ id="val25"></span></div>
 <br>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон оружием по типу меч\клинок:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;РЈСЂРѕРЅ РѕСЂСѓР¶РёРµРј РїРѕ С‚РёРїСѓ РјРµС‡\РєР»РёРЅРѕРє:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val26"
 id="val26"></span></div>
 <script>
@@ -602,7 +602,7 @@ id="val26"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон оружием по типу посох:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;РЈСЂРѕРЅ РѕСЂСѓР¶РёРµРј РїРѕ С‚РёРїСѓ РїРѕСЃРѕС…:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val27"
 id="val27"></span></div>
 <script>
@@ -623,7 +623,7 @@ id="val27"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;-пустой параметр-:&nbsp;&nbsp; </span>
+>&nbsp;-РїСѓСЃС‚РѕР№ РїР°СЂР°РјРµС‚СЂ-:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val28"
 id="val28"></span></div>
 <script>
@@ -644,7 +644,7 @@ id="val28"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;-пустой параметр-:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;-РїСѓСЃС‚РѕР№ РїР°СЂР°РјРµС‚СЂ-:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val29"
 id="val29"></span></div>
 <script>
@@ -665,7 +665,7 @@ id="val29"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;-пустой параметр-:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;-РїСѓСЃС‚РѕР№ РїР°СЂР°РјРµС‚СЂ-:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val30"
 id="val30"></span></div>
 <script>
@@ -686,7 +686,7 @@ id="val30"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон оружием по типу костыли:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;РЈСЂРѕРЅ РѕСЂСѓР¶РёРµРј РїРѕ С‚РёРїСѓ РєРѕСЃС‚С‹Р»Рё:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val31"
 id="val31"></span></div>
 <script>
@@ -707,7 +707,7 @@ id="val31"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон оружием по типу легендарное оружие:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;РЈСЂРѕРЅ РѕСЂСѓР¶РёРµРј РїРѕ С‚РёРїСѓ Р»РµРіРµРЅРґР°СЂРЅРѕРµ РѕСЂСѓР¶РёРµ:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val32"
 id="val32"></span></div>
 <script>
@@ -728,7 +728,7 @@ id="val32"></span></div>
 </script>
 <br>
 <span style="width:244px;text-align:center;display:inline-block;vertical-align:bottom;margin-bottom:23px;"
->&nbsp;&nbsp;Урон оружием по типу цветы\букеты\елки:&nbsp;&nbsp; </span>
+>&nbsp;&nbsp;РЈСЂРѕРЅ РѕСЂСѓР¶РёРµРј РїРѕ С‚РёРїСѓ С†РІРµС‚С‹\Р±СѓРєРµС‚С‹\РµР»РєРё:&nbsp;&nbsp; </span>
 <div style="display:inline-block;width:500px;"><input type="text" name="val33"
 id="val33"></span></div>
 <script>
@@ -748,7 +748,7 @@ id="val33"></span></div>
     });
 </script>
 <br><br><br>
-<button class="btn" type="submit">Загрузить баланс в систему</button>
+<button class="btn" type="submit">Р—Р°РіСЂСѓР·РёС‚СЊ Р±Р°Р»Р°РЅСЃ РІ СЃРёСЃС‚РµРјСѓ</button>
 <br>
 <br><br><br>
 </form>

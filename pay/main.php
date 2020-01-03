@@ -1,61 +1,61 @@
 <link rel="stylesheet" href="/pay/main.css">
 <script type="text/javascript" src="/scripts/psi.js"></script>
 <div class="pm">
-	<b style="float:left;">Коммерский отдел предлагает следующие услуги:</b>
+	<b style="float:left;">РљРѕРјРјРµСЂСЃРєРёР№ РѕС‚РґРµР» РїСЂРµРґР»Р°РіР°РµС‚ СЃР»РµРґСѓСЋС‰РёРµ СѓСЃР»СѓРіРё:</b>
     <span style="float:right"><? if($u->info['id']>0){ echo $u->microLogin($u->info['id'],1); } ?></span>
 </div>
 <div class="pm2">
 	<center>
-    	Если вы не нашли подходящий раздел или услугу, вы можете обратиться к Администрации через e-mail:<br />
-    	<a href="mailto:support@xcombats.com">support@xcombats.com</a>, в теме письма напишите "Коммерческий отдел".
+    	Р•СЃР»Рё РІС‹ РЅРµ РЅР°С€Р»Рё РїРѕРґС…РѕРґСЏС‰РёР№ СЂР°Р·РґРµР» РёР»Рё СѓСЃР»СѓРіСѓ, РІС‹ РјРѕР¶РµС‚Рµ РѕР±СЂР°С‚РёС‚СЊСЃСЏ Рє РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё С‡РµСЂРµР· e-mail:<br />
+    	<a href="mailto:support@xcombats.com">support@xcombats.com</a>, РІ С‚РµРјРµ РїРёСЃСЊРјР° РЅР°РїРёС€РёС‚Рµ "РљРѕРјРјРµСЂС‡РµСЃРєРёР№ РѕС‚РґРµР»".
     </center>
     <div>
     	<hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock1" value="1">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Покупка Еврокредитов онлайн');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РџРѕРєСѓРїРєР° Р•РІСЂРѕРєСЂРµРґРёС‚РѕРІ РѕРЅР»Р°Р№РЅ');</script></span>
     	
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock10" value="10">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'VIP Клуб: Доступ к бесплатному использованию некоторых услуг и свитков');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'VIP РљР»СѓР±: Р”РѕСЃС‚СѓРї Рє Р±РµСЃРїР»Р°С‚РЅРѕРјСѓ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ РЅРµРєРѕС‚РѕСЂС‹С… СѓСЃР»СѓРі Рё СЃРІРёС‚РєРѕРІ');</script></span>
         
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock11" value="11">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Покупка личных Артефактов');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РџРѕРєСѓРїРєР° Р»РёС‡РЅС‹С… РђСЂС‚РµС„Р°РєС‚РѕРІ');</script></span>
         
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock2" value="2">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Уникальные образы, смайлики и подарки');</script></span> 
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РЈРЅРёРєР°Р»СЊРЅС‹Рµ РѕР±СЂР°Р·С‹, СЃРјР°Р№Р»РёРєРё Рё РїРѕРґР°СЂРєРё');</script></span> 
     	
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock3" value="3">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Клановые образы, смайлики и подарки');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РљР»Р°РЅРѕРІС‹Рµ РѕР±СЂР°Р·С‹, СЃРјР°Р№Р»РёРєРё Рё РїРѕРґР°СЂРєРё');</script></span>
     	    	
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock12" value="12">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Покупка рун и чарок');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РџРѕРєСѓРїРєР° СЂСѓРЅ Рё С‡Р°СЂРѕРє');</script></span>
         
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock5" value="5">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Обмен рун, чарок и заточек');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РћР±РјРµРЅ СЂСѓРЅ, С‡Р°СЂРѕРє Рё Р·Р°С‚РѕС‡РµРє');</script></span>
         
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock4" value="4">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Обмен артефактов и предметов');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РћР±РјРµРЅ Р°СЂС‚РµС„Р°РєС‚РѕРІ Рё РїСЂРµРґРјРµС‚РѕРІ');</script></span>
     	
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock9" value="9">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Реликты: Персональные реликты и клановые');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'Р РµР»РёРєС‚С‹: РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ СЂРµР»РёРєС‚С‹ Рё РєР»Р°РЅРѕРІС‹Рµ');</script></span>
         
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock7" value="7">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Персональные услуги: Покупка склонности, смена логина, пола, пароля и т.д.');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ СѓСЃР»СѓРіРё: РџРѕРєСѓРїРєР° СЃРєР»РѕРЅРЅРѕСЃС‚Рё, СЃРјРµРЅР° Р»РѕРіРёРЅР°, РїРѕР»Р°, РїР°СЂРѕР»СЏ Рё С‚.Рґ.');</script></span>
                 
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock6" value="6">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Клановые услуги: Смена названия, значка, склонности и т.д.');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РљР»Р°РЅРѕРІС‹Рµ СѓСЃР»СѓРіРё: РЎРјРµРЅР° РЅР°Р·РІР°РЅРёСЏ, Р·РЅР°С‡РєР°, СЃРєР»РѕРЅРЅРѕСЃС‚Рё Рё С‚.Рґ.');</script></span>
         
         <hr class="hr0" />
         <span class="cp radio1txt" id="cmmcblock8" value="8">
-		<script>psi.radioPring('cmmc','cmmc',true,null,'Услуги модерации: Оплата игровых штрафов и пошлин');</script></span>
+		<script>psi.radioPring('cmmc','cmmc',true,null,'РЈСЃР»СѓРіРё РјРѕРґРµСЂР°С†РёРё: РћРїР»Р°С‚Р° РёРіСЂРѕРІС‹С… С€С‚СЂР°С„РѕРІ Рё РїРѕС€Р»РёРЅ');</script></span>
     </div>
 </div>

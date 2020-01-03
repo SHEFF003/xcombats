@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!defined('GAME')) {
 	die();
@@ -7,18 +7,18 @@ if(!defined('GAME')) {
 if(isset($_GET['newuidinv'])) {
 	$newuid = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "'.mysql_real_escape_string($_GET['newuidinv']).'" OR `id` = "'.mysql_real_escape_string($_GET['newuidinv']).'" LIMIT 1'));
 	if($newuid['admin'] > $u->info['admin']) {
-		die('Вы не можете просматривать эту информацию.');
+		die('Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїСЂРѕСЃРјР°С‚СЂРёРІР°С‚СЊ СЌС‚Сѓ РёРЅС„РѕСЂРјР°С†РёСЋ.');
 	}
 }
 if(!isset($newuid['id'])) {
-	die('Персонаж не найден.');	
+	die('РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ.');	
 }
 
 
 $u->info['marker'] = 'inv';
 
 if( !isset( $_GET['otdel'] ) || ( $_GET['otdel']<1 && $_GET['otdel']>6 ) ) {
-	$_GET['otdel'] = 1; // Если раздел не указан.
+	$_GET['otdel'] = 1; // Р•СЃР»Рё СЂР°Р·РґРµР» РЅРµ СѓРєР°Р·Р°РЅ.
 	$_GET['paged'] = $_SESSION['paged'] = 0;
 }
 
@@ -26,9 +26,9 @@ if( isset($_GET['otdel']) ) {
 	if( !isset($_GET['paged']) && (isset($_GET['use_pid']) || isset($_GET['sid']) || isset($_GET['oid']) || isset($_GET['usecopr']) || isset($_GET['delcop'])) ) {
 		$_GET['paged'] = $_SESSION['paged']; // use item and load old paging
 	} elseif(isset($_GET['paged']) && $_GET['paged']!='') {
-		$_SESSION['paged'] = $_GET['paged']; // Задаем новую страницу.
+		$_SESSION['paged'] = $_GET['paged']; // Р—Р°РґР°РµРј РЅРѕРІСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ.
 	} elseif(isset($_SESSION['paged']) && $_SESSION['paged']!='' && $_SESSION['otdel']==$_GET['otdel']) {
-		$_GET['paged'] = $_SESSION['paged']; // Если страница уже имеется в сессии, возвращаем её в текущую.
+		$_GET['paged'] = $_SESSION['paged']; // Р•СЃР»Рё СЃС‚СЂР°РЅРёС†Р° СѓР¶Рµ РёРјРµРµС‚СЃСЏ РІ СЃРµСЃСЃРёРё, РІРѕР·РІСЂР°С‰Р°РµРј РµС‘ РІ С‚РµРєСѓС‰СѓСЋ.
 	} else {
 		$_GET['paged'] = $_SESSION['paged'] = 0;
 	}
@@ -57,10 +57,10 @@ $pgs = mysql_fetch_array(mysql_query('SELECT COUNT(`iu`.`id`) FROM `items_users`
 $pgs = $pgs[0];
 $page_look = '';
 $inventorySortBox = '<div id="inventorySortBox">
-	Сортировка: <br/>
-		<input type="button" onclick="inventoryAjax(\'main.php?'.$zv.'=1&mAjax=true&newuidinv='.$_GET['newuidinv'].'&boxsort=name&otdel=' . intval($_GET['otdel']) . '\');" value="названию" />
-		<input type="button" onclick="inventoryAjax(\'main.php?'.$zv.'=1&mAjax=true&newuidinv='.$_GET['newuidinv'].'&boxsort=cost&otdel=' . intval($_GET['otdel']) . '\');" value="цене" />
-		<input type="button" onclick="inventoryAjax(\'main.php?'.$zv.'=1&mAjax=true&newuidinv='.$_GET['newuidinv'].'&boxsort=type&otdel=' . intval($_GET['otdel']) . '\');" value="типу" />
+	РЎРѕСЂС‚РёСЂРѕРІРєР°: <br/>
+		<input type="button" onclick="inventoryAjax(\'main.php?'.$zv.'=1&mAjax=true&newuidinv='.$_GET['newuidinv'].'&boxsort=name&otdel=' . intval($_GET['otdel']) . '\');" value="РЅР°Р·РІР°РЅРёСЋ" />
+		<input type="button" onclick="inventoryAjax(\'main.php?'.$zv.'=1&mAjax=true&newuidinv='.$_GET['newuidinv'].'&boxsort=cost&otdel=' . intval($_GET['otdel']) . '\');" value="С†РµРЅРµ" />
+		<input type="button" onclick="inventoryAjax(\'main.php?'.$zv.'=1&mAjax=true&newuidinv='.$_GET['newuidinv'].'&boxsort=type&otdel=' . intval($_GET['otdel']) . '\');" value="С‚РёРїСѓ" />
 </div>';
 
 if(isset($_SESSION['paged']))$page_look = '<!-- PAGED SEE '.round((int)@$_SESSION['paged']).'-->'; else $page_look = '<!-- PAGED '.$_SESSION['paged'].' -->';
@@ -68,7 +68,7 @@ if($pgs > $pc) {
 	$nlim = ' LIMIT '.$pxc.' , '.$pc.'';
 	#$page_look .= '<table border=0 cellpadding=0 cellspacing=0 width=100% bgcolor="#A5A5A5"><tr><td width=99% align=center>';
 	$page_look .= '<div style="padding:0px;">';
-	$page_look .= 'Страницы: ';
+	$page_look .= 'РЎС‚СЂР°РЅРёС†С‹: ';
 	$i = 1;
 	echo '<style>.pgdas { display:inline-block;background-color:#dadada; padding:2px 4px 1px 4px; font-size:12px;} .pgdas1 { display:inline-block;background-color:#a5a5a5; padding:2px 4px 1px 4px;  font-size:12px;}
 	.pgdas { background: #dadada;background: -moz-linear-gradient(top,  #dadada 50%, #a5a5a5 99%);background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#dadada), color-stop(99%,#a5a5a5));background: -webkit-linear-gradient(top,  #dadada 50%,#a5a5a5 99%);background: -o-linear-gradient(top,  #dadada 50%,#a5a5a5 99%);background: -ms-linear-gradient(top,  #dadada 50%,#a5a5a5 99%);background: linear-gradient(to bottom,  #dadada 50%,#a5a5a5 99%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#dadada\', endColorstr=\'#a5a5a5\',GradientType=0 );
@@ -110,43 +110,43 @@ if( isset($_GET['boxsort']) && $_GET['otdel']==5 ) {
 	$itmAll = $u->genInv(1,'`iu`.`uid`="'.$newuid['id'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `im`.`inRazdel`="'.mysql_real_escape_string($_GET['otdel']).'" ORDER BY '.$filt.''.$nlim);
 }
 
-$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО</td></tr>';
+$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ</td></tr>';
 if($itmAll[0] > 0)
 	$itmAllSee = $itmAll[2];
 	$clrb = '';
 	$clrba = '';
 	if($u->aves['now'] >= $u->aves['max']) {
 		$clrb = 'color:#BB0000;';
-		$clrba = ' &nbsp; (У вас перегруз!)';
+		$clrba = ' &nbsp; (РЈ РІР°СЃ РїРµСЂРµРіСЂСѓР·!)';
 	}
 $showItems = '<table width="100%" cellspacing="0" cellpadding="0">
   <tr>
     <td valign="top"><table style="" width="100%" cellspacing="0" cellpadding="4" bgcolor="#d4d2d2">
       <tr>
-        <td width="20%"  ' . (($_GET['otdel'] != 1) ? 'style=""' : 'style=""') .'  align=center bgcolor="' . (($_GET['otdel'] == 1) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=1&rn=1.1\');">Обмундирование</a></td>
-        <td width="20%"  ' . (($_GET['otdel'] != 2) ? 'style=""' : 'style=""') .'  align=center bgcolor="' . (($_GET['otdel'] == 2) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=2&rn=2.1\');">Заклятия</a></td>
-        <td width="20%" ' . (($_GET['otdel'] != 3) ? 'style=""' : 'style=""') .' align=center bgcolor="' . (($_GET['otdel'] == 3) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=3&rn=3.1\');">Эликсиры</a></td>
-        <td width="20%"  ' . (($_GET['otdel'] != 6) ? 'style=""' : 'style=""') .'  align=center bgcolor="' . (($_GET['otdel'] == 6) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=6&rn=6.1\');">Руны</a></td>
-        <td width="20%"  ' . (($_GET['otdel'] != 4) ? 'style=""' : 'style="" ') .'  align=center bgcolor="' . (($_GET['otdel'] == 4) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=4&rn=4.1\');">Прочее</a></td>
+        <td width="20%"  ' . (($_GET['otdel'] != 1) ? 'style=""' : 'style=""') .'  align=center bgcolor="' . (($_GET['otdel'] == 1) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=1&rn=1.1\');">РћР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ</a></td>
+        <td width="20%"  ' . (($_GET['otdel'] != 2) ? 'style=""' : 'style=""') .'  align=center bgcolor="' . (($_GET['otdel'] == 2) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=2&rn=2.1\');">Р—Р°РєР»СЏС‚РёСЏ</a></td>
+        <td width="20%" ' . (($_GET['otdel'] != 3) ? 'style=""' : 'style=""') .' align=center bgcolor="' . (($_GET['otdel'] == 3) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=3&rn=3.1\');">Р­Р»РёРєСЃРёСЂС‹</a></td>
+        <td width="20%"  ' . (($_GET['otdel'] != 6) ? 'style=""' : 'style=""') .'  align=center bgcolor="' . (($_GET['otdel'] == 6) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=6&rn=6.1\');">Р СѓРЅС‹</a></td>
+        <td width="20%"  ' . (($_GET['otdel'] != 4) ? 'style=""' : 'style="" ') .'  align=center bgcolor="' . (($_GET['otdel'] == 4) ? '#a5a5a5' : '' ) .'"><a href="javascript:void(0);" onclick="inventoryAjax(\'main.php?newuidinv='.$_GET['newuidinv'].'&'.$zv.'&mAjax=true&otdel=4&rn=4.1\');">РџСЂРѕС‡РµРµ</a></td>
       </tr>
     </table></td>
   </tr>
   <tr>
     <td align="center" ><table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top:0px; border-left: 1px solid #A5A5A5; border-right: 1px solid #A5A5A5;" bgcolor="#a5a5a5">
       <tr>
-        <td align="left" valign="middle" style="color:#2b2c2c; height: 18px;font-size:12px; padding:4px;'.$clrb.'">Масса: ' . (0+$u->aves['now']) . ' / ' . $u->aves['max'] . ' '.$clrba.'<!--, предметов: ' . $u->aves['items'] . '--></td>
+        <td align="left" valign="middle" style="color:#2b2c2c; height: 18px;font-size:12px; padding:4px;'.$clrb.'">РњР°СЃСЃР°: ' . (0+$u->aves['now']) . ' / ' . $u->aves['max'] . ' '.$clrba.'<!--, РїСЂРµРґРјРµС‚РѕРІ: ' . $u->aves['items'] . '--></td>
 		<td align="center" valign="middle" style="color:#2b2c2c; font-size:12px">' . $page_look . '</td>
 		<td align="right" valign="middle" style="color:#2b2c2c; font-size:12px; position:relative;">
 		<form id="line_filter" style="display:inline;" onsubmit="return false;" prc_adsf="true">
-			Поиск по имени: <div style="display:inline-block; position:relative; ">
-			<input type="text" id="inpFilterName"  placeholder="Введите название предмета..."  autofocus="autofocus" 	size="44" autocomplete="off">
-			<img style="position:absolute; cursor:pointer; right: 2px; top: 3px; width: 12px; height: 12px;" onclick="document.getElementById(\'inpFilterName\').value=\'\';" title="Убрать фильтр (клавиша Esc)"  src="http://img.xcombats.com/i/clear.gif">
-			<input type="submit" style="display: none" id="inpFilterName_submit" value="Фильтр" onclick="return false">
+			РџРѕРёСЃРє РїРѕ РёРјРµРЅРё: <div style="display:inline-block; position:relative; ">
+			<input type="text" id="inpFilterName"  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїСЂРµРґРјРµС‚Р°..."  autofocus="autofocus" 	size="44" autocomplete="off">
+			<img style="position:absolute; cursor:pointer; right: 2px; top: 3px; width: 12px; height: 12px;" onclick="document.getElementById(\'inpFilterName\').value=\'\';" title="РЈР±СЂР°С‚СЊ С„РёР»СЊС‚СЂ (РєР»Р°РІРёС€Р° Esc)"  src="http://img.xcombats.com/i/clear.gif">
+			<input type="submit" style="display: none" id="inpFilterName_submit" value="Р¤РёР»СЊС‚СЂ" onclick="return false">
 			<div class="autocomplete-suggestions" style="position: absolute; display: none;top: 15px; left:0px; margin:0px auto; right: 0px; font-size:12px; font-family: Tahoma; max-height: 300px; z-index: 9999;"></div>
 			</div>
 		</form>
 		
-			<input type="button" onclick="inventorySort(this);" style="margin:0px 2px;" value="Сортировка" />
+			<input type="button" onclick="inventorySort(this);" style="margin:0px 2px;" value="РЎРѕСЂС‚РёСЂРѕРІРєР°" />
 			'.$inventorySortBox.'
 		</td>
       </tr>
@@ -154,7 +154,7 @@ $showItems = '<table width="100%" cellspacing="0" cellpadding="0">
   </tr>
   <tr>
     <td valign="top" align="center">
-		<div style="height:350px; border-bottom: 1px solid #A5A5A5;border-top: 1px solid #A5A5A5;" id="itmAllSee"><table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">' . (( $u->info['invBlock'] == 0 ) ? $itmAllSee : '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Рюкзак закрыт.</b><br><img title="Замок для рюкзака" src="http://img.xcombats.com/i/items/box_lock.gif"> Введите пароль: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="Открыть"></form></div>' ) . '</table></div></td>
+		<div style="height:350px; border-bottom: 1px solid #A5A5A5;border-top: 1px solid #A5A5A5;" id="itmAllSee"><table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">' . (( $u->info['invBlock'] == 0 ) ? $itmAllSee : '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Р СЋРєР·Р°Рє Р·Р°РєСЂС‹С‚.</b><br><img title="Р—Р°РјРѕРє РґР»СЏ СЂСЋРєР·Р°РєР°" src="http://img.xcombats.com/i/items/box_lock.gif"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="РћС‚РєСЂС‹С‚СЊ"></form></div>' ) . '</table></div></td>
   </tr>
 </table>
 <script language="JavaScript">
@@ -231,7 +231,7 @@ var UpdateItemList;
 	}
 	
 	function inventoryAjax(url){
-		$('#ShowInventory').html('<div align="center" style="padding:10px;background-color:#d4d2d2;color:grey;"><b>Загрузка...</b></div>');
+		$('#ShowInventory').html('<div align="center" style="padding:10px;background-color:#d4d2d2;color:grey;"><b>Р—Р°РіСЂСѓР·РєР°...</b></div>');
 		$.ajax({
 			url: url,
 			cache: false,
@@ -266,19 +266,19 @@ $(document).ready(function () {
 		}
 	}
 	
-	UpdateItemList(); // пересчет предметов.
+	UpdateItemList(); // РїРµСЂРµСЃС‡РµС‚ РїСЂРµРґРјРµС‚РѕРІ.
 	invFilterByNameTimer=null;
 	
-	// просматриваем результат
+	// РїСЂРѕСЃРјР°С‚СЂРёРІР°РµРј СЂРµР·СѓР»СЊС‚Р°С‚
 	$('#line_filter').submit(function (){ $('#inpFilterName_submit').trigger('click'); });
 	
-	// Если в выпадающем списке предметов листаем при помощи клавиш Up и Down, автоматически просматриваем результат.
+	// Р•СЃР»Рё РІ РІС‹РїР°РґР°СЋС‰РµРј СЃРїРёСЃРєРµ РїСЂРµРґРјРµС‚РѕРІ Р»РёСЃС‚Р°РµРј РїСЂРё РїРѕРјРѕС‰Рё РєР»Р°РІРёС€ Up Рё Down, Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРѕСЃРјР°С‚СЂРёРІР°РµРј СЂРµР·СѓР»СЊС‚Р°С‚.
 	$('#inpFilterName').keyup(function (e){ $('#inpFilterName_submit').trigger('click'); });
 	
-	// Запоминаем прошлый поиск предмета и активируем его при открытии инвентаря\сундука
+	// Р—Р°РїРѕРјРёРЅР°РµРј РїСЂРѕС€Р»С‹Р№ РїРѕРёСЃРє РїСЂРµРґРјРµС‚Р° Рё Р°РєС‚РёРІРёСЂСѓРµРј РµРіРѕ РїСЂРё РѕС‚РєСЂС‹С‚РёРё РёРЅРІРµРЅС‚Р°СЂСЏ\СЃСѓРЅРґСѓРєР°
 	if ($.cookie('invFilterByName')) { $('#inpFilterName').val($.cookie('invFilterByName')); invFilterByName(); }
 	
-	// Автообновление в реальном времени при написании текста.
+	// РђРІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё РїСЂРё РЅР°РїРёСЃР°РЅРёРё С‚РµРєСЃС‚Р°.
 	$('#line_filter').click(function (){ window.clearInterval(invFilterByNameTimer); if($('#inpFilterName').val()=='')invFilterByName(); else invFilterByNameTimer=setTimeout(invFilterByName, 200); return false;} );
 	
 	/*
@@ -316,13 +316,13 @@ jQuery.expr[":"].contains = function (elem, i, match, array){
 	<tr>
 		<td valign="top"  id="itmAll">
 			<div style="z-index: 2; position: relative; width:100%; display:table; box-sizing: border-box; margin: 0px; padding: 0px 5px 3px 5px;">
-				<div style="display:table-cell;" align="center"><h3>Инвентарь персонажа <?=$newuid['login'].' ['.$newuid['level'].']'?></h3></div>
-				<div style="display:table-cell; text-align: right;"><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php'" value="Вернуться" />
+				<div style="display:table-cell;" align="center"><h3>РРЅРІРµРЅС‚Р°СЂСЊ РїРµСЂСЃРѕРЅР°Р¶Р° <?=$newuid['login'].' ['.$newuid['level'].']'?></h3></div>
+				<div style="display:table-cell; text-align: right;"><input class="btnnew" type="button" onclick="top.frames['main'].location='main.php'" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" />
 					<!--
-					<input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?anketa&amp;rn=<? echo $code; ?>'" value="Анкета" />
-					<input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?act_trf=1&amp;rn=<? echo $code; ?>'" value="Отчет о переводах" />
-					<input class="btnnew" type="button" style="font-weight:bold;" value="Безопасность" onclick="top.frames['main'].location='main.php?security&amp;rn=<? echo $code; ?>'" />
-					<input class="btnnew" type="button" style="background-color:#A9AFC0" onClick="alert('Раздел отсутствует');" value="Подсказки" />
+					<input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?anketa&amp;rn=<? echo $code; ?>'" value="РђРЅРєРµС‚Р°" />
+					<input class="btnnew" type="button" onclick="top.frames['main'].location='main.php?act_trf=1&amp;rn=<? echo $code; ?>'" value="РћС‚С‡РµС‚ Рѕ РїРµСЂРµРІРѕРґР°С…" />
+					<input class="btnnew" type="button" style="font-weight:bold;" value="Р‘РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ" onclick="top.frames['main'].location='main.php?security&amp;rn=<? echo $code; ?>'" />
+					<input class="btnnew" type="button" style="background-color:#A9AFC0" onClick="alert('Р Р°Р·РґРµР» РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚');" value="РџРѕРґСЃРєР°Р·РєРё" />
 					-->
 				</div>
 			</div>

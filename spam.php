@@ -23,7 +23,7 @@ if(isset($_GET['test_login'])) {
 		$cn = explode('</title>',$cn[1]);
 		$cn = $cn[0];
 		echo '['.$cn.']';
-		if( $cn != 'Произошла ошибка' ) {
+		if( $cn != 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°' ) {
 			$test = true;
 		}
 		if($test == true) {
@@ -47,7 +47,7 @@ if(isset($_GET['test_login'])) {
 		$cn = explode('</TITLE>',$cn[1]);
 		$cn = $cn[0];
 		echo '['.$cn.']';
-		if( $cn != 'Произошла ошибка' ) {
+		if( $cn != 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°' ) {
 			$test = true;
 		}
 		if($test == true) {
@@ -75,8 +75,8 @@ if( $u->info['admin'] > 0 || $u->info['id'] == 618775 ) {
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Редактирование фильтра от спама</title>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ С„РёР»СЊС‚СЂР° РѕС‚ СЃРїР°РјР°</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <meta http-equiv=Cache-Control Content=no-cache>
 <meta http-equiv=PRAGMA content=NO-CACHE>
@@ -84,21 +84,21 @@ if( $u->info['admin'] > 0 || $u->info['id'] == 618775 ) {
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.1.11.js"></script>
 <body style="padding-top:0px; margin-top:7px; height:100%; background-color:#dedede;">
-<b>Список запрещенных слов\ссылок:</b> &nbsp; <input onClick="location.href='/spam.php';" type="button" value="Обновить"><br><br>
+<b>РЎРїРёСЃРѕРє Р·Р°РїСЂРµС‰РµРЅРЅС‹С… СЃР»РѕРІ\СЃСЃС‹Р»РѕРє:</b> &nbsp; <input onClick="location.href='/spam.php';" type="button" value="РћР±РЅРѕРІРёС‚СЊ"><br><br>
 <?
 $spam = mysql_fetch_array(mysql_query('SELECT * FROM `spam_word` WHERE `id` = 1 LIMIT 1'));
 $spam = $spam['data'];
 $spam = explode('|',$spam);
 //
 if(isset($_GET['del'])) {
-	echo '<div><font color="red">Слово &quot;<b>'.$spam[floor((int)$_GET['del'])].'</b>&quot; удалено.</font><br><br></div>';
+	echo '<div><font color="red">РЎР»РѕРІРѕ &quot;<b>'.$spam[floor((int)$_GET['del'])].'</b>&quot; СѓРґР°Р»РµРЅРѕ.</font><br><br></div>';
 	unset($spam[floor((int)$_GET['del'])]);
 	$spam = implode('|',$spam);
 	mysql_query('UPDATE `spam_word` SET `data` = "'.mysql_real_escape_string($spam).'" WHERE `id` = "1" LIMIT 1');
 	$spam = explode('|',$spam);
 }elseif(isset($_POST['add'])){
 	$_POST['add'] = htmlspecialchars($_POST['add'],NULL,'cp1251');
-	echo '<div><font color="green">Слово &quot;<b>'.$_POST['add'].'</b>&quot; добавлено.</font><br><br></div>';
+	echo '<div><font color="green">РЎР»РѕРІРѕ &quot;<b>'.$_POST['add'].'</b>&quot; РґРѕР±Р°РІР»РµРЅРѕ.</font><br><br></div>';
 	$spam = implode('|',$spam);
 	$spam .= '|'.$_POST['add'].'';
 	mysql_query('UPDATE `spam_word` SET `data` = "'.mysql_real_escape_string($spam).'" WHERE `id` = "1" LIMIT 1');
@@ -112,13 +112,13 @@ while( $i < count($spam) ) {
 }
 ?>
 <form method="post" action="/spam.php">
-<input type="text" name="add" value="" style="width:244px;"> <input type="submit" value="Добавить">
+<input type="text" name="add" value="" style="width:244px;"> <input type="submit" value="Р”РѕР±Р°РІРёС‚СЊ">
 </form>
 </body>
 </html>
 <?	
 }else{
-	die('Спамер? :)');
+	die('РЎРїР°РјРµСЂ? :)');
 }
 
 ?>

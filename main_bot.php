@@ -1,12 +1,12 @@
-<?
+<?php
 
-# Получаем IP
+# РџРѕР»СѓС‡Р°РµРј IP
 function getIPblock() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Выполняем проверку безопасности. 
+# Р’С‹РїРѕР»РЅСЏРµРј РїСЂРѕРІРµСЂРєСѓ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё. 
 
 if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) {	die('Hello pussy!');   }
 if(getIPblock() != $_SERVER['SERVER_ADDR'] && getIPblock() != '127.0.0.1' && getIPblock() != '' && getIPblock() != '91.228.152.24') {
@@ -94,7 +94,7 @@ mysql_query("LOCK TABLES
 `zayvki` WRITE;");
 
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","TABU","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","TABU","6","1","-1")');
 }
 
 if(isset($_GET['cron_core'])) {
@@ -140,18 +140,18 @@ include('_incl_data/class/__filter_class.php');
 include('_incl_data/class/__quest.php');
 
 if($u->info['activ']>0) {
-	die('Вам необходимо активировать персонажа.<br>Авторизируйтесь с главной страницы.');
+	die('Р’Р°Рј РЅРµРѕР±С…РѕРґРёРјРѕ Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°.<br>РђРІС‚РѕСЂРёР·РёСЂСѓР№С‚РµСЃСЊ СЃ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹.');
 }
 
 $tjs = '';
-#--------для общаги, и позже для почты
+#--------РґР»СЏ РѕР±С‰Р°РіРё, Рё РїРѕР·Р¶Рµ РґР»СЏ РїРѕС‡С‚С‹
 $sleep = $u->testAction('`vars` = "sleep" AND `uid` = "'.$u->info['id'].'" LIMIT 1',1);
 if($u->room['file']!="objaga" && $sleep['id']>0) {
     mysql_query('UPDATE `actions` SET `vars` = "unsleep" WHERE `id` = "'.$sleep['id'].'" LIMIT 1');
 }
 if($u->room['file']=="objaga" || $u->room['file']=="post"){$trololo=0;}else{$trololo=1;}
 
-#--------для общаги, и позже для почты
+#--------РґР»СЏ РѕР±С‰Р°РіРё, Рё РїРѕР·Р¶Рµ РґР»СЏ РїРѕС‡С‚С‹
 if($u->info['online'] < time()-60)
 {
 	$filter->setOnline($u->info['online'],$u->info['id'],0);	
@@ -181,39 +181,39 @@ if(isset($_GET['atak_user']) && $u->info['battle'] == 0 && $_GET['atak_user']!=$
 		$ua = mysql_fetch_array(mysql_query('SELECT `s`.`team`,`s`.`id`,`s`.`bbexp`,`u`.`battle`,`u`.`id`,`u`.`room`,`u`.`login`,`u`.`online` FROM `stats` AS `s` LEFT JOIN `users` AS `u` ON `s`.`id` = `u`.`id` WHERE (`s`.`atack` > "'.time().'" OR `s`.`atack` = 1 OR 1 = '.$cruw.') AND `s`.`id` = "'.mysql_real_escape_string($_GET['atak_user']).'" LIMIT 1'));
 		if(isset($ua['id']) && $ua['online'] > time()-520)
 		{	
-			$usta = $u->getStats($ua['id'],0); // статы цели
-			$minHp = $usta['hpAll']/100*33; // минимальный запас здоровья цели при котором можно напасть
+			$usta = $u->getStats($ua['id'],0); // СЃС‚Р°С‚С‹ С†РµР»Рё
+			$minHp = $usta['hpAll']/100*33; // РјРёРЅРёРјР°Р»СЊРЅС‹Р№ Р·Р°РїР°СЃ Р·РґРѕСЂРѕРІСЊСЏ С†РµР»Рё РїСЂРё РєРѕС‚РѕСЂРѕРј РјРѕР¶РЅРѕ РЅР°РїР°СЃС‚СЊ
 	
 			if($ua['room']==$u->info['room'] && ($minHp<$usta['hpNow'] || $ua['battle']>0))
 			{
 				$magic->atackUser($u->info['id'],$ua['id'],$ua['team'],$ua['battle'],$ua['bbexp'],50);
 				
-				$rtxt = '[img[items/pal_button8.gif]] &quot;'.$u->info['login'].'&quot; совершил'.$sx.' нападение по метке на персонажа &quot;'.$ua['login'].'&quot;.';
+				$rtxt = '[img[items/pal_button8.gif]] &quot;'.$u->info['login'].'&quot; СЃРѕРІРµСЂС€РёР»'.$sx.' РЅР°РїР°РґРµРЅРёРµ РїРѕ РјРµС‚РєРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$ua['login'].'&quot;.';
 				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");		
 				
 				header('location: main.php');
 				die();
 			}else{
 				if($ua['room']!=$u->info['room']){
-				//Персонаж в другой комнате
-					$u->error = 'Персонаж находится в другой комнате';
+				//РџРµСЂСЃРѕРЅР°Р¶ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ
+					$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ';
 				}else{
-					$u->error = 'Персонаж имеет слишком малый уровень жизней.';
+					$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РёРјРµРµС‚ СЃР»РёС€РєРѕРј РјР°Р»С‹Р№ СѓСЂРѕРІРµРЅСЊ Р¶РёР·РЅРµР№.';
 				}
 			}
 		}else{
-			//На персонажа нельзя напасть
-			$u->error = 'Персонаж не в игре, либо на нем нет метки';
+			//РќР° РїРµСЂСЃРѕРЅР°Р¶Р° РЅРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ
+			$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РІ РёРіСЂРµ, Р»РёР±Рѕ РЅР° РЅРµРј РЅРµС‚ РјРµС‚РєРё';
 		}
 	}
-	$u->error = 'Вам запрещается атаковать без разрешения...';
+	$u->error = 'Р’Р°Рј Р·Р°РїСЂРµС‰Р°РµС‚СЃСЏ Р°С‚Р°РєРѕРІР°С‚СЊ Р±РµР· СЂР°Р·СЂРµС€РµРЅРёСЏ...';
 }
 
 //mysql_query('START TRANSACTION');
 
 if($u->info['battle_text']!='')
 {
-	//Показываем системку и заносим данные
+	//РџРѕРєР°Р·С‹РІР°РµРј СЃРёСЃС‚РµРјРєСѓ Рё Р·Р°РЅРѕСЃРёРј РґР°РЅРЅС‹Рµ
 	if($u->info['last_b']>0)
 	{		
 		mysql_query('INSERT INTO `battle_last` (`battle_id`,`uid`,`time`,`act`,`level`,`align`,`clan`,`exp`) VALUES ("'.$u->info['last_b'].'","'.$u->info['id'].'","'.time().'","'.$u->info['last_a'].'","'.$u->info['level'].'","'.$u->info['align'].'","'.$u->info['clan'].'","'.$u->info['exp'].'")');
@@ -247,7 +247,7 @@ if($u->stats['act']==1)
 	$act = 1;
 }
 $u->rgd = $u->regen($u->info['id'],0,0);
-//Проверка уровня
+//РџСЂРѕРІРµСЂРєР° СѓСЂРѕРІРЅСЏ
 $ul = $u->testLevel();	
 if($ul==1)
 {
@@ -273,9 +273,9 @@ function GetRealIp()
 /*-----------------------*/
 if($u->info['battle']==0)
 {
-	//Проверка/Снятие эффектов
+	//РџСЂРѕРІРµСЂРєР°/РЎРЅСЏС‚РёРµ СЌС„С„РµРєС‚РѕРІ
 	
-	//Проверка/Снятие предметов
+	//РџСЂРѕРІРµСЂРєР°/РЎРЅСЏС‚РёРµ РїСЂРµРґРјРµС‚РѕРІ
 	//$act2 = $u->testItems($u->info['id'],$u->stats,0);
 	if($act2!=-2 && $act==-2)
 	{
@@ -284,7 +284,7 @@ if($u->info['battle']==0)
 	
 	if(!isset($u->tfer['id']) && $u->room['block_all'] == 0)
 	{
-		//Одеть/снять предмет
+		//РћРґРµС‚СЊ/СЃРЅСЏС‚СЊ РїСЂРµРґРјРµС‚
 		if(isset($_GET['rstv']) && isset($_GET['inv'])) {
 			$act = $u->freeStatsMod($_GET['rstv'],$_GET['mf'],$u->info['id']);
 		}elseif(isset($_GET['ufs2']) && isset($_GET['inv']))
@@ -327,7 +327,7 @@ if($u->info['battle']==0)
 		{
 			$q->endq((int)$_GET['end_qst_now'],'end');
 		}
-		//Использовать эффект
+		//РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС„С„РµРєС‚
 		if(isset($_GET['use_pid']))
 		{
 			$magic->useItems((int)$_GET['use_pid']);
@@ -336,7 +336,7 @@ if($u->info['battle']==0)
 
 }elseif($u->info['battle_text']!='')
 {
-	//Показываем системку и заносим данные
+	//РџРѕРєР°Р·С‹РІР°РµРј СЃРёСЃС‚РµРјРєСѓ Рё Р·Р°РЅРѕСЃРёРј РґР°РЅРЅС‹Рµ
 	if($u->info['last_b']>0)
 	{
 		
@@ -348,7 +348,7 @@ if($magic->youuse > 0)
 {
 	$act = 1;
 }
-//Получение статов
+//РџРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°С‚РѕРІ
 if($act!=-2)
 {
 	$u->stats = $u->getStats($u->info['id'],0,1);
@@ -416,7 +416,7 @@ if(isset($_GET['security']) && !isset($u->tfer['id']) && $trololo==1)
 	include('modules_data/_alhp.php');
 }elseif($u->info['battle']!=0)
 {
-	//поединок
+	//РїРѕРµРґРёРЅРѕРє
 	include('modules_data/btl_.php');
 }else{
 	if(isset($_GET['talk']) && !isset($u->tfer['id']))
@@ -463,14 +463,14 @@ if(isset($_GET['security']) && !isset($u->tfer['id']) && $trololo==1)
 
 //mysql_query('COMMIT');
 
-if($u->room['name']=='Башня Смерти' && $u->info['inUser']>0 && $u->info['lost']>0)
+if($u->room['name']=='Р‘Р°С€РЅСЏ РЎРјРµСЂС‚Рё' && $u->info['inUser']>0 && $u->info['lost']>0)
 {
 	//mysql_query('UPDATE `users` SET `inUser` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-	//кидаем травму
+	//РєРёРґР°РµРј С‚СЂР°РІРјСѓ
 	//header('location: main.php');
 }
 
-//Проверяем квесты на готовность
+//РџСЂРѕРІРµСЂСЏРµРј РєРІРµСЃС‚С‹ РЅР° РіРѕС‚РѕРІРЅРѕСЃС‚СЊ
 //$q->testquest();
 
 /*-----------------------*/

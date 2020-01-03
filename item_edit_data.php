@@ -1,8 +1,8 @@
 <?php
 /*
 
-	Ядро для обработки данных.
-	Обработка поединков, обработка заявок, обработка ботов, обработка пещер, обработка турниров, обработка временных генераций
+	РЇРґСЂРѕ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С….
+	РћР±СЂР°Р±РѕС‚РєР° РїРѕРµРґРёРЅРєРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° Р·Р°СЏРІРѕРє, РѕР±СЂР°Р±РѕС‚РєР° Р±РѕС‚РѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РїРµС‰РµСЂ, РѕР±СЂР°Р±РѕС‚РєР° С‚СѓСЂРЅРёСЂРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РІСЂРµРјРµРЅРЅС‹С… РіРµРЅРµСЂР°С†РёР№
 
 */
 
@@ -21,7 +21,7 @@ if( $u->info['admin'] > 0 ) {
 			mysql_query('UPDATE `items_main_data` SET `data` = "'.mysql_real_escape_string($_POST['newdata']).'" WHERE `id` = "'.mysql_real_escape_string($itm['id']).'" LIMIT 1');
 			die('<script>window.close();</script>');
 		}
-		echo '<form method="post" action="item_edit_data.php?edit_item_data='.$itm['items_id'].'"><b>Номер предмета: '.$itm['items_id'].'</b><br><textarea name="newdata" rows="20" cols="100">'.$itm['data'].'</textarea><br><input type="submit" value="Сохранить"></form>';
+		echo '<form method="post" action="item_edit_data.php?edit_item_data='.$itm['items_id'].'"><b>РќРѕРјРµСЂ РїСЂРµРґРјРµС‚Р°: '.$itm['items_id'].'</b><br><textarea name="newdata" rows="20" cols="100">'.$itm['data'].'</textarea><br><input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ"></form>';
 	}
 }
 	

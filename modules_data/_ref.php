@@ -31,7 +31,7 @@ while($pl = mysql_fetch_array($sp))
 	$rfs['c2'] = '&nbsp;<img onclick="top.chat.addto(\''.$pl['login'].'\',\'private\')" style="display:inline-block;cursor:pointer;" src="http://img.xcombats.com/i/lock.gif" width="20" height="15"> &nbsp; '.$u->microLogin($pl['id'],1).'';
 	if($pl['activ'] != 0)
 	{
-		$rfs['c2'] = '<font color="grey">'.$rfs['c2'].' &nbsp; <small>не активирован</small></font>';
+		$rfs['c2'] = '<font color="grey">'.$rfs['c2'].' &nbsp; <small>РЅРµ Р°РєС‚РёРІРёСЂРѕРІР°РЅ</small></font>';
 	}elseif($pl['level']>7)
 	{
 		$rfs['c2'] = '<font color="green">'.$rfs['c2'].'</font>';
@@ -44,7 +44,7 @@ while($pl = mysql_fetch_array($sp))
 }
 if($rfs['see']=='')
 {
-	$rfs['see'] = '<center><b>К сожалению, у Вас нет воспитанников. Пригласите друзей сейчас!</b></center>';
+	$rfs['see'] = '<center><b>Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, Сѓ Р’Р°СЃ РЅРµС‚ РІРѕСЃРїРёС‚Р°РЅРЅРёРєРѕРІ. РџСЂРёРіР»Р°СЃРёС‚Рµ РґСЂСѓР·РµР№ СЃРµР№С‡Р°СЃ!</b></center>';
 }
 if(isset($_GET['nastanew'])) {
 	/*$_GET['nastanew'] = htmlspecialchars($_GET['nastanew'],NULL,'cp1251');
@@ -52,25 +52,25 @@ if(isset($_GET['nastanew'])) {
 	if(isset($upr['id']) && $upr['inUser'] == 0) {
 		$ch1 = mysql_fetch_array(mysql_query('SELECT * FROM `chat` WHERE `type` = 90 AND `to` = "'.$upr['login'].'" AND `time` > '.(time()-3600).' AND `login` = "'.$u->info['login'].'" LIMIT 1'));
 		if(isset($ch1['id'])) {
-			$u->error = 'Вы уже отправляли приглашение персонажу &quot;'.$upr['login'].'&quot;. (Не чаще одного раза в час)';
+			$u->error = 'Р’С‹ СѓР¶Рµ РѕС‚РїСЂР°РІР»СЏР»Рё РїСЂРёРіР»Р°С€РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$upr['login'].'&quot;. (РќРµ С‡Р°С‰Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ С‡Р°СЃ)';
 		}elseif($upr['login'] == $u->info['login']) {
-			$u->error = 'Хитро :) Наверное долго думали над этим?';
+			$u->error = 'РҐРёС‚СЂРѕ :) РќР°РІРµСЂРЅРѕРµ РґРѕР»РіРѕ РґСѓРјР°Р»Рё РЅР°Рґ СЌС‚РёРј?';
 		}elseif($upr['level'] > 9 && $u->info['admin'] == 0) {
-			$u->error = 'Нельзя стать наставником персонажа старше 9-го уровня';
+			$u->error = 'РќРµР»СЊР·СЏ СЃС‚Р°С‚СЊ РЅР°СЃС‚Р°РІРЅРёРєРѕРј РїРµСЂСЃРѕРЅР°Р¶Р° СЃС‚Р°СЂС€Рµ 9-РіРѕ СѓСЂРѕРІРЅСЏ';
 		}elseif($upr['id'] == $u->info['host_reg']) {
-			$u->error = 'Нельзя стать воспитанником своего наставника';
+			$u->error = 'РќРµР»СЊР·СЏ СЃС‚Р°С‚СЊ РІРѕСЃРїРёС‚Р°РЅРЅРёРєРѕРј СЃРІРѕРµРіРѕ РЅР°СЃС‚Р°РІРЅРёРєР°';
 		}elseif($upr['online'] > time()-520) {
 			if(is_int($upr['host_reg']) || $upr['host_reg'] > 0) {
-				$u->error = 'У персонажа &quot;'.$upr['login'].'&quot; уже есть наставник.';
+				$u->error = 'РЈ РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$upr['login'].'&quot; СѓР¶Рµ РµСЃС‚СЊ РЅР°СЃС‚Р°РІРЅРёРє.';
 			}else{
-				$u->error = 'Вы выслали приглашение персонажу &quot;'.$upr['login'].'&quot; стать вашим воспитанником.';	
+				$u->error = 'Р’С‹ РІС‹СЃР»Р°Р»Рё РїСЂРёРіР»Р°С€РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$upr['login'].'&quot; СЃС‚Р°С‚СЊ РІР°С€РёРј РІРѕСЃРїРёС‚Р°РЅРЅРёРєРѕРј.';	
 				mysql_query('INSERT INTO `chat` (`login`,`to`,`type`,`new`,`time`) VALUES ("'.$u->info['login'].'","'.$upr['login'].'","90","1","'.time().'")');
 			}
 		}else{
-			$u->error = 'Персонаж &quot;'.$upr['login'].'&quot; должен быть в онлайне.';	
+			$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$upr['login'].'&quot; РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ РѕРЅР»Р°Р№РЅРµ.';	
 		}
 	}else{
-		$u->error = 'Персонаж с логином &quot;'.$_GET['nastanew'].'&quot; не найден.';	
+		$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ СЃ Р»РѕРіРёРЅРѕРј &quot;'.$_GET['nastanew'].'&quot; РЅРµ РЅР°Р№РґРµРЅ.';	
 	}*/
 }elseif(isset($_GET['nastayes'])) {
 	/*$_GET['nastayes'] = htmlspecialchars($_GET['nastayes'],NULL,'cp1251');
@@ -80,18 +80,18 @@ if(isset($_GET['nastanew'])) {
 		if(isset($ch1['id'])) {
 			$myna = mysql_fetch_array(mysql_query('SELECT `id` FROM `users` WHERE `id` = "'.mysql_real_escape_string($u->info['host_reg']).'" LIMIT 1'));
 			if(isset($myna['id'])) {
-				$u->error = 'У вас уже есть наставник.';
+				$u->error = 'РЈ РІР°СЃ СѓР¶Рµ РµСЃС‚СЊ РЅР°СЃС‚Р°РІРЅРёРє.';
 			}else{
-				$u->error = 'Персонаж &quot;'.$_GET['nastayes'].'&quot; стал вашим наставником!';
+				$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$_GET['nastayes'].'&quot; СЃС‚Р°Р» РІР°С€РёРј РЅР°СЃС‚Р°РІРЅРёРєРѕРј!';
 				mysql_query('UPDATE `users` SET `host_reg` = "'.$upr['id'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','0','','".$upr['login']."',' Персонаж &quot;".$u->info['login']."&quot; подтвердил что он ваш воспитанник. Вы получаете <b>Талант Наставника</b> (<small>x1</small>).','-1','6','0')");
+				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','0','','".$upr['login']."',' РџРµСЂСЃРѕРЅР°Р¶ &quot;".$u->info['login']."&quot; РїРѕРґС‚РІРµСЂРґРёР» С‡С‚Рѕ РѕРЅ РІР°С€ РІРѕСЃРїРёС‚Р°РЅРЅРёРє. Р’С‹ РїРѕР»СѓС‡Р°РµС‚Рµ <b>РўР°Р»Р°РЅС‚ РќР°СЃС‚Р°РІРЅРёРєР°</b> (<small>x1</small>).','-1','6','0')");
 				$u->addItem(4005,$upr['id']);
 			}
 		}else{
-			$u->error = 'Персонаж &quot;'.$_GET['nastayes'].'&quot; не отправлял вам заявок наставника.';	
+			$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$_GET['nastayes'].'&quot; РЅРµ РѕС‚РїСЂР°РІР»СЏР» РІР°Рј Р·Р°СЏРІРѕРє РЅР°СЃС‚Р°РІРЅРёРєР°.';	
 		}
 	}else{
-		$u->error = 'Персонаж &quot;'.$_GET['nastayes'].'&quot; не отправлял вам заявок наставника.';	
+		$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$_GET['nastayes'].'&quot; РЅРµ РѕС‚РїСЂР°РІР»СЏР» РІР°Рј Р·Р°СЏРІРѕРє РЅР°СЃС‚Р°РІРЅРёРєР°.';	
 	}*/
 }
 
@@ -106,36 +106,36 @@ if(isset($_GET['nastanew'])) {
 			echo '<font color=red>'.$u->error.'</font><br>';
 		}
 		/*
-        <input type="button" onclick="top.nastavniknew()" value="Предложить наставничество">
+        <input type="button" onclick="top.nastavniknew()" value="РџСЂРµРґР»РѕР¶РёС‚СЊ РЅР°СЃС‚Р°РІРЅРёС‡РµСЃС‚РІРѕ">
         */
-		?> Ссылка для друзей: <input disabled="disabled" style="background-color:#FBFBFB; width:100px; border:1px solid #EFEFEF; padding:5px;" size="45" value="xcombats.com/r<?=$u->info['id']?>"  />
+		?> РЎСЃС‹Р»РєР° РґР»СЏ РґСЂСѓР·РµР№: <input disabled="disabled" style="background-color:#FBFBFB; width:100px; border:1px solid #EFEFEF; padding:5px;" size="45" value="xcombats.com/r<?=$u->info['id']?>"  />
         </td>
       </tr>
     </table>
       <table cellspacing="0" cellpadding="2" width="100%">
         <tr>
-          <td align="center"><h4>Как заработать игровую валюту и реальные деньги в БК:</h4></td>
+          <td align="center"><h4>РљР°Рє Р·Р°СЂР°Р±РѕС‚Р°С‚СЊ РёРіСЂРѕРІСѓСЋ РІР°Р»СЋС‚Сѓ Рё СЂРµР°Р»СЊРЅС‹Рµ РґРµРЅСЊРіРё РІ Р‘Рљ:</h4></td>
         </tr>
         <tr>
           <td>
           <? if( true == false ) { ?>
-          <u><font color="#003388"><b>Активация подарочных ваучеров</b>:</font></u><br />
+          <u><font color="#003388"><b>РђРєС‚РёРІР°С†РёСЏ РїРѕРґР°СЂРѕС‡РЅС‹С… РІР°СѓС‡РµСЂРѕРІ</b>:</font></u><br />
             <form style="padding:10px;" method="post" action="main.php?referals">
-              Номер:
+              РќРѕРјРµСЂ:
               <input type="text" value="" name="va_num" />
-              &nbsp; Пароль:
+              &nbsp; РџР°СЂРѕР»СЊ:
               <input type="password" name="va_psw" value="" />
-              <button type="submit" class="btnnew"><small>Активировать</small></button>
+              <button type="submit" class="btnnew"><small>РђРєС‚РёРІРёСЂРѕРІР°С‚СЊ</small></button>
               <br />
-              Ссылка на ваучер:
+              РЎСЃС‹Р»РєР° РЅР° РІР°СѓС‡РµСЂ:
               <input style="width:280px" type="text" name="va_url" value="" />
               <br />
             </form>
-            <small><b>Правила размещения ваучера:</b> <br />
-              - Ваучер должен быть размещен в социальных сетях, либо других сайтах с подробной информацией по его использованию <br />
-              - Он должен находиться на указанном адресе не менее суток <br />
-              - Награду за ваучер возможно получить в течении 24 ч. (Защита от &quot;накрутки&quot;) <br />
-              - Для создания собственного ваучера перейдите по ссылке: <a href="#">В разработке</a> </small> <br />
+            <small><b>РџСЂР°РІРёР»Р° СЂР°Р·РјРµС‰РµРЅРёСЏ РІР°СѓС‡РµСЂР°:</b> <br />
+              - Р’Р°СѓС‡РµСЂ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°Р·РјРµС‰РµРЅ РІ СЃРѕС†РёР°Р»СЊРЅС‹С… СЃРµС‚СЏС…, Р»РёР±Рѕ РґСЂСѓРіРёС… СЃР°Р№С‚Р°С… СЃ РїРѕРґСЂРѕР±РЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРµР№ РїРѕ РµРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ <br />
+              - РћРЅ РґРѕР»Р¶РµРЅ РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅР° СѓРєР°Р·Р°РЅРЅРѕРј Р°РґСЂРµСЃРµ РЅРµ РјРµРЅРµРµ СЃСѓС‚РѕРє <br />
+              - РќР°РіСЂР°РґСѓ Р·Р° РІР°СѓС‡РµСЂ РІРѕР·РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ РІ С‚РµС‡РµРЅРёРё 24 С‡. (Р—Р°С‰РёС‚Р° РѕС‚ &quot;РЅР°РєСЂСѓС‚РєРё&quot;) <br />
+              - Р”Р»СЏ СЃРѕР·РґР°РЅРёСЏ СЃРѕР±СЃС‚РІРµРЅРЅРѕРіРѕ РІР°СѓС‡РµСЂР° РїРµСЂРµР№РґРёС‚Рµ РїРѕ СЃСЃС‹Р»РєРµ: <a href="#">Р’ СЂР°Р·СЂР°Р±РѕС‚РєРµ</a> </small> <br />
             <br />
             <? } ?>
             <?
@@ -152,72 +152,72 @@ if(isset($_GET['nastanew'])) {
 					}
 					
 					if($html == true) {
-						echo '<div><b><font color=red>Спасибо что проголосовали за наш проект! Свитки добавлены к вам в инвентарь.</font></b></div>';
+						echo '<div><b><font color=red>РЎРїР°СЃРёР±Рѕ С‡С‚Рѕ РїСЂРѕРіРѕР»РѕСЃРѕРІР°Р»Рё Р·Р° РЅР°С€ РїСЂРѕРµРєС‚! РЎРІРёС‚РєРё РґРѕР±Р°РІР»РµРЅС‹ Рє РІР°Рј РІ РёРЅРІРµРЅС‚Р°СЂСЊ.</font></b></div>';
 						mysql_query('INSERT INTO `an_data` (`uid`,`time`,`var`) VALUES (
 							"'.$u->info['id'].'","'.time().'","rpgtop"
 						)');
 						$rpgtop['id'] = mysql_insert_id();
-						// Звездное сияние (+10) и ЖЖ6
+						// Р—РІРµР·РґРЅРѕРµ СЃРёСЏРЅРёРµ (+10) Рё Р–Р–6
 						$u->addItem(1463,$u->info['id'],'|nosale=1|notransfer=1|sudba=1|noremont=1');
 						$u->addItem(3101,$u->info['id'],'|nosale=1|notransfer=1|sudba=1|noremont=1');
 						//
 					}else{
-						echo '<div><b><font color=red>Ваш отзыв не найден в положительных.</font></b></div>';
+						echo '<div><b><font color=red>Р’Р°С€ РѕС‚Р·С‹РІ РЅРµ РЅР°Р№РґРµРЅ РІ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹С….</font></b></div>';
 					}					
 				}
 			}
 			if(!isset($rpgtop['id'])) {
 			?>
-           <!-- <u><font color="#003388"><b>Награда</b> за положительный отзыв на сайте <a href="http://rpgtop.su/comm/24296/1.htm" target="_blank">rpgtop.su</a>:</font></u><br />
-            1. Перейдите по ссылке <a href="http://rpgtop.su/comm/24296/1.htm" target="_blank">http://rpgtop.su/comm/24296/1.htm</a><br>
-            2. Оставьте положительный отзыв и в конце допишите текст в ковычках: " <b> *ID<?=$u->info['id']?>* </b> " (вместе с звездочками)<br>
-            3. Нажмите на кнопку "Проверить мой отзыв"<br>
-            4. При успешном подтверждении вы получите <a href="http://xcombats.com/item/1463" target="_blank"><img src="http://img.xcombats.com/i/items/spell_starshine.gif" height="20"> Звездное Сияние</a> и <a href="http://xcombats.com/item/3101" target="_blank"><img src="http://img.xcombats.com/i/items/spell_powerHPup6.gif" height="20"> Жажда Жизни +6</a><br>
-            <input onclick="location.href='http://xcombats.com/main.php?referals&testtoprpg';" type="button" class="btnnew" value="Проверить мой отзыв"><br><br>-->
+           <!-- <u><font color="#003388"><b>РќР°РіСЂР°РґР°</b> Р·Р° РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Р№ РѕС‚Р·С‹РІ РЅР° СЃР°Р№С‚Рµ <a href="http://rpgtop.su/comm/24296/1.htm" target="_blank">rpgtop.su</a>:</font></u><br />
+            1. РџРµСЂРµР№РґРёС‚Рµ РїРѕ СЃСЃС‹Р»РєРµ <a href="http://rpgtop.su/comm/24296/1.htm" target="_blank">http://rpgtop.su/comm/24296/1.htm</a><br>
+            2. РћСЃС‚Р°РІСЊС‚Рµ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Р№ РѕС‚Р·С‹РІ Рё РІ РєРѕРЅС†Рµ РґРѕРїРёС€РёС‚Рµ С‚РµРєСЃС‚ РІ РєРѕРІС‹С‡РєР°С…: " <b> *ID<?=$u->info['id']?>* </b> " (РІРјРµСЃС‚Рµ СЃ Р·РІРµР·РґРѕС‡РєР°РјРё)<br>
+            3. РќР°Р¶РјРёС‚Рµ РЅР° РєРЅРѕРїРєСѓ "РџСЂРѕРІРµСЂРёС‚СЊ РјРѕР№ РѕС‚Р·С‹РІ"<br>
+            4. РџСЂРё СѓСЃРїРµС€РЅРѕРј РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРё РІС‹ РїРѕР»СѓС‡РёС‚Рµ <a href="http://xcombats.com/item/1463" target="_blank"><img src="http://img.xcombats.com/i/items/spell_starshine.gif" height="20"> Р—РІРµР·РґРЅРѕРµ РЎРёСЏРЅРёРµ</a> Рё <a href="http://xcombats.com/item/3101" target="_blank"><img src="http://img.xcombats.com/i/items/spell_powerHPup6.gif" height="20"> Р–Р°Р¶РґР° Р–РёР·РЅРё +6</a><br>
+            <input onclick="location.href='http://xcombats.com/main.php?referals&testtoprpg';" type="button" class="btnnew" value="РџСЂРѕРІРµСЂРёС‚СЊ РјРѕР№ РѕС‚Р·С‹РІ"><br><br>-->
             <?
 			}
 			?>
-            <u><font color="#003388"><b>Кредиты</b> можно получить:</font></u> <br />
-            - набирая опыт в боях и поднимаясь по апам и уровням в соответствии с <a href="http://xcombats.com/exp.php" target="_blank">Таблицей Опыта</a> (доступно на любом уровне)<br />
-            -  в Пещерах: продав ресурсы в Магазин<br />
-            - с помощью <b>Реферальной системы</b>, которая описана ниже (доступно на любом уровне)<br />
-            - лечением и другими магическими услугами  (доступно с 4 уровня)<br />
-            - торговлей (доступно с 4 уровня)<br />
-            - в Башне Смерти: обналичив у Архивариуса найденный в башне чек (доступно с 5 уровня)<br />
+            <u><font color="#003388"><b>РљСЂРµРґРёС‚С‹</b> РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ:</font></u> <br />
+            - РЅР°Р±РёСЂР°СЏ РѕРїС‹С‚ РІ Р±РѕСЏС… Рё РїРѕРґРЅРёРјР°СЏСЃСЊ РїРѕ Р°РїР°Рј Рё СѓСЂРѕРІРЅСЏРј РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ <a href="http://xcombats.com/exp.php" target="_blank">РўР°Р±Р»РёС†РµР№ РћРїС‹С‚Р°</a> (РґРѕСЃС‚СѓРїРЅРѕ РЅР° Р»СЋР±РѕРј СѓСЂРѕРІРЅРµ)<br />
+            -  РІ РџРµС‰РµСЂР°С…: РїСЂРѕРґР°РІ СЂРµСЃСѓСЂСЃС‹ РІ РњР°РіР°Р·РёРЅ<br />
+            - СЃ РїРѕРјРѕС‰СЊСЋ <b>Р РµС„РµСЂР°Р»СЊРЅРѕР№ СЃРёСЃС‚РµРјС‹</b>, РєРѕС‚РѕСЂР°СЏ РѕРїРёСЃР°РЅР° РЅРёР¶Рµ (РґРѕСЃС‚СѓРїРЅРѕ РЅР° Р»СЋР±РѕРј СѓСЂРѕРІРЅРµ)<br />
+            - Р»РµС‡РµРЅРёРµРј Рё РґСЂСѓРіРёРјРё РјР°РіРёС‡РµСЃРєРёРјРё СѓСЃР»СѓРіР°РјРё  (РґРѕСЃС‚СѓРїРЅРѕ СЃ 4 СѓСЂРѕРІРЅСЏ)<br />
+            - С‚РѕСЂРіРѕРІР»РµР№ (РґРѕСЃС‚СѓРїРЅРѕ СЃ 4 СѓСЂРѕРІРЅСЏ)<br />
+            - РІ Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё: РѕР±РЅР°Р»РёС‡РёРІ Сѓ РђСЂС…РёРІР°СЂРёСѓСЃР° РЅР°Р№РґРµРЅРЅС‹Р№ РІ Р±Р°С€РЅРµ С‡РµРє (РґРѕСЃС‚СѓРїРЅРѕ СЃ 5 СѓСЂРѕРІРЅСЏ)<br />
             <br />
             <br />
-            <u><font color="#003388"><b>Еврокредиты</b> можно получить:</font></u><br />
-            - с помощью <b>Реферальной системы</b>, которая описана ниже (доступно на любом уровне)<br />
-            - купив еврокредиты у официальных дилеров БК или через систему автооплаты<br />
+            <u><font color="#003388"><b>Р•РІСЂРѕРєСЂРµРґРёС‚С‹</b> РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ:</font></u><br />
+            - СЃ РїРѕРјРѕС‰СЊСЋ <b>Р РµС„РµСЂР°Р»СЊРЅРѕР№ СЃРёСЃС‚РµРјС‹</b>, РєРѕС‚РѕСЂР°СЏ РѕРїРёСЃР°РЅР° РЅРёР¶Рµ (РґРѕСЃС‚СѓРїРЅРѕ РЅР° Р»СЋР±РѕРј СѓСЂРѕРІРЅРµ)<br />
+            - РєСѓРїРёРІ РµРІСЂРѕРєСЂРµРґРёС‚С‹ Сѓ РѕС„РёС†РёР°Р»СЊРЅС‹С… РґРёР»РµСЂРѕРІ Р‘Рљ РёР»Рё С‡РµСЂРµР· СЃРёСЃС‚РµРјСѓ Р°РІС‚РѕРѕРїР»Р°С‚С‹<br />
             <br />
             <br />
-            <u><font color="#003388"><b>Реальные деньги</b> можно получить:</font></u><br />
-            - с помощью <b>Партнерской программы БК</b>.<br />
+            <u><font color="#003388"><b>Р РµР°Р»СЊРЅС‹Рµ РґРµРЅСЊРіРё</b> РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ:</font></u><br />
+            - СЃ РїРѕРјРѕС‰СЊСЋ <b>РџР°СЂС‚РЅРµСЂСЃРєРѕР№ РїСЂРѕРіСЂР°РјРјС‹ Р‘Рљ</b>.<br />
             <br />
             <br />
-            <b>Реферальная система</b> - это возможность Вашего <b>дополнительного заработка</b> в игре. При открытии счета в банке, Вы автоматически получаете личную <b>реферальную ссылку</b>, которую можете раздать своим друзьям и знакомым.<br />
+            <b>Р РµС„РµСЂР°Р»СЊРЅР°СЏ СЃРёСЃС‚РµРјР°</b> - СЌС‚Рѕ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ Р’Р°С€РµРіРѕ <b>РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРіРѕ Р·Р°СЂР°Р±РѕС‚РєР°</b> РІ РёРіСЂРµ. РџСЂРё РѕС‚РєСЂС‹С‚РёРё СЃС‡РµС‚Р° РІ Р±Р°РЅРєРµ, Р’С‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїРѕР»СѓС‡Р°РµС‚Рµ Р»РёС‡РЅСѓСЋ <b>СЂРµС„РµСЂР°Р»СЊРЅСѓСЋ СЃСЃС‹Р»РєСѓ</b>, РєРѕС‚РѕСЂСѓСЋ РјРѕР¶РµС‚Рµ СЂР°Р·РґР°С‚СЊ СЃРІРѕРёРј РґСЂСѓР·СЊСЏРј Рё Р·РЅР°РєРѕРјС‹Рј.<br />
             <br />
-            <b>Каждый персонаж</b>, зарегистрировавшийся в БК по Вашей реферальной ссылке, по достижению им <b>1го</b> уровня начнет приносить Вам <b>дополнительный заработок</b>.</td>
+            <b>РљР°Р¶РґС‹Р№ РїРµСЂСЃРѕРЅР°Р¶</b>, Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РІС€РёР№СЃСЏ РІ Р‘Рљ РїРѕ Р’Р°С€РµР№ СЂРµС„РµСЂР°Р»СЊРЅРѕР№ СЃСЃС‹Р»РєРµ, РїРѕ РґРѕСЃС‚РёР¶РµРЅРёСЋ РёРј <b>1РіРѕ</b> СѓСЂРѕРІРЅСЏ РЅР°С‡РЅРµС‚ РїСЂРёРЅРѕСЃРёС‚СЊ Р’Р°Рј <b>РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ Р·Р°СЂР°Р±РѕС‚РѕРє</b>.</td>
         </tr>
         <tr>
           <td><p>&nbsp;</p>
             <ul>
-              В реферальной системе отображаются персонажи прошедшие регистрацию
-              Выплаты производятся по банковскому счету указаному в настройках системы
+              Р’ СЂРµС„РµСЂР°Р»СЊРЅРѕР№ СЃРёСЃС‚РµРјРµ РѕС‚РѕР±СЂР°Р¶Р°СЋС‚СЃСЏ РїРµСЂСЃРѕРЅР°Р¶Рё РїСЂРѕС€РµРґС€РёРµ СЂРµРіРёСЃС‚СЂР°С†РёСЋ
+              Р’С‹РїР»Р°С‚С‹ РїСЂРѕРёР·РІРѕРґСЏС‚СЃСЏ РїРѕ Р±Р°РЅРєРѕРІСЃРєРѕРјСѓ СЃС‡РµС‚Сѓ СѓРєР°Р·Р°РЅРѕРјСѓ РІ РЅР°СЃС‚СЂРѕР№РєР°С… СЃРёСЃС‚РµРјС‹
             </ul></td>
         </tr>
     </table></td>
     <td style="width: 5%; vertical-align: top; ">&nbsp;</td>
     <td style="width: 30%; vertical-align: top; "><table width="100%" cellpadding="2" cellspacing="0">
       <tr>
-        <td style="width: 25%; vertical-align: top; text-align: right; "><input class="btnnew" type='button' value='Обновить' style='width: 75px' onclick='location=&quot;main.php?referals&quot;' />
+        <td style="width: 25%; vertical-align: top; text-align: right; "><input class="btnnew" type='button' value='РћР±РЅРѕРІРёС‚СЊ' style='width: 75px' onclick='location=&quot;main.php?referals&quot;' />
           &nbsp;
-          <input type="button" value="Вернуться" style='width: 75px' class="btnnew" onclick='location=&quot;main.php&quot;' /></td>
+          <input type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" style='width: 75px' class="btnnew" onclick='location=&quot;main.php&quot;' /></td>
       </tr>
       <tr>
         <td align="center" valign="middle"><br />
 		  <? if( $u->info['host_reg'] > 0 ) {
-       			echo 'Ваш наставник: '.$u->microLogin($u->info['host_reg'],1).'<hr />';/*
+       			echo 'Р’Р°С€ РЅР°СЃС‚Р°РІРЅРёРє: '.$u->microLogin($u->info['host_reg'],1).'<hr />';/*
 				$nas = mysql_fetch_array(mysql_query('SELECT `id`,`banned`,`room`,`login`,`align`,`level`,`city`,`room`,`online` FROM `users` WHERE `id` = "'.mysql_real_escape_string($u->info['host_reg']).'" LIMIT 1'));
 		   		if(isset($nas['id'])) {
 					$itm0 = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = 4004 AND `delete` = 0 AND `inShop` = 0 AND `inTransfer` = 0 LIMIT 1'));
@@ -227,11 +227,11 @@ if(isset($_GET['nastanew'])) {
 					if(isset($_GET['read_pr'])) {
 						$itm0--;
 					}
-					echo 'Вы можете изучить приемы наставника:<br><small>Осталось <b>'.$itm0.'</b> <u>Учебников воспитанника</u>.</small><br>';
+					echo 'Р’С‹ РјРѕР¶РµС‚Рµ РёР·СѓС‡РёС‚СЊ РїСЂРёРµРјС‹ РЅР°СЃС‚Р°РІРЅРёРєР°:<br><small>РћСЃС‚Р°Р»РѕСЃСЊ <b>'.$itm0.'</b> <u>РЈС‡РµР±РЅРёРєРѕРІ РІРѕСЃРїРёС‚Р°РЅРЅРёРєР°</u>.</small><br>';
 					if($nas['banned'] > 0 || $nas['align'] == 2) {
-						echo '<font color=red><b>Ваш наставник в хаосе или заблокирован.</b></font>';
+						echo '<font color=red><b>Р’Р°С€ РЅР°СЃС‚Р°РІРЅРёРє РІ С…Р°РѕСЃРµ РёР»Рё Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ.</b></font>';
 					}elseif($nas['room'] != $u->info['room'] && $nas['online'] > time()-520 ) {
-						echo '<font color=red><b>Вы должны находиться с наставником в одной комнате</b></font>';
+						echo '<font color=red><b>Р’С‹ РґРѕР»Р¶РЅС‹ РЅР°С…РѕРґРёС‚СЊСЃСЏ СЃ РЅР°СЃС‚Р°РІРЅРёРєРѕРј РІ РѕРґРЅРѕР№ РєРѕРјРЅР°С‚Рµ</b></font>';
 					}else{
 						$priz = '';
 						$sp = mysql_query('SELECT * FROM `actions` WHERE `uid` = "'.$nas['id'].'" AND `vars` LIKE "%read%" AND `vals` > 1042 ORDER BY `vals` ASC');
@@ -241,8 +241,8 @@ if(isset($_GET['nastanew'])) {
 								$prm = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$pl['vals'].'" LIMIT 1'));
 								if(isset($prm['id'])) {
 									if(isset($_GET['read_pr']) && $_GET['read_pr'] == $prm['id']) {
-										mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','0','','".$u->info['login']."','Вы успешно изучили прием <b>".$prm['name']."</b> при помощи Учебника воспитанника. ','".time()."','6','0')");
-										mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','0','','".$nas['login']."',' Ваш воспитанник &quot;".$u->info['login']."&quot; изучил прием <b>".$prm['name']."</b> при помощи Учебника воспитанника. <br><b>Вы получили Талант Наставника x3</b>','-1','6','0')");
+										mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','0','','".$u->info['login']."','Р’С‹ СѓСЃРїРµС€РЅРѕ РёР·СѓС‡РёР»Рё РїСЂРёРµРј <b>".$prm['name']."</b> РїСЂРё РїРѕРјРѕС‰Рё РЈС‡РµР±РЅРёРєР° РІРѕСЃРїРёС‚Р°РЅРЅРёРєР°. ','".time()."','6','0')");
+										mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','capitalcity','0','','".$nas['login']."',' Р’Р°С€ РІРѕСЃРїРёС‚Р°РЅРЅРёРє &quot;".$u->info['login']."&quot; РёР·СѓС‡РёР» РїСЂРёРµРј <b>".$prm['name']."</b> РїСЂРё РїРѕРјРѕС‰Рё РЈС‡РµР±РЅРёРєР° РІРѕСЃРїРёС‚Р°РЅРЅРёРєР°. <br><b>Р’С‹ РїРѕР»СѓС‡РёР»Рё РўР°Р»Р°РЅС‚ РќР°СЃС‚Р°РІРЅРёРєР° x3</b>','-1','6','0')");
 										$u->addItem(4005,$nas['id']);
 										$u->addItem(4005,$nas['id']);
 										$u->addItem(4005,$nas['id']);
@@ -251,15 +251,15 @@ if(isset($_GET['nastanew'])) {
 											"'.$prm['id'].'",""
 										)');
 										mysql_query('DELETE FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = 4004 AND `delete` = 0 AND `inShop` = 0 AND `inTransfer` = 0 LIMIT 1');
-										echo '<font color=red><b>Прием &quot;'.$prm['name'].'&quot; был успешно изучен!</b></font><br>';
+										echo '<font color=red><b>РџСЂРёРµРј &quot;'.$prm['name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РёР·СѓС‡РµРЅ!</b></font><br>';
 									}else{
-										$priz .= '<a href="?referals&read_pr='.$prm['id'].'"><img width="40" height="25" title="Изучить &quot;'.$prm['name'].'&quot;" src="http://img.xcombats.com/i/eff/'.$prm['img'].'"></a> ';
+										$priz .= '<a href="?referals&read_pr='.$prm['id'].'"><img width="40" height="25" title="РР·СѓС‡РёС‚СЊ &quot;'.$prm['name'].'&quot;" src="http://img.xcombats.com/i/eff/'.$prm['img'].'"></a> ';
 									}
 								}
 							}
 						}
 						if($priz == '') {
-							echo '<font color=red><b>У наставника нет изученных приемов которые Вы могли бы получить</b></font>';
+							echo '<font color=red><b>РЈ РЅР°СЃС‚Р°РІРЅРёРєР° РЅРµС‚ РёР·СѓС‡РµРЅРЅС‹С… РїСЂРёРµРјРѕРІ РєРѕС‚РѕСЂС‹Рµ Р’С‹ РјРѕРіР»Рё Р±С‹ РїРѕР»СѓС‡РёС‚СЊ</b></font>';
 						}else{
 							echo $priz;
 						}
@@ -270,39 +270,39 @@ if(isset($_GET['nastanew'])) {
 	   ?>
           <div style="display:inline-block;width:300px;" align="left">
             <center>
-              <b>Заработок на рефералах</b>
+              <b>Р—Р°СЂР°Р±РѕС‚РѕРє РЅР° СЂРµС„РµСЂР°Р»Р°С…</b>
               </center><br />
-            <? $bsees = '<option value="0">Выберите счет</option>';
+            <? $bsees = '<option value="0">Р’С‹Р±РµСЂРёС‚Рµ СЃС‡РµС‚</option>';
 					$sp = mysql_query('SELECT * FROM `bank` WHERE `uid` = "'.$u->info['id'].'" AND `block` = "0" LIMIT 1');
 					while($pl = mysql_fetch_array($sp))
 					{
 						if($rfs['data'][0]==$pl['id'])
 						{
-							$bsees .= '<option selected="selected" value="'.$pl['id'].'">№ '.$pl['id'].'</option>';
+							$bsees .= '<option selected="selected" value="'.$pl['id'].'">в„– '.$pl['id'].'</option>';
 						}else{
-							$bsees .= '<option value="'.$pl['id'].'">№ '.$pl['id'].'</option>';
+							$bsees .= '<option value="'.$pl['id'].'">в„– '.$pl['id'].'</option>';
 						}
 					}
 					if($bsees != '') {
 			?><center><form method="post" action="main.php?referals">
-              Счет для екр.:
+              РЎС‡РµС‚ РґР»СЏ РµРєСЂ.:
               <select name="r_bank" id="r_bank">
                 <? 
 					echo $bsees;
 				?>
                 </select>
-              <input type="submit" name="button" class="btnnew" id="button" value="сохранить" /></form></center>
+              <input type="submit" name="button" class="btnnew" id="button" value="СЃРѕС…СЂР°РЅРёС‚СЊ" /></form></center>
             <? }else{
-				echo '<b style="color:red">Для начала откройте счет в банке на страшилкиной улице.</b>';
+				echo '<b style="color:red">Р”Р»СЏ РЅР°С‡Р°Р»Р° РѕС‚РєСЂРѕР№С‚Рµ СЃС‡РµС‚ РІ Р±Р°РЅРєРµ РЅР° СЃС‚СЂР°С€РёР»РєРёРЅРѕР№ СѓР»РёС†Рµ.</b>';
 			}?><br />
             <?
-	   $r = '<b><small>За достижения реферала вы получите</small></b>:<br>';
+	   $r = '<b><small>Р—Р° РґРѕСЃС‚РёР¶РµРЅРёСЏ СЂРµС„РµСЂР°Р»Р° РІС‹ РїРѕР»СѓС‡РёС‚Рµ</small></b>:<br>';
 	   $sp = mysql_query('SELECT * FROM `referal_bous` WHERE `type` = "1"');
 	   while($pl = mysql_fetch_array($sp)) {
 		   if($pl['add_bank'] > 0 || $pl['add_money'] > 0) {
-		   		$r .= '<span style="display:inline-block;width:90px;">'.$pl['level'].' уровень</span> - '; 
+		   		$r .= '<span style="display:inline-block;width:90px;">'.$pl['level'].' СѓСЂРѕРІРµРЅСЊ</span> - '; 
 				if($pl['add_money'] > 0) { 
-					$r .= '<span style="display:inline-block;width:90px;"> '.$pl['add_money'].' кр.</span>';
+					$r .= '<span style="display:inline-block;width:90px;"> '.$pl['add_money'].' РєСЂ.</span>';
 				}
 				if($pl['add_bank'] > 0) {
 					$r .= '<span style="display:inline-block;width:90px;"> '.$pl['add_bank'].' ekr.</span>';
@@ -314,25 +314,25 @@ if(isset($_GET['nastanew'])) {
 	   /*
 	   ?>
        		<br />
-       		<b>Получить награду за beta-тест</b><br />
-            Введите логин и пароль с beta-теста:<br />
+       		<b>РџРѕР»СѓС‡РёС‚СЊ РЅР°РіСЂР°РґСѓ Р·Р° beta-С‚РµСЃС‚</b><br />
+            Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ Рё РїР°СЂРѕР»СЊ СЃ beta-С‚РµСЃС‚Р°:<br />
             <?
 			if(isset($_POST['betalogin'])) {
 				$beta = mysql_fetch_array(mysql_query('SELECT * FROM `beta_testers` WHERE `login` = "'.mysql_real_escape_string($_POST['betalogin']).'" LIMIT 1'));
 				$beta2 = mysql_fetch_array(mysql_query('SELECT * FROM `beta_testers` WHERE `active` = "'.$u->info['id'].'" LIMIT 1'));
 				if(!isset($beta['id'])) {
-					echo '<font color=red><b>Логин beta-тестера не найден</b></font>';
+					echo '<font color=red><b>Р›РѕРіРёРЅ beta-С‚РµСЃС‚РµСЂР° РЅРµ РЅР°Р№РґРµРЅ</b></font>';
 				}elseif(md5($_POST['betapass']) != $beta['pass']) {
-					echo '<font color=red><b>Укажите пароль который был во время beta-теста</b></font>';
+					echo '<font color=red><b>РЈРєР°Р¶РёС‚Рµ РїР°СЂРѕР»СЊ РєРѕС‚РѕСЂС‹Р№ Р±С‹Р» РІРѕ РІСЂРµРјСЏ beta-С‚РµСЃС‚Р°</b></font>';
 				}elseif(isset($beta2['id'])) {
-					echo '<font color=red><b>Вы уже получали вознаграждение!</b></font>';
+					echo '<font color=red><b>Р’С‹ СѓР¶Рµ РїРѕР»СѓС‡Р°Р»Рё РІРѕР·РЅР°РіСЂР°Р¶РґРµРЅРёРµ!</b></font>';
 				}else{
-					echo '<font color=red><b>Вы успешно получили вознаграждение, значок beta-тестера.</b></font>';
-					//значок в инфо
+					echo '<font color=red><b>Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё РІРѕР·РЅР°РіСЂР°Р¶РґРµРЅРёРµ, Р·РЅР°С‡РѕРє beta-С‚РµСЃС‚РµСЂР°.</b></font>';
+					//Р·РЅР°С‡РѕРє РІ РёРЅС„Рѕ
 					mysql_query('INSERT INTO `users_ico` (
 						`uid`,`time`,`text`,`img`,`type`,`x`
 					) VALUES (
-						"'.$u->info['id'].'","'.time().'","<b>beta-тестер</b><br>Благодарность от Администрации проекта.","icn123.gif","1","1"
+						"'.$u->info['id'].'","'.time().'","<b>beta-С‚РµСЃС‚РµСЂ</b><br>Р‘Р»Р°РіРѕРґР°СЂРЅРѕСЃС‚СЊ РѕС‚ РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РїСЂРѕРµРєС‚Р°.","icn123.gif","1","1"
 					)');
 					//
 					mysql_query('UPDATE `beta_testers` SET `active` = "'.$u->info['id'].'" WHERE `id` = "'.$beta['id'].'" LIMIT 1');
@@ -343,14 +343,14 @@ if(isset($_GET['nastanew'])) {
                 <form style="width:144px;" method="post" action="main.php?referals=1">
                     <input style="width:144px;" name="betalogin" value="" type="text" /><br />
                     <input style="width:144px;" name="betapass" value="" type="password" /><br />
-                    <input style="width:144px;" type="submit" class="btnnew" value="Забрать вознаграждение!" />
+                    <input style="width:144px;" type="submit" class="btnnew" value="Р—Р°Р±СЂР°С‚СЊ РІРѕР·РЅР°РіСЂР°Р¶РґРµРЅРёРµ!" />
                 </form>
                 </div><? */ ?>
             </div>			
           </td>
       </tr>
       <tr>
-        <td align="center"><h4>Ваши воспитанники online:</h4></td>
+        <td align="center"><h4>Р’Р°С€Рё РІРѕСЃРїРёС‚Р°РЅРЅРёРєРё online:</h4></td>
       </tr>
       <tr>
         <td><?=$rfs['see']?></td>

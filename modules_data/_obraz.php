@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
@@ -12,10 +12,10 @@ if(!defined('GAME'))
     <tr>
       <td valign="top" align="left"><img src="http://img.xcombats.com/i/1x1.gif" alt="" width="1" height="5" /><br />
       &nbsp;&nbsp; </td>
-      <td align="center"><h3>Выбрать образ персонажа &quot;<? echo $u->info['login']; ?>&quot;</h3></td>
+      <td align="center"><h3>Р’С‹Р±СЂР°С‚СЊ РѕР±СЂР°Р· РїРµСЂСЃРѕРЅР°Р¶Р° &quot;<? echo $u->info['login']; ?>&quot;</h3></td>
       <td valign="top" align="right">&nbsp;
-        <input class="btnnew" type="button" onClick="location.href='/main.php?obraz'" name="edit" value="Обновить" />
-        <input class="btnnew" type="submit" name="edit" value="Вернуться" />
+        <input class="btnnew" type="button" onClick="location.href='/main.php?obraz'" name="edit" value="РћР±РЅРѕРІРёС‚СЊ" />
+        <input class="btnnew" type="submit" name="edit" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" />
         <br />
       </td></tr>
   </form>
@@ -30,7 +30,7 @@ while($pl = mysql_fetch_array($sp)) {
 	$x = 0;
 	
 	if( $pl['level'] > 0 ) {
-		$trd .= "\r".'&bull; Уровень персонажа: '.$pl['level'].'';
+		$trd .= "\r".'&bull; РЈСЂРѕРІРµРЅСЊ РїРµСЂСЃРѕРЅР°Р¶Р°: '.$pl['level'].'';
 	}
 	
 	if( $pl['itm'] > 0 ) {
@@ -55,7 +55,7 @@ while($pl = mysql_fetch_array($sp)) {
 			$j++;
 		}
 		if( $tritm != '' ) {
-			$trd .= "\r".'&bull; Предметы: '.$tritm.'';
+			$trd .= "\r".'&bull; РџСЂРµРґРјРµС‚С‹: '.$tritm.'';
 		}
 	}
 	while($x < count($t))	{
@@ -70,7 +70,7 @@ while($pl = mysql_fetch_array($sp)) {
 	}
 	if( $tr == 0 ) {
 		if( $trd != '' ) {
-			$trd = 'Требуется минимальное:'.$trd;
+			$trd = 'РўСЂРµР±СѓРµС‚СЃСЏ РјРёРЅРёРјР°Р»СЊРЅРѕРµ:'.$trd;
 		}
 		echo '<a href="main.php?inv=1&obr_sel='.$pl['id'].'&rnd='.$code.'"><img title="'.$trd.'" src="http://img.xcombats.com/i/obraz/'.$pl['sex'].'/'.$pl['img'].'" width="120" height="220" /></a> ';
 	}

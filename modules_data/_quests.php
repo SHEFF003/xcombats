@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
@@ -21,11 +21,11 @@ if($u->error!='')
 ?>
 <table width="100%">
   <tr>
-    <td align="center"><h3>Доступные задания, <?=$u->info['city']?></h3></td>
-    <td width="150" align="right"><input type="button" value="обновить" onclick="location='main.php?quests=1';" />      <input type="button" value="Вернуться" onclick="location='main.php';" /></td>
+    <td align="center"><h3>Р”РѕСЃС‚СѓРїРЅС‹Рµ Р·Р°РґР°РЅРёСЏ, <?=$u->info['city']?></h3></td>
+    <td width="150" align="right"><input type="button" value="РѕР±РЅРѕРІРёС‚СЊ" onclick="location='main.php?quests=1';" />      <input type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onclick="location='main.php';" /></td>
   </tr>
   <tr>
-  	<td><a href="main.php?skills=1&rz=6">Активные квесты</a></td>
+  	<td><a href="main.php?skills=1&rz=6">РђРєС‚РёРІРЅС‹Рµ РєРІРµСЃС‚С‹</a></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -39,27 +39,27 @@ if($u->error!='')
 	  {
 		  if($q->testGood($pl)==1)
 		  {
-			  $urq = '<a href="main.php?quests&minfo='.$pl['id'].'">Подробнее</a>';
+			  $urq = '<a href="main.php?quests&minfo='.$pl['id'].'">РџРѕРґСЂРѕР±РЅРµРµ</a>';
 			  if(isset($_GET['minfo']) && $_GET['minfo']==$pl['id'])
 			  {
-				$urq = '<a href="main.php?quests=1">Скрыть</a>';  
+				$urq = '<a href="main.php?quests=1">РЎРєСЂС‹С‚СЊ</a>';  
 			  }
 				$qsee .= '<tr>
 				<td style="border-bottom:1px solid #CCCCCC;" width="300"><div align="left" style="margin-left:11px;">'.$pl['name'].'</div></td>
 				<td width="75" bgcolor="#DADADA" style="border-bottom:1px solid #CCCCCC;"><div align="center"><small>'.$urq.'</small></div></td>
-				<td style="border-bottom:1px solid #CCCCCC;"><small><b>Описание:</b> '.$pl['info'].'</small></td>
+				<td style="border-bottom:1px solid #CCCCCC;"><small><b>РћРїРёСЃР°РЅРёРµ:</b> '.$pl['info'].'</small></td>
 			  </tr>';
 			  unset($urq);
 			  if(isset($_GET['minfo']) && $_GET['minfo']==$pl['id'])
 			  {
 				if($pl['city']!='')
 				{
-					$gc = '<small>Город квеста: <img src="http://img.xcombats.com/i/city_ico/'.$pl['city'].'.gif" width="17" height="15"> '.$u->city_name[$pl['city']].'</small>';
+					$gc = '<small>Р“РѕСЂРѕРґ РєРІРµСЃС‚Р°: <img src="http://img.xcombats.com/i/city_ico/'.$pl['city'].'.gif" width="17" height="15"> '.$u->city_name[$pl['city']].'</small>';
 				}else{
 					$gc = '&nbsp;';
 				}
 				$di = $q->info($pl);
-				$di .= '<a href="main.php?quests&start='.$pl['id'].'">Принять задание</a><br><br>';		
+				$di .= '<a href="main.php?quests&start='.$pl['id'].'">РџСЂРёРЅСЏС‚СЊ Р·Р°РґР°РЅРёРµ</a><br><br>';		
 				$qsee .= '<tr>
 				<td style="border-bottom:1px solid #CCCCCC;" width="300">'.$gc.'</td>
 				<td width="75" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
@@ -74,7 +74,7 @@ if($u->error!='')
 	
 	if($qsee == '')
 	{
-		$qsee = '<tr><td align="center" bgcolor="#EAEAEA">Для вас нет доступных заданий, приходите позже</td></tr>';
+		$qsee = '<tr><td align="center" bgcolor="#EAEAEA">Р”Р»СЏ РІР°СЃ РЅРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… Р·Р°РґР°РЅРёР№, РїСЂРёС…РѕРґРёС‚Рµ РїРѕР·Р¶Рµ</td></tr>';
 	}
 	?>
     <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#E1E1E1">

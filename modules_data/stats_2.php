@@ -10,33 +10,33 @@ if(!defined('GAME'))
   <tr>
     <td>
 <span style="font-size:12px;">
-Сила: <? echo $u->stats['s1']; ?><br />
-Ловкость:&nbsp;<? echo $u->stats['s2']; ?><br />
-Интуиция:&nbsp;<? echo $u->stats['s3']; ?><br />
-Выносливость:&nbsp;<? echo $u->stats['s4']; ?><br />
-<? if($u->info['level'] > 3){ ?>Интеллект:&nbsp;<? echo $u->stats['s5']; ?><br /><? } ?>
-<? if($u->info['level'] > 6){ ?>Мудрость:&nbsp;<? echo $u->stats['s6']; ?><br /><? } ?>
+РЎРёР»Р°: <? echo $u->stats['s1']; ?><br />
+Р›РѕРІРєРѕСЃС‚СЊ:&nbsp;<? echo $u->stats['s2']; ?><br />
+РРЅС‚СѓРёС†РёСЏ:&nbsp;<? echo $u->stats['s3']; ?><br />
+Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ:&nbsp;<? echo $u->stats['s4']; ?><br />
+<? if($u->info['level'] > 3){ ?>РРЅС‚РµР»Р»РµРєС‚:&nbsp;<? echo $u->stats['s5']; ?><br /><? } ?>
+<? if($u->info['level'] > 6){ ?>РњСѓРґСЂРѕСЃС‚СЊ:&nbsp;<? echo $u->stats['s6']; ?><br /><? } ?>
 <?
 if($u->info['ability'] > 0) 
 { 
-echo '<a href="main.php?skills=1&side=1">+ Способности</a><br />'; 
+echo '<a href="main.php?skills=1&side=1">+ РЎРїРѕСЃРѕР±РЅРѕСЃС‚Рё</a><br />'; 
 }
 if($u->info['skills'] > 0 && $u->info['level'] > 0)
 { 
-echo '&bull;&nbsp;<a href="main.php?skills=1&side=1">Обучение</a><br />'; 
+echo '&bull;&nbsp;<a href="main.php?skills=1&side=1">РћР±СѓС‡РµРЅРёРµ</a><br />'; 
 } 
 ?>
 &nbsp;<br />
-Опыт:&nbsp;<b><? echo $u->info['exp']; ?></b> (0)<br />
-Уровень:&nbsp;<? echo $u->info['level']; ?><br />
-Побед:&nbsp;<? echo $u->info['win']; ?><br />
-Поражений:&nbsp;<? echo $u->info['lose']; ?><br />
-Ничьих:&nbsp;<? echo $u->info['nich']; ?><br />
-Деньги:&nbsp;<b><? echo $u->info['money']; ?></b>&nbsp;кр.<br />
+РћРїС‹С‚:&nbsp;<b><? echo $u->info['exp']; ?></b> (0)<br />
+РЈСЂРѕРІРµРЅСЊ:&nbsp;<? echo $u->info['level']; ?><br />
+РџРѕР±РµРґ:&nbsp;<? echo $u->info['win']; ?><br />
+РџРѕСЂР°Р¶РµРЅРёР№:&nbsp;<? echo $u->info['lose']; ?><br />
+РќРёС‡СЊРёС…:&nbsp;<? echo $u->info['nich']; ?><br />
+Р”РµРЅСЊРіРё:&nbsp;<b><? echo $u->info['money']; ?></b>&nbsp;РєСЂ.<br />
 <? /* if($u->info['money3'] > 0) {*/ ?>
-Валюта:&nbsp;<b><? echo $u->info['money3']; ?></b>&nbsp;$<? /*}*/ ?>
+Р’Р°Р»СЋС‚Р°:&nbsp;<b><? echo $u->info['money3']; ?></b>&nbsp;$<? /*}*/ ?>
 <? if($u->rep['rep3'] >= 0) { ?>
-Воинственность:&nbsp;<? echo $u->rep['rep3']; ?><? } ?></span>
+Р’РѕРёРЅСЃС‚РІРµРЅРЅРѕСЃС‚СЊ:&nbsp;<? echo $u->rep['rep3']; ?><? } ?></span>
 </td>
 </tr>
 </table>

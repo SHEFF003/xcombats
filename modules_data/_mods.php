@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
@@ -18,25 +18,25 @@ function w(login,id,align,klan,level,online, city, battle){
 var s='';
 if (online!="") {
 if (city!="") {
-s+='<IMG style="filter:gray()" SRC=http://img.xcombats.com/i/lock.gif WIDTH=20 HEIGHT=15 ALT="В другом городе">';
+s+='<IMG style="filter:gray()" SRC=http://img.xcombats.com/i/lock.gif WIDTH=20 HEIGHT=15 ALT="Р’ РґСЂСѓРіРѕРј РіРѕСЂРѕРґРµ">';
 } else {
-s+='<a href="javascript:void(0)" onclick="top.chat.addto(\''+login+'\',\'private\')"><IMG SRC=http://img.xcombats.com/i/lock.gif WIDTH=20 HEIGHT=15 ALT="Приватно"'+(battle!=0?' style="filter: invert()"':'')+'></a>';
+s+='<a href="javascript:void(0)" onclick="top.chat.addto(\''+login+'\',\'private\')"><IMG SRC=http://img.xcombats.com/i/lock.gif WIDTH=20 HEIGHT=15 ALT="РџСЂРёРІР°С‚РЅРѕ"'+(battle!=0?' style="filter: invert()"':'')+'></a>';
 }
 if (city!="") {
 s+='<img src="http://forum.img.xcombats.com/city/'+city+'.gif" width=17 height=15>';
 }
 s+=' <IMG SRC=http://img.xcombats.com/i/align/align'+align+'.gif WIDTH=12 HEIGHT=15>';
 if (klan!='') {s+='<A HREF="/encicl/klan/'+klan+'.html" target=_blank><IMG SRC="http://img.xcombats.com/i/clan/'+klan+'.gif" WIDTH=24 HEIGHT=15 ALT=""></A>'}
-s+='<a href="javascript:void(0)" onclick="top.chat.addto(\''+login+'\',\'to\')">'+login+'</a>['+level+']<a href=/info/'+id+' target=_blank><IMG SRC=http://img.xcombats.com/i/inf.gif WIDTH=12 HEIGHT=11 ALT="Информация о персонаже"></a>';
+s+='<a href="javascript:void(0)" onclick="top.chat.addto(\''+login+'\',\'to\')">'+login+'</a>['+level+']<a href=/info/'+id+' target=_blank><IMG SRC=http://img.xcombats.com/i/inf.gif WIDTH=12 HEIGHT=11 ALT="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ"></a>';
 s+='</td><td bgcolor=efeded nowrap>';
 if (city!="") {
-s+="нет в этом городе";
+s+="РЅРµС‚ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ";
 } else {
 s+=online;
 }
 }
 else {
-s+='<IMG SRC="http://img.xcombats.com/i/offline.gif" WIDTH=20 HEIGHT=15 BORDER=0 ALT="Нет в клубе">';
+s+='<IMG SRC="http://img.xcombats.com/i/offline.gif" WIDTH=20 HEIGHT=15 BORDER=0 ALT="РќРµС‚ РІ РєР»СѓР±Рµ">';
 if (city!="") {
 s+='<img src="http://forum.img.xcombats.com/city/'+city+'.gif" width=17 height=15>';
 }
@@ -47,14 +47,14 @@ if (level) {
 if (nlevel==0) {
 nlevel=1; //s="<BR>"+s;
 }
-s+='<FONT color=gray><b>'+login+'</b>['+level+']<a href=/info/'+id+' target=_blank><IMG SRC=http://img.xcombats.com/i/inf.gif WIDTH=12 HEIGHT=11 ALT="Информация о персонаже"></a></td><td bgcolor=efeded nowrap>Нет в клубе';
+s+='<FONT color=gray><b>'+login+'</b>['+level+']<a href=/info/'+id+' target=_blank><IMG SRC=http://img.xcombats.com/i/inf.gif WIDTH=12 HEIGHT=11 ALT="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ"></a></td><td bgcolor=efeded nowrap>РќРµС‚ РІ РєР»СѓР±Рµ';
 } else {
 if (nlevel==1) {
 nlevel=2; //s="<BR>"+s;
 }
 mlogin = login;
 for(var i=0;i<from.length;++i) while(mlogin.indexOf(from[i])>=0)  mlogin= mlogin.replace(from[i],to[i]);
-s+='<FONT color=gray><i>'+login+'</i> <a href=/info/'+mlogin+' target=_blank><IMG SRC=http://img.xcombats.com/i/inf_dis.gif WIDTH=12 HEIGHT=11 ALT="Информация о персонаже"></a></td><td bgcolor=efeded nowrap>нет в этом городе';
+s+='<FONT color=gray><i>'+login+'</i> <a href=/info/'+mlogin+' target=_blank><IMG SRC=http://img.xcombats.com/i/inf_dis.gif WIDTH=12 HEIGHT=11 ALT="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРµСЂСЃРѕРЅР°Р¶Рµ"></a></td><td bgcolor=efeded nowrap>РЅРµС‚ РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ';
 }
 s+='</FONT>';
 }
@@ -66,13 +66,13 @@ document.write(s+'<BR>');
 <table width=100%>
 <tr>
 	<td align=right>
-		<INPUT TYPE="button" onClick="location.href='main.php';" value="Вернуться" title="Вернуться">
+		<INPUT TYPE="button" onClick="location.href='main.php';" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" title="Р’РµСЂРЅСѓС‚СЊСЃСЏ">
 	</td>
 </tr>
 <tr>
 	<td valign=top>
 		<center>
-			<h3><A HREF="javascript:void(0)" onClick="top.chat.addto('paladins','private')"><img src="http://img.xcombats.com/i/lock.gif" width=20 height=15></A> Орден Света</h3>		
+			<h3><A HREF="javascript:void(0)" onClick="top.chat.addto('paladins','private')"><img src="http://img.xcombats.com/i/lock.gif" width=20 height=15></A> РћСЂРґРµРЅ РЎРІРµС‚Р°</h3>		
 		<table>
 <?					$data=mysql_query("SELECT `id`,`login`,`level`,`align`,`room`,`online`,`city`, `battle`,
 					(select `name` from `room` WHERE `id` = users.`room`) as `room`

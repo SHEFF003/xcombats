@@ -1,8 +1,8 @@
 <?php
 /*
 
-	Ядро для обработки данных.
-	Обработка поединков, обработка заявок, обработка ботов, обработка пещер, обработка турниров, обработка временных генераций
+	РЇРґСЂРѕ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С….
+	РћР±СЂР°Р±РѕС‚РєР° РїРѕРµРґРёРЅРєРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° Р·Р°СЏРІРѕРє, РѕР±СЂР°Р±РѕС‚РєР° Р±РѕС‚РѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РїРµС‰РµСЂ, РѕР±СЂР°Р±РѕС‚РєР° С‚СѓСЂРЅРёСЂРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РІСЂРµРјРµРЅРЅС‹С… РіРµРЅРµСЂР°С†РёР№
 
 */
 
@@ -23,26 +23,26 @@ if( $u->info['admin'] > 0 ) {
 				mysql_query('UPDATE `dungeon_dlg` SET `text` = "'.mysql_real_escape_string($_POST['newdata']).'" WHERE `id` = "'.mysql_real_escape_string($itm['id']).'" LIMIT 1');
 				die('<script>window.close();</script>');
 			}elseif(isset($_GET['delete']) && $_GET['delete'] == 'true') {
-				//Удаляем саму страницу диалога
+				//РЈРґР°Р»СЏРµРј СЃР°РјСѓ СЃС‚СЂР°РЅРёС†Сѓ РґРёР°Р»РѕРіР°
 				mysql_query('DELETE FROM `dungeon_dlg` WHERE `id` = "'.mysql_real_escape_string($itm['id']).'" LIMIT 1');
-				//Удаляем ответы страницы диалога
+				//РЈРґР°Р»СЏРµРј РѕС‚РІРµС‚С‹ СЃС‚СЂР°РЅРёС†С‹ РґРёР°Р»РѕРіР°
 				mysql_query('DELETE FROM `dungeon_dlg` WHERE `qid` = "'.mysql_real_escape_string($itm['id']).'"');
 				die('<script>window.close();</script>');
 			}
-			echo '<form method="post" action="?pid='.$itm['id'].'"><b>Номер диалога: '.$itm['id'].'</b><br><textarea name="newdata" rows="20" cols="100">'.$itm['text'].'</textarea><br><input type="submit" value="Сохранить"></form><div><a href="?pid='.((int)$_GET['pid']).'&delete=true">Удалить страницу диалога</a></div>';
+			echo '<form method="post" action="?pid='.$itm['id'].'"><b>РќРѕРјРµСЂ РґРёР°Р»РѕРіР°: '.$itm['id'].'</b><br><textarea name="newdata" rows="20" cols="100">'.$itm['text'].'</textarea><br><input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ"></form><div><a href="?pid='.((int)$_GET['pid']).'&delete=true">РЈРґР°Р»РёС‚СЊ СЃС‚СЂР°РЅРёС†Сѓ РґРёР°Р»РѕРіР°</a></div>';
 		}else{
 			if(isset($_POST['newdata'])) {
 				mysql_query('UPDATE `dungeon_dlg` SET `text` = "'.mysql_real_escape_string($_POST['newdata']).'",`action` = "'.mysql_real_escape_string($_POST['newdata2']).'",`tr` = "'.mysql_real_escape_string($_POST['newdata3']).'",`sort` = "'.mysql_real_escape_string((int)$_POST['newdata4']).'" WHERE `id` = "'.mysql_real_escape_string($itm['id']).'" LIMIT 1');
 				die('<script>window.close();</script>');
 			}elseif(isset($_GET['delete']) && $_GET['delete'] == 'true') {
-				//Удаляем саму страницу диалога
+				//РЈРґР°Р»СЏРµРј СЃР°РјСѓ СЃС‚СЂР°РЅРёС†Сѓ РґРёР°Р»РѕРіР°
 				mysql_query('DELETE FROM `dungeon_dlg` WHERE `id` = "'.mysql_real_escape_string($itm['id']).'" LIMIT 1');
 				die('<script>window.close();</script>');
 			}
-			echo '<form method="post" action="?pid='.$itm['id'].'"><b>Номер варианта ответа: '.$itm['id'].'</b><br><textarea name="newdata" rows="3" cols="100">'.$itm['text'].'</textarea><br>Действия:<textarea name="newdata2" rows="5" cols="100">'.$itm['action'].'</textarea><br>Требует:<textarea name="newdata3" rows="5" cols="100">'.$itm['tr'].'</textarea><br>Приоритет вывода: <input name="newdata4" type="text" value="'.$itm['sort'].'"><br><input type="submit" value="Сохранить"></form><div><a href="?pid='.((int)$_GET['pid']).'&delete=true">Удалить вариант ответа</a></div>';
+			echo '<form method="post" action="?pid='.$itm['id'].'"><b>РќРѕРјРµСЂ РІР°СЂРёР°РЅС‚Р° РѕС‚РІРµС‚Р°: '.$itm['id'].'</b><br><textarea name="newdata" rows="3" cols="100">'.$itm['text'].'</textarea><br>Р”РµР№СЃС‚РІРёСЏ:<textarea name="newdata2" rows="5" cols="100">'.$itm['action'].'</textarea><br>РўСЂРµР±СѓРµС‚:<textarea name="newdata3" rows="5" cols="100">'.$itm['tr'].'</textarea><br>РџСЂРёРѕСЂРёС‚РµС‚ РІС‹РІРѕРґР°: <input name="newdata4" type="text" value="'.$itm['sort'].'"><br><input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ"></form><div><a href="?pid='.((int)$_GET['pid']).'&delete=true">РЈРґР°Р»РёС‚СЊ РІР°СЂРёР°РЅС‚ РѕС‚РІРµС‚Р°</a></div>';
 		}
 	}else{
-		echo 'Диалог не найден.';
+		echo 'Р”РёР°Р»РѕРі РЅРµ РЅР°Р№РґРµРЅ.';
 	}
 }
 	

@@ -3,19 +3,19 @@ header("Content-Type: text/plain; charset=utf-8");
 if(isset($_POST['unique'], $_POST['country'], $_POST['operator'], $_POST['number'], $_POST['phone'], $_POST['message'], $_POST['hash'])) {
 	$number = array("1234", "5678");
 	if(!in_array($_POST['number'], $number)) {
-		exit('Ñîîáùåíèå îòïðàâëåíî íà íåïðàâèëüíûé íîìåð');
+		exit('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾ Ð½Ð° Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€');
 	}
 	//
 	$secret_key = 'kasdnKWK234mSDlk';
 	//
 	$md5 = md5($_POST['unique'].$_POST['country'].$_POST['operator'].$_POST['number'].$_POST['phone'].$_POST['message'].$secret_key);
 	if(strcasecmp($md5, $_POST['hash']) == 0) {
-		exit('Áëàãîäàðèì çà ó÷àñòèå! Âàø êîä: 1234'); 
+		exit('Ð‘Ð»Ð°Ð³Ð¾Ð´Ð°Ñ€Ð¸Ð¼ Ð·Ð° ÑƒÑ‡Ð°ÑÑ‚Ð¸Ðµ! Ð’Ð°Ñˆ ÐºÐ¾Ð´: 1234'); 
 	}else{
-		exit('×òî-òî íå òàê...');
+		exit('Ð§Ñ‚Ð¾-Ñ‚Ð¾ Ð½Ðµ Ñ‚Ð°Ðº...');
 	}
 } else{
-		exit('×òî-òî íå òàê');
+		exit('Ð§Ñ‚Ð¾-Ñ‚Ð¾ Ð½Ðµ Ñ‚Ð°Ðº');
 }
 
 ?>

@@ -20,23 +20,23 @@ if(isset($_POST['notepad'])) {
 <TR>
 <TD valign="top" style="vertical-align: top; ">
 <center>
-<h3>Блокнот персонажа &quot;<?=$u->info['login']?>&quot;</h3><br>
+<h3>Р‘Р»РѕРєРЅРѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° &quot;<?=$u->info['login']?>&quot;</h3><br>
 <form method="post" action="main.php?notepad=1">
 <textarea style="width:80%; font-size:14px; height:380px" name="notepad" id="notepad">
 <?=$notepad['text']?>
 </textarea><br>
-<input class="btn1" type="submit" value="Сохранить изменения">
+<input class="btn1" type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ">
 <br><div id="informtxt"></div>
 <? if($notepad['time'] > 0) { ?>
-<br><span style="color:#999">Дата последнего изменения: <?=date('d.m.Y H:i',$notepad['time'])?></span>
+<br><span style="color:#999">Р”Р°С‚Р° РїРѕСЃР»РµРґРЅРµРіРѕ РёР·РјРµРЅРµРЅРёСЏ: <?=date('d.m.Y H:i',$notepad['time'])?></span>
 <? } ?>
 </form>
 </center>
 </TD>
 <TD width="200" valign="top"><TABLE align="right" cellpadding=2 cellspacing=0>
   <TR>
-  <TD style="vertical-align: top; text-align: right; "><INPUT type='button' value='Обновить' style='width: 75px' onclick='location="main.php?notepad=1"'>
-  &nbsp;<INPUT TYPE=button value="Вернуться" style='width: 75px' onClick="location='main.php';"></TD>
+  <TD style="vertical-align: top; text-align: right; "><INPUT type='button' value='РћР±РЅРѕРІРёС‚СЊ' style='width: 75px' onclick='location="main.php?notepad=1"'>
+  &nbsp;<INPUT TYPE=button value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" style='width: 75px' onClick="location='main.php';"></TD>
   </TR>
 </TABLE></TD>
 </TR>
@@ -48,14 +48,14 @@ $('#notepad').keyup( function(){
 	if($this.val().length >= maxLen) {
 		$this.val($this.val().substr(0, maxLen));			
 	}
-	$('#informtxt').html('(Осталось символов: ' + (maxLen - $this.val().length) + ')');
+	$('#informtxt').html('(РћСЃС‚Р°Р»РѕСЃСЊ СЃРёРјРІРѕР»РѕРІ: ' + (maxLen - $this.val().length) + ')');
 });
 $('#notepad').keydown( function(){
 	var $this = $(this);
 	if($this.val().length >= maxLen) {
 		$this.val($this.val().substr(0, maxLen));			
 	}
-	$('#informtxt').html('(Осталось символов: ' + (maxLen - $this.val().length) + ')');			
+	$('#informtxt').html('(РћСЃС‚Р°Р»РѕСЃСЊ СЃРёРјРІРѕР»РѕРІ: ' + (maxLen - $this.val().length) + ')');			
 });
-$('#informtxt').html('(Осталось символов: ' + (maxLen - $('#notepad').val().length) + ')');
+$('#informtxt').html('(РћСЃС‚Р°Р»РѕСЃСЊ СЃРёРјРІРѕР»РѕРІ: ' + (maxLen - $('#notepad').val().length) + ')');
 </script>

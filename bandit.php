@@ -9,7 +9,7 @@ if(isset($_GET['test'])) {
 	while( $pl = mysql_fetch_array($sp) ) {
 		$test = file_get_contents('http://warbk.ru/1.php?id='.$pl['login'].'');
 		if($test == 1) {
-			echo 'Совпадение: '.$pl['login'].' <a href="http://xcombats.com/inf.php?login='.$pl['login'].'" target="_blank">ссылка1</a> <a href="http://warbk.ru/inf.php?login='.$pl['login'].'" target="_blank">ссылка2</a><hr>';
+			echo 'РЎРѕРІРїР°РґРµРЅРёРµ: '.$pl['login'].' <a href="http://xcombats.com/inf.php?login='.$pl['login'].'" target="_blank">СЃСЃС‹Р»РєР°1</a> <a href="http://warbk.ru/inf.php?login='.$pl['login'].'" target="_blank">СЃСЃС‹Р»РєР°2</a><hr>';
 		}
 	}
 	
@@ -85,7 +85,7 @@ if(isset($_GET['priz'])) {
 	$sp = mysql_query('SELECT * FROM `items_shop` WHERE `sid` = 2 AND `kolvo` > 0');
 	while( $pl = mysql_fetch_array($sp) ) {
 		if( $pl['price_2'] == 0 ) {
-			//смотрим в items_main
+			//СЃРјРѕС‚СЂРёРј РІ items_main
 			$plp = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$pl['item_id'].'" LIMIT 1'));
 			if(isset($plp['id'])) {
 				$pl['price_2'] = $plp['price2'];
@@ -120,14 +120,14 @@ if(isset($_GET['my'])) {
 				);
 				
 				$fx = array(
-					'b' => $_GET['my'], //базовый урон
-					'm' => round( $u->stats['pm'.$t] * 1.15 - $u->stats['antpm'.$t] ), //мощь
-					'z' => round( $u->stats['zm'.$t] ), //защита цели ед.
-					'p' => round( $_GET['podava'] ), //подавление
-					'k' => $fx_vl[(0+$u->info['level'])] //коэффициент ; k=250 для 8ки, k=300 для 9ки и т.д. +20% на уровень
+					'b' => $_GET['my'], //Р±Р°Р·РѕРІС‹Р№ СѓСЂРѕРЅ
+					'm' => round( $u->stats['pm'.$t] * 1.15 - $u->stats['antpm'.$t] ), //РјРѕС‰СЊ
+					'z' => round( $u->stats['zm'.$t] ), //Р·Р°С‰РёС‚Р° С†РµР»Рё РµРґ.
+					'p' => round( $_GET['podava'] ), //РїРѕРґР°РІР»РµРЅРёРµ
+					'k' => $fx_vl[(0+$u->info['level'])] //РєРѕСЌС„С„РёС†РёРµРЅС‚ ; k=250 РґР»СЏ 8РєРё, k=300 РґР»СЏ 9РєРё Рё С‚.Рґ. +20% РЅР° СѓСЂРѕРІРµРЅСЊ
 				);
 				
-				echo 'Защита: '.$fx['z'].'<br>';
+				echo 'Р—Р°С‰РёС‚Р°: '.$fx['z'].'<br>';
 				
 				if( ($fx['z']+250)/10 - $fx['p'] < 0 ) {
 					$fx['p'] = ($fx['z']+250)/10;
@@ -157,34 +157,34 @@ if(isset($_GET['test'])) {
 	ini_set('display_errors','On');
 	
 	function test($id) {
-		$url = "http://cambats.com/info/".$id; // Страничка, на которую посылаем ajax-запросы 
+		$url = "http://cambats.com/info/".$id; // РЎС‚СЂР°РЅРёС‡РєР°, РЅР° РєРѕС‚РѕСЂСѓСЋ РїРѕСЃС‹Р»Р°РµРј ajax-Р·Р°РїСЂРѕСЃС‹ 
 		$ch = curl_init(); 
 		curl_setopt($ch, CURLOPT_URL,$url);
 		
-		curl_setopt ($ch, CURLOPT_VERBOSE, 2); // Отображать детальную информацию о соединении
-		curl_setopt ($ch, CURLOPT_ENCODING, 0); // Шифрование можно включить, если нужно
-		curl_setopt ($ch, CURLOPT_USERAGENT, 'Mozilla/5.0'); //Прописываем User Agent, чтобы приняли за своего
+		curl_setopt ($ch, CURLOPT_VERBOSE, 2); // РћС‚РѕР±СЂР°Р¶Р°С‚СЊ РґРµС‚Р°Р»СЊРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃРѕРµРґРёРЅРµРЅРёРё
+		curl_setopt ($ch, CURLOPT_ENCODING, 0); // РЁРёС„СЂРѕРІР°РЅРёРµ РјРѕР¶РЅРѕ РІРєР»СЋС‡РёС‚СЊ, РµСЃР»Рё РЅСѓР¶РЅРѕ
+		curl_setopt ($ch, CURLOPT_USERAGENT, 'Mozilla/5.0'); //РџСЂРѕРїРёСЃС‹РІР°РµРј User Agent, С‡С‚РѕР±С‹ РїСЂРёРЅСЏР»Рё Р·Р° СЃРІРѕРµРіРѕ
 		
-		curl_setopt ($ch, CURLOPT_COOKIEFILE, "cookie.txt"); // Сюда будем записывать cookies, файл в той же папке, что и сам скрипт
+		curl_setopt ($ch, CURLOPT_COOKIEFILE, "cookie.txt"); // РЎСЋРґР° Р±СѓРґРµРј Р·Р°РїРёСЃС‹РІР°С‚СЊ cookies, С„Р°Р№Р» РІ С‚РѕР№ Р¶Рµ РїР°РїРєРµ, С‡С‚Рѕ Рё СЃР°Рј СЃРєСЂРёРїС‚
 		curl_setopt ($ch, CURLOPT_COOKIEJAR, "cookie.txt");
 		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1); 
 		curl_setopt ($ch, CURLOPT_FAILONERROR, 1);
 		curl_setopt ($ch, CURLOPT_HEADER, 1);
 		curl_setopt ($ch, CURLINFO_HEADER_OUT, 1);
 		curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 30);
-		curl_setopt ($ch, CURLOPT_COOKIE, "login=moongirl;pass=15a6a1dc778c92ef1daa2f3af6eec30a"); //Устанавливаем нужные куки в необходимом формате 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, "post1=1&post2=2"); //Устанавливаем значения, которые мы передаем через POST на сервер в нужном формат
+		curl_setopt ($ch, CURLOPT_COOKIE, "login=moongirl;pass=15a6a1dc778c92ef1daa2f3af6eec30a"); //РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅСѓР¶РЅС‹Рµ РєСѓРєРё РІ РЅРµРѕР±С…РѕРґРёРјРѕРј С„РѕСЂРјР°С‚Рµ 
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "post1=1&post2=2"); //РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РЅР°С‡РµРЅРёСЏ, РєРѕС‚РѕСЂС‹Рµ РјС‹ РїРµСЂРµРґР°РµРј С‡РµСЂРµР· POST РЅР° СЃРµСЂРІРµСЂ РІ РЅСѓР¶РЅРѕРј С„РѕСЂРјР°С‚
 		$result = curl_exec($ch); 
 		
 		$r = $result;
 		
 		$r = explode('E-mail: ',$r);
 		$r = explode('<br />
-							Персонажа пригласили: --<br />',$r[1]);
+							РџРµСЂСЃРѕРЅР°Р¶Р° РїСЂРёРіР»Р°СЃРёР»Рё: --<br />',$r[1]);
 		$r = $r[0];
 		$r = str_replace('a class="__cf_email__"','a id="mail_fuck" class="__cf_email__"',$r);
 		
-		if($r != '' && stristr($r, 'Произошла ошибка: <pre>Указанный персонаж не найден...</pre>') == false) {
+		if($r != '' && stristr($r, 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>РЈРєР°Р·Р°РЅРЅС‹Р№ РїРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ...</pre>') == false) {
 			$result = $r.'<script>var temp = $("body").html(); temp = temp.split("<script"); location.href="/bandit.php?test&id='.round($_GET['id']+1).'&mail="+temp[0];</script>';
 		}else{
 			$result = 'false';
@@ -192,7 +192,7 @@ if(isset($_GET['test'])) {
 				
 		curl_close($ch);
 		
-		return $result; //Если надо - выводим страничку, которую мы получили в ответ
+		return $result; //Р•СЃР»Рё РЅР°РґРѕ - РІС‹РІРѕРґРёРј СЃС‚СЂР°РЅРёС‡РєСѓ, РєРѕС‚РѕСЂСѓСЋ РјС‹ РїРѕР»СѓС‡РёР»Рё РІ РѕС‚РІРµС‚
 	}
 	
 	$id = $_GET['id'];
@@ -214,34 +214,34 @@ if(isset($_GET['test'])) {
 	die();
 	
 	function test($id) {
-		$url = "http://cambats.com/info/".$id; // Страничка, на которую посылаем ajax-запросы 
+		$url = "http://cambats.com/info/".$id; // РЎС‚СЂР°РЅРёС‡РєР°, РЅР° РєРѕС‚РѕСЂСѓСЋ РїРѕСЃС‹Р»Р°РµРј ajax-Р·Р°РїСЂРѕСЃС‹ 
 		$ch = curl_init(); 
 		curl_setopt($ch, CURLOPT_URL,$url);
 		
-		curl_setopt ($ch, CURLOPT_VERBOSE, 2); // Отображать детальную информацию о соединении
-		curl_setopt ($ch, CURLOPT_ENCODING, 0); // Шифрование можно включить, если нужно
-		curl_setopt ($ch, CURLOPT_USERAGENT, 'Mozilla/5.0'); //Прописываем User Agent, чтобы приняли за своего
+		curl_setopt ($ch, CURLOPT_VERBOSE, 2); // РћС‚РѕР±СЂР°Р¶Р°С‚СЊ РґРµС‚Р°Р»СЊРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃРѕРµРґРёРЅРµРЅРёРё
+		curl_setopt ($ch, CURLOPT_ENCODING, 0); // РЁРёС„СЂРѕРІР°РЅРёРµ РјРѕР¶РЅРѕ РІРєР»СЋС‡РёС‚СЊ, РµСЃР»Рё РЅСѓР¶РЅРѕ
+		curl_setopt ($ch, CURLOPT_USERAGENT, 'Mozilla/5.0'); //РџСЂРѕРїРёСЃС‹РІР°РµРј User Agent, С‡С‚РѕР±С‹ РїСЂРёРЅСЏР»Рё Р·Р° СЃРІРѕРµРіРѕ
 		
-		curl_setopt ($ch, CURLOPT_COOKIEFILE, "cookie.txt"); // Сюда будем записывать cookies, файл в той же папке, что и сам скрипт
+		curl_setopt ($ch, CURLOPT_COOKIEFILE, "cookie.txt"); // РЎСЋРґР° Р±СѓРґРµРј Р·Р°РїРёСЃС‹РІР°С‚СЊ cookies, С„Р°Р№Р» РІ С‚РѕР№ Р¶Рµ РїР°РїРєРµ, С‡С‚Рѕ Рё СЃР°Рј СЃРєСЂРёРїС‚
 		curl_setopt ($ch, CURLOPT_COOKIEJAR, "cookie.txt");
 		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1); 
 		curl_setopt ($ch, CURLOPT_FAILONERROR, 1);
 		curl_setopt ($ch, CURLOPT_HEADER, 1);
 		curl_setopt ($ch, CURLINFO_HEADER_OUT, 1);
 		curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 30);
-		curl_setopt ($ch, CURLOPT_COOKIE, "login=moongirl;pass=15a6a1dc778c92ef1daa2f3af6eec30a"); //Устанавливаем нужные куки в необходимом формате 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, "post1=1&post2=2"); //Устанавливаем значения, которые мы передаем через POST на сервер в нужном формат
+		curl_setopt ($ch, CURLOPT_COOKIE, "login=moongirl;pass=15a6a1dc778c92ef1daa2f3af6eec30a"); //РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅСѓР¶РЅС‹Рµ РєСѓРєРё РІ РЅРµРѕР±С…РѕРґРёРјРѕРј С„РѕСЂРјР°С‚Рµ 
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "post1=1&post2=2"); //РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РЅР°С‡РµРЅРёСЏ, РєРѕС‚РѕСЂС‹Рµ РјС‹ РїРµСЂРµРґР°РµРј С‡РµСЂРµР· POST РЅР° СЃРµСЂРІРµСЂ РІ РЅСѓР¶РЅРѕРј С„РѕСЂРјР°С‚
 		$result = curl_exec($ch); 
 		
 		$r = $result;
 		
 		$r = explode('E-mail: ',$r);
 		$r = explode('<br />
-							Персонажа пригласили: --<br />',$r[1]);
+							РџРµСЂСЃРѕРЅР°Р¶Р° РїСЂРёРіР»Р°СЃРёР»Рё: --<br />',$r[1]);
 		$r = $r[0];
 		$r = str_replace('a class="__cf_email__"','a id="mail_fuck" class="__cf_email__"',$r);
 		
-		if($r != '' && stristr($r, 'Произошла ошибка: <pre>Указанный персонаж не найден...</pre>') == false) {
+		if($r != '' && stristr($r, 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>РЈРєР°Р·Р°РЅРЅС‹Р№ РїРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ...</pre>') == false) {
 			$result = $r.'<script>var temp = $("body").html(); temp = temp.split("<script"); location.href="/bandit.php?test2&id='.round($_GET['id']-1).'&mail="+temp[0];</script>';
 		}else{
 			$result = 'false';
@@ -249,7 +249,7 @@ if(isset($_GET['test'])) {
 				
 		curl_close($ch);
 		
-		return $result; //Если надо - выводим страничку, которую мы получили в ответ
+		return $result; //Р•СЃР»Рё РЅР°РґРѕ - РІС‹РІРѕРґРёРј СЃС‚СЂР°РЅРёС‡РєСѓ, РєРѕС‚РѕСЂСѓСЋ РјС‹ РїРѕР»СѓС‡РёР»Рё РІ РѕС‚РІРµС‚
 	}
 	
 	$id = $_GET['id'];
@@ -269,15 +269,15 @@ if(isset($_GET['test'])) {
 }
 
 if(isset($_GET['m'])) {
-	//Ступеньчатая формула (общая)
+	//РЎС‚СѓРїРµРЅСЊС‡Р°С‚Р°СЏ С„РѕСЂРјСѓР»Р° (РѕР±С‰Р°СЏ)
 		function msf_st( $mf ) {
 			$r = 0;
 			
 			/*
-			1-ый: от 0 до 100 - линейное изменение шанса от 0 до 25%
-			2-ой: от 101 до 400 - линейное изменение шанса от 25% до 50%
-			3-ий: от 401 до 1000 - линейное изменение шанса от 50% до 75%
-			4-ый: свыше 1000 - 75% + 0,01 * (разница К и АК - 1000)
+			1-С‹Р№: РѕС‚ 0 РґРѕ 100 - Р»РёРЅРµР№РЅРѕРµ РёР·РјРµРЅРµРЅРёРµ С€Р°РЅСЃР° РѕС‚ 0 РґРѕ 25%
+			2-РѕР№: РѕС‚ 101 РґРѕ 400 - Р»РёРЅРµР№РЅРѕРµ РёР·РјРµРЅРµРЅРёРµ С€Р°РЅСЃР° РѕС‚ 25% РґРѕ 50%
+			3-РёР№: РѕС‚ 401 РґРѕ 1000 - Р»РёРЅРµР№РЅРѕРµ РёР·РјРµРЅРµРЅРёРµ С€Р°РЅСЃР° РѕС‚ 50% РґРѕ 75%
+			4-С‹Р№: СЃРІС‹С€Рµ 1000 - 75% + 0,01 * (СЂР°Р·РЅРёС†Р° Рљ Рё РђРљ - 1000)
 			*/
 			
 			if( $mf < 0 ) {
@@ -301,15 +301,15 @@ if(isset($_GET['m'])) {
 			return $r;
 		}
 		
-	//Ступеньчатая формула (уворот)
+	//РЎС‚СѓРїРµРЅСЊС‡Р°С‚Р°СЏ С„РѕСЂРјСѓР»Р° (СѓРІРѕСЂРѕС‚)
 		function msf_st2( $mf ) {
 			$r = 0;
 			
 			/*
-			1-ый: от 0 до 100 - линейное изменение шанса от 0 до 35%
-			2-ой: от 101 до 400 - линейное изменение шанса от 35% до 70%
-			3-ий: от 401 до 1000 - линейное изменение шанса от 70% до 85%
-			4-ый: свыше 1000 - 85% + 0,01 * (разница К и АК - 1000)
+			1-С‹Р№: РѕС‚ 0 РґРѕ 100 - Р»РёРЅРµР№РЅРѕРµ РёР·РјРµРЅРµРЅРёРµ С€Р°РЅСЃР° РѕС‚ 0 РґРѕ 35%
+			2-РѕР№: РѕС‚ 101 РґРѕ 400 - Р»РёРЅРµР№РЅРѕРµ РёР·РјРµРЅРµРЅРёРµ С€Р°РЅСЃР° РѕС‚ 35% РґРѕ 70%
+			3-РёР№: РѕС‚ 401 РґРѕ 1000 - Р»РёРЅРµР№РЅРѕРµ РёР·РјРµРЅРµРЅРёРµ С€Р°РЅСЃР° РѕС‚ 70% РґРѕ 85%
+			4-С‹Р№: СЃРІС‹С€Рµ 1000 - 85% + 0,01 * (СЂР°Р·РЅРёС†Р° Рљ Рё РђРљ - 1000)
 			*/
 			
 			if( $mf < 0 ) {
@@ -332,7 +332,7 @@ if(isset($_GET['m'])) {
 			
 			return $r;
 		}
-	echo msf_st((int)$_GET['m']-(int)$_GET['am']).'% (крит)<br>'.msf_st2((int)$_GET['m']-(int)$_GET['am']).'% (уворот)';
+	echo msf_st((int)$_GET['m']-(int)$_GET['am']).'% (РєСЂРёС‚)<br>'.msf_st2((int)$_GET['m']-(int)$_GET['am']).'% (СѓРІРѕСЂРѕС‚)';
 	die();
 }
 
@@ -353,12 +353,12 @@ if(isset($_GET['clear'])) {
 	$sp = mysql_query('SELECT * FROM `users` WHERE `real` != 1 LIMIT 100');
 	while( $pl = mysql_fetch_array($sp)) {
 		$btl_finish = false;
-		//Удаляем поединки
+		//РЈРґР°Р»СЏРµРј РїРѕРµРґРёРЅРєРё
 		if( $pl['battle'] > 0 ) {
 			$btl_finish = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `id` = "'.$pl['battle'].'" AND `team_win` == -1 LIMIT 1'));
 		}
 		if(!isset($btl_finish['id'])) {
-			//даляем монстра
+			//РґР°Р»СЏРµРј РјРѕРЅСЃС‚СЂР°
 			mysql_query('DELETE FROM `aaa_birthday` WHERE `uid` = "'.$pl['id'].'"');
 			mysql_query('DELETE FROM `aaa_bonus` WHERE `uid` = "'.$pl['id'].'"');
 			mysql_query('DELETE FROM `aaa_dialog_vars` WHERE `uid` = "'.$pl['id'].'"');
@@ -440,7 +440,7 @@ if(isset($_GET['clear'])) {
 		}
 		//
 	}
-	echo '['.date('d.m.Y H:i:s').'] Очищено: '.$i.' позиций, осталось: '.$all.'';
+	echo '['.date('d.m.Y H:i:s').'] РћС‡РёС‰РµРЅРѕ: '.$i.' РїРѕР·РёС†РёР№, РѕСЃС‚Р°Р»РѕСЃСЊ: '.$all.'';
 	if( $i > 0 ) {
 		echo '<script>top.location.href="http://xcombats.com/bandit.php?clear=1";</script>';
 	}
@@ -449,9 +449,9 @@ if(isset($_GET['clear'])) {
 
 if(isset($_GET['st'])) {
 	
-	$t = array('yza' => 'Уязвимость физическому урона (%)','yzm' => 'Уязвимость магии стихий (%)','yzma' => 'Уязвимость магии (%)'
-,'yza1' => 'Уязвимость колющему урона (%)','yza2' => 'Уязвимость рубящему урона (%)','yza3' => 'Уязвимость дробящему урона (%)','yza4' => 'Уязвимость режущему урона (%)'
-,'yzm1' => 'Уязвимость магии огня (%)','yzm2' => 'Уязвимость магии воздуха (%)','yzm3' => 'Уязвимость магии воды (%)','yzm4' => 'Уязвимость магии земли (%)','yzm5' => 'Уязвимость магии (%)','yzm6' => 'Уязвимость магии (%)','yzm7' => 'Уязвимость магии (%)','rep'=> 'Репутация Рыцаря');
+	$t = array('yza' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ С„РёР·РёС‡РµСЃРєРѕРјСѓ СѓСЂРѕРЅР° (%)','yzm' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё СЃС‚РёС…РёР№ (%)','yzma' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё (%)'
+,'yza1' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РєРѕР»СЋС‰РµРјСѓ СѓСЂРѕРЅР° (%)','yza2' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ СЂСѓР±СЏС‰РµРјСѓ СѓСЂРѕРЅР° (%)','yza3' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РґСЂРѕР±СЏС‰РµРјСѓ СѓСЂРѕРЅР° (%)','yza4' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ СЂРµР¶СѓС‰РµРјСѓ СѓСЂРѕРЅР° (%)'
+,'yzm1' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё РѕРіРЅСЏ (%)','yzm2' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё РІРѕР·РґСѓС…Р° (%)','yzm3' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё РІРѕРґС‹ (%)','yzm4' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё Р·РµРјР»Рё (%)','yzm5' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё (%)','yzm6' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё (%)','yzm7' => 'РЈСЏР·РІРёРјРѕСЃС‚СЊ РјР°РіРёРё (%)','rep'=> 'Р РµРїСѓС‚Р°С†РёСЏ Р С‹С†Р°СЂСЏ');
 	
 	$i = 0;
 	$a = array_keys($u->is);
@@ -481,7 +481,7 @@ if(isset($_GET['st'])) {
 			$r = (1-( pow(90/100, (($v)/100) ) ))*100;	
 			$r = round($r);
 			$r = min($r,80);
-			//$r = min( (( 1 - ( ( $ua + 55 ) / ( $u + 50 ) ) ) * 100)*0.8, 80); //Крит. удар
+			//$r = min( (( 1 - ( ( $ua + 55 ) / ( $u + 50 ) ) ) * 100)*0.8, 80); //РљСЂРёС‚. СѓРґР°СЂ
 			return $r;
 		}
 		
@@ -502,7 +502,7 @@ if(isset($_GET['st'])) {
 				$j++;
 				$i++;
 			}
-			echo 'Разменов до действия: '.$j.', шанс: '.form_mf($a,$b).'%<br>';
+			echo 'Р Р°Р·РјРµРЅРѕРІ РґРѕ РґРµР№СЃС‚РІРёСЏ: '.$j.', С€Р°РЅСЃ: '.form_mf($a,$b).'%<br>';
 			$k++;
 		}
 		die();
@@ -553,12 +553,12 @@ if(!isset($u->bank['id'])) {
 	31|6-0-0-6-4-0
 	*/
 
-if($u->room['name']!='Однорукий бандит')
+if($u->room['name']!='РћРґРЅРѕСЂСѓРєРёР№ Р±Р°РЅРґРёС‚')
 {
 	die();
 }else{
 	
-	//Раздаем выйгрыши
+	//Р Р°Р·РґР°РµРј РІС‹Р№РіСЂС‹С€Рё
 	
 	
 	function get2str($key='', $val='') {
@@ -585,9 +585,9 @@ if($u->room['name']!='Однорукий бандит')
 			$s = 3;
 		}
 		if( $u->bank['money2'] < $s ) {
-			//Недостаточно денег!
+			//РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі!
 		}else{
-			//Играем!
+			//РРіСЂР°РµРј!
 			$w1 = rand(0,4);
 			$w2 = rand(0,4);
 			$w3 = rand(0,4);
@@ -630,7 +630,7 @@ if($u->room['name']!='Однорукий бандит')
 			}
 			
 			if( ( $n == 5 || $n == 4 || $n == 3 ) && rand(0,100) >= 50 ) {
-				//Играем!
+				//РРіСЂР°РµРј!
 				$w1 = rand(0,2);
 				$w2 = rand(0,3);
 				$w3 = rand(0,3);
@@ -683,7 +683,7 @@ if($u->room['name']!='Однорукий бандит')
 			$gid = mysql_insert_id();
 			//
 			if( $win > 0 ) {
-				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$u->info['city']."','390','','','<small>[<b><font color=0066ff>Крупье</font></b>] Игрок <b>".mysql_real_escape_string($u->info['login'])."</b> выиграл <b>".($s*$win).".00</b> екр., ставка: ".$s.".00 екр., игра №".$gid."</small>','".time()."','6','0')");
+				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$u->info['city']."','390','','','<small>[<b><font color=0066ff>РљСЂСѓРїСЊРµ</font></b>] РРіСЂРѕРє <b>".mysql_real_escape_string($u->info['login'])."</b> РІС‹РёРіСЂР°Р» <b>".($s*$win).".00</b> РµРєСЂ., СЃС‚Р°РІРєР°: ".$s.".00 РµРєСЂ., РёРіСЂР° в„–".$gid."</small>','".time()."','6','0')");
 			}
 			//
 			$r .= 'cash='.floor($u->bank['money2']).'';

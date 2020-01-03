@@ -1,4 +1,4 @@
-<?
+<?php
 $step = 1;
 $error = '';
 
@@ -6,7 +6,7 @@ if(isset($_GET['login'])) {
 	$_POST['relogin'] = $_GET['login'];
 }
 
-//die('Восстановление пароля недоступно. Создайте нового персонажа и напишите любому модератору.');
+//die('Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ РЅРµРґРѕСЃС‚СѓРїРЅРѕ. РЎРѕР·РґР°Р№С‚Рµ РЅРѕРІРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р° Рё РЅР°РїРёС€РёС‚Рµ Р»СЋР±РѕРјСѓ РјРѕРґРµСЂР°С‚РѕСЂСѓ.');
 
 function GetRealIp()
 {
@@ -27,14 +27,14 @@ function GetRealIp()
 
 define('IP',GetRealIp());
 
-			function send_mime_mail($name_from, // имя отправителя
-							   $email_from, // email отправителя
-							   $name_to, // имя получателя
-							   $email_to, // email получателя
-							   $data_charset, // кодировка переданных данных
-							   $send_charset, // кодировка письма
-							   $subject, // тема письма
-							   $body // текст письма
+			function send_mime_mail($name_from, // РёРјСЏ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+							   $email_from, // email РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+							   $name_to, // РёРјСЏ РїРѕР»СѓС‡Р°С‚РµР»СЏ
+							   $email_to, // email РїРѕР»СѓС‡Р°С‚РµР»СЏ
+							   $data_charset, // РєРѕРґРёСЂРѕРІРєР° РїРµСЂРµРґР°РЅРЅС‹С… РґР°РЅРЅС‹С…
+							   $send_charset, // РєРѕРґРёСЂРѕРІРєР° РїРёСЃСЊРјР°
+							   $subject, // С‚РµРјР° РїРёСЃСЊРјР°
+							   $body // С‚РµРєСЃС‚ РїРёСЃСЊРјР°
 							   )
 			   {
 			  $to = mime_header_encode($name_to, $data_charset, $send_charset)
@@ -58,13 +58,13 @@ define('IP',GetRealIp());
 			  return '=?' . $send_charset . '?B?' . base64_encode($str) . '?=';
 			}
 			
-			function send_mail($to,$to_name,$from = 'support@xcombats.com',$name = '<b>Бойцовский Клуб</b> 2',$title,$text) {
+			function send_mail($to,$to_name,$from = 'support@xcombats.com',$name = '<b>Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±</b> 2',$title,$text) {
 				send_mime_mail($name,
 					   $from,
 					   $to_name,
 					   $to,
-					   'CP1251',  // кодировка, в которой находятся передаваемые строки
-					   'KOI8-R', // кодировка, в которой будет отправлено письмо
+					   'CP1251',  // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґСЏС‚СЃСЏ РїРµСЂРµРґР°РІР°РµРјС‹Рµ СЃС‚СЂРѕРєРё
+					   'KOI8-R', // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ
 					   $title,
 					   $text); // \r\n
 			}
@@ -82,12 +82,12 @@ define('IP',GetRealIp());
 			if($usr['admin'] == 0 && $usr['banned'] == 0) {
 				$step = 2;
 				if(isset($_POST['redate'])) {
-					//Третий шаг
+					//РўСЂРµС‚РёР№ С€Р°Рі
 					$lst_psw = mysql_fetch_array(mysql_query('SELECT * FROM `repass` WHERE `uid` = "'.$usr['id'].'" AND `time` > '.(time()-60*60*24).' AND `type` = "1" LIMIT 1'));
 					if(isset($lst_psw['id'])) {
-						$error = 'Высылать пароль можно не более одного раза в сутки.';
+						$error = 'Р’С‹СЃС‹Р»Р°С‚СЊ РїР°СЂРѕР»СЊ РјРѕР¶РЅРѕ РЅРµ Р±РѕР»РµРµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ СЃСѓС‚РєРё.';
 					}elseif(str_replace('0','',$_POST['redate']) == str_replace('0','',$usr['bithday']) && ($_POST['reanswer'] == $usr['q1'] || $usr['q1'] == '')) {
-						$error = '<br><br><br>Пароль от персонажа &quot;'.$usr['login'].'&quot; был успешно выслан на E-mail указанный при регистрации!<br><br><br>';
+						$error = '<br><br><br>РџР°СЂРѕР»СЊ РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$usr['login'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РІС‹СЃР»Р°РЅ РЅР° E-mail СѓРєР°Р·Р°РЅРЅС‹Р№ РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё!<br><br><br>';
 						$re = mysql_fetch_array(mysql_query('SELECT * FROM `logs_auth` WHERE `uid` = "'.$usr['id'].'" AND `type` = "0" AND `depass` != "" ORDER BY `id` DESC LIMIT 1'));
 						if($u['securetime'] < $c['securetime'] ) {
 							unset($re);
@@ -95,26 +95,26 @@ define('IP',GetRealIp());
 						if(!isset($re['id'])) {
 							$sm = array('a','b','c','d','e','f','x','d','f','X','e','ER','XX','X');
 							$re['depass'] = $sm[rand(0,12)].rand(0,9).$sm[rand(0,12)].rand(0,9).$sm[rand(0,12)].rand(0,9).$sm[rand(0,12)].rand(0,9).$sm[rand(0,12)].rand(0,9);
-							//$error = 'Рассылка временно не работает.<br>Пароль от персонажа: </b>'.$re['depass'].'<b>';
+							//$error = 'Р Р°СЃСЃС‹Р»РєР° РІСЂРµРјРµРЅРЅРѕ РЅРµ СЂР°Р±РѕС‚Р°РµС‚.<br>РџР°СЂРѕР»СЊ РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р°: </b>'.$re['depass'].'<b>';
 						}else{
-							//$error = 'Рассылка временно не работает.<br>Пароль от персонажа: </b>'.$re['depass'].'<b>';
+							//$error = 'Р Р°СЃСЃС‹Р»РєР° РІСЂРµРјРµРЅРЅРѕ РЅРµ СЂР°Р±РѕС‚Р°РµС‚.<br>РџР°СЂРѕР»СЊ РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р°: </b>'.$re['depass'].'<b>';
 						}
-						$title = 'Восстановление пароля от "'.$usr['login'].'".';
-						$txt   = 'Добрый день.<br>';
-						$txt  .= 'С IP-адреса - <b>'.IP.'</b>, был запрошен пароль для вашего персонажа.<br>Если это не Вы, просто удалите это письмо.<br><br>';
-						$txt  .= 'Ваш логин: <b>'.$usr['login'].'</b><br>';
-						$txt  .= 'Ваш пароль: '.$re['depass'].'<br><br>';
-						$txt  .= 'Отвечать на данное письмо не нужно.<br><br>';
-						$txt  .= 'С уважением,<br>';
-						$txt  .= 'Администрация Бойцовского Клуба';
+						$title = 'Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ РѕС‚ "'.$usr['login'].'".';
+						$txt   = 'Р”РѕР±СЂС‹Р№ РґРµРЅСЊ.<br>';
+						$txt  .= 'РЎ IP-Р°РґСЂРµСЃР° - <b>'.IP.'</b>, Р±С‹Р» Р·Р°РїСЂРѕС€РµРЅ РїР°СЂРѕР»СЊ РґР»СЏ РІР°С€РµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°.<br>Р•СЃР»Рё СЌС‚Рѕ РЅРµ Р’С‹, РїСЂРѕСЃС‚Рѕ СѓРґР°Р»РёС‚Рµ СЌС‚Рѕ РїРёСЃСЊРјРѕ.<br><br>';
+						$txt  .= 'Р’Р°С€ Р»РѕРіРёРЅ: <b>'.$usr['login'].'</b><br>';
+						$txt  .= 'Р’Р°С€ РїР°СЂРѕР»СЊ: '.$re['depass'].'<br><br>';
+						$txt  .= 'РћС‚РІРµС‡Р°С‚СЊ РЅР° РґР°РЅРЅРѕРµ РїРёСЃСЊРјРѕ РЅРµ РЅСѓР¶РЅРѕ.<br><br>';
+						$txt  .= 'РЎ СѓРІР°Р¶РµРЅРёРµРј,<br>';
+						$txt  .= 'РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°';
 						
-						//if(send_mail($urs['mail'],$urs['login'],'support@xcombats.com','БК2 - Support',$title,$txt)) {		
-						if(send_mime_mail('Бойцовский Клуб - Support',
+						//if(send_mail($urs['mail'],$urs['login'],'support@xcombats.com','Р‘Рљ2 - Support',$title,$txt)) {		
+						if(send_mime_mail('Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± - Support',
 						   'support@xcombats.com',
 						   ''.$usr['login'].'',
 						   $usr['mail'],
-						   'CP1251',  // кодировка, в которой находятся передаваемые строки
-						   'KOI8-R', // кодировка, в которой будет отправлено письмо
+						   'CP1251',  // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґСЏС‚СЃСЏ РїРµСЂРµРґР°РІР°РµРјС‹Рµ СЃС‚СЂРѕРєРё
+						   'KOI8-R', // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ
 						   $title,
 						   $txt))
 						{				
@@ -122,18 +122,18 @@ define('IP',GetRealIp());
 							mysql_query('INSERT INTO `repass` (`uid`,`ip`,`type`,`time`) VALUES ("'.$usr['id'].'","'.mysql_real_escape_string(IP).'","1","'.time().'")');
 							$step = 3;							
 						}else{							
-							$error = 'Не удалось отправить сообщение. Попробуйте позже.';							
+							$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ. РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕР·Р¶Рµ.';							
 						}
 		
 					}else{
-						$error = 'Неверный ответ на секретный вопрос или неверно указан день рождения.';
+						$error = 'РќРµРІРµСЂРЅС‹Р№ РѕС‚РІРµС‚ РЅР° СЃРµРєСЂРµС‚РЅС‹Р№ РІРѕРїСЂРѕСЃ РёР»Рё РЅРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ.';
 					}
 				}
 			}else{
-				$error = 'Персонажу "'.$_POST['relogin'].'" запрещена высылка пароля!';
+				$error = 'РџРµСЂСЃРѕРЅР°Р¶Сѓ "'.$_POST['relogin'].'" Р·Р°РїСЂРµС‰РµРЅР° РІС‹СЃС‹Р»РєР° РїР°СЂРѕР»СЏ!';
 			}
 		}else{
-			$error = 'Логин "'.htmlspecialchars($_POST['relogin'],NULL,'cp1251').'" не найден в базе.';
+			$error = 'Р›РѕРіРёРЅ "'.htmlspecialchars($_POST['relogin'],NULL,'cp1251').'" РЅРµ РЅР°Р№РґРµРЅ РІ Р±Р°Р·Рµ.';
 		}
 	}
 
@@ -142,9 +142,9 @@ define('IP',GetRealIp());
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Восстановление пароля от персонажа</title>
-<meta name="keywords" content="игра, играть, игрушки, онлайн,online, интернет, internet, RPG, fantasy, фэнтези, меч, топор, магия, кулак, удар, блок, атака, защита, Бойцовский Клуб, бой, битва, отдых, обучение, развлечение, виртуальная реальность, рыцарь, маг, знакомства, чат, лучший, форум, свет, тьма, bk, games, клан, банк, магазин, клан, БК, combats, Бойцовский клуб, История, Предметы БК, БК 2003, Броня Печали, Ветераны, Старый клуб, Старый БК, Старый Бойцовский Клуб, Ностальгия, antibk, antikombatz, online, online rpg, rpg">
-<meta name="description" content="Новая бесплатная многопользовательская MMORPG онлайн игра «Старый Бойцовский Клуб - БК II». Стань участником легендарного Бойцовского Клуба!"/>
+<title>Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂРѕР»СЏ РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р°</title>
+<meta name="keywords" content="РёРіСЂР°, РёРіСЂР°С‚СЊ, РёРіСЂСѓС€РєРё, РѕРЅР»Р°Р№РЅ,online, РёРЅС‚РµСЂРЅРµС‚, internet, RPG, fantasy, С„СЌРЅС‚РµР·Рё, РјРµС‡, С‚РѕРїРѕСЂ, РјР°РіРёСЏ, РєСѓР»Р°Рє, СѓРґР°СЂ, Р±Р»РѕРє, Р°С‚Р°РєР°, Р·Р°С‰РёС‚Р°, Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±, Р±РѕР№, Р±РёС‚РІР°, РѕС‚РґС‹С…, РѕР±СѓС‡РµРЅРёРµ, СЂР°Р·РІР»РµС‡РµРЅРёРµ, РІРёСЂС‚СѓР°Р»СЊРЅР°СЏ СЂРµР°Р»СЊРЅРѕСЃС‚СЊ, СЂС‹С†Р°СЂСЊ, РјР°Рі, Р·РЅР°РєРѕРјСЃС‚РІР°, С‡Р°С‚, Р»СѓС‡С€РёР№, С„РѕСЂСѓРј, СЃРІРµС‚, С‚СЊРјР°, bk, games, РєР»Р°РЅ, Р±Р°РЅРє, РјР°РіР°Р·РёРЅ, РєР»Р°РЅ, Р‘Рљ, combats, Р‘РѕР№С†РѕРІСЃРєРёР№ РєР»СѓР±, РСЃС‚РѕСЂРёСЏ, РџСЂРµРґРјРµС‚С‹ Р‘Рљ, Р‘Рљ 2003, Р‘СЂРѕРЅСЏ РџРµС‡Р°Р»Рё, Р’РµС‚РµСЂР°РЅС‹, РЎС‚Р°СЂС‹Р№ РєР»СѓР±, РЎС‚Р°СЂС‹Р№ Р‘Рљ, РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±, РќРѕСЃС‚Р°Р»СЊРіРёСЏ, antibk, antikombatz, online, online rpg, rpg">
+<meta name="description" content="РќРѕРІР°СЏ Р±РµСЃРїР»Р°С‚РЅР°СЏ РјРЅРѕРіРѕРїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєР°СЏ MMORPG РѕРЅР»Р°Р№РЅ РёРіСЂР° В«РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± - Р‘Рљ IIВ». РЎС‚Р°РЅСЊ СѓС‡Р°СЃС‚РЅРёРєРѕРј Р»РµРіРµРЅРґР°СЂРЅРѕРіРѕ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°!"/>
 
 <link href="homepage/index.css" type="text/css" rel="stylesheet">
 
@@ -177,7 +177,7 @@ define('IP',GetRealIp());
 <!--/LiveInternet-->
           </td>
           <td height="150" align="center" valign="middle" class="menu">
-          <p><b>Забыли пароль от своего персонажа?</b></p>
+          <p><b>Р—Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°?</b></p>
           <p>&nbsp;<?
           if($error != '') {
 		  	echo '<font color="red"><b>'.$error.'</b></font>';
@@ -188,39 +188,39 @@ define('IP',GetRealIp());
 		    if($step == 1){ ?>
                   <table width="400" border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                      <td>Укажите логин персонажа:</td>
-                      <td><input onfocus="if ( 'Логин' == value ) { value = ''; } " onblur="if ( '' == value ) { value = 'Логин'; } " value="Логин" maxlength="40" style="padding:3px" name="relogin" type="text" class="inup" id="relogin"></td>
+                      <td>РЈРєР°Р¶РёС‚Рµ Р»РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°:</td>
+                      <td><input onfocus="if ( 'Р›РѕРіРёРЅ' == value ) { value = ''; } " onblur="if ( '' == value ) { value = 'Р›РѕРіРёРЅ'; } " value="Р›РѕРіРёРЅ" maxlength="40" style="padding:3px" name="relogin" type="text" class="inup" id="relogin"></td>
                     </tr>
               </table><br>
-                    <input type="submit" class="btn" value="Перейти к следующему шагу">
+                    <input type="submit" class="btn" value="РџРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµРјСѓ С€Р°РіСѓ">
             <? }elseif($step == 2){ ?>
                   <table width="400" border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                      <td>Логин персонажа:</td>
+                      <td>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°:</td>
                       <td><input value="<?=$_POST['relogin']?>" disabled maxlength="40" style="padding:3px" type="text" class="inup"><input type="hidden" name="relogin" value="<?=$_POST['relogin']?>"></td>
                     </tr>
                     <?
 					if($usr['a1'] != ''){ ?>
                     <tr>
-                      <td>Ваш вопрос:</td>
+                      <td>Р’Р°С€ РІРѕРїСЂРѕСЃ:</td>
                       <td>&nbsp;<b><?=$usr['a1']?></b></td>
                     </tr>
                     <tr>
-                      <td>Ваш ответ:</td>
+                      <td>Р’Р°С€ РѕС‚РІРµС‚:</td>
                       <td><input value="<?=$_POST['reanswer']?>" name="reanswer" maxlength="30" style="padding:3px" type="text" class="inup"></td>
                     </tr>
                     <? } ?>
                     <tr>
-                      <td>Ваш день рождения:</td>
+                      <td>Р’Р°С€ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ:</td>
                       <td><input value="<?=$_POST['redate']?>" name="redate" maxlength="10" style="padding:3px" type="text" class="inup"></td>
                     </tr>
                     </table>
-                    <small class="testro">(день рождения вы указывали при регистрации персонажа в формате dd.mm.yyyy)</small>
+                    <small class="testro">(РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ РІС‹ СѓРєР°Р·С‹РІР°Р»Рё РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё РїРµСЂСЃРѕРЅР°Р¶Р° РІ С„РѕСЂРјР°С‚Рµ dd.mm.yyyy)</small>
                     <br>
                     <br>
                   <br>
-              <input type="button" onclick="top.location.href='http://xcombats.com/repass.php'" class="btn" value="Вернуться">
-                    <input type="submit" class="btn" value="Выслать пароль на E-mail">
+              <input type="button" onclick="top.location.href='http://xcombats.com/repass.php'" class="btn" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ">
+                    <input type="submit" class="btn" value="Р’С‹СЃР»Р°С‚СЊ РїР°СЂРѕР»СЊ РЅР° E-mail">
             <? } ?>
             </form>
             <br><br><br><br>
@@ -229,13 +229,13 @@ define('IP',GetRealIp());
         </tr>
     </table>
       <div align="center" class="menu">
-      	<a href="http://xcombats.com/lib/">Библиотека</a>  &nbsp; 
-        <a href="http://xcombats.com/lib/zakon/">Законы</a>  &nbsp; 
-        <a href="http://xcombats.com/lib/polzovatelskoe-soglashenie/">Соглашение</a>  &nbsp; 
-        <a href="http://events.xcombats.com/">Новости</a>  &nbsp; 
-        <a href="http://xcombats.com/forum/">Форум</a>  &nbsp; 
-        <a href="http://top.xcombats.com/">Рейтинг</a>  &nbsp; 
-        <a href="http://xcombats.com/">Заглавная страница</a>
+      	<a href="http://xcombats.com/lib/">Р‘РёР±Р»РёРѕС‚РµРєР°</a>  &nbsp; 
+        <a href="http://xcombats.com/lib/zakon/">Р—Р°РєРѕРЅС‹</a>  &nbsp; 
+        <a href="http://xcombats.com/lib/polzovatelskoe-soglashenie/">РЎРѕРіР»Р°С€РµРЅРёРµ</a>  &nbsp; 
+        <a href="http://events.xcombats.com/">РќРѕРІРѕСЃС‚Рё</a>  &nbsp; 
+        <a href="http://xcombats.com/forum/">Р¤РѕСЂСѓРј</a>  &nbsp; 
+        <a href="http://top.xcombats.com/">Р РµР№С‚РёРЅРі</a>  &nbsp; 
+        <a href="http://xcombats.com/">Р—Р°РіР»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°</a>
       </div>
     </td>
   </tr>
@@ -243,7 +243,7 @@ define('IP',GetRealIp());
     <td height="50" align="center" valign="middle">&nbsp;</td>
   </tr>
   <tr>
-    <td height="50" align="center"><span class="testro">&laquo;Старый Бойцовский Клуб&raquo; &nbsp; &nbsp; 2014-<?=date('Y')?> &copy; Браузерная онлайн игра</span></td>
+    <td height="50" align="center"><span class="testro">&laquo;РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±&raquo; &nbsp; &nbsp; 2014-<?=date('Y')?> &copy; Р‘СЂР°СѓР·РµСЂРЅР°СЏ РѕРЅР»Р°Р№РЅ РёРіСЂР°</span></td>
   </tr>
 </table>
 </body>

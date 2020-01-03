@@ -9,13 +9,13 @@ function getIP() {
 
 if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) {	die('Hello pussy!');   }
 
-# Получаем IP
+# РџРѕР»СѓС‡Р°РµРј IP
 function getIPblock() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Выполняем проверку безопасности. 
+# Р’С‹РїРѕР»РЅСЏРµРј РїСЂРѕРІРµСЂРєСѓ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё. 
 
 if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) {	die('Hello pussy!');   }
 if(getIPblock() != $_SERVER['SERVER_ADDR'] && getIPblock() != '127.0.0.1' && getIPblock() != '' && getIPblock() != '91.228.154.180') {
@@ -29,23 +29,23 @@ include('_incl_data/class/__db_connect.php');
 //include('_incl_data/class/__user.php');
 
 function send($text) {
-	return mysql_query('INSERT INTO `chat` (`new`,`type`,`to`,`text`,`time`) VALUES (1,6,"Игромир","'.$text.'",'.time().')');
+	return mysql_query('INSERT INTO `chat` (`new`,`type`,`to`,`text`,`time`) VALUES (1,6,"РРіСЂРѕРјРёСЂ","'.$text.'",'.time().')');
 }
 
 $i = 7;
 while($i <= 11) {
 	$t = mysql_fetch_array(mysql_query('SELECT * FROM `bs_turnirs` WHERE `city` = "capitalcity" AND `level` = "'.$i.'" LIMIT 1'));
 	if(isset($t['id'])) {
-		//send('Турнир ['.$i.'] - status'.$t['status'].'');
+		//send('РўСѓСЂРЅРёСЂ ['.$i.'] - status'.$t['status'].'');
 		if($t['status'] == 1) {
-			//Турнир идет сейчас
-			$users = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `room` = "264" AND `login` NOT LIKE "%клон%" AND `lose` = "0" AND `nich` = "0" LIMIT 1'));
+			//РўСѓСЂРЅРёСЂ РёРґРµС‚ СЃРµР№С‡Р°СЃ
+			$users = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `room` = "264" AND `login` NOT LIKE "%РєР»РѕРЅ%" AND `lose` = "0" AND `nich` = "0" LIMIT 1'));
 			if($users[0] < 2) {
-				//Турнир завершился
-				//завершаем турнир
+				//РўСѓСЂРЅРёСЂ Р·Р°РІРµСЂС€РёР»СЃСЏ
+				//Р·Р°РІРµСЂС€Р°РµРј С‚СѓСЂРЅРёСЂ
 				mysql_query('UPDATE `bs_turnirs` SET `status` = "0",`users_finish` = "0",`money` = "0",`time_start` = "'.(time()+$t['time_out']*60).'",`users` = "0" WHERE `id` = "'.$t['id'].'" LIMIT 1');
 				
-				//удаляем ботов в которых вселились
+				//СѓРґР°Р»СЏРµРј Р±РѕС‚РѕРІ РІ РєРѕС‚РѕСЂС‹С… РІСЃРµР»РёР»РёСЃСЊ
 				$sp = mysql_query('SELECT * FROM `bs_zv` WHERE `bsid` = "'.$t['id'].'" AND `time` = "'.$t['time_start'].'" AND `finish` = "0" ORDER BY `money` DESC LIMIT 100');	
 				while($pl = mysql_fetch_array($sp))
 				{
@@ -63,19 +63,19 @@ while($i <= 11) {
 					}
 				}
 				mysql_query('DELETE FROM `dungeon_now` WHERE `bsid` = "'.$t['inUser'].'" AND `time_start` = "'.$t['time_start'].'" LIMIT 1');
-				//Визуальные обновления
+				//Р’РёР·СѓР°Р»СЊРЅС‹Рµ РѕР±РЅРѕРІР»РµРЅРёСЏ
 				unset($tz);
 				$t['status'] = 0;
 				$t['money'] = 0;
 				$t['users'] = 0;
 				$t['time_start'] = (time()+$t['time_out']*60);	
-				send('Турнир ['.$i.'] - '.$users[0].' - Турнир завершился');
+				send('РўСѓСЂРЅРёСЂ ['.$i.'] - '.$users[0].' - РўСѓСЂРЅРёСЂ Р·Р°РІРµСЂС€РёР»СЃСЏ');
 			}else{
-				//Турнир еще идет
+				//РўСѓСЂРЅРёСЂ РµС‰Рµ РёРґРµС‚
 				
 			}
 		}else{
-			//Ожидаем начала турнира
+			//РћР¶РёРґР°РµРј РЅР°С‡Р°Р»Р° С‚СѓСЂРЅРёСЂР°
 				
 		}
 	}

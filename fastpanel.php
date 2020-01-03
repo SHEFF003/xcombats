@@ -1,6 +1,5 @@
 <?php
-	header('Content-Type: text/html; charset=windows-1251');
-		
+
 	define('GAME',true);
 	include('_incl_data/__config.php');	
 	include('_incl_data/class/__db_connect.php');	
@@ -17,7 +16,7 @@
 	}
 	
 	if($u->info['activ']>0) {
-		die('Вам необходимо активировать персонажа.<br>Авторизируйтесь с главной страницы.');
+		die('Р’Р°Рј РЅРµРѕР±С…РѕРґРёРјРѕ Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°.<br>РђРІС‚РѕСЂРёР·РёСЂСѓР№С‚РµСЃСЊ СЃ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹.');
 	}
 	
 	if($u->info['repass'] > 0) {

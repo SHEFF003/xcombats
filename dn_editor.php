@@ -1,10 +1,10 @@
-<?
+<?php
 session_start();
 
 function er($e)
 {
 	 global $c;
-	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>Произошла ошибка: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">Назад</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
+	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">РќР°Р·Р°Рґ</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
 }
 
 function GetRealIp()
@@ -106,12 +106,12 @@ if(isset($_POST['saveObjPosition'])) {
 		$da = '{'.$da.'}';
 		$upd = mysql_query('UPDATE `dungeon_obj` SET `top` = "'.mysql_real_escape_string($obj['top']).'", `left` = "'.mysql_real_escape_string($obj['left']).'", `date` = "'.mysql_real_escape_string($da).'" WHERE `id` = "'.$obj['id'].'" LIMIT 1');
 		if($upd) {
-			echo 'Данные успешно сохранены '.$da;
+			echo 'Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹ '.$da;
 		}else{
-			echo '#!Ошибка';
+			echo '#!РћС€РёР±РєР°';
 		}
 	}else{
-			echo '#Ошибка';
+			echo '#РћС€РёР±РєР°';
 	}
 	die('#END');
 }elseif(isset($_POST['ore_id'])) {
@@ -140,9 +140,9 @@ if(isset($_POST['saveObjPosition'])) {
 				
 				`type` = "'.mysql_real_escape_string($_POST['ore_type']).'" WHERE `id` = "'.$obj['id'].'" LIMIT 1		
 		');
-		echo 'Данные сохранены';
+		echo 'Р”Р°РЅРЅС‹Рµ СЃРѕС…СЂР°РЅРµРЅС‹';
 	}else{
-		//создаем обьект
+		//СЃРѕР·РґР°РµРј РѕР±СЊРµРєС‚
 		/*
 	$('#ore_id').val(op[0]);
 	$('#ore_img').val(op[4]);
@@ -155,7 +155,7 @@ if(isset($_POST['saveObjPosition'])) {
 	$('#ore_h').val(op[8]);
 		*/
 		if(isset($_POST['ore_img'])) {
-			echo 'Объект создан';
+			echo 'РћР±СЉРµРєС‚ СЃРѕР·РґР°РЅ';
 			if(mysql_query('INSERT INTO `dungeon_obj` (`for_dn`,`name`,`img`,`w`,`h`,`x`,`y`,`type2`,`s`,`s2`,`os1`,`os2`,`os3`,`os4`,`fix_x_y`,`type`,`date`) VALUES (
 				"'.mysql_real_escape_string($id).'",
 				"'.mysql_real_escape_string($_POST['ore_name']).'",
@@ -184,11 +184,11 @@ if(isset($_POST['saveObjPosition'])) {
 	die(' #END]');
 }elseif(isset($_POST['ore_delete_id'])) {
 	mysql_query('UPDATE `dungeon_obj` SET `delete` = "'.$u->info['id'].'",`for_dn` = "'.time().'" WHERE `id` = "'.mysql_real_escape_string($_POST['ore_delete_id']).'" LIMIT 1');
-	die('[START# Объект удален #END]');
+	die('[START# РћР±СЉРµРєС‚ СѓРґР°Р»РµРЅ #END]');
 }
 
 if($id > 0) {
-	//работа с пещерой
+	//СЂР°Р±РѕС‚Р° СЃ РїРµС‰РµСЂРѕР№
 	$pd = array(
 	1 =>0,
 	2 =>0,
@@ -198,7 +198,7 @@ if($id > 0) {
 	6 =>0,
 	7 =>0,
 	8 =>0,
-	9 =>0, //передняя стенка, в 2-х шагах
+	9 =>0, //РїРµСЂРµРґРЅСЏСЏ СЃС‚РµРЅРєР°, РІ 2-С… С€Р°РіР°С…
 	10=>0,
 	11=>0,
 	12=>0,
@@ -213,12 +213,12 @@ if($id > 0) {
 	21=>0,
 	22=>0,
 	23=>0,
-	/* Растояние: 1 шаг */
-	24=>0, //стена прямо слева от персонажа (1)
-	25=>0, //стена прямо справа от персонажа (1)
-	26=>0, //стена прямо перед персонажем (1)
-	27=>0, //стена слева от персонажа (1)
-	28=>0  //стена справа от персонажа (1)
+	/* Р Р°СЃС‚РѕСЏРЅРёРµ: 1 С€Р°Рі */
+	24=>0, //СЃС‚РµРЅР° РїСЂСЏРјРѕ СЃР»РµРІР° РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (1)
+	25=>0, //СЃС‚РµРЅР° РїСЂСЏРјРѕ СЃРїСЂР°РІР° РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (1)
+	26=>0, //СЃС‚РµРЅР° РїСЂСЏРјРѕ РїРµСЂРµРґ РїРµСЂСЃРѕРЅР°Р¶РµРј (1)
+	27=>0, //СЃС‚РµРЅР° СЃР»РµРІР° РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (1)
+	28=>0  //СЃС‚РµРЅР° СЃРїСЂР°РІР° РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (1)
 	);
 		
 	include('dn_editor_class.php');
@@ -235,8 +235,8 @@ if(!isset($_GET['look'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Визуальный редактор Лабиринтов &copy; xcombats.com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Р’РёР·СѓР°Р»СЊРЅС‹Р№ СЂРµРґР°РєС‚РѕСЂ Р›Р°Р±РёСЂРёРЅС‚РѕРІ &copy; xcombats.com</title>
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jqueryrotate.js"></script>
@@ -249,7 +249,7 @@ if(!isset($_GET['look'])) {
 <script>
 
 
-//редактирование обьектов
+//СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РѕР±СЊРµРєС‚РѕРІ
 
 var obi = {'obj':0,
 	'w':0,
@@ -440,7 +440,7 @@ function moveObjEnd(e) {
 	$('#Dungeon2').css({'display':'none'});
 
 
-	//Сохраняем позицию обьекта
+	//РЎРѕС…СЂР°РЅСЏРµРј РїРѕР·РёС†РёСЋ РѕР±СЊРµРєС‚Р°
 	$.post('dn_editor.php',{saveObjPosition:$(top.obi['obj']).attr('id'),rz:$(top.obi['obj']).attr('rz'),objx:x,objy:y,x:top.sel_x,y:top.sel_y,s:top.sel_s},function(data){ $('#textAjaxGo').html('['+data+']'); });
 
 	$('#eo').css({
@@ -507,19 +507,19 @@ function dialogMenu(id,atk,talk,look,take,e)
 		var t = '';
 		if(talk>0)
 		{
-			t += '<a href="main.php?talk='+talk+'&rnd=0.28626200682069150">Диалог</a><br>';
+			t += '<a href="main.php?talk='+talk+'&rnd=0.28626200682069150">Р”РёР°Р»РѕРі</a><br>';
 		}
 		if(atk==1)
 		{
-			t += '<a href="main.php?atack='+id+'&rnd=0.28626200682069150">Напасть</a><br>';
+			t += '<a href="main.php?atack='+id+'&rnd=0.28626200682069150">РќР°РїР°СЃС‚СЊ</a><br>';
 		}
 		if(look==1)
 		{
-			t += 'Просмотр<br>';
+			t += 'РџСЂРѕСЃРјРѕС‚СЂ<br>';
 		}
 		if(take==1)
 		{
-			t += 'Поднять<br>';
+			t += 'РџРѕРґРЅСЏС‚СЊ<br>';
 		}
 		d.innerHTML = t+'<small style="float:right;"><button style="border: solid 1pt #B0B0B0; font-family: MS Sans Serif; font-size: 10px; color: #191970; MARGIN-BOTTOM: 2px; MARGIN-TOP: 1px;" type="button" onClick="exitDem();">x</button></center>';
 		d.style.display = '';
@@ -686,7 +686,7 @@ var prob = {
 function addObj(v,mz,iii){
 	var r = '';
 	//355*245 window
-	var rz = 0; //растояние до пользователя
+	var rz = 0; //СЂР°СЃС‚РѕСЏРЅРёРµ РґРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	if(v[2]>=1 && v[2]<=3) { rz = 1; }
 	if(v[2]>=4 && v[2]<=6) { rz = 2; }
 	if(v[2]>=7 && v[2]<=9) { rz = 3; }
@@ -720,7 +720,7 @@ function addObj(v,mz,iii){
 			actionNow = '';
 			if( v[11]['use'] != undefined ) {
 				if( v[11]['use'] == 'exit' ) {
-					actionNow = 'alert(\'Выход из подземелья\');';
+					actionNow = 'alert(\'Р’С‹С…РѕРґ РёР· РїРѕРґР·РµРјРµР»СЊСЏ\');';
 				} else if( v[11]['use'] == 'takeit' ) {
 					actionNow = 'location=\'main.php?take_obj='+v[0]+'&rnd='+0.28626200682069150+'\';';
 				}
@@ -735,7 +735,7 @@ function addObj(v,mz,iii){
 }
 function addUser(v,mz) {
 	var r = '';
-	var rz = 0; //растояние до пользователя
+	var rz = 0; //СЂР°СЃС‚РѕСЏРЅРёРµ РґРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	if(v[2]>=1 && v[2]<=3){ rz = 1; }
 	if(v[2]>=4 && v[2]<=6){ rz = 2; }
 	if(v[2]>=7 && v[2]<=9){ rz = 3; }
@@ -812,9 +812,9 @@ function locGoLineDng()
 				location = "main.php?go="+gotoup777;
 			}
 		}
-		if(gotoup777 > 0 && gotext777 != '' && document.getElementById('gotext777').innerHTML != 'Вы перейдете <b>'+gotext777+'</b> (<a href="javascript:void(0)" onclick="cancelgoto()">отмена</a>)') {
+		if(gotoup777 > 0 && gotext777 != '' && document.getElementById('gotext777').innerHTML != 'Р’С‹ РїРµСЂРµР№РґРµС‚Рµ <b>'+gotext777+'</b> (<a href="javascript:void(0)" onclick="cancelgoto()">РѕС‚РјРµРЅР°</a>)') {
 			//document.getElementById('gotext777').style.display = 'block';
-			document.getElementById('gotext777').innerHTML = 'Вы перейдете <b>'+gotext777+'</b> (<a href="javascript:void(0)" onclick="cancelgoto()">отмена</a>)';
+			document.getElementById('gotext777').innerHTML = 'Р’С‹ РїРµСЂРµР№РґРµС‚Рµ <b>'+gotext777+'</b> (<a href="javascript:void(0)" onclick="cancelgoto()">РѕС‚РјРµРЅР°</a>)';
 		}else if(document.getElementById('gotext777').innerHTML != '' && gotoup777 == 0 && gotext777 == '') {
 			//document.getElementById('gotext777').style.display = 'none';
 			document.getElementById('gotext777').innerHTML = '';
@@ -876,9 +876,9 @@ function locGoLineDng()
     <td height="40">
     <div style="padding:10px;">
         <form method="post" action="?<?=time()?>">
-        <small style="margin:5px; background:#999999;"><span style="color:#CCCCCC">&nbsp; Пещера# <b><?=$id?></b> &nbsp;</span> </small>
+        <small style="margin:5px; background:#999999;"><span style="color:#CCCCCC">&nbsp; РџРµС‰РµСЂР°# <b><?=$id?></b> &nbsp;</span> </small>
         <select name="id_dng" id="id_dng">
-        <option value="0">Выберите номер пещеры</option>
+        <option value="0">Р’С‹Р±РµСЂРёС‚Рµ РЅРѕРјРµСЂ РїРµС‰РµСЂС‹</option>
         <? 	$i = 0;
             while($i <= 200) {
             $sp = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `id_dng` = "'.$i.'" LIMIT 1'));
@@ -891,7 +891,7 @@ function locGoLineDng()
         }
         ?>
       </select>
-      <button type="submit">Отправить</button>
+      <button type="submit">РћС‚РїСЂР°РІРёС‚СЊ</button>
       </form>
       <div style="height:23px;" id="textAjaxGo"></div>
     </div>
@@ -903,10 +903,10 @@ function locGoLineDng()
       <tr>
         <td width="500" height="600" align="center" valign="top" id="dngseemap">
 		<? } ?>
-        <a href="dn_editor_bots.php?id_dn=<?=$id?>&xx=<?=$u->info['psevdo_x']?>&&yy=<?=$u->info['psevdo_y']?>" target="fm1">Редактировать ботов</a>
+        <a href="dn_editor_bots.php?id_dn=<?=$id?>&xx=<?=$u->info['psevdo_x']?>&&yy=<?=$u->info['psevdo_y']?>" target="fm1">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р±РѕС‚РѕРІ</a>
         <div>
-            <div style="float:left"><a href="javascript:void(0)" onClick="top.sel_s++;top.goPix(top.sel_id,top.sel_x,top.sel_y);">Налево</a></div>
-            <div style="float:right"><a href="javascript:void(0)" onClick="top.sel_s--;top.goPix(top.sel_id,top.sel_x,top.sel_y);">Направо</a></div>
+            <div style="float:left"><a href="javascript:void(0)" onClick="top.sel_s++;top.goPix(top.sel_id,top.sel_x,top.sel_y);">РќР°Р»РµРІРѕ</a></div>
+            <div style="float:right"><a href="javascript:void(0)" onClick="top.sel_s--;top.goPix(top.sel_id,top.sel_x,top.sel_y);">РќР°РїСЂР°РІРѕ</a></div>
         </div>
         <!-- ---------------------------------------------------- -->
               
@@ -1018,27 +1018,27 @@ function locGoLineDng()
 		}
 		</script>
         <div id="object_resize_editor" style="display:none">
-        <b>Редактор объекта</b><br>
+        <b>Р РµРґР°РєС‚РѕСЂ РѕР±СЉРµРєС‚Р°</b><br>
         <div>
         	<div style="display:inline-block;width:100px;">ID:</div>
-            <input id="ore_id" type="text" value=""> (для нового указывать: 0)
+            <input id="ore_id" type="text" value=""> (РґР»СЏ РЅРѕРІРѕРіРѕ СѓРєР°Р·С‹РІР°С‚СЊ: 0)
         </div>
         <div>
-        	<div style="display:inline-block;width:100px;">название:</div>
+        	<div style="display:inline-block;width:100px;">РЅР°Р·РІР°РЅРёРµ:</div>
             <input id="ore_name" type="text" value="">
         </div>
         <div>
-        	<div style="display:inline-block;width:100px;">изображение:</div>
+        	<div style="display:inline-block;width:100px;">РёР·РѕР±СЂР°Р¶РµРЅРёРµ:</div>
             <input id="ore_img" type="text" value="">
         </div>
-        ------[Для текущей позиции]-----<br>
+        ------[Р”Р»СЏ С‚РµРєСѓС‰РµР№ РїРѕР·РёС†РёРё]-----<br>
         <div>
-        	<div style="display:inline-block;width:70px;">ширина:</div>
-            <input id="ore_w" type="text" value=""> (общая) <input id="ore_w2" onKeyUp="utmrp=0;autoDext2();" type="text" value=""> (<a href="javascript:void(0)" onClick="saveCord();">Новый расчет</a>)
+        	<div style="display:inline-block;width:70px;">С€РёСЂРёРЅР°:</div>
+            <input id="ore_w" type="text" value=""> (РѕР±С‰Р°СЏ) <input id="ore_w2" onKeyUp="utmrp=0;autoDext2();" type="text" value=""> (<a href="javascript:void(0)" onClick="saveCord();">РќРѕРІС‹Р№ СЂР°СЃС‡РµС‚</a>)
         </div>
         <div>
-        	<div style="display:inline-block;width:70px;">высота:</div>
-            <input id="ore_h" type="text" value=""> (общая) <input id="ore_h2" type="text" value="">
+        	<div style="display:inline-block;width:70px;">РІС‹СЃРѕС‚Р°:</div>
+            <input id="ore_h" type="text" value=""> (РѕР±С‰Р°СЏ) <input id="ore_h2" type="text" value="">
         </div>
         <div>
         	<div style="display:inline-block;width:70px;">top:</div>
@@ -1056,7 +1056,7 @@ function locGoLineDng()
         	<div style="display:inline-block;width:70px;">Y:</div>
             <input id="ore_y" type="text" value="">
         </div>
-        ------[Детали отображения]-----<br>
+        ------[Р”РµС‚Р°Р»Рё РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ]-----<br>
         <div>
         	<div style="display:inline-block;width:70px;">TYPE:</div>
             <input id="ore_type" type="text" value="">
@@ -1083,17 +1083,17 @@ function locGoLineDng()
         	<div style="display:inline-block;width:70px;">FIX_X_Y:</div>
             <input id="ore_fix_x_y" type="text" value="">
         </div>
-        <a onClick="ore_save_obj()" href="javascript:void(0)">Сохранить / Добавить объект</a><br>
+        <a onClick="ore_save_obj()" href="javascript:void(0)">РЎРѕС…СЂР°РЅРёС‚СЊ / Р”РѕР±Р°РІРёС‚СЊ РѕР±СЉРµРєС‚</a><br>
         -------------------------------------<br>
-        <a onClick="ore_delete_obj()" href="javascript:void(0)">Удалить объект</a>        
+        <a onClick="ore_delete_obj()" href="javascript:void(0)">РЈРґР°Р»РёС‚СЊ РѕР±СЉРµРєС‚</a>        
         </div>
         </td>
         <td><div style="overflow:auto; height:410px">
           <?
     if(!isset($test_id)) {
-        echo '<br><br><br><br><br><center>Пещера не существует</center>';
+        echo '<br><br><br><br><br><center>РџРµС‰РµСЂР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚</center>';
     }else{
-        //Пещера существует
+        //РџРµС‰РµСЂР° СЃСѓС‰РµСЃС‚РІСѓРµС‚
 		$min_x = mysql_fetch_array(mysql_query('SELECT `x` FROM `dungeon_map` WHERE `id_dng` = "'.mysql_real_escape_string($id).'" ORDER BY `x` ASC LIMIT 1'));
 		$max_x = mysql_fetch_array(mysql_query('SELECT `x` FROM `dungeon_map` WHERE `id_dng` = "'.mysql_real_escape_string($id).'" ORDER BY `x` DESC LIMIT 1'));
 		$min_y = mysql_fetch_array(mysql_query('SELECT `y` FROM `dungeon_map` WHERE `id_dng` = "'.mysql_real_escape_string($id).'" ORDER BY `y` ASC LIMIT 1'));
@@ -1135,7 +1135,7 @@ function locGoLineDng()
 			$map[$pl['x']][$pl['y']] = '<img class="cq" onClick="top.goPix('.$pl['id'].','.$pl['x'].','.$pl['y'].');" id="px_'.$pl['id'].'" style="'.$style.'" width="20" height="20" src="http://img.xcombats.com/1x1.gif" title="X: '.$pl['x'].', Y: '.$pl['y'].'">';
 		}
 		
-        echo '<center><b>Карта пещеры</b> (X: ['.$min_x.'] - ['.$max_x.'] , Y: ['.$min_y.'] - ['.$max_y.'])</center><br><br>';
+        echo '<center><b>РљР°СЂС‚Р° РїРµС‰РµСЂС‹</b> (X: ['.$min_x.'] - ['.$max_x.'] , Y: ['.$min_y.'] - ['.$max_y.'])</center><br><br>';
 		
 		$r = '<table border="0" cellspacing="0" cellpadding="0">';		
 		$i = $max_y;

@@ -3,7 +3,7 @@
 function er($e)
 {
 	 global $c;
-	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>Произошла ошибка: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">Назад</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
+	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Language" content="ru"><TITLE>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">РќР°Р·Р°Рґ</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
 }
 
 session_start();
@@ -41,7 +41,7 @@ if(isset($_GET['showcode']))
 
 if($u->info['joinIP']==1 && $u->info['ip']!=IP)
 {
-	er('#Пожалуйста авторизируйтесь с главной страницы');
+	er('#РџРѕР¶Р°Р»СѓР№СЃС‚Р° Р°РІС‚РѕСЂРёР·РёСЂСѓР№С‚РµСЃСЊ СЃ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹');
 }elseif(isset($_GET['exit']))
 {
 	setcookie('login','',time()-60*60*24*30,'',$c['host']);
@@ -58,7 +58,7 @@ if($u->info['joinIP']==1 && $u->info['ip']!=IP)
 	setcookie('login','',time()-60*60*24*30);
 	setcookie('pass','',time()-60*60*24*30);*/
 	
-	er('Возникла проблема с определением id персонажа<br>Авторизируйтесь с главной страницы.');
+	er('Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° СЃ РѕРїСЂРµРґРµР»РµРЅРёРµРј id РїРµСЂСЃРѕРЅР°Р¶Р°<br>РђРІС‚РѕСЂРёР·РёСЂСѓР№С‚РµСЃСЊ СЃ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹.');
 }
 
 if($u->info['online'] < time()-60)
@@ -78,9 +78,9 @@ if($u->info['activ']>0) {
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-<title>Старый Бойцовский Клуб</title>
+<title>РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±</title>
 <meta name="description" content="<?=$c['desc']?>" />
 <meta name="keywords" content="<?=$c['keys']?>" />
 <meta name="author" content="<?=$c['title3']?>"/>
@@ -171,13 +171,13 @@ if(isset($fpi['id'])) {
 		$id = $fpv[$i];
 		$id = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `id` = "'.mysql_real_escape_string($id).'" AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 		if(isset($id['id'])) {
-			//есть итем
+			//РµСЃС‚СЊ РёС‚РµРј
 			$idm = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.mysql_real_escape_string($id['item_id']).'" LIMIT 1'));
 			$idd = mysql_fetch_array(mysql_query('SELECT * FROM `items_main_data` WHERE `items_id` = "'.mysql_real_escape_string($idm['id']).'" LIMIT 1'));
 			//$po = ;
 			$fph .= 'top.addfastpanel(\''.$idm['id'].'\',\''.$idm['name'].'\',\''.$idm['type'].'\',\''.$id['1price'].'\',\''.$id['2price'].'\',\''.$u->city_name[$id['maidin']].'\',\''.$idm['img'].'\',\''.$id['item_id'].'\',\''.$idm['iznosNOW'].'\',\''.$idm['iznosMAX'].'\',\'1\',\'1\',\'1\',\'1\');';
 		}else{
-			//пусто
+			//РїСѓСЃС‚Рѕ
 		}
 		$i++;
 	}
@@ -216,7 +216,7 @@ if( $deviceType == 'tablet' || $deviceType == 'phone' ) {
 ?>
 	<script>
 	function chatHello() {
-		chat.sendMsg(["new","<?=time()?>","1","","<?=$u->info['login']?>","global:<b><font color=red>XCombats</font></b>: Добро пожаловать в игру! следите за новостями :ok:","Black","1","1","0"]);
+		chat.sendMsg(["new","<?=time()?>","1","","<?=$u->info['login']?>","global:<b><font color=red>XCombats</font></b>: Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РІ РёРіСЂСѓ! СЃР»РµРґРёС‚Рµ Р·Р° РЅРѕРІРѕСЃС‚СЏРјРё :ok:","Black","1","1","0"]);
 	}
 	
     </script>
@@ -312,9 +312,9 @@ if( $deviceType == 'tablet' || $deviceType == 'phone' ) {
 
 <body onLoad="bodyLoaded();chatHello();">
 <div style="display:none" class="qel0" id="qel0"></div>
-<noscript><center>В вашем браузере отсутствует поодержка <b>javascript</b></center></noscript>
+<noscript><center>Р’ РІР°С€РµРј Р±СЂР°СѓР·РµСЂРµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРѕРѕРґРµСЂР¶РєР° <b>javascript</b></center></noscript>
 <style>
-/* цвета команд */
+/* С†РІРµС‚Р° РєРѕРјР°РЅРґ */
 .CSSteam0	{ font-weight: bold; cursor:pointer; }
 .CSSteam1	{ font-weight: bold; color: #6666CC; cursor:pointer; }
 .CSSteam2	{ font-weight: bold; color: #B06A00; cursor:pointer; }
@@ -425,26 +425,26 @@ body {
 /*$yes = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vars` = "user_yes" LIMIT 1',1);
 if(!isset($yes['id']))
 {
-	//Пользовательское соглашение
+	//РџРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРµ СЃРѕРіР»Р°С€РµРЅРёРµ
 	if(isset($_GET['yes']))
 	{
-		//согласен
+		//СЃРѕРіР»Р°СЃРµРЅ
 		$u->addAction(time(),'user_yes','');
 		header('location: http://'.$c[$u->info['city']].'/bk');
 		die();
 	}
 	/*echo '<table width="100%" height="100%" style="position:absolute;z-index:100000;background-color:#d6d6d6;color:#333333" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="middle"><table width="700" border="0" cellspacing="0" cellpadding="0"><tr><td>
 <div align="left">
-<b>Наверное Вы удивлены что это за текст?<br>Пожалуйста уделите одну минуту Вашего драгоценного времени и прочитайте его:</b><br><br>
-&nbsp; Добрый день, вечер или даже ночь! Вы наверное играли в Бойцовский Клуб? Да, точно играли, по крайней мере в проекты которые
-себя называют "Лучший Клон БК" и т.д., а по факту, простите, это хуйня из под коня. Сейчас много проектов
-которые создаются любителями, которые пользуются готовыми движками. Скачать и установить такой сайт
-может любой школьник, даже безграмотный! Наш проект не такой! Постоянное развитие, улучшение, экшен,
-да и к тому-же уникальность нашего движка не сможет оспорить ни один человек. Надеемся что Вам понравится
-наш проект и Вы будете играть здесь до последнего дня проекта!<br>
-&nbsp; Соглашаясь с этим текстом Вы отказывается от всего этого дерьма в интернете и вступаете в круг людей которые
-за качество и отсутствие однообразия! Вас ждет множество удивительных вещей, в то время как другие потакают некачественному продукту.
-<br><br><center><a href="club.php?yes='.$code.'">Я полностью согласен с написанным выше текстом</a></center><br><br>Если по каким-либо причинам Вы не согласны, то пожалуйста закройте наш сайт и более не открывайте! Спасибо! ;-)
+<b>РќР°РІРµСЂРЅРѕРµ Р’С‹ СѓРґРёРІР»РµРЅС‹ С‡С‚Рѕ СЌС‚Рѕ Р·Р° С‚РµРєСЃС‚?<br>РџРѕР¶Р°Р»СѓР№СЃС‚Р° СѓРґРµР»РёС‚Рµ РѕРґРЅСѓ РјРёРЅСѓС‚Сѓ Р’Р°С€РµРіРѕ РґСЂР°РіРѕС†РµРЅРЅРѕРіРѕ РІСЂРµРјРµРЅРё Рё РїСЂРѕС‡РёС‚Р°Р№С‚Рµ РµРіРѕ:</b><br><br>
+&nbsp; Р”РѕР±СЂС‹Р№ РґРµРЅСЊ, РІРµС‡РµСЂ РёР»Рё РґР°Р¶Рµ РЅРѕС‡СЊ! Р’С‹ РЅР°РІРµСЂРЅРѕРµ РёРіСЂР°Р»Рё РІ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±? Р”Р°, С‚РѕС‡РЅРѕ РёРіСЂР°Р»Рё, РїРѕ РєСЂР°Р№РЅРµР№ РјРµСЂРµ РІ РїСЂРѕРµРєС‚С‹ РєРѕС‚РѕСЂС‹Рµ
+СЃРµР±СЏ РЅР°Р·С‹РІР°СЋС‚ "Р›СѓС‡С€РёР№ РљР»РѕРЅ Р‘Рљ" Рё С‚.Рґ., Р° РїРѕ С„Р°РєС‚Сѓ, РїСЂРѕСЃС‚РёС‚Рµ, СЌС‚Рѕ С…СѓР№РЅСЏ РёР· РїРѕРґ РєРѕРЅСЏ. РЎРµР№С‡Р°СЃ РјРЅРѕРіРѕ РїСЂРѕРµРєС‚РѕРІ
+РєРѕС‚РѕСЂС‹Рµ СЃРѕР·РґР°СЋС‚СЃСЏ Р»СЋР±РёС‚РµР»СЏРјРё, РєРѕС‚РѕСЂС‹Рµ РїРѕР»СЊР·СѓСЋС‚СЃСЏ РіРѕС‚РѕРІС‹РјРё РґРІРёР¶РєР°РјРё. РЎРєР°С‡Р°С‚СЊ Рё СѓСЃС‚Р°РЅРѕРІРёС‚СЊ С‚Р°РєРѕР№ СЃР°Р№С‚
+РјРѕР¶РµС‚ Р»СЋР±РѕР№ С€РєРѕР»СЊРЅРёРє, РґР°Р¶Рµ Р±РµР·РіСЂР°РјРѕС‚РЅС‹Р№! РќР°С€ РїСЂРѕРµРєС‚ РЅРµ С‚Р°РєРѕР№! РџРѕСЃС‚РѕСЏРЅРЅРѕРµ СЂР°Р·РІРёС‚РёРµ, СѓР»СѓС‡С€РµРЅРёРµ, СЌРєС€РµРЅ,
+РґР° Рё Рє С‚РѕРјСѓ-Р¶Рµ СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚СЊ РЅР°С€РµРіРѕ РґРІРёР¶РєР° РЅРµ СЃРјРѕР¶РµС‚ РѕСЃРїРѕСЂРёС‚СЊ РЅРё РѕРґРёРЅ С‡РµР»РѕРІРµРє. РќР°РґРµРµРјСЃСЏ С‡С‚Рѕ Р’Р°Рј РїРѕРЅСЂР°РІРёС‚СЃСЏ
+РЅР°С€ РїСЂРѕРµРєС‚ Рё Р’С‹ Р±СѓРґРµС‚Рµ РёРіСЂР°С‚СЊ Р·РґРµСЃСЊ РґРѕ РїРѕСЃР»РµРґРЅРµРіРѕ РґРЅСЏ РїСЂРѕРµРєС‚Р°!<br>
+&nbsp; РЎРѕРіР»Р°С€Р°СЏСЃСЊ СЃ СЌС‚РёРј С‚РµРєСЃС‚РѕРј Р’С‹ РѕС‚РєР°Р·С‹РІР°РµС‚СЃСЏ РѕС‚ РІСЃРµРіРѕ СЌС‚РѕРіРѕ РґРµСЂСЊРјР° РІ РёРЅС‚РµСЂРЅРµС‚Рµ Рё РІСЃС‚СѓРїР°РµС‚Рµ РІ РєСЂСѓРі Р»СЋРґРµР№ РєРѕС‚РѕСЂС‹Рµ
+Р·Р° РєР°С‡РµСЃС‚РІРѕ Рё РѕС‚СЃСѓС‚СЃС‚РІРёРµ РѕРґРЅРѕРѕР±СЂР°Р·РёСЏ! Р’Р°СЃ Р¶РґРµС‚ РјРЅРѕР¶РµСЃС‚РІРѕ СѓРґРёРІРёС‚РµР»СЊРЅС‹С… РІРµС‰РµР№, РІ С‚Рѕ РІСЂРµРјСЏ РєР°Рє РґСЂСѓРіРёРµ РїРѕС‚Р°РєР°СЋС‚ РЅРµРєР°С‡РµСЃС‚РІРµРЅРЅРѕРјСѓ РїСЂРѕРґСѓРєС‚Сѓ.
+<br><br><center><a href="club.php?yes='.$code.'">РЇ РїРѕР»РЅРѕСЃС‚СЊСЋ СЃРѕРіР»Р°СЃРµРЅ СЃ РЅР°РїРёСЃР°РЅРЅС‹Рј РІС‹С€Рµ С‚РµРєСЃС‚РѕРј</a></center><br><br>Р•СЃР»Рё РїРѕ РєР°РєРёРј-Р»РёР±Рѕ РїСЂРёС‡РёРЅР°Рј Р’С‹ РЅРµ СЃРѕРіР»Р°СЃРЅС‹, С‚Рѕ РїРѕР¶Р°Р»СѓР№СЃС‚Р° Р·Р°РєСЂРѕР№С‚Рµ РЅР°С€ СЃР°Р№С‚ Рё Р±РѕР»РµРµ РЅРµ РѕС‚РєСЂС‹РІР°Р№С‚Рµ! РЎРїР°СЃРёР±Рѕ! ;-)
 </div></td></tr></table></td></tr></table>';*/
 //}
 ?>
@@ -453,9 +453,9 @@ if(window.top !== window.self)
 {
 	document.write = "";
 	window.top.location = window.self.location;
-	setTimeout(function(){ document.body.innerHTML='Ошибка доступа.'; },500);
+	setTimeout(function(){ document.body.innerHTML='РћС€РёР±РєР° РґРѕСЃС‚СѓРїР°.'; },500);
 	window.self.onload=function(evt){
-	document.body.innerHTML='Ошибка доступа.';};
+	document.body.innerHTML='РћС€РёР±РєР° РґРѕСЃС‚СѓРїР°.';};
 }
 function cc(el) {
 	$(window).resize(function(){
@@ -489,14 +489,14 @@ function startRegistration() {
 			$('#errorreg').html( data );
 		});
 	/*}else{
-		alert('Ознакомьтесь с "Первыми шагами новичка" справа! \n Эта информация будет полезна Вам! \n Вы прочитали '+goodread+' из 9 страниц!');
+		alert('РћР·РЅР°РєРѕРјСЊС‚РµСЃСЊ СЃ "РџРµСЂРІС‹РјРё С€Р°РіР°РјРё РЅРѕРІРёС‡РєР°" СЃРїСЂР°РІР°! \n Р­С‚Р° РёРЅС„РѕСЂРјР°С†РёСЏ Р±СѓРґРµС‚ РїРѕР»РµР·РЅР° Р’Р°Рј! \n Р’С‹ РїСЂРѕС‡РёС‚Р°Р»Рё '+goodread+' РёР· 9 СЃС‚СЂР°РЅРёС†!');
 	}*/
 }
 </script>
 <style>
 .proza {
 	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=87); /* IE 5.5+*/
-	-moz-opacity: 0.87; /* Mozilla 1.6 и ниже */
+	-moz-opacity: 0.87; /* Mozilla 1.6 Рё РЅРёР¶Рµ */
 	-khtml-opacity: 0.87; /* Konqueror 3.1, Safari 1.1 */
 	opacity: 0.87; /* CSS3 - Mozilla 1.7b +, Firefox 0.9 +, Safari 1.2+, Opera 9+ */
 }
@@ -581,31 +581,31 @@ function startRegistration() {
 <div id="windows" style="position:absolute;z-index:1101;"></div>
 <div id="wupbox" onmouseup="win.WstopDrag()" onmousemove="win.WmoveDrag(event)" onselectstart="return false"></div>
 <div id="chconfig">
-<center><b>Настройки чата</b></center>
-<img title="Эпическая линия (o_O)" src="http://<?=$c['img'];?>/1x1.gif" class="eLine"><br>
-Скорость обновления: <SELECT id="chcf0"><OPTION value='-1'>никогда</OPTION><OPTION value='1'>15 сек.</OPTION><OPTION selected value='2'>30 сек.</OPTION><OPTION value='3'>1 мин.</OPTION><OPTION value='4'>5 мин.</OPTION></SELECT><br>
-<div>Сортировка списка онлайн: <SELECT id="chcf8"><OPTION value='0' selected>По логину</OPTION><OPTION value='1'>По уровню</OPTION><OPTION value='2'>По склоности</OPTION><OPTION value='3'>По клану</OPTION></SELECT>
-<input name="chcf9" type="checkbox" id="chcf9" value="1"><small>По убыванию</small></div>
+<center><b>РќР°СЃС‚СЂРѕР№РєРё С‡Р°С‚Р°</b></center>
+<img title="Р­РїРёС‡РµСЃРєР°СЏ Р»РёРЅРёСЏ (o_O)" src="http://<?=$c['img'];?>/1x1.gif" class="eLine"><br>
+РЎРєРѕСЂРѕСЃС‚СЊ РѕР±РЅРѕРІР»РµРЅРёСЏ: <SELECT id="chcf0"><OPTION value='-1'>РЅРёРєРѕРіРґР°</OPTION><OPTION value='1'>15 СЃРµРє.</OPTION><OPTION selected value='2'>30 СЃРµРє.</OPTION><OPTION value='3'>1 РјРёРЅ.</OPTION><OPTION value='4'>5 РјРёРЅ.</OPTION></SELECT><br>
+<div>РЎРѕСЂС‚РёСЂРѕРІРєР° СЃРїРёСЃРєР° РѕРЅР»Р°Р№РЅ: <SELECT id="chcf8"><OPTION value='0' selected>РџРѕ Р»РѕРіРёРЅСѓ</OPTION><OPTION value='1'>РџРѕ СѓСЂРѕРІРЅСЋ</OPTION><OPTION value='2'>РџРѕ СЃРєР»РѕРЅРѕСЃС‚Рё</OPTION><OPTION value='3'>РџРѕ РєР»Р°РЅСѓ</OPTION></SELECT>
+<input name="chcf9" type="checkbox" id="chcf9" value="1"><small>РџРѕ СѓР±С‹РІР°РЅРёСЋ</small></div>
 <? if($u->info['admin']>0 || ($u->info['align']>1 && $u->info['align']<2) || ($u->info['align']>3 && $u->info['align']<4) || $u->info['align']==50) { ?>
-<div><input name="chcf11" type="checkbox" id="chcf11" value="1"> Глобальный чат</div>
+<div><input name="chcf11" type="checkbox" id="chcf11" value="1"> Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ С‡Р°С‚</div>
 <? } ?>
-<div><input name="chcf12" type="checkbox" id="chcf12" value="1"> Экономия трафика</div>
-<div style="display:<? if($u->info['admin']>0 || ($u->info['align']>1 && $u->info['align']<2) || ($u->info['align']>3 && $u->info['align']<4)) { echo ''; }else{ echo 'none;'; } ?>"><input name="chcf7" type="checkbox" id="chcf7" value="1"> <span title="Получать сообщения от персонажей на которых наложено заклятие молчания">Сообщения с молчанкой</span></div>
-<img title="Эпическая линия (o_O)" src="http://<?=$c['img'];?>/1x1.gif" class="eLine">
-<div>&nbsp; &nbsp;&nbsp; <span><a href="javascript:void(0)" onclick="chat.ignorListOpen();chconf();">Список игнорируемых</a></span></div>
+<div><input name="chcf12" type="checkbox" id="chcf12" value="1"> Р­РєРѕРЅРѕРјРёСЏ С‚СЂР°С„РёРєР°</div>
+<div style="display:<? if($u->info['admin']>0 || ($u->info['align']>1 && $u->info['align']<2) || ($u->info['align']>3 && $u->info['align']<4)) { echo ''; }else{ echo 'none;'; } ?>"><input name="chcf7" type="checkbox" id="chcf7" value="1"> <span title="РџРѕР»СѓС‡Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚ РїРµСЂСЃРѕРЅР°Р¶РµР№ РЅР° РєРѕС‚РѕСЂС‹С… РЅР°Р»РѕР¶РµРЅРѕ Р·Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ">РЎРѕРѕР±С‰РµРЅРёСЏ СЃ РјРѕР»С‡Р°РЅРєРѕР№</span></div>
+<img title="Р­РїРёС‡РµСЃРєР°СЏ Р»РёРЅРёСЏ (o_O)" src="http://<?=$c['img'];?>/1x1.gif" class="eLine">
+<div>&nbsp; &nbsp;&nbsp; <span><a href="javascript:void(0)" onclick="chat.ignorListOpen();chconf();">РЎРїРёСЃРѕРє РёРіРЅРѕСЂРёСЂСѓРµРјС‹С…</a></span></div>
 </div>
 <!-- <div id="counters"></div> -->
-<!-- ресайзы -->
+<!-- СЂРµСЃР°Р№Р·С‹ -->
 <div id="actionDiv" style="position:absolute;"></div>
 <div id="reline1" onselectstart="return false">
 	<img src="http://img.xcombats.com/1x1.gif" width="9" height="4" style="float:left; display:block; position:absolute; background-image:url(http://img.xcombats.com/i/lite/_top_24.gif);">
 	<img src="http://img.xcombats.com/1x1.gif" width="10" height="4" style="float:right; display:block; background-image:url(http://img.xcombats.com/i/lite/_top_28.gif);">
 </div>
 <div id="reline2" onselectstart="return false"></div>
-<!-- ресайзы -->
+<!-- СЂРµСЃР°Р№Р·С‹ -->
 <div id="upbox" onselectstart="return false"></div>
     <div style="position:absolute; top:0; left:0; height:37px; width:100%;" onselectstart="return false">
-    <div title="Новая почта" style="display:none; position:absolute; left: 198px; top: 13px; width:24px; height:15px; background-image:url(http://img.xcombats.com/i/mail2.gif);" class="postdiv" id="postdiv"></div>
+    <div title="РќРѕРІР°СЏ РїРѕС‡С‚Р°" style="display:none; position:absolute; left: 198px; top: 13px; width:24px; height:15px; background-image:url(http://img.xcombats.com/i/mail2.gif);" class="postdiv" id="postdiv"></div>
     <div style="background: url(http://img.xcombats.com/i/lite/<?=$u->info['city']?>/top_lite_cap_11.gif) repeat-x bottom; ">
      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(http://img.xcombats.com/i/lite/top_lite_cap_03.gif) repeat-x top; ">
         <tr>
@@ -615,15 +615,15 @@ function startRegistration() {
               <td width="31" height="14"><img class="db" height="14" src="http://img.xcombats.com/i/lite/mennu112_06_lite.gif" width="31" /></td>
               <td align="center"><table height="14" cellspacing="0" cellpadding="0" width="100%" background="http://img.xcombats.com/i/lite/mennu112_06.gif" border="0">
                 <tr align="middle">
-                  <td id="el1" class="main_text" onClick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('1');" align="center">Знания</td>
+                  <td id="el1" class="main_text" onClick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('1');" align="center">Р—РЅР°РЅРёСЏ</td>
                   <td width="1"><img class="db" height="11" src="http://img.xcombats.com/i/lite/mennu112_09.gif" width="1" /></td>
-                  <td id="el2" class="main_text" onClick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('2');" align="center">Общение</td>
+                  <td id="el2" class="main_text" onClick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('2');" align="center">РћР±С‰РµРЅРёРµ</td>
                   <td width="1"><img class="db" height="11" src="http://img.xcombats.com/i/lite/mennu112_09.gif" width="1" /></td>
-                  <td id="el3" class="main_text" onClick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('3');" align="center">Безопасность</td>
+                  <td id="el3" class="main_text" onClick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('3');" align="center">Р‘РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ</td>
                   <td width="1"><img class="db" height="11" src="http://img.xcombats.com/i/lite/mennu112_09.gif" width="1" /></td>
-                  <td id="el4" class="main_text" onClick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('4');" style="background:#404040; color:#FFFFFF;" align="center">Персонаж</td>
+                  <td id="el4" class="main_text" onClick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('4');" style="background:#404040; color:#FFFFFF;" align="center">РџРµСЂСЃРѕРЅР°Р¶</td>
                   <td width="1"><img class="db" height="11" src="http://img.xcombats.com/i/lite/mennu112_09.gif" width="1" /></td>
-                  <td id="el5" class="main_text" onClick="if(confirm('Выйти из игры?')){ top.location = '/bk?exit&rnd=<?=$code?>'; }"  align="center">Выход&nbsp;</td>
+                  <td id="el5" class="main_text" onClick="if(confirm('Р’С‹Р№С‚Рё РёР· РёРіСЂС‹?')){ top.location = '/bk?exit&rnd=<?=$code?>'; }"  align="center">Р’С‹С…РѕРґ&nbsp;</td>
                 </tr>
               </table></td>
               <td width="38"><img class="db" height="14" src="http://img.xcombats.com/i/lite/mennu112_04_lite.gif" width="37" /></td>
@@ -640,10 +640,10 @@ function startRegistration() {
                   <tr>
                     <td width="20"><img class="db" src="http://img.xcombats.com/i/lite/top_lite_13.gif" width="20" height="17" /></td>
                     <td align="right" height="15" valign="top" background="http://img.xcombats.com/i/lite/top_lite_low_15.gif" style="font-size:10px;">
-                        <span style="display:none;" id="menu1"> <a href="http://xcombats.com/lib/zakon/" target="_blank" class="menutop">&nbsp;Законы&nbsp;</a> | <a href="http://xcombats.com/lib/polzovatelskoe-soglashenie/" target="_blank" class="menutop">&nbsp;Соглашения&nbsp;</a>&nbsp;</span>
-                        <span style="display:none;" id="menu2"><a onClick="top.telegraf(); return false" href="javascript:void(0)" target="_blank" class="menutop">&nbsp;Телеграммы&nbsp;</a> | <a href="http://xcombats.com/lib/zakon/" target="_blank" class="menutop">&nbsp;Библиотека&nbsp;</a> | <a href="http://xcombats.com/news/" target="_blank" class="menutop">&nbsp;События&nbsp;</a> | <a href="http://xcombats.com/forum" target="_blank" class="menutop">&nbsp;Форум&nbsp;</a> |  <a href="http://xcombats.com/rating" target="_blank" class="menutop">&nbsp;Рейтинг&nbsp;</a>&nbsp;</span>
-                        <span style="display:none;" id="menu3"> <a href="main.php?act_sec=1" target="main" class="menutop">&nbsp;Отчеты&nbsp;</a> | <a href="http://xcombats.com/lib/zakon/" target="_blank" class="menutop">&nbsp;Правила&nbsp;</a> | <a href="http://xcombats.com/main.php?security&rnd=<?=$c[9]?>" target="main" class="menutop">&nbsp;Настройки&nbsp;</a> | <a href="main.php?security&rnd=<?=$c[9]?>" target="main" class="menutop">&nbsp;Смена пароля&nbsp;</a>&nbsp;</span>
-                        <span style="display:;" id="menu4"><a href="/main.php?referals=1&rn=<?=$c[9]?>" target="main" class="menutop" style="color:red">Заработок</a> | <a href="/main.php?inv=1&rn=<?=$c[9]?>" target="main" class="menutop">&nbsp;Инвентарь&nbsp;</a> | <a href="/main.php?skills=1&side=5" target="main" class="menutop">&nbsp;Умения&nbsp;</a> | <a href="/main.php?act_trf=1" target="main" class="menutop">&nbsp;Отчеты&nbsp;</a> | <a href="/main.php?zayvka=1" target="main" class="menutop">&nbsp;Поединки&nbsp;</a><!-- | <a href="/seasons.php" target="main" class="menutop">Сезоны</a>--> | <a href="/main.php?anketa=1" target="main" class="menutop">&nbsp;Анкета&nbsp;</a>&nbsp;</span>
+                        <span style="display:none;" id="menu1"> <a href="http://xcombats.com/lib/zakon/" target="_blank" class="menutop">&nbsp;Р—Р°РєРѕРЅС‹&nbsp;</a> | <a href="http://xcombats.com/lib/polzovatelskoe-soglashenie/" target="_blank" class="menutop">&nbsp;РЎРѕРіР»Р°С€РµРЅРёСЏ&nbsp;</a>&nbsp;</span>
+                        <span style="display:none;" id="menu2"><a onClick="top.telegraf(); return false" href="javascript:void(0)" target="_blank" class="menutop">&nbsp;РўРµР»РµРіСЂР°РјРјС‹&nbsp;</a> | <a href="http://xcombats.com/lib/zakon/" target="_blank" class="menutop">&nbsp;Р‘РёР±Р»РёРѕС‚РµРєР°&nbsp;</a> | <a href="http://xcombats.com/news/" target="_blank" class="menutop">&nbsp;РЎРѕР±С‹С‚РёСЏ&nbsp;</a> | <a href="http://xcombats.com/forum" target="_blank" class="menutop">&nbsp;Р¤РѕСЂСѓРј&nbsp;</a> |  <a href="http://xcombats.com/rating" target="_blank" class="menutop">&nbsp;Р РµР№С‚РёРЅРі&nbsp;</a>&nbsp;</span>
+                        <span style="display:none;" id="menu3"> <a href="main.php?act_sec=1" target="main" class="menutop">&nbsp;РћС‚С‡РµС‚С‹&nbsp;</a> | <a href="http://xcombats.com/lib/zakon/" target="_blank" class="menutop">&nbsp;РџСЂР°РІРёР»Р°&nbsp;</a> | <a href="http://xcombats.com/main.php?security&rnd=<?=$c[9]?>" target="main" class="menutop">&nbsp;РќР°СЃС‚СЂРѕР№РєРё&nbsp;</a> | <a href="main.php?security&rnd=<?=$c[9]?>" target="main" class="menutop">&nbsp;РЎРјРµРЅР° РїР°СЂРѕР»СЏ&nbsp;</a>&nbsp;</span>
+                        <span style="display:;" id="menu4"><a href="/main.php?referals=1&rn=<?=$c[9]?>" target="main" class="menutop" style="color:red">Р—Р°СЂР°Р±РѕС‚РѕРє</a> | <a href="/main.php?inv=1&rn=<?=$c[9]?>" target="main" class="menutop">&nbsp;РРЅРІРµРЅС‚Р°СЂСЊ&nbsp;</a> | <a href="/main.php?skills=1&side=5" target="main" class="menutop">&nbsp;РЈРјРµРЅРёСЏ&nbsp;</a> | <a href="/main.php?act_trf=1" target="main" class="menutop">&nbsp;РћС‚С‡РµС‚С‹&nbsp;</a> | <a href="/main.php?zayvka=1" target="main" class="menutop">&nbsp;РџРѕРµРґРёРЅРєРё&nbsp;</a><!-- | <a href="/seasons.php" target="main" class="menutop">РЎРµР·РѕРЅС‹</a>--> | <a href="/main.php?anketa=1" target="main" class="menutop">&nbsp;РђРЅРєРµС‚Р°&nbsp;</a>&nbsp;</span>
                     </td>
                     <td width="22"><img class="db" src="http://img.xcombats.com/i/lite/top_lite_18.gif" width="22" height="17" /></td>
                   </tr>             
@@ -691,7 +691,7 @@ function startRegistration() {
                     <tr>
                       <td>
                         <div id="chat_menu" style="text-align:right; white-space:nowrap;">
-                            <? /*<div id="addbs" style="float:left;display:;"><a href="javascript:top.add_cb(0,'new',0,0);"><img src="addmn.gif" width="16" height="16" title="Добавить новую вкладку" /></a></div>*/ ?>
+                            <? /*<div id="addbs" style="float:left;display:;"><a href="javascript:top.add_cb(0,'new',0,0);"><img src="addmn.gif" width="16" height="16" title="Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ РІРєР»Р°РґРєСѓ" /></a></div>*/ ?>
                         </div>
                       </td>
                       <td style="display:none;" id="scroll_none" width="3"></td>
@@ -701,8 +701,8 @@ function startRegistration() {
               </div>
 
         <div id="ttSmiles" onselectstart="return false" style="display:none;z-index:1100;" />
-        	<div id="smilesDiv" style="margin:5px;">Загрузка смайликов</div>
-            <div align="left"><button class="btnnew" style="width:350px;" onClick="chat.lookSmiles()">Закрыть</button></div>
+        	<div id="smilesDiv" style="margin:5px;">Р—Р°РіСЂСѓР·РєР° СЃРјР°Р№Р»РёРєРѕРІ</div>
+            <div align="left"><button class="btnnew" style="width:350px;" onClick="chat.lookSmiles()">Р—Р°РєСЂС‹С‚СЊ</button></div>
         </div>
         
           <div id="chat_list" style="cursor:default;">
@@ -715,14 +715,14 @@ function startRegistration() {
         <td width="240" valign="top" bgcolor="#faf2f2" style="border-left:2px solid #CCCCCC;border-top:1px solid #808080" id="online">
         <div id="online_list" style="cursor:default;">
           <div align="center" style="margin-top:5px;">
-          <button class="btnnew" id="robtn" onClick="chat.reflesh()">Обновить</button>
+          <button class="btnnew" id="robtn" onClick="chat.reflesh()">РћР±РЅРѕРІРёС‚СЊ</button>
           </div>
           <font class="db" style="padding:0px 0 8px 0;font-size: 10pt; color:#8f0000;"><b id="roomName"></b></font>
           <div id="onlist"></div>
           <div style="border-top:#cac2c2 solid 1px;padding:5px;margin-top:5px;">
-              <div><label><input type="checkbox" value="1" <? if( $u->info['level'] < 8 ) { ?>checked<? } ?> id="autoRefOnline">Обновлять автомат.</label></div>
+              <div><label><input type="checkbox" value="1" <? if( $u->info['level'] < 8 ) { ?>checked<? } ?> id="autoRefOnline">РћР±РЅРѕРІР»СЏС‚СЊ Р°РІС‚РѕРјР°С‚.</label></div>
               <? if( $u->info['admin'] > 0 ) { ?>
-              <div><label><input name="chcf10" type="checkbox" id="chcf10" <? if( $u->info['level'] < 8 ) { ?>checked<? } ?> value="0">Показать всех игроков</label></div>
+              <div><label><input name="chcf10" type="checkbox" id="chcf10" <? if( $u->info['level'] < 8 ) { ?>checked<? } ?> value="0">РџРѕРєР°Р·Р°С‚СЊ РІСЃРµС… РёРіСЂРѕРєРѕРІ</label></div>
           	  <? } ?>
           </div>
         </div>
@@ -737,8 +737,8 @@ function startRegistration() {
     <td height="30" bgcolor="#E9E9E9" background="http://img.xcombats.com/i/buttons/chat_bg.gif">
     <table width="100%" height="26" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="30"><img onclick="radioClick();" id="radiobtn1" class="db radiobtn" src="http://img.xcombats.com/1x1.gif" width="30" height="30" title="Радио (Выключено)"></td>
-        <td style="display:none;" width="100" align="center" id="trader"><div id="trader" style="border:1px solid #CCCCCC;padding:2px; margin-left:-2px; width:90%;" class="klan"><small id="moneyGM"><b>Торговый чат</b></small></div></td>
+        <td width="30"><img onclick="radioClick();" id="radiobtn1" class="db radiobtn" src="http://img.xcombats.com/1x1.gif" width="30" height="30" title="Р Р°РґРёРѕ (Р’С‹РєР»СЋС‡РµРЅРѕ)"></td>
+        <td style="display:none;" width="100" align="center" id="trader"><div id="trader" style="border:1px solid #CCCCCC;padding:2px; margin-left:-2px; width:90%;" class="klan"><small id="moneyGM"><b>РўРѕСЂРіРѕРІС‹Р№ С‡Р°С‚</b></small></div></td>
         <td><input type="hidden" name="trader" id="trader_val" value="0"><input onmouseup="top.chat.inObj=undefined;" type="text" name="textmsg" id="textmsg" maxlength="240" onKeyPress="top.testKey(event)" style="width:100%;font-size:9pt;margin-bottom:2px;" /></td>
         <td width="6">&nbsp;</td>
         <td width="30"><img onClick="chat.subSend();" src="http://img.xcombats.com/1x1.gif" class="db cp chatBtn2_1"></td>
@@ -759,7 +759,7 @@ function startRegistration() {
         <td width="30"><img id="chbtn7" onClick="chat.soundChat()" src="http://img.xcombats.com/1x1.gif" class="db cp chatBtn7_1"></td>
         <td width="10">&nbsp;</td>
         <td width="30"><img id="chbtn8" class="db cp chatBtn8_1" onClick="chat.lookSmiles()" src="http://img.xcombats.com/1x1.gif"></td>
-        <td width="30"><img id="chbtn8" class="cp" title="Панель быстрого доступа" onClick="fastpanel()" src="http://img.xcombats.com/b___cl1.gif"></td>
+        <td width="30"><img id="chbtn8" class="cp" title="РџР°РЅРµР»СЊ Р±С‹СЃС‚СЂРѕРіРѕ РґРѕСЃС‚СѓРїР°" onClick="fastpanel()" src="http://img.xcombats.com/b___cl1.gif"></td>
         <td width="16" bgcolor="#BAB7B3"><img src="http://img.xcombats.com/i/buttons/chat_explode.gif" width="16" height="30" class="db" /></td>
         <td width="30"><img onclick="top.getUrl('main','main.php?inv=1&rnd='+c.rnd);" class="db cp" src="http://img.xcombats.com/i/buttons/chatBtn13.gif"></td>
 		<?   if($u->info['level']>3){ ?>
@@ -774,7 +774,7 @@ function startRegistration() {
         <? } if($u->info['align']>=3 && $u->info['align']<4){ ?>
         <td width="30"><img onClick="top.getUrl('main','main.php?dark=1&rnd='+c.rnd);" class="db cp" src="http://img.xcombats.com/i/buttons/chatBtn10.gif"></td>
         <? } if($u->info['vip']>time() || $u->stats['silvers']>0 || $u->stats['bronze']>0 || $u->stats['gold']>0 ){ ?>
-        <td width="30"><img onClick="top.getUrl('main','main.php?vip=1&rnd='+c.rnd);" class="db cp"  src="http://img.xcombats.com/i/buttons/chatBtn17.gif" onMouseOver="top.hi(this,'<b>Vip Панель персонажа <?=$u->info['login']?></b>',event,3,0,1,0,'');" onMouseOut="top.hic();" onMouseDown="top.hic();"> </td></td>
+        <td width="30"><img onClick="top.getUrl('main','main.php?vip=1&rnd='+c.rnd);" class="db cp"  src="http://img.xcombats.com/i/buttons/chatBtn17.gif" onMouseOver="top.hi(this,'<b>Vip РџР°РЅРµР»СЊ РїРµСЂСЃРѕРЅР°Р¶Р° <?=$u->info['login']?></b>',event,3,0,1,0,'');" onMouseOut="top.hic();" onMouseDown="top.hic();"> </td></td>
         <? } if($u->info['level']>-1){ ?>
         <td width="30"><img onClick="top.getUrl('main','main.php?friends=1&rnd='+c.rnd);" class="db cp" src="http://img.xcombats.com/i/buttons/chatBtn12.gif"></td>
         <? } if($u->info['admin'] > 0 || $u->info['align'] == 50){ ?>
@@ -789,7 +789,7 @@ function startRegistration() {
         <!--
         <td width="30"><img onClick="top.getUrl('main','main.php?bagreport=1&rnd='+c.rnd);" class="db cp" src="http://img.xcombats.com/i/buttons/chatBtnBugs.gif"></td>
         -->
-        <td width="30"><img onClick="if(confirm('Выйти из игры?')){ top.location = '/bk?exit&rnd=<?=$code?>'; }" class="db cp" src="http://img.xcombats.com/i/buttons/chatBtn11.gif"></td>
+        <td width="30"><img onClick="if(confirm('Р’С‹Р№С‚Рё РёР· РёРіСЂС‹?')){ top.location = '/bk?exit&rnd=<?=$code?>'; }" class="db cp" src="http://img.xcombats.com/i/buttons/chatBtn11.gif"></td>
         <td width="70">
             <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="70" height="25">
            		<param name="movie" value="flash/clock.swf?hours=<?=date("H")?>&amp;minutes=<?=date("i")?>&amp;sec=<?=date("s")?>">
@@ -819,14 +819,14 @@ if($u->info['active']!='' && $u->info['mail']!='No E-mail')
 	}
 	
 	/*
-	function send_mime_mail($name_from, // имя отправителя
-                       $email_from, // email отправителя
-                       $name_to, // имя получателя
-                       $email_to, // email получателя
-                       $data_charset, // кодировка переданных данных
-                       $send_charset, // кодировка письма
-                       $subject, // тема письма
-                       $body // текст письма
+	function send_mime_mail($name_from, // РёРјСЏ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+                       $email_from, // email РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+                       $name_to, // РёРјСЏ РїРѕР»СѓС‡Р°С‚РµР»СЏ
+                       $email_to, // email РїРѕР»СѓС‡Р°С‚РµР»СЏ
+                       $data_charset, // РєРѕРґРёСЂРѕРІРєР° РїРµСЂРµРґР°РЅРЅС‹С… РґР°РЅРЅС‹С…
+                       $send_charset, // РєРѕРґРёСЂРѕРІРєР° РїРёСЃСЊРјР°
+                       $subject, // С‚РµРјР° РїРёСЃСЊРјР°
+                       $body // С‚РµРєСЃС‚ РїРёСЃСЊРјР°
                        )
 	   {
 	  $to = mime_header_encode($name_to, $data_charset, $send_charset)
@@ -852,26 +852,26 @@ if($u->info['active']!='' && $u->info['mail']!='No E-mail')
 
 	if(!isset($yes2['id']))
 	{
-		//отправляем письмо
-		echo '<script>chat.sendMsg(["new","'.time().'","6","","'.$u->info['login'].'","<small>На Ваш почтовый ящик <b>'.$u->info['mail'].'</b> отправлено письмо с инструкцией по активации аккаунта. (Письмо прийдти в течении 15 минут, а так-же проверьте раздел &quot;Спам&quot;)</small>","Black","1","1","0"]);</script>';
+		//РѕС‚РїСЂР°РІР»СЏРµРј РїРёСЃСЊРјРѕ
+		echo '<script>chat.sendMsg(["new","'.time().'","6","","'.$u->info['login'].'","<small>РќР° Р’Р°С€ РїРѕС‡С‚РѕРІС‹Р№ СЏС‰РёРє <b>'.$u->info['mail'].'</b> РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ СЃ РёРЅСЃС‚СЂСѓРєС†РёРµР№ РїРѕ Р°РєС‚РёРІР°С†РёРё Р°РєРєР°СѓРЅС‚Р°. (РџРёСЃСЊРјРѕ РїСЂРёР№РґС‚Рё РІ С‚РµС‡РµРЅРёРё 15 РјРёРЅСѓС‚, Р° С‚Р°Рє-Р¶Рµ РїСЂРѕРІРµСЂСЊС‚Рµ СЂР°Р·РґРµР» &quot;РЎРїР°Рј&quot;)</small>","Black","1","1","0"]);</script>';
 		//$u->addAction(time(),'user_active_send',$u->info['mail']);
-		// получатели		
+		// РїРѕР»СѓС‡Р°С‚РµР»Рё		
 		send_mime_mail('www.xcombats.com',
                'support@xcombats.com',
                ''.$u->info['login'].'',
                $u->info['mail'],
-               'CP1251',  // кодировка, в которой находятся передаваемые строки
-               'KOI8-R', // кодировка, в которой будет отправлено письмо
-               'Активация персонажа '.$u->info['login'].'',
-               "Здравствуйте! Мы очень рады новому персонажу в нашем Мире! \r\n Ваш персонаж: ".$u->info['login']." [0] \r\n Ссылка для активации: http://capitalcity.xcombats.com/bk?active=".$u->info['active'].".\r\n\r\nС уважением, Администрация xcombats.com!");
+               'CP1251',  // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґСЏС‚СЃСЏ РїРµСЂРµРґР°РІР°РµРјС‹Рµ СЃС‚СЂРѕРєРё
+               'KOI8-R', // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ
+               'РђРєС‚РёРІР°С†РёСЏ РїРµСЂСЃРѕРЅР°Р¶Р° '.$u->info['login'].'',
+               "Р—РґСЂР°РІСЃС‚РІСѓР№С‚Рµ! РњС‹ РѕС‡РµРЅСЊ СЂР°РґС‹ РЅРѕРІРѕРјСѓ РїРµСЂСЃРѕРЅР°Р¶Сѓ РІ РЅР°С€РµРј РњРёСЂРµ! \r\n Р’Р°С€ РїРµСЂСЃРѕРЅР°Р¶: ".$u->info['login']." [0] \r\n РЎСЃС‹Р»РєР° РґР»СЏ Р°РєС‚РёРІР°С†РёРё: http://capitalcity.xcombats.com/bk?active=".$u->info['active'].".\r\n\r\nРЎ СѓРІР°Р¶РµРЅРёРµРј, РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ xcombats.com!");
 		$u->addAction(time(),'user_active_send',$u->info['mail']);
 		
 	}elseif(!isset($yes['id']))
 	{
-		//Пользовательское соглашение
+		//РџРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРµ СЃРѕРіР»Р°С€РµРЅРёРµ
 		if(isset($_GET['active']) && $u->info['active'] == $_GET['active'])
 		{
-			//согласен
+			//СЃРѕРіР»Р°СЃРµРЅ
 			$u->addAction(time(),'user_active_good',$u->info['mail']);
 			mysql_query('UPDATE `stats` SET `active` = "" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			die('<script>top.location = "http://'.$c[$u->info['city']].'/bk";</script>');
@@ -883,13 +883,13 @@ if($u->info['active']!='' && $u->info['mail']!='No E-mail')
 <script>
 startEngine();
 chat.testTimer(false);
-/*top.add_cb(6,'Торговый',1,'ch6','<br>');
-top.add_cb(5,'чат',1,'ch5','<br>');
+/*top.add_cb(6,'РўРѕСЂРіРѕРІС‹Р№',1,'ch6','<br>');
+top.add_cb(5,'С‡Р°С‚',1,'ch5','<br>');
 top.open_cb(5,null);
 top.open_cb(cb_rdate[5],null);*/
-top.add_cb(3,'Лог',1,'ch3','<br><div id="battle_logg"></div>');
-top.add_cb(4,'Системные сообщения',1,'ch4','<br>');
-top.add_cb(5,'Чат',1,'ch5','<br>');
+top.add_cb(3,'Р›РѕРі',1,'ch3','<br><div id="battle_logg"></div>');
+top.add_cb(4,'РЎРёСЃС‚РµРјРЅС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ',1,'ch4','<br>');
+top.add_cb(5,'Р§Р°С‚',1,'ch5','<br>');
 </script>
 </body>
 </html>

@@ -22,7 +22,7 @@ include('_incl_data/class/__user.php');
 if(isset($u->info['id'])) {
 	$sp = mysql_query('SELECT * FROM `battle_last` WHERE `uid` = "'.$u->info['id'].'" ORDER BY `id` DESC');
 	while( $pl = mysql_fetch_array($sp) ) {
-		echo 'Бой № '.$pl['battle_id'].' , опыт до начала боя: '.$pl['exp'].'<br>';
+		echo 'Р‘РѕР№ в„– '.$pl['battle_id'].' , РѕРїС‹С‚ РґРѕ РЅР°С‡Р°Р»Р° Р±РѕСЏ: '.$pl['exp'].'<br>';
 	}
 }
 

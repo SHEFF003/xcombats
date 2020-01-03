@@ -20,7 +20,7 @@ if($u->info['banned'] > 0 || !isset($u->info['id'])) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <meta http-equiv=Cache-Control Content=no-cache>
 <meta http-equiv=PRAGMA content=NO-CACHE>
@@ -34,15 +34,15 @@ if($u->info['banned'] > 0 || !isset($u->info['id'])) {
     <td align="center" valign="middle">
     <!-- -->
     <br><br>
-    <h3>Тестовая локация</h3>
+    <h3>РўРµСЃС‚РѕРІР°СЏ Р»РѕРєР°С†РёСЏ</h3>
     <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="800" height="400" id="FlashID" title="test_map">
       <param name="movie" value="map/main.swf">
       <param name="quality" value="high">
       <param name="wmode" value="opaque">
       <param name="swfversion" value="15.0.0.0">
-      <!-- Этот тег param предлагает пользователям Flash Player 6.0 r65 и более поздних версий загрузить последнюю версию Flash Player. Удалите его, если не хотите, чтобы пользователи видели запрос. -->
+      <!-- Р­С‚РѕС‚ С‚РµРі param РїСЂРµРґР»Р°РіР°РµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј Flash Player 6.0 r65 Рё Р±РѕР»РµРµ РїРѕР·РґРЅРёС… РІРµСЂСЃРёР№ Р·Р°РіСЂСѓР·РёС‚СЊ РїРѕСЃР»РµРґРЅСЋСЋ РІРµСЂСЃРёСЋ Flash Player. РЈРґР°Р»РёС‚Рµ РµРіРѕ, РµСЃР»Рё РЅРµ С…РѕС‚РёС‚Рµ, С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё РІРёРґРµР»Рё Р·Р°РїСЂРѕСЃ. -->
       <param name="expressinstall" value="../../Scripts/expressInstall.swf">
-      <!-- Следующий тег object не поддерживается браузером Internet Explorer. Поэтому скройте его от Internet Explorer при помощи IECC. -->
+      <!-- РЎР»РµРґСѓСЋС‰РёР№ С‚РµРі object РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ Р±СЂР°СѓР·РµСЂРѕРј Internet Explorer. РџРѕСЌС‚РѕРјСѓ СЃРєСЂРѕР№С‚Рµ РµРіРѕ РѕС‚ Internet Explorer РїСЂРё РїРѕРјРѕС‰Рё IECC. -->
       <!--[if !IE]>-->
       <object type="application/x-shockwave-flash" data="map/main.swf" width="800" height="400">
         <!--<![endif]-->
@@ -50,10 +50,10 @@ if($u->info['banned'] > 0 || !isset($u->info['id'])) {
         <param name="wmode" value="opaque">
         <param name="swfversion" value="15.0.0.0">
         <param name="expressinstall" value="../../Scripts/expressInstall.swf">
-        <!-- Браузер отображает следующее альтернативное содержимое для пользователей Flash Player 6.0 и более старых версий. -->
+        <!-- Р‘СЂР°СѓР·РµСЂ РѕС‚РѕР±СЂР°Р¶Р°РµС‚ СЃР»РµРґСѓСЋС‰РµРµ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ Flash Player 6.0 Рё Р±РѕР»РµРµ СЃС‚Р°СЂС‹С… РІРµСЂСЃРёР№. -->
         <div>
-          <h4>Для содержимого этой страницы требуется более новая версия Adobe Flash Player.</h4>
-          <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Получить проигрыватель Adobe Flash Player" width="112" height="33" /></a></p>
+          <h4>Р”Р»СЏ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ СЌС‚РѕР№ СЃС‚СЂР°РЅРёС†С‹ С‚СЂРµР±СѓРµС‚СЃСЏ Р±РѕР»РµРµ РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ Adobe Flash Player.</h4>
+          <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="РџРѕР»СѓС‡РёС‚СЊ РїСЂРѕРёРіСЂС‹РІР°С‚РµР»СЊ Adobe Flash Player" width="112" height="33" /></a></p>
         </div>
         <!--[if !IE]>-->
       </object>

@@ -48,11 +48,11 @@
 	if(isset($_POST['see_msg'])) {
 		$msg = mysql_fetch_array(mysql_query('SELECT * FROM `telegram` WHERE `id` = "'.mysql_real_escape_string($_POST['see_msg']).'" AND (`uid` = "'.$u->info['id'].'" OR `from` = "'.$u->info['id'].'") LIMIT 1'));
 		if(!isset($msg['id'])) {
-			$html = '<br><br><br><br><br><br><br><br><center>Сообщение не найдено.</center>';
+			$html = '<br><br><br><br><br><br><br><br><center>РЎРѕРѕР±С‰РµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅРѕ.</center>';
 		}elseif($msg['uid'] == $u->info['id'] && ($msg['delete'] == 2 || $msg['delete'] == 3)) {
-			$html = '<br><br><br><br><br><br><br><br><center>Сообщение было удалено.</center>';
+			$html = '<br><br><br><br><br><br><br><br><center>РЎРѕРѕР±С‰РµРЅРёРµ Р±С‹Р»Рѕ СѓРґР°Р»РµРЅРѕ.</center>';
 		}elseif($msg['uid'] == $u->info['id'] && ($msg['delete'] == 2 || $msg['delete'] == 3)) {
-			$html = '<br><br><br><br><br><br><br><br><center>Сообщение было удалено.</center>';
+			$html = '<br><br><br><br><br><br><br><br><center>РЎРѕРѕР±С‰РµРЅРёРµ Р±С‹Р»Рѕ СѓРґР°Р»РµРЅРѕ.</center>';
 		}else{
 			$to = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`banned` FROM `users` WHERE `id` = "'.$msg['uid'].'" LIMIT 1'));
 			$from = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`banned` FROM `users` WHERE `id` = "'.$msg['from'].'" LIMIT 1'));
@@ -62,22 +62,22 @@
 				}
 			}
 			$html  = '<div style="padding:10px;">';
-			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96"><b>От</b>: &nbsp;&nbsp; '.$from['login'].'<a style="float:right" onclick="top.tgf_closeMsg()" href="javascript:void(0)">Закрыть</a></div>';
-			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96"><b>Кому</b>: '.$to['login'].'<span style="float:right">'.date('d.m.Y H:i',$msg['time']).'</span></div>';
-			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96"><b>Тема</b>: '.$msg['tema'].'</div>';
-			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;"><b>Сообщение</b>:<br><div style="width:496;margin-left:1px;overflow:auto;height:185px;">'.$msg['text'].'</div>';
-			$html .= '<button style="float:right" onclick="top.tgf_rz(3,1,'.$msg['id'].');">Ответить</button>';
+			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96"><b>РћС‚</b>: &nbsp;&nbsp; '.$from['login'].'<a style="float:right" onclick="top.tgf_closeMsg()" href="javascript:void(0)">Р—Р°РєСЂС‹С‚СЊ</a></div>';
+			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96"><b>РљРѕРјСѓ</b>: '.$to['login'].'<span style="float:right">'.date('d.m.Y H:i',$msg['time']).'</span></div>';
+			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96"><b>РўРµРјР°</b>: '.$msg['tema'].'</div>';
+			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;"><b>РЎРѕРѕР±С‰РµРЅРёРµ</b>:<br><div style="width:496;margin-left:1px;overflow:auto;height:185px;">'.$msg['text'].'</div>';
+			$html .= '<button style="float:right" onclick="top.tgf_rz(3,1,'.$msg['id'].');">РћС‚РІРµС‚РёС‚СЊ</button>';
 			$html .= '</div>';
-			//$html .= '<div style="margin-bottom:3px;color:red;float:left;" align="left"><small><b id="trf_snd_error">'.$error.'</b></small></div><div style="margin-bottom:3px;" align="right"><button onClick="top.tgf_send()">Отправить сообщение</button></div>';
+			//$html .= '<div style="margin-bottom:3px;color:red;float:left;" align="left"><small><b id="trf_snd_error">'.$error.'</b></small></div><div style="margin-bottom:3px;" align="right"><button onClick="top.tgf_send()">РћС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ</button></div>';
 			$html .= '</div>';
 		}
 	}elseif($r == 3) {
 		if($u->info['noreal'] == 1) {
-			$html = '<br><br><br><br><br><br><br><br><center>Отправлять сообщения по телеграфу возможно только с основного персонажа</center>';
+			$html = '<br><br><br><br><br><br><br><br><center>РћС‚РїСЂР°РІР»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РїРѕ С‚РµР»РµРіСЂР°С„Сѓ РІРѕР·РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ СЃ РѕСЃРЅРѕРІРЅРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°</center>';
 		}elseif($u->info['level'] < 4) {
-			$html = '<br><br><br><br><br><br><br><br><center>Отправлять сообщения по телеграфу возможно с 4-го уровня.</center>';
+			$html = '<br><br><br><br><br><br><br><br><center>РћС‚РїСЂР°РІР»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РїРѕ С‚РµР»РµРіСЂР°С„Сѓ РІРѕР·РјРѕР¶РЅРѕ СЃ 4-РіРѕ СѓСЂРѕРІРЅСЏ.</center>';
 		}elseif($u->info['molch1'] > time()){
-			$html = '<br><br><br><br><br><br><br><br><center>Персонажи с молчанкой не могут пользоваться телеграфом.</center>';
+			$html = '<br><br><br><br><br><br><br><br><center>РџРµСЂСЃРѕРЅР°Р¶Рё СЃ РјРѕР»С‡Р°РЅРєРѕР№ РЅРµ РјРѕРіСѓС‚ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ С‚РµР»РµРіСЂР°С„РѕРј.</center>';
 		}else{
 			if(isset($_POST['to'])) {
 				$_POST['to'] = go_text(iconv('UTF-8', 'windows-1251', $_POST['to']));
@@ -85,25 +85,25 @@
 				$_POST['tema'] = go_text(iconv('UTF-8', 'windows-1251', $_POST['tema']));
 								
 				if(test_line($_POST['to']) == false) {
-					$error = 'Пустое поле "Кому".';
+					$error = 'РџСѓСЃС‚РѕРµ РїРѕР»Рµ "РљРѕРјСѓ".';
 				}elseif(test_line($_POST['text']) == false) {
-					$error = 'Пустое поле "Сообщение".';
+					$error = 'РџСѓСЃС‚РѕРµ РїРѕР»Рµ "РЎРѕРѕР±С‰РµРЅРёРµ".';
 				}elseif(test_line($_POST['tema']) == false) {
-					$error = 'Пустое поле "Тема".';
+					$error = 'РџСѓСЃС‚РѕРµ РїРѕР»Рµ "РўРµРјР°".';
 				}else{
 					$to = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`banned` FROM `users` WHERE `login` = "'.mysql_real_escape_string($_POST['to']).'" LIMIT 1'));
 					if(!isset($to['id'])) {
-						$error = 'Получатель не найден в базе.';
+						$error = 'РџРѕР»СѓС‡Р°С‚РµР»СЊ РЅРµ РЅР°Р№РґРµРЅ РІ Р±Р°Р·Рµ.';
 					}elseif($to['banned'] > 0) {
-						$error = 'Получатель был заблокирован.';
+						$error = 'РџРѕР»СѓС‡Р°С‚РµР»СЊ Р±С‹Р» Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ.';
 					}elseif($to['id'] == $u->info['id']) {
-						$error = 'Нельзя отправлять самому себе.';
+						$error = 'РќРµР»СЊР·СЏ РѕС‚РїСЂР°РІР»СЏС‚СЊ СЃР°РјРѕРјСѓ СЃРµР±Рµ.';
 					}else{
 						$_POST['text'] = str_replace("\n",'<br>',$_POST['text']);
 						$_POST['text'] = str_replace("\r",'<br>',$_POST['text']);
 						mysql_query('INSERT INTO `telegram` (`uid`,`from`,`tema`,`text`,`time`,`ip`) VALUES ("'.$to['id'].'","'.$u->info['id'].'","'.mysql_real_escape_string($_POST['tema']).'","'.mysql_real_escape_string($_POST['text']).'","'.time().'","'.mysql_real_escape_string($u->info['ip']).'")');
 						unset($_POST['to'],$_POST['text'],$_POST['tema']);
-						$error = 'Сообщение доставлено "'.$to['login'].'".';
+						$error = 'РЎРѕРѕР±С‰РµРЅРёРµ РґРѕСЃС‚Р°РІР»РµРЅРѕ "'.$to['login'].'".';
 					}
 				}
 			}
@@ -123,11 +123,11 @@
 				}
 			}
 			$html  = '<div style="padding:10px;">';
-			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96">От: &nbsp;&nbsp; <b>'.$u->info['login'].'</b></div>';
-			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96">Кому: <input value="'.$_POST['to'].'" id="tgf_to" type="text" style="width:170px"></div>';
-			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96">Тема: <input value="'.$_POST['tema'].'" id="tgf_tema" type="text" style="width:269px"></div>';
-			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96">Сообщение:<br><textarea rows="9" style="width:100%;resize:none;outline:none;" id="tgf_text">'.$_POST['text'].'</textarea></div>';
-			$html .= '<div style="margin-bottom:3px;color:red;float:left;" align="left"><small><b id="trf_snd_error">'.$error.'</b></small></div><div style="margin-bottom:3px;" align="right"><button onClick="top.tgf_send()">Отправить сообщение</button></div>';
+			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96">РћС‚: &nbsp;&nbsp; <b>'.$u->info['login'].'</b></div>';
+			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96">РљРѕРјСѓ: <input value="'.$_POST['to'].'" id="tgf_to" type="text" style="width:170px"></div>';
+			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96">РўРµРјР°: <input value="'.$_POST['tema'].'" id="tgf_tema" type="text" style="width:269px"></div>';
+			$html .= '<div style="margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #b7ae96">РЎРѕРѕР±С‰РµРЅРёРµ:<br><textarea rows="9" style="width:100%;resize:none;outline:none;" id="tgf_text">'.$_POST['text'].'</textarea></div>';
+			$html .= '<div style="margin-bottom:3px;color:red;float:left;" align="left"><small><b id="trf_snd_error">'.$error.'</b></small></div><div style="margin-bottom:3px;" align="right"><button onClick="top.tgf_send()">РћС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ</button></div>';
 			$html .= '</div>';
 		}
 	}elseif($r == 1 || $r == 2) {
@@ -183,8 +183,8 @@
 					$html .= '
 <div id="tgfm'.$pl['id'].'" onclick="top.tgf_openMsg('.$pl['id'].')" class="tgf_msg'.$pl['read'].'">
 	<small class="tgf_msgt" title="'.date('H:i',$pl['time']).'">'.date('d.m.y',$pl['time']).'</small>
-	<small>От: '.$from.'</small>
-	<small>Тема: <a href="javascript:void(0)">'.$pl['tema'].'</a></small>
+	<small>РћС‚: '.$from.'</small>
+	<small>РўРµРјР°: <a href="javascript:void(0)">'.$pl['tema'].'</a></small>
 	<img src="http://img.xcombats.com/i/clear.gif" height="13" style="float:right;vertical-align:bottom;cursor:pointer;" onclick="top.del_tgf('.$r.','.$pg.','.$pl['id'].');">
 </div>';
 				}
@@ -192,8 +192,8 @@
 					$html .= '
 <div id="tgfm'.$pl['id'].'" onclick="top.tgf_openMsg('.$pl['id'].')" class="tgf_msg'.$pl['read'].'">
 	<small class="tgf_msgt" title="'.date('H:i',$pl['time']).'">'.date('d.m.y',$pl['time']).'</small>
-	<small>Кому: '.$from.'</small>
-	<small>Тема: <a href="javascript:void(0)">'.$pl['tema'].'</a></small>
+	<small>РљРѕРјСѓ: '.$from.'</small>
+	<small>РўРµРјР°: <a href="javascript:void(0)">'.$pl['tema'].'</a></small>
 	<img src="http://img.xcombats.com/i/clear.gif" height="13" style="float:right;vertical-align:bottom;cursor:pointer;" onclick="top.del_tgf('.$r.','.$pg.','.$pl['id'].');">
 </div>';
 				}
@@ -233,9 +233,9 @@
 	}
 	if($html == '') {
 		if($r == 1) {
-			$html = '<br><br><br><br><br><br><br><br><center>У Вас нет сообщений от других пользователей</center>';
+			$html = '<br><br><br><br><br><br><br><br><center>РЈ Р’Р°СЃ РЅРµС‚ СЃРѕРѕР±С‰РµРЅРёР№ РѕС‚ РґСЂСѓРіРёС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№</center>';
 		}elseif($r == 2) {
-			$html = '<br><br><br><br><br><br><br><br><center>У Вас нет сообщений отправленных другим пользователям</center>';
+			$html = '<br><br><br><br><br><br><br><br><center>РЈ Р’Р°СЃ РЅРµС‚ СЃРѕРѕР±С‰РµРЅРёР№ РѕС‚РїСЂР°РІР»РµРЅРЅС‹С… РґСЂСѓРіРёРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј</center>';
 		}
 	}
 	

@@ -1,8 +1,8 @@
 <?php
 /*
 
-	Ядро для обработки данных.
-	Обработка поединков, обработка заявок, обработка ботов, обработка пещер, обработка турниров, обработка временных генераций
+	РЇРґСЂРѕ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С….
+	РћР±СЂР°Р±РѕС‚РєР° РїРѕРµРґРёРЅРєРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° Р·Р°СЏРІРѕРє, РѕР±СЂР°Р±РѕС‚РєР° Р±РѕС‚РѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РїРµС‰РµСЂ, РѕР±СЂР°Р±РѕС‚РєР° С‚СѓСЂРЅРёСЂРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РІСЂРµРјРµРЅРЅС‹С… РіРµРЅРµСЂР°С†РёР№
 
 */
 
@@ -30,7 +30,7 @@ if(isset($_GET['bonus'])) {
 		}		
 		
 		//
-		/*$sp1 = mysql_query('SELECT `id` FROM `items_main` WHERE `magic_inci` = "tznanie" AND `name` NOT LIKE "%(том%" AND `name` NOT LIKE "%(секретный том%"');
+		/*$sp1 = mysql_query('SELECT `id` FROM `items_main` WHERE `magic_inci` = "tznanie" AND `name` NOT LIKE "%(С‚РѕРј%" AND `name` NOT LIKE "%(СЃРµРєСЂРµС‚РЅС‹Р№ С‚РѕРј%"');
 		while( $pl1 = mysql_fetch_array($sp1) ) {
 			mysql_query('INSERT INTO `actions` (
 				`uid`,`time`,`city`,`room`,`vars`,`vals`
@@ -119,12 +119,12 @@ if( $u->info['admin'] > 0 ) {
 	}
 	
 	if(isset($_GET['good'])) {
-		$error = 'Комлпект был успешно сохранен!<br><br>Номер комплекта: '.$_GET['good'];
+		$error = 'РљРѕРјР»РїРµРєС‚ Р±С‹Р» СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅ!<br><br>РќРѕРјРµСЂ РєРѕРјРїР»РµРєС‚Р°: '.$_GET['good'];
 		die($error);
 	}
 	
 	
-	/* ПРЕДМЕТЫ */
+	/* РџР Р•Р”РњР•РўР« */
 	$w = array();
 	$ws = array(
 		0,
@@ -166,7 +166,7 @@ if( $u->info['admin'] > 0 ) {
 	$w[14] = rtrim($w[14],',');
 	
 	
-	/* ПРИЕМЫ */
+	/* РџР РР•РњР« */
 	$pr = '';
 
 	$sp = mysql_query('SELECT `id`,`name`,`img` FROM `priems` ORDER BY `img` ASC');
@@ -176,7 +176,7 @@ if( $u->info['admin'] > 0 ) {
 	$pr = rtrim($pr,',');
 	
 	
-	/* ЭФФЕКТЫ */
+	/* Р­Р¤Р¤Р•РљРўР« */
 	$eff = '';
 	
 	$sp = mysql_query('SELECT `id2`,`mname`,`img` FROM `eff_main` WHERE `type1` != 23 ORDER BY `type1` ASC');
@@ -193,7 +193,7 @@ if( $u->info['admin'] > 0 ) {
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
-<title>Редактор обмундирования персонажей</title>
+<title>Р РµРґР°РєС‚РѕСЂ РѕР±РјСѓРЅРґРёСЂРѕРІР°РЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶РµР№</title>
 
 <script>
 var admin = {
@@ -222,7 +222,7 @@ var admin = {
 	},
 	save:function() {
 		var r = this.finish_line();
-		$('#save').html( '<b>Скопируйте в буфер обмена:</b><br><br><form name="f1" id="f1" action="admin.php" target="_blank" method="post"><textarea name="complect_saver" style="width:600px;" rows="5">'+r+'</textarea><br><button type="sumbit"></button></form>' );
+		$('#save').html( '<b>РЎРєРѕРїРёСЂСѓР№С‚Рµ РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР°:</b><br><br><form name="f1" id="f1" action="admin.php" target="_blank" method="post"><textarea name="complect_saver" style="width:600px;" rows="5">'+r+'</textarea><br><button type="sumbit"></button></form>' );
 		$('#f1').submit();
 	},
 	finish_line:function() {
@@ -293,7 +293,7 @@ var admin = {
 		}
 		
 		if( html == '' ) {
-			html = 'Нет подходящих приемов';
+			html = 'РќРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРёРµРјРѕРІ';
 		}
 		
 		$('#items_add').html( html );
@@ -323,7 +323,7 @@ var admin = {
 		}
 		
 		if( html == '' ) {
-			html = 'Нет подходящих эффектов';
+			html = 'РќРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… СЌС„С„РµРєС‚РѕРІ';
 		}
 		
 		$('#items_add').html( html );
@@ -353,7 +353,7 @@ var admin = {
 		}
 		
 		if( html == '' ) {
-			html = 'Нет подходящих предметов';
+			html = 'РќРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ';
 		}
 		
 		$('#items_add').html( html );
@@ -389,19 +389,19 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <tr>
           <td width="60" valign="top"><table width="60" height="280" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td height="60"><div style="position:relative"><img id="w1" style="display:block;" title="Пустой слот шлем" src="http://img.xcombats.com/i/items/w/w9.gif"></div></td>
+              <td height="60"><div style="position:relative"><img id="w1" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С€Р»РµРј" src="http://img.xcombats.com/i/items/w/w9.gif"></div></td>
             </tr>
             <tr>
-              <td height="40"><img id="w2" style="display:block;" title="Пустой слот наручи" src="http://img.xcombats.com/i/items/w/w13.gif"></td>
+              <td height="40"><img id="w2" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РЅР°СЂСѓС‡Рё" src="http://img.xcombats.com/i/items/w/w13.gif"></td>
             </tr>
             <tr>
-              <td height="60"><img id="w3" style="display:block;" title="Пустой слот щит" src="http://img.xcombats.com/i/items/w/w3.gif"></td>
+              <td height="60"><img id="w3" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С‰РёС‚" src="http://img.xcombats.com/i/items/w/w3.gif"></td>
             </tr>
             <tr>
-              <td height="80"><img id="w5" style="display:block;" title="Пустой слот щит" src="http://img.xcombats.com/i/items/w/w4.gif"></td>
+              <td height="80"><img id="w5" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С‰РёС‚" src="http://img.xcombats.com/i/items/w/w4.gif"></td>
             </tr>
             <tr>
-              <td height="40"><img id="w7" style="display:block;" title="Пустой слот пояс" src="http://img.xcombats.com/i/items/w/w5.gif"></td>
+              <td height="40"><img id="w7" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РїРѕСЏСЃ" src="http://img.xcombats.com/i/items/w/w5.gif"></td>
             </tr>
           </table></td>
           <td height="280" valign="top"><table width="120" height="280" border="0" cellspacing="0" cellpadding="0">
@@ -416,14 +416,14 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
               <td height="40"><div align="center">
                 <table width="120" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td width="40" height="20"><img style="display:block;" title="Пустой слот правый карман" src="http://img.xcombats.com/i/items/w/w15.gif"></td>
-                    <td width="40" height="20"><img style="display:block;" title="Пустой слот центральный карман" src="http://img.xcombats.com/i/items/w/w15.gif"></td>
-                    <td width="40" height="20"><img style="display:block;" title="Пустой слот левый карман" src="http://img.xcombats.com/i/items/w/w15.gif"></td>
+                    <td width="40" height="20"><img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РїСЂР°РІС‹Р№ РєР°СЂРјР°РЅ" src="http://img.xcombats.com/i/items/w/w15.gif"></td>
+                    <td width="40" height="20"><img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С†РµРЅС‚СЂР°Р»СЊРЅС‹Р№ РєР°СЂРјР°РЅ" src="http://img.xcombats.com/i/items/w/w15.gif"></td>
+                    <td width="40" height="20"><img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р»РµРІС‹Р№ РєР°СЂРјР°РЅ" src="http://img.xcombats.com/i/items/w/w15.gif"></td>
                   </tr>
                   <tr>
-                    <td width="40" height="20"><img style="display:block;" title="Пустой слот смена" src="http://img.xcombats.com/i/items/w/w20.gif"></td>
-                    <td width="40" height="20"><img style="display:block;" title="Пустой слот смена" src="http://img.xcombats.com/i/items/w/w20.gif"></td>
-                    <td width="40" height="20"><img style="display:block;" title="Пустой слот смена" src="http://img.xcombats.com/i/items/w/w20.gif"></td>
+                    <td width="40" height="20"><img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ СЃРјРµРЅР°" src="http://img.xcombats.com/i/items/w/w20.gif"></td>
+                    <td width="40" height="20"><img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ СЃРјРµРЅР°" src="http://img.xcombats.com/i/items/w/w20.gif"></td>
+                    <td width="40" height="20"><img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ СЃРјРµРЅР°" src="http://img.xcombats.com/i/items/w/w20.gif"></td>
                   </tr>
                 </table>
               </div></td>
@@ -431,117 +431,117 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           </table></td>
           <td width="60" valign="top"><table width="60" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td height="20"><img id="w8" style="display:block;" title="Пустой слот серьги" src="http://img.xcombats.com/i/items/w/w1.gif"></td>
+              <td height="20"><img id="w8" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ СЃРµСЂСЊРіРё" src="http://img.xcombats.com/i/items/w/w1.gif"></td>
             </tr>
             <tr>
-              <td height="20"><img id="w9" style="display:block;" title="Пустой слот ожерелье" src="http://img.xcombats.com/i/items/w/w2.gif"></td>
+              <td height="20"><img id="w9" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РѕР¶РµСЂРµР»СЊРµ" src="http://img.xcombats.com/i/items/w/w2.gif"></td>
             </tr>
             <tr>
               <td height="20"><table width="60" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td width="20" height="20"><img id="w10" style="display:block;" title="Пустой слот кольцо" src="http://img.xcombats.com/i/items/w/w6.gif"></td>
-                  <td width="20"><img id="w11" style="display:block;" title="Пустой слот кольцо" src="http://img.xcombats.com/i/items/w/w6.gif"></td>
-                  <td width="20"><img id="w12" style="display:block;" title="Пустой слот кольцо" src="http://img.xcombats.com/i/items/w/w6.gif"></td>
+                  <td width="20" height="20"><img id="w10" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РєРѕР»СЊС†Рѕ" src="http://img.xcombats.com/i/items/w/w6.gif"></td>
+                  <td width="20"><img id="w11" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РєРѕР»СЊС†Рѕ" src="http://img.xcombats.com/i/items/w/w6.gif"></td>
+                  <td width="20"><img id="w12" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РєРѕР»СЊС†Рѕ" src="http://img.xcombats.com/i/items/w/w6.gif"></td>
                 </tr>
               </table></td>
             </tr>
             <tr>
-              <td height="40"><img id="w13" style="display:block;" title="Пустой слот перчатки" src="http://img.xcombats.com/i/items/w/w11.gif"></td>
+              <td height="40"><img id="w13" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РїРµСЂС‡Р°С‚РєРё" src="http://img.xcombats.com/i/items/w/w11.gif"></td>
             </tr>
             <tr>
-              <td height="60"><img id="w14" style="display:block;" title="Пустой слот щит" src="http://img.xcombats.com/i/items/w/w10.gif"></td>
+              <td height="60"><img id="w14" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С‰РёС‚" src="http://img.xcombats.com/i/items/w/w10.gif"></td>
             </tr>
             <tr>
-              <td height="80"><img id="w16" style="display:block;" title="Пустой слот щит" src="http://img.xcombats.com/i/items/w/w19.gif"></td>
+              <td height="80"><img id="w16" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С‰РёС‚" src="http://img.xcombats.com/i/items/w/w19.gif"></td>
             </tr>
             <tr>
-              <td height="40"><img id="w17" style="display:block;" title="Пустой слот обувь" src="http://img.xcombats.com/i/items/w/w12.gif"></td>
+              <td height="40"><img id="w17" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РѕР±СѓРІСЊ" src="http://img.xcombats.com/i/items/w/w12.gif"></td>
             </tr>
           </table></td>
         </tr>
       </table>
-      <p><strong>Эффекты:</strong></p>
+      <p><strong>Р­С„С„РµРєС‚С‹:</strong></p>
       <table width="240" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td width="40" height="25"><img id="e1" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="e2" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="e3" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="e4" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="e5" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="e6" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40" height="25"><img id="e1" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="e2" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="e3" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="e4" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="e5" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="e6" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
         </tr>
         <tr>
-          <td height="25"><img id="e7" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="e8" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="e9" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="e10" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="e11" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="e12" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td height="25"><img id="e7" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="e8" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="e9" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="e10" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="e11" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="e12" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
         </tr>
       </table>
-      <p><strong>Приемы:</strong></p>
+      <p><strong>РџСЂРёРµРјС‹:</strong></p>
       <table width="240" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td width="40" height="25"><img id="p1" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="p2" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="p3" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="p4" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="p5" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td width="40"><img id="p6" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40" height="25"><img id="p1" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="p2" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="p3" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="p4" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="p5" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td width="40"><img id="p6" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
         </tr>
         <tr>
-          <td height="25"><img id="p7" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p8" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p9" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p10" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p11" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p12" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td height="25"><img id="p7" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p8" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p9" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p10" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p11" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p12" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
         </tr>
         <tr>
-          <td height="25"><img id="p13" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p14" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p15" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p16" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p17" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
-          <td><img id="p18" title="Пустой слот заклинания" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td height="25"><img id="p13" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p14" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p15" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p16" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p17" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
+          <td><img id="p18" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р·Р°РєР»РёРЅР°РЅРёСЏ" src="http://img.xcombats.com/i/items/w/w101.gif"></td>
         </tr>
       </table>
     </div>
-    <p><a href="javascript:admin.save(1);">Сохранить комплект в базу</a></p></td>
+    <p><a href="javascript:admin.save(1);">РЎРѕС…СЂР°РЅРёС‚СЊ РєРѕРјРїР»РµРєС‚ РІ Р±Р°Р·Сѓ</a></p></td>
     
-        <td width="150" align="right" valign="top"><p><strong>Статы персонажа (родные):</strong></p>
+        <td width="150" align="right" valign="top"><p><strong>РЎС‚Р°С‚С‹ РїРµСЂСЃРѕРЅР°Р¶Р° (СЂРѕРґРЅС‹Рµ):</strong></p>
         <p>
-        Сила: 
+        РЎРёР»Р°: 
           <input id="s1" style="width:35px" value="3">   <br>     
-        Ловкость: 
+        Р›РѕРІРєРѕСЃС‚СЊ: 
         <input id="s2" style="width:35px" value="3">   <br> 
-        Интуиция: 
+        РРЅС‚СѓРёС†РёСЏ: 
         <input id="s3" style="width:35px" value="3">   <br> 
-        Выносливость: 
+        Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ: 
         <input id="s4" style="width:35px" value="3">   <br> 
-        Интелект: 
+        РРЅС‚РµР»РµРєС‚: 
         <input id="s5" style="width:35px" value="0">   <br> 
-        Мудрость: 
+        РњСѓРґСЂРѕСЃС‚СЊ: 
         <input id="s6" style="width:35px" value="0">
         </p>
-        <p><strong>Выберите класс комплекта и апп: </strong></p>
+        <p><strong>Р’С‹Р±РµСЂРёС‚Рµ РєР»Р°СЃСЃ РєРѕРјРїР»РµРєС‚Р° Рё Р°РїРї: </strong></p>
         <p>
-          Класс: 
+          РљР»Р°СЃСЃ: 
           <select id="pclss">
-            <option selected value="1">Танк</option>
-            <option value="2">Крит</option>
-            <option value="3">Уворот</option>
-            <option value="4">Универсал</option>
-            <option value="5">Маг огня</option>
-            <option value="6">Маг воды</option>
-            <option value="7">Маг земли</option>
-            <option value="8">Маг воздуха</option>
+            <option selected value="1">РўР°РЅРє</option>
+            <option value="2">РљСЂРёС‚</option>
+            <option value="3">РЈРІРѕСЂРѕС‚</option>
+            <option value="4">РЈРЅРёРІРµСЂСЃР°Р»</option>
+            <option value="5">РњР°Рі РѕРіРЅСЏ</option>
+            <option value="6">РњР°Рі РІРѕРґС‹</option>
+            <option value="7">РњР°Рі Р·РµРјР»Рё</option>
+            <option value="8">РњР°Рі РІРѕР·РґСѓС…Р°</option>
           </select>
 <br>
-        Уровень:
+        РЈСЂРѕРІРµРЅСЊ:
           <input id="lvl" style="width:35px" value="0">
           <br>
-          Апп:
+          РђРїРї:
           <input id="up" style="width:35px" value="0">
 <br> 
         </p>
@@ -552,7 +552,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <td valign="top">
     <div id="save" style="border:1px solid red; padding:10px;margin:5px; background-color:#FCC; color:#333"></div>
     <br>
-    <b>Предметы для слота:</b>
+    <b>РџСЂРµРґРјРµС‚С‹ РґР»СЏ СЃР»РѕС‚Р°:</b>
     <br>
     <div id="items_add">
     	
@@ -573,6 +573,6 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 </html>
 <?
 }else{
-	echo 'Для получени доступа к данному разделу - обратитесь к Администрации проекта, получить доступ может каждый игрок, но окончательное решение зависит исключительно от Администрации проекта.';
+	echo 'Р”Р»СЏ РїРѕР»СѓС‡РµРЅРё РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅРѕРјСѓ СЂР°Р·РґРµР»Сѓ - РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РїСЂРѕРµРєС‚Р°, РїРѕР»СѓС‡РёС‚СЊ РґРѕСЃС‚СѓРї РјРѕР¶РµС‚ РєР°Р¶РґС‹Р№ РёРіСЂРѕРє, РЅРѕ РѕРєРѕРЅС‡Р°С‚РµР»СЊРЅРѕРµ СЂРµС€РµРЅРёРµ Р·Р°РІРёСЃРёС‚ РёСЃРєР»СЋС‡РёС‚РµР»СЊРЅРѕ РѕС‚ РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РїСЂРѕРµРєС‚Р°.';
 }
 ?>

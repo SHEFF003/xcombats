@@ -1,4 +1,4 @@
-<?
+<?php
 /*header('location: reg.php');
 die();*/
 //30.05.2060 07:25:06
@@ -20,10 +20,10 @@ if(isset($_GET['ekr_given'])) {
 	$bnk = mysql_fetch_array(mysql_query('SELECT * FROM `bank` WHERE `id` = "'.mysql_real_escape_string($id).'" LIMIT 1'));
 	$bnk2 = mysql_fetch_array(mysql_query('SELECT SUM(`shara`) FROM `bank` WHERE `uid` = "'.mysql_real_escape_string($bnk['uid']).'" LIMIT 1'));
 	if($bnk2[0] > 0) {
-		echo 'Деньги уже были переведены ранее, нельзя переводить несколько раз.';
+		echo 'Р”РµРЅСЊРіРё СѓР¶Рµ Р±С‹Р»Рё РїРµСЂРµРІРµРґРµРЅС‹ СЂР°РЅРµРµ, РЅРµР»СЊР·СЏ РїРµСЂРµРІРѕРґРёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ СЂР°Р·.';
 	}else{
 		mysql_query('UPDATE `bank` SET `shara` = `shara` + "'.mysql_real_escape_string($ekr).'", `moneyBuy` = `moneyBuy` + "'.mysql_real_escape_string($ekr).'",`money2` = `money2` + "'.mysql_real_escape_string($ekr).'" WHERE `id` = "'.mysql_real_escape_string($id).'" LIMIT 1');
-		echo $ekr.' екр. (по новому курсу) передены в банк номер '.$bnk['id'].'';
+		echo $ekr.' РµРєСЂ. (РїРѕ РЅРѕРІРѕРјСѓ РєСѓСЂСЃСѓ) РїРµСЂРµРґРµРЅС‹ РІ Р±Р°РЅРє РЅРѕРјРµСЂ '.$bnk['id'].'';
 	}
 	die();
 }
@@ -49,7 +49,7 @@ while($spl = mysql_fetch_array($ppl)) {
 	}
 }
 
-/* Регистрация AJAX */
+/* Р РµРіРёСЃС‚СЂР°С†РёСЏ AJAX */
 if( isset($_POST['id']) && $multer == 0 ) {
 	session_start();
 	include('_incl_data/class/__reg.php');
@@ -70,54 +70,54 @@ if( isset($_POST['id']) && $multer == 0 ) {
 		9 => (int)$_POST['keycode'],
 		10 => (int)$_POST['align']
 	);
-	//Проверка логина
-	//Запрещенные логины
+	//РџСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР°
+	//Р—Р°РїСЂРµС‰РµРЅРЅС‹Рµ Р»РѕРіРёРЅС‹
 	$error = '';
 	$good = 1;
-	$nologin = array(0=>'ангел',1=>'angel',2=>'администрация',3=>'administration',4=>'Комментатор',5=>'Мироздатель',6=>'Мусорщик',7=>'Падальщик',8=>'Повелитель',9=>'Архивариус',10=>'Пересмешник',11=>'Волынщик',12=>'Лорд Разрушитель',13=>'Милосердие',14=>'Справедливость',15=>'Искушение',16=>'Вознесение');
-					$blacklist = "!@#$%^&*()\+Ёё|/'`\"";
-					$sr = '_-йцукенгшщзхъфывапролджэячсмитьбюё1234567890';
+	$nologin = array(0=>'Р°РЅРіРµР»',1=>'angel',2=>'Р°РґРјРёРЅРёСЃС‚СЂР°С†РёСЏ',3=>'administration',4=>'РљРѕРјРјРµРЅС‚Р°С‚РѕСЂ',5=>'РњРёСЂРѕР·РґР°С‚РµР»СЊ',6=>'РњСѓСЃРѕСЂС‰РёРє',7=>'РџР°РґР°Р»СЊС‰РёРє',8=>'РџРѕРІРµР»РёС‚РµР»СЊ',9=>'РђСЂС…РёРІР°СЂРёСѓСЃ',10=>'РџРµСЂРµСЃРјРµС€РЅРёРє',11=>'Р’РѕР»С‹РЅС‰РёРє',12=>'Р›РѕСЂРґ Р Р°Р·СЂСѓС€РёС‚РµР»СЊ',13=>'РњРёР»РѕСЃРµСЂРґРёРµ',14=>'РЎРїСЂР°РІРµРґР»РёРІРѕСЃС‚СЊ',15=>'РСЃРєСѓС€РµРЅРёРµ',16=>'Р’РѕР·РЅРµСЃРµРЅРёРµ');
+					$blacklist = "!@#$%^&*()\+РЃС‘|/'`\"";
+					$sr = '_-Р№С†СѓРєРµРЅРіС€С‰Р·С…СЉС„С‹РІР°РїСЂРѕР»РґР¶СЌСЏС‡СЃРјРёС‚СЊР±СЋС‘1234567890';
 					$i = 0;
 					while($i<count($nologin))
 					{
 						if(preg_match("/".$nologin[$i]."/i",$filter->mystr($reg_d[0])))
 						{
-							$error = 'Выберите, пожалуйста, другой ник.'; $_POST['step'] = 1; $i = count($nologin);
+							$error = 'Р’С‹Р±РµСЂРёС‚Рµ, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РґСЂСѓРіРѕР№ РЅРёРє.'; $_POST['step'] = 1; $i = count($nologin);
 						}
 						$i++;
 					}
 					$reg_d[0] = str_replace('  ',' ',$reg_d[0]);
-					//Логин от 2 до 20 символов
+					//Р›РѕРіРёРЅ РѕС‚ 2 РґРѕ 20 СЃРёРјРІРѕР»РѕРІ
 					if(strlen($reg_d[0])>20) 
 					{ 
-						$error = 'Логин должен содержать не более 20 символов.'; $_POST['step'] = 1;
+						$error = 'Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ Р±РѕР»РµРµ 20 СЃРёРјРІРѕР»РѕРІ.'; $_POST['step'] = 1;
 					}
 					if(strlen($reg_d[0])<2) 
 					{ 
-						$error = 'Логин должен содержать не менее 2 символов.'; $_POST['step'] = 1;
+						$error = 'Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ РјРµРЅРµРµ 2 СЃРёРјРІРѕР»РѕРІ.'; $_POST['step'] = 1;
 					}
-					//Один алфавит
+					//РћРґРёРЅ Р°Р»С„Р°РІРёС‚
 					$er = $r->en_ru($reg_d[0]);
 					if($er==true)
 					{
-						$error = 'В логине разрешено использовать только буквы одного алфавита русского или английского. Нельзя смешивать.'; $_POST['step'] = 1;
+						$error = 'Р’ Р»РѕРіРёРЅРµ СЂР°Р·СЂРµС€РµРЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹ РѕРґРЅРѕРіРѕ Р°Р»С„Р°РІРёС‚Р° СЂСѓСЃСЃРєРѕРіРѕ РёР»Рё Р°РЅРіР»РёР№СЃРєРѕРіРѕ. РќРµР»СЊР·СЏ СЃРјРµС€РёРІР°С‚СЊ.'; $_POST['step'] = 1;
 					}
-					//Запрещенный символы
+					//Р—Р°РїСЂРµС‰РµРЅРЅС‹Р№ СЃРёРјРІРѕР»С‹
 					if(strpos($sr,$reg_d[0]))
 					{
-						$error = 'Логин содержит запрещенные символы.'; $_POST['step'] = 1;
+						$error = 'Р›РѕРіРёРЅ СЃРѕРґРµСЂР¶РёС‚ Р·Р°РїСЂРµС‰РµРЅРЅС‹Рµ СЃРёРјРІРѕР»С‹.'; $_POST['step'] = 1;
 					}				
-					//Персонажи в базе
+					//РџРµСЂСЃРѕРЅР°Р¶Рё РІ Р±Р°Р·Рµ
 					$log = mysql_fetch_array(mysql_query('SELECT `id` from `users` where `login`="'.mysql_real_escape_string($reg_d[0]).'" LIMIT 1'));
 					$log2 = mysql_fetch_array(mysql_query('SELECT `id` from `lastNames` where `login`="'.mysql_real_escape_string($reg_d[0]).'" LIMIT 1'));
 					if(isset($log['id']) || isset($log2['id']))
 					{
-						$error = 'Логин '.$reg_d[0].' уже занят, выберите другой.'; $_POST['step'] = 1;
+						$error = 'Р›РѕРіРёРЅ '.$reg_d[0].' СѓР¶Рµ Р·Р°РЅСЏС‚, РІС‹Р±РµСЂРёС‚Рµ РґСЂСѓРіРѕР№.'; $_POST['step'] = 1;
 					}
-					//Разделители
+					//Р Р°Р·РґРµР»РёС‚РµР»Рё
 					if(substr_count($reg_d[0],' ')+substr_count($reg_d[0],'-')+substr_count($reg_d[0],'_')>2)
 					{
-						$error = 'Не более двух разделителей одновременно (пробел, тире, нижнее подчеркивание).'; $_POST['step'] = 1;
+						$error = 'РќРµ Р±РѕР»РµРµ РґРІСѓС… СЂР°Р·РґРµР»РёС‚РµР»РµР№ РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ (РїСЂРѕР±РµР», С‚РёСЂРµ, РЅРёР¶РЅРµРµ РїРѕРґС‡РµСЂРєРёРІР°РЅРёРµ).'; $_POST['step'] = 1;
 					}
 					$reg_d[0] = trim($reg_d[0],' ');	
 					if($error != '') {
@@ -126,22 +126,22 @@ if( isset($_POST['id']) && $multer == 0 ) {
 					}else{
 						$gd[0] = 1;
 					}
-					//проверяем пароль
+					//РїСЂРѕРІРµСЂСЏРµРј РїР°СЂРѕР»СЊ
 					$error = '';
 					if(strlen($reg_d[1])<6 || strlen($reg_d[1])>30)
 					{
-						$error = 'Длина пароля не может быть меньше 6 символов или более 30 символов.'; $_POST['step'] = 2;
+						$error = 'Р”Р»РёРЅР° РїР°СЂРѕР»СЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ 6 СЃРёРјРІРѕР»РѕРІ РёР»Рё Р±РѕР»РµРµ 30 СЃРёРјРІРѕР»РѕРІ.'; $_POST['step'] = 2;
 					}
 					if($reg_d[1]!=$reg_d[2])
 					{
-						$error = 'В анкете пароль нужно ввести дважды, для проверки. Во второй раз вы его ввели неверно, будьте внимательнее.'; $_POST['step'] = 2;
+						$error = 'Р’ Р°РЅРєРµС‚Рµ РїР°СЂРѕР»СЊ РЅСѓР¶РЅРѕ РІРІРµСЃС‚Рё РґРІР°Р¶РґС‹, РґР»СЏ РїСЂРѕРІРµСЂРєРё. Р’Рѕ РІС‚РѕСЂРѕР№ СЂР°Р· РІС‹ РµРіРѕ РІРІРµР»Рё РЅРµРІРµСЂРЅРѕ, Р±СѓРґСЊС‚Рµ РІРЅРёРјР°С‚РµР»СЊРЅРµРµ.'; $_POST['step'] = 2;
 					}
 					if(preg_match('/'.$reg_d[0].'/i',$reg_d[1]))
 					{
-						$error = 'Пароль содержит элементы логина.'; $_POST['step'] = 2;
+						$error = 'РџР°СЂРѕР»СЊ СЃРѕРґРµСЂР¶РёС‚ СЌР»РµРјРµРЅС‚С‹ Р»РѕРіРёРЅР°.'; $_POST['step'] = 2;
 					}
 					if( $reg_d[1] != $reg_d[2] ) {
-						$error = 'Пароли не совпадают.'; $_POST['step'] = 2;
+						$error = 'РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚.'; $_POST['step'] = 2;
 					}
 					if($_POST['step']!=2)
 					{
@@ -154,7 +154,7 @@ if( isset($_POST['id']) && $multer == 0 ) {
 						$gd[1] = 1;
 					}
 					
-					//Проверка даты
+					//РџСЂРѕРІРµСЂРєР° РґР°С‚С‹
 					$error = '';
 					$ddmmyy = array(
 						'',
@@ -180,7 +180,7 @@ if( isset($_POST['id']) && $multer == 0 ) {
 						$reg_d[4] = '0'.$reg_d[4];
 					}
 					if( $tstd != ''.$reg_d[3].'.'.$reg_d[4].'.'.$reg_d[5].'' ) {
-						$error = 'Ошибка в написании дня рождения.';
+						$error = 'РћС€РёР±РєР° РІ РЅР°РїРёСЃР°РЅРёРё РґРЅСЏ СЂРѕР¶РґРµРЅРёСЏ.';
 					}
 					if($error != '') {
 						$gd[2] = $error;
@@ -190,7 +190,7 @@ if( isset($_POST['id']) && $multer == 0 ) {
 					}
 					
 					if( $reg_d[7] != 1 ) {
-						$error = 'Примите соглашение и дайте разрешение на возможность рассылки информации на ваш E-mail';
+						$error = 'РџСЂРёРјРёС‚Рµ СЃРѕРіР»Р°С€РµРЅРёРµ Рё РґР°Р№С‚Рµ СЂР°Р·СЂРµС€РµРЅРёРµ РЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СЂР°СЃСЃС‹Р»РєРё РёРЅС„РѕСЂРјР°С†РёРё РЅР° РІР°С€ E-mail';
 					}
 					if($error != '') {
 						$gd[3] = $error;
@@ -200,15 +200,15 @@ if( isset($_POST['id']) && $multer == 0 ) {
 					}
 					
 					$error = '';
-					//проверяем e-mail
+					//РїСЂРѕРІРµСЂСЏРµРј e-mail
 					if(strlen($reg_d[8])<6 || strlen($reg_d[8])>50)
 					{
-						$error = 'E-mail не может быть короче 6-х символов и длинее 50-ти.'; $_POST['step'] = 3;
+						$error = 'E-mail РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РєРѕСЂРѕС‡Рµ 6-С… СЃРёРјРІРѕР»РѕРІ Рё РґР»РёРЅРµРµ 50-С‚Рё.'; $_POST['step'] = 3;
 					}
 					
 					if(!preg_match('#^[a-z0-9.!\#$%&\'*+-/=?^_`{|}~]+@([0-9.]+|([^\s]+\.+[a-z]{2,6}))$#si', $reg_d[8]))
 					{
-						$error = 'Вы указали явно ошибочный E-mail.<br>'; $_POST['step'] = 3;
+						$error = 'Р’С‹ СѓРєР°Р·Р°Р»Рё СЏРІРЅРѕ РѕС€РёР±РѕС‡РЅС‹Р№ E-mail.<br>'; $_POST['step'] = 3;
 					}
 					if($error != '') {
 						$gd[4] = $error;
@@ -218,10 +218,10 @@ if( isset($_POST['id']) && $multer == 0 ) {
 					}
 					
 					$error = '';
-					//проверяем ключа
+					//РїСЂРѕРІРµСЂСЏРµРј РєР»СЋС‡Р°
 					if($reg_d[9] != $_SESSION['code'])
 					{
-						$error = 'Неверно указан код подтверждения ['.$_SESSION['code'].']'; $_POST['step'] = 3;
+						$error = 'РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ РєРѕРґ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ ['.$_SESSION['code'].']'; $_POST['step'] = 3;
 					}
 					
 					if($error != '') {
@@ -249,7 +249,7 @@ if( isset($_POST['id']) && $multer == 0 ) {
 		//
 		$reg_d[10] = 0;
 		//
-		//Регистрируем
+		//Р РµРіРёСЃС‚СЂРёСЂСѓРµРј
 		/*
 		0 => htmlspecialchars(iconv('UTF-8', 'windows-1251', $_POST['login']),NULL,'cp1251'),
 		1 => htmlspecialchars(iconv('UTF-8', 'windows-1251', $_POST['pass']),NULL,'cp1251'),
@@ -262,7 +262,7 @@ if( isset($_POST['id']) && $multer == 0 ) {
 		8 => htmlspecialchars(iconv('UTF-8', 'windows-1251', $_POST['mail']),NULL,'cp1251'),
 		9 => (int)$_POST['keycode']
 		*/
-		//Создаем персонажа
+		//РЎРѕР·РґР°РµРј РїРµСЂСЃРѕРЅР°Р¶Р°
 		if($_POST['refu'] > 0) {
 			$ref = mysql_fetch_array(mysql_query('SELECT `id`,`login` FROM `users` WHERE `id` = "'.mysql_real_escape_string($_POST['refu']).'" LIMIT 1'));
 			if(isset($ref['id'])) {
@@ -301,31 +301,31 @@ if( isset($_POST['id']) && $multer == 0 ) {
 			if(isset($_COOKIE['from'])) {
 				mysql_query('INSERT INTO `from` (`type`,`ip`,`uid`,`time`,`val`) VALUES ( "0", "'.GetRealIpTest().'","'.$uid.'", "'.time().'", "'.mysql_real_escape_string($_COOKIE['from']).'" ) ');
 			}	
-			//Сообщения при регистрации от паладинов.
+			//РЎРѕРѕР±С‰РµРЅРёСЏ РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё РѕС‚ РїР°Р»Р°РґРёРЅРѕРІ.
 			$pal = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `align` > 1 AND `align` < 1.99 AND `online` > "'.(time()-120).'" ORDER BY `online` DESC LIMIT 1'));
 
 			if(isset($pal['id'])) {
-     			//отсылаем сообщение от $pal['login']
-				$paltext = 'Приветствую '.$reg_d[0].'. Если у Вас возникли затруднения с игровым процессом, обращайтесь ко мне в любой момент!';
+     			//РѕС‚СЃС‹Р»Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ РѕС‚ $pal['login']
+				$paltext = 'РџСЂРёРІРµС‚СЃС‚РІСѓСЋ '.$reg_d[0].'. Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё Р·Р°С‚СЂСѓРґРЅРµРЅРёСЏ СЃ РёРіСЂРѕРІС‹Рј РїСЂРѕС†РµСЃСЃРѕРј, РѕР±СЂР°С‰Р°Р№С‚РµСЃСЊ РєРѕ РјРЅРµ РІ Р»СЋР±РѕР№ РјРѕРјРµРЅС‚!';
 				mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`new`) VALUES ('capitalcity','0','".$pal['login']."','".$reg_d[0]."','".$paltext."','".time()."','3','0','1')");
 			}else{
-    			//Не знаю что делать, пусть будет просто приветствие :) 
-				$text = 'Приветствую <b>'.$reg_d[0].'</b>. Если у Вас возникли затруднения с игровым процессом, обращайтесь к любому Паладину или игроку!';
+    			//РќРµ Р·РЅР°СЋ С‡С‚Рѕ РґРµР»Р°С‚СЊ, РїСѓСЃС‚СЊ Р±СѓРґРµС‚ РїСЂРѕСЃС‚Рѕ РїСЂРёРІРµС‚СЃС‚РІРёРµ :) 
+				$text = 'РџСЂРёРІРµС‚СЃС‚РІСѓСЋ <b>'.$reg_d[0].'</b>. Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё Р·Р°С‚СЂСѓРґРЅРµРЅРёСЏ СЃ РёРіСЂРѕРІС‹Рј РїСЂРѕС†РµСЃСЃРѕРј, РѕР±СЂР°С‰Р°Р№С‚РµСЃСЊ Рє Р»СЋР±РѕРјСѓ РџР°Р»Р°РґРёРЅСѓ РёР»Рё РёРіСЂРѕРєСѓ!';
 				mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`new`) VALUES ('capitalcity','0','','".$reg_d[0]."','".$text."','".time()."','3','0','1')");
 			}
 				
-			//$text = 'Приветствую <b>'.$reg_d[0].'</b>. Если у Вас возникли затруднения с игровым процессом, я всегда рад вам помочь!';
+			//$text = 'РџСЂРёРІРµС‚СЃС‚РІСѓСЋ <b>'.$reg_d[0].'</b>. Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё Р·Р°С‚СЂСѓРґРЅРµРЅРёСЏ СЃ РёРіСЂРѕРІС‹Рј РїСЂРѕС†РµСЃСЃРѕРј, СЏ РІСЃРµРіРґР° СЂР°Рґ РІР°Рј РїРѕРјРѕС‡СЊ!';
 			//mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`new`) VALUES ('capitalcity','0','','".$reg_d[0]."','".$text."','".time()."','6','0','1')");
 	
-			//Рубаха
+			//Р СѓР±Р°С…Р°
 			$re = $u->addItem(1,$uid);
 			if( $re > 0 ) {
-				mysql_query('UPDATE `items_users` SET `gift` = "Мироздатель" WHERE `id` = "'.$re.'" LIMIT 1');
+				mysql_query('UPDATE `items_users` SET `gift` = "РњРёСЂРѕР·РґР°С‚РµР»СЊ" WHERE `id` = "'.$re.'" LIMIT 1');
 			}
-			//Штаны
+			//РЁС‚Р°РЅС‹
 			$re = $u->addItem(73,$uid);
 			if( $re > 0 ) {
-				mysql_query('UPDATE `items_users` SET `gift` = "Мусорщик" WHERE `id` = "'.$re.'" LIMIT 1');
+				mysql_query('UPDATE `items_users` SET `gift` = "РњСѓСЃРѕСЂС‰РёРє" WHERE `id` = "'.$re.'" LIMIT 1');
 			}
 			
 			mysql_query("INSERT INTO `items_users` (`item_id`, `1price`, `2price`, `3price`, `4price`, `uid`, `use_text`, `data`, `inOdet`, `inShop`, `inGroup`, `delete`, `iznosNOW`, `iznosMAX`, `gift`, `gtxt1`, `gtxt2`, `kolvo`, `geniration`, `magic_inc`, `maidin`, `lastUPD`, `timeOver`, `overType`, `secret_id`, `time_create`, `time_sleep`, `dn_delete`, `inTransfer`, `post_delivery`, `lbtl_`, `bexp`, `so`, `blvl`, `pok_itm`, `btl_zd`) VALUES
@@ -338,18 +338,18 @@ if( isset($_POST['id']) && $multer == 0 ) {
 			mysql_query("INSERT INTO `items_users` (`item_id`, `1price`, `2price`, `3price`, `4price`, `uid`, `use_text`, `data`, `inOdet`, `inShop`, `inGroup`, `delete`, `iznosNOW`, `iznosMAX`, `gift`, `gtxt1`, `gtxt2`, `kolvo`, `geniration`, `magic_inc`, `maidin`, `lastUPD`, `timeOver`, `overType`, `secret_id`, `time_create`, `time_sleep`, `dn_delete`, `inTransfer`, `post_delivery`, `lbtl_`, `bexp`, `so`, `blvl`, `pok_itm`, `btl_zd`) VALUES (2137, 1.00, 0.00, 0.00, 0.00, ".$uid.", 0, 'nosale=1|notransfer=1|sudba=1|nosale=1|notransfer=1|sudba=1|noremont=1|add_maxves=250|fromshop=1', 0, 0, 0, 0, 0.00, 1.0000, '', '', '', 1, 2, '', 'capitalcity', '".time()."', 0, 0, '', '".time()."', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);");
 			//
 			if($reg_d[6] == 1) {
-				mysql_query("INSERT INTO `items_users` (`item_id`, `1price`, `2price`, `3price`, `4price`, `uid`, `use_text`, `data`, `inOdet`, `inShop`, `inGroup`, `delete`, `iznosNOW`, `iznosMAX`, `gift`, `gtxt1`, `gtxt2`, `kolvo`, `geniration`, `magic_inc`, `maidin`, `lastUPD`, `timeOver`, `overType`, `secret_id`, `time_create`, `time_sleep`, `dn_delete`, `inTransfer`, `post_delivery`, `lbtl_`, `bexp`, `so`, `blvl`, `pok_itm`, `btl_zd`) VALUES (4906, 1.00, 0.00, 0.00, 0.00, ".$uid.", 0, 'nosale=1|notransfer=1|sudba=1|usefromfile=1|giftsee=2|tr_sex=1|noremont=1|fromshop=1', 0, 0, 0, 0, 0.00, 100.0000, 'Красота', '', '', 1, 2, '', 'capitalcity', '".time()."', 0, 0, '', '".time()."', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);");
-				mysql_query("INSERT INTO `items_users` (`item_id`, `1price`, `2price`, `3price`, `4price`, `uid`, `use_text`, `data`, `inOdet`, `inShop`, `inGroup`, `delete`, `iznosNOW`, `iznosMAX`, `gift`, `gtxt1`, `gtxt2`, `kolvo`, `geniration`, `magic_inc`, `maidin`, `lastUPD`, `timeOver`, `overType`, `secret_id`, `time_create`, `time_sleep`, `dn_delete`, `inTransfer`, `post_delivery`, `lbtl_`, `bexp`, `so`, `blvl`, `pok_itm`, `btl_zd`) VALUES (4907, 1.00, 0.00, 0.00, 0.00, ".$uid.", 0, 'nosale=1|notransfer=1|sudba=1|usefromfile=1|giftsee=2|tr_sex=1|noremont=1|fromshop=1', 0, 0, 0, 0, 0.00, 100.0000, 'Красота', '', '', 1, 2, '', 'capitalcity', '".time()."', 0, 0, '', '".time()."', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);");
+				mysql_query("INSERT INTO `items_users` (`item_id`, `1price`, `2price`, `3price`, `4price`, `uid`, `use_text`, `data`, `inOdet`, `inShop`, `inGroup`, `delete`, `iznosNOW`, `iznosMAX`, `gift`, `gtxt1`, `gtxt2`, `kolvo`, `geniration`, `magic_inc`, `maidin`, `lastUPD`, `timeOver`, `overType`, `secret_id`, `time_create`, `time_sleep`, `dn_delete`, `inTransfer`, `post_delivery`, `lbtl_`, `bexp`, `so`, `blvl`, `pok_itm`, `btl_zd`) VALUES (4906, 1.00, 0.00, 0.00, 0.00, ".$uid.", 0, 'nosale=1|notransfer=1|sudba=1|usefromfile=1|giftsee=2|tr_sex=1|noremont=1|fromshop=1', 0, 0, 0, 0, 0.00, 100.0000, 'РљСЂР°СЃРѕС‚Р°', '', '', 1, 2, '', 'capitalcity', '".time()."', 0, 0, '', '".time()."', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);");
+				mysql_query("INSERT INTO `items_users` (`item_id`, `1price`, `2price`, `3price`, `4price`, `uid`, `use_text`, `data`, `inOdet`, `inShop`, `inGroup`, `delete`, `iznosNOW`, `iznosMAX`, `gift`, `gtxt1`, `gtxt2`, `kolvo`, `geniration`, `magic_inc`, `maidin`, `lastUPD`, `timeOver`, `overType`, `secret_id`, `time_create`, `time_sleep`, `dn_delete`, `inTransfer`, `post_delivery`, `lbtl_`, `bexp`, `so`, `blvl`, `pok_itm`, `btl_zd`) VALUES (4907, 1.00, 0.00, 0.00, 0.00, ".$uid.", 0, 'nosale=1|notransfer=1|sudba=1|usefromfile=1|giftsee=2|tr_sex=1|noremont=1|fromshop=1', 0, 0, 0, 0, 0.00, 100.0000, 'РљСЂР°СЃРѕС‚Р°', '', '', 1, 2, '', 'capitalcity', '".time()."', 0, 0, '', '".time()."', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);");
 			}
 			mysql_query("INSERT INTO `items_users` (`item_id`, `1price`, `2price`, `3price`, `4price`, `uid`, `use_text`, `data`, `inOdet`, `inShop`, `inGroup`, `delete`, `iznosNOW`, `iznosMAX`, `gift`, `gtxt1`, `gtxt2`, `kolvo`, `geniration`, `magic_inc`, `maidin`, `lastUPD`, `timeOver`, `overType`, `secret_id`, `time_create`, `time_sleep`, `dn_delete`, `inTransfer`, `post_delivery`, `lbtl_`, `bexp`, `so`, `blvl`, `pok_itm`, `btl_zd`) VALUES (3140, 20.00, 0.00, 0.00, 0.00, ".$uid.", 0, 'nosale=1|notransfer=1|sudba=1|nohaos=1|onlyOne=1|oneType=34|musor=2|noremont=1 |fromshop=1', 0, 0, 0, 0, 0.00, 5.0000, '', '', '', 1, 2, '300', 'capitalcity', '".time()."', 0, 34, '', '".time()."', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);");
 			mysql_query("INSERT INTO `items_users` (`item_id`, `1price`, `2price`, `3price`, `4price`, `uid`, `use_text`, `data`, `inOdet`, `inShop`, `inGroup`, `delete`, `iznosNOW`, `iznosMAX`, `gift`, `gtxt1`, `gtxt2`, `kolvo`, `geniration`, `magic_inc`, `maidin`, `lastUPD`, `timeOver`, `overType`, `secret_id`, `time_create`, `time_sleep`, `dn_delete`, `inTransfer`, `post_delivery`, `lbtl_`, `bexp`, `so`, `blvl`, `pok_itm`, `btl_zd`) VALUES (2418, 10.00, 0.00, 0.00, 0.00, ".$uid.", 0, 'nosale=1|notransfer=1|sudba=1|nohaos=1|onlyOne=1|oneType=29|musor=2|noremont=1|fromshop=1', 0, 0, 0, 0, 0.00, 10.0000, '', '', '', 1, 2, '268', 'capitalcity', '".time()."', 0, 29, '', '".time()."', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);");
 						
 			mysql_query('UPDATE `users` SET `online` = "'.time().'" WHERE `id` = "'.$uid.'" LIMIT 1');
-			//Создаем статы персонажа
+			//РЎРѕР·РґР°РµРј СЃС‚Р°С‚С‹ РїРµСЂСЃРѕРЅР°Р¶Р°
 			mysql_query("INSERT INTO `online` (`uid`,`timeStart`) VALUES ('".$uid."','".time()."')");
 			mysql_query("INSERT INTO `stats` (`id`,`stats`,exp) VALUES ('".$uid."','s1=3|s2=3|s3=3|s4=3|rinv=40|m9=5|m6=10',0)");	
 			
-			//мульты
+			//РјСѓР»СЊС‚С‹
 			$ipm1 = mysql_fetch_array(mysql_query('SELECT * FROM `logs_auth` WHERE `uid` = "'.mysql_real_escape_string($uid).'" AND `ip`!="'.mysql_real_escape_string(IP).'" ORDER BY `id` ASC LIMIT 1'));
 			$ppl = mysql_query('SELECT * FROM `logs_auth` WHERE `ip`!="" AND (`ip` = "'.mysql_real_escape_string(IP).'" OR `ip`="'.mysql_real_escape_string($ipm1['ip']).'" OR `ip`="'.mysql_real_escape_string($_COOKIE['ip']).'")');
 			while($spl = mysql_fetch_array($ppl))
@@ -362,14 +362,14 @@ if( isset($_POST['id']) && $multer == 0 ) {
 			}
 			mysql_query("INSERT INTO `logs_auth` (`country`,`uid`,`ip`,`browser`,`type`,`time`,`depass`) VALUES ('".mysql_real_escape_string($_SERVER["HTTP_CF_IPCOUNTRY"])."','".$uid."','".mysql_real_escape_string(IP)."','".mysql_real_escape_string($_SERVER['HTTP_USER_AGENT'])."','1','".time()."','')");
 			
-			//Обновяем таблицы
+			//РћР±РЅРѕРІСЏРµРј С‚Р°Р±Р»РёС†С‹
 			mysql_query("UPDATE `users` SET `country_reg` = '".mysql_real_escape_string($_SERVER["HTTP_CF_IPCOUNTRY"])."',`online`='".time()."',`ip` = '".mysql_real_escape_string(IP)."' WHERE `uid` = '".$uid."' LIMIT 1");
 			
 			if(!setcookie('login',$reg_d[0], (time()+60*60*24*7) , '' , '.xcombats.com' ) || !setcookie('pass',md5($reg_d[1]), (time()+60*60*24*7) , '' , '.xcombats.com' )) {
-				die('Ошибка сохранения cookie.');
+				die('РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ cookie.');
 			}else{
 				/*
-				die('Спасибо за регистрацию!<br><script>function test(){ top.location.href="http://xcombats.com/bk"; } setTimeout("test()",1000);</script>');
+				die('РЎРїР°СЃРёР±Рѕ Р·Р° СЂРµРіРёСЃС‚СЂР°С†РёСЋ!<br><script>function test(){ top.location.href="http://xcombats.com/bk"; } setTimeout("test()",1000);</script>');
 				*/
 			}
 			
@@ -378,21 +378,21 @@ if( isset($_POST['id']) && $multer == 0 ) {
 			setcookie('login',$reg_d[0],time()+60*60*24*7);
 			setcookie('pass',md5($reg_d[1]),time()+60*60*24*7);
 			
-			//Начало обучения
+			//РќР°С‡Р°Р»Рѕ РѕР±СѓС‡РµРЅРёСЏ
 			$humor = array(
 				0 => array(
-					':maniac: Сильно не бейте ;)',':beggar: Будет попрошайничать - бейте!',':pal: Возможно светлый!',
-					':vamp: Возможно темный!',':susel: Судя по здоровенному бицепсу - это мужик!',':duel: И сразу же кинулся в бой!',
-					':friday: Не долго думав он начал искать собутыльника!',':doc: Лекарь: Новичок! Да, да! Ты! Если тебя сломают - у знахаря тебя соберут обратно!'
+					':maniac: РЎРёР»СЊРЅРѕ РЅРµ Р±РµР№С‚Рµ ;)',':beggar: Р‘СѓРґРµС‚ РїРѕРїСЂРѕС€Р°Р№РЅРёС‡Р°С‚СЊ - Р±РµР№С‚Рµ!',':pal: Р’РѕР·РјРѕР¶РЅРѕ СЃРІРµС‚Р»С‹Р№!',
+					':vamp: Р’РѕР·РјРѕР¶РЅРѕ С‚РµРјРЅС‹Р№!',':susel: РЎСѓРґСЏ РїРѕ Р·РґРѕСЂРѕРІРµРЅРЅРѕРјСѓ Р±РёС†РµРїСЃСѓ - СЌС‚Рѕ РјСѓР¶РёРє!',':duel: Р СЃСЂР°Р·Сѓ Р¶Рµ РєРёРЅСѓР»СЃСЏ РІ Р±РѕР№!',
+					':friday: РќРµ РґРѕР»РіРѕ РґСѓРјР°РІ РѕРЅ РЅР°С‡Р°Р» РёСЃРєР°С‚СЊ СЃРѕР±СѓС‚С‹Р»СЊРЅРёРєР°!',':doc: Р›РµРєР°СЂСЊ: РќРѕРІРёС‡РѕРє! Р”Р°, РґР°! РўС‹! Р•СЃР»Рё С‚РµР±СЏ СЃР»РѕРјР°СЋС‚ - Сѓ Р·РЅР°С…Р°СЂСЏ С‚РµР±СЏ СЃРѕР±РµСЂСѓС‚ РѕР±СЂР°С‚РЅРѕ!'
 				),
 				1 => array(
-					':maniac: Помните! Девочек не бьем ;)',':nail: Она красит ногти, не отвлекайте все сразу ;)',':pal: Возможно светлая!',
-					':vamp: Возможно темная!',':rev: Судя по красивой одежде - это женщина!',':hug: И сразу же кинулась всех целовать!',
-					':angel2: Ангел сошел с небес...'
+					':maniac: РџРѕРјРЅРёС‚Рµ! Р”РµРІРѕС‡РµРє РЅРµ Р±СЊРµРј ;)',':nail: РћРЅР° РєСЂР°СЃРёС‚ РЅРѕРіС‚Рё, РЅРµ РѕС‚РІР»РµРєР°Р№С‚Рµ РІСЃРµ СЃСЂР°Р·Сѓ ;)',':pal: Р’РѕР·РјРѕР¶РЅРѕ СЃРІРµС‚Р»Р°СЏ!',
+					':vamp: Р’РѕР·РјРѕР¶РЅРѕ С‚РµРјРЅР°СЏ!',':rev: РЎСѓРґСЏ РїРѕ РєСЂР°СЃРёРІРѕР№ РѕРґРµР¶РґРµ - СЌС‚Рѕ Р¶РµРЅС‰РёРЅР°!',':hug: Р СЃСЂР°Р·Сѓ Р¶Рµ РєРёРЅСѓР»Р°СЃСЊ РІСЃРµС… С†РµР»РѕРІР°С‚СЊ!',
+					':angel2: РђРЅРіРµР» СЃРѕС€РµР» СЃ РЅРµР±РµСЃ...'
 				)
 			);
 			$humor = $humor[(int)$reg_d[6]];
-			$u->send('','','','','','В нашем мире появился новый игрок <b>' . htmlspecialchars($reg_d[0],NULL,'cp1251') . '</b>[0]<a href=http://xcombats.com/info/'.$uid.' target=_blank ><img src=http://img.xcombats.com/i/inf_capitalcity.gif style=vertical-align:baseline; ></a>! '.$humor[rand(0,count($humor)-1)].'',time(),6,0,0,0,1,0);
+			$u->send('','','','','','Р’ РЅР°С€РµРј РјРёСЂРµ РїРѕСЏРІРёР»СЃСЏ РЅРѕРІС‹Р№ РёРіСЂРѕРє <b>' . htmlspecialchars($reg_d[0],NULL,'cp1251') . '</b>[0]<a href=http://xcombats.com/info/'.$uid.' target=_blank ><img src=http://img.xcombats.com/i/inf_capitalcity.gif style=vertical-align:baseline; ></a>! '.$humor[rand(0,count($humor)-1)].'',time(),6,0,0,0,1,0);
 			
 			//header('location: http://xcombats.com/bk');
 		}
@@ -407,7 +407,7 @@ if( isset($_POST['id']) && $multer == 0 ) {
 	die($rt);
 }
 
-/* Данные регистрации */
+/* Р”Р°РЅРЅС‹Рµ СЂРµРіРёСЃС‚СЂР°С†РёРё */
 $reg_id = microtime();
 $reg_id = str_replace(' ','.',$reg_id);
 $reg_id = str_replace('.','',$reg_id);
@@ -416,7 +416,7 @@ $reg_id = str_replace('.','',$reg_id);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Регистрация в мире &laquo;Бойцовского Клуба&raquo;</title>
+<title>Р РµРіРёСЃС‚СЂР°С†РёСЏ РІ РјРёСЂРµ &laquo;Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°&raquo;</title>
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/psi.js"></script>
 <link rel="stylesheet" href="styles/register.css?<?=time()?>" type="text/css" media="screen"/>
@@ -440,8 +440,8 @@ body {
 .style6 {color: #DFD3A3;
 	font-size: 9px;
 }
-.стиль3 {color: #666666}
-.стиль4 {
+.СЃС‚РёР»СЊ3 {color: #666666}
+.СЃС‚РёР»СЊ4 {
 	color: #FF0000;
 	font-weight: bold;
 }
@@ -494,28 +494,28 @@ function CheckValue(a) {
           <input name="reg_id" id="reg_id" type="hidden" value="<?=$reg_id?>" />
           <div style="padding:20px;">
           	<? if( $multer > 0 ) { ?>
-            <div><b><font color=red>Вы недавно регистрировались с этого IP. Попробуйте через час.</font></b></div>
+            <div><b><font color=red>Р’С‹ РЅРµРґР°РІРЅРѕ СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»РёСЃСЊ СЃ СЌС‚РѕРіРѕ IP. РџРѕРїСЂРѕР±СѓР№С‚Рµ С‡РµСЂРµР· С‡Р°СЃ.</font></b></div>
             <? } ?>
             <div style="padding-right:25px;"><!-- -->
-              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> Имя вашего персонажа (login):</span> &nbsp;
+              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> РРјСЏ РІР°С€РµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р° (login):</span> &nbsp;
                 <script>psi.inputPrint('register_login<?=$reg_id?>','register_login<?=$reg_id?>',null,null,null,'psi_input1','width:191px;');</script>
                 <span style="display:inline-block;width:15px;"> <span id="login_error" style="display:none;" class='tip'><a tabindex="1"><em>?</em></a><span class='answer'>
                   <div id="login_error_text">&nbsp;</div>
                   </span></span> </span> </div>
-                  <div style="padding-left:16px; color: #847167;" class="mmg">Логин может содержать от 2 до 15 символов, и состоять только из букв русского ИЛИ английского алфавита, цифр, символов '_', '-' и пробела. 
-Логин не может начинаться или заканчиваться символами '_', '-' или пробелом.</div>
+                  <div style="padding-left:16px; color: #847167;" class="mmg">Р›РѕРіРёРЅ РјРѕР¶РµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ РѕС‚ 2 РґРѕ 15 СЃРёРјРІРѕР»РѕРІ, Рё СЃРѕСЃС‚РѕСЏС‚СЊ С‚РѕР»СЊРєРѕ РёР· Р±СѓРєРІ СЂСѓСЃСЃРєРѕРіРѕ РР›Р Р°РЅРіР»РёР№СЃРєРѕРіРѕ Р°Р»С„Р°РІРёС‚Р°, С†РёС„СЂ, СЃРёРјРІРѕР»РѕРІ '_', '-' Рё РїСЂРѕР±РµР»Р°. 
+Р›РѕРіРёРЅ РЅРµ РјРѕР¶РµС‚ РЅР°С‡РёРЅР°С‚СЊСЃСЏ РёР»Рё Р·Р°РєР°РЅС‡РёРІР°С‚СЊСЃСЏ СЃРёРјРІРѕР»Р°РјРё '_', '-' РёР»Рё РїСЂРѕР±РµР»РѕРј.</div>
               
               
               <!-- <div align="center"><span style="color:#09F"></span></div>
               <div style="padding-bottom:5px;">
-              <span style="display:inline-block;width:230px;"><font color=red>*</font> Склонность персонажа:</span>
+              <span style="display:inline-block;width:230px;"><font color=red>*</font> РЎРєР»РѕРЅРЅРѕСЃС‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°:</span>
                 <div style="display:inline-block;">
                 <div id="1register_align<?=$reg_id?>" align="center" class="psi_input1_none psi_list" style="width:191px;margin-left:10px;">
               	<select tabindex="1" name="register_align<?=$reg_id?>" id="register_align<?=$reg_id?>">
-                	<option value="4" data-icon="http://img.xcombats.com/i/align/align0.gif">Без склонности</option>
-                    <option value="3" data-icon="http://img.xcombats.com/i/align/align7.gif">Нейтральная</option>
-                    <option value="2" data-icon="http://img.xcombats.com/i/align/align3.gif">Тёмная</option>
-                    <option value="1" data-icon="http://img.xcombats.com/i/align/align1.gif">Светлая</option>
+                	<option value="4" data-icon="http://img.xcombats.com/i/align/align0.gif">Р‘РµР· СЃРєР»РѕРЅРЅРѕСЃС‚Рё</option>
+                    <option value="3" data-icon="http://img.xcombats.com/i/align/align7.gif">РќРµР№С‚СЂР°Р»СЊРЅР°СЏ</option>
+                    <option value="2" data-icon="http://img.xcombats.com/i/align/align3.gif">РўС‘РјРЅР°СЏ</option>
+                    <option value="1" data-icon="http://img.xcombats.com/i/align/align1.gif">РЎРІРµС‚Р»Р°СЏ</option>
               	</select>
                 </div>
                 </div>
@@ -527,29 +527,29 @@ function CheckValue(a) {
                 });				
               </script>
               -->
-              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> Пароль</span> &nbsp;
+              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> РџР°СЂРѕР»СЊ</span> &nbsp;
                 <script>psi.inputPrint('register_pass<?=$reg_id?>','register_pass<?=$reg_id?>',null,null,'password','psi_input1','width:191px;');</script>
                 <span style="display:inline-block;width:15px;"> <span id="pass_error" style="display:none;" class='tip'><a tabindex="1"><em>?</em></a><span class='answer'>
                   <div id="pass_error_text">&nbsp;</div>
                   </span></span> </span> </div>
-              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> Пароль еще раз</span> &nbsp;
+              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> РџР°СЂРѕР»СЊ РµС‰Рµ СЂР°Р·</span> &nbsp;
                 <script>psi.inputPrint('register_pass2<?=$reg_id?>','register_pass2<?=$reg_id?>',null,null,'password','psi_input1','width:191px;');</script>
                 <span style="display:inline-block;width:15px;"> &nbsp; </span> </div>
-              <div style="padding-left:16px; color: #847167;" class="mmg"><span class="style5">Внимание!</span> Ставьте пароль от персонажа, который будет отличаться от тех, что вы вводили на других проектах. Это значительно уменьшит шансы что вашего персонажа взломают.</div>
+              <div style="padding-left:16px; color: #847167;" class="mmg"><span class="style5">Р’РЅРёРјР°РЅРёРµ!</span> РЎС‚Р°РІСЊС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р°, РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РѕС‚Р»РёС‡Р°С‚СЊСЃСЏ РѕС‚ С‚РµС…, С‡С‚Рѕ РІС‹ РІРІРѕРґРёР»Рё РЅР° РґСЂСѓРіРёС… РїСЂРѕРµРєС‚Р°С…. Р­С‚Рѕ Р·РЅР°С‡РёС‚РµР»СЊРЅРѕ СѓРјРµРЅСЊС€РёС‚ С€Р°РЅСЃС‹ С‡С‚Рѕ РІР°С€РµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р° РІР·Р»РѕРјР°СЋС‚.</div>
               <div align="center"><span style="color:#09F"></span></div>
-              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> Ваш пол</span> <span style="padding-left:15px;"> <small class="cp radio1txt" id="register_sex<?=$reg_id?>block1" value="1">
+              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> Р’Р°С€ РїРѕР»</span> <span style="padding-left:15px;"> <small class="cp radio1txt" id="register_sex<?=$reg_id?>block1" value="1">
                 <div style="display:inline-block;">
-				<script>psi.radioPring('register_sex<?=$reg_id?>','register_sex<?=$reg_id?>',true,null,'Мужской');</script>
+				<script>psi.radioPring('register_sex<?=$reg_id?>','register_sex<?=$reg_id?>',true,null,'РњСѓР¶СЃРєРѕР№');</script>
                 </small> &nbsp; &nbsp; &nbsp; <small class="cp radio1txt" id="register_sex<?=$reg_id?>block2" value="2">
-                  <script>psi.radioPring('register_sex<?=$reg_id?>','register_sex<?=$reg_id?>',true,2,'Женский');
+                  <script>psi.radioPring('register_sex<?=$reg_id?>','register_sex<?=$reg_id?>',true,2,'Р–РµРЅСЃРєРёР№');
                         psi.radioPress('register_sex<?=$reg_id?>',$('#register_sex<?=$reg_id?>_1'),2);
                         </script>
                   </div>
                   </small> &nbsp; &nbsp;&nbsp; </span> <span style="display:inline-block;width:15px;"> <span id="sex_error" style="display:none;" class='tip'><a tabindex="1"><em>?</em></a><span class='answer'>
                     <div id="sex_error_text">&nbsp;</div>
                     </span></span> </span> </div>
-              <div style="padding-left:16px; color: #847167;" class="mmg"><span class="style5">Внимание!</span> Пол персонажа должен соответствовать реальному полу игрока.</div>
-              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> День рождения</span> &nbsp;
+              <div style="padding-left:16px; color: #847167;" class="mmg"><span class="style5">Р’РЅРёРјР°РЅРёРµ!</span> РџРѕР» РїРµСЂСЃРѕРЅР°Р¶Р° РґРѕР»Р¶РµРЅ СЃРѕРѕС‚РІРµС‚СЃС‚РІРѕРІР°С‚СЊ СЂРµР°Р»СЊРЅРѕРјСѓ РїРѕР»Сѓ РёРіСЂРѕРєР°.</div>
+              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> Р”РµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ</span> &nbsp;
                 <div style="display:inline-block;">
                 <div id="1register_dd<?=$reg_id?>" align="center" class="psi_input1_none psi_list" style="width:43px;">
                   <select name="register_dd<?=$reg_id?>" id="register_dd<?=$reg_id?>">
@@ -612,28 +612,28 @@ function CheckValue(a) {
                 <span style="display:inline-block;width:15px;"> <span id="bd_error" style="display:none;" class='tip'><a tabindex="1"><em>?</em></a><span class='answer'>
                   <div id="bd_error_text">&nbsp;</div>
                   </span></span> </span> </div>
-                  <div style="padding-left:16px; color: #847167;" class="mmg"><span class="style5">Внимание!</span> Дата рождения должна быть правильной, она используется в игровом процессе. Анкеты с неправильной датой будут удаляться без предупреждения.</div>
+                  <div style="padding-left:16px; color: #847167;" class="mmg"><span class="style5">Р’РЅРёРјР°РЅРёРµ!</span> Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїСЂР°РІРёР»СЊРЅРѕР№, РѕРЅР° РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ РёРіСЂРѕРІРѕРј РїСЂРѕС†РµСЃСЃРµ. РђРЅРєРµС‚С‹ СЃ РЅРµРїСЂР°РІРёР»СЊРЅРѕР№ РґР°С‚РѕР№ Р±СѓРґСѓС‚ СѓРґР°Р»СЏС‚СЊСЃСЏ Р±РµР· РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёСЏ.</div>
               <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> E-mail</span> &nbsp;
                 <script>psi.inputPrint('register_mail<?=$reg_id?>','register_mail<?=$reg_id?>',null,null,null,'psi_input1','width:191px;');</script>
                 <span style="display:inline-block;width:15px;"> <span id="mail_error" style="display:none;" class='tip'><a tabindex="1"><em>?</em></a><span class='answer'>
                   <div id="mail_error_text">&nbsp;</div>
                   </span></span> </span> </div>
-                  <div style="padding-left:16px; color: #847167;" class="mmg">Используется только для регистрации и восстановления (в случае его утери) доступа к персонажу. Он нигде не отображается и не используется в целях спама.</div>
-              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> Код с картинки</span> &nbsp; <img src="show_reg_img/security.php?register_id=<?=str_replace(' ','0',microtime())?>" width="107" height="26" style="display:inline-block; vertical-align:bottom;">
+                  <div style="padding-left:16px; color: #847167;" class="mmg">РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ СЂРµРіРёСЃС‚СЂР°С†РёРё Рё РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ (РІ СЃР»СѓС‡Р°Рµ РµРіРѕ СѓС‚РµСЂРё) РґРѕСЃС‚СѓРїР° Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ. РћРЅ РЅРёРіРґРµ РЅРµ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ Рё РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ С†РµР»СЏС… СЃРїР°РјР°.</div>
+              <div style="padding-bottom:5px;"> <span style="display:inline-block;width:230px;"><font color=red>*</font> РљРѕРґ СЃ РєР°СЂС‚РёРЅРєРё</span> &nbsp; <img src="show_reg_img/security.php?register_id=<?=str_replace(' ','0',microtime())?>" width="107" height="26" style="display:inline-block; vertical-align:bottom;">
                 <script>psi.inputPrint('register_key<?=$reg_id?>','register_key<?=$reg_id?>',null,null,null,'psi_input1','width:81px;');</script>
                 <span style="display:inline-block;width:15px;"> <span id="key_error" style="display:none;" class='tip'><a tabindex="1"><em>?</em></a><span class='answer'>
                   <div id="key_error_text">&nbsp;</div>
                   </span></span> </span> </div>
               <br>
-              <div title="Я принимаю все правила и соглашения, а так-же разрешаю оповещать меня по E-mail"> <small class="cp" id="register_rules<?=$reg_id?>block">
+              <div title="РЇ РїСЂРёРЅРёРјР°СЋ РІСЃРµ РїСЂР°РІРёР»Р° Рё СЃРѕРіР»Р°С€РµРЅРёСЏ, Р° С‚Р°Рє-Р¶Рµ СЂР°Р·СЂРµС€Р°СЋ РѕРїРѕРІРµС‰Р°С‚СЊ РјРµРЅСЏ РїРѕ E-mail"> <small class="cp" id="register_rules<?=$reg_id?>block">
                 <span style="display:inline-block;"><script>psi.checkPring('register_rules<?=$reg_id?>','register_rules<?=$reg_id?>',true);</script></span>
-                <span style="display:inline-block;">&nbsp;Я ознакомился с Соглашением о предоставлении сервиса игры и законами<br>
-                &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;"Старый Бойцовский Клуб (XCombats)" и согласен по всем пунктам.</small> <span style="display:inline-block;width:15px;"> <span id="rules_error" style="display:none;" class='tip'><a tabindex="1"><em>?</em></a><span class='answer'>
+                <span style="display:inline-block;">&nbsp;РЇ РѕР·РЅР°РєРѕРјРёР»СЃСЏ СЃ РЎРѕРіР»Р°С€РµРЅРёРµРј Рѕ РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёРё СЃРµСЂРІРёСЃР° РёРіСЂС‹ Рё Р·Р°РєРѕРЅР°РјРё<br>
+                &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;"РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± (XCombats)" Рё СЃРѕРіР»Р°СЃРµРЅ РїРѕ РІСЃРµРј РїСѓРЅРєС‚Р°Рј.</small> <span style="display:inline-block;width:15px;"> <span id="rules_error" style="display:none;" class='tip'><a tabindex="1"><em>?</em></a><span class='answer'>
                   <div id="rules_error_text">&nbsp;</div>
                   </span></span> </span> </div></span>
               <br>
               <div align="center">
-                <input onclick="top.location.href='/';" class="btnnew2" value="Вернуться" type="button"> <input class="btnnew" onClick="psi.testForm();" type="button" value="Зарегистрироваться">
+                <input onclick="top.location.href='/';" class="btnnew2" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" type="button"> <input class="btnnew" onClick="psi.testForm();" type="button" value="Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ">
                 </div>
 				<center></center>
               <!-- -->
@@ -658,7 +658,7 @@ function CheckValue(a) {
 				<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="10%" scope="col"></td>
-						<td width="81%" scope="col"><div align="center"><NOBR><span class="style6">Все права защищены © <?=date('Y')?> «Старый БК»</span></NOBR></div></td>
+						<td width="81%" scope="col"><div align="center"><NOBR><span class="style6">Р’СЃРµ РїСЂР°РІР° Р·Р°С‰РёС‰РµРЅС‹ В© <?=date('Y')?> В«РЎС‚Р°СЂС‹Р№ Р‘РљВ»</span></NOBR></div></td>
 						<td width="9%" scope="col">&nbsp;</td>
 					</tr>
 				</table>

@@ -1,15 +1,15 @@
 <?php
-# Скрипт отвечает за
-# чистку пещер которые не используются игроком в течении 3 часов
-# при учете что пещере больше 5 часов от времени создания.
+# РЎРєСЂРёРїС‚ РѕС‚РІРµС‡Р°РµС‚ Р·Р°
+# С‡РёСЃС‚РєСѓ РїРµС‰РµСЂ РєРѕС‚РѕСЂС‹Рµ РЅРµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ РёРіСЂРѕРєРѕРј РІ С‚РµС‡РµРЅРёРё 3 С‡Р°СЃРѕРІ
+# РїСЂРё СѓС‡РµС‚Рµ С‡С‚Рѕ РїРµС‰РµСЂРµ Р±РѕР»СЊС€Рµ 5 С‡Р°СЃРѕРІ РѕС‚ РІСЂРµРјРµРЅРё СЃРѕР·РґР°РЅРёСЏ.
 
-# Получаем IP
+# РџРѕР»СѓС‡Р°РµРј IP
 function getIPblock() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Выполняем проверку безопасности. 
+# Р’С‹РїРѕР»РЅСЏРµРј РїСЂРѕРІРµСЂРєСѓ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё. 
 
 if(!isset($_GET['kill'])) {
 	if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' && getIPblock() != '91.228.154.180' ) {	die('Hello pussy!');   }
@@ -27,13 +27,13 @@ include('_incl_data/class/__db_connect.php');
 //include('_incl_data/class/__user.php');
 //include('_incl_data/class/__dungeon.php');
  
-# запуск скрипта.
+# Р·Р°РїСѓСЃРє СЃРєСЂРёРїС‚Р°.
 function start() {
-    # Страница создана 0.0000
+    # РЎС‚СЂР°РЅРёС†Р° СЃРѕР·РґР°РЅР° 0.0000
     $mtime = microtime();$mtime = explode(" ",$mtime);$tstart = $mtime[1] + $mtime[0];
     
-    # Выбираем всех ботов.
-    # В выборку включено: Позиция бота, Направление куда он может идти, Существует ли рядом Игрок, его координаты и в поединке ли он.
+    # Р’С‹Р±РёСЂР°РµРј РІСЃРµС… Р±РѕС‚РѕРІ.
+    # Р’ РІС‹Р±РѕСЂРєСѓ РІРєР»СЋС‡РµРЅРѕ: РџРѕР·РёС†РёСЏ Р±РѕС‚Р°, РќР°РїСЂР°РІР»РµРЅРёРµ РєСѓРґР° РѕРЅ РјРѕР¶РµС‚ РёРґС‚Рё, РЎСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё СЂСЏРґРѕРј РРіСЂРѕРє, РµРіРѕ РєРѕРѕСЂРґРёРЅР°С‚С‹ Рё РІ РїРѕРµРґРёРЅРєРµ Р»Рё РѕРЅ.
     $query = mysql_query(
     "SELECT
 		`dn`.time_start as dn_start,
@@ -57,7 +57,7 @@ function start() {
 
     while( $dungeon = mysql_fetch_array( $query ) ) {
 		if(isset($dungeon['dn_id']) && $dungeon['dn_id'] != 15) {
-			# [1] Выкидываем игроков с подземелья и перемещаем его `382` Подвальное помещение(Маг.портала)
+			# [1] Р’С‹РєРёРґС‹РІР°РµРј РёРіСЂРѕРєРѕРІ СЃ РїРѕРґР·РµРјРµР»СЊСЏ Рё РїРµСЂРµРјРµС‰Р°РµРј РµРіРѕ `382` РџРѕРґРІР°Р»СЊРЅРѕРµ РїРѕРјРµС‰РµРЅРёРµ(РњР°Рі.РїРѕСЂС‚Р°Р»Р°)
 			$users = mysql_query('SELECT `id` FROM `stats` WHERE `dnow` = "'.$dungeon['dn_id'].'" LIMIT 10');
 			while( $cur = mysql_fetch_array($users) ) {
 				mysql_query('UPDATE `stats` SET `dnow` = "0" WHERE `id` = "'.$cur['id'].'" LIMIT 1');
@@ -73,41 +73,41 @@ function start() {
 				}
 				
 				mysql_query('UPDATE `users` SET `room` = "'.$podval_room.'" WHERE `id` = "'.$cur['id'].'" LIMIT 1');
-				#echo 'Выбросили игрока №'.$cur['id'].' с подземелья '.$dungeon['dn_id'].' и переместили в <strong>Подвальное помещение</strong><br/>';
+				#echo 'Р’С‹Р±СЂРѕСЃРёР»Рё РёРіСЂРѕРєР° в„–'.$cur['id'].' СЃ РїРѕРґР·РµРјРµР»СЊСЏ '.$dungeon['dn_id'].' Рё РїРµСЂРµРјРµСЃС‚РёР»Рё РІ <strong>РџРѕРґРІР°Р»СЊРЅРѕРµ РїРѕРјРµС‰РµРЅРёРµ</strong><br/>';
 				mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$cur['id'].'" AND `dn_delete` = "1"');
-				# echo 'Выбрасываем пещерные предметы у игрока №'.$cur['id'].' <br/>';
+				# echo 'Р’С‹Р±СЂР°СЃС‹РІР°РµРј РїРµС‰РµСЂРЅС‹Рµ РїСЂРµРґРјРµС‚С‹ Сѓ РёРіСЂРѕРєР° в„–'.$cur['id'].' <br/>';
 			}
 			unset( $cur );
-			# [2] Удаляем Объекты.
+			# [2] РЈРґР°Р»СЏРµРј РћР±СЉРµРєС‚С‹.
 			mysql_query('DELETE FROM `dungeon_obj` WHERE `dn` = "'.$dungeon['dn_id'].'" AND `for_dn` = "0"');
-			# echo 'Удаляем объекты в пещере №'.$dungeon['dn_id'].'<br/>';
+			# echo 'РЈРґР°Р»СЏРµРј РѕР±СЉРµРєС‚С‹ РІ РїРµС‰РµСЂРµ в„–'.$dungeon['dn_id'].'<br/>';
 
-			# [3] Удаляем Монстров.
+			# [3] РЈРґР°Р»СЏРµРј РњРѕРЅСЃС‚СЂРѕРІ.
 			mysql_query('DELETE FROM `dungeon_bots` WHERE `dn` = "'.$dungeon['dn_id'].'" AND `for_dn` = "0"');
-			# echo 'Удаляем монстров в пещере №'.$dungeon['dn_id'].'<br/>';
+			# echo 'РЈРґР°Р»СЏРµРј РјРѕРЅСЃС‚СЂРѕРІ РІ РїРµС‰РµСЂРµ в„–'.$dungeon['dn_id'].'<br/>';
 
-			# [4] Удаляем Предметы.
+			# [4] РЈРґР°Р»СЏРµРј РџСЂРµРґРјРµС‚С‹.
 			mysql_query('DELETE FROM `dungeon_items` WHERE `dn` = "'.$dungeon['dn_id'].'" AND `for_dn` = "0"');
-			# echo 'Удаляем предметы в пещере №'.$dungeon['dn_id'].'<br/>';
+			# echo 'РЈРґР°Р»СЏРµРј РїСЂРµРґРјРµС‚С‹ РІ РїРµС‰РµСЂРµ в„–'.$dungeon['dn_id'].'<br/>';
 
-			# [5] Удаляем Действия (actions)
+			# [5] РЈРґР°Р»СЏРµРј Р”РµР№СЃС‚РІРёСЏ (actions)
 			mysql_query('DELETE FROM `dungeon_actions` WHERE `dn` = "'.$dungeon['dn_id'].'"');
-			# echo 'Удаляем действия в пещере №'.$dungeon['dn_id'].'<br/>';
+			# echo 'РЈРґР°Р»СЏРµРј РґРµР№СЃС‚РІРёСЏ РІ РїРµС‰РµСЂРµ в„–'.$dungeon['dn_id'].'<br/>';
 
-			# [6] Закрываем Подземелье Dungeon_Now - time_finish = time();
+			# [6] Р—Р°РєСЂС‹РІР°РµРј РџРѕРґР·РµРјРµР»СЊРµ Dungeon_Now - time_finish = time();
 			mysql_query('UPDATE `dungeon_now` SET `time_finish` = "'.time().'" WHERE `id` = "'.$dungeon['dn_id'].'" LIMIT 1');
 			
-			echo 'Закрыли пещеру №'.$dungeon['dn_id'].'<br/><br/>';
+			echo 'Р—Р°РєСЂС‹Р»Рё РїРµС‰РµСЂСѓ в„–'.$dungeon['dn_id'].'<br/><br/>';
 		} else {
-			echo 'Нет данных для обработки.<br/><br/>';
+			echo 'РќРµС‚ РґР°РЅРЅС‹С… РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё.<br/><br/>';
 		}
 	}
     unset($query,$dungeon,$users);
     
     $mtime = microtime();
     $mtime = explode(" ",$mtime);$mtime = $mtime[1] + $mtime[0];$totaltime = ($mtime - $tstart);
-    printf ("Страница сгенерирована за %f секунд !", $totaltime);
+    printf ("РЎС‚СЂР°РЅРёС†Р° СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅР° Р·Р° %f СЃРµРєСѓРЅРґ !", $totaltime);
 }
 
-# Запускаем выполнение процесса.
+# Р—Р°РїСѓСЃРєР°РµРј РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕС†РµСЃСЃР°.
 start();

@@ -59,12 +59,12 @@ if(!isset($u->bank['id'])) {
 	31|6-0-0-6-4-0
 	*/
 
-if($u->room['name']!='Рулетка')
+if($u->room['name']!='Р СѓР»РµС‚РєР°')
 {
 	die();
 }else{
 	
-	//Раздаем выйгрыши
+	//Р Р°Р·РґР°РµРј РІС‹Р№РіСЂС‹С€Рё
 	
 	
 	function get2str($key='', $val='') {
@@ -82,21 +82,21 @@ if($u->room['name']!='Рулетка')
 	}
 
 	$r = '';
-	$time = 74; //сек до новой игры
-	$status = 0; //статус игры, 2 - крутим колесо
+	$time = 74; //СЃРµРє РґРѕ РЅРѕРІРѕР№ РёРіСЂС‹
+	$status = 0; //СЃС‚Р°С‚СѓСЃ РёРіСЂС‹, 2 - РєСЂСѓС‚РёРј РєРѕР»РµСЃРѕ
 	$win = array(
-		0 => 0, //число выйгрыша
-		1 => '', //линии выйгрыша
-		2 => 0,  //сумма выйгрыша
-		3 => 0,  //ставка на эту игру текущего игрока
-		//ставки
+		0 => 0, //С‡РёСЃР»Рѕ РІС‹Р№РіСЂС‹С€Р°
+		1 => '', //Р»РёРЅРёРё РІС‹Р№РіСЂС‹С€Р°
+		2 => 0,  //СЃСѓРјРјР° РІС‹Р№РіСЂС‹С€Р°
+		3 => 0,  //СЃС‚Р°РІРєР° РЅР° СЌС‚Сѓ РёРіСЂСѓ С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР°
+		//СЃС‚Р°РІРєРё
 		4 => '',
-		//игроки которые делали ставки
+		//РёРіСЂРѕРєРё РєРѕС‚РѕСЂС‹Рµ РґРµР»Р°Р»Рё СЃС‚Р°РІРєРё
 		5 => ''
 	);
 	
 
-	//Выделяем текущую игру, если её нет, то создаем новую
+	//Р’С‹РґРµР»СЏРµРј С‚РµРєСѓС‰СѓСЋ РёРіСЂСѓ, РµСЃР»Рё РµС‘ РЅРµС‚, С‚Рѕ СЃРѕР·РґР°РµРј РЅРѕРІСѓСЋ
 	$gid = mysql_fetch_array(mysql_query('SELECT * FROM `ruletka` WHERE (`end` = 0 OR `id` = "'.((int)$_GET['id']).'") ORDER BY `id` DESC LIMIT 1'));
 	if($gid['time_start']+16>time() || isset($_GET['bet']))
 	{
@@ -111,13 +111,13 @@ if($u->room['name']!='Рулетка')
 	$add = false;
 	if(isset($gid['id']))
 	{
-		//Игра существует, проверяем
+		//РРіСЂР° СЃСѓС‰РµСЃС‚РІСѓРµС‚, РїСЂРѕРІРµСЂСЏРµРј
 		$time = $gid['time_start']-time();
 		if($time<1)
 		{
-			//крутим колесо и заканчиваем игру + выдаем выйгрыш
+			//РєСЂСѓС‚РёРј РєРѕР»РµСЃРѕ Рё Р·Р°РєР°РЅС‡РёРІР°РµРј РёРіСЂСѓ + РІС‹РґР°РµРј РІС‹Р№РіСЂС‹С€
 			//mysql_query('UPDATE `ruletka` SET `end` = "'.time().'" WHERE `id` = "'.$gid['id'].'" LIMIT 1');
-			//выводим предыдущий выйгрыш
+			//РІС‹РІРѕРґРёРј РїСЂРµРґС‹РґСѓС‰РёР№ РІС‹Р№РіСЂС‹С€
 			$win[0] = $gid['win'];
 			$win[1] = $gid['win_line'];
 			$win[2] = 0;
@@ -127,7 +127,7 @@ if($u->room['name']!='Рулетка')
 				$add = true;
 			}
 		}else{
-			//ожидаем начала игры, делаем ставки
+			//РѕР¶РёРґР°РµРј РЅР°С‡Р°Р»Р° РёРіСЂС‹, РґРµР»Р°РµРј СЃС‚Р°РІРєРё
 			if(isset($_GET['bet']))
 			{
 				$bt = $_GET['bet'];
@@ -143,21 +143,21 @@ if($u->room['name']!='Рулетка')
 				}
 				
 	/*
-	Ставки и значения
+	РЎС‚Р°РІРєРё Рё Р·РЅР°С‡РµРЅРёСЏ
 	
-	1, ... ,36 - ставка на числа [x8]
+	1, ... ,36 - СЃС‚Р°РІРєР° РЅР° С‡РёСЃР»Р° [x8]
 	
-	2-4-6-8-10-11-13-15-17-20-22-24-26-28-29-31-33-35 - черное  [x2]
-	1-3-5-7-9-12-14-16-18-19-21-23-25-27-30-32-34-36  - красное [x2]
+	2-4-6-8-10-11-13-15-17-20-22-24-26-28-29-31-33-35 - С‡РµСЂРЅРѕРµ  [x2]
+	1-3-5-7-9-12-14-16-18-19-21-23-25-27-30-32-34-36  - РєСЂР°СЃРЅРѕРµ [x2]
 	
-	37 - два нуля [x36]
-	38 - ноль     [x36]
+	37 - РґРІР° РЅСѓР»СЏ [x36]
+	38 - РЅРѕР»СЊ     [x36]
 	
-	1-2-3-37-38 - потолок [x5]
+	1-2-3-37-38 - РїРѕС‚РѕР»РѕРє [x5]
 	
-	1-2-3-4-5-6-7-8-9-10-11-12          - 1 сектор [x3]
-	13-14-15-16-17-18-19-20-21-22-23-24 - 2 сектор [x3]
-	25-26-27-28-29-30-31-32-33-34-35-36 - 3 сектор [x3]
+	1-2-3-4-5-6-7-8-9-10-11-12          - 1 СЃРµРєС‚РѕСЂ [x3]
+	13-14-15-16-17-18-19-20-21-22-23-24 - 2 СЃРµРєС‚РѕСЂ [x3]
+	25-26-27-28-29-30-31-32-33-34-35-36 - 3 СЃРµРєС‚РѕСЂ [x3]
 	
 	*/
 				
@@ -393,11 +393,11 @@ if($u->room['name']!='Рулетка')
 					$stvka = '';
 					
 					if($stvka == '') {
-						$stvka = '<i>неизвестная зона ставки</i>';
+						$stvka = '<i>РЅРµРёР·РІРµСЃС‚РЅР°СЏ Р·РѕРЅР° СЃС‚Р°РІРєРё</i>';
 					}
 					
 					
-					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$u->info['city']."','".$u->info['room']."','','','<small>[<b><font color=0066ff>Крупье</font></b>] Игрок <b>".mysql_real_escape_string($u->info['login'])."</b> сделал ставку: ".(0+((int)$_GET['coin'])).".00 кр. на ".$stvka.", игра №".$gid['id']."</small>','".time()."','6','0')");
+					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$u->info['city']."','".$u->info['room']."','','','<small>[<b><font color=0066ff>РљСЂСѓРїСЊРµ</font></b>] РРіСЂРѕРє <b>".mysql_real_escape_string($u->info['login'])."</b> СЃРґРµР»Р°Р» СЃС‚Р°РІРєСѓ: ".(0+((int)$_GET['coin'])).".00 РєСЂ. РЅР° ".$stvka.", РёРіСЂР° в„–".$gid['id']."</small>','".time()."','6','0')");
 					
 					
 					mysql_query('UPDATE `bank` SET `money2` = '.$u->bank['money2'].' WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
@@ -409,7 +409,7 @@ if($u->room['name']!='Рулетка')
 		$add = true;
 	}
 	
-			//обновляем ставки
+			//РѕР±РЅРѕРІР»СЏРµРј СЃС‚Р°РІРєРё
 			$pos = array(
 				0  => '2-4-6-8-10-11-13-15-17-20-22-24-26-28-29-31-33-35',
 				1  => '1-3-5-7-9-12-14-16-18-19-21-23-25-27-30-32-34-36',
@@ -514,7 +514,7 @@ if($u->room['name']!='Рулетка')
 					}
 					$am++;
 				}
-				$us = 0; //Ставка игрока
+				$us = 0; //РЎС‚Р°РІРєР° РёРіСЂРѕРєР°
 				$sp = mysql_query('SELECT * FROM `ruletka_coin` WHERE `game_id` = "'.$s.'" AND `money` > 0 AND `win2` = "'.$stt.'" AND `uid` = "'.$u->info['id'].'" LIMIT 100');
 				while($pl = mysql_fetch_array($sp))
 				{
@@ -537,14 +537,14 @@ if($u->room['name']!='Рулетка')
 				}
 			}
 			
-			//ставки на числа
+			//СЃС‚Р°РІРєРё РЅР° С‡РёСЃР»Р°
 			$i = 1;
 			while($i<=38)
 			{
 				testCoin($gid['id'],$i);
 				$i++;
 			}
-			//комбинированные ставки
+			//РєРѕРјР±РёРЅРёСЂРѕРІР°РЅРЅС‹Рµ СЃС‚Р°РІРєРё
 			$i = 0;
 			while($i<count($pos))
 			{
@@ -554,7 +554,7 @@ if($u->room['name']!='Рулетка')
 	
 	if($add==true)
 	{
-		//создаем новую игру
+		//СЃРѕР·РґР°РµРј РЅРѕРІСѓСЋ РёРіСЂСѓ
 		$gid2 = array('id'=>0,'room'=>$u->info['room'],'time'=>time(),'time_start'=>time()+74,'win'=>floor(rand(100,3800)/100),'win_line'=>'','end'=>0);
 		$s37 = mysql_fetch_array(mysql_query('SELECT `id` FROM `ruletka` WHERE `win` = "37" OR `win` = "38" AND `time` > "'.(time()-round(3600/10000*rand(5000,10000))).'" LIMIT 1'));
 		if(isset($s37['id'])) {
@@ -576,7 +576,7 @@ if($u->room['name']!='Рулетка')
 					$u->addAction(time(),'casino_balance',0);
 				}
 	
-		//обновляем выйгрыши
+		//РѕР±РЅРѕРІР»СЏРµРј РІС‹Р№РіСЂС‹С€Рё
 		$sp = mysql_query('SELECT * FROM `ruletka` WHERE `end` = "0" AND `time_start` <= '.time().'');
 		while($pl = mysql_fetch_array($sp))
 		{			
@@ -590,7 +590,7 @@ if($u->room['name']!='Рулетка')
 			$end = mysql_query('UPDATE `ruletka` SET `end` = "'.time().'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');			
 			if($end)
 			{
-				//выдаем выйгрышь
+				//РІС‹РґР°РµРј РІС‹Р№РіСЂС‹С€СЊ
 				$sp2 = mysql_query('SELECT * FROM `ruletka_coin` WHERE `end` = "0" AND `game_id` = "'.$pl['id'].'"');
 				while($pl2 = mysql_fetch_array($sp2))
 				{
@@ -617,7 +617,7 @@ if($u->room['name']!='Рулетка')
 												
 						if($wn>0)
 						{
-							//перечисляем деньги [x8], если зеро то [x36]
+							//РїРµСЂРµС‡РёСЃР»СЏРµРј РґРµРЅСЊРіРё [x8], РµСЃР»Рё Р·РµСЂРѕ С‚Рѕ [x36]
 							if($pl['win']>36)
 							{
 								$nmn = ((int)$pl2['money']*35);
@@ -627,17 +627,17 @@ if($u->room['name']!='Рулетка')
 							mysql_query('UPDATE `bank` SET `money2` = `money2` + "'.$nmn.'" WHERE `uid` = "'.$pl2['uid'].'" ORDER BY `useNow` DESC LIMIT 1');
 						}elseif($wn2>0)
 						{
-							//перечисляем деньги по определенной формуле
+							//РїРµСЂРµС‡РёСЃР»СЏРµРј РґРµРЅСЊРіРё РїРѕ РѕРїСЂРµРґРµР»РµРЅРЅРѕР№ С„РѕСЂРјСѓР»Рµ
 							$nmn = ((int)$pl2['money']*$xv);
 							mysql_query('UPDATE `bank` SET `money2` = `money2` + "'.$nmn.'" WHERE `uid` = "'.$pl2['uid'].'" ORDER BY `useNow` DESC LIMIT 1');
 						}else{
-							//проиграли
+							//РїСЂРѕРёРіСЂР°Р»Рё
 							mysql_query('UPDATE `ruletka_coin` SET `end` = "1" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 							mysql_query('UPDATE `actions` SET `vals` = `vals` + "'.mysql_real_escape_string(0+$pl2['money']).'" WHERE `id` = "'.$sm['id'].'" LIMIT 1');
 						}
 						
 						if($wn > 0 || $wn2 > 0) {
-							$u->addDelo(1,$pl2['uid'],'&quot;<font color=red>Casino.'.$u->info['city'].'</font>&quot;: Выиграл '.$nmn.' екр.',time(),$u->info['city'],'Casino.'.$u->info['city'].'',0,0);
+							$u->addDelo(1,$pl2['uid'],'&quot;<font color=red>Casino.'.$u->info['city'].'</font>&quot;: Р’С‹РёРіСЂР°Р» '.$nmn.' РµРєСЂ.',time(),$u->info['city'],'Casino.'.$u->info['city'].'',0,0);
 							if(!isset($u_w[1][$pl2['uid']])) {
 								$u_w[0][count($u_w[0])] = $pl2['uid'];
 								$u_w[2][count($u_w[0])-1] = $pl2['game_id'];
@@ -652,7 +652,7 @@ if($u->room['name']!='Рулетка')
 		}
 		
 		if(count($u_w[0]) > 0) {
-			//mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$pl['city']."','225','Крупье','','Игрок <b>".$pl['login']."</b> выиграл <b>".$nmn.".00</b> кр.','".time()."','6','0')");
+			//mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$pl['city']."','225','РљСЂСѓРїСЊРµ','','РРіСЂРѕРє <b>".$pl['login']."</b> РІС‹РёРіСЂР°Р» <b>".$nmn.".00</b> РєСЂ.','".time()."','6','0')");
 			$i = 0;
 			while($i < count($u_w[0])) {
 				if($u_w[1][$u_w[0][$i]] > 0) {
@@ -669,7 +669,7 @@ if($u->room['name']!='Рулетка')
 				FROM `users` AS `u` WHERE `u`.`id`="'.mysql_real_escape_string($u_w[0][$i]).'" LIMIT 1'));
 			
 					mysql_query('UPDATE `actions` SET `vals` = `vals` + "'.mysql_real_escape_string((0+$u_w[3][$u_w[0][$i]])-$u_w[1][$u_w[0][$i]]).'" WHERE `id` = "'.$sm['id'].'" LIMIT 1');
-					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$u->info['city']."','389','','','<small>[<b><font color=0066ff>Крупье</font></b>] Игрок <b>".mysql_real_escape_string($infu['login'])."</b> выиграл <b>".$u_w[1][$u_w[0][$i]].".00</b> екр., ставка: ".(0+$u_w[3][$u_w[0][$i]]).".00 екр., игра №".$u_w[2][$i]."</small>','".time()."','6','0')");
+					mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$u->info['city']."','389','','','<small>[<b><font color=0066ff>РљСЂСѓРїСЊРµ</font></b>] РРіСЂРѕРє <b>".mysql_real_escape_string($infu['login'])."</b> РІС‹РёРіСЂР°Р» <b>".$u_w[1][$u_w[0][$i]].".00</b> РµРєСЂ., СЃС‚Р°РІРєР°: ".(0+$u_w[3][$u_w[0][$i]]).".00 РµРєСЂ., РёРіСЂР° в„–".$u_w[2][$i]."</small>','".time()."','6','0')");
 				}
 				$i++;
 			}
@@ -681,10 +681,10 @@ if($u->room['name']!='Рулетка')
 		{
 			$time = 0;
 		}
-		//Выбираем статус игры
+		//Р’С‹Р±РёСЂР°РµРј СЃС‚Р°С‚СѓСЃ РёРіСЂС‹
 		if($time>0)
 		{
-			//делаем ставки
+			//РґРµР»Р°РµРј СЃС‚Р°РІРєРё
 			$status = 1;
 			$sp = mysql_query('SELECT * FROM `ruletka_coin` WHERE `end` = "0" AND `uid` = "'.$u->info['id'].'" AND `game_id` = "'.$gid['id'].'"');
 			$win[3] = 0;
@@ -693,9 +693,9 @@ if($u->room['name']!='Рулетка')
 				$win[3] += $pl['money'];
 			}
 		}else{
-			//играем
+			//РёРіСЂР°РµРј
 			$status = 2;
-			//выводим выйгрыш + ставку
+			//РІС‹РІРѕРґРёРј РІС‹Р№РіСЂС‹С€ + СЃС‚Р°РІРєСѓ
 			$sp = mysql_query('SELECT * FROM `ruletka_coin` WHERE `end` > "0" AND `uid` = "'.$u->info['id'].'" AND `game_id` = "'.$gid['id'].'"');
 			$win[2] = 0;
 			while($pl = mysql_fetch_array($sp))

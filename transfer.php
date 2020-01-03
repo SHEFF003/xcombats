@@ -30,17 +30,17 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 				mysql_query('UPDATE `transfers` SET `r0` = "'.$u->tfer['r0'].'",`r1` = "0",`r2` = "0",`good1` = "0",`good2` = "0" WHERE `id` = "'.$u->tfer['id'].'" LIMIT 1');
 			}elseif(isset($_POST['start2']))
 			{
-				//сохраняем обмен
+				//СЃРѕС…СЂР°РЅСЏРµРј РѕР±РјРµРЅ
 				if($u->tfer['good1']>0 && $u->tfer['good2']>0)
 				{
-					//завершаем обмен
+					//Р·Р°РІРµСЂС€Р°РµРј РѕР±РјРµРЅ
 					$u->tfer['cancel1'] = time();
 					$u->tfer['cancel2'] = time();
 					$u->tfer['finish1'] = time();
 					$u->tfer['finish2'] = time();
-					//меняем вещи + передаем КР и завершаем передачи, переход на лог передач
+					//РјРµРЅСЏРµРј РІРµС‰Рё + РїРµСЂРµРґР°РµРј РљР  Рё Р·Р°РІРµСЂС€Р°РµРј РїРµСЂРµРґР°С‡Рё, РїРµСЂРµС…РѕРґ РЅР° Р»РѕРі РїРµСЂРµРґР°С‡
 					$upd2 = mysql_query('UPDATE `transfers` SET `cancel1` = "'.$u->tfer['cancel1'].'",`cancel2` = "'.$u->tfer['cancel2'].'",`finish1` = "'.$u->tfer['finish1'].'",`finish2` = "'.$u->tfer['finish2'].'" WHERE `id` = "'.$u->tfer['id'].'" LIMIT 1');
-					//Обмениваем деньги
+					//РћР±РјРµРЅРёРІР°РµРј РґРµРЅСЊРіРё
 					$mn1 = 0;
 					$mn2 = 0;
 					$inf = array();
@@ -62,39 +62,39 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 					
 					if($mn1>0)
 					{
-						//игрок 1 передает деньги игроку 2
+						//РёРіСЂРѕРє 1 РїРµСЂРµРґР°РµС‚ РґРµРЅСЊРіРё РёРіСЂРѕРєСѓ 2
 						$upd = mysql_query('UPDATE `users` SET `money` = `money` - "'.$mn1.'" WHERE `id` = "'.$inf[$u->tfer['uid1']]['id'].'" LIMIT 1');
 						if($upd)
 						{
 							$upd = mysql_query('UPDATE `users` SET `money` = `money` + "'.$mn1.'" WHERE `id` = "'.$inf[$u->tfer['uid2']]['id'].'" LIMIT 1');
 							if($upd)
 							{
-								$u->addDelo(2,$inf[$u->tfer['uid1']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: Передано '.$mn1.' кр. персонажу &quot;'.$inf[$u->tfer['uid2']]['login'].'&quot; ('.$inf[$u->tfer['uid2']]['id'].').',time(),$u->info['city'],'System.transfer',0,0);
-								$u->addDelo(2,$inf[$u->tfer['uid2']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: Получено '.$mn1.' кр. от персонажа &quot;'.$inf[$u->tfer['uid1']]['login'].'&quot; ('.$inf[$u->tfer['uid1']]['id'].').',time(),$u->info['city'],'System.transfer',0,0);
+								$u->addDelo(2,$inf[$u->tfer['uid1']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: РџРµСЂРµРґР°РЅРѕ '.$mn1.' РєСЂ. РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$inf[$u->tfer['uid2']]['login'].'&quot; ('.$inf[$u->tfer['uid2']]['id'].').',time(),$u->info['city'],'System.transfer',0,0);
+								$u->addDelo(2,$inf[$u->tfer['uid2']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: РџРѕР»СѓС‡РµРЅРѕ '.$mn1.' РєСЂ. РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$inf[$u->tfer['uid1']]['login'].'&quot; ('.$inf[$u->tfer['uid1']]['id'].').',time(),$u->info['city'],'System.transfer',0,0);
 							}else{
-								$u->addDelo(2,$inf[$u->tfer['uid1']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: Передано '.$mn1.' кр. персонажу &quot;'.$inf[$u->tfer['uid2']]['login'].'&quot; ('.$inf[$u->tfer['uid2']]['id'].'), ошибка во время передачи.',time(),$u->info['city'],'System.transfer',0,0);
+								$u->addDelo(2,$inf[$u->tfer['uid1']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: РџРµСЂРµРґР°РЅРѕ '.$mn1.' РєСЂ. РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$inf[$u->tfer['uid2']]['login'].'&quot; ('.$inf[$u->tfer['uid2']]['id'].'), РѕС€РёР±РєР° РІРѕ РІСЂРµРјСЏ РїРµСЂРµРґР°С‡Рё.',time(),$u->info['city'],'System.transfer',0,0);
 							}
 						}
 					}
 					
 					if($mn2>0)
 					{
-						//игрок 2 передает деньги игроку 1
+						//РёРіСЂРѕРє 2 РїРµСЂРµРґР°РµС‚ РґРµРЅСЊРіРё РёРіСЂРѕРєСѓ 1
 						$upd = mysql_query('UPDATE `users` SET `money` = `money` - "'.$mn2.'" WHERE `id` = "'.$inf[$u->tfer['uid2']]['id'].'" LIMIT 1');
 						if($upd)
 						{
 							$upd = mysql_query('UPDATE `users` SET `money` = `money` + "'.$mn2.'" WHERE `id` = "'.$inf[$u->tfer['uid1']]['id'].'" LIMIT 1');
 							if($upd)
 							{
-								$u->addDelo(2,$inf[$u->tfer['uid2']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: Передано '.$mn2.' кр. персонажу &quot;'.$inf[$u->tfer['uid1']]['login'].'&quot; ('.$inf[$u->tfer['uid1']]['id'].').',time(),$u->info['city'],'System.transfer',0,0);
-								$u->addDelo(2,$inf[$u->tfer['uid1']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: Получено '.$mn2.' кр. от персонажа &quot;'.$inf[$u->tfer['uid2']]['login'].'&quot; ('.$inf[$u->tfer['uid2']]['id'].').',time(),$u->info['city'],'System.transfer',0,0);
+								$u->addDelo(2,$inf[$u->tfer['uid2']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: РџРµСЂРµРґР°РЅРѕ '.$mn2.' РєСЂ. РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$inf[$u->tfer['uid1']]['login'].'&quot; ('.$inf[$u->tfer['uid1']]['id'].').',time(),$u->info['city'],'System.transfer',0,0);
+								$u->addDelo(2,$inf[$u->tfer['uid1']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: РџРѕР»СѓС‡РµРЅРѕ '.$mn2.' РєСЂ. РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$inf[$u->tfer['uid2']]['login'].'&quot; ('.$inf[$u->tfer['uid2']]['id'].').',time(),$u->info['city'],'System.transfer',0,0);
 							}else{
-								$u->addDelo(2,$inf[$u->tfer['uid2']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: Передано '.$mn2.' кр. персонажу &quot;'.$inf[$u->tfer['uid1']]['login'].'&quot; ('.$inf[$u->tfer['uid1']]['id'].'), ошибка во время передачи.',time(),$u->info['city'],'System.transfer',0,0);
+								$u->addDelo(2,$inf[$u->tfer['uid2']]['id'],'&quot;<font color="green">System.transfer.MONEY</font>&quot;: РџРµСЂРµРґР°РЅРѕ '.$mn2.' РєСЂ. РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$inf[$u->tfer['uid1']]['login'].'&quot; ('.$inf[$u->tfer['uid1']]['id'].'), РѕС€РёР±РєР° РІРѕ РІСЂРµРјСЏ РїРµСЂРµРґР°С‡Рё.',time(),$u->info['city'],'System.transfer',0,0);
 							}
 						}
 					}
 					
-					//Обмениваем предметы
+					//РћР±РјРµРЅРёРІР°РµРј РїСЂРµРґРјРµС‚С‹
 					$sp = mysql_query('SELECT `u`.*,`m`.`price1`,`m`.`price2`,`m`.`name` FROM `items_users` AS `u` LEFT JOIN `items_main` AS `m` ON `m`.`id` = `u`.`item_id` WHERE (`u`.`uid`="'.$u->tfer['uid1'].'" OR `u`.`uid`="'.$u->tfer['uid2'].'") AND `u`.`delete`="0" AND `u`.`inOdet`="0" AND `u`.`inShop`="0" AND `u`.`inTransfer` > "0" AND `u`.`data` NOT LIKE "%|zazuby=%"');
 					$nalog = 0; $fu = 0; $x = 0; $uus = array();
 					while($pl = mysql_fetch_array($sp))
@@ -112,10 +112,10 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 						$uus = $inf[$fu];
 						if($pl['inTransfer']==1)
 						{
-							//подарок
+							//РїРѕРґР°СЂРѕРє
 							$pl['gift'] = $uus['login'];
 						}else{
-							//налог
+							//РЅР°Р»РѕРі
 							$nalog += 1;
 						}						
 						$upd = mysql_query('UPDATE `items_users` SET `uid` = "'.$pl['uid'].'",`gift` = "'.$pl['gift'].'" WHERE `id` = "'.$pl['id'].'" AND `inShop` = "0" AND `delete` < "1234567891" AND `inOdet` = "0" AND `data` NOT LIKE "%|zazuby=%"');
@@ -129,12 +129,12 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 							}
 							$po = $u->lookStats($pl['data']);
 							$i_s = '';
-							if(isset($po['frompisher']) && $po['frompisher'] > 0) { $i_s = '[Предмет из подземелья]'; }
-							//заносим в личные дела
-							$u->addDelo(2,$fu,'&quot;<font color="green">System.transfer</font>&quot;: Предмет &quot;<b>'.$pl['name'].'</b> (стоимость: '.$pl['1price'].' кр. , '.$pl['2price'].' екр.) (x'.$x.')&quot; [itm:'.$pl['id'].'] '.$i_s.' был передан персонажу &quot;'.$us['login'].'&quot;('.$pl['uid'].'), Тип передачи: '.$pl['inTransfer'].'.',time(),$u->info['city'],'System.transfer',0,0);
-							$u->addDelo(2,$pl['uid'],'&quot;<font color="green">System.transfer</font>&quot;: Персонаж &quot;'.$uus['login'].'&quot;('.$uus['id'].') передал предмет &quot;<b>'.$pl['name'].'</b> '.$i_s.' (стоимость: '.$pl['1price'].' кр. , '.$pl['2price'].' екр.) (x'.$x.')&quot; [itm:'.$pl['id'].'], Тип передачи: '.$pl['inTransfer'].'.',time(),$u->info['city'],'System.transfer',0,0);
+							if(isset($po['frompisher']) && $po['frompisher'] > 0) { $i_s = '[РџСЂРµРґРјРµС‚ РёР· РїРѕРґР·РµРјРµР»СЊСЏ]'; }
+							//Р·Р°РЅРѕСЃРёРј РІ Р»РёС‡РЅС‹Рµ РґРµР»Р°
+							$u->addDelo(2,$fu,'&quot;<font color="green">System.transfer</font>&quot;: РџСЂРµРґРјРµС‚ &quot;<b>'.$pl['name'].'</b> (СЃС‚РѕРёРјРѕСЃС‚СЊ: '.$pl['1price'].' РєСЂ. , '.$pl['2price'].' РµРєСЂ.) (x'.$x.')&quot; [itm:'.$pl['id'].'] '.$i_s.' Р±С‹Р» РїРµСЂРµРґР°РЅ РїРµСЂСЃРѕРЅР°Р¶Сѓ &quot;'.$us['login'].'&quot;('.$pl['uid'].'), РўРёРї РїРµСЂРµРґР°С‡Рё: '.$pl['inTransfer'].'.',time(),$u->info['city'],'System.transfer',0,0);
+							$u->addDelo(2,$pl['uid'],'&quot;<font color="green">System.transfer</font>&quot;: РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$uus['login'].'&quot;('.$uus['id'].') РїРµСЂРµРґР°Р» РїСЂРµРґРјРµС‚ &quot;<b>'.$pl['name'].'</b> '.$i_s.' (СЃС‚РѕРёРјРѕСЃС‚СЊ: '.$pl['1price'].' РєСЂ. , '.$pl['2price'].' РµРєСЂ.) (x'.$x.')&quot; [itm:'.$pl['id'].'], РўРёРї РїРµСЂРµРґР°С‡Рё: '.$pl['inTransfer'].'.',time(),$u->info['city'],'System.transfer',0,0);
 						}else{
-							echo 'Ошибка передачи предмета';
+							echo 'РћС€РёР±РєР° РїРµСЂРµРґР°С‡Рё РїСЂРµРґРјРµС‚Р°';
 						}
 					}
 					$upd1 = mysql_query('UPDATE `items_users` SET `inTransfer` = "0" WHERE (`uid`="'.$u->tfer['uid1'].'" OR `uid`="'.$u->tfer['uid2'].'") AND `delete` < "1234567891" AND `inOdet`="0" AND `inShop`="0" AND `inTransfer` > "0" AND `data` NOT LIKE "%|zazuby=%"');
@@ -144,7 +144,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 					}
 					unset($upd1,$upd2,$fu,$nalog,$x,$us,$uus,$inf);
 				}else{
-					//подтверждение обмена
+					//РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РѕР±РјРµРЅР°
 					$u->tfer['r0'] = time();
 					if($u->tfer['uid1']==$u->info['id'])
 					{
@@ -200,7 +200,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 			
 			if($_POST['id']=='reflesh')
 			{
-				//обновление инвентаря
+				//РѕР±РЅРѕРІР»РµРЅРёРµ РёРЅРІРµРЅС‚Р°СЂСЏ
 				$i = 1;
 				while($i<=6)
 				{
@@ -209,7 +209,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 					
 					if($itmAll[0]==0)
 					{
-						$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО</td></tr>';
+						$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ</td></tr>';
 					}else{
 						$itmAllSee = $itmAll[2];
 					}
@@ -224,12 +224,12 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 			}
 			if($_POST['id']=='minireflesh' || $_POST['id']=='reflesh')
 			{
-				//Мини обновление	
+				//РњРёРЅРё РѕР±РЅРѕРІР»РµРЅРёРµ	
 				if(($u->tfer['start2']>0 && $u->info['id']==$u->tfer['uid1']) || ($u->tfer['start1']>0 && $u->info['id']==$u->tfer['uid2']))
 				{
 					$js .= 's2g();';
 				}
-				//Обновляем предметы
+				//РћР±РЅРѕРІР»СЏРµРј РїСЂРµРґРјРµС‚С‹
 				$f = 1;
 				if($u->info['id']==$u->tfer['uid2'])
 				{
@@ -255,18 +255,18 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 						$r .= '<a href="items_info.php?id='.$pl['item_id'].'&rnd='.$code.'" target="_blank">'.$pl['name'].''.$x.'</a><br>';
 						if($pl['inTransfer']==1)
 						{
-							$r .= '<img width="16" height="18" title="Этот предмет будет подарен" src="http://img.xcombats.com/i/podarok.gif" />';
+							$r .= '<img width="16" height="18" title="Р­С‚РѕС‚ РїСЂРµРґРјРµС‚ Р±СѓРґРµС‚ РїРѕРґР°СЂРµРЅ" src="http://img.xcombats.com/i/podarok.gif" />';
 						}else{
-							$r .= '<small style="font-size:10px">(налог: 1кр.)</small>';
+							$r .= '<small style="font-size:10px">(РЅР°Р»РѕРі: 1РєСЂ.)</small>';
 						}
 						$r = '<table width="100%" border="0" cellspacing="0" cellpadding="5"><tr><td width="50" align="center"><img src="http://img.xcombats.com/i/items/'.$pl['img'].'" class="tfii"/></td><td valign="top" class="tfid">'.$r.'</td></tr></table>';
 						$r = '<div class="tfitm'.$cl.'">'.$r.'</div>';
 						unset($x);
 						return $r;
 					}
-					//Точно обновляем :)
+					//РўРѕС‡РЅРѕ РѕР±РЅРѕРІР»СЏРµРј :)
 					$itm = array(1=>'',2=>'');
-					//предметы персонажа 1
+					//РїСЂРµРґРјРµС‚С‹ РїРµСЂСЃРѕРЅР°Р¶Р° 1
 					$sp = mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->tfer['uid1'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`inTransfer` > "0" AND `iu`.`data` NOT LIKE "%|zazuby=%" ORDER BY `iu`.`lastUPD` DESC');	
 					$cl = 2;
 					while($pl = mysql_fetch_array($sp))
@@ -279,7 +279,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 						}
 						$itm[1] .= itmInfotf($pl,$cl);
 					}
-					//предметы персонажа 2
+					//РїСЂРµРґРјРµС‚С‹ РїРµСЂСЃРѕРЅР°Р¶Р° 2
 					$sp = mysql_query('SELECT `im`.*,`iu`.* FROM `items_users` AS `iu` LEFT JOIN `items_main` AS `im` ON (`im`.`id` = `iu`.`item_id`) WHERE `iu`.`uid`="'.$u->tfer['uid2'].'" AND `iu`.`delete`="0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `iu`.`inTransfer` > "0" AND `iu`.`data` NOT LIKE "%|zazuby=%" ORDER BY `iu`.`lastUPD` DESC');	
 					$cl = 2;
 					while($pl = mysql_fetch_array($sp))
@@ -313,7 +313,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 				}
 				if(($u->tfer['good1']>0 && $u->info['id']==$u->tfer['uid1']) || ($u->tfer['good2']>0 && $u->info['id']==$u->tfer['uid2']))
 				{
-					$js .= '$(\'#btn1\').html(\'Обменять\');';
+					$js .= '$(\'#btn1\').html(\'РћР±РјРµРЅСЏС‚СЊ\');';
 					if($u->tfer['good1']>0 && $u->tfer['good2']>0)
 					{
 						$js .= '$(\'#btn1\').attr(\'disabled\',\'\');';
@@ -321,13 +321,13 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 						$js .= '$(\'#btn1\').attr(\'disabled\',\'disabled\');';
 					}
 				}else{
-					$js .= '$(\'#btn1\').html(\'Готов к обмену\');$(\'#btn1\').attr(\'disabled\',\'\');';
+					$js .= '$(\'#btn1\').html(\'Р“РѕС‚РѕРІ Рє РѕР±РјРµРЅСѓ\');$(\'#btn1\').attr(\'disabled\',\'\');';
 				}
 				
-				//Обновляем деньги в кассе :)
+				//РћР±РЅРѕРІР»СЏРµРј РґРµРЅСЊРіРё РІ РєР°СЃСЃРµ :)
 				if($u->tfer['uid1']==$u->info['id'])
 				{
-					if($u->tfer['good1']>0){	$js .= '$(\'#gd2\').css(\'display\',\'\');';	}else{	$js .= '$(\'#gd2\').css(\'display\',\'none\');';	} //вы
+					if($u->tfer['good1']>0){	$js .= '$(\'#gd2\').css(\'display\',\'\');';	}else{	$js .= '$(\'#gd2\').css(\'display\',\'none\');';	} //РІС‹
 					if($u->tfer['good2']>0){	$js .= '$(\'#gd1\').css(\'display\',\'\');';	}else{ 	$js .= '$(\'#gd1\').css(\'display\',\'none\');';	}
 					
 					if(($u->tfer['good1']==0 && $u->tfer['good2']==0) || $mn == 1)
@@ -346,7 +346,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 						}
 					}
 				}else{
-					if($u->tfer['good2']>0){	$js .= '$(\'#gd2\').css(\'display\',\'\');';	}else{	$js .= '$(\'#gd2\').css(\'display\',\'none\');';	} //вы
+					if($u->tfer['good2']>0){	$js .= '$(\'#gd2\').css(\'display\',\'\');';	}else{	$js .= '$(\'#gd2\').css(\'display\',\'none\');';	} //РІС‹
 					if($u->tfer['good1']>0){	$js .= '$(\'#gd1\').css(\'display\',\'\');';	}else{ 	$js .= '$(\'#gd1\').css(\'display\',\'none\');';	}
 					
 					if(($u->tfer['good1']==0 && $u->tfer['good2']==0) || $mn == 1)

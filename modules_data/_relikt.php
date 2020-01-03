@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME')) {
   die();
 }
@@ -76,56 +76,56 @@ $(function() {
   $("#opener").click(function() {
     $("#dialog").dialog("open");
   });
-  $(".ui-button-text").attr('title', 'Закрыть');
+  $(".ui-button-text").attr('title', 'Р—Р°РєСЂС‹С‚СЊ');
 });
 </script>
-<div id="dialog" title="Персональные реликты">
+<div id="dialog" title="РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ СЂРµР»РёРєС‚С‹">
   <div class="item">
-    <div class="title">Заклятие молчания</div>
+    <div class="title">Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</div>
     <div class="img"><img class="slot valign halign" slottype="12" src="http://img.xcombats.com/i/items/spell_starenergy.gif"></div>
     <div class="control">
-      Цена: 1.00 екр.
-	  <div style="text-align: center;"><a href="javascript: void(0);">купить 1 шт.</a></div>
+      Р¦РµРЅР°: 1.00 РµРєСЂ.
+	  <div style="text-align: center;"><a href="javascript: void(0);">РєСѓРїРёС‚СЊ 1 С€С‚.</a></div>
     </div>
   </div>
   <div class="item">
-    <div class="title">Заклятие молчания</div>
+    <div class="title">Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</div>
     <div class="img"><img class="slot valign halign" slottype="12" src="http://img.xcombats.com/i/items/spell_starenergy.gif"></div>
     <div class="control">
-      Цена: 1.00 екр.
-	  <div style="text-align: center;"><a href="javascript: void(0);">купить 1 шт.</a></div>
+      Р¦РµРЅР°: 1.00 РµРєСЂ.
+	  <div style="text-align: center;"><a href="javascript: void(0);">РєСѓРїРёС‚СЊ 1 С€С‚.</a></div>
     </div>
   </div>
   <div class="item">
-    <div class="title">Заклятие молчания</div>
+    <div class="title">Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</div>
     <div class="img"><img class="slot valign halign" slottype="12" src="http://img.xcombats.com/i/items/spell_starenergy.gif"></div>
     <div class="control">
-      Цена: 1.00 екр.
-	  <div style="text-align: center;"><a href="javascript: void(0);">купить 1 шт.</a></div>
+      Р¦РµРЅР°: 1.00 РµРєСЂ.
+	  <div style="text-align: center;"><a href="javascript: void(0);">РєСѓРїРёС‚СЊ 1 С€С‚.</a></div>
     </div>
   </div>
   <div class="item">
-    <div class="title">Заклятие молчания</div>
+    <div class="title">Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</div>
     <div class="img"><img class="slot valign halign" slottype="12" src="http://img.xcombats.com/i/items/spell_starenergy.gif"></div>
     <div class="control">
-      Цена: 1.00 екр.
-	  <div style="text-align: center;"><a href="javascript: void(0);">купить 1 шт.</a></div>
+      Р¦РµРЅР°: 1.00 РµРєСЂ.
+	  <div style="text-align: center;"><a href="javascript: void(0);">РєСѓРїРёС‚СЊ 1 С€С‚.</a></div>
     </div>
   </div>
   <div class="item">
-    <div class="title">Заклятие молчания</div>
+    <div class="title">Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</div>
     <div class="img"><img class="slot valign halign" slottype="12" src="http://img.xcombats.com/i/items/spell_starenergy.gif"></div>
     <div class="control">
-      Цена: 1.00 екр.
-	  <div style="text-align: center;"><a href="javascript: void(0);">купить 1 шт.</a></div>
+      Р¦РµРЅР°: 1.00 РµРєСЂ.
+	  <div style="text-align: center;"><a href="javascript: void(0);">РєСѓРїРёС‚СЊ 1 С€С‚.</a></div>
     </div>
   </div>
   <div class="item">
-    <div class="title">Заклятие молчания</div>
+    <div class="title">Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</div>
     <div class="img"><img class="slot valign halign" slottype="12" src="http://img.xcombats.com/i/items/spell_starenergy.gif"></div>
     <div class="control">
-      Цена: 1.00 екр.
-	  <div style="text-align: center;"><a href="javascript: void(0);">купить 1 шт.</a></div>
+      Р¦РµРЅР°: 1.00 РµРєСЂ.
+	  <div style="text-align: center;"><a href="javascript: void(0);">РєСѓРїРёС‚СЊ 1 С€С‚.</a></div>
     </div>
   </div>
 </div>
@@ -135,12 +135,12 @@ $(function() {
     <td style="width: 40%; vertical-align: top; "><br />
 	  <table cellspacing=0 cellpadding=2 style="width: 100%; ">
 	    <tr>
-		  <td align=center><h4>Панель Реликтов</h4></td>
+		  <td align=center><h4>РџР°РЅРµР»СЊ Р РµР»РёРєС‚РѕРІ</h4></td>
 		</tr>
 		
 		<tr>
 		  <td>
-		    <p>Персональные реликты <sup><a href="javascript: void(0);" id="opener">[Купить]</a></sup></p>
+		    <p>РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ СЂРµР»РёРєС‚С‹ <sup><a href="javascript: void(0);" id="opener">[РљСѓРїРёС‚СЊ]</a></sup></p>
 			<img src="http://img.xcombats.com/i/items/spell_starenergy.gif" />
 			<img src="http://img.xcombats.com/i/items/spell_protect2.gif" />
 			<img src="http://img.xcombats.com/i/items/spell_starenergy.gif" />
@@ -158,7 +158,7 @@ $(function() {
 		<tr><td><div style="height: 1px; background-color: #999999; margin: 3px; width; 40%;"></div></td></tr>
 		<tr>
 		  <td>
-		    <p>Клановые реликты <sup><a href="javascript: void(0);">[Купить]</a></sup></p>
+		    <p>РљР»Р°РЅРѕРІС‹Рµ СЂРµР»РёРєС‚С‹ <sup><a href="javascript: void(0);">[РљСѓРїРёС‚СЊ]</a></sup></p>
 			<img src="http://img.xcombats.com/i/items/spell_starenergy.gif" />
 			<img src="http://img.xcombats.com/i/items/spell_protect2.gif" />
 			<img src="http://img.xcombats.com/i/items/spell_starenergy.gif" />
@@ -178,8 +178,8 @@ $(function() {
 	</td>
 	<td style="width: 5%; vertical-align: top; ">&nbsp;</td>
     <td style="width: 25%; vertical-align: top; text-align: right; ">
-	  <input class="btnnew" type='button' value='Обновить' style='width: 75px' onclick='location="/main.php?relikt=1&rnd=<? echo $code; ?>"';' />
-	  <input type="button" value="Вернуться" class="btnnew" style="width: 75px" onclick='location="/main.php"'>
+	  <input class="btnnew" type='button' value='РћР±РЅРѕРІРёС‚СЊ' style='width: 75px' onclick='location="/main.php?relikt=1&rnd=<? echo $code; ?>"';' />
+	  <input type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" class="btnnew" style="width: 75px" onclick='location="/main.php"'>
 	</td>
   </tr>
 </table>

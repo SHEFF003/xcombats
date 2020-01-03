@@ -5,13 +5,13 @@ function getIP() {
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Получаем IP
+# РџРѕР»СѓС‡Р°РµРј IP
 function getIPblock() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Выполняем проверку безопасности. 
+# Р’С‹РїРѕР»РЅСЏРµРј РїСЂРѕРІРµСЂРєСѓ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё. 
 
 if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) {	die('Hello pussy!');   }
 if(getIPblock() != $_SERVER['SERVER_ADDR'] && getIPblock() != '127.0.0.1' && getIPblock() != '' && getIPblock() != '91.228.154.180') {
@@ -27,7 +27,7 @@ include('_incl_data/class/__user.php');
 include('_incl_data/class/__zv.php');
 
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","LEL","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","LEL","6","1","-1")');
 }
 
 function send_chat($type,$from,$text,$time) {
@@ -48,7 +48,7 @@ while($pl = mysql_fetch_array($sp)) {
 	inuser_go_btl($user1);
 }
 
-//Проверка боев
+//РџСЂРѕРІРµСЂРєР° Р±РѕРµРІ
 /*
 $sp = mysql_query('SELECT `id`,`time_start` FROM `battle` WHERE `team_win` = -1');
 while( $pl = mysql_fetch_array($sp) ) {

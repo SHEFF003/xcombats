@@ -31,33 +31,33 @@ include('_incl_data/class/__zv.php');
 	?>
 </div>
 <div style="float:right;">
-  <INPUT class="btnnew" TYPE=button value="Вернуться" onClick="location.href='main.php?rnd=<? echo $code; ?>';">
+  <INPUT class="btnnew" TYPE=button value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onClick="location.href='main.php?rnd=<? echo $code; ?>';">
 </div>
 </td></tr>
 <tr>
 <? if( $u->info['level'] == 0 ) { ?>
-<td width="13%" class="<? if($_GET['r'] == 1) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=1&rnd=<? echo $code; ?>">Новички</a></td>
-<td width="13%" class="<? if($_GET['r'] == 2) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=2&rnd=<? echo $code; ?>">Физические</a></td>
-<td width="12%" class="<? if($_GET['r'] == 3) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=3&rnd=<? echo $code; ?>">Договорные</a></td>
-<td width="12%" class="<? if($_GET['r'] == 4) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=4&rnd=<? echo $code; ?>">Групповые</a></td>
-<td width="12%" class="<? if($_GET['r'] == 5) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=5&rnd=<? echo $code; ?>">Хаотичные</a></td>
-<td width="12%" class="<? if($_GET['r'] == 8) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=8&rnd=<? echo $code; ?>">Турниры</a></td>
-<td width="12%" class="<? if($_GET['r'] == 6) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=6&rnd=<? echo $code; ?>">Текущие</a></td>
-<td class="<? if($_GET['r'] == 7) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=7&rnd=<? echo $code; ?>">Завершенные</a></td>
+<td width="13%" class="<? if($_GET['r'] == 1) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=1&rnd=<? echo $code; ?>">РќРѕРІРёС‡РєРё</a></td>
+<td width="13%" class="<? if($_GET['r'] == 2) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=2&rnd=<? echo $code; ?>">Р¤РёР·РёС‡РµСЃРєРёРµ</a></td>
+<td width="12%" class="<? if($_GET['r'] == 3) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=3&rnd=<? echo $code; ?>">Р”РѕРіРѕРІРѕСЂРЅС‹Рµ</a></td>
+<td width="12%" class="<? if($_GET['r'] == 4) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=4&rnd=<? echo $code; ?>">Р“СЂСѓРїРїРѕРІС‹Рµ</a></td>
+<td width="12%" class="<? if($_GET['r'] == 5) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=5&rnd=<? echo $code; ?>">РҐР°РѕС‚РёС‡РЅС‹Рµ</a></td>
+<td width="12%" class="<? if($_GET['r'] == 8) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=8&rnd=<? echo $code; ?>">РўСѓСЂРЅРёСЂС‹</a></td>
+<td width="12%" class="<? if($_GET['r'] == 6) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=6&rnd=<? echo $code; ?>">РўРµРєСѓС‰РёРµ</a></td>
+<td class="<? if($_GET['r'] == 7) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=7&rnd=<? echo $code; ?>">Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ</a></td>
 <? }else{ ?>
-<td width="14%" class="<? if($_GET['r'] == 2) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=2&rnd=<? echo $code; ?>">Физические</a></td>
-<td width="14%" class="<? if($_GET['r'] == 3) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=3&rnd=<? echo $code; ?>">Договорные</a></td>
-<td width="14%" class="<? if($_GET['r'] == 4) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=4&rnd=<? echo $code; ?>">Групповые</a></td>
-<td width="14%" class="<? if($_GET['r'] == 5) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=5&rnd=<? echo $code; ?>">Хаотичные</a></td>
-<td width="14%" class="<? if($_GET['r'] == 8) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=8&rnd=<? echo $code; ?>">Турниры</a></td>
-<td width="14%" class="<? if($_GET['r'] == 6) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=6&rnd=<? echo $code; ?>">Текущие</a></td>
-<td class="<? if($_GET['r'] == 7) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=7&rnd=<? echo $code; ?>">Завершенные</a></td>
+<td width="14%" class="<? if($_GET['r'] == 2) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=2&rnd=<? echo $code; ?>">Р¤РёР·РёС‡РµСЃРєРёРµ</a></td>
+<td width="14%" class="<? if($_GET['r'] == 3) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=3&rnd=<? echo $code; ?>">Р”РѕРіРѕРІРѕСЂРЅС‹Рµ</a></td>
+<td width="14%" class="<? if($_GET['r'] == 4) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=4&rnd=<? echo $code; ?>">Р“СЂСѓРїРїРѕРІС‹Рµ</a></td>
+<td width="14%" class="<? if($_GET['r'] == 5) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=5&rnd=<? echo $code; ?>">РҐР°РѕС‚РёС‡РЅС‹Рµ</a></td>
+<td width="14%" class="<? if($_GET['r'] == 8) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=8&rnd=<? echo $code; ?>">РўСѓСЂРЅРёСЂС‹</a></td>
+<td width="14%" class="<? if($_GET['r'] == 6) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=6&rnd=<? echo $code; ?>">РўРµРєСѓС‰РёРµ</a></td>
+<td class="<? if($_GET['r'] == 7) { echo 's'; } else { echo 'm'; } ?>"><a href="main.php?zayvka=1&r=7&rnd=<? echo $code; ?>">Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ</a></td>
 
 <? } ?>
 </tr></tr></table>
 <script>
 function console_clonelogin() {
-	var s = prompt("Введите логин персонажа с которым хотите сразиться:", "");
+	var s = prompt("Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р° СЃ РєРѕС‚РѕСЂС‹Рј С…РѕС‚РёС‚Рµ СЃСЂР°Р·РёС‚СЊСЃСЏ:", "");
 	if ((s != null) && (s != '')) {
 		location.href="main.php?zayvka=1&r=2&bot_clone="+s+"&rnd=1";
 	}
@@ -95,29 +95,29 @@ if($u->info['battle'] == 0) {
   if(isset($_POST['groupClick']) && !isset($zi['id'])) {
 	$zg = mysql_fetch_array(mysql_query('SELECT * FROM `zayvki` WHERE `id` = "'.mysql_real_escape_string((int)$_POST['groupClick']).'" AND `cancel` = "0" AND `btl_id` = "0" /*AND `city` = "'.$u->info['city'].'"*/ AND `razdel` = "4" AND `start` = "0" AND `time` > "'.(time()-60*60*2).'" LIMIT 1'));
 	if(!isset($zg['id'])) {
-	  echo '<center><br /><br />Заявка на групповой бой не найдена.</center>';
+	  echo '<center><br /><br />Р—Р°СЏРІРєР° РЅР° РіСЂСѓРїРїРѕРІРѕР№ Р±РѕР№ РЅРµ РЅР°Р№РґРµРЅР°.</center>';
 	} else {
 	  $tm_start = floor(($zg['time']+$zg['time_start']-time())/6)/10;
 	  $tm_start = $zv->rzv($tm_start);
 	  $tm1 = ''; $tm2 = '';
 	  $users = mysql_query('SELECT `u`.`id`, `u`.`login`, `u`.`level`, `u`.`align`, `u`.`clan`, `u`.`admin`, `st`.`team` FROM `users` AS `u` LEFT JOIN `stats` AS `st` ON `u`.`id` = `st`.`id` WHERE `st`.`zv` = "'.$zg['id'].'"');
 	  while($s = mysql_fetch_array($users)) {
-		${'tm'.$s['team']} .= '<b>'.$s['login'].'</b> ['.$s['level'].']<a href="info/'.$s['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="Инф. о '.$s['login'].'" /></a><br />';
+		${'tm'.$s['team']} .= '<b>'.$s['login'].'</b> ['.$s['level'].']<a href="info/'.$s['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="РРЅС„. Рѕ '.$s['login'].'" /></a><br />';
 	  }					
 	  if($tm1 == '') {
-		$tm1 = 'группа пока не набрана';
+		$tm1 = 'РіСЂСѓРїРїР° РїРѕРєР° РЅРµ РЅР°Р±СЂР°РЅР°';
 	  } else {
 		$tm1 = rtrim($tm1, '<br />');
 	  }
 	  if($tm2 == '') {
-		$tm2 = 'группа пока не набрана';
+		$tm2 = 'РіСЂСѓРїРїР° РїРѕРєР° РЅРµ РЅР°Р±СЂР°РЅР°';
 	  } else {
 		$tm2 = rtrim($tm2, '<br />');
 	  }
 	  //
 	  if( $zg['teams'] == 3 ) {
 		  if($tm3 == '') {
-			$tm3 = 'группа пока не набрана';
+			$tm3 = 'РіСЂСѓРїРїР° РїРѕРєР° РЅРµ РЅР°Р±СЂР°РЅР°';
 		  } else {
 			$tm3 = rtrim($tm3, '<br />');
 		  }
@@ -136,27 +136,27 @@ if($u->info['battle'] == 0) {
 ?></div>
 <table style="margin-top:2px;" width="100%">
   <tr>
-    <td> Бой начнется через <? echo $tm_start; ?> мин. </td>
+    <td> Р‘РѕР№ РЅР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· <? echo $tm_start; ?> РјРёРЅ. </td>
     <td align="right">
-    <input class="btnnew" type="button" value="Вернуться" onclick="location.href='main.php?zayvka&r=<? echo $_GET['r']; ?>&rnd=<? echo $code; ?>';">
+    <input class="btnnew" type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onclick="location.href='main.php?zayvka&r=<? echo $_GET['r']; ?>&rnd=<? echo $code; ?>';">
     </td>
   </tr>
 </table>
-<h3 align="center">На чьей стороне будете сражаться?</h3>
+<h3 align="center">РќР° С‡СЊРµР№ СЃС‚РѕСЂРѕРЅРµ Р±СѓРґРµС‚Рµ СЃСЂР°Р¶Р°С‚СЊСЃСЏ?</h3>
 <table align="center" cellspacing="4" cellpadding="1">
   <tr>
-    <td bgcolor="99CCCC"><b>Группа один:</b><br />
-      Максимальное кол-во: <? echo $zg['tm1max']; ?><br />
-      Ограничения по уровню: <? echo $zg['min_lvl_1'].' - '.$zg['max_lvl_1']; ?></td>
-    <td bgcolor="99CCCC"><b>Группа два:</b><br />
-      Максимальное кол-во: <? echo $zg['tm2max']; ?><br />
-      Ограничения по уровню: <? echo $zg['min_lvl_2'].' - '.$zg['max_lvl_2']; ?> </td>
+    <td bgcolor="99CCCC"><b>Р“СЂСѓРїРїР° РѕРґРёРЅ:</b><br />
+      РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»-РІРѕ: <? echo $zg['tm1max']; ?><br />
+      РћРіСЂР°РЅРёС‡РµРЅРёСЏ РїРѕ СѓСЂРѕРІРЅСЋ: <? echo $zg['min_lvl_1'].' - '.$zg['max_lvl_1']; ?></td>
+    <td bgcolor="99CCCC"><b>Р“СЂСѓРїРїР° РґРІР°:</b><br />
+      РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»-РІРѕ: <? echo $zg['tm2max']; ?><br />
+      РћРіСЂР°РЅРёС‡РµРЅРёСЏ РїРѕ СѓСЂРѕРІРЅСЋ: <? echo $zg['min_lvl_2'].' - '.$zg['max_lvl_2']; ?> </td>
       <?
       if( $zg['teams'] == 3 ) { 
 		  ?>
-        <td bgcolor="99CCCC"><b>Группа три:</b><br />
-          Максимальное кол-во: <? echo $zg['tm2max']; ?><br />
-          Ограничения по уровню: <? echo $zg['min_lvl_2'].' - '.$zg['max_lvl_2']; ?> </td>
+        <td bgcolor="99CCCC"><b>Р“СЂСѓРїРїР° С‚СЂРё:</b><br />
+          РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»-РІРѕ: <? echo $zg['tm2max']; ?><br />
+          РћРіСЂР°РЅРёС‡РµРЅРёСЏ РїРѕ СѓСЂРѕРІРЅСЋ: <? echo $zg['min_lvl_2'].' - '.$zg['max_lvl_2']; ?> </td>
           <?
 	  }
 	  ?>
@@ -179,12 +179,12 @@ if($u->info['battle'] == 0) {
 	  ?>
   </tr>
   <tr>
-    <td align="center"><input class="btnnew" title="На данный момент свободно мест: <? echo $sv1; ?>" onclick="location='main.php?r=<? echo $_GET['r']; ?>&zayvka&btl_go=<? echo $zg['id']; ?>&tm1=<? echo $code; ?>'" type="submit" name="confirm1" value="Я за этих!" /></td>
-    <td align="center"><input class="btnnew" title="На данный момент свободно мест: <? echo $sv2; ?>" onclick="location='main.php?r=<? echo $_GET['r']; ?>&zayvka&btl_go=<? echo $zg['id']; ?>&tm2=<? echo $code; ?>'" type="submit" name="confirm2" value="Я за этих!" /></td>
+    <td align="center"><input class="btnnew" title="РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ СЃРІРѕР±РѕРґРЅРѕ РјРµСЃС‚: <? echo $sv1; ?>" onclick="location='main.php?r=<? echo $_GET['r']; ?>&zayvka&btl_go=<? echo $zg['id']; ?>&tm1=<? echo $code; ?>'" type="submit" name="confirm1" value="РЇ Р·Р° СЌС‚РёС…!" /></td>
+    <td align="center"><input class="btnnew" title="РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ СЃРІРѕР±РѕРґРЅРѕ РјРµСЃС‚: <? echo $sv2; ?>" onclick="location='main.php?r=<? echo $_GET['r']; ?>&zayvka&btl_go=<? echo $zg['id']; ?>&tm2=<? echo $code; ?>'" type="submit" name="confirm2" value="РЇ Р·Р° СЌС‚РёС…!" /></td>
       <?
       if( $zg['teams'] == 3 ) { 
 		  ?>
-    <td align="center"><input class="btnnew" title="На данный момент свободно мест: <? echo $sv3; ?>" onclick="location='main.php?r=<? echo $_GET['r']; ?>&zayvka&btl_go=<? echo $zg['id']; ?>&tm3=<? echo $code; ?>'" type="submit" name="confirm3" value="Я за этих!" /></td>
+    <td align="center"><input class="btnnew" title="РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ СЃРІРѕР±РѕРґРЅРѕ РјРµСЃС‚: <? echo $sv3; ?>" onclick="location='main.php?r=<? echo $_GET['r']; ?>&zayvka&btl_go=<? echo $zg['id']; ?>&tm3=<? echo $code; ?>'" type="submit" name="confirm3" value="РЇ Р·Р° СЌС‚РёС…!" /></td>
           <?
 	  }
 	  ?>
@@ -197,83 +197,83 @@ if($u->info['battle'] == 0) {
 	} elseif(isset($_GET['startBattle']) && isset($zi['id']) && ($zi['razdel'] >= 1 || $zi['razdel'] <= 3)) {
 		$zv->startBattle($zi['id']);
 	} elseif($u->info['level'] >= 2 && $_GET['r'] == 4 && isset($_GET['new_group']) && !isset($zi['id'])) {
-		//Форма подачи заявки для группового боя
+		//Р¤РѕСЂРјР° РїРѕРґР°С‡Рё Р·Р°СЏРІРєРё РґР»СЏ РіСЂСѓРїРїРѕРІРѕРіРѕ Р±РѕСЏ
 		?>
 <div style="float:right;">
-	<INPUT class="btnnew" onClick="location='main.php?zayvka&r=<? echo $_GET['r']; ?>&rnd=<? echo $code; ?>';" TYPE=button name=tmp value="Обновить">
+	<INPUT class="btnnew" onClick="location='main.php?zayvka&r=<? echo $_GET['r']; ?>&rnd=<? echo $code; ?>';" TYPE=button name=tmp value="РћР±РЅРѕРІРёС‚СЊ">
 </div>
 <form method="post" action="main.php?zayvka&r=<? echo $_GET['r']; ?>&add_group&rnd=<? echo $code; ?>">
 <table>
   <tr>
-    <td><h3>Подать заявку на групповой бой</h3>
-      Начало боя через
+    <td><h3>РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° РіСЂСѓРїРїРѕРІРѕР№ Р±РѕР№</h3>
+      РќР°С‡Р°Р»Рѕ Р±РѕСЏ С‡РµСЂРµР·
       <select name="startime">
-          <option value="300">5 минут </option>
-        <option value="600">10 минут </option>
-        <option value="900">15 минут </option>
-        <option value="1200">20 минут </option>
-        <option value="1800">30 минут </option>
+          <option value="300">5 РјРёРЅСѓС‚ </option>
+        <option value="600">10 РјРёРЅСѓС‚ </option>
+        <option value="900">15 РјРёРЅСѓС‚ </option>
+        <option value="1200">20 РјРёРЅСѓС‚ </option>
+        <option value="1800">30 РјРёРЅСѓС‚ </option>
       </select>
-      &nbsp;&nbsp;&nbsp;&nbsp;Таймаут
+      &nbsp;&nbsp;&nbsp;&nbsp;РўР°Р№РјР°СѓС‚
       <select name="timeout">
-        <option value="1">1 мин.</option>
-        <option value="2">2 мин.</option>
-        <option value="3">3 мин.</option>
-        <option value="4">4 мин.</option>
-        <option value="5">5 мин.</option>
+        <option value="1">1 РјРёРЅ.</option>
+        <option value="2">2 РјРёРЅ.</option>
+        <option value="3">3 РјРёРЅ.</option>
+        <option value="4">4 РјРёРЅ.</option>
+        <option value="5">5 РјРёРЅ.</option>
       </select>
       <br />
       <br />
-      Ваша команда
+      Р’Р°С€Р° РєРѕРјР°РЅРґР°
       <input type="text" name="nlogin1" size="3" maxlength="2" />      
-      бойцов
+      Р±РѕР№С†РѕРІ
       <br />
-      Уровни союзников &nbsp;&nbsp;
+      РЈСЂРѕРІРЅРё СЃРѕСЋР·РЅРёРєРѕРІ &nbsp;&nbsp;
       <select name="levellogin1">
-        <option value="0">любой </option>
-        <option value="1">только моего и ниже </option>
-        <option value="2">только ниже моего уровня </option>
-        <option value="3">только моего уровня </option>
-        <option value="4">не старше меня более чем на уровень </option>
-        <option value="5">не младше меня более чем на уровень </option>
-        <option value="6">мой уровень +/- 1 </option>
-        <option value="99">мой клан </option>
-        <option value="98">моя склонность </option>
+        <option value="0">Р»СЋР±РѕР№ </option>
+        <option value="1">С‚РѕР»СЊРєРѕ РјРѕРµРіРѕ Рё РЅРёР¶Рµ </option>
+        <option value="2">С‚РѕР»СЊРєРѕ РЅРёР¶Рµ РјРѕРµРіРѕ СѓСЂРѕРІРЅСЏ </option>
+        <option value="3">С‚РѕР»СЊРєРѕ РјРѕРµРіРѕ СѓСЂРѕРІРЅСЏ </option>
+        <option value="4">РЅРµ СЃС‚Р°СЂС€Рµ РјРµРЅСЏ Р±РѕР»РµРµ С‡РµРј РЅР° СѓСЂРѕРІРµРЅСЊ </option>
+        <option value="5">РЅРµ РјР»Р°РґС€Рµ РјРµРЅСЏ Р±РѕР»РµРµ С‡РµРј РЅР° СѓСЂРѕРІРµРЅСЊ </option>
+        <option value="6">РјРѕР№ СѓСЂРѕРІРµРЅСЊ +/- 1 </option>
+        <option value="99">РјРѕР№ РєР»Р°РЅ </option>
+        <option value="98">РјРѕСЏ СЃРєР»РѕРЅРЅРѕСЃС‚СЊ </option>
       </select>
       <br />
       <br />
-      Противники &nbsp;&nbsp;
+      РџСЂРѕС‚РёРІРЅРёРєРё &nbsp;&nbsp;
       <input type="text" name="nlogin2" size="3" maxlength="2" />
-      бойцов<? /*, 
+      Р±РѕР№С†РѕРІ<? /*, 
       <input type="checkbox" value="1" name="bots2" id="bots2" />
-      команда только с ботами*/ ?><br />
-      Уровни противников
+      РєРѕРјР°РЅРґР° С‚РѕР»СЊРєРѕ СЃ Р±РѕС‚Р°РјРё*/ ?><br />
+      РЈСЂРѕРІРЅРё РїСЂРѕС‚РёРІРЅРёРєРѕРІ
       <select name="levellogin2">
-        <option value="0">любой </option>
-        <option value="1">только моего и ниже </option>
-        <option value="2">только ниже моего уровня </option>
-        <option value="3">только моего уровня </option>
-        <option value="4">не старше меня более чем на уровень </option>
-        <option value="5">не младше меня более чем на уровень </option>
-        <option value="6">мой уровень +/- 1 </option>
-        <option value="99">только клан </option>
-        <option value="98">только склонность </option>
+        <option value="0">Р»СЋР±РѕР№ </option>
+        <option value="1">С‚РѕР»СЊРєРѕ РјРѕРµРіРѕ Рё РЅРёР¶Рµ </option>
+        <option value="2">С‚РѕР»СЊРєРѕ РЅРёР¶Рµ РјРѕРµРіРѕ СѓСЂРѕРІРЅСЏ </option>
+        <option value="3">С‚РѕР»СЊРєРѕ РјРѕРµРіРѕ СѓСЂРѕРІРЅСЏ </option>
+        <option value="4">РЅРµ СЃС‚Р°СЂС€Рµ РјРµРЅСЏ Р±РѕР»РµРµ С‡РµРј РЅР° СѓСЂРѕРІРµРЅСЊ </option>
+        <option value="5">РЅРµ РјР»Р°РґС€Рµ РјРµРЅСЏ Р±РѕР»РµРµ С‡РµРј РЅР° СѓСЂРѕРІРµРЅСЊ </option>
+        <option value="6">РјРѕР№ СѓСЂРѕРІРµРЅСЊ +/- 1 </option>
+        <option value="99">С‚РѕР»СЊРєРѕ РєР»Р°РЅ </option>
+        <option value="98">С‚РѕР»СЊРєРѕ СЃРєР»РѕРЅРЅРѕСЃС‚СЊ </option>
       </select>
       <br />
       <input type="checkbox" name="k" value="1" />
-      Кулачный бой<br />
+      РљСѓР»Р°С‡РЅС‹Р№ Р±РѕР№<br />
       <input type="checkbox" name="travma" />
-      Бой без правил (<font class="dsc">проигравшая сторона получает инвалидность</font>)<br />
+      Р‘РѕР№ Р±РµР· РїСЂР°РІРёР» (<font class="dsc">РїСЂРѕРёРіСЂР°РІС€Р°СЏ СЃС‚РѕСЂРѕРЅР° РїРѕР»СѓС‡Р°РµС‚ РёРЅРІР°Р»РёРґРЅРѕСЃС‚СЊ</font>)<br />
       <input type="checkbox" name="3align" />
-      Трехсторонний бой (<font class="dsc">битва для свет против тьмы против нейтралов</font>)<br />
+      РўСЂРµС…СЃС‚РѕСЂРѕРЅРЅРёР№ Р±РѕР№ (<font class="dsc">Р±РёС‚РІР° РґР»СЏ СЃРІРµС‚ РїСЂРѕС‚РёРІ С‚СЊРјС‹ РїСЂРѕС‚РёРІ РЅРµР№С‚СЂР°Р»РѕРІ</font>)<br />
       <input type="checkbox" name="mut_clever" />
-      Смертельные Раны (<font class="dsc">увеличенный урон при повторных попаданиях</font>)<br />
-      Комментарий к бою
+      РЎРјРµСЂС‚РµР»СЊРЅС‹Рµ Р Р°РЅС‹ (<font class="dsc">СѓРІРµР»РёС‡РµРЅРЅС‹Р№ СѓСЂРѕРЅ РїСЂРё РїРѕРІС‚РѕСЂРЅС‹С… РїРѕРїР°РґР°РЅРёСЏС…</font>)<br />
+      РљРѕРјРјРµРЅС‚Р°СЂРёР№ Рє Р±РѕСЋ
       <input type="text" name="cmt" maxlength="40" size="40" />
     </td>
   </tr>
   <tr>
-    <td align="center"><input class="btnnew" type="submit" value="Начнем месилово! :)" name="open" />
+    <td align="center"><input class="btnnew" type="submit" value="РќР°С‡РЅРµРј РјРµСЃРёР»РѕРІРѕ! :)" name="open" />
     </td>
   </tr>
 </table>

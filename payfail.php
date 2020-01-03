@@ -1,7 +1,7 @@
-<?
+<?php
 
 $inv_id = $_REQUEST["InvId"];
-echo "Âû îòêàçàëèñü îò îïëàòû. Çàêàç# $inv_id\n";
+echo "Ð’Ñ‹ Ð¾Ñ‚ÐºÐ°Ð·Ð°Ð»Ð¸ÑÑŒ Ð¾Ñ‚ Ð¾Ð¿Ð»Ð°Ñ‚Ñ‹. Ð—Ð°ÐºÐ°Ð·# $inv_id\n";
 echo "You have refused payment. Order# $inv_id\n";
 
 ?>

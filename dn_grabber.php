@@ -1,25 +1,25 @@
 <?
 
-die('Что-то тут не так...');
+die('Р§С‚Рѕ-С‚Рѕ С‚СѓС‚ РЅРµ С‚Р°Рє...');
 
 $dn = htmlspecialchars($_GET['dn']);
 //
 if(!mkdir('./dnew/'.$dn.'',0777,true)) {
-	echo '[Директория '.$dn.' не создана]<br>';
+	echo '[Р”РёСЂРµРєС‚РѕСЂРёСЏ '.$dn.' РЅРµ СЃРѕР·РґР°РЅР°]<br>';
 }
 //
 if(!mkdir('./dnew/'.$dn.'/Left',0777,true)) {
-	echo '[Директория '.$dn.'/Left не создана]<br>';
+	echo '[Р”РёСЂРµРєС‚РѕСЂРёСЏ '.$dn.'/Left РЅРµ СЃРѕР·РґР°РЅР°]<br>';
 }
 if(!mkdir('./dnew/'.$dn.'/Right',0777,true)) {
-	echo '[Директория '.$dn.'/Right не создана]<br>';	
+	echo '[Р”РёСЂРµРєС‚РѕСЂРёСЏ '.$dn.'/Right РЅРµ СЃРѕР·РґР°РЅР°]<br>';	
 }
 //
 if(!mkdir('./dnew/'.$dn.'/Left/Front',0777,true)) {
-	echo '[Директория '.$dn.'/Left/Front не создана]<br>';	
+	echo '[Р”РёСЂРµРєС‚РѕСЂРёСЏ '.$dn.'/Left/Front РЅРµ СЃРѕР·РґР°РЅР°]<br>';	
 }
 if(!mkdir('./dnew/'.$dn.'/Right/Front',0777,true)) {
-	echo '[Директория '.$dn.'/Right/Front не создана]<br>';	
+	echo '[Р”РёСЂРµРєС‚РѕСЂРёСЏ '.$dn.'/Right/Front РЅРµ СЃРѕР·РґР°РЅР°]<br>';	
 }
 
 function save_img($img) {
@@ -60,5 +60,5 @@ save_img('Left/Front/1_0.gif');
 save_img('Left/0_0.gif');
 save_img('Right/0_0.gif');
 
-echo '[Подземелье '.$dn.' скопировано!]';
+echo '[РџРѕРґР·РµРјРµР»СЊРµ '.$dn.' СЃРєРѕРїРёСЂРѕРІР°РЅРѕ!]';
 ?>

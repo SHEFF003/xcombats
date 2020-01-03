@@ -1,10 +1,10 @@
-<?
+<?php
 session_start();
 
 function er($e)
 {
 	 global $c;
-	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>Произошла ошибка: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">Назад</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
+	 die('<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><meta http-equiv="Content-Language" content="ru"><TITLE>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>'.$e.'</pre><b><p><a href="http://'.$c[0].'/">РќР°Р·Р°Рґ</b></a><HR><p align="right">(c) <a href="http://'.$c[0].'/">'.$c[1].'</a></p></body></html>');
 }
 
 function GetRealIp()
@@ -42,12 +42,12 @@ if( $_POST['new_bot_colvo'] < 1 ) {
 
 ?>
 <form method="post" action="?gotonew">
-id пещеры: <input name="id_dn" value="<?=$_POST['id_dn']?>"><br>
+id РїРµС‰РµСЂС‹: <input name="id_dn" value="<?=$_POST['id_dn']?>"><br>
 x : <input name="xx" value="<?=$_POST['xx']?>"><br>
 y : <input name="yy" value="<?=$_POST['yy']?>"><br>
-<input type="submit" value="Перейти">
+<input type="submit" value="РџРµСЂРµР№С‚Рё">
 </form>
---------------- Боты -------------:<br>
+--------------- Р‘РѕС‚С‹ -------------:<br>
 <? 
 
 if(isset($_POST['new_bot_id'])) {
@@ -61,7 +61,7 @@ $i = 1;
 while($pl = mysql_fetch_array($sp)) {
 	 if( $pl['id_bot'] > 0 ){
 		  $bot = mysql_fetch_array(mysql_query('SELECT * FROM `test_bot` WHERE `id` = "'.$pl['id_bot'].'" LIMIT 1'));
-		  echo $i.'.['.$pl['id2'].'] <b>'.$bot['login'].'</b> [id '.$bot['id'].'] , [x'.$pl['colvo'].'] <a href="?delete='.$pl['id2'].'&id_dn='.$pl['for_dn'].'&xx='.$pl['x'].'&yy='.$pl['y'].'">удалить</a>  <br>';
+		  echo $i.'.['.$pl['id2'].'] <b>'.$bot['login'].'</b> [id '.$bot['id'].'] , [x'.$pl['colvo'].'] <a href="?delete='.$pl['id2'].'&id_dn='.$pl['for_dn'].'&xx='.$pl['x'].'&yy='.$pl['y'].'">СѓРґР°Р»РёС‚СЊ</a>  <br>';
 	 } elseif( $pl['bot_group'] != '' ){
 		  $bots = explode( ',', $pl['bot_group'] );
 		  $jjj=0;
@@ -71,7 +71,7 @@ while($pl = mysql_fetch_array($sp)) {
 			   if( isset($bot['login']) ) echo ' <strong>'.$bot['login'].'</strong> [id '.$bot['id'].'], ';
 			   $jjj++;
 		  }
-		  echo ' [x'.$pl['colvo'].'] <a href="?delete='.$pl['id2'].'&id_dn='.$pl['for_dn'].'&xx='.$pl['x'].'&yy='.$pl['y'].'">удалить</a><br/>';
+		  echo ' [x'.$pl['colvo'].'] <a href="?delete='.$pl['id2'].'&id_dn='.$pl['for_dn'].'&xx='.$pl['x'].'&yy='.$pl['y'].'">СѓРґР°Р»РёС‚СЊ</a><br/>';
 	 }
 	$i++;
 }
@@ -79,13 +79,13 @@ while($pl = mysql_fetch_array($sp)) {
 echo '<hr>';
 ?>
 <form method="post" action="?gotonew">
-Добавить нового:<br />
+Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРіРѕ:<br />
 <input type="hidden" name="id_dn" value="<?=$_POST['id_dn']?>">
 <input type="hidden" name="xx" value="<?=$_POST['xx']?>">
 <input type="hidden" name="yy" value="<?=$_POST['yy']?>">
-ID бота: <input name="new_bot_id" value="<?=$_POST['new_bot_id']?>"><br />
-Случайные боты: <input name="new_bot_group" value="<?=$_POST['new_bot_group']?>"><br />
-Количество: <input name="new_bot_colvo" value="<?=(0+$_POST['new_bot_colvo'])?>"><br />
-Перемещается: <input name="new_bot_go" value="<?=(0+$_POST['new_bot_go'])?>"> (0 - нет, 1 - да)<br />
-<input type="submit" value="Отправить" />
+ID Р±РѕС‚Р°: <input name="new_bot_id" value="<?=$_POST['new_bot_id']?>"><br />
+РЎР»СѓС‡Р°Р№РЅС‹Рµ Р±РѕС‚С‹: <input name="new_bot_group" value="<?=$_POST['new_bot_group']?>"><br />
+РљРѕР»РёС‡РµСЃС‚РІРѕ: <input name="new_bot_colvo" value="<?=(0+$_POST['new_bot_colvo'])?>"><br />
+РџРµСЂРµРјРµС‰Р°РµС‚СЃСЏ: <input name="new_bot_go" value="<?=(0+$_POST['new_bot_go'])?>"> (0 - РЅРµС‚, 1 - РґР°)<br />
+<input type="submit" value="РћС‚РїСЂР°РІРёС‚СЊ" />
 </form>

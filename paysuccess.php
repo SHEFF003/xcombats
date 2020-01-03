@@ -1,4 +1,4 @@
-<?
+<?php
 header('Content-Type: text/html; charset=windows-1251');
 function GetRealIp(){
 	if (!empty($_SERVER['HTTP_CLIENT_IP']))
@@ -13,11 +13,11 @@ include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');	
 include('_incl_data/class/__user.php');
 
-// ðåãèñòðàöèîííàÿ èíôîðìàöèÿ (ïàðîëü #1)
+// Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð°Ñ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ (Ð¿Ð°Ñ€Ð¾Ð»ÑŒ #1)
 // registration info (password #1)
 $mrh_pass1 = "2t1vpldi";
 
-// ÷òåíèå ïàðàìåòðîâ
+// Ñ‡Ñ‚ÐµÐ½Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
 // read parameters
 $out_summ = $_REQUEST["OutSum"];
 $inv_id = $_REQUEST["InvId"];
@@ -29,7 +29,7 @@ $crc = strtoupper($crc);
 
 $my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass1:Shp_item=$shp_item"));
 
-// ïðîâåðêà êîððåêòíîñòè ïîäïèñè
+// Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° ÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð¾ÑÑ‚Ð¸ Ð¿Ð¾Ð´Ð¿Ð¸ÑÐ¸
 // check signature
 if ($my_crc != $crc)
 {
@@ -37,7 +37,7 @@ if ($my_crc != $crc)
   exit();
 }
 
-// ïðîâåðêà íàëè÷èÿ íîìåðà ñ÷åòà â èñòîðèè îïåðàöèé
+// Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ñ Ð½Ð¾Ð¼ÐµÑ€Ð° ÑÑ‡ÐµÑ‚Ð° Ð² Ð¸ÑÑ‚Ð¾Ñ€Ð¸Ð¸ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¹
 // check of number of the order info in history of operations
 /*$f=@fopen("order.txt","r+") or die("error");
 
@@ -52,13 +52,13 @@ while(!feof($f))
 	//$pay = mysql_fetch_array(mysql_query('SELECT * FROM `pay_operation` WHERE `id` = "'.mysql_real_escape_string((int)$shp_item).'" LIMIT 1'));
 	//mysql_query('UPDATE `pay_operation` SET `good` = "'.time().'",`ip2` = "'.mysql_real_escape_string(IP).'" WHERE `id` = "'.$pay['id'].'" LIMIT 1');
 	//
-	echo "Îïåðàöèÿ ïðîøëà óñïåøíî\n";
+	echo "ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¿Ñ€Ð¾ÑˆÐ»Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾\n";
 	echo "Operation of payment is successfully completed\n";
   }
 }
 fclose($f);*/
 
-	echo "Îïåðàöèÿ ïðîøëà óñïåøíî\n";
+	echo "ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¿Ñ€Ð¾ÑˆÐ»Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾\n";
 	echo "Operation of payment is successfully completed\n";
 
 ?>

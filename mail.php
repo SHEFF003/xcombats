@@ -1,4 +1,4 @@
-<?
+<?php
 function GetRealIp(){
 	if (!empty($_SERVER['HTTP_CLIENT_IP']))
 		return $_SERVER['HTTP_CLIENT_IP'];
@@ -73,7 +73,7 @@ if( isset($_GET['list']) && $_GET['list'] == 2015 ) {
 	
 }
 
-$keymd5 = '$отпи$атьс$';
+$keymd5 = '$РѕС‚РїРё$Р°С‚СЊСЃ$';
 
 if(isset($_GET['count'])) {
 	if( md5($keymd5.'+'.$_GET['count']) == $_GET['sd4'] ) {
@@ -94,9 +94,9 @@ if(isset($_GET['count'])) {
 	$mail = mysql_fetch_array(mysql_query('SELECT * FROM `aaa_send_count` WHERE `mail` = "'.mysql_real_escape_string($_GET['uncancel']).'" LIMIT 1'));
 	if(isset($mail['id'])) {
 		mysql_query('UPDATE `aaa_send_count` SET `cancel` = "0",`time` = "'.time().'",`ip` = "'.mysql_real_escape_string(IP).'" WHERE `id` = "'.$mail['id'].'" LIMIT 1');
-		echo 'Эл.почта <b>'.htmlspecialchars($_GET['uncancel']).'</b> успешно подписан на наши рассыли!';
+		echo 'Р­Р».РїРѕС‡С‚Р° <b>'.htmlspecialchars($_GET['uncancel']).'</b> СѓСЃРїРµС€РЅРѕ РїРѕРґРїРёСЃР°РЅ РЅР° РЅР°С€Рё СЂР°СЃСЃС‹Р»Рё!';
 	}else{
-		echo 'Эл.почта <b>'.htmlspecialchars($_GET['uncancel']).'</b> не найден в базе.';
+		echo 'Р­Р».РїРѕС‡С‚Р° <b>'.htmlspecialchars($_GET['uncancel']).'</b> РЅРµ РЅР°Р№РґРµРЅ РІ Р±Р°Р·Рµ.';
 	}
 	die();
 }elseif(isset($_GET['cancel'])) {
@@ -104,23 +104,23 @@ if(isset($_GET['count'])) {
 		$mail = mysql_fetch_array(mysql_query('SELECT * FROM `aaa_send_count` WHERE `mail` = "'.mysql_real_escape_string($_GET['cancel']).'" LIMIT 1'));
 		if(isset($mail['id'])) {
 			if($mail['cancel'] > 0) {
-				echo 'Вы отписались от рассылок: <b>'.date('d.m.Y H:i:s',$mail['cancel']).'</b>, хотите подписаться снова? <a href="http://xcombats.com/mail.php?uncancel='.$mail['mail'].'">Подписаться на рассылку снова</a></b>';
+				echo 'Р’С‹ РѕС‚РїРёСЃР°Р»РёСЃСЊ РѕС‚ СЂР°СЃСЃС‹Р»РѕРє: <b>'.date('d.m.Y H:i:s',$mail['cancel']).'</b>, С…РѕС‚РёС‚Рµ РїРѕРґРїРёСЃР°С‚СЊСЃСЏ СЃРЅРѕРІР°? <a href="http://xcombats.com/mail.php?uncancel='.$mail['mail'].'">РџРѕРґРїРёСЃР°С‚СЊСЃСЏ РЅР° СЂР°СЃСЃС‹Р»РєСѓ СЃРЅРѕРІР°</a></b>';
 			}else{
 				mysql_query('UPDATE `aaa_send_count` SET `cancel` = "'.time().'",`time` = "'.time().'",`ip` = "'.mysql_real_escape_string(IP).'" WHERE `id` = "'.$mail['id'].'" LIMIT 1');
-				echo 'Эл.почта <b>'.htmlspecialchars($_GET['cancel']).'</b> успешно отписана от наших рассылок!';
+				echo 'Р­Р».РїРѕС‡С‚Р° <b>'.htmlspecialchars($_GET['cancel']).'</b> СѓСЃРїРµС€РЅРѕ РѕС‚РїРёСЃР°РЅР° РѕС‚ РЅР°С€РёС… СЂР°СЃСЃС‹Р»РѕРє!';
 			}
 		}else{
-			echo 'Эл.почта <b>'.htmlspecialchars($_GET['cancel']).'</b> не подписана на наши рассылки.';
+			echo 'Р­Р».РїРѕС‡С‚Р° <b>'.htmlspecialchars($_GET['cancel']).'</b> РЅРµ РїРѕРґРїРёСЃР°РЅР° РЅР° РЅР°С€Рё СЂР°СЃСЃС‹Р»РєРё.';
 		}
 	}else{
-		echo 'Вы не отписались т.к. SD4 ключ не подходит к эл.почте <b>'.htmlspecialchars($_GET['cancel']).'.</b>. Перейдите по ссылке указанной в письме, либо напишите нам в службу поддержки support@xcombats.com';
+		echo 'Р’С‹ РЅРµ РѕС‚РїРёСЃР°Р»РёСЃСЊ С‚.Рє. SD4 РєР»СЋС‡ РЅРµ РїРѕРґС…РѕРґРёС‚ Рє СЌР».РїРѕС‡С‚Рµ <b>'.htmlspecialchars($_GET['cancel']).'.</b>. РџРµСЂРµР№РґРёС‚Рµ РїРѕ СЃСЃС‹Р»РєРµ СѓРєР°Р·Р°РЅРЅРѕР№ РІ РїРёСЃСЊРјРµ, Р»РёР±Рѕ РЅР°РїРёС€РёС‚Рµ РЅР°Рј РІ СЃР»СѓР¶Р±Сѓ РїРѕРґРґРµСЂР¶РєРё support@xcombats.com';
 	}
 	die();
 }
 
 if(isset($_GET['send6102'])) {
 	// specify your email below and that's all ;)	
-	$message = 'Текст сообщения!';	
+	$message = 'РўРµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ!';	
 	//	***************************************
 	
 	function sendmail($mail,$login) {
@@ -137,8 +137,8 @@ if(isset($_GET['send6102'])) {
 		//
 		$to = $mail;
 		//
-		$subject = 'СБК: Старый Бойцовский Клуб';
-		$message = 'Подтвердите ваш e-mail для <b>'.$mail['name'].'</b>.<br><br>С уважением,<br>Администрация xcombats.com';
+		$subject = 'РЎР‘Рљ: РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±';
+		$message = 'РџРѕРґС‚РІРµСЂРґРёС‚Рµ РІР°С€ e-mail РґР»СЏ <b>'.$mail['name'].'</b>.<br><br>РЎ СѓРІР°Р¶РµРЅРёРµРј,<br>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ xcombats.com';
 		//
 		if (mail($to, $subject, $message, $headers) == true) {
 			//return true;
@@ -157,17 +157,17 @@ if(isset($_GET['send6102'])) {
 		
 		sendmail($mail['email'],$mail['login']);
 		mysql_query('UPDATE `users_rbk` SET `send` = 3 WHERE `email` = "'.$mail['email'].'"');
-		echo '['.$mail['email'].']<hr>Подтвердите ваш e-mail для <b>'.$mail['name'].'</b>.<br><br>С уважением,<br>Администрация xcombats.com<hr>';
+		echo '['.$mail['email'].']<hr>РџРѕРґС‚РІРµСЂРґРёС‚Рµ РІР°С€ e-mail РґР»СЏ <b>'.$mail['name'].'</b>.<br><br>РЎ СѓРІР°Р¶РµРЅРёРµРј,<br>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ xcombats.com<hr>';
 		echo '[+]<script>setTimeout("top.location = top.location",1000);</script>';
 	}else{
 		echo '[-]';
 		echo '['.$mail['email'].']';
 		/*echo '[-]<script>setTimeout("top.location = top.location",100);</script>';*/
 	}
-	die('<br>Отправлено: '.$x);
+	die('<br>РћС‚РїСЂР°РІР»РµРЅРѕ: '.$x);
 	if( $k > 0 ) {
 		echo '<script>setTimeout(\'location.href="mail.php?send=1&i='.$j.'";\',1500);</script>';		
 	}
-	echo 'Успешно отправлено: '.$k.' / 100 писем. Всего ящиков осталось: '.(count($mails)-$k).'.<br><a href="mail.php?send=1&i='.$j.'">Следующие 50 ящиков!</a>';
+	echo 'РЈСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ: '.$k.' / 100 РїРёСЃРµРј. Р’СЃРµРіРѕ СЏС‰РёРєРѕРІ РѕСЃС‚Р°Р»РѕСЃСЊ: '.(count($mails)-$k).'.<br><a href="mail.php?send=1&i='.$j.'">РЎР»РµРґСѓСЋС‰РёРµ 50 СЏС‰РёРєРѕРІ!</a>';
 }
 ?>

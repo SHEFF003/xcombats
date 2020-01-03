@@ -26,21 +26,21 @@ while( $pl = mysql_fetch_array($sp) ) {
 		mysql_query('UPDATE `battle` SET `otmorozok_use` = 1 WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 		//
 		$usr = mysql_fetch_array(mysql_query('SELECT `level`,`city` FROM `users` WHERE `battle` = "'.$pl['id'].'" ORDER BY `level` DESC LIMIT 1'));
-		$bot = mysql_fetch_array(mysql_query('SELECT * FROM `test_bot` WHERE `login` LIKE "%Отморозок [%'.$usr['level'].'%]%" LIMIT 1'));
+		$bot = mysql_fetch_array(mysql_query('SELECT * FROM `test_bot` WHERE `login` LIKE "%РћС‚РјРѕСЂРѕР·РѕРє [%'.$usr['level'].'%]%" LIMIT 1'));
 		//
 		$tmr = rand(1,2);
 		//
 		$logins_bot = array();
 		$bot = $u->addNewbot($bot['id'],NULL,NULL,$logins_bot,NULL);
-		$otmz = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `login` LIKE "%Отморозок (%" AND `battle` = "'.$pl['id'].'" LIMIT 1'));
+		$otmz = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `login` LIKE "%РћС‚РјРѕСЂРѕР·РѕРє (%" AND `battle` = "'.$pl['id'].'" LIMIT 1'));
 		//
 		$otmz[0]++;
 		//
-		mysql_query('UPDATE `users` SET `city` = "'.$usr['city'].'",`login` = "Отморозок ('.$otmz[0].')",`battle` = "'.$pl['id'].'" WHERE `id` = "'.$bot['id'].'" LIMIT 1');
+		mysql_query('UPDATE `users` SET `city` = "'.$usr['city'].'",`login` = "РћС‚РјРѕСЂРѕР·РѕРє ('.$otmz[0].')",`battle` = "'.$pl['id'].'" WHERE `id` = "'.$bot['id'].'" LIMIT 1');
 		//
 		mysql_query('UPDATE `stats` SET `team` = "'.$tmr.'" WHERE `id` = "'.$bot['id'].'" LIMIT 1');
 		//
-		$vtvl = '{tm1} {u1} вмешался в поединок. Хо! хо! хо!';
+		$vtvl = '{tm1} {u1} РІРјРµС€Р°Р»СЃСЏ РІ РїРѕРµРґРёРЅРѕРє. РҐРѕ! С…Рѕ! С…Рѕ!';
 		$last_hod = mysql_fetch_array(mysql_query('SELECT `id_hod` FROM `battle_logs` WHERE `battle` = "'.$pl['id'].'" ORDER BY `id_hod` DESC LIMIT 1'));
 		$last_hod = $last_hod['id_hod'];
 		//
@@ -48,7 +48,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 			'time' 		=> time(),
 			'battle' 	=> $pl['id'],
 			'id_hod' 	=> ($last_hod+1),
-			'vars' 		=> '||time1='.time().'||time2=0||s1=0||t1='.$tmr.'||login1=Отморозок ('.$otmz[0].')',
+			'vars' 		=> '||time1='.time().'||time2=0||s1=0||t1='.$tmr.'||login1=РћС‚РјРѕСЂРѕР·РѕРє ('.$otmz[0].')',
 			'type' 		=> 1			
 		);
 		//
@@ -72,7 +72,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 
 die();
 
-//Подаем турнир для 2-3 уровней
+//РџРѕРґР°РµРј С‚СѓСЂРЅРёСЂ РґР»СЏ 2-3 СѓСЂРѕРІРЅРµР№
 $inc = mysql_query('INSERT INTO `zayvki` (
 	`arand`,`noatack`,`city`,`creator`,`type`,`time_start`,`timeout`,`min_lvl_1`,`min_lvl_2`,`max_lvl_1`,`max_lvl_2`,`noinc`,`razdel`,`time`,`fastfight`,`priz`
 ) VALUES (

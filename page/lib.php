@@ -1,4 +1,4 @@
-<?
+<?php
 if( !isset($url[2]) || $url[2] == '' ) {
 	$url[2] = 'home';
 }
@@ -50,23 +50,23 @@ if( !isset($url[2]) || $url[2] == '' ) {
 			$html = '';
 			
 			if( $u->info['activ'] == 1 ) {
-				$html = 'Чтобы начать публиковать изображения - Активируйте Вашего персонажа.';
+				$html = 'Р§С‚РѕР±С‹ РЅР°С‡Р°С‚СЊ РїСѓР±Р»РёРєРѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ - РђРєС‚РёРІРёСЂСѓР№С‚Рµ Р’Р°С€РµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°.';
 			}elseif( $u->info['molch1'] > time() ) {
-				$html = 'Персонажи с молчанкой не могут публиковать изображения.';
+				$html = 'РџРµСЂСЃРѕРЅР°Р¶Рё СЃ РјРѕР»С‡Р°РЅРєРѕР№ РЅРµ РјРѕРіСѓС‚ РїСѓР±Р»РёРєРѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ.';
 			}elseif( $u->info['banned'] > 0 ) {
-				$html = 'Заблокированные персонажи не могут публиковать изображения.';
+				$html = 'Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅРЅС‹Рµ РїРµСЂСЃРѕРЅР°Р¶Рё РЅРµ РјРѕРіСѓС‚ РїСѓР±Р»РёРєРѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ.';
 			}elseif( $u->info['align'] == 2 ) {
-				$html = 'Хаосники не могут публиковать изображения.';
+				$html = 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ РїСѓР±Р»РёРєРѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ.';
 			}elseif( !isset($u->info['id']) ) {
-				$html = '<center><br>Загружать изображения могут только зарегистрированные пользователи</center>';
+				$html = '<center><br>Р—Р°РіСЂСѓР¶Р°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РјРѕРіСѓС‚ С‚РѕР»СЊРєРѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё</center>';
 			}elseif( ($url[3] == 'me' || ($url[3] == 'all' && $u->info['admin'] > 0)) ) {
 				if( $url[3] == 'me' ) {
 					$sp = mysql_query('SELECT * FROM `upload_images` WHERE `uid` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1000');
 				}elseif( $url[3] == 'all' ) {
 					$sp = mysql_query('SELECT * FROM `upload_images` ORDER BY `id` DESC LIMIT 1000');
 				}
-				$html .= '<b>Левая Кнопка Мыши</b> - Открыть изображение в новом окне<br>
-						  <b>Правая Кнопка Маши</b> - Удалить изображение с сервера<hr>';
+				$html .= '<b>Р›РµРІР°СЏ РљРЅРѕРїРєР° РњС‹С€Рё</b> - РћС‚РєСЂС‹С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІ РЅРѕРІРѕРј РѕРєРЅРµ<br>
+						  <b>РџСЂР°РІР°СЏ РљРЅРѕРїРєР° РњР°С€Рё</b> - РЈРґР°Р»РёС‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ СЃ СЃРµСЂРІРµСЂР°<hr>';
 				$i = 0;
 				$usrs = array();
 				while($pl = mysql_fetch_array($sp)) {
@@ -77,16 +77,16 @@ if( !isset($url[2]) || $url[2] == '' ) {
 						if( !isset($usrs[$pl['uid']]) ) {
 							$usrs[$pl['uid']] = mysql_fetch_array(mysql_query('SELECT `id`,`login` FROM `users` WHERE `id` = "'.$pl['uid'].'" LIMIT 1'));
 							if(!isset($usrs[$pl['uid']]['id'])) {
-								$usrs[$pl['uid']]['login'] = '!НЕТ АВТОРА!';
+								$usrs[$pl['uid']]['login'] = '!РќР•Рў РђР’РўРћР Рђ!';
 							}
 							$usrs[$pl['uid']] = $usrs[$pl['uid']]['login'];
 						}
-						$html .= '<a title="'.$usrs[$pl['uid']]."\n".date('d.m.Y H:i',$pl['time']).'" oncontextmenu="if(confirm(\'Вы уверены?\')){ top.location=\'http://xcombats.com/lib/upload/'.htmlspecialchars($url[3],NULL,'cp1251').'/delete/'.$pl['id'].'/\'; }return false;" target="_blank" href="http://xcombats.com/ui/'.$pl['img'].'.'.$pl['type'].'"><img src="http://xcombats.com/ui/'.$pl['img'].'.'.$pl['type'].'" class="imgo"></a>';
+						$html .= '<a title="'.$usrs[$pl['uid']]."\n".date('d.m.Y H:i',$pl['time']).'" oncontextmenu="if(confirm(\'Р’С‹ СѓРІРµСЂРµРЅС‹?\')){ top.location=\'http://xcombats.com/lib/upload/'.htmlspecialchars($url[3],NULL,'cp1251').'/delete/'.$pl['id'].'/\'; }return false;" target="_blank" href="http://xcombats.com/ui/'.$pl['img'].'.'.$pl['type'].'"><img src="http://xcombats.com/ui/'.$pl['img'].'.'.$pl['type'].'" class="imgo"></a>';
 					}
 					$i++;
 				}
 				if( $i == 0 ) {
-					$html .= 'Нет загруженных изображений на сервере';
+					$html .= 'РќРµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№ РЅР° СЃРµСЂРІРµСЂРµ';
 				}
 			}else{
 				
@@ -95,7 +95,7 @@ if( !isset($url[2]) || $url[2] == '' ) {
 					 $handle = new upload($_FILES['filename']);
 					 $count = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `uid` = "'.$u->info['id'].'" AND `time` > '.(time()-60).' LIMIT 1'));
 					 if( $count > 3 && $u->info['admin'] == 0 ) {
-						 $html = 'Вы не можете так часто заливать изображения на сервер';
+						 $html = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ С‚Р°Рє С‡Р°СЃС‚Рѕ Р·Р°Р»РёРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° СЃРµСЂРІРµСЂ';
 					 }elseif ($handle->uploaded) {
 						
 						if( $handle->file_src_name_ext == 'png' || $handle->file_src_name_ext == 'jpg' || $handle->file_src_name_ext == 'gif' ) {
@@ -126,62 +126,62 @@ if( !isset($url[2]) || $url[2] == '' ) {
 								mysql_query('INSERT INTO `upload_images` (`uid`,`time`,`img`,`type`) VALUES (
 									"'.$u->info['id'].'","'.time().'","'.mysql_real_escape_string($fname).'","'.mysql_real_escape_string($handle->file_src_name_ext).'"
 								) ');
-								$html .= 'Файл <a href="http://xcombats.com/ui/'.$fname.'.'.$handle->file_src_name_ext.'" target="_blank">http://xcombats.com/ui/'.$fname.'.'.$handle->file_src_name_ext.'</a> был успешно загружен.';
+								$html .= 'Р¤Р°Р№Р» <a href="http://xcombats.com/ui/'.$fname.'.'.$handle->file_src_name_ext.'" target="_blank">http://xcombats.com/ui/'.$fname.'.'.$handle->file_src_name_ext.'</a> Р±С‹Р» СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅ.';
 		
 								$handle->clean();
 							} else {
-								$html .= 'Возникла ошибка при добавлении файла.';
+								$html .= 'Р’РѕР·РЅРёРєР»Р° РѕС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё С„Р°Р№Р»Р°.';
 							}
 						}else{
-							$html .= 'Возникла ошибка при добавлении файла!';
+							$html .= 'Р’РѕР·РЅРёРєР»Р° РѕС€РёР±РєР° РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё С„Р°Р№Р»Р°!';
 						}
 					}
 				 }else{		
 					 $html .= '
 					  <br>
-					  <b>Правила публикации изображений:</b><br>
-					  &bull; Изображение не должно нарушать правила проекта<br>
-					  &bull; Изображение должно весить не более 1000 Кб<br>
-					  &bull; Изображение не должно быть более 800px х 800px<br>
-					  &bull; Форматы изображения: JPEG , GIF , PNG<hr>
+					  <b>РџСЂР°РІРёР»Р° РїСѓР±Р»РёРєР°С†РёРё РёР·РѕР±СЂР°Р¶РµРЅРёР№:</b><br>
+					  &bull; РР·РѕР±СЂР°Р¶РµРЅРёРµ РЅРµ РґРѕР»Р¶РЅРѕ РЅР°СЂСѓС€Р°С‚СЊ РїСЂР°РІРёР»Р° РїСЂРѕРµРєС‚Р°<br>
+					  &bull; РР·РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР»Р¶РЅРѕ РІРµСЃРёС‚СЊ РЅРµ Р±РѕР»РµРµ 1000 РљР±<br>
+					  &bull; РР·РѕР±СЂР°Р¶РµРЅРёРµ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»РµРµ 800px С… 800px<br>
+					  &bull; Р¤РѕСЂРјР°С‚С‹ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ: JPEG , GIF , PNG<hr>
 					  <center>
 					  <form action="http://xcombats.com/lib/upload/" method="post" enctype="multipart/form-data">
 					  <input type="file" name="filename"> 
-					  <input class="btn2" type="submit" value="Загрузить"><hr>';
+					  <input class="btn2" type="submit" value="Р—Р°РіСЂСѓР·РёС‚СЊ"><hr>';
 					  
 					  if( $u->info['admin'] > 0 ) {
-						 $html .= '<a href="http://xcombats.com/lib/upload/all/">[ Все изображения ]</a> ';
+						 $html .= '<a href="http://xcombats.com/lib/upload/all/">[ Р’СЃРµ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ ]</a> ';
 					  }
-					  $html .= '<a href="http://xcombats.com/lib/upload/me/">[ Мои изображения ]</a>';
+					  $html .= '<a href="http://xcombats.com/lib/upload/me/">[ РњРѕРё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ ]</a>';
 					  
 					  $html .= '</form>
 					  </center>';
 				 }
 				
 			}
-			echo '<div style="padding-left:20px;padding-top:20px;"><h3>Загрузка изображений</h3>'.$html.'</div>';
+			echo '<div style="padding-left:20px;padding-top:20px;"><h3>Р—Р°РіСЂСѓР·РєР° РёР·РѕР±СЂР°Р¶РµРЅРёР№</h3>'.$html.'</div>';
 		}elseif( $url[2] == 'list' ) {
 			$sp = mysql_query('SELECT * FROM `library_content` WHERE `delete` = 0 AND `moder` = 0 AND `uid` > 0 ORDER BY `id` ASC');
 			$html = '';
 			$i = 1;
 			while($pl = mysql_fetch_array($sp)) {
-				$html .= '<a target="_blank" href="http://xcombats.com/lib/'.$pl['url_name'].'/">&gt;&gt; '.$pl['title'].'</a><br>Автор: '.$u->microLogin($pl['uid'],1).' / Дата публикации: '.date('d.m.Y',$pl['time']).'<hr>';
+				$html .= '<a target="_blank" href="http://xcombats.com/lib/'.$pl['url_name'].'/">&gt;&gt; '.$pl['title'].'</a><br>РђРІС‚РѕСЂ: '.$u->microLogin($pl['uid'],1).' / Р”Р°С‚Р° РїСѓР±Р»РёРєР°С†РёРё: '.date('d.m.Y',$pl['time']).'<hr>';
 				$i++;
 			}
 			if( $html == '' ) {
-				$html = 'В настоящий момент непроверенных статей нет.<br>
-				<br>Если Вы хотите написать свою статью - <a target="_blank" href="http://xcombats.com/lib/new/">http://xcombats.com/lib/new/</a><br>
-				<br>Более подробная информация - <a href="http://xcombats.com/lib/public/">http://xcombats.com/lib/public/</a>';
+				$html = 'Р’ РЅР°СЃС‚РѕСЏС‰РёР№ РјРѕРјРµРЅС‚ РЅРµРїСЂРѕРІРµСЂРµРЅРЅС‹С… СЃС‚Р°С‚РµР№ РЅРµС‚.<br>
+				<br>Р•СЃР»Рё Р’С‹ С…РѕС‚РёС‚Рµ РЅР°РїРёСЃР°С‚СЊ СЃРІРѕСЋ СЃС‚Р°С‚СЊСЋ - <a target="_blank" href="http://xcombats.com/lib/new/">http://xcombats.com/lib/new/</a><br>
+				<br>Р‘РѕР»РµРµ РїРѕРґСЂРѕР±РЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ - <a href="http://xcombats.com/lib/public/">http://xcombats.com/lib/public/</a>';
 			}
-			echo '<div style="padding-left:20px;padding-top:20px;"><h3>Список непроверенных статей:</h3>'.$html.'</div>';
+			echo '<div style="padding-left:20px;padding-top:20px;"><h3>РЎРїРёСЃРѕРє РЅРµРїСЂРѕРІРµСЂРµРЅРЅС‹С… СЃС‚Р°С‚РµР№:</h3>'.$html.'</div>';
 		}elseif( $url[2] == 'new' && !isset($u->info['id']) ) {
-			echo '<div style="padding:50px;">Для публикации статьи Вы должны авторизироваться своим персонажем.<br><b>Гостям</b> данный раздел недоступен.</div>';
+			echo '<div style="padding:50px;">Р”Р»СЏ РїСѓР±Р»РёРєР°С†РёРё СЃС‚Р°С‚СЊРё Р’С‹ РґРѕР»Р¶РЅС‹ Р°РІС‚РѕСЂРёР·РёСЂРѕРІР°С‚СЊСЃСЏ СЃРІРѕРёРј РїРµСЂСЃРѕРЅР°Р¶РµРј.<br><b>Р“РѕСЃС‚СЏРј</b> РґР°РЅРЅС‹Р№ СЂР°Р·РґРµР» РЅРµРґРѕСЃС‚СѓРїРµРЅ.</div>';
 		}elseif( $url[2] == 'new' && isset($u->info['id']) ) {
 		?>
 		<!-- -->
 		<script src="/inx/ckeditor/ckeditor.js"></script>
 		<!-- -->
-		<div class="lib-txt-title">Публикация статьи</div>
+		<div class="lib-txt-title">РџСѓР±Р»РёРєР°С†РёСЏ СЃС‚Р°С‚СЊРё</div>
 		<div class="lib-txt">
 		<?
 		if(isset($_POST['save']) && isset($u->info['id'])) {
@@ -189,15 +189,15 @@ if( !isset($url[2]) || $url[2] == '' ) {
 			$mbpage_last = mysql_fetch_array(mysql_query('SELECT `time` FROM `library_content` WHERE `uid` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1'));
 			
 			if( $u->info['activ'] == 1 ) {
-				echo 'Чтобы начать публиковать статьи - Активируйте Вашего персонажа.';
+				echo 'Р§С‚РѕР±С‹ РЅР°С‡Р°С‚СЊ РїСѓР±Р»РёРєРѕРІР°С‚СЊ СЃС‚Р°С‚СЊРё - РђРєС‚РёРІРёСЂСѓР№С‚Рµ Р’Р°С€РµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°.';
 			}elseif( $u->info['molch1'] > time() ) {
-				echo 'Персонажи с молчанкой не могут публиковать статьи.';
+				echo 'РџРµСЂСЃРѕРЅР°Р¶Рё СЃ РјРѕР»С‡Р°РЅРєРѕР№ РЅРµ РјРѕРіСѓС‚ РїСѓР±Р»РёРєРѕРІР°С‚СЊ СЃС‚Р°С‚СЊРё.';
 			}elseif( $u->info['banned'] > 0 ) {
-				echo 'Заблокированные персонажи не могут публиковать статьи.';
+				echo 'Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅРЅС‹Рµ РїРµСЂСЃРѕРЅР°Р¶Рё РЅРµ РјРѕРіСѓС‚ РїСѓР±Р»РёРєРѕРІР°С‚СЊ СЃС‚Р°С‚СЊРё.';
 			}elseif( $u->info['align'] == 2 ) {
-				echo 'Хаосники не могут публиковать статьи.';
+				echo 'РҐР°РѕСЃРЅРёРєРё РЅРµ РјРѕРіСѓС‚ РїСѓР±Р»РёРєРѕРІР°С‚СЊ СЃС‚Р°С‚СЊРё.';
 			}elseif( isset($mbpage_last['time']) && $mbpage_last['time'] > time() - 3600 && $u->info['admin'] == 0 ) {
-				echo 'Нельзя публиковать статьи чаще одного раза в час.<br>Вы можете опубликовать статью через <b>'.$u->timeOut(($mbpage_last['time']+3600-time())).'</b>.';
+				echo 'РќРµР»СЊР·СЏ РїСѓР±Р»РёРєРѕРІР°С‚СЊ СЃС‚Р°С‚СЊРё С‡Р°С‰Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ С‡Р°СЃ.<br>Р’С‹ РјРѕР¶РµС‚Рµ РѕРїСѓР±Р»РёРєРѕРІР°С‚СЊ СЃС‚Р°С‚СЊСЋ С‡РµСЂРµР· <b>'.$u->timeOut(($mbpage_last['time']+3600-time())).'</b>.';
 			}elseif( isset($_POST['hide_id']) ) {
 				$mbpage = mysql_fetch_array(mysql_query('SELECT * FROM `library_content` WHERE `url_name` = "'.mysql_real_escape_string($_POST['hide_id']).'" AND `delete` = "0" ORDER BY `id` DESC LIMIT 1'));
 				if(isset($mbpage['id'])) {
@@ -206,24 +206,24 @@ if( !isset($url[2]) || $url[2] == '' ) {
 						$sid = $mbpage['id'];
 						if( $sid > 0 ) {
 		?>
-				<b>Уважаем<? if( $u->info['sex'] == 0 ) { echo 'ый'; }else{ echo 'ая'; } ?></b> <?=$u->info['login']?>, благодарим Вас за дополнение статьи!<br />
+				<b>РЈРІР°Р¶Р°РµРј<? if( $u->info['sex'] == 0 ) { echo 'С‹Р№'; }else{ echo 'Р°СЏ'; } ?></b> <?=$u->info['login']?>, Р±Р»Р°РіРѕРґР°СЂРёРј Р’Р°СЃ Р·Р° РґРѕРїРѕР»РЅРµРЅРёРµ СЃС‚Р°С‚СЊРё!<br />
 				<br />
-				Название статьи: &quot;<b><?=$_POST['lib_title']?></b>&quot;<br />
-				Ссылка для просмотра: <a target="_blank" href="http://xcombats.com/lib/<?=$mbpage['url_name']?>/">http://xcombats.com/lib/<?=$mbpage['url_name']?>/</a>
+				РќР°Р·РІР°РЅРёРµ СЃС‚Р°С‚СЊРё: &quot;<b><?=$_POST['lib_title']?></b>&quot;<br />
+				РЎСЃС‹Р»РєР° РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР°: <a target="_blank" href="http://xcombats.com/lib/<?=$mbpage['url_name']?>/">http://xcombats.com/lib/<?=$mbpage['url_name']?>/</a>
 				<hr />
-				Мы ценим проделанную Вами работу и постараемся как можно скорее рассмотреть заявку на добавление данной статьи
+				РњС‹ С†РµРЅРёРј РїСЂРѕРґРµР»Р°РЅРЅСѓСЋ Р’Р°РјРё СЂР°Р±РѕС‚Сѓ Рё РїРѕСЃС‚Р°СЂР°РµРјСЃСЏ РєР°Рє РјРѕР¶РЅРѕ СЃРєРѕСЂРµРµ СЂР°СЃСЃРјРѕС‚СЂРµС‚СЊ Р·Р°СЏРІРєСѓ РЅР° РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅРѕР№ СЃС‚Р°С‚СЊРё
 				<br /><br /><br /><br /><br /><br /><br /><br />
-				, с уважением<br />
-				Администрация Старого Бойцовского Клуба.
+				, СЃ СѓРІР°Р¶РµРЅРёРµРј<br />
+				РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ РЎС‚Р°СЂРѕРіРѕ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°.
 		<?
 						}else{
-							echo 'Произошла ошибка изменения статьи.';
+							echo 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РёР·РјРµРЅРµРЅРёСЏ СЃС‚Р°С‚СЊРё.';
 						}
 					}else{
-						echo 'Произошла ошибка изменения статьи!<br><b>Статья не найдена, либо у Вас нет прав для её изменения.</b>';
+						echo 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РёР·РјРµРЅРµРЅРёСЏ СЃС‚Р°С‚СЊРё!<br><b>РЎС‚Р°С‚СЊСЏ РЅРµ РЅР°Р№РґРµРЅР°, Р»РёР±Рѕ Сѓ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РґР»СЏ РµС‘ РёР·РјРµРЅРµРЅРёСЏ.</b>';
 					}
 				}else{
-					echo 'Произошла ошибка изменения статьи.<br><b>Статья не найдена, либо у Вас нет прав для её изменения.</b>';
+					echo 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РёР·РјРµРЅРµРЅРёСЏ СЃС‚Р°С‚СЊРё.<br><b>РЎС‚Р°С‚СЊСЏ РЅРµ РЅР°Р№РґРµРЅР°, Р»РёР±Рѕ Сѓ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РґР»СЏ РµС‘ РёР·РјРµРЅРµРЅРёСЏ.</b>';
 				}
 			}else{
 				$sid = 0;
@@ -234,19 +234,19 @@ if( !isset($url[2]) || $url[2] == '' ) {
 				if($sid > 0) {
 					mysql_query('UPDATE `library_content` SET `url_name` = "id'.$sid.'" WHERE `id` = "'.$sid.'" LIMIT 1');
 			?>
-				<b>Уважаем<? if( $u->info['sex'] == 0 ) { echo 'ый'; }else{ echo 'ая'; } ?></b> <?=$u->info['login']?>, благодарим Вас за добавление статьи!<br />
+				<b>РЈРІР°Р¶Р°РµРј<? if( $u->info['sex'] == 0 ) { echo 'С‹Р№'; }else{ echo 'Р°СЏ'; } ?></b> <?=$u->info['login']?>, Р±Р»Р°РіРѕРґР°СЂРёРј Р’Р°СЃ Р·Р° РґРѕР±Р°РІР»РµРЅРёРµ СЃС‚Р°С‚СЊРё!<br />
 				<br />
-				Название статьи: &quot;<b><?=$_POST['lib_title']?></b>&quot;<br />
-				Номер Вашей статьи: #<?=$sid?><br />
-				Ссылка для просмотра: <a target="_blank" href="http://xcombats.com/lib/id<?=$sid?>/">http://xcombats.com/lib/id<?=$sid?>/</a>
+				РќР°Р·РІР°РЅРёРµ СЃС‚Р°С‚СЊРё: &quot;<b><?=$_POST['lib_title']?></b>&quot;<br />
+				РќРѕРјРµСЂ Р’Р°С€РµР№ СЃС‚Р°С‚СЊРё: #<?=$sid?><br />
+				РЎСЃС‹Р»РєР° РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР°: <a target="_blank" href="http://xcombats.com/lib/id<?=$sid?>/">http://xcombats.com/lib/id<?=$sid?>/</a>
 				<hr />
-				Мы ценим проделанную Вами работу и постараемся как можно скорее рассмотреть заявку на добавление данной статьи
+				РњС‹ С†РµРЅРёРј РїСЂРѕРґРµР»Р°РЅРЅСѓСЋ Р’Р°РјРё СЂР°Р±РѕС‚Сѓ Рё РїРѕСЃС‚Р°СЂР°РµРјСЃСЏ РєР°Рє РјРѕР¶РЅРѕ СЃРєРѕСЂРµРµ СЂР°СЃСЃРјРѕС‚СЂРµС‚СЊ Р·Р°СЏРІРєСѓ РЅР° РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅРѕР№ СЃС‚Р°С‚СЊРё
 				<br /><br /><br /><br /><br /><br /><br /><br />
-				, с уважением<br />
-				Администрация Старого Бойцовского Клуба.
+				, СЃ СѓРІР°Р¶РµРЅРёРµРј<br />
+				РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ РЎС‚Р°СЂРѕРіРѕ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°.
 			<?
 				}else{
-					echo 'Произошла ошибка добавления статьи.<br><b>Обратитесь к Администрации!</b>';
+					echo 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ СЃС‚Р°С‚СЊРё.<br><b>РћР±СЂР°С‚РёС‚РµСЃСЊ Рє РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё!</b>';
 				}
 			}
 		}else{
@@ -257,7 +257,7 @@ if( !isset($url[2]) || $url[2] == '' ) {
 				}else{
 					unset($mbpage);
 					echo '<div align="center" style="background-color:#e8b8b8;border:1px solid #b93939;color:#b93939;padding:5px;"><small>';
-					echo 'Данная статья не найдена. Либо у Вас нет правд для её редактирования.';
+					echo 'Р”Р°РЅРЅР°СЏ СЃС‚Р°С‚СЊСЏ РЅРµ РЅР°Р№РґРµРЅР°. Р›РёР±Рѕ Сѓ Р’Р°СЃ РЅРµС‚ РїСЂР°РІРґ РґР»СЏ РµС‘ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ.';
 					echo '</small></div>';
 				}
 			}
@@ -267,7 +267,7 @@ if( !isset($url[2]) || $url[2] == '' ) {
 		if( isset($mbpage['id']) ) {
 			
 			if( isset($_POST['save2']) ) {
-				//Изменения
+				//РР·РјРµРЅРµРЅРёСЏ
 				if( $u->info['admin'] > 0 ) {
 					$red500 = false;
 					if( isset($_POST['lib_urlname']) && $_POST['lib_urlname'] != '' && $_POST['lib_urlname'] != $mbpage['url_name'] ) {
@@ -309,7 +309,7 @@ if( !isset($url[2]) || $url[2] == '' ) {
 			<tr>
 				  <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-					  <td width="150">Название статьи:</td>
+					  <td width="150">РќР°Р·РІР°РЅРёРµ СЃС‚Р°С‚СЊРё:</td>
 					  <td><input style="width:350px;" name="lib_title" type="text" id="lib_title" maxlength="100" value="<?=$mbpage['title']?>" /></td>
 					</tr>
 				  <?
@@ -320,7 +320,7 @@ if( !isset($url[2]) || $url[2] == '' ) {
 					  <td><input style="width:350px;" name="lib_urlname" type="text" id="lib_urlname" maxlength="100" value="<?=$mbpage['url_name']?>" /></td>
 					</tr>
 					<tr>
-					  <td width="150">Проверенная статья:</td>
+					  <td width="150">РџСЂРѕРІРµСЂРµРЅРЅР°СЏ СЃС‚Р°С‚СЊСЏ:</td>
 					  <td><input type="checkbox" <? if($mbpage['moder'] > 0){ echo 'checked="checked"'; } ?> name="lib_prov" id="lib_prov" value="1" /> <?
 					  if($mbpage['moder']>0) {
 						 echo $u->microLogin($mbpage['moder'],1); 
@@ -344,19 +344,19 @@ if( !isset($url[2]) || $url[2] == '' ) {
 			<tr>
 			  <td><table width="98%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-				  <td width="150">Дата публикации:</td>
+				  <td width="150">Р”Р°С‚Р° РїСѓР±Р»РёРєР°С†РёРё:</td>
 				  <td>
 				  <? 
 				  if(isset($mbpage['id'])) { echo date('d.m.Y',$mbpage['time']); }else{ echo date('d.m.Y'); }
 				  if($u->info['admin'] > 0 || $u->info['id'] == $mbpage['uid']) {
 				  ?>
-				  <button name="save2" type="submit" style="float:right">Сохранить</button>
+				  <button name="save2" type="submit" style="float:right">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
 				  <? } ?>
-				  <button name="save" type="submit" style="float:right">Опубликовать</button>
+				  <button name="save" type="submit" style="float:right">РћРїСѓР±Р»РёРєРѕРІР°С‚СЊ</button>
 				  </td>
 				</tr>
 				<tr>
-				  <td>Автор:</td>
+				  <td>РђРІС‚РѕСЂ:</td>
 				  <td><?=$u->microLogin($mbpage['uid'],1)?></td>
 				</tr>
 			  </table></td>
@@ -379,24 +379,24 @@ if( !isset($url[2]) || $url[2] == '' ) {
 			}
 			if( isset($pl['id']) ) {
 				$pl['text'] = str_replace('combatz.ru','origina;combats.com',$pl['text']);
-				$pl['text'] = str_replace('combatz','СБК',$pl['text']);
-				$pl['text'] = str_replace('CombatZ','СБК',$pl['text']);
+				$pl['text'] = str_replace('combatz','РЎР‘Рљ',$pl['text']);
+				$pl['text'] = str_replace('CombatZ','РЎР‘Рљ',$pl['text']);
 				if($pl['moder'] == 0) {
-					echo '<div align="center" style="background-color:#e8b8b8;border:1px solid #b93939;color:#b93939;padding:5px;"><small>Данная статья не прошла проверку и информация на ней не подтверждена!</small></div>';
+					echo '<div align="center" style="background-color:#e8b8b8;border:1px solid #b93939;color:#b93939;padding:5px;"><small>Р”Р°РЅРЅР°СЏ СЃС‚Р°С‚СЊСЏ РЅРµ РїСЂРѕС€Р»Р° РїСЂРѕРІРµСЂРєСѓ Рё РёРЅС„РѕСЂРјР°С†РёСЏ РЅР° РЅРµР№ РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅР°!</small></div>';
 				}
 				echo '<div class="lib-txt-title"><h3>'.$pl['title'].'</h3></div><div class="lib-txt">'.$pl['text'].'</div>';
 				if($pl['uid'] > 0 || $u->info['admin'] > 0) {
-					echo '<hr><small><div> &nbsp; Дата публицации: '.date('d.m.Y',$pl['time']).' &nbsp; / &nbsp; Автор: '.$u->microLogin($pl['uid'],1).'';
+					echo '<hr><small><div> &nbsp; Р”Р°С‚Р° РїСѓР±Р»РёС†Р°С†РёРё: '.date('d.m.Y',$pl['time']).' &nbsp; / &nbsp; РђРІС‚РѕСЂ: '.$u->microLogin($pl['uid'],1).'';
 					if($pl['uid'] == $u->info['id'] || $u->info['admin'] > 0) {
-						echo ' &nbsp; / &nbsp; <a target="_blank" href="http://xcombats.com/lib/new/'.$pl['url_name'].'/">Изменить</a>';
+						echo ' &nbsp; / &nbsp; <a target="_blank" href="http://xcombats.com/lib/new/'.$pl['url_name'].'/">РР·РјРµРЅРёС‚СЊ</a>';
 						if( $u->info['admin'] > 0 ) {
-							echo ' &nbsp; / &nbsp; <a href="http://xcombats.com/lib/'.$pl['url_name'].'/delete/">Удалить</a>';
+							echo ' &nbsp; / &nbsp; <a href="http://xcombats.com/lib/'.$pl['url_name'].'/delete/">РЈРґР°Р»РёС‚СЊ</a>';
 						}
 					}
 					echo '</div></small>';
 				}
 			}else{
-				echo '<div align="center" style="background-color:#e8b8b8;border:1px solid #b93939;color:#b93939;padding:5px;"><small>Статья не найдена. Скорее всего она была удалена, либо еще не создана.</small></div>';
+				echo '<div align="center" style="background-color:#e8b8b8;border:1px solid #b93939;color:#b93939;padding:5px;"><small>РЎС‚Р°С‚СЊСЏ РЅРµ РЅР°Р№РґРµРЅР°. РЎРєРѕСЂРµРµ РІСЃРµРіРѕ РѕРЅР° Р±С‹Р»Р° СѓРґР°Р»РµРЅР°, Р»РёР±Рѕ РµС‰Рµ РЅРµ СЃРѕР·РґР°РЅР°.</small></div>';
 			}
 		}
 		?>

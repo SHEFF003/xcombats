@@ -1,11 +1,11 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
 }
 
 if( $u->info['admin'] == 0 ) {
-	die('Раздел для администраторов, ты чего здесь забыл?');
+	die('Р Р°Р·РґРµР» РґР»СЏ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРІ, С‚С‹ С‡РµРіРѕ Р·РґРµСЃСЊ Р·Р°Р±С‹Р»?');
 }
 
 if(isset($_POST['wtext'])) {
@@ -21,7 +21,7 @@ if(isset($_POST['wtext'])) {
 	header('location: /main.php?worklist&addgood');
 	die();
 }elseif(isset($_GET['addgood'])) {
-	echo '<div><b><font color="red">Задание успешно добавлено. Теперь осталось его выполнить!</font></b></div>';
+	echo '<div><b><font color="red">Р—Р°РґР°РЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ. РўРµРїРµСЂСЊ РѕСЃС‚Р°Р»РѕСЃСЊ РµРіРѕ РІС‹РїРѕР»РЅРёС‚СЊ!</font></b></div>';
 }
 
 ?>
@@ -30,10 +30,10 @@ if(isset($_POST['wtext'])) {
     <tr>
       <td valign="top" align="left"><img src="http://img.xcombats.com/1x1.gif" alt="" width="1" height="5" /><br />
       &nbsp;&nbsp; </td>
-      <td align="center"><h3>Текущий план по захвату Мира! :)</h3></td>
+      <td align="center"><h3>РўРµРєСѓС‰РёР№ РїР»Р°РЅ РїРѕ Р·Р°С…РІР°С‚Сѓ РњРёСЂР°! :)</h3></td>
       <td align="right">&nbsp;
-        <input class="btnnew" type="button" onclick="location.href='main.php?worklist'" name="edit" value="Обновить" />
-        <input class="btnnew" type="submit" name="edit" value="Вернуться" />
+        <input class="btnnew" type="button" onclick="location.href='main.php?worklist'" name="edit" value="РћР±РЅРѕРІРёС‚СЊ" />
+        <input class="btnnew" type="submit" name="edit" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" />
         <br />
       </td></tr>
     <tr>
@@ -44,17 +44,17 @@ if(isset($_POST['wtext'])) {
   <form id="form1" name="form1" method="post" action="">
     <tr>
       <td align="left"></td>
-      <td align="left">Добавить новую запись:<br /><textarea name="wtext" style="width:100%;height:100px;"></textarea></td>
-      <td align="left"> &nbsp; &nbsp;<input class="btnnew" type="submit" value="Добавить" /><br />
-       &nbsp; &nbsp;Приоритет: 
+      <td align="left">Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ Р·Р°РїРёСЃСЊ:<br /><textarea name="wtext" style="width:100%;height:100px;"></textarea></td>
+      <td align="left"> &nbsp; &nbsp;<input class="btnnew" type="submit" value="Р”РѕР±Р°РІРёС‚СЊ" /><br />
+       &nbsp; &nbsp;РџСЂРёРѕСЂРёС‚РµС‚: 
          <label for="select"></label>
          <select name="select" id="select">
-           <option value="0" selected="selected">Не важно</option>
-           <option value="1">Мелочь</option>
-           <option value="2">Недочет</option>
-           <option value="3">Баг</option>
-           <option value="4">Серьезный баг</option>
-           <option value="5">ВАЖНО!!!</option>
+           <option value="0" selected="selected">РќРµ РІР°Р¶РЅРѕ</option>
+           <option value="1">РњРµР»РѕС‡СЊ</option>
+           <option value="2">РќРµРґРѕС‡РµС‚</option>
+           <option value="3">Р‘Р°Рі</option>
+           <option value="4">РЎРµСЂСЊРµР·РЅС‹Р№ Р±Р°Рі</option>
+           <option value="5">Р’РђР–РќРћ!!!</option>
          </select>
       </td></tr></form>
   <?
@@ -65,10 +65,10 @@ if(isset($_POST['wtext'])) {
 	  }else{
 		  $pl['text'] = str_replace("\n",'<br>',$pl['text']);
 		  $plp = array(
-			'<font color=grey>Не важно</font>','<font color=maroon>Не важно</font>','<font color=green>Недочет</font>','<font color=blue>Не важно</font>','<font color=red>Не важно</font>','<b><font color=red>ВАЖНО!!!</font></b>',''
+			'<font color=grey>РќРµ РІР°Р¶РЅРѕ</font>','<font color=maroon>РќРµ РІР°Р¶РЅРѕ</font>','<font color=green>РќРµРґРѕС‡РµС‚</font>','<font color=blue>РќРµ РІР°Р¶РЅРѕ</font>','<font color=red>РќРµ РІР°Р¶РЅРѕ</font>','<b><font color=red>Р’РђР–РќРћ!!!</font></b>',''
 		  );
 		  echo '<tr>
-		  <td width="230" valign="top" align="left">#'.$pl['id'].' &nbsp; <small style="color:#adadad">|</small> &nbsp; '.date('d.m.Y H:i',$pl['time']).'<br>Приоритет: '.$plp[$pl['prior']].'</td>
+		  <td width="230" valign="top" align="left">#'.$pl['id'].' &nbsp; <small style="color:#adadad">|</small> &nbsp; '.date('d.m.Y H:i',$pl['time']).'<br>РџСЂРёРѕСЂРёС‚РµС‚: '.$plp[$pl['prior']].'</td>
 		  <td align="left">'.$pl['text'].'</td>
 		  <td align="right">&nbsp;<input onclick="location.href=\'/main.php?worklist&del='.$pl['id'].'\';" class="btnnew" type="button" value="X" />
 			<br />

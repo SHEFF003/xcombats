@@ -1,8 +1,8 @@
 <?php
 /*
 
-	Ядро для обработки данных.
-	Обработка поединков, обработка заявок, обработка ботов, обработка пещер, обработка турниров, обработка временных генераций
+	РЇРґСЂРѕ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С….
+	РћР±СЂР°Р±РѕС‚РєР° РїРѕРµРґРёРЅРєРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° Р·Р°СЏРІРѕРє, РѕР±СЂР°Р±РѕС‚РєР° Р±РѕС‚РѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РїРµС‰РµСЂ, РѕР±СЂР°Р±РѕС‚РєР° С‚СѓСЂРЅРёСЂРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РІСЂРµРјРµРЅРЅС‹С… РіРµРЅРµСЂР°С†РёР№
 
 */
 
@@ -18,13 +18,13 @@ if( $u->info['admin'] == 0 && $u->info['id'] != 1001398 ) {
 }
 
 if( isset($_POST['it_name']) ) {
-	//Добавляем предмет
+	//Р”РѕР±Р°РІР»СЏРµРј РїСЂРµРґРјРµС‚
 	$error = '';
 	
 /*
 Array
 (
-[it_name] => Кастет -Когти медведя-
+[it_name] => РљР°СЃС‚РµС‚ -РљРѕРіС‚Рё РјРµРґРІРµРґСЏ-
 [it_img] => old/kastet2.gif
 [it_type] => 18
 [it_massa] => 2
@@ -40,7 +40,7 @@ Array
 [it_max_text] =>
 [it_ndata] =>
 [it_data_value] => |sv_minAtack=2|sv_maxAtack=4
-[button] => Отправить предмет в базу
+[button] => РћС‚РїСЂР°РІРёС‚СЊ РїСЂРµРґРјРµС‚ РІ Р±Р°Р·Сѓ
 )
 */
 	
@@ -77,28 +77,28 @@ Array
 				"'.$iid.'","'.mysql_real_escape_string($_POST['it_data_value']).'"
 			)');
 			if( !$ins ) {
-				$error = 'Неудалось добавить Er::(2)!';
+				$error = 'РќРµСѓРґР°Р»РѕСЃСЊ РґРѕР±Р°РІРёС‚СЊ Er::(2)!';
 			}else{
-				$error = $iid.' Предмет добавлен!';
+				$error = $iid.' РџСЂРµРґРјРµС‚ РґРѕР±Р°РІР»РµРЅ!';
 			}
 		}else{
-			$error = 'Неудалось добавить Er::(1)!';
+			$error = 'РќРµСѓРґР°Р»РѕСЃСЊ РґРѕР±Р°РІРёС‚СЊ Er::(1)!';
 		}
 	
 	
 	if( $error == '' ) {
-		$error = 'Что-то не так...';
+		$error = 'Р§С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє...';
 	}
 	die('<font color=red><b>'.$error.'</b></font>');
 }
 
 
-	//Редактор предметов
+	//Р РµРґР°РєС‚РѕСЂ РїСЂРµРґРјРµС‚РѕРІ
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Редактор предметов</title>
+<title>Р РµРґР°РєС‚РѕСЂ РїСЂРµРґРјРµС‚РѕРІ</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
 var et = {
@@ -119,12 +119,12 @@ var et = {
 	},
 	data:{
 		img:'w/w10.gif',
-		name:'Название нового предмета'
+		name:'РќР°Р·РІР°РЅРёРµ РЅРѕРІРѕРіРѕ РїСЂРµРґРјРµС‚Р°'
 	},
 	complData:function() {
 		var html = '';
 		
-		//Требует
+		//РўСЂРµР±СѓРµС‚
 		if( this.it_data_pr.tr != undefined ) {
 			var i = 0;
 			while( i <= this.it_data_pr.tr ) {
@@ -135,7 +135,7 @@ var et = {
 				i++;
 			}
 		}
-		//Действует на
+		//Р”РµР№СЃС‚РІСѓРµС‚ РЅР°
 		if( this.it_data_pr.add != undefined ) {
 			var i = 0;
 			while( i <= this.it_data_pr.add ) {
@@ -146,7 +146,7 @@ var et = {
 				i++;
 			}
 		}
-		//Свойства
+		//РЎРІРѕР№СЃС‚РІР°
 		if( this.it_data_pr.sv != undefined ) {
 			var i = 0;
 			while( i <= this.it_data_pr.sv ) {
@@ -157,7 +157,7 @@ var et = {
 				i++;
 			}
 		}
-		//Остальное
+		//РћСЃС‚Р°Р»СЊРЅРѕРµ
 		if( this.it_data_pr.all != undefined ) {
 			var i = 0;
 			while( i <= this.it_data_pr.all ) {
@@ -199,20 +199,20 @@ var et = {
 	compl:function() {
 		var html = '',html_l = '',html_r = '';
 		
-		//Собираем данные
+		//РЎРѕР±РёСЂР°РµРј РґР°РЅРЅС‹Рµ
 		this.data = {
 			'name' : $('#it_name').val(),
 			'img' : $('#it_img').val()
 			
 		};
 		
-		//Левая часть
+		//Р›РµРІР°СЏ С‡Р°СЃС‚СЊ
 		html_l += '<img src="http://img.xcombats.com/i/items/' + this.data.img + '">';
 		
-		//Правая часть
+		//РџСЂР°РІР°СЏ С‡Р°СЃС‚СЊ
 		html_r = '<a href="#">' + this.data.name + '</a>';
 		
-		//Собираем
+		//РЎРѕР±РёСЂР°РµРј
 		html = '<table style="border:#A5A5A5 1px solid;" width="100%" border="0" cellspacing="0" cellpadding="0">'+
 					'<tr>'+
 						'<td valign="top">' + 
@@ -247,165 +247,165 @@ var et = {
         <form method="post" action="items_editor.php" target="F2">
         <table width="100%" border="0" cellspacing="0" cellpadding="5">
           <tr>
-            <td width="200" bgcolor="#FFCCCC">Название</td>
+            <td width="200" bgcolor="#FFCCCC">РќР°Р·РІР°РЅРёРµ</td>
             <td bgcolor="#FFCCCC"><input style="width:100%" type="text" name="it_name" id="it_name"></td>
           </tr>
           <tr>
-            <td>Изображение</td>
+            <td>РР·РѕР±СЂР°Р¶РµРЅРёРµ</td>
             <td><input style="width:100%" type="text" name="it_img" id="it_img"></td>
           </tr>
           <tr>
-            <td bgcolor="#FFCCCC">Тип</td>
+            <td bgcolor="#FFCCCC">РўРёРї</td>
             <td bgcolor="#FFCCCC"><label for="it_type"></label>
               <select name="it_type" id="it_type">
-                <option value="0">выберите тип</option>
-                <option value="1">Шлем</option>
-                <option value="2">Венок</option>
-                <option value="3">Наручи</option>
-                <option value="4">Рубашка</option>
-                <option value="5">Легкая броня</option>
-                <option value="6">Тяжелая броня</option>
-                <option value="7">Плащ</option>
-                <option value="8">Пояс</option>
-                <option value="9">Серьги</option>
-                <option value="10">Амулет</option>
-                <option value="11">Кольцо</option>
-                <option value="12">Перчатки</option>
-                <option value="13">Щит</option>
-                <option value="14">Поножи</option>
-                <option value="15">Ботинки</option>
-                <option value="16">Предмет для карманов</option>
-                <option value="17">Предмет для смены</option>
-                <option value="18">Нож \ Кинжал</option>
-                <option value="19">Топор \ Секира</option>
-                <option value="20">Молот \ Дубина</option>
-                <option value="21">Меч \ Клинок</option>
-                <option value="22">Магический посох</option>
-                <option value="23">Лук</option>
-                <option value="24">Арбалет</option>
-                <option value="25">Боеприпасы \ Стреллы</option>
-                <option value="26">Костыли</option>
-                <option value="27">Легендарное оружие</option>
-                <option value="28">Цветы \ Букеты \ Ёлки</option>
-                <option value="29">Заклятие</option>
-                <option value="30">Эликсир</option>
-                <option value="31">Руна</option>
-                <option value="32">Ресурс</option>
-                <option value="33">Мусор</option>
-                <option value="34">Прочее</option>
-                <!--<option value="35">Сумка</option>-->
-                <option value="36">Усиление</option>
-                <option value="37">Упаковка</option>
-                <option value="38">Подарок</option>
-                <option value="39">Подарок (требует упаковку)</option>
-                <option value="40">Книжный прием</option>
-                <option value="41">Приглашение</option>
-                <option value="42">Билет</option>
-                <option value="43">Слот смены</option>
-                <option value="44">Пергамент (с текстом)</option>
-                <option value="45">Сумка</option>
-                <option value="46">Заточка</option>
-                <option value="47">Усиление 1</option>
-                <option value="48">Усиление 2 (временное)</option>
-                <option value="49">Корм для животного</option>
-                <option value="60">Бумага</option>
-                <option value="61">Чек</option>
-                <option value="62">Чарка</option>
-                <option value="63">Открытка</option>
+                <option value="0">РІС‹Р±РµСЂРёС‚Рµ С‚РёРї</option>
+                <option value="1">РЁР»РµРј</option>
+                <option value="2">Р’РµРЅРѕРє</option>
+                <option value="3">РќР°СЂСѓС‡Рё</option>
+                <option value="4">Р СѓР±Р°С€РєР°</option>
+                <option value="5">Р›РµРіРєР°СЏ Р±СЂРѕРЅСЏ</option>
+                <option value="6">РўСЏР¶РµР»Р°СЏ Р±СЂРѕРЅСЏ</option>
+                <option value="7">РџР»Р°С‰</option>
+                <option value="8">РџРѕСЏСЃ</option>
+                <option value="9">РЎРµСЂСЊРіРё</option>
+                <option value="10">РђРјСѓР»РµС‚</option>
+                <option value="11">РљРѕР»СЊС†Рѕ</option>
+                <option value="12">РџРµСЂС‡Р°С‚РєРё</option>
+                <option value="13">Р©РёС‚</option>
+                <option value="14">РџРѕРЅРѕР¶Рё</option>
+                <option value="15">Р‘РѕС‚РёРЅРєРё</option>
+                <option value="16">РџСЂРµРґРјРµС‚ РґР»СЏ РєР°СЂРјР°РЅРѕРІ</option>
+                <option value="17">РџСЂРµРґРјРµС‚ РґР»СЏ СЃРјРµРЅС‹</option>
+                <option value="18">РќРѕР¶ \ РљРёРЅР¶Р°Р»</option>
+                <option value="19">РўРѕРїРѕСЂ \ РЎРµРєРёСЂР°</option>
+                <option value="20">РњРѕР»РѕС‚ \ Р”СѓР±РёРЅР°</option>
+                <option value="21">РњРµС‡ \ РљР»РёРЅРѕРє</option>
+                <option value="22">РњР°РіРёС‡РµСЃРєРёР№ РїРѕСЃРѕС…</option>
+                <option value="23">Р›СѓРє</option>
+                <option value="24">РђСЂР±Р°Р»РµС‚</option>
+                <option value="25">Р‘РѕРµРїСЂРёРїР°СЃС‹ \ РЎС‚СЂРµР»Р»С‹</option>
+                <option value="26">РљРѕСЃС‚С‹Р»Рё</option>
+                <option value="27">Р›РµРіРµРЅРґР°СЂРЅРѕРµ РѕСЂСѓР¶РёРµ</option>
+                <option value="28">Р¦РІРµС‚С‹ \ Р‘СѓРєРµС‚С‹ \ РЃР»РєРё</option>
+                <option value="29">Р—Р°РєР»СЏС‚РёРµ</option>
+                <option value="30">Р­Р»РёРєСЃРёСЂ</option>
+                <option value="31">Р СѓРЅР°</option>
+                <option value="32">Р РµСЃСѓСЂСЃ</option>
+                <option value="33">РњСѓСЃРѕСЂ</option>
+                <option value="34">РџСЂРѕС‡РµРµ</option>
+                <!--<option value="35">РЎСѓРјРєР°</option>-->
+                <option value="36">РЈСЃРёР»РµРЅРёРµ</option>
+                <option value="37">РЈРїР°РєРѕРІРєР°</option>
+                <option value="38">РџРѕРґР°СЂРѕРє</option>
+                <option value="39">РџРѕРґР°СЂРѕРє (С‚СЂРµР±СѓРµС‚ СѓРїР°РєРѕРІРєСѓ)</option>
+                <option value="40">РљРЅРёР¶РЅС‹Р№ РїСЂРёРµРј</option>
+                <option value="41">РџСЂРёРіР»Р°С€РµРЅРёРµ</option>
+                <option value="42">Р‘РёР»РµС‚</option>
+                <option value="43">РЎР»РѕС‚ СЃРјРµРЅС‹</option>
+                <option value="44">РџРµСЂРіР°РјРµРЅС‚ (СЃ С‚РµРєСЃС‚РѕРј)</option>
+                <option value="45">РЎСѓРјРєР°</option>
+                <option value="46">Р—Р°С‚РѕС‡РєР°</option>
+                <option value="47">РЈСЃРёР»РµРЅРёРµ 1</option>
+                <option value="48">РЈСЃРёР»РµРЅРёРµ 2 (РІСЂРµРјРµРЅРЅРѕРµ)</option>
+                <option value="49">РљРѕСЂРј РґР»СЏ Р¶РёРІРѕС‚РЅРѕРіРѕ</option>
+                <option value="60">Р‘СѓРјР°РіР°</option>
+                <option value="61">Р§РµРє</option>
+                <option value="62">Р§Р°СЂРєР°</option>
+                <option value="63">РћС‚РєСЂС‹С‚РєР°</option>
               </select></td>
           </tr>
           <tr>
-            <td>Масса</td>
+            <td>РњР°СЃСЃР°</td>
             <td><input style="width:100%" type="text" name="it_massa" id="it_massa"></td>
           </tr>
           <tr>
-            <td>Судьба</td>
+            <td>РЎСѓРґСЊР±Р°</td>
             <td><input name="it_sudba" type="checkbox" id="it_sudba" value="1"></td>
           </tr>
           <tr>
-            <td>Артефакт</td>
+            <td>РђСЂС‚РµС„Р°РєС‚</td>
             <td><input name="it_art2" type="checkbox" id="it_art3" value="1"></td>
           </tr>
           <tr>
-            <td>Двуручное</td>
+            <td>Р”РІСѓСЂСѓС‡РЅРѕРµ</td>
             <td><input name="it_2h" type="checkbox" id="it_art4" value="1"></td>
           </tr>
           <tr>
-            <td>В обе руки</td>
+            <td>Р’ РѕР±Рµ СЂСѓРєРё</td>
             <td><input name="it_2too2" type="checkbox" id="it_2too3" value="1"></td>
           </tr>
           <tr>
-            <td>Цена (кр)</td>
+            <td>Р¦РµРЅР° (РєСЂ)</td>
             <td><input style="width:100%" type="text" name="it_price1" id="it_price1"></td>
           </tr>
           <tr>
-            <td>Цена (екр)</td>
+            <td>Р¦РµРЅР° (РµРєСЂ)</td>
             <td><input style="width:100%" type="text" name="it_price2" id="it_price2"></td>
           </tr>
           <tr>
-            <td>Долговечность</td>
+            <td>Р”РѕР»РіРѕРІРµС‡РЅРѕСЃС‚СЊ</td>
             <td><input style="width:100%" type="text" name="it_iznos" id="it_iznos"></td>
           </tr>
           <tr>
-            <td bgcolor="#FFCCCC">Слот</td>
+            <td bgcolor="#FFCCCC">РЎР»РѕС‚</td>
             <td bgcolor="#FFCCCC"><select name="it_slot" id="it_slot">
-              <option value="0">не надевается</option>
-              <option value="1">Шлем</option>
-              <option value="2">Наручи</option>
-              <option value="3">Оружие (Правая рука)</option>
-              <option value="4">Рубаха</option>
-              <option value="5">Броня</option>
-              <option value="6">Плащ</option>
-              <option value="7">Пояс</option>
-              <option value="8">Серьги</option>
-              <option value="9">Амулет</option>
-              <option value="10">Кольцо</option>
-              <option value="13">Перчатки</option>
-              <option value="14">Оружие \ Щит (Левая рука)</option>
-              <option value="16">Поножи</option>
-              <option value="17">Ботинки</option>
-              <option value="18">Приём</option>
-              <option value="40">Заклятия</option>
-              <option value="51">Книга</option>
-              <option value="52">Венок</option>
-              <option value="53">Карман</option>
-              <option value="55">Центральный карман</option>
-              <option value="56">Смена оружия</option>
-              <option value="59">Слот сумки</option>
+              <option value="0">РЅРµ РЅР°РґРµРІР°РµС‚СЃСЏ</option>
+              <option value="1">РЁР»РµРј</option>
+              <option value="2">РќР°СЂСѓС‡Рё</option>
+              <option value="3">РћСЂСѓР¶РёРµ (РџСЂР°РІР°СЏ СЂСѓРєР°)</option>
+              <option value="4">Р СѓР±Р°С…Р°</option>
+              <option value="5">Р‘СЂРѕРЅСЏ</option>
+              <option value="6">РџР»Р°С‰</option>
+              <option value="7">РџРѕСЏСЃ</option>
+              <option value="8">РЎРµСЂСЊРіРё</option>
+              <option value="9">РђРјСѓР»РµС‚</option>
+              <option value="10">РљРѕР»СЊС†Рѕ</option>
+              <option value="13">РџРµСЂС‡Р°С‚РєРё</option>
+              <option value="14">РћСЂСѓР¶РёРµ \ Р©РёС‚ (Р›РµРІР°СЏ СЂСѓРєР°)</option>
+              <option value="16">РџРѕРЅРѕР¶Рё</option>
+              <option value="17">Р‘РѕС‚РёРЅРєРё</option>
+              <option value="18">РџСЂРёС‘Рј</option>
+              <option value="40">Р—Р°РєР»СЏС‚РёСЏ</option>
+              <option value="51">РљРЅРёРіР°</option>
+              <option value="52">Р’РµРЅРѕРє</option>
+              <option value="53">РљР°СЂРјР°РЅ</option>
+              <option value="55">Р¦РµРЅС‚СЂР°Р»СЊРЅС‹Р№ РєР°СЂРјР°РЅ</option>
+              <option value="56">РЎРјРµРЅР° РѕСЂСѓР¶РёСЏ</option>
+              <option value="59">РЎР»РѕС‚ СЃСѓРјРєРё</option>
 			  </select></td>
           </tr>
           <tr>
-            <td>Раздел инвентаря</td>
+            <td>Р Р°Р·РґРµР» РёРЅРІРµРЅС‚Р°СЂСЏ</td>
             <td><select name="it_inRazdel" id="it_inRazdel">
-              <option value="1">Обмундирование</option>
-              <option value="2">Заклятия</option>
-              <option value="3">Эликсиры</option>
-              <option value="6">Руны</option>
-              <option value="4">Прочее</option>
+              <option value="1">РћР±РјСѓРЅРґРёСЂРѕРІР°РЅРёРµ</option>
+              <option value="2">Р—Р°РєР»СЏС‚РёСЏ</option>
+              <option value="3">Р­Р»РёРєСЃРёСЂС‹</option>
+              <option value="6">Р СѓРЅС‹</option>
+              <option value="4">РџСЂРѕС‡РµРµ</option>
             </select></td>
           </tr>
           <tr>
-            <td>Информация</td>
+            <td>РРЅС„РѕСЂРјР°С†РёСЏ</td>
             <td><input style="width:100%" type="text" name="it_info" id="it_info"></td>
           </tr>
           <tr>
-            <td bgcolor="#FFCCCC">Группировка</td>
+            <td bgcolor="#FFCCCC">Р“СЂСѓРїРїРёСЂРѕРІРєР°</td>
             <td bgcolor="#FFCCCC"><input style="width:100%" type="text" name="it_group_max" id="it_group_max"></td>
           </tr>
           <tr>
-            <td>Поколение</td>
+            <td>РџРѕРєРѕР»РµРЅРёРµ</td>
             <td><input style="width:100%" type="text" name="it_geni" id="it_geni"></td>
           </tr>
           <tr>
-            <td>Срок годности (сек.)</td>
+            <td>РЎСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё (СЃРµРє.)</td>
             <td><input style="width:100%" type="text" name="it_srok" id="it_srok"></td>
           </tr>
           <tr>
-            <td>Макс. текст (символов)</td>
+            <td>РњР°РєСЃ. С‚РµРєСЃС‚ (СЃРёРјРІРѕР»РѕРІ)</td>
             <td><input style="width:100%" type="text" name="it_max_text" id="it_max_text"></td>
           </tr>
           <tr>
-            <td bgcolor="#FFFFCC">Доп.дата</td>
+            <td bgcolor="#FFFFCC">Р”РѕРї.РґР°С‚Р°</td>
             <td bgcolor="#FFFFCC"><input style="width:100%" type="text" name="it_ndata" id="it_ndata"></td>
           </tr>
           <tr>
@@ -416,7 +416,7 @@ var et = {
             <td>
             <iframe id="F2" width="200" height="30" name="F2" frameborder="0" marginheight="0" marginwidth="0"></iframe>
             </td>
-            <td><input type="submit" name="button" id="button" value=" Отправить предмет в базу "></td>
+            <td><input type="submit" name="button" id="button" value=" РћС‚РїСЂР°РІРёС‚СЊ РїСЂРµРґРјРµС‚ РІ Р±Р°Р·Сѓ "></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -430,25 +430,25 @@ var et = {
     <!-- loading img -->
     </td>
     <td valign="top" bgcolor="#C8C8C8">
-    <button onClick="et.complData()">Собрать дату</button>
+    <button onClick="et.complData()">РЎРѕР±СЂР°С‚СЊ РґР°С‚Сѓ</button>
     <hr>
     
-    <b>Требования: <a href="javascript:et.newpar('tr')">[+]</a></b>
+    <b>РўСЂРµР±РѕРІР°РЅРёСЏ: <a href="javascript:et.newpar('tr')">[+]</a></b>
     <div id="it_data_tr">
     
     </div>
     
-    <b>Действует на: <a href="javascript:et.newpar('add')">[+]</a></b>
+    <b>Р”РµР№СЃС‚РІСѓРµС‚ РЅР°: <a href="javascript:et.newpar('add')">[+]</a></b>
     <div id="it_data_add">
     
     </div>
     
-    <b>Свойства: <a href="javascript:et.newpar('sv')">[+]</a></b>
+    <b>РЎРІРѕР№СЃС‚РІР°: <a href="javascript:et.newpar('sv')">[+]</a></b>
     <div id="it_data_sv">
     
     </div>
     
-    <b>Остальное: <a href="javascript:et.newpar('all')">[+]</a></b>
+    <b>РћСЃС‚Р°Р»СЊРЅРѕРµ: <a href="javascript:et.newpar('all')">[+]</a></b>
     <div id="it_data_all">
     
     </div>

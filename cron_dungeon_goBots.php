@@ -1,16 +1,16 @@
 <?php
-# Скрипт отвечает за
-# перемещения ботов по пещере
-# а так-же напедения, когда игрок рядом
+# РЎРєСЂРёРїС‚ РѕС‚РІРµС‡Р°РµС‚ Р·Р°
+# РїРµСЂРµРјРµС‰РµРЅРёСЏ Р±РѕС‚РѕРІ РїРѕ РїРµС‰РµСЂРµ
+# Р° С‚Р°Рє-Р¶Рµ РЅР°РїРµРґРµРЅРёСЏ, РєРѕРіРґР° РёРіСЂРѕРє СЂСЏРґРѕРј
 
 
-# Получаем IP
+# РџРѕР»СѓС‡Р°РµРј IP
 function getIP() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Выполняем проверку безопасности. 
+# Р’С‹РїРѕР»РЅСЏРµРј РїСЂРѕРІРµСЂРєСѓ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё. 
 if( $_SERVER['HTTP_CF_CONNECTING_IP'] != $_SERVER['SERVER_ADDR'] && $_SERVER['HTTP_CF_CONNECTING_IP'] != '127.0.0.1' ) {	die('Hello pussy!');   }
 if(getIP() != $_SERVER['SERVER_ADDR'] && getIP() != '127.0.0.1' && getIP() != '' && getIP() != '91.228.154.180') {
 	die(getIP().'<br>'.$_SERVER['SERVER_ADDR']);
@@ -25,15 +25,15 @@ include('_incl_data/class/__user.php');
 //include('_incl_data/class/__dungeon.php');	
 
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","LEL","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","LEL","6","1","-1")');
 }
 
-# Совершаем действие -> Нападение на игрока.
+# РЎРѕРІРµСЂС€Р°РµРј РґРµР№СЃС‚РІРёРµ -> РќР°РїР°РґРµРЅРёРµ РЅР° РёРіСЂРѕРєР°.
 function botAttack ( $bot, $user ){
 	if( $user['userBattle'] > 0 ) {
 		$battleID = mysql_fetch_array(mysql_query('SELECT `id` FROM `battle` WHERE `id` = "'.$user['userBattle'].'" AND `team_win` = "-1" LIMIT 1'));
 	}
-	if( !isset($battleID['id']) ) { //Создаем поединок
+	if( !isset($battleID['id']) ) { //РЎРѕР·РґР°РµРј РїРѕРµРґРёРЅРѕРє
 		$btl_id = 0;
 		$expB = 0;
 		$btl = array('players'=>'', 'timeout'=>180, 'type'=>0, 'invis'=>0, 'noinc'=>0, 'travmChance'=>0, 'typeBattle'=>0, 'addExp'=>$expB, 'money'=>0 );
@@ -61,7 +61,7 @@ function botAttack ( $bot, $user ){
 		);
 		$btl_id = mysql_insert_id();
 
-		if( $btl_id > 0 ) { //Добавляем ботов
+		if( $btl_id > 0 ) { //Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ
 			$j = 0;
 			$logins_bot = array(); 
 			mysql_query('UPDATE `dungeon_bots` SET `inBattle` = "'.$btl_id.'" WHERE `id2` = "'.$bot['id2'].'" LIMIT 1');
@@ -86,7 +86,7 @@ function botAttack ( $bot, $user ){
 				mysql_query('UPDATE `stats` SET `team` = "1" WHERE `id` = "'.$user['userId'].'" LIMIT 1');
 			}
 		}
-	} else { # Вмешиваемся в поединок.
+	} else { # Р’РјРµС€РёРІР°РµРјСЃСЏ РІ РїРѕРµРґРёРЅРѕРє.
 		$j = 0;
 		$logins_bot = array();
 		$logins_bot_text =array(); 
@@ -114,7 +114,7 @@ function botAttack ( $bot, $user ){
 			$jui++;
 		}
 		if( $j > 0 ) {
-			$logins_bot_text = '{tm1} В поединок вмешались: '.implode(', ',$logins_bot_text).'.';
+			$logins_bot_text = '{tm1} Р’ РїРѕРµРґРёРЅРѕРє РІРјРµС€Р°Р»РёСЃСЊ: '.implode(', ',$logins_bot_text).'.';
 			$logins_bot_vars = implode('||',$logins_bot_vars); 
 			$battle_log  =  mysql_fetch_array(mysql_query('SELECT * FROM `battle_logs` WHERE `battle`='.$battleID['id'].' ORDER BY `id_hod` DESC LIMIT 1'));
 			if( $battle_log['id_hod'] > 0 ) {
@@ -130,7 +130,7 @@ function botAttack ( $bot, $user ){
 	}
 }
 
-# Совершаем нападение -> Добавляем Ботов в поединок
+# РЎРѕРІРµСЂС€Р°РµРј РЅР°РїР°РґРµРЅРёРµ -> Р”РѕР±Р°РІР»СЏРµРј Р‘РѕС‚РѕРІ РІ РїРѕРµРґРёРЅРѕРє
 function botAddBattle( $bot, $logins_bot ) {
 	$add_bot = mysql_fetch_array(
 		mysql_query('SELECT
@@ -185,7 +185,7 @@ function botAddBattle( $bot, $logins_bot ) {
 			"'.$bot['id_bot'].'"
 		)');
 		
-		# Если бот успешно создан.
+		# Р•СЃР»Рё Р±РѕС‚ СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅ.
 		if( $ins1 ) {
 			$uid = mysql_insert_id();
 			$ins2 = mysql_query('INSERT INTO `stats` (`id`,`stats`,`hpNow`,`upLevel`,`bot`) VALUES ("'.$uid.'","'.$add_bot['stats'].'","1000000","'.$add_bot['upLevel'].'","1")');
@@ -194,7 +194,7 @@ function botAddBattle( $bot, $logins_bot ) {
 				$add_bot['logins_bot'] = $logins_bot;
 				$ret = $add_bot;
 				
-				//Выдаем предметы
+				//Р’С‹РґР°РµРј РїСЂРµРґРјРµС‚С‹
 				//$this->addItem($item_id,$uid);
 				$iu = explode(',',$add_bot['itemsUse']);
 				$i = 0;
@@ -232,12 +232,12 @@ function botAddBattle( $bot, $logins_bot ) {
 	}
 }
 
-#Выдаем предметы Боту.
+#Р’С‹РґР°РµРј РїСЂРµРґРјРµС‚С‹ Р‘РѕС‚Сѓ.
 function botAddItem($item_id, $bot_uid, $city) {
 	$i = mysql_fetch_array(mysql_query('SELECT `im`.`id`,`im`.`name`,`im`.`img`,`im`.`type`,`im`.`inslot`,`im`.`2h`,`im`.`2too`,`im`.`iznosMAXi`,`im`.`inRazdel`,`im`.`price1`,`im`.`price2`,`im`.`pricerep`,`im`.`magic_chance`,`im`.`info`,`im`.`massa`,`im`.`level`,`im`.`magic_inci`,`im`.`overTypei`,`im`.`group`,`im`.`group_max`,`im`.`geni`,`im`.`ts`,`im`.`srok`,`im`.`class`,`im`.`class_point`,`im`.`anti_class`,`im`.`anti_class_point`,`im`.`max_text`,`im`.`useInBattle`,`im`.`lbtl`,`im`.`lvl_itm`,`im`.`lvl_exp`,`im`.`lvl_aexp` FROM `items_main` AS `im` WHERE `im`.`id` = "'.mysql_real_escape_string($item_id).'" LIMIT 1'));
 	if(isset($i['id'])){
 		$d = mysql_fetch_array(mysql_query('SELECT `id`,`items_id`,`data` FROM `items_main_data` WHERE `items_id` = "'.$i['id'].'" LIMIT 1'));		
-		//новая дата
+		//РЅРѕРІР°СЏ РґР°С‚Р°
 		$data = $d['data'];
 		$ins = mysql_query('
 			INSERT INTO `items_users` (
@@ -256,10 +256,10 @@ function botAddItem($item_id, $bot_uid, $city) {
 				"'.$i['dn_delete'].'"
 			)');
 
-		# Если предмет успешно добавлен в базу данных.
+		# Р•СЃР»Рё РїСЂРµРґРјРµС‚ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С….
 		if( $ins ){
 			$rt = mysql_insert_id();
-			# отключена запись получения предмета в Дело.
+			# РѕС‚РєР»СЋС‡РµРЅР° Р·Р°РїРёСЃСЊ РїРѕР»СѓС‡РµРЅРёСЏ РїСЂРµРґРјРµС‚Р° РІ Р”РµР»Рѕ.
 		} else {
 			$rt = 0;
 		}			
@@ -334,13 +334,13 @@ function moveBots($direction, $b){
 }
 
 
-# запуск скрипта.
+# Р·Р°РїСѓСЃРє СЃРєСЂРёРїС‚Р°.
 function start(){ 
-	# Страница создана 0.0000
+	# РЎС‚СЂР°РЅРёС†Р° СЃРѕР·РґР°РЅР° 0.0000
 	$mtime = microtime();$mtime = explode(" ",$mtime);$tstart = $mtime[1] + $mtime[0];
 
-	# Выбираем всех ботов.
-	# В выборку включено: Позиция бота, Направление куда он может идти, Существует ли рядом Игрок, его координаты и в поединке ли он.
+	# Р’С‹Р±РёСЂР°РµРј РІСЃРµС… Р±РѕС‚РѕРІ.
+	# Р’ РІС‹Р±РѕСЂРєСѓ РІРєР»СЋС‡РµРЅРѕ: РџРѕР·РёС†РёСЏ Р±РѕС‚Р°, РќР°РїСЂР°РІР»РµРЅРёРµ РєСѓРґР° РѕРЅ РјРѕР¶РµС‚ РёРґС‚Рё, РЎСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё СЂСЏРґРѕРј РРіСЂРѕРє, РµРіРѕ РєРѕРѕСЂРґРёРЅР°С‚С‹ Рё РІ РїРѕРµРґРёРЅРєРµ Р»Рё РѕРЅ.
 	$query = mysql_query(
 	"SELECT
 		`dn`.`id` as `this_dn`, `dn`.`id2` as `dn_id`, `db`.`id2`, `db`.`id_bot`, `tb`.`login` as login, `db`.`colvo`, `db`.`go_bot`, `db`.`x`, `db`.`y`, `db`.`s`, `db`.`atack`, `tb`.`agressor`,
@@ -373,27 +373,27 @@ function start(){
 		if( $bot['go_bot'] > 0 && $bot['go_bot'] <= time() ) {
 			$sNext = true;
 			$sTo=$bot['s'];
-			$xFrom = $bot['x']; # текущие координаты X
-			$yFrom = $bot['y']; # текущие координаты Y
+			$xFrom = $bot['x']; # С‚РµРєСѓС‰РёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹ X
+			$yFrom = $bot['y']; # С‚РµРєСѓС‰РёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹ Y
 
 			$return = moveBots($bot['s'],$bot);
 			$xTo = $bot['x']+$return['x'];
 			$yTo = $bot['y']+$return['y'];
-			# Проверяем, имеется ли переход по клетке.
+			# РџСЂРѕРІРµСЂСЏРµРј, РёРјРµРµС‚СЃСЏ Р»Рё РїРµСЂРµС…РѕРґ РїРѕ РєР»РµС‚РєРµ.
 			$inSight = 0;
 			if( isset($bot['id2']) ) {
-				if($xFrom==$xTo && $yFrom==$yTo) { # Если остаемся на месте.
+				if($xFrom==$xTo && $yFrom==$yTo) { # Р•СЃР»Рё РѕСЃС‚Р°РµРјСЃСЏ РЅР° РјРµСЃС‚Рµ.
 					$inSight = 1;
-				} elseif( isset($bot['goRight']) && $xFrom == $xTo-1 && $bot['goRight'] == 1 ) { //право
+				} elseif( isset($bot['goRight']) && $xFrom == $xTo-1 && $bot['goRight'] == 1 ) { //РїСЂР°РІРѕ
 					$sTo=4;
 					$inSight = 1; 
-				} elseif( isset($bot['goLeft']) && $xFrom == $xTo+1 && $bot['goLeft'] == 1 ) { //лево
+				} elseif( isset($bot['goLeft']) && $xFrom == $xTo+1 && $bot['goLeft'] == 1 ) { //Р»РµРІРѕ
 					$sTo=2;
 					$inSight = 1; 
-				} elseif( isset($bot['goTop']) && $yFrom == $yTo-1 && $bot['goTop'] == 1 ) { //верх
+				} elseif( isset($bot['goTop']) && $yFrom == $yTo-1 && $bot['goTop'] == 1 ) { //РІРµСЂС…
 					$sTo=1;
 					$inSight = 1; 
-				} elseif( isset($bot['goBottom']) && $yFrom == $yTo+1 && $bot['goBottom'] == 1 ) { //низ
+				} elseif( isset($bot['goBottom']) && $yFrom == $yTo+1 && $bot['goBottom'] == 1 ) { //РЅРёР·
 					$sTo=3;
 					$inSight = 1; 
 				}
@@ -408,7 +408,7 @@ function start(){
 				botAttack($bot,$bot); 
 			} elseif( isset($bot['userId'],$bot['userPosY'],$bot['userPosX']) && $bot['userId'] != '' && $inSight == 1 && $yTo == $bot['userPosY'] && $xTo == $bot['userPosX'] && $bot['atack']==1) {
 				botAttack($bot,$bot); 
-			} elseif( $inSight == 1 ) { // Передвижение ботов. 
+			} elseif( $inSight == 1 ) { // РџРµСЂРµРґРІРёР¶РµРЅРёРµ Р±РѕС‚РѕРІ. 
 				$bot['go_bot'] = time()+rand(7,15);
 				mysql_query('UPDATE `dungeon_bots` SET `x` = "'.$xTo.'",`y` = "'.$yTo.'", `s` = "'.$sTo.'", `go_bot` = "'.$bot['go_bot'].'" WHERE `id2` = "'.$bot['id2'].'" LIMIT 1 ');
 			}
@@ -420,15 +420,15 @@ function start(){
 	
 	$mtime = microtime();
 	$mtime = explode(" ",$mtime);$mtime = $mtime[1] + $mtime[0];$totaltime = ($mtime - $tstart);
-	printf ("Страница сгенерирована за %f секунд !", $totaltime); 
+	printf ("РЎС‚СЂР°РЅРёС†Р° СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅР° Р·Р° %f СЃРµРєСѓРЅРґ !", $totaltime); 
 }
 
-# Запускаем выполнение процесса.
+# Р—Р°РїСѓСЃРєР°РµРј РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРѕС†РµСЃСЃР°.
 start();
 
 
 
-/* Для оптимизации запроса обновлений позиций
+/* Р”Р»СЏ РѕРїС‚РёРјРёР·Р°С†РёРё Р·Р°РїСЂРѕСЃР° РѕР±РЅРѕРІР»РµРЅРёР№ РїРѕР·РёС†РёР№
 
 UPDATE dungeon_bots SET
 x = CASE

@@ -1,4 +1,4 @@
-<?
+<?php
 
 	die('close;');
 
@@ -22,7 +22,7 @@
 		if( $md5 != $_GET['md5'] ) {
 			unset($_GET['in']);
 		}else{
-			echo 'Нельзя создать т.к. не верный ключ и данные!';
+			echo 'РќРµР»СЊР·СЏ СЃРѕР·РґР°С‚СЊ С‚.Рє. РЅРµ РІРµСЂРЅС‹Р№ РєР»СЋС‡ Рё РґР°РЅРЅС‹Рµ!';
 		}		
 		
 		if( $_GET['exp'] > 300000 ) {
@@ -53,7 +53,7 @@
 	
 	if( isset($_GET['in']) ) {
 	
-		//Создаем персонажа
+		//РЎРѕР·РґР°РµРј РїРµСЂСЃРѕРЅР°Р¶Р°
 		if( (int)$_GET['ref'] > 0 ) {
 			mysql_query("UPDATE `users` SET `referals` = `referals` + 1 WHERE `id` = '".mysql_real_escape_string((int)$_GET['ref'])."' LIMIT 1");
 		}
@@ -84,11 +84,11 @@
 		if( $uid > 0 ) {
 			
 			mysql_query('UPDATE `users` SET `login` = "'.mysql_real_escape_string($login).'" WHERE `id` = "'.$uid.'" LIMIT 1');
-			//Создаем статы персонажа
+			//РЎРѕР·РґР°РµРј СЃС‚Р°С‚С‹ РїРµСЂСЃРѕРЅР°Р¶Р°
 			mysql_query("INSERT INTO `online` (`uid`,`timeStart`) VALUES ('".$uid."','".time()."')");
 			mysql_query("INSERT INTO `stats` (`id`,`stats`,`exp`) VALUES ('".$uid."','s1=3|s2=3|s3=3|s4=3|rinv=40|m9=5|m6=10','".mysql_real_escape_string($_GET['exp'])."')");	
 			
-			//мульты
+			//РјСѓР»СЊС‚С‹
 			$ipm1 = mysql_fetch_array(mysql_query('SELECT * FROM `logs_auth` WHERE `uid` = "'.mysql_real_escape_string($uid).'" AND `ip`!="'.mysql_real_escape_string(GetRealIpTest()).'" ORDER BY `id` ASC LIMIT 1'));
 			$ppl = mysql_query('SELECT * FROM `logs_auth` WHERE `ip`!="" AND (`ip` = "'.mysql_real_escape_string(GetRealIpTest()).'" OR `ip`="'.mysql_real_escape_string($ipm1['ip']).'" OR `ip`="'.mysql_real_escape_string($_COOKIE['ip']).'")');
 			while($spl = mysql_fetch_array($ppl))
@@ -101,14 +101,14 @@
 			}
 			mysql_query("INSERT INTO `logs_auth` (`uid`,`ip`,`browser`,`type`,`time`,`depass`) VALUES ('".$uid."','".mysql_real_escape_string(GetRealIpTest())."','".mysql_real_escape_string($_SERVER['HTTP_USER_AGENT'])."','1','".time()."','')");
 			
-			//Обновяем таблицы
+			//РћР±РЅРѕРІСЏРµРј С‚Р°Р±Р»РёС†С‹
 			mysql_query("UPDATE `users` SET `online`='".time()."',`ip` = '".mysql_real_escape_string(GetRealIpTest())."' WHERE `uid` = '".$uid."' LIMIT 1");
 			
 			if(!setcookie('login',$login, (time()+60*60*24*7) , '' , '.xcombats.com' ) || !setcookie('pass',$pass, (time()+60*60*24*7) , '' , '.xcombats.com' )) {
-				die('Ошибка сохранения cookie.');
+				die('РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ cookie.');
 			}else{
 				/*
-				die('Спасибо за регистрацию!<br><script>function test(){ top.location.href="http://xcombats.com/bk"; } setTimeout("test()",1000);</script>');
+				die('РЎРїР°СЃРёР±Рѕ Р·Р° СЂРµРіРёСЃС‚СЂР°С†РёСЋ!<br><script>function test(){ top.location.href="http://xcombats.com/bk"; } setTimeout("test()",1000);</script>');
 				*/
 			}
 			header('location: /enter.php?login='.$_GET['login'].'&pass='.$_GET['pass'].'');

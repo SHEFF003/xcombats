@@ -11,7 +11,7 @@ if(isset($_POST['loginos'])) {
 		if(isset($inf['id']) && (floor($u->info['align']) == floor($inf['align']) || $u->info['admin'] > 0)) {
 			mysql_query('UPDATE `users` SET `mod_zvanie` = "'.mysql_real_escape_string($_POST['loginos2']).'" WHERE `id` = "'.$inf['id'].'" LIMIT 1');
 		}else{
-			echo 'Нельзя изменить звание данному персонажу...';
+			echo 'РќРµР»СЊР·СЏ РёР·РјРµРЅРёС‚СЊ Р·РІР°РЅРёРµ РґР°РЅРЅРѕРјСѓ РїРµСЂСЃРѕРЅР°Р¶Сѓ...';
 		}
 	}
 }
@@ -60,7 +60,7 @@ if(d!=undefined)
 
 {
 
-document.getElementById('modtitle').innerHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="top">'+title+'</td><td width="30" valign="top"><div align="right"><a title="Закрыть окно" onClick="closeMod(); return false;" href="#">x</a></div></td></tr></table>';
+document.getElementById('modtitle').innerHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="top">'+title+'</td><td width="30" valign="top"><div align="right"><a title="Р—Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ" onClick="closeMod(); return false;" href="#">x</a></div></td></tr></table>';
 
 document.getElementById('moddata').innerHTML = dat;
 
@@ -101,22 +101,22 @@ d.style.display = 'none';
   <h3><?
 $ckln = '';
 if(floor($u->info['align'])==1) {
-	echo 'Орден Света';
+	echo 'РћСЂРґРµРЅ РЎРІРµС‚Р°';
 }else{
-	echo 'Армада';
+	echo 'РђСЂРјР°РґР°';
 }
 ?></h3></center>
-<input style="float:right;margin:1px" type="button" value="Вернуться" onClick="document.location='main.php'"><input style="float:right;margin:1px" type="button" value="Обновить" onClick="document.location='main.php?clan&rnd=<?=$code;?>'"><br>
+<input style="float:right;margin:1px" type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onClick="document.location='main.php'"><input style="float:right;margin:1px" type="button" value="РћР±РЅРѕРІРёС‚СЊ" onClick="document.location='main.php?clan&rnd=<?=$code;?>'"><br>
 
 <TABLE width="100%" cellpadding="5" cellspacing="10">
 <TR><TD valign=top>
 <? if($u->info['align'] == '1.99' || $u->info['admin']>0) { ?>
 <form action="main.php?clan=1" method="post">
-<b>Редактирование звания:</b><br>
-Логин: &nbsp; <input id="loginos" width="180" name="loginos" value=""><br>
-Звание: <input style="margin-left:2px;" width="180" id="loginos2" name="loginos2" value="">
+<b>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Р·РІР°РЅРёСЏ:</b><br>
+Р›РѕРіРёРЅ: &nbsp; <input id="loginos" width="180" name="loginos" value=""><br>
+Р—РІР°РЅРёРµ: <input style="margin-left:2px;" width="180" id="loginos2" name="loginos2" value="">
 <br>
-<input type="submit" value="Сохранить статус">
+<input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ СЃС‚Р°С‚СѓСЃ">
 </form>
 <? } ?>
 </TD><TD valign=top align=right>
@@ -131,7 +131,7 @@ if(floor($u->info['align'])==1) {
 	$ckln = 'tarmans';
 }
 ?>
-<h4><a href="javascript:void(0)" onClick="top.chat.addto('<?=$ckln?>','private')"><IMG border=0 SRC=http://img.xcombats.com/i/lock.gif WIDTH=20 HEIGHT=15 ALT="Приватно"></a> Соклановцы</H4>
+<h4><a href="javascript:void(0)" onClick="top.chat.addto('<?=$ckln?>','private')"><IMG border=0 SRC=http://img.xcombats.com/i/lock.gif WIDTH=20 HEIGHT=15 ALT="РџСЂРёРІР°С‚РЅРѕ"></a> РЎРѕРєР»Р°РЅРѕРІС†С‹</H4>
 		<table bgcolor=#eeeeee>
 			<tr>
 			<td align=left>
@@ -140,9 +140,9 @@ $res1 = mysql_query("SELECT `login`,`id`,`align`,`level`,`mod_zvanie`,`online`,`
 while($data = mysql_fetch_array($res1)) {
 				if ($data['online']>time()-120) {
 					echo '<A href="javascript:void(0)" onClick="top.chat.addto(\''.$data['login'].'\',\'private\')"><img src="http://img.xcombats.com/i/lock.gif" width=20 height=15></A>
-					<img title="'.$res['name'].'" src="http://img.xcombats.com/i/align/align'.$data['align'].'.gif"><b>'.$data['login'].'</b> ['.$data['level'].']<a href="info/'.$data['id'].'" target="_blank"><img title="Инф. о '.$data['login'].'" src="http://img.xcombats.com/i/inf_capitalcity.gif"></a>';
+					<img title="'.$res['name'].'" src="http://img.xcombats.com/i/align/align'.$data['align'].'.gif"><b>'.$data['login'].'</b> ['.$data['level'].']<a href="info/'.$data['id'].'" target="_blank"><img title="РРЅС„. Рѕ '.$data['login'].'" src="http://img.xcombats.com/i/inf_capitalcity.gif"></a>';
 					if ($data['clan_prava'] == 'glava') {
-						echo ' - <b>Глава клана</b>';
+						echo ' - <b>Р“Р»Р°РІР° РєР»Р°РЅР°</b>';
 					} else {
 							echo ' - ',$data['mod_zvanie'],'';
 					}
@@ -150,15 +150,15 @@ while($data = mysql_fetch_array($res1)) {
 					}
 					elseif ($data['online']<time()-120) {
 							echo '<img src="http://img.xcombats.com/i/offline.gif" width=20 height=15>
-							<img src="http://img.xcombats.com/i/align/align'.$data['align'].'.gif"><font color=grey><b>'.$data['login'].'</b> ['.$data['level'].']<a href="info/'.$data['id'].'" target="_blank"><img title="Инф. о '.$data['login'].'" src="http://img.xcombats.com/inf_dis.gif"></a>';
+							<img src="http://img.xcombats.com/i/align/align'.$data['align'].'.gif"><font color=grey><b>'.$data['login'].'</b> ['.$data['level'].']<a href="info/'.$data['id'].'" target="_blank"><img title="РРЅС„. Рѕ '.$data['login'].'" src="http://img.xcombats.com/inf_dis.gif"></a>';
 							if ($data['clan_prava'] == 'glava') {
-								echo ' - <b>Глава клана</b>';
+								echo ' - <b>Р“Р»Р°РІР° РєР»Р°РЅР°</b>';
 							} else {
 								echo ' - ',$data['mod_zvanie'],'</font>';
 							}
 							echo '<BR>';
 						}
-//echo '<img title="Свет" src="http://img.xcombats.com/i/align/align'.$data['align'].'.gif"><img title="'.$res['name'].'" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif"><b>'.$data['login'].'</b> ['.$data['level'].']<a href="info/'.$data['id'].'" target="_blank"><img title="Инф. о '.$data['login'].'" src="http://img.xcombats.com/i/inf_capitalcity.gif"></a> - '.$data['mod_zvanie'].'<br>';
+//echo '<img title="РЎРІРµС‚" src="http://img.xcombats.com/i/align/align'.$data['align'].'.gif"><img title="'.$res['name'].'" src="http://img.xcombats.com/i/clan/'.$res['name_mini'].'.gif"><b>'.$data['login'].'</b> ['.$data['level'].']<a href="info/'.$data['id'].'" target="_blank"><img title="РРЅС„. Рѕ '.$data['login'].'" src="http://img.xcombats.com/i/inf_capitalcity.gif"></a> - '.$data['mod_zvanie'].'<br>';
 }
 ?>
 			</td>
@@ -167,7 +167,7 @@ while($data = mysql_fetch_array($res1)) {
 </center>
 
 </TD></TR><TR><TD>
-<small>(список обновляется <strike>в полночь</strike> каждый раз)</small>
+<small>(СЃРїРёСЃРѕРє РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ <strike>РІ РїРѕР»РЅРѕС‡СЊ</strike> РєР°Р¶РґС‹Р№ СЂР°Р·)</small>
 </TD></TR></TABLE><br />
 </TD>
 </TR>

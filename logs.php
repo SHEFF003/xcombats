@@ -1,4 +1,4 @@
-<?
+<?php
 define('GAME',true);
 include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');
@@ -8,13 +8,13 @@ $r = ''; $p = ''; $b = '<table width="100%" cellpadding="0" cellspacing="0" bord
   <tbody>
     <tr valign="top">
       <td valign="bottom" nowrap="" title="">
-	  <input onClick="location=location;" style="padding:5px;" type="submit" name="analiz2" value="Обновить">';
+	  <input onClick="location=location;" style="padding:5px;" type="submit" name="analiz2" value="РћР±РЅРѕРІРёС‚СЊ">';
 
 if($btl['team_win'] != -1) {
 	if(!isset($_GET['analiz'])) {
-		$b .= ' <input onClick="location=\'logs.php?log='.((int)$_GET['log']).'&analiz=1\';" style="padding:5px;" type="submit" name="analiz3" value="Статистика">';
+		$b .= ' <input onClick="location=\'logs.php?log='.((int)$_GET['log']).'&analiz=1\';" style="padding:5px;" type="submit" name="analiz3" value="РЎС‚Р°С‚РёСЃС‚РёРєР°">';
 	}else{
-		$b .= ' <input onClick="location=\'logs.php?log='.((int)$_GET['log']).'\';" style="padding:5px;" type="submit" name="analiz3" value="Лог боя">';
+		$b .= ' <input onClick="location=\'logs.php?log='.((int)$_GET['log']).'\';" style="padding:5px;" type="submit" name="analiz3" value="Р›РѕРі Р±РѕСЏ">';
 	}
 }
 $b .= '</td>
@@ -40,18 +40,18 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 		$tbtl .= '<img src="http://img.xcombats.com/i/fighttypehidden0.gif">';
 	}
 	if($btl['type'] == 0) {
-		$tbtl = 'Тип боя: '.$tbtl.' (физический поединок) &nbsp; &nbsp; ';
+		$tbtl = 'РўРёРї Р±РѕСЏ: '.$tbtl.' (С„РёР·РёС‡РµСЃРєРёР№ РїРѕРµРґРёРЅРѕРє) &nbsp; &nbsp; ';
 	}elseif($btl['type'] == 1) {
-		$tbtl = 'Тип боя: '.$tbtl.' (кулачный поединок) &nbsp; &nbsp; ';
+		$tbtl = 'РўРёРї Р±РѕСЏ: '.$tbtl.' (РєСѓР»Р°С‡РЅС‹Р№ РїРѕРµРґРёРЅРѕРє) &nbsp; &nbsp; ';
 	}else{
-		$tbtl = 'Тип боя: '.$tbtl.' (физический поединок) &nbsp; &nbsp; ';
+		$tbtl = 'РўРёРї Р±РѕСЏ: '.$tbtl.' (С„РёР·РёС‡РµСЃРєРёР№ РїРѕРµРґРёРЅРѕРє) &nbsp; &nbsp; ';
 	}
 	
 	if( $btl['izlom'] > 0 ) {
-		$tbtl .= 'Волна: '.$btl['izlomRoundSee'].' &nbsp; &nbsp; ';
+		$tbtl .= 'Р’РѕР»РЅР°: '.$btl['izlomRoundSee'].' &nbsp; &nbsp; ';
 	}
 	
-	$tbtl .= 'Продолжительность боя: '.$tmStart.' мин.<br>';
+	$tbtl .= 'РџСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р±РѕСЏ: '.$tmStart.' РјРёРЅ.<br>';
 	
 	$users = array(
 
@@ -74,7 +74,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 		return $r;
 	}
 	
-	//Поулчаем инфо
+	//РџРѕСѓР»С‡Р°РµРј РёРЅС„Рѕ
 	$tpas = array(
 		1 => 'X',
 		2 => '<font color=#AAAAEE>&bull;</font>',
@@ -115,13 +115,13 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 			$uids[$pl['uid']] = $i;
 			//
 			$users[$i]['value'] = array(
-				'y' => 0, //уворотов+парирований+блоков щитом
-				'b' => 0, //успешных блоков
-				'p' => 0, //не успешных блоков, по персонажу попали
-				'zb' => array( //Список зон блока
+				'y' => 0, //СѓРІРѕСЂРѕС‚РѕРІ+РїР°СЂРёСЂРѕРІР°РЅРёР№+Р±Р»РѕРєРѕРІ С‰РёС‚РѕРј
+				'b' => 0, //СѓСЃРїРµС€РЅС‹С… Р±Р»РѕРєРѕРІ
+				'p' => 0, //РЅРµ СѓСЃРїРµС€РЅС‹С… Р±Р»РѕРєРѕРІ, РїРѕ РїРµСЂСЃРѕРЅР°Р¶Сѓ РїРѕРїР°Р»Рё
+				'zb' => array( //РЎРїРёСЃРѕРє Р·РѕРЅ Р±Р»РѕРєР°
 					
 				),
-				'sa' => array( //Статистика ударов
+				'sa' => array( //РЎС‚Р°С‚РёСЃС‚РёРєР° СѓРґР°СЂРѕРІ
 					0 => '',
 					1 => '',
 					2 => '',
@@ -129,7 +129,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 					4 => '',
 					5 => ''
 				),
-				'sb' => array( //Статистика блоков
+				'sb' => array( //РЎС‚Р°С‚РёСЃС‚РёРєР° Р±Р»РѕРєРѕРІ
 					0 => '',
 					1 => '',
 					2 => '',
@@ -140,10 +140,10 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 			);
 			$sp2 = mysql_query('SELECT * FROM `battle_stat` WHERE `battle` = "'.$btl['id'].'" AND `uid1` = "'.$pl['uid'].'" ORDER BY `id` ASC');
 			while($pl2 = mysql_fetch_array($sp2)) {
-				//Обновляем данные
+				//РћР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ
 				$users[$i]['yrn'] += $pl2['yrn'];
 				$users[$i]['yrn_krit'] += $pl2['yrn_krit'];
-				//Статистика далее
+				//РЎС‚Р°С‚РёСЃС‚РёРєР° РґР°Р»РµРµ
 				$users[$i]['gaa']++;
 				if( $users[$i]['yrn'] > 0 ) {
 					$users[$i]['ga']++;
@@ -151,7 +151,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 				if( $users[$i]['yrn_krit'] > 0 ) {
 					$users[$i]['gak']++;
 				}
-				//Получаем куда бил игрок
+				//РџРѕР»СѓС‡Р°РµРј РєСѓРґР° Р±РёР» РёРіСЂРѕРє
 				$j = 0;
 				while($j < $pl2['ma']) {
 					$users[$i]['zona'][$pl2['a'][$j]]++;
@@ -197,10 +197,10 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 			$sp2 = mysql_query('SELECT * FROM `battle_stat` WHERE `battle` = "'.$btl['id'].'" AND `uid2` = "'.$pl['uid'].'" ORDER BY `id` ASC');
 			$k = 0;
 			while($pl2 = mysql_fetch_array($sp2)) {
-				//Обновляем данные
+				//РћР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ
 				$users[$i]['_yrn'] -= $pl2['yrn'];
 				$users[$i]['_yrn_krit'] -= $pl2['yrn_krit'];
-				//Получаем куда били игрока
+				//РџРѕР»СѓС‡Р°РµРј РєСѓРґР° Р±РёР»Рё РёРіСЂРѕРєР°
 				$j = 0; $zag = array();
 				while($j < $pl2['ma']) {
 					$users[$i]['value']['zb'][$k][1] = $pl2['type_a'][$j];
@@ -218,7 +218,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 				$k++;
 				//
 			}
-			//Статистика блоков
+			//РЎС‚Р°С‚РёСЃС‚РёРєР° Р±Р»РѕРєРѕРІ
 			$k = 0;
 			$h = 0;
 			$bjj = array();
@@ -272,18 +272,18 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 	while($i < count($tm_v)) {
 		$usr .= rtrim($tm[$tm_v[$i]],', ');
 		if( $i < count($tm_v)-1 ) {
-			$usr .= ' &nbsp; <b>против</b> &nbsp; ';
+			$usr .= ' &nbsp; <b>РїСЂРѕС‚РёРІ</b> &nbsp; ';
 		}
 		$i++;
 	}
 	//
-	$usr = '<H4>Участники поединка</H4>'.$usr.'<br><br>';
+	$usr = '<H4>РЈС‡Р°СЃС‚РЅРёРєРё РїРѕРµРґРёРЅРєР°</H4>'.$usr.'<br><br>';
 	//
 	$r = '';
 	//
-	$r .= '<H4>Последовательность ударов</H4>';	
+	$r .= '<H4>РџРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ СѓРґР°СЂРѕРІ</H4>';	
 	$r .= '<TABLE border=1 cellspacing=0 cellpadding=4>
-<TR><TD align=center>Логин</TD><TD>Удар в</TD><TD>Последовательность ударов</TD></TR>';	
+<TR><TD align=center>Р›РѕРіРёРЅ</TD><TD>РЈРґР°СЂ РІ</TD><TD>РџРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ СѓРґР°СЂРѕРІ</TD></TR>';	
 	$i = 0;
 	while($i <= count($tm_v)) {
 		$j = 0;
@@ -297,7 +297,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 				$rh .= '<br>'.$us['value']['sa'][3].'';
 				$rh .= '<br>'.$us['value']['sa'][4].'';
 				$rh .= '<br>'.$us['value']['sa'][5].'';
-				$r .= '<TR><TD align=center nowrap>'.con_login($us).'</TD><TD nowrap align="right"><pre>голову<br>грудь<br>живот<br>пояс<br>ноги</pre></TD><TD style="font-size:16px" nowrap><pre>'.$rh.'</pre></TD></TR>';
+				$r .= '<TR><TD align=center nowrap>'.con_login($us).'</TD><TD nowrap align="right"><pre>РіРѕР»РѕРІСѓ<br>РіСЂСѓРґСЊ<br>Р¶РёРІРѕС‚<br>РїРѕСЏСЃ<br>РЅРѕРіРё</pre></TD><TD style="font-size:16px" nowrap><pre>'.$rh.'</pre></TD></TR>';
 			}
 			unset($us);
 			$j++;
@@ -306,12 +306,12 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 		$i++;
 	}
 	$r .= '</TABLE>';
-	$r .= '(<b>X</b>&nbsp;-&nbsp;удачный&nbsp;удар, <font color=red><B>&curren;</b></font> - критический удар пробив блок , <font color=red><B>X</B></font>&nbsp;-&nbsp;критический&nbsp;удар, <font color=red><B><code>&Xi;</code></B></font>&nbsp;-&nbsp;крит + инвалидность, <font color=006600><B>X</B></font>&nbsp;-&nbsp;доп.&nbsp;магический&nbsp;удар,<BR>
-&nbsp;<B>&bull;</B>&nbsp;-&nbsp;противник&nbsp;блокировал&nbsp;удар, <font color=AAAAAA><B>&bull;</B></font>&nbsp;-&nbsp;увернулся, <font color=AAAAEE><B>&bull;</B></font>&nbsp;-&nbsp;парировал, <font color=777777><B>&bull;</B></font>&nbsp;-&nbsp;отбил удар щитом)';
+	$r .= '(<b>X</b>&nbsp;-&nbsp;СѓРґР°С‡РЅС‹Р№&nbsp;СѓРґР°СЂ, <font color=red><B>&curren;</b></font> - РєСЂРёС‚РёС‡РµСЃРєРёР№ СѓРґР°СЂ РїСЂРѕР±РёРІ Р±Р»РѕРє , <font color=red><B>X</B></font>&nbsp;-&nbsp;РєСЂРёС‚РёС‡РµСЃРєРёР№&nbsp;СѓРґР°СЂ, <font color=red><B><code>&Xi;</code></B></font>&nbsp;-&nbsp;РєСЂРёС‚ + РёРЅРІР°Р»РёРґРЅРѕСЃС‚СЊ, <font color=006600><B>X</B></font>&nbsp;-&nbsp;РґРѕРї.&nbsp;РјР°РіРёС‡РµСЃРєРёР№&nbsp;СѓРґР°СЂ,<BR>
+&nbsp;<B>&bull;</B>&nbsp;-&nbsp;РїСЂРѕС‚РёРІРЅРёРє&nbsp;Р±Р»РѕРєРёСЂРѕРІР°Р»&nbsp;СѓРґР°СЂ, <font color=AAAAAA><B>&bull;</B></font>&nbsp;-&nbsp;СѓРІРµСЂРЅСѓР»СЃСЏ, <font color=AAAAEE><B>&bull;</B></font>&nbsp;-&nbsp;РїР°СЂРёСЂРѕРІР°Р», <font color=777777><B>&bull;</B></font>&nbsp;-&nbsp;РѕС‚Р±РёР» СѓРґР°СЂ С‰РёС‚РѕРј)';
 	//
-	$r .= '<H4>Последовательность блоков</H4>';
+	$r .= '<H4>РџРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ Р±Р»РѕРєРѕРІ</H4>';
 	$r .= '<TABLE border=1 cellspacing=0 cellpadding=4>
-<TR><TD align=center>Логин</TD><TD>Блок</TD><TD>Последовательность блоков</TD></TR>';	
+<TR><TD align=center>Р›РѕРіРёРЅ</TD><TD>Р‘Р»РѕРє</TD><TD>РџРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ Р±Р»РѕРєРѕРІ</TD></TR>';	
 	$i = 0;
 	while($i <= count($tm_v)) {
 		$j = 0;
@@ -325,7 +325,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 				$rh .= '<br>'.$us['value']['sb'][3].'';
 				$rh .= '<br>'.$us['value']['sb'][4].'';
 				$rh .= '<br>'.$us['value']['sb'][5].'';
-				$r .= '<TR><TD align=center nowrap>'.con_login($us).'</TD><TD nowrap align="right"><pre>голова<br>грудь<br>живот<br>пояс<br>ноги</pre></TD><TD style="font-size:16px" nowrap><pre>'.$rh.'</pre></TD></TR>';
+				$r .= '<TR><TD align=center nowrap>'.con_login($us).'</TD><TD nowrap align="right"><pre>РіРѕР»РѕРІР°<br>РіСЂСѓРґСЊ<br>Р¶РёРІРѕС‚<br>РїРѕСЏСЃ<br>РЅРѕРіРё</pre></TD><TD style="font-size:16px" nowrap><pre>'.$rh.'</pre></TD></TR>';
 			}
 			unset($us);
 			$j++;
@@ -334,14 +334,14 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 		$i++;
 	}
 	$r .= '</TABLE>';
-	$r .= '(<b>X</b>&nbsp;-&nbsp;удачный блок, <b><FONT COLOR=red>X</FONT></b>&nbsp;-&nbsp;пробили блок критом, <B>&bull;</B>&nbsp;-&nbsp;пропустил удар,
-<font color=#AAAAAA><B>&bull;</B></font>&nbsp;-&nbsp;увернулся, 
-<font color=#AAAAEE><B>&bull;</B></font>&nbsp;-&nbsp;парировал, 
-<font color=#777777><B>&bull;</B></font>&nbsp;-&nbsp;отбил щитом)';
+	$r .= '(<b>X</b>&nbsp;-&nbsp;СѓРґР°С‡РЅС‹Р№ Р±Р»РѕРє, <b><FONT COLOR=red>X</FONT></b>&nbsp;-&nbsp;РїСЂРѕР±РёР»Рё Р±Р»РѕРє РєСЂРёС‚РѕРј, <B>&bull;</B>&nbsp;-&nbsp;РїСЂРѕРїСѓСЃС‚РёР» СѓРґР°СЂ,
+<font color=#AAAAAA><B>&bull;</B></font>&nbsp;-&nbsp;СѓРІРµСЂРЅСѓР»СЃСЏ, 
+<font color=#AAAAEE><B>&bull;</B></font>&nbsp;-&nbsp;РїР°СЂРёСЂРѕРІР°Р», 
+<font color=#777777><B>&bull;</B></font>&nbsp;-&nbsp;РѕС‚Р±РёР» С‰РёС‚РѕРј)';
 	//
-	$r .= '<H4>Суммарно</H4>';	
+	$r .= '<H4>РЎСѓРјРјР°СЂРЅРѕ</H4>';	
 	$r .= '<TABLE border=1 cellspacing=0 cellpadding=4>
-<TR><TD align=center>&nbsp;</TD><TD align=center>Логин</TD><TD>Удары</TD><TD>Блоки</TD><TD>Попадания</TD><TD>Защита</TD><TD>Урон</TD><TD>Потери</TD><TD>Вылечено</TD></TR>';
+<TR><TD align=center>&nbsp;</TD><TD align=center>Р›РѕРіРёРЅ</TD><TD>РЈРґР°СЂС‹</TD><TD>Р‘Р»РѕРєРё</TD><TD>РџРѕРїР°РґР°РЅРёСЏ</TD><TD>Р—Р°С‰РёС‚Р°</TD><TD>РЈСЂРѕРЅ</TD><TD>РџРѕС‚РµСЂРё</TD><TD>Р’С‹Р»РµС‡РµРЅРѕ</TD></TR>';
 	//<TR><TD align=right>&nbsp;</TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD align=center>&nbsp;</TD><TD align=center>&nbsp;</TD><TD align=center>&nbsp;</TD><TD align=center>&nbsp;</TD><TD align=center>&nbsp;</TD></TR>
 	$i = 0;
 	while($i <= count($tm_v)) {
@@ -386,9 +386,9 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 				$winw = '';
 				if( $us['hp'] < 1 ) {
 					$us['hp'] = '<font color=red>0</font>';
-					$winw = '<img title="Погиб" width="7" height="7" src="http://img.xcombats.com/i/ico/looses.gif">';
+					$winw = '<img title="РџРѕРіРёР±" width="7" height="7" src="http://img.xcombats.com/i/ico/looses.gif">';
 				}else{
-					$winw = '<img title="Выжил" width="7" height="7" src="http://img.xcombats.com/i/ico/wins.gif">';
+					$winw = '<img title="Р’С‹Р¶РёР»" width="7" height="7" src="http://img.xcombats.com/i/ico/wins.gif">';
 				}
 				$r .= '<TR><TD valign=middle align=center>'.$winw.'</TD><TD align=right>'.con_login($us).' ['.$us['hp'].'/'.$us['hpAll'].']</TD><TD>'.(0+$us['zona'][1]).'/'.(0+$us['zona'][2]).'/'.(0+$us['zona'][3]).'/'.(0+$us['zona'][4]).'/'.(0+$us['zona'][5]).'</TD><TD>'.(0+$us['zonb'][1]).'/'.(0+$us['zonb'][2]).'/'.(0+$us['zonb'][3]).'/'.(0+$us['zonb'][4]).'/'.(0+$us['zonb'][5]).'</TD><TD align=center>'.(0+$us['ga']).'(<font color=red>'.(0+$us['gak']).'</font>)/'.($us['gaa']).'</TD><TD align=center>'.$us['value']['b'].'/'.$us['value']['y'].'/'.$us['value']['p'].'</TD><TD align=center>'.$us['yrn'].'/<font color=red>'.$us['yrn_krit'].'</font></TD><TD align=center>'.(-$us['_yrn']).'</TD><TD align=center>'.$us['heal'].'</TD></TR>';
 			}
@@ -400,9 +400,9 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 			if( $team_data['hp'] < 1 ) {
 				$team_data['hp'] = '0';
 			}else{
-				$winw = '<img src="http://img.xcombats.com/i/flag.gif" width="20" height="20" title="Победитель">';
+				$winw = '<img src="http://img.xcombats.com/i/flag.gif" width="20" height="20" title="РџРѕР±РµРґРёС‚РµР»СЊ">';
 			}
-			$r .= '<TR bgcolor=d2d0d0><TD align=center>'.$winw.'</TD><TD align=right><b class="CSSteam'.$tm_v[$i].'">Всего ['.$team_data['hp'].'/'.$team_data['hpAll'].']</b></TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD align=center>'.(0+$team_data['ga']).'(<font color=red>'.(0+$team_data['gak']).'</font>)/'.($team_data['gaa']).'</TD><TD align=center>'.$team_data['val_b'].'/'.$team_data['val_y'].'/'.$team_data['val_p'].'</TD><TD align=center>'.$team_data['yrn'].'/<font color=red>'.$team_data['yrn_krit'].'</font></TD><TD align=center>'.(-$team_data['_yrn']).'</TD><TD align=center>'.$team_data['heal'].'</TD></TR>';
+			$r .= '<TR bgcolor=d2d0d0><TD align=center>'.$winw.'</TD><TD align=right><b class="CSSteam'.$tm_v[$i].'">Р’СЃРµРіРѕ ['.$team_data['hp'].'/'.$team_data['hpAll'].']</b></TD><TD>&nbsp;</TD><TD>&nbsp;</TD><TD align=center>'.(0+$team_data['ga']).'(<font color=red>'.(0+$team_data['gak']).'</font>)/'.($team_data['gaa']).'</TD><TD align=center>'.$team_data['val_b'].'/'.$team_data['val_y'].'/'.$team_data['val_p'].'</TD><TD align=center>'.$team_data['yrn'].'/<font color=red>'.$team_data['yrn_krit'].'</font></TD><TD align=center>'.(-$team_data['_yrn']).'</TD><TD align=center>'.$team_data['heal'].'</TD></TR>';
 		}
 		
 		$i++;
@@ -410,20 +410,20 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 	$r .= '</TABLE>';
 	//
 	$r .= '
-Логин - имя персонажа и уровень жизни: [сейчас/всего]<br>
-Удары - статистика ударов по областям: голова/грудь/живот/пояс/ноги<br>
-Блоки - статистика блоков по областям: голова/грудь/живот/пояс/ноги<br>
-Попадания - удачных попаданий <font color=red>(из них критов)</font> / всего ударов<br>
-Защита - ударов заблокировано / уворотов / пропущено ударов<br>
-Урон - выбито HP из противников / из них <font color=red>критами</font><br>
-Потери - получено повреждений <br>
-Вылечено - восстановлено HP<br>';
+Р›РѕРіРёРЅ - РёРјСЏ РїРµСЂСЃРѕРЅР°Р¶Р° Рё СѓСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё: [СЃРµР№С‡Р°СЃ/РІСЃРµРіРѕ]<br>
+РЈРґР°СЂС‹ - СЃС‚Р°С‚РёСЃС‚РёРєР° СѓРґР°СЂРѕРІ РїРѕ РѕР±Р»Р°СЃС‚СЏРј: РіРѕР»РѕРІР°/РіСЂСѓРґСЊ/Р¶РёРІРѕС‚/РїРѕСЏСЃ/РЅРѕРіРё<br>
+Р‘Р»РѕРєРё - СЃС‚Р°С‚РёСЃС‚РёРєР° Р±Р»РѕРєРѕРІ РїРѕ РѕР±Р»Р°СЃС‚СЏРј: РіРѕР»РѕРІР°/РіСЂСѓРґСЊ/Р¶РёРІРѕС‚/РїРѕСЏСЃ/РЅРѕРіРё<br>
+РџРѕРїР°РґР°РЅРёСЏ - СѓРґР°С‡РЅС‹С… РїРѕРїР°РґР°РЅРёР№ <font color=red>(РёР· РЅРёС… РєСЂРёС‚РѕРІ)</font> / РІСЃРµРіРѕ СѓРґР°СЂРѕРІ<br>
+Р—Р°С‰РёС‚Р° - СѓРґР°СЂРѕРІ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅРѕ / СѓРІРѕСЂРѕС‚РѕРІ / РїСЂРѕРїСѓС‰РµРЅРѕ СѓРґР°СЂРѕРІ<br>
+РЈСЂРѕРЅ - РІС‹Р±РёС‚Рѕ HP РёР· РїСЂРѕС‚РёРІРЅРёРєРѕРІ / РёР· РЅРёС… <font color=red>РєСЂРёС‚Р°РјРё</font><br>
+РџРѕС‚РµСЂРё - РїРѕР»СѓС‡РµРЅРѕ РїРѕРІСЂРµР¶РґРµРЅРёР№ <br>
+Р’С‹Р»РµС‡РµРЅРѕ - РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРѕ HP<br>';
 	
-	$r = '<div>'.$b.'</div><div><span style="float:left;">'.$tbtl.$p.'</span><span style="float:right;">Основное место боя: <i>Неизвестно</i></span></div><br><br>'.$usr.$r.'<div align="left">'.$p.'</div>';
+	$r = '<div>'.$b.'</div><div><span style="float:left;">'.$tbtl.$p.'</span><span style="float:right;">РћСЃРЅРѕРІРЅРѕРµ РјРµСЃС‚Рѕ Р±РѕСЏ: <i>РќРµРёР·РІРµСЃС‚РЅРѕ</i></span></div><br><br>'.$usr.$r.'<div align="left">'.$p.'</div>';
 
 }elseif(!isset($btl['id']))
 {
-	$r = '<br><br><center>Скорее всего Архивариус снова потерял пергамент с хрониками боев ...</center>';
+	$r = '<br><br><center>РЎРєРѕСЂРµРµ РІСЃРµРіРѕ РђСЂС…РёРІР°СЂРёСѓСЃ СЃРЅРѕРІР° РїРѕС‚РµСЂСЏР» РїРµСЂРіР°РјРµРЅС‚ СЃ С…СЂРѕРЅРёРєР°РјРё Р±РѕРµРІ ...</center>';
 }else{
 	include('jx/battle/log_text.php');
 	function testlog($pl)
@@ -442,9 +442,9 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 				}
 				$i++;
 			}
-			//обычный удар
+			//РѕР±С‹С‡РЅС‹Р№ СѓРґР°СЂ
 			$rt = $pl['text'];
-			//заменяем данные
+			//Р·Р°РјРµРЅСЏРµРј РґР°РЅРЅС‹Рµ
 			$rt = str_replace('{u1}','<span onClick="top.addTo(\''.$d['login1'].'\',\'to\'); return false;" oncontextmenu="top.infoMenu(\''.$d['login1'].'\',event,\'chat\'); return false;" class="CSSteam'.$d['t1'].'">'.$d['login1'].'</span>',$rt);
 			$rt = str_replace('{u2}','<span onClick="top.addTo(\''.$d['login2'].'\',\'to\'); return false;" oncontextmenu="top.infoMenu(\''.$d['login2'].'\',event,\'chat\'); return false;" class="CSSteam'.$d['t2'].'">'.$d['login2'].'</span>',$rt);
 			$rt = str_replace('{pr}','<b>'.$d['prm'].'</b>',$rt);
@@ -519,7 +519,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 			$j = 1;
 			while($j<=21)
 			{
-				//замена R - игрок 1
+				//Р·Р°РјРµРЅР° R - РёРіСЂРѕРє 1
 				$r = $log_text[$d['s1']][$j];
 				$k = 0;
 				while($k<=count($r))
@@ -530,7 +530,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 					}
 					$k++;
 				}
-				//замена R - игрок 2
+				//Р·Р°РјРµРЅР° R - РёРіСЂРѕРє 2
 				$r = $log_text[$d['s2']][$j];
 				$k = 0;
 				while($k<=count($r))
@@ -544,7 +544,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 				$j++;
 			}
 			
-			//заменяем данные повторно
+			//Р·Р°РјРµРЅСЏРµРј РґР°РЅРЅС‹Рµ РїРѕРІС‚РѕСЂРЅРѕ
 			$rt = str_replace('{u1}','<span onClick="top.addTo(\''.$d['login1'].'\',\'to\'); return false;" oncontextmenu="top.infoMenu(\''.$d['login1'].'\',event,\'chat\'); return false;" class="CSSteam'.$d['t1'].'">'.$d['login1'].'</span>',$rt);
 			$rt = str_replace('{u2}','<span onClick="top.addTo(\''.$d['login2'].'\',\'to\'); return false;" oncontextmenu="top.infoMenu(\''.$d['login2'].'\',event,\'chat\'); return false;" class="CSSteam'.$d['t2'].'">'.$d['login2'].'</span>',$rt);
 			$rt = str_replace('{pr}','<b>'.$d['prm'].'</b>',$rt);
@@ -554,12 +554,12 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 			$rt = str_replace('{tm3}','<span class="date">'.date('d.m.Y H:i',$d['time1']).'</span>',$rt);
 			$rt = str_replace('{tm4}','<span class="date">'.date('d.m.Y H:i',$d['time2']).'</span>',$rt);
 			
-			//закончили заменять
+			//Р·Р°РєРѕРЅС‡РёР»Рё Р·Р°РјРµРЅСЏС‚СЊ
 			$pl['text'] = $rt;
 		}
 		return $pl['text'];
 	}
-	//Получаем логи
+	//РџРѕР»СѓС‡Р°РµРј Р»РѕРіРё
 	$min = round(30*((int)$_GET['p']-1));
 	if($min<1)
 	{
@@ -573,7 +573,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 		$based = 'battle_logs';
 	}
 	
-	//генерируем страницы
+	//РіРµРЅРµСЂРёСЂСѓРµРј СЃС‚СЂР°РЅРёС†С‹
 	$pmax = mysql_fetch_array(mysql_query('SELECT `id_hod`,`id` FROM `'.$based.'` WHERE `battle` = "'.$btl['id'].'" ORDER BY  `id_hod` DESC  LIMIT 1'));
 	$pmax = $pmax['id_hod'];
 	$pmax = ceil($pmax/30);
@@ -619,8 +619,8 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 		$r .= '<div style="background-color:#'.$clr.';'.$cclr.'padding:1px;">'.$pl['text'].'</div>';	
 		$cclr = '';
 	}
-	//собираем страницу
-	$p = 'Страницы: '.$p;
+	//СЃРѕР±РёСЂР°РµРј СЃС‚СЂР°РЅРёС†Сѓ
+	$p = 'РЎС‚СЂР°РЅРёС†С‹: '.$p;
 	$usr = '';
 	if($btl['team_win'] == -1) {
 		$sp = mysql_query('SELECT 
@@ -650,7 +650,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 			while($i < count($usrs[-1])) {
 				$usr .= rtrim($usrs[$usrs[-1][$i]],',');
 				if(count($usrs[-1]) > $i+1) {
-					$usr .= ' &nbsp; <b><font color=black>против</font></b> &nbsp; ';
+					$usr .= ' &nbsp; <b><font color=black>РїСЂРѕС‚РёРІ</font></b> &nbsp; ';
 				}
 				$i++;
 			}
@@ -665,25 +665,25 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 		$tbtl .= '<img src="http://img.xcombats.com/i/fighttypehidden0.gif">';
 	}
 	if($btl['type'] == 0) {
-		$tbtl = 'Тип боя: '.$tbtl.' (физический поединок) &nbsp; &nbsp; ';
+		$tbtl = 'РўРёРї Р±РѕСЏ: '.$tbtl.' (С„РёР·РёС‡РµСЃРєРёР№ РїРѕРµРґРёРЅРѕРє) &nbsp; &nbsp; ';
 	}elseif($btl['type'] == 1) {
-		$tbtl = 'Тип боя: '.$tbtl.' (кулачный поединок) &nbsp; &nbsp; ';
+		$tbtl = 'РўРёРї Р±РѕСЏ: '.$tbtl.' (РєСѓР»Р°С‡РЅС‹Р№ РїРѕРµРґРёРЅРѕРє) &nbsp; &nbsp; ';
 	}else{
-		$tbtl = 'Тип боя: '.$tbtl.' (физический поединок) &nbsp; &nbsp; ';
+		$tbtl = 'РўРёРї Р±РѕСЏ: '.$tbtl.' (С„РёР·РёС‡РµСЃРєРёР№ РїРѕРµРґРёРЅРѕРє) &nbsp; &nbsp; ';
 	}
 	
 	if( $btl['izlom'] > 0 ) {
-		$tbtl .= 'Волна: '.$btl['izlomRoundSee'].' &nbsp; &nbsp; ';
+		$tbtl .= 'Р’РѕР»РЅР°: '.$btl['izlomRoundSee'].' &nbsp; &nbsp; ';
 	}
 	
-	$r = '<div>'.$b.'</div><div><span style="float:left;">'.$tbtl.$p.'</span><span style="float:right;">Основное место боя: <i>Неизвестно</i></span></div><br><hr>'.$usr.$r.'<hr>'.$usr.'<div align="left">'.$p.'</div>';
+	$r = '<div>'.$b.'</div><div><span style="float:left;">'.$tbtl.$p.'</span><span style="float:right;">РћСЃРЅРѕРІРЅРѕРµ РјРµСЃС‚Рѕ Р±РѕСЏ: <i>РќРµРёР·РІРµСЃС‚РЅРѕ</i></span></div><br><hr>'.$usr.$r.'<hr>'.$usr.'<div align="left">'.$p.'</div>';
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Архив: Поединки</title>
+<title>РђСЂС…РёРІ: РџРѕРµРґРёРЅРєРё</title>
 <script src="http://img.xcombats.com/js/Lite/gameEngine.js" type="text/javascript"></script>
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -706,7 +706,7 @@ h3 {
 </head>
 
 <body bgcolor="#E2E0E0">
-<H3><IMG SRC="http://img.xcombats.com/i/fighttype2.gif" WIDTH=20 HEIGHT=20> Бойцовский клуб<? if( $based != 'battle_logs' ) { echo ' (Архив поединков)'; } ?> &nbsp; <a href="http://www.xcombats.com/">www.xcombats.com</a> <IMG SRC="http://img.xcombats.com/i/fighttype2.gif" WIDTH=20 HEIGHT=20></H3>
+<H3><IMG SRC="http://img.xcombats.com/i/fighttype2.gif" WIDTH=20 HEIGHT=20> Р‘РѕР№С†РѕРІСЃРєРёР№ РєР»СѓР±<? if( $based != 'battle_logs' ) { echo ' (РђСЂС…РёРІ РїРѕРµРґРёРЅРєРѕРІ)'; } ?> &nbsp; <a href="http://www.xcombats.com/">www.xcombats.com</a> <IMG SRC="http://img.xcombats.com/i/fighttype2.gif" WIDTH=20 HEIGHT=20></H3>
 <? echo $r; ?>
 </body>
 </html>

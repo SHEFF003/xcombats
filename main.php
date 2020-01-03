@@ -110,21 +110,21 @@ if($u->info['bithday'] == '01.01.1800' && $u->info['inTurnirnew'] == 0) {
 }
 
 if($u->info['activ']>0) {
-	die('Вам необходимо активировать персонажа.<br>Авторизируйтесь с главной страницы.');
+	die('Р’Р°Рј РЅРµРѕР±С…РѕРґРёРјРѕ Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°.<br>РђРІС‚РѕСЂРёР·РёСЂСѓР№С‚РµСЃСЊ СЃ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹.');
 }
 
 /*if( !eregi("combatz\.ru", $_SERVER['HTTP_REFERER']) ) { 
-	//die('Перезайдите в игру, сессия закрыта.<br>last_page:%'.$_SERVER['HTTP_REFERER'].'');
+	//die('РџРµСЂРµР·Р°Р№РґРёС‚Рµ РІ РёРіСЂСѓ, СЃРµСЃСЃРёСЏ Р·Р°РєСЂС‹С‚Р°.<br>last_page:%'.$_SERVER['HTTP_REFERER'].'');
 }*/
 
-#--------для общаги, и позже для почты
+#--------РґР»СЏ РѕР±С‰Р°РіРё, Рё РїРѕР·Р¶Рµ РґР»СЏ РїРѕС‡С‚С‹
 $sleep = $u->testAction('`vars` = "sleep" AND `uid` = "'.$u->info['id'].'" LIMIT 1',1);
 if($u->room['file'] != "room_hostel" && $u->room['file'] != "an/room_hostel" && $sleep['id']>0) {
     mysql_query('UPDATE `actions` SET `vars` = "unsleep" WHERE `id` = "'.$sleep['id'].'" LIMIT 1');
 }
 if($u->room['file']=="room_hostel" || $u->room['file']=="post"){$trololo=0;}else{$trololo=1;}
 
-#--------для общаги, и позже для почты
+#--------РґР»СЏ РѕР±С‰Р°РіРё, Рё РїРѕР·Р¶Рµ РґР»СЏ РїРѕС‡С‚С‹
 if($u->info['online'] < time()-60){
 	$filter->setOnline($u->info['online'],$u->info['id'],0);
 	$u->onlineBonus();	
@@ -141,7 +141,7 @@ if(!isset($u->info['id']) || ($u->info['joinIP']==1 && $u->info['ip']!=$_SERVER[
 //mysql_query('START TRANSACTION');
 
 if($u->info['battle_text']!=''){
-	//Показываем системку и заносим данные
+	//РџРѕРєР°Р·С‹РІР°РµРј СЃРёСЃС‚РµРјРєСѓ Рё Р·Р°РЅРѕСЃРёРј РґР°РЅРЅС‹Рµ
 	if($u->info['last_b']>0){		
 		mysql_query('INSERT INTO `battle_last` (`battle_id`,`uid`,`time`,`act`,`level`,`align`,`clan`,`exp`) VALUES ("'.$u->info['last_b'].'","'.$u->info['id'].'","'.time().'","'.$u->info['last_a'].'","'.$u->info['level'].'","'.$u->info['align'].'","'.$u->info['clan'].'","'.$u->info['exp'].'")');
 	}
@@ -187,17 +187,17 @@ top.$(top.frames['main'].document.body).bind('touchmove', function(e) {
 	if(isset($_POST['mail_activ'])) {
 		$test_mail = mysql_fetch_array(mysql_query('SELECT `id` FROM `users` WHERE (`send` = "'.mysql_real_escape_string($_POST['mail_activ']).'" OR `mail` = "'.mysql_real_escape_string($_POST['mail_activ']).'") AND `activ` = "0" LIMIT 1'));
 		if(isset($test_mail['id'])) {
-			$a_error = 'Данный <b>e-mail</b> уже использовался ранее. Если у вас возникли проблемы с активацией - обратитесь к Паладинам.';
+			$a_error = 'Р”Р°РЅРЅС‹Р№ <b>e-mail</b> СѓР¶Рµ РёСЃРїРѕР»СЊР·РѕРІР°Р»СЃСЏ СЂР°РЅРµРµ. Р•СЃР»Рё Сѓ РІР°СЃ РІРѕР·РЅРёРєР»Рё РїСЂРѕР±Р»РµРјС‹ СЃ Р°РєС‚РёРІР°С†РёРµР№ - РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє РџР°Р»Р°РґРёРЅР°Рј.';
 		}else{
 			
-			function send_mime_mail($name_from, // имя отправителя
-							   $email_from, // email отправителя
-							   $name_to, // имя получателя
-							   $email_to, // email получателя
-							   $data_charset, // кодировка переданных данных
-							   $send_charset, // кодировка письма
-							   $subject, // тема письма
-							   $body // текст письма
+			function send_mime_mail($name_from, // РёРјСЏ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+							   $email_from, // email РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+							   $name_to, // РёРјСЏ РїРѕР»СѓС‡Р°С‚РµР»СЏ
+							   $email_to, // email РїРѕР»СѓС‡Р°С‚РµР»СЏ
+							   $data_charset, // РєРѕРґРёСЂРѕРІРєР° РїРµСЂРµРґР°РЅРЅС‹С… РґР°РЅРЅС‹С…
+							   $send_charset, // РєРѕРґРёСЂРѕРІРєР° РїРёСЃСЊРјР°
+							   $subject, // С‚РµРјР° РїРёСЃСЊРјР°
+							   $body // С‚РµРєСЃС‚ РїРёСЃСЊРјР°
 							   )
 			   {
 			  $to = mime_header_encode($name_to, $data_charset, $send_charset)
@@ -226,33 +226,33 @@ top.$(top.frames['main'].document.body).bind('touchmove', function(e) {
 				mysql_query('UPDATE `users` SET `activ` = "'.(time()+1*3600).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				//mysql_query('UPDATE `users` SET `activ` = "0" WHERE `id` = "'.$b_pass['id'].'" LIMIT 1');
 				if(
-					send_mime_mail('Бойцовский Клуб',
+					send_mime_mail('Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±',
 						'support@xcombats.com',
 						' ' . $u->info['login'] . ' ',
 						''.$u->info['send'].'',
-						'CP1251',  // кодировка, в которой находятся передаваемые строки
-						'KOI8-R', // кодировка, в которой будет отправлено письмо
-						'Успешная регистрация персонажа, подтвердите E-mail',
-							'<b>Мы рады приветствовать Вас в рядах бойцов нашего проекта!</b><br>'.
-							'Активация персонажа <b>'.$u->info['login'].'</b><br>'.
-							'Для активации введите код: ' . md5($u->info['login'].'&[xcombats.com]') . '<br>'.
-							'Ссылка для активации: <a target="_blank" href="http://xcombats.com/active.php?code='.md5($u->info['login'].'&[xcombats.com]').'">Активация</a>'.
-							'<br><br>С уважением,<br>Администрация Бойцовского Клуба'
+						'CP1251',  // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґСЏС‚СЃСЏ РїРµСЂРµРґР°РІР°РµРјС‹Рµ СЃС‚СЂРѕРєРё
+						'KOI8-R', // РєРѕРґРёСЂРѕРІРєР°, РІ РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ
+						'РЈСЃРїРµС€РЅР°СЏ СЂРµРіРёСЃС‚СЂР°С†РёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°, РїРѕРґС‚РІРµСЂРґРёС‚Рµ E-mail',
+							'<b>РњС‹ СЂР°РґС‹ РїСЂРёРІРµС‚СЃС‚РІРѕРІР°С‚СЊ Р’Р°СЃ РІ СЂСЏРґР°С… Р±РѕР№С†РѕРІ РЅР°С€РµРіРѕ РїСЂРѕРµРєС‚Р°!</b><br>'.
+							'РђРєС‚РёРІР°С†РёСЏ РїРµСЂСЃРѕРЅР°Р¶Р° <b>'.$u->info['login'].'</b><br>'.
+							'Р”Р»СЏ Р°РєС‚РёРІР°С†РёРё РІРІРµРґРёС‚Рµ РєРѕРґ: ' . md5($u->info['login'].'&[xcombats.com]') . '<br>'.
+							'РЎСЃС‹Р»РєР° РґР»СЏ Р°РєС‚РёРІР°С†РёРё: <a target="_blank" href="http://xcombats.com/active.php?code='.md5($u->info['login'].'&[xcombats.com]').'">РђРєС‚РёРІР°С†РёСЏ</a>'.
+							'<br><br>РЎ СѓРІР°Р¶РµРЅРёРµРј,<br>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°'
 					)
 				   
 				   ) {
 					   
 			   }else{
-				  $a_error = 'Ошибка отправки сообщения на почтовый ящик.';  
+				  $a_error = 'РћС€РёР±РєР° РѕС‚РїСЂР°РІРєРё СЃРѕРѕР±С‰РµРЅРёСЏ РЅР° РїРѕС‡С‚РѕРІС‹Р№ СЏС‰РёРє.';  
 			   }
 			   mysql_query('UPDATE `users` SET `send` = "'.mysql_real_escape_string($u->info['send']).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			}else{
-				$a_error = 'Выслать письмо на другой почтовый ящик будет возможно через <b>'.$u->timeOut($u->info['activ']-time()).'</b>.';  
+				$a_error = 'Р’С‹СЃР»Р°С‚СЊ РїРёСЃСЊРјРѕ РЅР° РґСЂСѓРіРѕР№ РїРѕС‡С‚РѕРІС‹Р№ СЏС‰РёРє Р±СѓРґРµС‚ РІРѕР·РјРѕР¶РЅРѕ С‡РµСЂРµР· <b>'.$u->timeOut($u->info['activ']-time()).'</b>.';  
 			}
 		}
 	}elseif(isset($_POST['new_real_mail'])) {
 		if($u->info['activ'] > time()) {
-			$a_error = 'Нельзя менять <b>e-mail</b> чаще одного раза в час, попробуйте позже.';
+			$a_error = 'РќРµР»СЊР·СЏ РјРµРЅСЏС‚СЊ <b>e-mail</b> С‡Р°С‰Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р° РІ С‡Р°СЃ, РїРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕР·Р¶Рµ.';
 		}else{
 			$u->info['send'] = '0';
 			mysql_query('UPDATE `users` SET `send` = "'.mysql_real_escape_string($u->info['send']).'",`activ` = "'.(time()-60*60).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -265,10 +265,10 @@ top.$(top.frames['main'].document.body).bind('touchmove', function(e) {
 	
 	if($u->info['send'] == '0') {
 		echo '<div style="padding:4px;background-color:#FFEEEE;border:1px solid #EEAAAA;margin:2px;">';
-		echo '<small><form method="post" action="main.php"><b>Ваш персонаж не активирован</b>. Для активации персонажа введите e-mail: <input name="mail_activ" style="font-size:10px;width:180px;" type="text" value="'.$u->info['mail'].'"> <input type="submit" value="Выслать инструкцию по активации!">'.$a_error.'</form></small>';
+		echo '<small><form method="post" action="main.php"><b>Р’Р°С€ РїРµСЂСЃРѕРЅР°Р¶ РЅРµ Р°РєС‚РёРІРёСЂРѕРІР°РЅ</b>. Р”Р»СЏ Р°РєС‚РёРІР°С†РёРё РїРµСЂСЃРѕРЅР°Р¶Р° РІРІРµРґРёС‚Рµ e-mail: <input name="mail_activ" style="font-size:10px;width:180px;" type="text" value="'.$u->info['mail'].'"> <input type="submit" value="Р’С‹СЃР»Р°С‚СЊ РёРЅСЃС‚СЂСѓРєС†РёСЋ РїРѕ Р°РєС‚РёРІР°С†РёРё!">'.$a_error.'</form></small>';
 	}else{
 		echo '<div style="padding:4px;background-color:#EEEEFF;border:1px solid #AAAAEE;margin:2px;">';
-		echo '<small><form method="post" action="main.php"><b>Ваш персонаж не активирован</b>. Инструкция для активации выслана на e-mail <b>'.$u->info['send'].'</b> <input name="new_real_mail" type="submit" value="Ввести другой e-mail">'.$a_error.'</form></small>';
+		echo '<small><form method="post" action="main.php"><b>Р’Р°С€ РїРµСЂСЃРѕРЅР°Р¶ РЅРµ Р°РєС‚РёРІРёСЂРѕРІР°РЅ</b>. РРЅСЃС‚СЂСѓРєС†РёСЏ РґР»СЏ Р°РєС‚РёРІР°С†РёРё РІС‹СЃР»Р°РЅР° РЅР° e-mail <b>'.$u->info['send'].'</b> <input name="new_real_mail" type="submit" value="Р’РІРµСЃС‚Рё РґСЂСѓРіРѕР№ e-mail">'.$a_error.'</form></small>';
 	}
 	echo '</div>';
 }*/
@@ -293,13 +293,13 @@ $u->rgd = $u->regen($u->info['id'],0,0);
 		mysql_query('INSERT INTO `eff_users` (
 			`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`,`no_Ace`
 		) VALUES (
-			"276","'.$u->info['id'].'","VIP (50) - Награда","add_silver=1","30","'.(time()-29*24*60*60).'","1"
+			"276","'.$u->info['id'].'","VIP (50) - РќР°РіСЂР°РґР°","add_silver=1","30","'.(time()-29*24*60*60).'","1"
 		)');
-		echo '<script>top.chat.sendMsg(["new","'.time().'","6","","'.$u->info['login'].'","<u>В связи с сегодняшними перебоями в работе сервера Вы получаете <b>VIP-статус</b> на один день!</u>","Grey","1","1","0"]);</script>';
+		echo '<script>top.chat.sendMsg(["new","'.time().'","6","","'.$u->info['login'].'","<u>Р’ СЃРІСЏР·Рё СЃ СЃРµРіРѕРґРЅСЏС€РЅРёРјРё РїРµСЂРµР±РѕСЏРјРё РІ СЂР°Р±РѕС‚Рµ СЃРµСЂРІРµСЂР° Р’С‹ РїРѕР»СѓС‡Р°РµС‚Рµ <b>VIP-СЃС‚Р°С‚СѓСЃ</b> РЅР° РѕРґРёРЅ РґРµРЅСЊ!</u>","Grey","1","1","0"]);</script>';
 	}
 }*/
 
-//Проверка уровня
+//РџСЂРѕРІРµСЂРєР° СѓСЂРѕРІРЅСЏ
 $ul = $u->testLevel();
 
 if( isset($_GET['blockspam']) ) {
@@ -309,11 +309,11 @@ if( isset($_GET['blockspam']) ) {
 			mysql_query('UPDATE `users` SET `banned` = "'.(time()-1).'" WHERE `id` = "'.$usbt['id'].'" LIMIT 1');
 			mysql_query('UPDATE `chat` SET `spam` = "1" , `delete` = "'.time().'" WHERE `login` = "'.$usbt['login'].'"');
 			mysql_query('INSERT INTO `users_delo` ( `uid`,`time`,`login`,`text`,`city`,`hb` ) VALUES (
-				"'.$usbt['id'].'","'.time().'","'.$u->info['login'].'","&bull; &quot;'.$u->info['login'].'&quot; <b>сообщает</b>: Спамер.","'.$u->info['city'].'","1"
+				"'.$usbt['id'].'","'.time().'","'.$u->info['login'].'","&bull; &quot;'.$u->info['login'].'&quot; <b>СЃРѕРѕР±С‰Р°РµС‚</b>: РЎРїР°РјРµСЂ.","'.$u->info['city'].'","1"
 			)');
-			$u->error = 'Персонаж &quot;'.$usbt['login'].'&quot; успешно заблокирован за спам!';
+			$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$usbt['login'].'&quot; СѓСЃРїРµС€РЅРѕ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ Р·Р° СЃРїР°Рј!';
 		}else{
-			$u->error = 'Персонаж для блока не найден! Попробуйте заблокировать через панель модератора!';
+			$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РґР»СЏ Р±Р»РѕРєР° РЅРµ РЅР°Р№РґРµРЅ! РџРѕРїСЂРѕР±СѓР№С‚Рµ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ С‡РµСЂРµР· РїР°РЅРµР»СЊ РјРѕРґРµСЂР°С‚РѕСЂР°!';
 		}
 		if( $u->error != '' ) {
 			echo '<div><font color=red>'.$u->error.'</font></div>';
@@ -340,8 +340,8 @@ if(isset($_GET['atak_user']) && $u->info['battle'] == 0 && $_GET['atak_user']!=$
 		
 		if(isset($ua['id']) && $ua['online'] > time()-520)
 		{
-			$usta = $u->getStats($ua['id'],0); // статы цели
-			$minHp = floor($usta['hpAll']/100*33); // минимальный запас здоровья цели при котором можно напасть
+			$usta = $u->getStats($ua['id'],0); // СЃС‚Р°С‚С‹ С†РµР»Рё
+			$minHp = floor($usta['hpAll']/100*33); // РјРёРЅРёРјР°Р»СЊРЅС‹Р№ Р·Р°РїР°СЃ Р·РґРѕСЂРѕРІСЊСЏ С†РµР»Рё РїСЂРё РєРѕС‚РѕСЂРѕРј РјРѕР¶РЅРѕ РЅР°РїР°СЃС‚СЊ
 	
 			if( $ua['battle'] > 0 ) {
 				$uabt = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `id` = "'.$ua['battle'].'" AND `team_win` = "-1" LIMIT 1'));
@@ -351,19 +351,19 @@ if(isset($_GET['atak_user']) && $u->info['battle'] == 0 && $_GET['atak_user']!=$
 			}
 	
 			if( $ua['battle'] == 0 && $minHp > $usta['hpNow'] ) {
-				$u->error = 'Нельзя напасть, у противника не восстановилось здоровье';
+				$u->error = 'РќРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ, Сѓ РїСЂРѕС‚РёРІРЅРёРєР° РЅРµ РІРѕСЃСЃС‚Р°РЅРѕРІРёР»РѕСЃСЊ Р·РґРѕСЂРѕРІСЊРµ';
 			}elseif( isset($uabt['id']) && $uabt['type'] == 500 && $ua['team'] == 1 ) {
-				$u->error = 'Нельзя сражаться на стороне монстров!';
+				$u->error = 'РќРµР»СЊР·СЏ СЃСЂР°Р¶Р°С‚СЊСЃСЏ РЅР° СЃС‚РѕСЂРѕРЅРµ РјРѕРЅСЃС‚СЂРѕРІ!';
 			}elseif( $uabt['noatack'] > 0 || $uabt['noinc'] > 0 ) {
-				$u->error = 'Поединок защищен магией! Вы не можете вмешаться!';
+				$u->error = 'РџРѕРµРґРёРЅРѕРє Р·Р°С‰РёС‰РµРЅ РјР°РіРёРµР№! Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РІРјРµС€Р°С‚СЊСЃСЏ!';
 			}elseif( isset($uabt['id']) && $uabt['invis'] > 0 ) {
-				$u->error = 'Нельзя вмешиваться в невидимый бой!';
+				$u->error = 'РќРµР»СЊР·СЏ РІРјРµС€РёРІР°С‚СЊСЃСЏ РІ РЅРµРІРёРґРёРјС‹Р№ Р±РѕР№!';
 			}elseif( $magic->testAlignAtack( $u->info['id'], $ua['id'], $uabt) == false ) {
-				$u->error = 'Нельзя помогать вражеским склонностям!';
+				$u->error = 'РќРµР»СЊР·СЏ РїРѕРјРѕРіР°С‚СЊ РІСЂР°Р¶РµСЃРєРёРј СЃРєР»РѕРЅРЅРѕСЃС‚СЏРј!';
 			}elseif( $magic->testTravma( $ua['id'] , 3 ) == true ) {
-				$u->error = 'Противник тяжело травмирован, нельзя напасть!';
+				$u->error = 'РџСЂРѕС‚РёРІРЅРёРє С‚СЏР¶РµР»Рѕ С‚СЂР°РІРјРёСЂРѕРІР°РЅ, РЅРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ!';
 			}elseif( $magic->testTravma( $u->info['id'] , 2 ) == true ) {
-				$u->error = 'Вы травмированы, нельзя напасть!';
+				$u->error = 'Р’С‹ С‚СЂР°РІРјРёСЂРѕРІР°РЅС‹, РЅРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ!';
 			}elseif($ua['room']==$u->info['room'] && ($minHp <= $usta['hpNow'] || $ua['battle'] > 0))
 			{
 				if( $ua['type_pers'] == 0 ) {
@@ -382,9 +382,9 @@ if(isset($_GET['atak_user']) && $u->info['battle'] == 0 && $_GET['atak_user']!=$
 				$magic->atackUser($u->info['id'],$ua['id'],$ua['team'],$ua['battle'],$ua['bbexp'],$ua['type_pers']);
 				
 				if( $cruw == 2 ) {
-					$rtxt = '[img[items/pal_button9.gif]] &quot;'.$u->info['login'].'&quot; совершил'.$sx.' кровавое нападение по метке на персонажа &quot;'.$ua['login'].'&quot;.';
+					$rtxt = '[img[items/pal_button9.gif]] &quot;'.$u->info['login'].'&quot; СЃРѕРІРµСЂС€РёР»'.$sx.' РєСЂРѕРІР°РІРѕРµ РЅР°РїР°РґРµРЅРёРµ РїРѕ РјРµС‚РєРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$ua['login'].'&quot;.';
 				}else{
-					$rtxt = '[img[items/pal_button8.gif]] &quot;'.$u->info['login'].'&quot; совершил'.$sx.' нападение по метке на персонажа &quot;'.$ua['login'].'&quot;.';
+					$rtxt = '[img[items/pal_button8.gif]] &quot;'.$u->info['login'].'&quot; СЃРѕРІРµСЂС€РёР»'.$sx.' РЅР°РїР°РґРµРЅРёРµ РїРѕ РјРµС‚РєРµ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$ua['login'].'&quot;.';
 				}
 				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`) VALUES (1,'".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1')");		
 				
@@ -392,18 +392,18 @@ if(isset($_GET['atak_user']) && $u->info['battle'] == 0 && $_GET['atak_user']!=$
 				die();
 			}else{
 				if($ua['room']!=$u->info['room']){
-				//Персонаж в другой комнате
-					$u->error = 'Персонаж находится в другой комнате';
+				//РџРµСЂСЃРѕРЅР°Р¶ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ
+					$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅР°С…РѕРґРёС‚СЃСЏ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ';
 				}else{
-					$u->error = 'Персонаж имеет слишком малый уровень жизней.';
+					$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РёРјРµРµС‚ СЃР»РёС€РєРѕРј РјР°Р»С‹Р№ СѓСЂРѕРІРµРЅСЊ Р¶РёР·РЅРµР№.';
 				}
 			}
 		}else{
-			//На персонажа нельзя напасть
-			$u->error = 'Персонаж не в игре, либо на нем нет метки';
+			//РќР° РїРµСЂСЃРѕРЅР°Р¶Р° РЅРµР»СЊР·СЏ РЅР°РїР°СЃС‚СЊ
+			$u->error = 'РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РІ РёРіСЂРµ, Р»РёР±Рѕ РЅР° РЅРµРј РЅРµС‚ РјРµС‚РєРё';
 		}
 	}else{
-		$u->error = 'Вам запрещается атаковать без разрешения...';
+		$u->error = 'Р’Р°Рј Р·Р°РїСЂРµС‰Р°РµС‚СЃСЏ Р°С‚Р°РєРѕРІР°С‚СЊ Р±РµР· СЂР°Р·СЂРµС€РµРЅРёСЏ...';
 	}
 }
 
@@ -436,26 +436,26 @@ define('IP',GetRealIp());
 			mysql_query('UPDATE `users` SET `pass` = "'.mysql_real_escape_string($u->info['pass']).'",`repass` = "0",`type_pers` = "0",`bot_room` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			mysql_query('UPDATE `stats` SET `bot` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 		}else{
-			die('<font color="red"><b>Внимание!</b> Смена пароля привязана к ip %'.$u->info['ip'].'.<br>Для восстановления контроля войдите с данного IP, либо обратитесь к Администрации проекта через нового персонажа. Приносим извинения за неудобства!</font>');
+			die('<font color="red"><b>Р’РЅРёРјР°РЅРёРµ!</b> РЎРјРµРЅР° РїР°СЂРѕР»СЏ РїСЂРёРІСЏР·Р°РЅР° Рє ip %'.$u->info['ip'].'.<br>Р”Р»СЏ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ РєРѕРЅС‚СЂРѕР»СЏ РІРѕР№РґРёС‚Рµ СЃ РґР°РЅРЅРѕРіРѕ IP, Р»РёР±Рѕ РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РїСЂРѕРµРєС‚Р° С‡РµСЂРµР· РЅРѕРІРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РџСЂРёРЅРѕСЃРёРј РёР·РІРёРЅРµРЅРёСЏ Р·Р° РЅРµСѓРґРѕР±СЃС‚РІР°!</font>');
 		}
 	}else{
 		//unlink($lock_file);
 		if(isset($_POST['renpass'])) {
 			if($u->info['pass']==md5($_POST['renpass']))
 			{
-				echo '<font color="red"><b>Внимание!</b>Ваш новый пароль должен различаться со старым.</font>';
+				echo '<font color="red"><b>Р’РЅРёРјР°РЅРёРµ!</b>Р’Р°С€ РЅРѕРІС‹Р№ РїР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЂР°Р·Р»РёС‡Р°С‚СЊСЃСЏ СЃРѕ СЃС‚Р°СЂС‹Рј.</font>';
 			}elseif($_POST['renpass']!=$_POST['renpass2']) {
-				echo '<font color="red"><b>Внимание!</b>Пароли не совпадают.</font>';
+				echo '<font color="red"><b>Р’РЅРёРјР°РЅРёРµ!</b>РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚.</font>';
 			}
 		}
-		die('<br><br><br><font color="red"><b>Смените пожалуйста пароль от персонажа!</b><br>Данная смена проходит, если пароль не менялся более 2 месяцев.</font><br><br><hr>
+		die('<br><br><br><font color="red"><b>РЎРјРµРЅРёС‚Рµ РїРѕР¶Р°Р»СѓР№СЃС‚Р° РїР°СЂРѕР»СЊ РѕС‚ РїРµСЂСЃРѕРЅР°Р¶Р°!</b><br>Р”Р°РЅРЅР°СЏ СЃРјРµРЅР° РїСЂРѕС…РѕРґРёС‚, РµСЃР»Рё РїР°СЂРѕР»СЊ РЅРµ РјРµРЅСЏР»СЃСЏ Р±РѕР»РµРµ 2 РјРµСЃСЏС†РµРІ.</font><br><br><hr>
 			<form action="main.php" method="post">
 		<fieldset>
-		<legend><b>Сменить пароль</b></legend>
+		<legend><b>РЎРјРµРЅРёС‚СЊ РїР°СЂРѕР»СЊ</b></legend>
 		<table>
-			<tr><td align=right>Новый пароль:</td><td><input type=password name="renpass"></td></tr>
-			<tr><td align=right>Новый пароль (еще раз):</td><td><input type=password name="renpass2"></td></tr>
-			<tr><td align=right><input type=submit value="Сменить пароль" name="changepsw"></td><td></td></tr>
+			<tr><td align=right>РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ:</td><td><input type=password name="renpass"></td></tr>
+			<tr><td align=right>РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ (РµС‰Рµ СЂР°Р·):</td><td><input type=password name="renpass2"></td></tr>
+			<tr><td align=right><input type=submit value="РЎРјРµРЅРёС‚СЊ РїР°СЂРѕР»СЊ" name="changepsw"></td><td></td></tr>
 		</table>
 		</fieldset>
 		</font>');
@@ -471,7 +471,7 @@ if( isset($btl_last['id']) && $u->info['battle'] == 0 ) {
 	include('modules_data/btl_.php');
 	$u->info['battle_lsto'] = true;
 }elseif($u->info['battle']==0){ 
-	//Проверка/Снятие предметов
+	//РџСЂРѕРІРµСЂРєР°/РЎРЅСЏС‚РёРµ РїСЂРµРґРјРµС‚РѕРІ
 	if( !isset($sleep['id']) ) {
 		$act2 = $u->testItems($u->info['id'],$u->stats,0);
 	}
@@ -484,7 +484,7 @@ if( isset($btl_last['id']) && $u->info['battle'] == 0 ) {
 	}
 	
 	if(!isset($u->tfer['id']) && $u->room['block_all'] == 0){
-		//Одеть/снять предмет
+		//РћРґРµС‚СЊ/СЃРЅСЏС‚СЊ РїСЂРµРґРјРµС‚
 		if(isset($_GET['rstv']) && isset($_GET['inv'])) {
 			$act = $u->freeStatsMod($_GET['rstv'],$_GET['mf'],$u->info['id']);
 		} elseif(isset($_GET['ufs2']) && isset($_GET['inv'])){
@@ -509,7 +509,7 @@ if( isset($btl_last['id']) && $u->info['battle'] == 0 ) {
 			if($u->info['allLock'] < time()) {
 				$u->deleteItem(intval($_GET['delete']),$u->info['id']);
 			}else{
-				echo '<script>setTimeout(function(){alert("Вам запрещено удалять предметы до '.date('d.m.y H:i',$u->info['allLock']).'")},250);</script>';
+				echo '<script>setTimeout(function(){alert("Р’Р°Рј Р·Р°РїСЂРµС‰РµРЅРѕ СѓРґР°Р»СЏС‚СЊ РїСЂРµРґРјРµС‚С‹ РґРѕ '.date('d.m.y H:i',$u->info['allLock']).'")},250);</script>';
 			}
 		} elseif(isset($_GET['unstack']) && isset($_GET['inv']) && $u->newAct($_GET['sd4'])){
 			$u->unstack(intval($_GET['unstack']), intval($_GET['unstackCount']));
@@ -518,20 +518,20 @@ if( isset($btl_last['id']) && $u->info['battle'] == 0 ) {
 		} elseif(isset($_GET['end_qst_now'])){
 			$q->endq((int)$_GET['end_qst_now'],'end');
 		}
-		//Использовать эффект
+		//РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС„С„РµРєС‚
 		if(isset($_GET['use_pid'])){
 			$magic->useItems((int)$_GET['use_pid']);
 		}
 	}else{
 		if($u->room['block_all'] > 0) {
 			//if(isset($_GET['use_pid'])) {
-				$u->error = 'В данной локации запрещено пользоваться чем-либо...';
+				$u->error = 'Р’ РґР°РЅРЅРѕР№ Р»РѕРєР°С†РёРё Р·Р°РїСЂРµС‰РµРЅРѕ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ С‡РµРј-Р»РёР±Рѕ...';
 			//}
 		}
 	}
 
 }elseif($u->info['battle_text']!=''){
-	//Показываем системку и заносим данные
+	//РџРѕРєР°Р·С‹РІР°РµРј СЃРёСЃС‚РµРјРєСѓ Рё Р·Р°РЅРѕСЃРёРј РґР°РЅРЅС‹Рµ
 	if($u->info['last_b']>0) {
 		
 	}
@@ -541,7 +541,7 @@ if( isset($btl_last['id']) && $u->info['battle'] == 0 ) {
 if($magic->youuse > 0){
 	$act = 1;
 }
-//Получение статов
+//РџРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°С‚РѕРІ
 if($act!=-2){
 	$u->stats = $u->getStats($u->info['id'],0,1);
 	$u->aves = $u->ves(NULL);
@@ -617,14 +617,14 @@ if( isset($_GET['worklist']) && $u->info['admin'] > 0 ) {
 	}
 	include('modules_data/_alhp.php');
 }elseif($u->info['battle']!=0){
-	//поединок
+	//РїРѕРµРґРёРЅРѕРє
 	//if( $u->info['id'] != 1000000 || isset($_GET['back_btl']) ) {
 		if((!isset($btl_last['id']) || $u->info['battle'] > 0) && !isset($u->info['battle_lsto'])) {
 			include('modules_data/btl_.php');
 		}
 	/*}else{
 		include('modules_data/btl_new.php');
-		echo '<hr><a href="main.php?back_btl">Старый вариант Боевой системы</a>';
+		echo '<hr><a href="main.php?back_btl">РЎС‚Р°СЂС‹Р№ РІР°СЂРёР°РЅС‚ Р‘РѕРµРІРѕР№ СЃРёСЃС‚РµРјС‹</a>';
 	}*/
 }else{
 	if(isset($_GET['talk']) && !isset($u->tfer['id'])){
@@ -650,7 +650,7 @@ if( isset($_GET['worklist']) && $u->info['admin'] > 0 ) {
 	}elseif((isset($_GET['transfer']) || isset($u->tfer['id'])) && $u->info['level']>=$c['level_ransfer'] && $trololo==1 && $u->info['inTurnir'] == 0 && $u->info['inTurnirnew'] == 0){
 		if($u->info['allLock'] > time()) {
 			include('modules_data/_locations.php');
-			echo '<script>setTimeout(function(){alert("Вам запрещены передачи до '.date('d.m.y H:i',$u->info['allLock']).'")},250);</script>';
+			echo '<script>setTimeout(function(){alert("Р’Р°Рј Р·Р°РїСЂРµС‰РµРЅС‹ РїРµСЂРµРґР°С‡Рё РґРѕ '.date('d.m.y H:i',$u->info['allLock']).'")},250);</script>';
 		}else{
 			include('modules_data/_transfers.php');
 		}
@@ -661,7 +661,7 @@ if( isset($_GET['worklist']) && $u->info['admin'] > 0 ) {
 	}elseif(isset($_GET['act_trf']) && $u->room['block_all']==0){
 		include('modules_data/act_trf.php');
 	}elseif(!isset($u->tfer['id'])){
-//		if($u->info['login'] == 'Мусорщик')
+//		if($u->info['login'] == 'РњСѓСЃРѕСЂС‰РёРє')
 //			exit(include('modules_data/_NewLocations.php'));
 //		else
 			include('modules_data/_locations.php');
@@ -670,13 +670,13 @@ if( isset($_GET['worklist']) && $u->info['admin'] > 0 ) {
 
 //mysql_query('COMMIT');
 
-if($u->room['name']=='Башня Смерти' && $u->info['inUser']>0 && $u->info['lost']>0){
+if($u->room['name']=='Р‘Р°С€РЅСЏ РЎРјРµСЂС‚Рё' && $u->info['inUser']>0 && $u->info['lost']>0){
 	//mysql_query('UPDATE `users` SET `inUser` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-	//кидаем травму
+	//РєРёРґР°РµРј С‚СЂР°РІРјСѓ
 	//header('location: main.php');
 }
 
-//Проверяем квесты на готовность
+//РџСЂРѕРІРµСЂСЏРµРј РєРІРµСЃС‚С‹ РЅР° РіРѕС‚РѕРІРЅРѕСЃС‚СЊ
 if( $u->info['dnow'] > 0 ) {
 	$q->testquest();
 }
@@ -692,32 +692,32 @@ while( $pl = mysql_fetch_array($sp) ) {
 		//
 		if( $pl['room'] != -1 && $pl['room'] != $u->info['room'] ) {
 			if(isset($_GET['take_loc_item']) && $_GET['take_loc_item'] == $pl['id'] ) {
-				$iloce = 'Вы находитесь в другой комнате...';
+				$iloce = 'Р’С‹ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ РґСЂСѓРіРѕР№ РєРѕРјРЅР°С‚Рµ...';
 			}
 			$tk = 0;
 		}elseif( $pl['tr_login'] != '0' && $pl['tr_login'] != $u->info['login']) {
 			if(isset($_GET['take_loc_item']) && $_GET['take_loc_item'] == $pl['id'] ) {
-				$iloce = 'Данный предмет для другого персонажа...';
+				$iloce = 'Р”Р°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚ РґР»СЏ РґСЂСѓРіРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°...';
 			}
 			$tk = 0;
 		}elseif( $pl['tr_sex'] != -1 && $pl['tr_sex'] != $u->info['sex'] ) {
 			if(isset($_GET['take_loc_item']) && $_GET['take_loc_item'] == $pl['id'] ) {
-				$iloce = 'Данный предмет для противоположного пола...';
+				$iloce = 'Р”Р°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚ РґР»СЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРіРѕ РїРѕР»Р°...';
 			}
 			$tk = 0;
 		}
 		if($pl['time'] + 86400 < time() ) {
-			//Не успели поднять
+			//РќРµ СѓСЃРїРµР»Рё РїРѕРґРЅСЏС‚СЊ
 			$glid = 1;
 			mysql_query('UPDATE `items_local` SET `delete` = "'.time().'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 		}elseif(isset($_GET['take_loc_item']) && $_GET['take_loc_item'] == $pl['id'] ) {
 			//
 			if( $u->info['battle'] > 0 && $tk == 1 ) {
-				$iloce = 'Вы не можете поднять предмет, завершите поединок...';
+				$iloce = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕРґРЅСЏС‚СЊ РїСЂРµРґРјРµС‚, Р·Р°РІРµСЂС€РёС‚Рµ РїРѕРµРґРёРЅРѕРє...';
 			}elseif($tk == 1 ) {
-				$iloce = 'Вы успешно подняли предмет &quot;'.$itmo['name'].'&quot; в локации &quot;'.$u->room['name'].'&quot;.';
+				$iloce = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕРґРЅСЏР»Рё РїСЂРµРґРјРµС‚ &quot;'.$itmo['name'].'&quot; РІ Р»РѕРєР°С†РёРё &quot;'.$u->room['name'].'&quot;.';
 				mysql_query('UPDATE `items_local` SET `delete` = "'.time().'" , `user_take` = "'.$u->info['id'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
-				//выдаем предмет
+				//РІС‹РґР°РµРј РїСЂРµРґРјРµС‚
 				$glid = 1;
 				if( $pl['data'] == '0' ) {					
 					$u->addItem($pl['item_id'],$u->info['id'],'|from_loc_id='.$pl['id'].'|from_loc='.$u->info['room']);
@@ -727,7 +727,7 @@ while( $pl = mysql_fetch_array($sp) ) {
 				/*
 				mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES
 				('1','".$u->info['city']."','".$u->info['room']."','','".$u->info['login']."',
-				'Персонаж <b>".$u->info['login']."</b> поднял предмет <b>".$itmo['name']."</b> в локации ".$u->room['name'].".','".time()."','6','0')");
+				'РџРµСЂСЃРѕРЅР°Р¶ <b>".$u->info['login']."</b> РїРѕРґРЅСЏР» РїСЂРµРґРјРµС‚ <b>".$itmo['name']."</b> РІ Р»РѕРєР°С†РёРё ".$u->room['name'].".','".time()."','6','0')");
 				*/
 			}			
 		}
@@ -736,15 +736,15 @@ while( $pl = mysql_fetch_array($sp) ) {
 				$tk = 2;
 			}
 			$iloc .= '<a class="tolobf'.$tk.'" href="main.php?take_loc_item='.$pl['id'].'" target="main"><div class="outer"><div class="middle"><div class="inner">'.
-			'<img title="Забрать &quot;'.$itmo['name'].'&quot;';
+			'<img title="Р—Р°Р±СЂР°С‚СЊ &quot;'.$itmo['name'].'&quot;';
 			if( $pl['tr_login'] ) {
-				$iloc .= '\n'.'Предмет для игрока &quot;'.$pl['tr_login'].'&quot;';
+				$iloc .= '\n'.'РџСЂРµРґРјРµС‚ РґР»СЏ РёРіСЂРѕРєР° &quot;'.$pl['tr_login'].'&quot;';
 			}elseif( $pl['tr_sex'] == 0 ) {
-				$iloc .= '\n'.'Предмет для мужчин';
+				$iloc .= '\n'.'РџСЂРµРґРјРµС‚ РґР»СЏ РјСѓР¶С‡РёРЅ';
 			}elseif( $pl['tr_sex'] == 1 ) {
-				$iloc .= '\n'.'Предмет для женщин';
+				$iloc .= '\n'.'РџСЂРµРґРјРµС‚ РґР»СЏ Р¶РµРЅС‰РёРЅ';
 			}else{
-				$iloc .= '\n'.'Предмет может подобрать каждый';
+				$iloc .= '\n'.'РџСЂРµРґРјРµС‚ РјРѕР¶РµС‚ РїРѕРґРѕР±СЂР°С‚СЊ РєР°Р¶РґС‹Р№';
 			}
 			$iloc .= '" src="http://img.xcombats.com/i/items/'.$itmo['img'].'">'.
 			'</div></div></div></a> ';	
@@ -762,7 +762,7 @@ if( $iloc != '' ) {
 	$iloc = '<style>'.
 	'.tolobf0 { display:inline-block; width:80px; height:80px; background-color:#e5e5e5; text-align:center; }.tolobf0:hover { background-color:#d5d5d5; text-align:center; }.tolobf2 { display:inline-block; width:80px; height:80px; background-color:#FFD700; text-align:center; }.tolobf2:hover { background-color:#DAA520; text-align:center; }.tolobf1 { display:inline-block; width:80px; height:80px; background-color:#d5d5e5; text-align:center; }.tolobf1:hover { background-color:#d5d5d5; text-align:center; }.outer {    display: table;    position: absolute;    height: 80px;    width: 80px;}.middle {    display: table-cell;    vertical-align: middle;}.inner {  margin-left: auto; margin-right: auto; width: 80px; }'.
 	'</style>'.
-	'<h3>В комнате разбросаны предметы</h3>' . $iloc;
+	'<h3>Р’ РєРѕРјРЅР°С‚Рµ СЂР°Р·Р±СЂРѕСЃР°РЅС‹ РїСЂРµРґРјРµС‚С‹</h3>' . $iloc;
 	$tjs .= 'top.frames[\'main\'].locitems=1;parent.$(\'#canal1\').html( \'' . $iloc . '\' );';
 }else{
 	$tjs .= 'top.frames[\'main\'].locitems=1;parent.$(\'#canal1\').html( \'\' );';

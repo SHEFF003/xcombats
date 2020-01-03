@@ -36,8 +36,8 @@ body {
 			}
 			$dpages .= ' ';
 		}
-		$dpages .= ' &nbsp; <a href="main.php?talk='.((int)$_GET['talk']).'&act='.((int)$_GET['act']).'&add_new_page=1" title="Добавить новую страницу"><small>[+]</small></a>';
-		echo '<small style="float:right;border-bottom:1px solid black;padding-bottom:2px;"><a href="javascript:window.open(\'http://xcombats.com/quest_dlg_edit.php?pid='.((int)$dialog->pg).'\',\'winEdi1\',\'width=850,height=400,top=400,left=500,resizable=no,scrollbars=yes,status=no\');" target="_blank">Редактировать текст</a> &nbsp; | &nbsp; Страницы: '.$dpages.'</small><br><br>';	
+		$dpages .= ' &nbsp; <a href="main.php?talk='.((int)$_GET['talk']).'&act='.((int)$_GET['act']).'&add_new_page=1" title="Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ"><small>[+]</small></a>';
+		echo '<small style="float:right;border-bottom:1px solid black;padding-bottom:2px;"><a href="javascript:window.open(\'http://xcombats.com/quest_dlg_edit.php?pid='.((int)$dialog->pg).'\',\'winEdi1\',\'width=850,height=400,top=400,left=500,resizable=no,scrollbars=yes,status=no\');" target="_blank">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ С‚РµРєСЃС‚</a> &nbsp; | &nbsp; РЎС‚СЂР°РЅРёС†С‹: '.$dpages.'</small><br><br>';	
 	}
 	echo $dialog->dText; ?></p>
     <p><? echo $dialog->aText; ?></p></td>

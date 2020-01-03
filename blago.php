@@ -1,11 +1,11 @@
-<?
+<?php
 if(!isset($_GET['kill'])) { die(); }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Благодать Алхимика</title>
+<title>Р‘Р»Р°РіРѕРґР°С‚СЊ РђР»С…РёРјРёРєР°</title>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
 <script type="text/javascript" src="/7E6B1377EF26442EBB8571ECA242C7BE/AA871BD4-9841-8043-97E5-B6FB8495D28A/main.js" charset="UTF-8"></script><SCRIPT LANGUAGE="JavaScript" SRC="http://img.combats.ru/i/js/dialog_032_ru.js?v=1.168" charset="utf-8"></SCRIPT>
 <script type="text/javascript" src='http://img.combats.ru/js/CombatsUI.js?v=1.168' charset='utf-8'></script>
@@ -491,7 +491,7 @@ input[type=submit]::-moz-focus-inner { border:0; }
 <body>
 <script>
 var level_prices = [['2.00','5.00','50.00'],['4.00','9.00','90.00'],['7.00','25.00','250.00'],['15.00','49.00','490.00'],['30.00','99.00','990.00'],[]];
-var level_durs   = [['7 дней','30 дней','1 год'],['7 дней','30 дней','1 год'],['7 дней','30 дней','1 год'],['7 дней','30 дней','1 год'],['7 дней','30 дней','1 год'],[]];
+var level_durs   = [['7 РґРЅРµР№','30 РґРЅРµР№','1 РіРѕРґ'],['7 РґРЅРµР№','30 РґРЅРµР№','1 РіРѕРґ'],['7 РґРЅРµР№','30 РґРЅРµР№','1 РіРѕРґ'],['7 РґРЅРµР№','30 РґРЅРµР№','1 РіРѕРґ'],['7 РґРЅРµР№','30 РґРЅРµР№','1 РіРѕРґ'],[]];
 function change_dur_price(name, level, dur) {
 var el = document.getElementById(name);
 if (el) {
@@ -521,22 +521,22 @@ var price = level_prices[lvl-1][dur];
 var period = level_durs[lvl-1][dur];
 if (old_lvl && (old_lvl < lvl)) {
 txt =
-"У вас уже есть Благодать Алхимика "+old_lvl+". "
-+"Вы уверены, что хотите купить Благодать Алхимика "+lvl+' на '+period+" за "+price+" екр? "
-+"Ваша текущая Благодать Алхимика будет запомнена и продолжится после истечения срока новой.";
+"РЈ РІР°СЃ СѓР¶Рµ РµСЃС‚СЊ Р‘Р»Р°РіРѕРґР°С‚СЊ РђР»С…РёРјРёРєР° "+old_lvl+". "
++"Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ Р‘Р»Р°РіРѕРґР°С‚СЊ РђР»С…РёРјРёРєР° "+lvl+' РЅР° '+period+" Р·Р° "+price+" РµРєСЂ? "
++"Р’Р°С€Р° С‚РµРєСѓС‰Р°СЏ Р‘Р»Р°РіРѕРґР°С‚СЊ РђР»С…РёРјРёРєР° Р±СѓРґРµС‚ Р·Р°РїРѕРјРЅРµРЅР° Рё РїСЂРѕРґРѕР»Р¶РёС‚СЃСЏ РїРѕСЃР»Рµ РёСЃС‚РµС‡РµРЅРёСЏ СЃСЂРѕРєР° РЅРѕРІРѕР№.";
 }
 if (old_lvl && (old_lvl == lvl)) {
 txt =
-"Вы уверены, что хотите продлить Благодать Алхимика "+lvl+' на '+period+" за "+price+" екр?";
+"Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РїСЂРѕРґР»РёС‚СЊ Р‘Р»Р°РіРѕРґР°С‚СЊ РђР»С…РёРјРёРєР° "+lvl+' РЅР° '+period+" Р·Р° "+price+" РµРєСЂ?";
 }
 if (old_lvl && (old_lvl > lvl)) {
-alert('Нельзя понизить Благодать Алхимика');
+alert('РќРµР»СЊР·СЏ РїРѕРЅРёР·РёС‚СЊ Р‘Р»Р°РіРѕРґР°С‚СЊ РђР»С…РёРјРёРєР°');
 return false;
 }
 if (!old_lvl || (old_lvl == 0)) {
 txt =
-"Вы уверены, что хотите купить Благодать Алхимика "
-+lvl+' на '+period+" за "+price+" екр?";
+"Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ Р‘Р»Р°РіРѕРґР°С‚СЊ РђР»С…РёРјРёРєР° "
++lvl+' РЅР° '+period+" Р·Р° "+price+" РµРєСЂ?";
 }
 return confirm(txt);
 }
@@ -572,7 +572,7 @@ var el = document.getElementById('gift_name');
 if (el) {
 var login = el.value;
 if (login == '') {
-alert('Введите имя получателя');
+alert('Р’РІРµРґРёС‚Рµ РёРјСЏ РїРѕР»СѓС‡Р°С‚РµР»СЏ');
 return false;
 }
 }
@@ -587,23 +587,23 @@ var level_options = '';
 var s =
 '<input type="hidden" name="a" value="gift">'
 +'<table>'
-+'<tr><td>Выберите ранг: </td>'
++'<tr><td>Р’С‹Р±РµСЂРёС‚Рµ СЂР°РЅРі: </td>'
 +    '<td><select id="gift_level" name="level" onchange="set_durs();">'
 for (var i = 0; i < level_prices.length-1; i++) {
-level_options= level_options+'<option value="'+(i+1)+'">Ранг '+(i+1)+'</option>';
+level_options= level_options+'<option value="'+(i+1)+'">Р Р°РЅРі '+(i+1)+'</option>';
 }
 s=s+level_options+'</select></td></tr>';
 s = s
-+ '<tr><td>Выберите срок: </td>'
++ '<tr><td>Р’С‹Р±РµСЂРёС‚Рµ СЃСЂРѕРє: </td>'
 +     '<td><select id="gift_dur" name="dur" onchange="set_price();"></select></td></tr>';
 s = s
-+'<tr><td>Имя получателя: </td><td> <input id="gift_name" type="text" name="receiver" value=""></td></tr>'
-+'<tr><td>Стоимость:</td><td><span id="gift_price">'+level_prices[0][0]+'</span> екр</td></tr>'
-+'<tr><td colspan="2"><input type="submit" onclick="return checklogin();" value="Подарить Благодать Алхимика"></td></tr>'
++'<tr><td>РРјСЏ РїРѕР»СѓС‡Р°С‚РµР»СЏ: </td><td> <input id="gift_name" type="text" name="receiver" value=""></td></tr>'
++'<tr><td>РЎС‚РѕРёРјРѕСЃС‚СЊ:</td><td><span id="gift_price">'+level_prices[0][0]+'</span> РµРєСЂ</td></tr>'
++'<tr><td colspan="2"><input type="submit" onclick="return checklogin();" value="РџРѕРґР°СЂРёС‚СЊ Р‘Р»Р°РіРѕРґР°С‚СЊ РђР»С…РёРјРёРєР°"></td></tr>'
 +'</table>';
 s =
 '<form method="POST">'
-+crtmagic('', 'Подарить', s, '', false)
++crtmagic('', 'РџРѕРґР°СЂРёС‚СЊ', s, '', false)
 +'</form>';
 el.innerHTML = s;
 el.style.visibility = 'visible';
@@ -660,13 +660,13 @@ $('.date').text(text);
 <div class="header">
 <div class="account-status">
 <span style="width: 30%; text-align: left;">
-<b>Активные Благодати Алхимика:</b>
+<b>РђРєС‚РёРІРЅС‹Рµ Р‘Р»Р°РіРѕРґР°С‚Рё РђР»С…РёРјРёРєР°:</b>
 </span>
 <span style="width: 30%;">
-Следующий пробный премиум будет доступен <span class="date"></span>
+РЎР»РµРґСѓСЋС‰РёР№ РїСЂРѕР±РЅС‹Р№ РїСЂРµРјРёСѓРј Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРµРЅ <span class="date"></span>
 </span>
 <span style="width: 32%;">
-<p>Вы можете попробовать Благодать 3 ранга бесплатно только 1 раз в 30 дней.</p>
+<p>Р’С‹ РјРѕР¶РµС‚Рµ РїРѕРїСЂРѕР±РѕРІР°С‚СЊ Р‘Р»Р°РіРѕРґР°С‚СЊ 3 СЂР°РЅРіР° Р±РµСЃРїР»Р°С‚РЅРѕ С‚РѕР»СЊРєРѕ 1 СЂР°Р· РІ 30 РґРЅРµР№.</p>
 </span>
 
 </div>
@@ -679,14 +679,14 @@ $('.date').text(text);
 <div id="hint4" style="visibility:hidden"></div>
 
 
-<p style="text-align: left">Состояние счета:</p>
+<p style="text-align: left">РЎРѕСЃС‚РѕСЏРЅРёРµ СЃС‡РµС‚Р°:</p>
 <span class="left">
-<span class="bill-number">№ 3991930370</span>
-<a href="/buy.pl" target="_blank"><span class="add-button">Пополнить</span></a>
+<span class="bill-number">в„– 3991930370</span>
+<a href="/buy.pl" target="_blank"><span class="add-button">РџРѕРїРѕР»РЅРёС‚СЊ</span></a>
 </span>
 <span class="right">
-<span class="kredits"><b>0.00 кр</b></span>
-<span class="kredits"><b>0.17 екр</b></span>
+<span class="kredits"><b>0.00 РєСЂ</b></span>
+<span class="kredits"><b>0.17 РµРєСЂ</b></span>
 </span>
 
 
@@ -704,7 +704,7 @@ $('.date').text(text);
 <td class="delimiter" style="width: 20px;"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Скорость передвижения <b class="number_view">+20%</b></td>
+<td align="left">РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ <b class="number_view">+20%</b></td>
 <td class="ok">.</td>
 <td class="delimiter"></td>
 <td class="ok">.</td>
@@ -717,7 +717,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Скорость восстановления Здоровья и Маны <b class="number_view">+50%</b></td>
+<td align="left">РЎРєРѕСЂРѕСЃС‚СЊ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ Р—РґРѕСЂРѕРІСЊСЏ Рё РњР°РЅС‹ <b class="number_view">+50%</b></td>
 <td class="ok">.</td>
 <td class="delimiter"></td>
 <td class="ok">.</td>
@@ -730,7 +730,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Ускоренное получение репутации Ангелов <b class="number_view">+100%</b></td>
+<td align="left">РЈСЃРєРѕСЂРµРЅРЅРѕРµ РїРѕР»СѓС‡РµРЅРёРµ СЂРµРїСѓС‚Р°С†РёРё РђРЅРіРµР»РѕРІ <b class="number_view">+100%</b></td>
 <td class="ok">.</td>
 <td class="delimiter"></td>
 <td class="ok">.</td>
@@ -743,7 +743,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Нет ослабления после боя</td>
+<td align="left">РќРµС‚ РѕСЃР»Р°Р±Р»РµРЅРёСЏ РїРѕСЃР»Рµ Р±РѕСЏ</td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="ok">.</td>
@@ -756,7 +756,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Бонус к получаемому опыту <b class="number_view">+50%</b></td>
+<td align="left">Р‘РѕРЅСѓСЃ Рє РїРѕР»СѓС‡Р°РµРјРѕРјСѓ РѕРїС‹С‚Сѓ <b class="number_view">+50%</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="ok">.</td>
@@ -769,7 +769,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Бонус к получаемой репутации в подземельях <b class="number_view">+50%</b></td>
+<td align="left">Р‘РѕРЅСѓСЃ Рє РїРѕР»СѓС‡Р°РµРјРѕР№ СЂРµРїСѓС‚Р°С†РёРё РІ РїРѕРґР·РµРјРµР»СЊСЏС… <b class="number_view">+50%</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="ok">.</td>
@@ -782,7 +782,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Задержка на посещение подземелий <b class="number_view">-30%</b><br><b class="number_view">+1</b> дополнительный поход в сутки <span  onmouseout='CombatsUI.HideTooltip();' onmouseover='CombatsUI.ShowTooltip("Для подземелий, где ограничение по количеству походов в сутки",event)'><span class="info"></span></span></td>
+<td align="left">Р—Р°РґРµСЂР¶РєР° РЅР° РїРѕСЃРµС‰РµРЅРёРµ РїРѕРґР·РµРјРµР»РёР№ <b class="number_view">-30%</b><br><b class="number_view">+1</b> РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РїРѕС…РѕРґ РІ СЃСѓС‚РєРё <span  onmouseout='CombatsUI.HideTooltip();' onmouseover='CombatsUI.ShowTooltip("Р”Р»СЏ РїРѕРґР·РµРјРµР»РёР№, РіРґРµ РѕРіСЂР°РЅРёС‡РµРЅРёРµ РїРѕ РєРѕР»РёС‡РµСЃС‚РІСѓ РїРѕС…РѕРґРѕРІ РІ СЃСѓС‚РєРё",event)'><span class="info"></span></span></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -795,7 +795,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Дополнительный <b class="number_view">бросок</b> вероятности на выпадение дропа в подземельях <span  onmouseout='CombatsUI.HideTooltip();' onmouseover='CombatsUI.ShowTooltip("Касается дропа с убийства ботов и некоторых сундуков и объектов. После убийства бота, проверятся шанс на выпадение дропа и независимо от результата(выпал дроп или нет), делается дополнительный бросок, таким образом можно получить двойной дроп с бота. Так же это распространяется и на некоторые сундуки и объекты. Обратите внимание, что требуемые вещи на обмен могут быть так же взяты в двойном размере.<br><br><b>Примеры:</b><br>У бота вероятность выпадения дропа - 100%: вы получите двойной дроп.<br>У бота вероятность выпадения 50%: вы можете получить двойной дроп, одинарный дроп или вообще ничего.",event)'><span class="info"></span></span></td>
+<td align="left">Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ <b class="number_view">Р±СЂРѕСЃРѕРє</b> РІРµСЂРѕСЏС‚РЅРѕСЃС‚Рё РЅР° РІС‹РїР°РґРµРЅРёРµ РґСЂРѕРїР° РІ РїРѕРґР·РµРјРµР»СЊСЏС… <span  onmouseout='CombatsUI.HideTooltip();' onmouseover='CombatsUI.ShowTooltip("РљР°СЃР°РµС‚СЃСЏ РґСЂРѕРїР° СЃ СѓР±РёР№СЃС‚РІР° Р±РѕС‚РѕРІ Рё РЅРµРєРѕС‚РѕСЂС‹С… СЃСѓРЅРґСѓРєРѕРІ Рё РѕР±СЉРµРєС‚РѕРІ. РџРѕСЃР»Рµ СѓР±РёР№СЃС‚РІР° Р±РѕС‚Р°, РїСЂРѕРІРµСЂСЏС‚СЃСЏ С€Р°РЅСЃ РЅР° РІС‹РїР°РґРµРЅРёРµ РґСЂРѕРїР° Рё РЅРµР·Р°РІРёСЃРёРјРѕ РѕС‚ СЂРµР·СѓР»СЊС‚Р°С‚Р°(РІС‹РїР°Р» РґСЂРѕРї РёР»Рё РЅРµС‚), РґРµР»Р°РµС‚СЃСЏ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ Р±СЂРѕСЃРѕРє, С‚Р°РєРёРј РѕР±СЂР°Р·РѕРј РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ РґРІРѕР№РЅРѕР№ РґСЂРѕРї СЃ Р±РѕС‚Р°. РўР°Рє Р¶Рµ СЌС‚Рѕ СЂР°СЃРїСЂРѕСЃС‚СЂР°РЅСЏРµС‚СЃСЏ Рё РЅР° РЅРµРєРѕС‚РѕСЂС‹Рµ СЃСѓРЅРґСѓРєРё Рё РѕР±СЉРµРєС‚С‹. РћР±СЂР°С‚РёС‚Рµ РІРЅРёРјР°РЅРёРµ, С‡С‚Рѕ С‚СЂРµР±СѓРµРјС‹Рµ РІРµС‰Рё РЅР° РѕР±РјРµРЅ РјРѕРіСѓС‚ Р±С‹С‚СЊ С‚Р°Рє Р¶Рµ РІР·СЏС‚С‹ РІ РґРІРѕР№РЅРѕРј СЂР°Р·РјРµСЂРµ.<br><br><b>РџСЂРёРјРµСЂС‹:</b><br>РЈ Р±РѕС‚Р° РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РІС‹РїР°РґРµРЅРёСЏ РґСЂРѕРїР° - 100%: РІС‹ РїРѕР»СѓС‡РёС‚Рµ РґРІРѕР№РЅРѕР№ РґСЂРѕРї.<br>РЈ Р±РѕС‚Р° РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РІС‹РїР°РґРµРЅРёСЏ 50%: РІС‹ РјРѕР¶РµС‚Рµ РїРѕР»СѓС‡РёС‚СЊ РґРІРѕР№РЅРѕР№ РґСЂРѕРї, РѕРґРёРЅР°СЂРЅС‹Р№ РґСЂРѕРї РёР»Рё РІРѕРѕР±С‰Рµ РЅРёС‡РµРіРѕ.",event)'><span class="info"></span></span></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -808,7 +808,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Уменьшение задержки на телепортацию между городами на <b class="number_view">50%</b></td>
+<td align="left">РЈРјРµРЅСЊС€РµРЅРёРµ Р·Р°РґРµСЂР¶РєРё РЅР° С‚РµР»РµРїРѕСЂС‚Р°С†РёСЋ РјРµР¶РґСѓ РіРѕСЂРѕРґР°РјРё РЅР° <b class="number_view">50%</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -821,7 +821,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Экипировка <b class="number_view">не ломается</b></td>
+<td align="left">Р­РєРёРїРёСЂРѕРІРєР° <b class="number_view">РЅРµ Р»РѕРјР°РµС‚СЃСЏ</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -834,7 +834,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Дополнительный слот сумки</td>
+<td align="left">Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ СЃР»РѕС‚ СЃСѓРјРєРё</td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -847,7 +847,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Комиссия на аукционе <b class="number_view">2.5%</b></td>
+<td align="left">РљРѕРјРёСЃСЃРёСЏ РЅР° Р°СѓРєС†РёРѕРЅРµ <b class="number_view">2.5%</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -860,7 +860,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Скидка на ремонт <b class="number_view">50%</b></td>
+<td align="left">РЎРєРёРґРєР° РЅР° СЂРµРјРѕРЅС‚ <b class="number_view">50%</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -873,7 +873,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Бонус к получаемому благородству <b class="number_view">+50%</b></td>
+<td align="left">Р‘РѕРЅСѓСЃ Рє РїРѕР»СѓС‡Р°РµРјРѕРјСѓ Р±Р»Р°РіРѕСЂРѕРґСЃС‚РІСѓ <b class="number_view">+50%</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -886,7 +886,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="hoverable">
-<td align="left">Бонус к получаемому клановому опыту <b class="number_view">+50%</b></td>
+<td align="left">Р‘РѕРЅСѓСЃ Рє РїРѕР»СѓС‡Р°РµРјРѕРјСѓ РєР»Р°РЅРѕРІРѕРјСѓ РѕРїС‹С‚Сѓ <b class="number_view">+50%</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 <td class="empty">.</td>
@@ -899,7 +899,7 @@ $('.date').text(text);
 <td class="delimiter"></td>
 </tr>
 <tr class="round-corners hoverable">
-<td align="left">Скидка в магазинах при покупке за еврокредиты <b class="number_view">+5%</b></td>
+<td align="left">РЎРєРёРґРєР° РІ РјР°РіР°Р·РёРЅР°С… РїСЂРё РїРѕРєСѓРїРєРµ Р·Р° РµРІСЂРѕРєСЂРµРґРёС‚С‹ <b class="number_view">+5%</b></td>
 <td class="empty">.</td>
 <td class="delimiter"></td>
 
@@ -915,19 +915,19 @@ $('.date').text(text);
 <tr class="no-bg">
 <td align="right"></td>
 
-<td><span id="price1" class="number_price">2.00</span> <b class="number_price">екр</b></td>
+<td><span id="price1" class="number_price">2.00</span> <b class="number_price">РµРєСЂ</b></td>
 <td class="delimiter"></td>
 
-<td><span id="price2" class="number_price">4.00</span> <b class="number_price">екр</b></td>
+<td><span id="price2" class="number_price">4.00</span> <b class="number_price">РµРєСЂ</b></td>
 <td class="delimiter"></td>
 
-<td><span id="price3" class="number_price">7.00</span> <b class="number_price">екр</b></td>
+<td><span id="price3" class="number_price">7.00</span> <b class="number_price">РµРєСЂ</b></td>
 <td class="delimiter"></td>
 
-<td><span id="price4" class="number_price">15.00</span> <b class="number_price">екр</b></td>
+<td><span id="price4" class="number_price">15.00</span> <b class="number_price">РµРєСЂ</b></td>
 <td class="delimiter"></td>
 
-<td><span id="price5" class="number_price">30.00</span> <b class="number_price">екр</b></td>
+<td><span id="price5" class="number_price">30.00</span> <b class="number_price">РµРєСЂ</b></td>
 <td class="delimiter"></td>
 </tr>
 <tr class="duration no-bg">
@@ -938,11 +938,11 @@ $('.date').text(text);
 <div class="select-wrapper">
 <select name="dur" id="dur1" onchange="change_dur_price('price1', '1', this.value)">
 
-<option value="0">7 дней</option>
+<option value="0">7 РґРЅРµР№</option>
 
-<option value="1">30 дней</option>
+<option value="1">30 РґРЅРµР№</option>
 
-<option value="2">1 год</option>
+<option value="2">1 РіРѕРґ</option>
 </select>
 </div>
 <input type="hidden" name="a" value="buy">
@@ -959,11 +959,11 @@ $('.date').text(text);
 <div class="select-wrapper">
 <select name="dur" id="dur2" onchange="change_dur_price('price2', '2', this.value)">
 
-<option value="0">7 дней</option>
+<option value="0">7 РґРЅРµР№</option>
 
-<option value="1">30 дней</option>
+<option value="1">30 РґРЅРµР№</option>
 
-<option value="2">1 год</option>
+<option value="2">1 РіРѕРґ</option>
 </select>
 </div>
 <input type="hidden" name="a" value="buy">
@@ -980,11 +980,11 @@ $('.date').text(text);
 <div class="select-wrapper">
 <select name="dur" id="dur3" onchange="change_dur_price('price3', '3', this.value)">
 
-<option value="0">7 дней</option>
+<option value="0">7 РґРЅРµР№</option>
 
-<option value="1">30 дней</option>
+<option value="1">30 РґРЅРµР№</option>
 
-<option value="2">1 год</option>
+<option value="2">1 РіРѕРґ</option>
 </select>
 </div>
 <input type="hidden" name="a" value="buy">
@@ -1001,11 +1001,11 @@ $('.date').text(text);
 <div class="select-wrapper">
 <select name="dur" id="dur4" onchange="change_dur_price('price4', '4', this.value)">
 
-<option value="0">7 дней</option>
+<option value="0">7 РґРЅРµР№</option>
 
-<option value="1">30 дней</option>
+<option value="1">30 РґРЅРµР№</option>
 
-<option value="2">1 год</option>
+<option value="2">1 РіРѕРґ</option>
 </select>
 </div>
 <input type="hidden" name="a" value="buy">
@@ -1022,11 +1022,11 @@ $('.date').text(text);
 <div class="select-wrapper">
 <select name="dur" id="dur5" onchange="change_dur_price('price5', '5', this.value)">
 
-<option value="0">7 дней</option>
+<option value="0">7 РґРЅРµР№</option>
 
-<option value="1">30 дней</option>
+<option value="1">30 РґРЅРµР№</option>
 
-<option value="2">1 год</option>
+<option value="2">1 РіРѕРґ</option>
 </select>
 </div>
 <input type="hidden" name="a" value="buy">
@@ -1041,12 +1041,12 @@ $('.date').text(text);
 </table>
 <div class="footer">
 <div class="footer-info">
-<p>Кроме того, в красивую табличку не уместились:</p>
-<p>- каждый ранг благодати уменьшает разброс получаемых параметров на выплавляемых рунах, что позволяет получить более качественный результат (на V ранге получается 4 параметра);</p>
-<p>- обладателям благодати алхимика доступен особый прилавок в магазине Березка, там можно приобрести экипировку на очень выгодных условиях (5-9 уровень предметов для II+ ранга благодати, 10 уровень предметов для III+);</p>
-<p>- чем выше ранг благодати тем больший приоритет ваш персонаж имеет, находясь в очереди в Бои Чести.</p>
+<p>РљСЂРѕРјРµ С‚РѕРіРѕ, РІ РєСЂР°СЃРёРІСѓСЋ С‚Р°Р±Р»РёС‡РєСѓ РЅРµ СѓРјРµСЃС‚РёР»РёСЃСЊ:</p>
+<p>- РєР°Р¶РґС‹Р№ СЂР°РЅРі Р±Р»Р°РіРѕРґР°С‚Рё СѓРјРµРЅСЊС€Р°РµС‚ СЂР°Р·Р±СЂРѕСЃ РїРѕР»СѓС‡Р°РµРјС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РЅР° РІС‹РїР»Р°РІР»СЏРµРјС‹С… СЂСѓРЅР°С…, С‡С‚Рѕ РїРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ Р±РѕР»РµРµ РєР°С‡РµСЃС‚РІРµРЅРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚ (РЅР° V СЂР°РЅРіРµ РїРѕР»СѓС‡Р°РµС‚СЃСЏ 4 РїР°СЂР°РјРµС‚СЂР°);</p>
+<p>- РѕР±Р»Р°РґР°С‚РµР»СЏРј Р±Р»Р°РіРѕРґР°С‚Рё Р°Р»С…РёРјРёРєР° РґРѕСЃС‚СѓРїРµРЅ РѕСЃРѕР±С‹Р№ РїСЂРёР»Р°РІРѕРє РІ РјР°РіР°Р·РёРЅРµ Р‘РµСЂРµР·РєР°, С‚Р°Рј РјРѕР¶РЅРѕ РїСЂРёРѕР±СЂРµСЃС‚Рё СЌРєРёРїРёСЂРѕРІРєСѓ РЅР° РѕС‡РµРЅСЊ РІС‹РіРѕРґРЅС‹С… СѓСЃР»РѕРІРёСЏС… (5-9 СѓСЂРѕРІРµРЅСЊ РїСЂРµРґРјРµС‚РѕРІ РґР»СЏ II+ СЂР°РЅРіР° Р±Р»Р°РіРѕРґР°С‚Рё, 10 СѓСЂРѕРІРµРЅСЊ РїСЂРµРґРјРµС‚РѕРІ РґР»СЏ III+);</p>
+<p>- С‡РµРј РІС‹С€Рµ СЂР°РЅРі Р±Р»Р°РіРѕРґР°С‚Рё С‚РµРј Р±РѕР»СЊС€РёР№ РїСЂРёРѕСЂРёС‚РµС‚ РІР°С€ РїРµСЂСЃРѕРЅР°Р¶ РёРјРµРµС‚, РЅР°С…РѕРґСЏСЃСЊ РІ РѕС‡РµСЂРµРґРё РІ Р‘РѕРё Р§РµСЃС‚Рё.</p>
 </div>
-<p>Любой из Рангов Благодати Алхимика, вы можете подарить своему другу, купив его в магазине Березка.</p>
+<p>Р›СЋР±РѕР№ РёР· Р Р°РЅРіРѕРІ Р‘Р»Р°РіРѕРґР°С‚Рё РђР»С…РёРјРёРєР°, РІС‹ РјРѕР¶РµС‚Рµ РїРѕРґР°СЂРёС‚СЊ СЃРІРѕРµРјСѓ РґСЂСѓРіСѓ, РєСѓРїРёРІ РµРіРѕ РІ РјР°РіР°Р·РёРЅРµ Р‘РµСЂРµР·РєР°.</p>
 <p class="copyright">&copy; 2002 - 2015, &laquo;<A href="http://www.combats.com" target="_blank">www.Combats.com</A>&raquo;&trade;<BR>All rights reserved</p>
 </div>
 </div>

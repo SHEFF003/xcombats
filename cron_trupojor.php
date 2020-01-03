@@ -2,26 +2,26 @@
 
 /*
 
-	Ядро для обработки данных.
-	Обработка поединков, обработка заявок, обработка ботов, обработка пещер, обработка турниров, обработка временных генераций
+	РЇРґСЂРѕ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С….
+	РћР±СЂР°Р±РѕС‚РєР° РїРѕРµРґРёРЅРєРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° Р·Р°СЏРІРѕРє, РѕР±СЂР°Р±РѕС‚РєР° Р±РѕС‚РѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РїРµС‰РµСЂ, РѕР±СЂР°Р±РѕС‚РєР° С‚СѓСЂРЅРёСЂРѕРІ, РѕР±СЂР°Р±РѕС‚РєР° РІСЂРµРјРµРЅРЅС‹С… РіРµРЅРµСЂР°С†РёР№
 	root /bin/sleep 7;php -f /var/www/xcombats.com/data/www/xcombats.com/cron_trupojor.php;/bin/sleep 7;php -f /var/www/xcombats.com/data/www/xcombats.com/cron_trupojor.php;/bin/sleep 7;php -f /var/www/xcombats.com/data/www/xcombats.com/cron_trupojor.php;/bin/sleep 7;php -f /var/www/xcombats.com/data/www/xcombats.com/cron_trupojor.php;/bin/sleep 7;php -f /var/www/xcombats.com/data/www/xcombats.com/cron_trupojor.php;/bin/sleep 7;php -f /var/www/xcombats.com/data/www/xcombats.com/cron_trupojor.php;/bin/sleep 7;php -f /var/www/xcombats.com/data/www/xcombats.com/cron_trupojor.php;/bin/sleep 7;php -f /var/www/xcombats.com/data/www/xcombats.com/cron_trupojor.php;
 	
 */
 
-die('Что-то тут не так...');
+die('Р§С‚Рѕ-С‚Рѕ С‚СѓС‚ РЅРµ С‚Р°Рє...');
 
 function getIP() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Получаем IP
+# РџРѕР»СѓС‡Р°РµРј IP
 function getIPblock() {
    if(isset($_SERVER['HTTP_X_REAL_IP'])) return $_SERVER['HTTP_X_REAL_IP'];
    return $_SERVER['REMOTE_ADDR'];
 }
 
-# Выполняем проверку безопасности. 
+# Р’С‹РїРѕР»РЅСЏРµРј РїСЂРѕРІРµСЂРєСѓ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё. 
 
 define('GAME',true);
 
@@ -29,7 +29,7 @@ include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');
 
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","Мусорщик","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","РњСѓСЃРѕСЂС‰РёРє","6","1","-1")');
 }
 
 if(!isset($_GET['test']) && getIPblock() != '') {
@@ -44,25 +44,25 @@ function testMonster( $mon , $type ) {
 	if(isset($mon['id'])) {
 		//
 		if($type == 'start') {
-			//День недели
+			//Р”РµРЅСЊ РЅРµРґРµР»Рё
 			if( $mon['start_day'] != -1 ) {
 				if( $mon['start_day'] != date('w') ) {
 					$r = false;
 				}
 			}
-			//Число
+			//Р§РёСЃР»Рѕ
 			if( $mon['start_dd'] != -1 ) {
 				if( $mon['start_dd'] != date('j') ) {
 					$r = false;
 				}
 			}
-			//месяц
+			//РјРµСЃСЏС†
 			if( $mon['start_mm'] != -1 ) {
 				if( $mon['start_mm'] != date('n') ) {
 					$r = false;
 				}
 			}
-			//час
+			//С‡Р°СЃ
 			if( $mon['start_hh'] != -1 ) {
 				if( $mon['start_hh'] != date('G') ) {
 					$r = false;
@@ -75,25 +75,25 @@ function testMonster( $mon , $type ) {
 			}
 			//
 		}elseif($type == 'back') {
-			//День недели
+			//Р”РµРЅСЊ РЅРµРґРµР»Рё
 			if( $mon['back_day'] != -1 ) {
 				if( ($mon['back_day'] < 7 && $mon['back_day'] != date('w')) || $mon['back_day'] != 7 ) {
 					$r = false;
 				}
 			}
-			//Число
+			//Р§РёСЃР»Рѕ
 			if( $mon['back_dd'] != -1 ) {
 				if( $mon['back_dd'] != date('j') ) {
 					$r = false;
 				}
 			}
-			//месяц
+			//РјРµСЃСЏС†
 			if( $mon['back_mm'] != -1 ) {
 				if( $mon['back_mm'] != date('n') ) {
 					$r = false;
 				}
 			}
-			//час
+			//С‡Р°СЃ
 			if( $mon['back_hh'] != -1 ) {
 				if( $mon['back_hh'] != date('G') ) {
 					$r = false;
@@ -105,7 +105,7 @@ function testMonster( $mon , $type ) {
 				}
 			}
 		}else{
-			//что-то другое
+			//С‡С‚Рѕ-С‚Рѕ РґСЂСѓРіРѕРµ
 			$r = false;
 		}
 		//
@@ -115,11 +115,11 @@ function testMonster( $mon , $type ) {
 
 /*
 if(isset($_GET['test'])) {
-	echo '[День недели w '.date('w').']<br>';
-	echo '[Число j '.date('j').']<br>';
-	echo '[Месяц n '.date('n').']<br>';
-	echo '[Час G '.date('G').']<br>';
-	echo '[Минуты i '.date('i').']<br>';
+	echo '[Р”РµРЅСЊ РЅРµРґРµР»Рё w '.date('w').']<br>';
+	echo '[Р§РёСЃР»Рѕ j '.date('j').']<br>';
+	echo '[РњРµСЃСЏС† n '.date('n').']<br>';
+	echo '[Р§Р°СЃ G '.date('G').']<br>';
+	echo '[РњРёРЅСѓС‚С‹ i '.date('i').']<br>';
 	
 	$mon = mysql_fetch_array(mysql_query('SELECT * FROM `aaa_monsters` WHERE `uid` = "'.mysql_real_escape_string($_GET['test']).'" LIMIT 1'));
 	if( testMonster($mon,'start') == true ) {
@@ -140,7 +140,7 @@ while($pl = mysql_fetch_array($sp)) {
 		mysql_query('UPDATE `users` SET `online` = "'.$pl['online'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 	}
 	if($pl['res_x'] < time()) {
-		//Можно действовать!
+		//РњРѕР¶РЅРѕ РґРµР№СЃС‚РІРѕРІР°С‚СЊ!
 		$mon = mysql_fetch_array(mysql_query('SELECT * FROM `aaa_monsters` WHERE `uid` = "'.$pl['id'].'" LIMIT 1'));
 		if( isset($mon['id']) ) {
 			if( testMonster($mon,'start') == true && $pl['room'] == 303 ) {
@@ -148,7 +148,7 @@ while($pl = mysql_fetch_array($sp)) {
 				mysql_query('UPDATE `users` SET `room` = "'.$pl['room'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 				mysql_query('UPDATE `stats` SET `hpNow` = "1000000000000",`mpNow` = "1000000000000" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 				if( $mon['start_text'] != '' ) {
-					mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("<font color=red>Внимание!</font> '.mysql_real_escape_string(str_replace('{b}','<b>'.$pl['login'].'</b> ['.$pl['level'].']<a target=_blank href=info/'.$pl['id'].' ><img width=12 height=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>',$mon['start_text'])).'","'.$pl['city'].'","","6","1","'.time().'")');
+					mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("<font color=red>Р’РЅРёРјР°РЅРёРµ!</font> '.mysql_real_escape_string(str_replace('{b}','<b>'.$pl['login'].'</b> ['.$pl['level'].']<a target=_blank href=info/'.$pl['id'].' ><img width=12 height=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>',$mon['start_text'])).'","'.$pl['city'].'","","6","1","'.time().'")');
 				}
 				$act = 1;
 			}
@@ -166,7 +166,7 @@ while($pl = mysql_fetch_array($sp)) {
 				mysql_query('UPDATE `users` SET `room` = "'.$pl['room'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 				mysql_query('UPDATE `stats` SET `hpNow` = "1000000000000",`mpNow` = "1000000000000" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 				if( $mon['back_text'] != '' ) {
-					mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("<font color=red>Внимание!</font> '.mysql_real_escape_string(str_replace('{b}','<b>'.$pl['login'].'</b> ['.$pl['level'].']<a target=_blank href=info/'.$pl['id'].' ><img width=12 height=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>',$mon['back_text'])).'","'.$pl['city'].'","","6","1","'.time().'")');
+					mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("<font color=red>Р’РЅРёРјР°РЅРёРµ!</font> '.mysql_real_escape_string(str_replace('{b}','<b>'.$pl['login'].'</b> ['.$pl['level'].']<a target=_blank href=info/'.$pl['id'].' ><img width=12 height=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>',$mon['back_text'])).'","'.$pl['city'].'","","6","1","'.time().'")');
 				}
 				$act = 2;
 			}
@@ -180,7 +180,7 @@ while($pl = mysql_fetch_array($sp)) {
 				$pl['room'] = $pl['invBlock'];
 				mysql_query('UPDATE `users` SET `room` = "'.$pl['room'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 				mysql_query('UPDATE `stats` SET `hpNow` = "1000000000000",`mpNow` = "1000000000000" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
-				mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("<font color=red>Внимание!</font> <b>'.$pl['login'].'</b> ['.$pl['level'].']<a target=_blank href=info/'.$pl['id'].' ><img width=12 height=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a> выбрался на охоту, будьте осторожны!","'.$pl['city'].'","","6","1","'.time().'")');
+				mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("<font color=red>Р’РЅРёРјР°РЅРёРµ!</font> <b>'.$pl['login'].'</b> ['.$pl['level'].']<a target=_blank href=info/'.$pl['id'].' ><img width=12 height=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a> РІС‹Р±СЂР°Р»СЃСЏ РЅР° РѕС…РѕС‚Сѓ, Р±СѓРґСЊС‚Рµ РѕСЃС‚РѕСЂРѕР¶РЅС‹!","'.$pl['city'].'","","6","1","'.time().'")');
 			}
 		}
 	}*/

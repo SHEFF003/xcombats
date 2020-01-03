@@ -1,6 +1,5 @@
 <?php
-	header('Content-Type: text/html; charset=windows-1251');
-		
+
 	define('GAME',true);
 	include('_incl_data/__config.php');	
 	include('_incl_data/class/__db_connect.php');	

@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
@@ -31,10 +31,10 @@ if(isset($_GET['showmenu']))
 <script>
 function getLine(id,name,a,b,o,id2)
 {
-	var tss = '<td width="20"><img src="http://img.xcombats.com/i/minus.gif" style="display:block;cursor:pointer;margin-bottom:3px;" title="Скрыть" class="btn-slide" onClick="location=\'main.php?inv=1&otdel=<? echo $_GET['otdel']; ?>&showmenu='+id2+'&rnd=<? echo $code; ?>\';"></td>';
+	var tss = '<td width="20"><img src="http://img.xcombats.com/i/minus.gif" style="display:block;cursor:pointer;margin-bottom:3px;" title="РЎРєСЂС‹С‚СЊ" class="btn-slide" onClick="location=\'main.php?inv=1&otdel=<? echo $_GET['otdel']; ?>&showmenu='+id2+'&rnd=<? echo $code; ?>\';"></td>';
 	if(o==0)
 	{
-		tss ='<td width="20"><img src="http://img.xcombats.com/i/plus.gif" style="display:block;cursor:pointer;margin-bottom:3px;" title="Показать" class="btn-slide" onClick="location=\'main.php?inv=1&otdel=<? echo $_GET['otdel']; ?>&showmenu='+id2+'&rnd=<? echo $code; ?>\';"></td>';
+		tss ='<td width="20"><img src="http://img.xcombats.com/i/plus.gif" style="display:block;cursor:pointer;margin-bottom:3px;" title="РџРѕРєР°Р·Р°С‚СЊ" class="btn-slide" onClick="location=\'main.php?inv=1&otdel=<? echo $_GET['otdel']; ?>&showmenu='+id2+'&rnd=<? echo $code; ?>\';"></td>';
 	}
 	var sts01 = '<a href="main.php?inv=1&otdel=<? echo $_GET['otdel']; ?>&up='+id+'&rnd=<? echo $code; ?>"><img style="display:block;float:right; margin-bottom:3px;" src="http://img.xcombats.com/i/3.gif"></a>';
 	if(id==0)
@@ -68,13 +68,13 @@ $rb = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `bank` WHERE `block` =
 ?>
 function bank_info() {
 <? if(!isset($u->bank['id']) && $rb[0]==0){ ?>
-	alert('У Вас нет активных счетов. \n\n На правах рекламы: Вы можете открыть счёт в Банке "<? echo $c['title3']; ?>",'+
-		' на Страшилкиной улице*\n\n* Мелким шрифтом: услуга платная.');
+	alert('РЈ Р’Р°СЃ РЅРµС‚ Р°РєС‚РёРІРЅС‹С… СЃС‡РµС‚РѕРІ. \n\n РќР° РїСЂР°РІР°С… СЂРµРєР»Р°РјС‹: Р’С‹ РјРѕР¶РµС‚Рµ РѕС‚РєСЂС‹С‚СЊ СЃС‡С‘С‚ РІ Р‘Р°РЅРєРµ "<? echo $c['title3']; ?>",'+
+		' РЅР° РЎС‚СЂР°С€РёР»РєРёРЅРѕР№ СѓР»РёС†Рµ*\n\n* РњРµР»РєРёРј С€СЂРёС„С‚РѕРј: СѓСЃР»СѓРіР° РїР»Р°С‚РЅР°СЏ.');
 <?
 }elseif($rb[0]>0){ 
 ?>
 				var ddtpswBank = '<div><form action="main.php?inv=1&otdel=<? echo $_GET['otdel']; ?>&rnd=<? echo $code; ?>" method="post">'+
-				        '<table style="border:1px solid #B1A996;" width="300" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#B1A996"><div align="center"><strong>Счёт в банке</strong><a href="javascript:void(0)" onclick="document.getElementById(\'chpassbank\').style.display=\'none\'" title="Закрыть окно" style="float:right;padding-right:5px;">x</a></div></td></tr><tr><td bgcolor="#DDD5C2" style="padding:5px;"><div align="center"><small>Выберите счёт и введите пароль<br />'+
+				        '<table style="border:1px solid #B1A996;" width="300" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#B1A996"><div align="center"><strong>РЎС‡С‘С‚ РІ Р±Р°РЅРєРµ</strong><a href="javascript:void(0)" onclick="document.getElementById(\'chpassbank\').style.display=\'none\'" title="Р—Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ" style="float:right;padding-right:5px;">x</a></div></td></tr><tr><td bgcolor="#DDD5C2" style="padding:5px;"><div align="center"><small>Р’С‹Р±РµСЂРёС‚Рµ СЃС‡С‘С‚ Рё РІРІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ<br />'+
                         '<select name="bank" id="bank">'+
 						<?
                         $scet = mysql_query('SELECT `id` FROM `bank` WHERE `block` = "0" AND `uid` = "'.$u->info['id'].'"');
@@ -106,8 +106,8 @@ function save_com_can()
 function save_compl()
 {
 				var ddtpswBank = '<div><form action="main.php?inv=1&otdel=<? echo $_GET['otdel']; ?>&rnd=<? echo $code; ?>" method="post">'+
-				        '<table style="border:1px solid #B1A996;" width="250" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#B1A996"><div align="center"><strong>Сохранить комплект</strong></div></td></tr><tr><td bgcolor="#DDD5C2" style="padding:5px;"><div align="center"><small>Введите название боевого комплекта:<br />'+
-                        '<input style="width:90%;" type="text" name="compname" value="" id="compname" /><label></label></small><br><input style="margin-left:3px;cursor:pointer;" type="submit" name="button" id="button" value=" Сохранить " /><input style="margin-left:3px;cursor:pointer;" onClick="save_com_can();" type="button" value=" Отмена " /></div></td></tr></table></form></div>';
+				        '<table style="border:1px solid #B1A996;" width="250" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#B1A996"><div align="center"><strong>РЎРѕС…СЂР°РЅРёС‚СЊ РєРѕРјРїР»РµРєС‚</strong></div></td></tr><tr><td bgcolor="#DDD5C2" style="padding:5px;"><div align="center"><small>Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р±РѕРµРІРѕРіРѕ РєРѕРјРїР»РµРєС‚Р°:<br />'+
+                        '<input style="width:90%;" type="text" name="compname" value="" id="compname" /><label></label></small><br><input style="margin-left:3px;cursor:pointer;" type="submit" name="button" id="button" value=" РЎРѕС…СЂР°РЅРёС‚СЊ " /><input style="margin-left:3px;cursor:pointer;" onClick="save_com_can();" type="button" value=" РћС‚РјРµРЅР° " /></div></td></tr></table></form></div>';
 						var ddtpsBankDiv = document.getElementById('chpassbank');
 						if(ddtpsBankDiv!=undefined)
 						{
@@ -137,12 +137,12 @@ function za_block(id) {
 .dot {
 	display:block;
 	padding-bottom:2px;
-    text-decoration: none; /* Убираем подчеркивание */
-    border-bottom: 1px dotted #080808; /* Добавляем свою линию */
+    text-decoration: none; /* РЈР±РёСЂР°РµРј РїРѕРґС‡РµСЂРєРёРІР°РЅРёРµ */
+    border-bottom: 1px dotted #080808; /* Р”РѕР±Р°РІР»СЏРµРј СЃРІРѕСЋ Р»РёРЅРёСЋ */
 	cursor:pointer;
 }
 .dot:hover {
-    border-bottom: 1px dotted #080808; /* Добавляем свою линию */
+    border-bottom: 1px dotted #080808; /* Р”РѕР±Р°РІР»СЏРµРј СЃРІРѕСЋ Р»РёРЅРёСЋ */
 	background-color:#BEBEBE;
 }
 </style>
@@ -157,26 +157,26 @@ function za_block(id) {
 	$rz5 = '';
 	$expbase = number_format($u->stats['levels']['exp'], 0, ",", " ");
 	if( $expbase-1 == $u->info['exp'] && $c['nolevel'] == true ) {
-		//Проверяем блок опыта
+		//РџСЂРѕРІРµСЂСЏРµРј Р±Р»РѕРє РѕРїС‹С‚Р°
 		$tlus = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `users` WHERE `real` = 1 AND `level` = "'.$u->info['level'].'" LIMIT 1'));
 		if($tlus[0] < $u->info['level']*10) {
 			$expbase = '<strike>'.$expbase.'</strike>';
 		}
 		$expbase = '(<a href="http://xcombats.com/exp.php" target="_blank">'.$expbase.'</a>)';
 		if(((1+$u->info['level']*10)-$tlus[0]) > 0) {
-			$expbase .= ' <u><a onMouseOver="top.hi(this,\'<b>Персонажи '.$u->info['level'].' уровня не получают опыт.</b><br>Для разблокировки не хватает <u>'.((1+$u->info['level']*10)-$tlus[0]).' персонажей</u> данного уровня.\',event,0,1,1,1,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();" style="cursor:help">[?]</a></u>';
+			$expbase .= ' <u><a onMouseOver="top.hi(this,\'<b>РџРµСЂСЃРѕРЅР°Р¶Рё '.$u->info['level'].' СѓСЂРѕРІРЅСЏ РЅРµ РїРѕР»СѓС‡Р°СЋС‚ РѕРїС‹С‚.</b><br>Р”Р»СЏ СЂР°Р·Р±Р»РѕРєРёСЂРѕРІРєРё РЅРµ С…РІР°С‚Р°РµС‚ <u>'.((1+$u->info['level']*10)-$tlus[0]).' РїРµСЂСЃРѕРЅР°Р¶РµР№</u> РґР°РЅРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ.\',event,0,1,1,1,\'\');" onMouseOut="top.hic();" onMouseDown="top.hic();" style="cursor:help">[?]</a></u>';
 		}
 	}else{
 		$expbase = '(<a href="http://xcombats.com/exp.php" target="_blank">'.$expbase.'</a>)';
 	}
 	if($u->info['exp'] == 12499 && $c['infinity5level'] == true) {
-		$trks5 = '<div align="center"><hr><font color=red>Для получения следующего уровня вам необходим <a target="_blank" href="http://xcombats.com/item/1204">Кристалл Вечности</a></font><hr></div>';
+		$trks5 = '<div align="center"><hr><font color=red>Р”Р»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃР»РµРґСѓСЋС‰РµРіРѕ СѓСЂРѕРІРЅСЏ РІР°Рј РЅРµРѕР±С…РѕРґРёРј <a target="_blank" href="http://xcombats.com/item/1204">РљСЂРёСЃС‚Р°Р»Р» Р’РµС‡РЅРѕСЃС‚Рё</a></font><hr></div>';
 	}
 	if( $u->info['exp_eco'] > 0 ) {
 		if( $u->info['exp_eco'] > 17500 ) {
 			$u->info['exp_eco'] = 17500;
 		}
-		$trks5 .= '<font color="navy">Замороженный опыт: <b>'.number_format($u->info['exp_eco'], 0, ",", " ").'</b></font><br>';
+		$trks5 .= '<font color="navy">Р—Р°РјРѕСЂРѕР¶РµРЅРЅС‹Р№ РѕРїС‹С‚: <b>'.number_format($u->info['exp_eco'], 0, ",", " ").'</b></font><br>';
 	}
 	echo '
 	<table width="100%" border="0" cellspacing="3" cellpadding="0">
@@ -185,38 +185,38 @@ function za_block(id) {
     <td height="15">
 	<small>
 	<div style="padding:5px 5px 0px 5px;">
-	Опыт:&nbsp;<span style="float0:right"><b>'.number_format($u->info['exp'], 0, ",", " ").'</b> '.$expbase.'</span><br>'.$trks5.'
-	Бои:&nbsp;<span style="float0:right"><span title="Побед: '.number_format($u->info['win'], 0, ",", " ").'"><b>'.number_format($u->info['win'], 0, ",", " ").' <img width="7" height="7" title="Побед: '.number_format($u->info['win'], 0, ",", " ").'"
-	src="http://img.xcombats.com/i/ico/wins.gif" style="display:inline-block;" /></b></span> &nbsp; <span title="Поражений: '.number_format($u->info['lose'], 0, ",", " ").'"><b>'.number_format($u->info['lose'], 0, ",", " ").' <img width="7" height="7" alt="Поражений: '.number_format($u->info['lose'], 0, ",", " ").'"
-	src="http://img.xcombats.com/i/ico/looses.gif" style="display:inline-block;" /></b></span> &nbsp; <span title="Ничьих: '.number_format($u->info['nich'], 0, ",", " ").'"><b>'.number_format($u->info['nich'], 0, ",", " ").' <img width="7" height="7" alt="Ничьих: '.number_format($u->info['nich'], 0, ",", " ").'"
+	РћРїС‹С‚:&nbsp;<span style="float0:right"><b>'.number_format($u->info['exp'], 0, ",", " ").'</b> '.$expbase.'</span><br>'.$trks5.'
+	Р‘РѕРё:&nbsp;<span style="float0:right"><span title="РџРѕР±РµРґ: '.number_format($u->info['win'], 0, ",", " ").'"><b>'.number_format($u->info['win'], 0, ",", " ").' <img width="7" height="7" title="РџРѕР±РµРґ: '.number_format($u->info['win'], 0, ",", " ").'"
+	src="http://img.xcombats.com/i/ico/wins.gif" style="display:inline-block;" /></b></span> &nbsp; <span title="РџРѕСЂР°Р¶РµРЅРёР№: '.number_format($u->info['lose'], 0, ",", " ").'"><b>'.number_format($u->info['lose'], 0, ",", " ").' <img width="7" height="7" alt="РџРѕСЂР°Р¶РµРЅРёР№: '.number_format($u->info['lose'], 0, ",", " ").'"
+	src="http://img.xcombats.com/i/ico/looses.gif" style="display:inline-block;" /></b></span> &nbsp; <span title="РќРёС‡СЊРёС…: '.number_format($u->info['nich'], 0, ",", " ").'"><b>'.number_format($u->info['nich'], 0, ",", " ").' <img width="7" height="7" alt="РќРёС‡СЊРёС…: '.number_format($u->info['nich'], 0, ",", " ").'"
 	src="http://img.xcombats.com/i/ico/draw.gif" style="display:inline-block;" /></b></span></span><br />
-	<!--Серия побед:&nbsp;'.(0+$u->info['swin']).'<br>
-	Серия поражений:&nbsp;'.(0+$u->info['slose']).'<br>-->
+	<!--РЎРµСЂРёСЏ РїРѕР±РµРґ:&nbsp;'.(0+$u->info['swin']).'<br>
+	РЎРµСЂРёСЏ РїРѕСЂР°Р¶РµРЅРёР№:&nbsp;'.(0+$u->info['slose']).'<br>-->
 	</div><div style="padding:0px 5px 5px 5px;">
-	Деньги:&nbsp;<img src="/coin1.png" height="11">&nbsp;<b>'.$u->info['money'].'</b> кр.<br />
-	<span style="padding-left:38px;">&nbsp;</span> &nbsp;<img src="/coin2.png" height="11">&nbsp;<b><font color=green>'.$u->bank['money2'].'</b> екр.</font><br />
-	Воинственность:&nbsp;<img src="/voins.png" height="11">&nbsp;<b>'.$u->info['money3'].'</b>&nbsp;ед.<br />
+	Р”РµРЅСЊРіРё:&nbsp;<img src="/coin1.png" height="11">&nbsp;<b>'.$u->info['money'].'</b> РєСЂ.<br />
+	<span style="padding-left:38px;">&nbsp;</span> &nbsp;<img src="/coin2.png" height="11">&nbsp;<b><font color=green>'.$u->bank['money2'].'</b> РµРєСЂ.</font><br />
+	Р’РѕРёРЅСЃС‚РІРµРЅРЅРѕСЃС‚СЊ:&nbsp;<img src="/voins.png" height="11">&nbsp;<b>'.$u->info['money3'].'</b>&nbsp;РµРґ.<br />
 	';
 	if($u->info['level'] < 8 && $c['zuby'] == true) {
-		echo 'Зубы:&nbsp;'.$u->zuby($u->info['money4']).'<br>';
+		echo 'Р—СѓР±С‹:&nbsp;'.$u->zuby($u->info['money4']).'<br>';
 	}
 	
 	/*
 	if($u->info['level']>0 && $u->info['inTurnir'] == 0 && !isset($u->info['noreal']))
 	{
 		echo'
-		<br>Банк:&nbsp;
+		<br>Р‘Р°РЅРє:&nbsp;
 		';
 		if(!isset($u->bank['id']))
 		{ 
 			if($rb[0]>0)
 			{
-				echo '<a href="javascript:bank_info();">выбрать счёт</a>';
+				echo '<a href="javascript:bank_info();">РІС‹Р±СЂР°С‚СЊ СЃС‡С‘С‚</a>';
 			}else{
-				echo '<a href="javascript:bank_info();">информация</a>';
+				echo '<a href="javascript:bank_info();">РёРЅС„РѕСЂРјР°С†РёСЏ</a>';
 			}
 		}else{
-			echo 'счет № <b>'.$u->bank['id'].'</b><br> <img src="/coin1.png" height="11">&nbsp;<b>'.$u->bank['money1'].'</b> кр. <img src="/coin2.png" height="11">&nbsp;<b>'.$u->bank['money2'].'</b> екр. <img style="display:inline-block;cursor:pointer;" src="http://img.xcombats.com/i/close_bank.gif" onClick="top.frames[\'main\'].location=\'main.php?inv=1&otdel='.$_GET['otdel'].'&bank_exit='.$code.'\';" title="Закончить работу со счётом" style="cursor:pointer">';
+			echo 'СЃС‡РµС‚ в„– <b>'.$u->bank['id'].'</b><br> <img src="/coin1.png" height="11">&nbsp;<b>'.$u->bank['money1'].'</b> РєСЂ. <img src="/coin2.png" height="11">&nbsp;<b>'.$u->bank['money2'].'</b> РµРєСЂ. <img style="display:inline-block;cursor:pointer;" src="http://img.xcombats.com/i/close_bank.gif" onClick="top.frames[\'main\'].location=\'main.php?inv=1&otdel='.$_GET['otdel'].'&bank_exit='.$code.'\';" title="Р—Р°РєРѕРЅС‡РёС‚СЊ СЂР°Р±РѕС‚Сѓ СЃРѕ СЃС‡С‘С‚РѕРј" style="cursor:pointer">';
 		}
 		echo '<br>';
 	}
@@ -226,11 +226,11 @@ function za_block(id) {
 	if( $u->info['inTurnir'] == 0 ) {
 		/*if( $u->stats['silver'] > 0 ) {
 			echo '<div style="padding-top:5px;padding-bottom:5px;color:#ad4421;">';
-			echo '<a style="color:#ad4421;" href="/main.php?vip='.$u->stats['silver'].'">Благословление Ангелов: <img title="Благословление Ангелов '.$u->stats['silver'].' уровня" src="http://img.xcombats.com/blago/'.$u->stats['silver'].'.png" width="15" height="15" style="vertical-align:sub;display:inline-block;"></a>';
+			echo '<a style="color:#ad4421;" href="/main.php?vip='.$u->stats['silver'].'">Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ: <img title="Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ '.$u->stats['silver'].' СѓСЂРѕРІРЅСЏ" src="http://img.xcombats.com/blago/'.$u->stats['silver'].'.png" width="15" height="15" style="vertical-align:sub;display:inline-block;"></a>';
 			echo '</div>';
 		}else{
 			echo '<div style="padding-top:5px;padding-bottom:5px;color:#ad4421;">';
-			echo '<a style="color:#ad4421;" href="/benediction/" target="_blank">Благословление Ангелов: <img title="Купите Благословление Ангелов чтобы стать лучше" src="http://img.xcombats.com/blago/1d.png" width="15" height="15" style="vertical-align:sub;display:inline-block;"></a>';
+			echo '<a style="color:#ad4421;" href="/benediction/" target="_blank">Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ: <img title="РљСѓРїРёС‚Рµ Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ С‡С‚РѕР±С‹ СЃС‚Р°С‚СЊ Р»СѓС‡С€Рµ" src="http://img.xcombats.com/blago/1d.png" width="15" height="15" style="vertical-align:sub;display:inline-block;"></a>';
 			echo '</div>';
 		}*/
 	}
@@ -242,41 +242,41 @@ function za_block(id) {
 			$bns = mysql_fetch_array(mysql_query('SELECT `id`,`time` FROM `aaa_bonus` WHERE `uid` = "'.$u->info['id'].'" AND `time` > '.time().' AND `type` = 0 LIMIT 1'));
 		}
 		if(isset($bns['id'])) {
-			echo '<button style="width:224px;margin-top:5px;" onclick="alert(\'Вы сможете взять бонус через '.$u->timeOut($bns['time']-time()).'\');" class="btnnew"> Через '.$u->timeOut($bns['time']-time()).'  </button>';
+			echo '<button style="width:224px;margin-top:5px;" onclick="alert(\'Р’С‹ СЃРјРѕР¶РµС‚Рµ РІР·СЏС‚СЊ Р±РѕРЅСѓСЃ С‡РµСЂРµР· '.$u->timeOut($bns['time']-time()).'\');" class="btnnew"> Р§РµСЂРµР· '.$u->timeOut($bns['time']-time()).'  </button>';
 		}else{
-			//echo 'Получить бонус:<br><div align="left"><button class="btnnew" onclick="location.href=\'main.php?inv=1&takebns='.$u->info['nextAct'].'\';">25 кр.!</button>';
-			//echo '<button class="btnnew" onclick="location.href=\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=2\';">'.($u->info['level']*3).' Воин.!</button><button class="btnnew" onclick="location.href=\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=3\';">1 екр.</button></div>';
+			//echo 'РџРѕР»СѓС‡РёС‚СЊ Р±РѕРЅСѓСЃ:<br><div align="left"><button class="btnnew" onclick="location.href=\'main.php?inv=1&takebns='.$u->info['nextAct'].'\';">25 РєСЂ.!</button>';
+			//echo '<button class="btnnew" onclick="location.href=\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=2\';">'.($u->info['level']*3).' Р’РѕРёРЅ.!</button><button class="btnnew" onclick="location.href=\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=3\';">1 РµРєСЂ.</button></div>';
 			//if( $u->info['level'] == 7 ) {
-			//	echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.captcha(\'Бонус за онлайн\',\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=3\')">Получить '.$u->zuby(round($u->info['level']*0.75,2),1).'</button></div>';
+			//	echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.captcha(\'Р‘РѕРЅСѓСЃ Р·Р° РѕРЅР»Р°Р№РЅ\',\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=3\')">РџРѕР»СѓС‡РёС‚СЊ '.$u->zuby(round($u->info['level']*0.75,2),1).'</button></div>';
 			//}elseif( $u->info['level'] >= 8 ) {
 				if( $u->info['align'] == 0 || $u->info['align'] == 2 ) {
-					$ngtxt = 'Получить '.round($c['bonline'][0][$u->info['level']]*$c['bonusonline_kof'],2).' кр.';
+					$ngtxt = 'РџРѕР»СѓС‡РёС‚СЊ '.round($c['bonline'][0][$u->info['level']]*$c['bonusonline_kof'],2).' РєСЂ.';
 				}elseif( $u->info['align'] > 0 ) {
-					$ngtxt = 'Получить '.round($c['bonline'][1][$u->info['level']]*$c['bonusonline_kof'],2).' екр.';
+					$ngtxt = 'РџРѕР»СѓС‡РёС‚СЊ '.round($c['bonline'][1][$u->info['level']]*$c['bonusonline_kof'],2).' РµРєСЂ.';
 				}				
-				echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.captcha(\'Бонус за онлайн\',\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=3\')">'.$ngtxt.'</button>';
+				echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.captcha(\'Р‘РѕРЅСѓСЃ Р·Р° РѕРЅР»Р°Р№РЅ\',\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=3\')">'.$ngtxt.'</button>';
 			//}else{
 			//	$expad = round(50+($u->stats['levels']['exp']-$u->info['exp'])/2);
 			//	if($expad > 100) {
 			//		$expad = 100;
 			//	}
-			//	echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.captcha(\'Бонус за онлайн\',\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=3\')">Получить '.$expad.' опыта</button></div>';
+			//	echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.captcha(\'Р‘РѕРЅСѓСЃ Р·Р° РѕРЅР»Р°Р№РЅ\',\'main.php?inv=1&takebns='.$u->info['nextAct'].'&getb1w=3\')">РџРѕР»СѓС‡РёС‚СЊ '.$expad.' РѕРїС‹С‚Р°</button></div>';
 			//}
 		}
-		echo '<button onclick="location.href=\'pay.php\';" style="width:224px;margin-top:5px;" class="btnnew"><img src="/coin2.png" height="12"><b><font color=green> Покупка екр. онлайн</font></b></button>';
+		echo '<button onclick="location.href=\'pay.php\';" style="width:224px;margin-top:5px;" class="btnnew"><img src="/coin2.png" height="12"><b><font color=green> РџРѕРєСѓРїРєР° РµРєСЂ. РѕРЅР»Р°Р№РЅ</font></b></button>';
 		echo '</div>';
 	}
 	
-	//Получение уровня задания
+	//РџРѕР»СѓС‡РµРЅРёРµ СѓСЂРѕРІРЅСЏ Р·Р°РґР°РЅРёСЏ
 	if( $u->info['level'] >= 0 && $u->info['inTurnir'] == 0 && $c['bonuslevel'] == true && !isset($u->info['noreal']) && $c['bonussocial'] == true ) {
 		/*
-[1] Нужно докачаться на клоне до 1 уровня.
-[2]-[3]-[4] Нужно подтвердить e-mail чтобы получить со 2 по 4 уровень на выбор.
-[5]-[6] Нужно подтвердить страницу ВКонтакте чтобы получить 5 или 6 уровень на выбор.
-[7] Нужно привести 1 друга.
-[8] Нужно привести 3 друзей и провести 3 хаота.
-[9] Нужно привести 5 друзей и провести 50 хаотов.
-[10] Нужно привести 7 друзей и провести 100 хаотов.
+[1] РќСѓР¶РЅРѕ РґРѕРєР°С‡Р°С‚СЊСЃСЏ РЅР° РєР»РѕРЅРµ РґРѕ 1 СѓСЂРѕРІРЅСЏ.
+[2]-[3]-[4] РќСѓР¶РЅРѕ РїРѕРґС‚РІРµСЂРґРёС‚СЊ e-mail С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ СЃРѕ 2 РїРѕ 4 СѓСЂРѕРІРµРЅСЊ РЅР° РІС‹Р±РѕСЂ.
+[5]-[6] РќСѓР¶РЅРѕ РїРѕРґС‚РІРµСЂРґРёС‚СЊ СЃС‚СЂР°РЅРёС†Сѓ Р’РљРѕРЅС‚Р°РєС‚Рµ С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 5 РёР»Рё 6 СѓСЂРѕРІРµРЅСЊ РЅР° РІС‹Р±РѕСЂ.
+[7] РќСѓР¶РЅРѕ РїСЂРёРІРµСЃС‚Рё 1 РґСЂСѓРіР°.
+[8] РќСѓР¶РЅРѕ РїСЂРёРІРµСЃС‚Рё 3 РґСЂСѓР·РµР№ Рё РїСЂРѕРІРµСЃС‚Рё 3 С…Р°РѕС‚Р°.
+[9] РќСѓР¶РЅРѕ РїСЂРёРІРµСЃС‚Рё 5 РґСЂСѓР·РµР№ Рё РїСЂРѕРІРµСЃС‚Рё 50 С…Р°РѕС‚РѕРІ.
+[10] РќСѓР¶РЅРѕ РїСЂРёРІРµСЃС‚Рё 7 РґСЂСѓР·РµР№ Рё РїСЂРѕРІРµСЃС‚Рё 100 С…Р°РѕС‚РѕРІ.
 		*/
 		$mxlvl = mysql_fetch_array(mysql_query('SELECT `id`,`level` FROM `users` WHERE `real` = 1 AND `admin` = 0 AND `banned` = 0 ORDER BY `level` DESC LIMIT 1'));
 		if(isset($mxlvl['id']) && $mxlvl['level'] > $u->info['level']+1) {
@@ -289,11 +289,11 @@ function za_block(id) {
 				$er8 = '';
 				//
 				if($ml <= 1) {
-					$er8 = 'Качайтесь на клоне до 1 уровня.';
+					$er8 = 'РљР°С‡Р°Р№С‚РµСЃСЊ РЅР° РєР»РѕРЅРµ РґРѕ 1 СѓСЂРѕРІРЅСЏ.';
 				}elseif($ml <= 4) {
 					$mcf = mysql_fetch_array(mysql_query('SELECT * FROM `mini_actions` WHERE `uid` = "'.$u->info['id'].'" AND `val` = "mailconfirm" AND `ok` > 0 LIMIT 1'));
 					if(!isset($mcf['id'])) {
-						$er8 = 'Вы не подтвердили E-mail.';
+						$er8 = 'Р’С‹ РЅРµ РїРѕРґС‚РІРµСЂРґРёР»Рё E-mail.';
 					}else{
 						if($ml == 2) {
 							mysql_query('UPDATE `stats` SET `exp` = 420 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -302,14 +302,14 @@ function za_block(id) {
 						}elseif($ml == 4) {
 							mysql_query('UPDATE `stats` SET `exp` = 2500 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 						}
-						$er8 = 'Вы успешно получили '.$ml.' уровень!';
+						$er8 = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё '.$ml.' СѓСЂРѕРІРµРЅСЊ!';
 						$u->info['level']++;
 						$ml++;
 					}
 				}elseif($ml <= 6) {
 					$mcf = mysql_fetch_array(mysql_query('SELECT * FROM `mini_actions` WHERE `uid` = "'.$u->info['id'].'" AND (`val` = "vkauth" OR `val` = "fbauth" OR `val` = "okauth") LIMIT 1'));
 					if(!isset($mcf['id'])) {
-						$er8 = 'Вы не подтвердили страницу в социальной сети.';
+						$er8 = 'Р’С‹ РЅРµ РїРѕРґС‚РІРµСЂРґРёР»Рё СЃС‚СЂР°РЅРёС†Сѓ РІ СЃРѕС†РёР°Р»СЊРЅРѕР№ СЃРµС‚Рё.';
 					}else{
 						$itmsv = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `item_id` = 1204 AND `delete` = 0 AND `inShop` = 0 AND `inTransfer` = 0 AND `uid` = "'.$u->info['id'].'" LIMIT 1'));
 						if($ml == 5) {
@@ -318,7 +318,7 @@ function za_block(id) {
 							mysql_query('UPDATE `stats` SET `exp` = 12500 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 						}
 						if($ml == 6 && !isset($itmsv['id']) && $c['infinity5level'] == true) {
-							$er8 = 'Требуется Кристалл Вечности!';
+							$er8 = 'РўСЂРµР±СѓРµС‚СЃСЏ РљСЂРёСЃС‚Р°Р»Р» Р’РµС‡РЅРѕСЃС‚Рё!';
 						}else{
 							if($ml == 6) {
 								mysql_query('INSERT INTO `mini_actions` (
@@ -327,7 +327,7 @@ function za_block(id) {
 									"'.$u->info['id'].'","'.time().'","mbtnlvl6","0"
 								)');
 							}
-							$er8 = 'Вы успешно получили '.$ml.' уровень!';
+							$er8 = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё '.$ml.' СѓСЂРѕРІРµРЅСЊ!';
 							$u->info['level']++;
 							$ml++;
 						}
@@ -347,11 +347,11 @@ function za_block(id) {
 						) VALUES (
 							"'.$u->info['id'].'","'.time().'","mbtnlvl7","0"
 						)');
-						$er8 = 'Вы успешно получили '.$ml.' уровень!';
+						$er8 = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё '.$ml.' СѓСЂРѕРІРµРЅСЊ!';
 						$u->info['level']++;
 						$ml++;
 					}else{
-						$er8 = 'Вы не провели несколько боев (Осталось '.(50-$btls[0]).' побед).';
+						$er8 = 'Р’С‹ РЅРµ РїСЂРѕРІРµР»Рё РЅРµСЃРєРѕР»СЊРєРѕ Р±РѕРµРІ (РћСЃС‚Р°Р»РѕСЃСЊ '.(50-$btls[0]).' РїРѕР±РµРґ).';
 					}
 				}elseif($ml <= 8) {
 					$tstlvl = mysql_fetch_array(mysql_query('SELECT * FROM `mini_actions` WHERE `uid` = "'.$u->info['id'].'" AND `val` = "mbtnlvl7" LIMIT 1'));
@@ -359,7 +359,7 @@ function za_block(id) {
 					$btls = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `battle` WHERE `time_start` > "'.(0+$tstlvl['time']).'" AND `razdel` = 5 AND `id` IN (SELECT `battle_id` FROM `battle_last` WHERE `uid` = "'.$u->info['id'].'" AND `time` > "'.(0+$tstlvl['time']).'") LIMIT 1'));
 					//
 					if($refs[0] < 3 || $btls[0] < 3) {
-						$er8 = 'Вы не пригласили '.(0+$refs[0]).'/3 друзей или не провели '.(0+$btls[0]).'/3 хаота.';
+						$er8 = 'Р’С‹ РЅРµ РїСЂРёРіР»Р°СЃРёР»Рё '.(0+$refs[0]).'/3 РґСЂСѓР·РµР№ РёР»Рё РЅРµ РїСЂРѕРІРµР»Рё '.(0+$btls[0]).'/3 С…Р°РѕС‚Р°.';
 					}else{
 						//
 						mysql_query('UPDATE `stats` SET `exp` = 300000 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -369,19 +369,19 @@ function za_block(id) {
 						) VALUES (
 							"'.$u->info['id'].'","'.time().'","mbtnlvl8","0"
 						)');
-						$er8 = 'Вы успешно получили '.$ml.' уровень!';
+						$er8 = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё '.$ml.' СѓСЂРѕРІРµРЅСЊ!';
 						$u->info['level']++;
 						$ml++;
 					}
 				}elseif($ml <= 9) {
-					$er8 = 'Вы не пригласили 5 друзей или не провели 50 хаотов.';
-					$er8 = 'Доступ закрыт!';
+					$er8 = 'Р’С‹ РЅРµ РїСЂРёРіР»Р°СЃРёР»Рё 5 РґСЂСѓР·РµР№ РёР»Рё РЅРµ РїСЂРѕРІРµР»Рё 50 С…Р°РѕС‚РѕРІ.';
+					$er8 = 'Р”РѕСЃС‚СѓРї Р·Р°РєСЂС‹С‚!';
 				}elseif($ml <= 10) {
-					$er8 = 'Вы не пригласили 7 друзей или не провели 100 хаотов.';
-					$er8 = 'Доступ закрыт!';
+					$er8 = 'Р’С‹ РЅРµ РїСЂРёРіР»Р°СЃРёР»Рё 7 РґСЂСѓР·РµР№ РёР»Рё РЅРµ РїСЂРѕРІРµР»Рё 100 С…Р°РѕС‚РѕРІ.';
+					$er8 = 'Р”РѕСЃС‚СѓРї Р·Р°РєСЂС‹С‚!';
 				}else{
-					$er8 = 'Что-то тут не так...';
-					$er8 = 'Доступ закрыт!';
+					$er8 = 'Р§С‚Рѕ-С‚Рѕ С‚СѓС‚ РЅРµ С‚Р°Рє...';
+					$er8 = 'Р”РѕСЃС‚СѓРї Р·Р°РєСЂС‹С‚!';
 				}
 				//
 				if($sl != $u->info['level']) {
@@ -398,25 +398,25 @@ function za_block(id) {
 			}
 			//
 			if($ml <= 1) {
-				$zd = '<font color=red>Нужно докачаться на клоне до 1 уровня.</font>';
+				$zd = '<font color=red>РќСѓР¶РЅРѕ РґРѕРєР°С‡Р°С‚СЊСЃСЏ РЅР° РєР»РѕРЅРµ РґРѕ 1 СѓСЂРѕРІРЅСЏ.</font>';
 				$gb = 1;
 			}elseif($ml <= 4) {
-				$zd = 'Нужно подтвердить E-mail, чтобы получить 2-4 уровень.';
+				$zd = 'РќСѓР¶РЅРѕ РїРѕРґС‚РІРµСЂРґРёС‚СЊ E-mail, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 2-4 СѓСЂРѕРІРµРЅСЊ.';
 				$gb = 1;
 			}elseif($ml <= 6) {
-				$zd = 'Нужно подтвердить страницу в социальной сети, чтобы получить 5-6 уровень.';
+				$zd = 'РќСѓР¶РЅРѕ РїРѕРґС‚РІРµСЂРґРёС‚СЊ СЃС‚СЂР°РЅРёС†Сѓ РІ СЃРѕС†РёР°Р»СЊРЅРѕР№ СЃРµС‚Рё, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 5-6 СѓСЂРѕРІРµРЅСЊ.';
 				$gb = 1;
 			}elseif($ml <= 7) {
-				$zd = 'Нужно <!--привести одного друга по реферальной ссылке и -->выиграть 50 боев, чтобы получить 7 уровень.';
+				$zd = 'РќСѓР¶РЅРѕ <!--РїСЂРёРІРµСЃС‚Рё РѕРґРЅРѕРіРѕ РґСЂСѓРіР° РїРѕ СЂРµС„РµСЂР°Р»СЊРЅРѕР№ СЃСЃС‹Р»РєРµ Рё -->РІС‹РёРіСЂР°С‚СЊ 50 Р±РѕРµРІ, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 7 СѓСЂРѕРІРµРЅСЊ.';
 				$gb = 1;
 			}elseif($ml <= 8) {
-				$zd = 'Нужно привести 3 друзей по реферальной ссылке и провести 3 хаотичных поединка, чтобы получить 8 уровень.';
+				$zd = 'РќСѓР¶РЅРѕ РїСЂРёРІРµСЃС‚Рё 3 РґСЂСѓР·РµР№ РїРѕ СЂРµС„РµСЂР°Р»СЊРЅРѕР№ СЃСЃС‹Р»РєРµ Рё РїСЂРѕРІРµСЃС‚Рё 3 С…Р°РѕС‚РёС‡РЅС‹С… РїРѕРµРґРёРЅРєР°, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 8 СѓСЂРѕРІРµРЅСЊ.';
 				$gb = 1;
 			}elseif($ml <= 9) {
-				$zd = 'Нужно привести 5 друзей по реферальной ссылке и провести 50 хаотичных поединков, чтобы получить 9 уровень.';
+				$zd = 'РќСѓР¶РЅРѕ РїСЂРёРІРµСЃС‚Рё 5 РґСЂСѓР·РµР№ РїРѕ СЂРµС„РµСЂР°Р»СЊРЅРѕР№ СЃСЃС‹Р»РєРµ Рё РїСЂРѕРІРµСЃС‚Рё 50 С…Р°РѕС‚РёС‡РЅС‹С… РїРѕРµРґРёРЅРєРѕРІ, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 9 СѓСЂРѕРІРµРЅСЊ.';
 				$gb = 1;
 			}elseif($ml <= 10) {
-				$zd = 'Нужно привести 7 друзей по реферальной ссылке и провести 100 хаотичных поединков, чтобы получить 10 уровень.';
+				$zd = 'РќСѓР¶РЅРѕ РїСЂРёРІРµСЃС‚Рё 7 РґСЂСѓР·РµР№ РїРѕ СЂРµС„РµСЂР°Р»СЊРЅРѕР№ СЃСЃС‹Р»РєРµ Рё РїСЂРѕРІРµСЃС‚Рё 100 С…Р°РѕС‚РёС‡РЅС‹С… РїРѕРµРґРёРЅРєРѕРІ, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 10 СѓСЂРѕРІРµРЅСЊ.';
 				$gb = 1;
 			}else{
 				$zd = '';
@@ -426,7 +426,7 @@ function za_block(id) {
 			if($gd == 1) {
 				//
 				if($zd!='') {
-					echo '<hr><b><center>Необходимо выполнить задание:</center></b><div align="center" style="border:1px solid #aeaeae;background-color:#FFF;margin-top:3px;padding:4px;">'.$zd.'</div>';
+					echo '<hr><b><center>РќРµРѕР±С…РѕРґРёРјРѕ РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёРµ:</center></b><div align="center" style="border:1px solid #aeaeae;background-color:#FFF;margin-top:3px;padding:4px;">'.$zd.'</div>';
 				}else{
 					echo '<hr>';
 				}
@@ -435,27 +435,27 @@ function za_block(id) {
 				}
 				//
 				if($gb == 1 && $ml > 1) {
-					//Получаем
-					echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="location.href=\'/main.php?inv&takelevelplease=1\';">Получить '.($u->info['level']+1).' уровень</button></div>';
+					//РџРѕР»СѓС‡Р°РµРј
+					echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="location.href=\'/main.php?inv&takelevelplease=1\';">РџРѕР»СѓС‡РёС‚СЊ '.($u->info['level']+1).' СѓСЂРѕРІРµРЅСЊ</button></div>';
 				}
 				//
 			}
 		}
 	}
 	
-	//Бонус за мыло, контакт
+	//Р‘РѕРЅСѓСЃ Р·Р° РјС‹Р»Рѕ, РєРѕРЅС‚Р°РєС‚
 	if(!isset($u->info['noreal']) && $c['bonussocial'] == true) {
 		$mcf = mysql_fetch_array(mysql_query('SELECT * FROM `mini_actions` WHERE `uid` = "'.$u->info['id'].'" AND `val` = "mailconfirm" LIMIT 1'));
 		if((isset($mcf['id']) && $mcf['ok'] == 0) || !isset($mcf['id'])) {
 			if(isset($_GET['confmail'])) {
 				//
 				$gd = 0;
-				$zdml = 3600; //час
+				$zdml = 3600; //С‡Р°СЃ
 				if(isset($mcf['id']) && $mcf['time'] > time() - $zdml ) {
-					echo '<hr><center><font color="red">Нельзя подтверждать эл.почту так часто. Осталось '.$u->timeOut($mcf['time']+$zdml-time()).'</font></center>';
+					echo '<hr><center><font color="red">РќРµР»СЊР·СЏ РїРѕРґС‚РІРµСЂР¶РґР°С‚СЊ СЌР».РїРѕС‡С‚Сѓ С‚Р°Рє С‡Р°СЃС‚Рѕ. РћСЃС‚Р°Р»РѕСЃСЊ '.$u->timeOut($mcf['time']+$zdml-time()).'</font></center>';
 					$gd = 1;
 				}elseif(!preg_match('#^[a-z0-9.!\#$%&\'*+-/=?^_`{|}~]+@([0-9.]+|([^\s]+\.+[a-z]{2,6}))$#si', $_GET['confmail'])) {
-					echo '<hr><center><font color="red">Вы указали явно ошибочный E-mail.</font></center>';
+					echo '<hr><center><font color="red">Р’С‹ СѓРєР°Р·Р°Р»Рё СЏРІРЅРѕ РѕС€РёР±РѕС‡РЅС‹Р№ E-mail.</font></center>';
 					$gd = 1;
 				}
 				
@@ -472,17 +472,17 @@ function za_block(id) {
 						//
 						$md5mail = md5($keymd5.'+'.$mail);
 						//
-						$msgtxt = 'Для подтверждения вашего E-mail у персонажа <b>'.$u->info['login'].'</b> перейдите по ссылке:';
-						$msgtxt .= ' <a href="http://xcombats.com/mail/key='.$md5mail.'&mail='.$mail.'">Нажмите тут</a> (http://xcombats.com/mail/key='.$md5mail.'&mail='.$mail.')';
-						$msgtxt .= '<br>Переходя по ссылке, вы подтверждаете свое желание получать игровые новости.';
-						$msgtxt .= '<br>Если вы не имеете отношения к нашей игре и не хотите получать письма, тогда перейдите по этой ссылке: <a href="http://xcombats.com/mail/key='.$md5mail.'&mail='.$mail.'&cancel">Нажмите тут</a> (http://xcombats.com/mail/key='.$md5mail.'&mail='.$mail.'&cancel)<br><br>- - - - - - -<br><br>С уважением,<br>Администрация Легендарного Бойцовского Клуба';
+						$msgtxt = 'Р”Р»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РІР°С€РµРіРѕ E-mail Сѓ РїРµСЂСЃРѕРЅР°Р¶Р° <b>'.$u->info['login'].'</b> РїРµСЂРµР№РґРёС‚Рµ РїРѕ СЃСЃС‹Р»РєРµ:';
+						$msgtxt .= ' <a href="http://xcombats.com/mail/key='.$md5mail.'&mail='.$mail.'">РќР°Р¶РјРёС‚Рµ С‚СѓС‚</a> (http://xcombats.com/mail/key='.$md5mail.'&mail='.$mail.')';
+						$msgtxt .= '<br>РџРµСЂРµС…РѕРґСЏ РїРѕ СЃСЃС‹Р»РєРµ, РІС‹ РїРѕРґС‚РІРµСЂР¶РґР°РµС‚Рµ СЃРІРѕРµ Р¶РµР»Р°РЅРёРµ РїРѕР»СѓС‡Р°С‚СЊ РёРіСЂРѕРІС‹Рµ РЅРѕРІРѕСЃС‚Рё.';
+						$msgtxt .= '<br>Р•СЃР»Рё РІС‹ РЅРµ РёРјРµРµС‚Рµ РѕС‚РЅРѕС€РµРЅРёСЏ Рє РЅР°С€РµР№ РёРіСЂРµ Рё РЅРµ С…РѕС‚РёС‚Рµ РїРѕР»СѓС‡Р°С‚СЊ РїРёСЃСЊРјР°, С‚РѕРіРґР° РїРµСЂРµР№РґРёС‚Рµ РїРѕ СЌС‚РѕР№ СЃСЃС‹Р»РєРµ: <a href="http://xcombats.com/mail/key='.$md5mail.'&mail='.$mail.'&cancel">РќР°Р¶РјРёС‚Рµ С‚СѓС‚</a> (http://xcombats.com/mail/key='.$md5mail.'&mail='.$mail.'&cancel)<br><br>- - - - - - -<br><br>РЎ СѓРІР°Р¶РµРЅРёРµРј,<br>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ Р›РµРіРµРЅРґР°СЂРЅРѕРіРѕ Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°';
 						//
 						$headers  = "MIME-Version: 1.0\r\n";
 						$headers .= "Content-type: text/html; charset=windows-1251\r\n";
-						$headers .= "From: Старый БК <zahodite@xcombats.com> \r\n";		
+						$headers .= "From: РЎС‚Р°СЂС‹Р№ Р‘Рљ <zahodite@xcombats.com> \r\n";		
 						$to = $mail;
 						//
-						$subject = 'СБК: '.$u->info['login'] . ' - Подтверждение вашей эл.почты';
+						$subject = 'РЎР‘Рљ: '.$u->info['login'] . ' - РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РІР°С€РµР№ СЌР».РїРѕС‡С‚С‹';
 						//
 						if (mail($to, $subject, $msgtxt, $headers) == true) {
 							return true;
@@ -495,17 +495,17 @@ function za_block(id) {
 					//
 					sendmail( '' , 'mailconf*15' , $mcf['var'] );
 					//
-					echo '<hr><center><font color="red">На ваш E-mail отправлено письмо.</font></center>';
+					echo '<hr><center><font color="red">РќР° РІР°С€ E-mail РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ.</font></center>';
 					//
 				}
 			}
-			$mcff = 'Подтвердить E-mail за 1 екр.';
+			$mcff = 'РџРѕРґС‚РІРµСЂРґРёС‚СЊ E-mail Р·Р° 1 РµРєСЂ.';
 			if(isset($mcf['id'])) {
-				$mcff = '<b>'.$mcf['var'].'</b><br><font color="grey"><small>(На этот адрес отправлено письмо)</small></font>';
+				$mcff = '<b>'.$mcf['var'].'</b><br><font color="grey"><small>(РќР° СЌС‚РѕС‚ Р°РґСЂРµСЃ РѕС‚РїСЂР°РІР»РµРЅРѕ РїРёСЃСЊРјРѕ)</small></font>';
 			}
 			echo '<div align="center"><button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.mailConf();"><img src="http://img.xcombats.com/mini_mail.png" height="13" width="13"> '.$mcff.'</button></div>';
 		}else{
-			//echo '<div align="center"><button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.mailConf();"><img src="http://img.xcombats.com/mini_mail.png" height="13" width="13"> Подтвердить E-mail за 1 екр.</button></div>';
+			//echo '<div align="center"><button style="width:224px;margin-top:5px;" class="btnnew" onclick="top.mailConf();"><img src="http://img.xcombats.com/mini_mail.png" height="13" width="13"> РџРѕРґС‚РІРµСЂРґРёС‚СЊ E-mail Р·Р° 1 РµРєСЂ.</button></div>';
 		}
 		
 		$mcf = mysql_fetch_array(mysql_query('SELECT * FROM `mini_actions` WHERE `uid` = "'.$u->info['id'].'" AND (`val` = "vkauth" OR `val` = "fbauth" OR `val` = "okauth") LIMIT 1'));
@@ -535,7 +535,7 @@ function za_block(id) {
 							
 						/*echo '<script>location.href="'.$authorize_url.'";</script>';
 							*/
-						//echo '<a target="_blank" href="' . $authorize_url . '">Подключить свой аккаунт VK.com</a>';
+						//echo '<a target="_blank" href="' . $authorize_url . '">РџРѕРґРєР»СЋС‡РёС‚СЊ СЃРІРѕР№ Р°РєРєР°СѓРЅС‚ VK.com</a>';
 					} else {
 						$access_token = $vk->getAccessToken($_REQUEST['code'], $vk_config['callback_url']);
 						
@@ -557,17 +557,17 @@ function za_block(id) {
 			
 			echo '<div align="center"><hr>';
 			
-			echo 'Подтвердите одну из страничек в социальных сетях за 1 екр. и 150 кр.<br><br>';
+			echo 'РџРѕРґС‚РІРµСЂРґРёС‚Рµ РѕРґРЅСѓ РёР· СЃС‚СЂР°РЅРёС‡РµРє РІ СЃРѕС†РёР°Р»СЊРЅС‹С… СЃРµС‚СЏС… Р·Р° 1 РµРєСЂ. Рё 150 РєСЂ.<br><br>';
 			
-			echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="window.open(\''.$authorize_url.'\', \'opener\', \'width=660,height=450\');"><img src="http://img.xcombats.com/vk.png" height="13" width="13"> Подтвердить ВКонтакте &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</button>';
+			echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="window.open(\''.$authorize_url.'\', \'opener\', \'width=660,height=450\');"><img src="http://img.xcombats.com/vk.png" height="13" width="13"> РџРѕРґС‚РІРµСЂРґРёС‚СЊ Р’РљРѕРЅС‚Р°РєС‚Рµ &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</button>';
 			
-			echo '<br>или<br>';
+			echo '<br>РёР»Рё<br>';
 			
-			echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="window.open(\'http://xcombats.com/social.php?fbconnect\', \'opener\', \'width=660,height=450\');"><img src="http://img.xcombats.com/fb.png" height="13" width="13"> Подтвердить Facebook &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</button>';
+			echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="window.open(\'http://xcombats.com/social.php?fbconnect\', \'opener\', \'width=660,height=450\');"><img src="http://img.xcombats.com/fb.png" height="13" width="13"> РџРѕРґС‚РІРµСЂРґРёС‚СЊ Facebook &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</button>';
 			
-			//echo '<br>или<br>';
+			//echo '<br>РёР»Рё<br>';
 			
-			//echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="window.open(\''.$authorize_url.'\', \'opener\', \'width=660,height=450\');"><img src="http://img.xcombats.com/ok.png" height="13" width="13"> Подтвердить Одноклассники</button>';
+			//echo '<button style="width:224px;margin-top:5px;" class="btnnew" onclick="window.open(\''.$authorize_url.'\', \'opener\', \'width=660,height=450\');"><img src="http://img.xcombats.com/ok.png" height="13" width="13"> РџРѕРґС‚РІРµСЂРґРёС‚СЊ РћРґРЅРѕРєР»Р°СЃСЃРЅРёРєРё</button>';
 			
 			echo '</div>';
 		}
@@ -609,7 +609,7 @@ function za_block(id) {
 		$i++;
 	}
 	
-	$rz0 = '<script>getLine('.$prtpos[0].',"Характеристики ","0","0","'.$uShow[0].'",1);</script>';
+	$rz0 = '<script>getLine('.$prtpos[0].',"РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё ","0","0","'.$uShow[0].'",1);</script>';
 	$rz0 .= '<font id="rz0">';
 	if($uShow[0]==1){
 		$i = 1;
@@ -618,53 +618,53 @@ function za_block(id) {
 			$i++;
 		}
 		$rz0 .= '
-		Сила: <b>'.$u->stats['s1'].'</b><br />
-		Ловкость:&nbsp;<b>'.$u->stats['s2'].'</b><br />
-		Интуиция:&nbsp;<b>'.$u->stats['s3'].'</b><br />
-		Выносливость:&nbsp;<b>'.$u->stats['s4'].'</b><br />
+		РЎРёР»Р°: <b>'.$u->stats['s1'].'</b><br />
+		Р›РѕРІРєРѕСЃС‚СЊ:&nbsp;<b>'.$u->stats['s2'].'</b><br />
+		РРЅС‚СѓРёС†РёСЏ:&nbsp;<b>'.$u->stats['s3'].'</b><br />
+		Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ:&nbsp;<b>'.$u->stats['s4'].'</b><br />
 		';
 		if($u->info['level'] >= 4 || $u->stats['n5']!=0)
 		{
 			$rz0 .= '
-			Интеллект:&nbsp;<b>'.$u->stats['s5'].'</b><br />
+			РРЅС‚РµР»Р»РµРєС‚:&nbsp;<b>'.$u->stats['s5'].'</b><br />
 			';
 		}
 		if($u->info['level'] >= 7 || (@isset($u->stats['n6']) && @$u->stats['n6']>0))
 		{
 			$rz0 .= '
-			Мудрость:&nbsp;<b>'.@$u->stats['s6'].'</b><br />
+			РњСѓРґСЂРѕСЃС‚СЊ:&nbsp;<b>'.@$u->stats['s6'].'</b><br />
 			';
 		}
 		if($u->info['level'] >= 10 || @$u->stats['s7']>0)
 		{
 			$rz0 .= '
-			Духовность:&nbsp;<b>'.@$u->stats['s7'].'</b><br />
+			Р”СѓС…РѕРІРЅРѕСЃС‚СЊ:&nbsp;<b>'.@$u->stats['s7'].'</b><br />
 			';
 		}
 		if($u->info['level'] >= 14 || @$u->stats['s8']>0)
 		{
 			$rz0 .= '
-			Воля:&nbsp;<b>'.@$u->stats['s8'].'</b><br />
+			Р’РѕР»СЏ:&nbsp;<b>'.@$u->stats['s8'].'</b><br />
 			';
 		}
 		if($u->info['level'] >= 15 || @$u->stats['s9']>0)
 		{
 			$rz0 .= '
-			Свобода духа:&nbsp;<b>'.@$u->stats['s9'].'</b><br />
+			РЎРІРѕР±РѕРґР° РґСѓС…Р°:&nbsp;<b>'.@$u->stats['s9'].'</b><br />
 			';
 		}
 		if($u->info['level'] >= 20 || @$u->stats['s10']>0)
 		{
 			$rz0 .= '
-			Божественный:&nbsp;<b>'.@$u->stats['s10'].'</b><br />
+			Р‘РѕР¶РµСЃС‚РІРµРЅРЅС‹Р№:&nbsp;<b>'.@$u->stats['s10'].'</b><br />
 			';
 		}
 			//$rz0 .= '
-			//Энергия:&nbsp;<b>'.(0+$u->stats['s11']).'</b> &nbsp; <small>['.round($u->info['enNow'],3).'/'.$u->stats['enAll'].']</small><br />
+			//Р­РЅРµСЂРіРёСЏ:&nbsp;<b>'.(0+$u->stats['s11']).'</b> &nbsp; <small>['.round($u->info['enNow'],3).'/'.$u->stats['enAll'].']</small><br />
 			//';
 		if($u->info['ability'] > 0)
 		{ 
-			$rz0 .= '&nbsp;<a href="main.php?skills=1&side=1">+ Способности</a>'; 
+			$rz0 .= '&nbsp;<a href="main.php?skills=1&side=1">+ РЎРїРѕСЃРѕР±РЅРѕСЃС‚Рё</a>'; 
 			if($u->info['skills'] != 0)
 			{
 				$rz0 .= '<br>';
@@ -673,71 +673,71 @@ function za_block(id) {
 
 		if($u->info['skills'] > 0 && $u->info['level'] > 0)
 		{ 
-			$rz0 .= '&nbsp;&bull; <a href="main.php?skills=1&side=1">Обучение</a><br />'; 
+			$rz0 .= '&nbsp;&bull; <a href="main.php?skills=1&side=1">РћР±СѓС‡РµРЅРёРµ</a><br />'; 
 		}
 	}
 	$rz0 .= '</font>';
-	$rz1 = '<script>getLine('.$prtpos[1].',"Модификаторы ","0","0",'.$uShow[1].',2);</script>';
+	$rz1 = '<script>getLine('.$prtpos[1].',"РњРѕРґРёС„РёРєР°С‚РѕСЂС‹ ","0","0",'.$uShow[1].',2);</script>';
 	if($uShow[1]==1)
 	{
 		//if( $u->info['admin'] > 0 ) {
-			$rz1 .= 'Урон: '.$u->inform('yrontest').'';
-			$rz1 .= '<br><font color=maroon>Крит. урон: '.$u->inform('yrontest-krit').'</font>';
+			$rz1 .= 'РЈСЂРѕРЅ: '.$u->inform('yrontest').'';
+			$rz1 .= '<br><font color=maroon>РљСЂРёС‚. СѓСЂРѕРЅ: '.$u->inform('yrontest-krit').'</font>';
 		//}else{
-		//	$rz1 .= 'Урон: '.$u->inform('yron');
+		//	$rz1 .= 'РЈСЂРѕРЅ: '.$u->inform('yron');
 		//}
 			$rz1 .= '
 			<br>
-			<span>Мф. крит. удара: '.$u->inform('m1').'';
+			<span>РњС„. РєСЂРёС‚. СѓРґР°СЂР°: '.$u->inform('m1').'';
 			//if($u->inform('m3')!='0')
 			//{
 				$rz1 .='
 				</span><br>
 				<nobr>
-				<span>Мф. мощности крит. удара: '.$u->inform('m3').'';
+				<span>РњС„. РјРѕС‰РЅРѕСЃС‚Рё РєСЂРёС‚. СѓРґР°СЂР°: '.$u->inform('m3').'';
 			//}
 			if( $u->inform('antm3') != '0' && $u->info['admin'] > 0 ) {
 				$rz1 .='
 				</span><br>
 				<nobr>
-				<span>Мф. против мощности крита: '.$u->inform('antm3').'';
+				<span>РњС„. РїСЂРѕС‚РёРІ РјРѕС‰РЅРѕСЃС‚Рё РєСЂРёС‚Р°: '.$u->inform('antm3').'';
 			}
 			$rz1 .= '
 			</span></nobr><br />
-			<span>Мф. против крит. удара: '.$u->inform('m2').'';
+			<span>РњС„. РїСЂРѕС‚РёРІ РєСЂРёС‚. СѓРґР°СЂР°: '.$u->inform('m2').'';
 			$rz1 .= '</span><br />
-			<span>Мф. увертывания: '.$u->inform('m4').'';
+			<span>РњС„. СѓРІРµСЂС‚С‹РІР°РЅРёСЏ: '.$u->inform('m4').'';
 			$rz1 .= '</span><br>
-			<nobr><span>Мф. против увертывания: '.$u->inform('m5').'';
+			<nobr><span>РњС„. РїСЂРѕС‚РёРІ СѓРІРµСЂС‚С‹РІР°РЅРёСЏ: '.$u->inform('m5').'';
 			$rz1 .= '</span></nobr><br>
-			<span>Мф. пробоя брони: '.$u->inform('m9').'';
+			<span>РњС„. РїСЂРѕР±РѕСЏ Р±СЂРѕРЅРё: '.$u->inform('m9').'';
 			$rz1 .= '</span><br>
-			<span>Мф. контрудара: '.$u->inform('m6').'';
+			<span>РњС„. РєРѕРЅС‚СЂСѓРґР°СЂР°: '.$u->inform('m6').'';
 			$rz1 .='
 			</span><br>
-			<span>Мф. парирования: '.$u->inform('m7').'';
+			<span>РњС„. РїР°СЂРёСЂРѕРІР°РЅРёСЏ: '.$u->inform('m7').'';
 			$rz1 .= '</span><br />
-			<span>Мф. блока щитом: '.$u->inform('m8').'';
+			<span>РњС„. Р±Р»РѕРєР° С‰РёС‚РѕРј: '.$u->inform('m8').'';
 			$rz1 .= '</span>';
 		$rz1 .= '</nobr>';
 	}
-	$rz2 ='<script>getLine('.$prtpos[2].',"Броня ","0","0",'.$uShow[2].',3);</script>';
+	$rz2 ='<script>getLine('.$prtpos[2].',"Р‘СЂРѕРЅСЏ ","0","0",'.$uShow[2].',3);</script>';
 	if($uShow[2]==1)
 	{		
 		$rz2 .= '
-		Броня головы: '.$u->stats['mib1'].'-'.$u->stats['mab1'].' ('.($u->stats['mib1']).'+d'.($u->stats['mab1']-($u->stats['mib1'])+1).')<br />
-		Броня груди: '.$u->stats['mib2'].'-'.$u->stats['mab2'].' ('.($u->stats['mib2']).'+d'.($u->stats['mab2']-($u->stats['mib2'])+1).')<br />
-		Броня живота: '.$u->stats['mib2'].'-'.$u->stats['mab2'].' ('.($u->stats['mib2']).'+d'.($u->stats['mab2']-($u->stats['mib2'])+1).')<br />
-		Броня пояса: '.$u->stats['mib3'].'-'.$u->stats['mab3'].' ('.($u->stats['mib3']).'+d'.($u->stats['mab3']-($u->stats['mib3'])+1).')<br />
-		Броня ног: '.$u->stats['mib4'].'-'.$u->stats['mab4'].' ('.($u->stats['mib4']).'+d'.($u->stats['mab4']-($u->stats['mib4'])+1).')<br />';
+		Р‘СЂРѕРЅСЏ РіРѕР»РѕРІС‹: '.$u->stats['mib1'].'-'.$u->stats['mab1'].' ('.($u->stats['mib1']).'+d'.($u->stats['mab1']-($u->stats['mib1'])+1).')<br />
+		Р‘СЂРѕРЅСЏ РіСЂСѓРґРё: '.$u->stats['mib2'].'-'.$u->stats['mab2'].' ('.($u->stats['mib2']).'+d'.($u->stats['mab2']-($u->stats['mib2'])+1).')<br />
+		Р‘СЂРѕРЅСЏ Р¶РёРІРѕС‚Р°: '.$u->stats['mib2'].'-'.$u->stats['mab2'].' ('.($u->stats['mib2']).'+d'.($u->stats['mab2']-($u->stats['mib2'])+1).')<br />
+		Р‘СЂРѕРЅСЏ РїРѕСЏСЃР°: '.$u->stats['mib3'].'-'.$u->stats['mab3'].' ('.($u->stats['mib3']).'+d'.($u->stats['mab3']-($u->stats['mib3'])+1).')<br />
+		Р‘СЂРѕРЅСЏ РЅРѕРі: '.$u->stats['mib4'].'-'.$u->stats['mab4'].' ('.($u->stats['mib4']).'+d'.($u->stats['mab4']-($u->stats['mib4'])+1).')<br />';
 	}
-	$rz3 = '<script>getLine('.$prtpos[3].',"Мощность ","0","0",'.$uShow[3].',4);</script>';
+	$rz3 = '<script>getLine('.$prtpos[3].',"РњРѕС‰РЅРѕСЃС‚СЊ ","0","0",'.$uShow[3].',4);</script>';
 	if($uShow[3]==1)
 	{
 		$i = 1;
 		while($i<=4)
 		{
-			$rz3 .= ucfirst(str_replace('Мф. мощности','Мощность ',$u->is['pa'.$i].': '));
+			$rz3 .= ucfirst(str_replace('РњС„. РјРѕС‰РЅРѕСЃС‚Рё','РњРѕС‰РЅРѕСЃС‚СЊ ',$u->is['pa'.$i].': '));
 			if($u->stats['pa'.$i]>0)
 			{
 				//$rz3 .= '+';
@@ -749,7 +749,7 @@ function za_block(id) {
 		$i = 1;
 		while($i<=7)
 		{
-			$rz3 .= ucfirst(str_replace('Мф. мощности ','Мощность ',$u->is['pm'.$i].': '));
+			$rz3 .= ucfirst(str_replace('РњС„. РјРѕС‰РЅРѕСЃС‚Рё ','РњРѕС‰РЅРѕСЃС‚СЊ ',$u->is['pm'.$i].': '));
 			if($u->stats['pm'.$i]>0)
 			{
 				//$rz3 .= '+';
@@ -760,18 +760,18 @@ function za_block(id) {
 		}
 	}
 	
-	$zi = array( //Предметы влияющие на зоны
+	$zi = array( //РџСЂРµРґРјРµС‚С‹ РІР»РёСЏСЋС‰РёРµ РЅР° Р·РѕРЅС‹
 		'n' => array(
-			'','голова','грудь','живот','пояс','ноги'
+			'','РіРѕР»РѕРІР°','РіСЂСѓРґСЊ','Р¶РёРІРѕС‚','РїРѕСЏСЃ','РЅРѕРіРё'
 		),
-		1 => array( 1 , 8 , 9 , 52 ), //голова
-		2 => array( 4 , 5 , 6 ), //грудь
-		3 => array( 2 , 4 , 5 , 6 , 13 ), //живот
-		4 => array( 7 , 16 , 10 , 11 , 12 ), //пояс
-		5 => array( 17 )  //ноги
+		1 => array( 1 , 8 , 9 , 52 ), //РіРѕР»РѕРІР°
+		2 => array( 4 , 5 , 6 ), //РіСЂСѓРґСЊ
+		3 => array( 2 , 4 , 5 , 6 , 13 ), //Р¶РёРІРѕС‚
+		4 => array( 7 , 16 , 10 , 11 , 12 ), //РїРѕСЏСЃ
+		5 => array( 17 )  //РЅРѕРіРё
 	);
 		
-	$rz4 = '<script>getLine('.$prtpos[4].',"Защита: ","0","0",'.$uShow[4].',5);</script>';
+	$rz4 = '<script>getLine('.$prtpos[4].',"Р—Р°С‰РёС‚Р°: ","0","0",'.$uShow[4].',5);</script>';
 	if($uShow[4]==1)
 	{
 		function zago($v) {
@@ -788,7 +788,7 @@ function za_block(id) {
 		$i = 1;
 		while($i<=4)
 		{
-			$rz4 .= '<span onclick="za_block('.$i.')" class="dot">'.ucfirst(/*str_replace('Защита от ','',*/$u->is['za'.$i]/*)*/).': ';
+			$rz4 .= '<span onclick="za_block('.$i.')" class="dot">'.ucfirst(/*str_replace('Р—Р°С‰РёС‚Р° РѕС‚ ','',*/$u->is['za'.$i]/*)*/).': ';
 			if($u->stats['za'.$i]>0)
 			{
 				//$rz4 .= '+';
@@ -814,14 +814,14 @@ function za_block(id) {
 		$i = 1;
 		while($i<=7)
 		{
-			/*$rz4 .= ucfirst(str_replace('Защита от ','',$u->is['zm'.$i])).': ';
+			/*$rz4 .= ucfirst(str_replace('Р—Р°С‰РёС‚Р° РѕС‚ ','',$u->is['zm'.$i])).': ';
 			if($u->stats['zm'.$i]>0)
 			{
 				//$rz4 .= '+';
 			}
 			$rz4 .= $u->stats['zm'.$i].' ('.round(zago($u->stats['zm'.$i])).'%)<br />';
 			$i++;*/
-			$rz4 .= '<span onclick="za_block('.($i+4).')" class="dot">'.ucfirst(/*str_replace('Защита от ','',*/$u->is['zm'.$i]/*)*/).': ';
+			$rz4 .= '<span onclick="za_block('.($i+4).')" class="dot">'.ucfirst(/*str_replace('Р—Р°С‰РёС‚Р° РѕС‚ ','',*/$u->is['zm'.$i]/*)*/).': ';
 			if($u->stats['zm'.$i]>0)
 			{
 				//$rz4 .= '+';
@@ -845,43 +845,43 @@ function za_block(id) {
 			$i++;
 		}
 	}
-	$rz5 = '<script>getLine('.$prtpos[5].',"Кнопки ","0","0",'.$uShow[5].',6);</script>';
+	$rz5 = '<script>getLine('.$prtpos[5].',"РљРЅРѕРїРєРё ","0","0",'.$uShow[5].',6);</script>';
 	if($uShow[5]==1)
 	{
 		$rz5 .= '<center style="padding:5px;">';
-		$rz5 .= '<input class="btnnew3" style="padding:3px 15px 3px 15px;" type="button" name="snatvso" value="Снять всё" class="btn" onclick="top.frames[\'main\'].location=\'main.php?inv=1&remitem&otdel='.$_GET['otdel'].'\';"
+		$rz5 .= '<input class="btnnew3" style="padding:3px 15px 3px 15px;" type="button" name="snatvso" value="РЎРЅСЏС‚СЊ РІСЃС‘" class="btn" onclick="top.frames[\'main\'].location=\'main.php?inv=1&remitem&otdel='.$_GET['otdel'].'\';"
 		style="font-weight:bold;" />
 		&nbsp;';
 		$hgo = $u->testHome();
 		if(!isset($hgo['id']))
 		{
-			$rz5 .=  '<input class="btnnew3" style="padding:3px 15px 3px 15px;" type="button" value="Возврат" class="btn" onclick="top.frames[\'main\'].location=\'main.php?homeworld&rnd='.$code.'\';" style="font-weight:bold;width: 90px" />';
+			$rz5 .=  '<input class="btnnew3" style="padding:3px 15px 3px 15px;" type="button" value="Р’РѕР·РІСЂР°С‚" class="btn" onclick="top.frames[\'main\'].location=\'main.php?homeworld&rnd='.$code.'\';" style="font-weight:bold;width: 90px" />';
 		}
 		unset($hgo);
 		$rz5 .= '</center>';
 		$rz5 .=  '';
 	}
 	
-	$rz6 ='<script>getLine('.$prtpos[6].',"Комплекты&nbsp;&nbsp;&nbsp;<a href=\"#\" onClick=\"save_compl();\">запомнить</a>&nbsp;","0","0",'.$uShow[6].',7);</script>';
+	$rz6 ='<script>getLine('.$prtpos[6].',"РљРѕРјРїР»РµРєС‚С‹&nbsp;&nbsp;&nbsp;<a href=\"#\" onClick=\"save_compl();\">Р·Р°РїРѕРјРЅРёС‚СЊ</a>&nbsp;","0","0",'.$uShow[6].',7);</script>';
 	if($uShow[6]==1)
 	{
 		$rz6 .= '<div>';
 		$sp = mysql_query('SELECT * FROM `save_com` WHERE `uid` = "'.$u->info['id'].'" AND `delete` = "0" LIMIT 10');
 		while($pl = mysql_fetch_array($sp))
 		{
-			$rz6 .= '<a href="?inv=1&delc1='.$pl['id'].'&otdel='.((int)$_GET['otdel']).'&rnd='.$code.'"><img src="http://img.xcombats.com/i/close2.gif" title="Удалить комплект" width="9" height="9"></a> <small><a href="?inv=1&usec1='.$pl['id'].'&otdel='.((int)$_GET['otdel']).'&rnd='.$code.'">Надеть &quot;'.$pl['name'].'&quot;</a></small><br>';
+			$rz6 .= '<a href="?inv=1&delc1='.$pl['id'].'&otdel='.((int)$_GET['otdel']).'&rnd='.$code.'"><img src="http://img.xcombats.com/i/close2.gif" title="РЈРґР°Р»РёС‚СЊ РєРѕРјРїР»РµРєС‚" width="9" height="9"></a> <small><a href="?inv=1&usec1='.$pl['id'].'&otdel='.((int)$_GET['otdel']).'&rnd='.$code.'">РќР°РґРµС‚СЊ &quot;'.$pl['name'].'&quot;</a></small><br>';
 		}
 		$rz6 .= '</div>';
 	}
 	
-	$rz7 ='<script>getLine('.$prtpos[7].',"Приемы &nbsp; &nbsp;<a href=\"/main.php?skills=1&rz=4&rnd='.$code.'\">настроить</a>&nbsp;","0","0",'.$uShow[7].',8);</script>';
+	$rz7 ='<script>getLine('.$prtpos[7].',"РџСЂРёРµРјС‹ &nbsp; &nbsp;<a href=\"/main.php?skills=1&rz=4&rnd='.$code.'\">РЅР°СЃС‚СЂРѕРёС‚СЊ</a>&nbsp;","0","0",'.$uShow[7].',8);</script>';
 	if($uShow[7]==1)
 	{
 		$rz6 .= '<div>';
 		$sp = mysql_query('SELECT * FROM `complects_priem` WHERE `uid` = "'.$u->info['id'].'" LIMIT 10');
 		$rz7 .= '<small>';
 		while($pl = mysql_fetch_array($sp)) {
-			$rz7 .= '<a onclick="if(confirm(\'Удалить набор  ?\')){location=\'main.php?inv=1&otdel='.round((int)$_GET['otdel']).'&delcop='.$pl['id'].'\'}" href="javascript:void(0)"><img src="http://'.$c['img'].'/i/close2.gif" width="9" height="9"></a> <a href="main.php?inv=1&otdel='.round((int)$_GET['otdel']).'&usecopr='.$pl['id'].'">Использовать &quot;'.$pl['name'].'&quot;</a><br>';
+			$rz7 .= '<a onclick="if(confirm(\'РЈРґР°Р»РёС‚СЊ РЅР°Р±РѕСЂ  ?\')){location=\'main.php?inv=1&otdel='.round((int)$_GET['otdel']).'&delcop='.$pl['id'].'\'}" href="javascript:void(0)"><img src="http://'.$c['img'].'/i/close2.gif" width="9" height="9"></a> <a href="main.php?inv=1&otdel='.round((int)$_GET['otdel']).'&usecopr='.$pl['id'].'">РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ &quot;'.$pl['name'].'&quot;</a><br>';
 		}
 		$rz7 .= '</small>';
 		$rz6 .= '</div>';

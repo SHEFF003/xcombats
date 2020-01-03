@@ -31,19 +31,19 @@ if($u->info['bithday'] == '01.01.1800' && $u->info['inTurnirnew'] == 0) {
 }
 
 if($u->info['activ']>0) {
-	die('Вам необходимо активировать персонажа.<br>Авторизируйтесь с главной страницы.');
+	die('Р’Р°Рј РЅРµРѕР±С…РѕРґРёРјРѕ Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°.<br>РђРІС‚РѕСЂРёР·РёСЂСѓР№С‚РµСЃСЊ СЃ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹.');
 }
 
 if(isset($_POST['set_name'])) {
 	$_POST['set_name'] = htmlspecialchars($_POST['set_name']);
 	$set_x = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `ruine_sets` WHERE `uid` = "'.$u->info['id'].'" AND `name` != "'.mysql_real_escape_string($_POST['set_name']).'" LIMIT 1'));
 	if( $set_x[0] > 20 ) {
-		$u->error = 'Нельзя создавать более 20 профилей';
+		$u->error = 'РќРµР»СЊР·СЏ СЃРѕР·РґР°РІР°С‚СЊ Р±РѕР»РµРµ 20 РїСЂРѕС„РёР»РµР№';
 	}else{
 		$set_x = mysql_fetch_array(mysql_query('SELECT `id` FROM `ruine_sets` WHERE `uid` = "'.$u->info['id'].'" AND `name` = "'.mysql_real_escape_string($_POST['set_name']).'" LIMIT 1'));
 		//
 		
-		$f = $free_stats; // свободных статов
+		$f = $free_stats; // СЃРІРѕР±РѕРґРЅС‹С… СЃС‚Р°С‚РѕРІ
 		$i = 1;
 		while( $i <= 6 ) {
 			$_POST['s'.$i] = round((int)$_POST['s'.$i]);
@@ -56,7 +56,7 @@ if(isset($_POST['set_name'])) {
  		
 		//	
 		if( $f < 0 || $f > $free_stats ) {
-			$u->error = 'Ошибка в распределении статов.';
+			$u->error = 'РћС€РёР±РєР° РІ СЂР°СЃРїСЂРµРґРµР»РµРЅРёРё СЃС‚Р°С‚РѕРІ.';
 		}elseif(isset($set_x['id'])) {
 			mysql_query('UPDATE `ruine_sets` SET
 				`s1` = "'.mysql_real_escape_string($_POST['s1']).'",
@@ -68,7 +68,7 @@ if(isset($_POST['set_name'])) {
 				`free` = "'.mysql_real_escape_string($f).'",
 				`time` = "'.time().'"
 			WHERE `id` = "'.$set_x['id'].'" LIMIT 1');
-			$u->error = 'Профиль &quot;'.$_POST['set_name'].'&quot; был успешно перезаписан!';
+			$u->error = 'РџСЂРѕС„РёР»СЊ &quot;'.$_POST['set_name'].'&quot; Р±С‹Р» СѓСЃРїРµС€РЅРѕ РїРµСЂРµР·Р°РїРёСЃР°РЅ!';
 		}else{
 			mysql_query('INSERT INTO `ruine_sets` (
 				`uid`,`name`,`free`,`s1`,`s2`,`s3`,`s4`,`s5`,`s6`,`time`
@@ -82,7 +82,7 @@ if(isset($_POST['set_name'])) {
 				"'.mysql_real_escape_string($_POST['s6']).'",
 				"'.time().'"
 			)');
-			$u->error = 'Профиль &quot;'.$_POST['set_name'].'&quot; был создан.';
+			$u->error = 'РџСЂРѕС„РёР»СЊ &quot;'.$_POST['set_name'].'&quot; Р±С‹Р» СЃРѕР·РґР°РЅ.';
 		}
 	}
 }elseif( isset($_GET['use']) ) {
@@ -90,13 +90,13 @@ if(isset($_POST['set_name'])) {
 	if(isset($set_x['id'])) {
 		mysql_query('UPDATE `ruine_sets` SET `use` = 0 WHERE `uid` = "'.$u->info['id'].'"');
 		mysql_query('UPDATE `ruine_sets` SET `use` = 1 WHERE `id` = "'.$set_x['id'].'" LIMIT 1');
-		$u->error = 'Профиль &quot;'.$set_x['name'].'&quot; был установлен по умолчанию.';
+		$u->error = 'РџСЂРѕС„РёР»СЊ &quot;'.$set_x['name'].'&quot; Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.';
 	}
 }elseif( isset($_GET['delete']) ) {
 	$set_x = mysql_fetch_array(mysql_query('SELECT * FROM `ruine_sets` WHERE `uid` = "'.$u->info['id'].'" AND `id` = "'.mysql_real_escape_string($_GET['delete']).'" LIMIT 1'));
 	if(isset($set_x['id'])) {
 		mysql_query('DELETE FROM `ruine_sets` WHERE `id` = "'.$set_x['id'].'" LIMIT 1');
-		$u->error = 'Профиль &quot;'.$set_x['name'].'&quot; был стерт.';
+		$u->error = 'РџСЂРѕС„РёР»СЊ &quot;'.$set_x['name'].'&quot; Р±С‹Р» СЃС‚РµСЂС‚.';
 	}
 }
 
@@ -105,7 +105,7 @@ if(isset($_POST['set_name'])) {
 <html>
 <head>
 <meta charset="windows-1251">
-<title>Старый Бойцовский Клуб - Профили характеристик</title>
+<title>РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± - РџСЂРѕС„РёР»Рё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє</title>
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script>
@@ -121,28 +121,28 @@ function test_free() {
 	if( free_stats - a > 0 ) {
 		$('#result_ch').html('');
 	}else if( free_stats - a == 0 ) {
-		$('#result_ch').html('&nbsp;&nbsp;<font color="green"><b>Теперь можно сохранять</b></font>');
+		$('#result_ch').html('&nbsp;&nbsp;<font color="green"><b>РўРµРїРµСЂСЊ РјРѕР¶РЅРѕ СЃРѕС…СЂР°РЅСЏС‚СЊ</b></font>');
 	}else{
-		$('#result_ch').html('&nbsp;&nbsp;<font color="red"><b>Недостаточно характеристик!</b></font>');
+		$('#result_ch').html('&nbsp;&nbsp;<font color="red"><b>РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє!</b></font>');
 	}
 }
 </script>
 </head>
 
 <body>
-<h3>Профили характеристик</h3><br>
+<h3>РџСЂРѕС„РёР»Рё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє</h3><br>
 <?
 if( $u->error != '' ) {
 	echo '<div><font color="red"><b>'.$u->error.'</b></font></div><br>';
 }
 ?>
-Статы не позволяют сходить в руины? Раскиньте ваши статы  так, как вы хотите, и участвуйте в турнире! Выбранный по умолчанию профиль, загрузится сам. Вы можете создавать до двадцати профилей и менять их  за секунды до турнира!
+РЎС‚Р°С‚С‹ РЅРµ РїРѕР·РІРѕР»СЏСЋС‚ СЃС…РѕРґРёС‚СЊ РІ СЂСѓРёРЅС‹? Р Р°СЃРєРёРЅСЊС‚Рµ РІР°С€Рё СЃС‚Р°С‚С‹  С‚Р°Рє, РєР°Рє РІС‹ С…РѕС‚РёС‚Рµ, Рё СѓС‡Р°СЃС‚РІСѓР№С‚Рµ РІ С‚СѓСЂРЅРёСЂРµ! Р’С‹Р±СЂР°РЅРЅС‹Р№ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РїСЂРѕС„РёР»СЊ, Р·Р°РіСЂСѓР·РёС‚СЃСЏ СЃР°Рј. Р’С‹ РјРѕР¶РµС‚Рµ СЃРѕР·РґР°РІР°С‚СЊ РґРѕ РґРІР°РґС†Р°С‚Рё РїСЂРѕС„РёР»РµР№ Рё РјРµРЅСЏС‚СЊ РёС…  Р·Р° СЃРµРєСѓРЅРґС‹ РґРѕ С‚СѓСЂРЅРёСЂР°!
 <br><br>
 <table style="border:1px solid #000;" width="100%" border="0" cellspacing="0" cellpadding="5">
   <tr>
-    <td style="border-right:1px solid #000;" bgcolor="#b5b5b5">Название</td>
-    <td style="border-right:1px solid #000;" bgcolor="#b5b5b5">По умолчанию</td>
-    <td bgcolor="#b5b5b5">Удалить</td>
+    <td style="border-right:1px solid #000;" bgcolor="#b5b5b5">РќР°Р·РІР°РЅРёРµ</td>
+    <td style="border-right:1px solid #000;" bgcolor="#b5b5b5">РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ</td>
+    <td bgcolor="#b5b5b5">РЈРґР°Р»РёС‚СЊ</td>
   </tr>
   <?
   $j = 0;
@@ -153,62 +153,62 @@ if( $u->error != '' ) {
     <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#d2d0d1"><?=$pl['name']?></td>
     <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#d2d0d1">
 	<? if( $pl['use'] == 0 ) { ?>
-    <a href="http://xcombats.com/ruin_characteristics.php?use=<?=$pl['id']?>">Установить</a>
+    <a href="http://xcombats.com/ruin_characteristics.php?use=<?=$pl['id']?>">РЈСЃС‚Р°РЅРѕРІРёС‚СЊ</a>
     <? }else{ ?>
-    <b><font color="red">По умолчанию</font></b>
+    <b><font color="red">РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ</font></b>
     <? } ?></td>
-    <td style="border-top:1px solid #000;" bgcolor="#d2d0d1"><a href="http://xcombats.com/ruin_characteristics.php?delete=<?=$pl['id']?>">удалить</a></td>
+    <td style="border-top:1px solid #000;" bgcolor="#d2d0d1"><a href="http://xcombats.com/ruin_characteristics.php?delete=<?=$pl['id']?>">СѓРґР°Р»РёС‚СЊ</a></td>
   </tr>
   <? $j++; }  ?>
 </table>
 <? 
 if( $j == 0 ) {
-	echo '<div style="padding:5px;border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;background-color:#d2d0d1;" align="center">Нет сохраненных профилей</div>'; 
+	echo '<div style="padding:5px;border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;background-color:#d2d0d1;" align="center">РќРµС‚ СЃРѕС…СЂР°РЅРµРЅРЅС‹С… РїСЂРѕС„РёР»РµР№</div>'; 
 }
 ?>
 <br>
-<input type="button" value="Обновить" class="btnnew" onClick="location.href='http://xcombats.com/ruin_characteristics.php';">
+<input type="button" value="РћР±РЅРѕРІРёС‚СЊ" class="btnnew" onClick="location.href='http://xcombats.com/ruin_characteristics.php';">
 <br><br>
 <hr>
 <br>
 <form method="post" action="http://xcombats.com/ruin_characteristics.php">
-Название: <input name="set_name" type="text" value="" class="textnew" style="width:144px;"><br><br>
+РќР°Р·РІР°РЅРёРµ: <input name="set_name" type="text" value="" class="textnew" style="width:144px;"><br><br>
 <table style="border:1px solid #000;" width="100%" border="0" cellspacing="0" cellpadding="5">
   <tr>
-    <td style="border-right:1px solid #000;" width="200" bgcolor="#B5B5B5">Характеристика</td>
-    <td bgcolor="#B5B5B5">Значение</td>
+    <td style="border-right:1px solid #000;" width="200" bgcolor="#B5B5B5">РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°</td>
+    <td bgcolor="#B5B5B5">Р—РЅР°С‡РµРЅРёРµ</td>
   </tr>
   <tr>
-    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Сила</td>
+    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">РЎРёР»Р°</td>
     <td style="border-top:1px solid #000;" bgcolor="#D2D0D1"><input onKeyUp="test_free();" onKeyDown="test_free();" id="s1" name="s1" type="text" value="" class="textnew" style="width:44px;"></td>
   </tr>
   <tr>
-    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Ловкость</td>
+    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Р›РѕРІРєРѕСЃС‚СЊ</td>
     <td style="border-top:1px solid #000;" bgcolor="#D2D0D1"><input onKeyUp="test_free();" onKeyDown="test_free();" id="s2" name="s2" type="text" value="" class="textnew" style="width:44px;"></td>
   </tr>
   <tr>
-    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Интуиция</td>
+    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">РРЅС‚СѓРёС†РёСЏ</td>
     <td style="border-top:1px solid #000;" bgcolor="#D2D0D1"><input onKeyUp="test_free();" onKeyDown="test_free();" id="s3" name="s3" type="text" value="" class="textnew" style="width:44px;"></td>
   </tr>
   <tr>
-    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Выносливость</td>
+    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ</td>
     <td style="border-top:1px solid #000;" bgcolor="#D2D0D1"><input onKeyUp="test_free();" onKeyDown="test_free();" id="s4" name="s4" type="text" value="" class="textnew" style="width:44px;"></td>
   </tr> 
   <tr>
-    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Интеллект</td>
+    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">РРЅС‚РµР»Р»РµРєС‚</td>
     <td style="border-top:1px solid #000;" bgcolor="#D2D0D1"><input onKeyUp="test_free();" onKeyDown="test_free();" id="s5" name="s5" type="text" value="" class="textnew" style="width:44px;"></td>
   </tr>
   <tr>
-    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Мудрость</td>
+    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">РњСѓРґСЂРѕСЃС‚СЊ</td>
     <td style="border-top:1px solid #000;" bgcolor="#D2D0D1"><input onKeyUp="test_free();" onKeyDown="test_free();" id="s6" name="s6" type="text" value="" class="textnew" style="width:44px;"></td>
   </tr>
   <tr>
-    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">Свободных статов</td>
+    <td style="border-right:1px solid #000;border-top:1px solid #000;" bgcolor="#D2D0D1">РЎРІРѕР±РѕРґРЅС‹С… СЃС‚Р°С‚РѕРІ</td>
     <td style="border-top:1px solid #000;" bgcolor="#D2D0D1"><input  id="free_s" disabled="disabled" type="text" value="<?=$free_stats?>" class="textnew" style="width:44px;"><span id="result_ch"></span></td>
   </tr>
 </table>
 <br>
-<input type="submit" value="Сохранить / Изменить" class="btnnew">
+<input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ / РР·РјРµРЅРёС‚СЊ" class="btnnew">
 </form>
 <script>test_free();</script>
 </body>

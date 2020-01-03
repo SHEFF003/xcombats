@@ -1,15 +1,13 @@
 <?php
-
-	header('Content-Type: text/html; charset=windows-1251');	
 	define('GAME',true);
-	include('_incl_data/__config.php');	
+	include('_incl_data/__config.php');
 	include('_incl_data/class/__db_connect.php');
-	
+
 	$echo = '';
 	$cnfg = array(
 		'lvl' => 0
 	);
-	
+
 	$sp = mysql_query( 'SELECT * FROM `levels` ORDER BY `upLevel` ASC' );
 	$ma = 0;
 	$sa = 12;
@@ -59,22 +57,22 @@
     <td align="center" valign="middle">'.$pl['ability'].' ('.($sa+$vinos[$pl['nextLevel']]).')</td>
 	<td align="center" valign="middle">'.$vi.'</td>	
     <td align="center" valign="middle">'.$pl['skills'].'</td>	
-    <td align="center" valign="middle">+'.$pl['money'].' кр. &nbsp; ('.$ma.')</td>
+    <td align="center" valign="middle">+'.$pl['money'].' РєСЂ. &nbsp; ('.$ma.')</td>
     <td align="center" valign="middle">'.$pl['exp'].'</td>
   </tr>';
 	}
 	echo '<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td align="center" valign="middle">Уровень</td>
-    <td align="center" valign="middle">Базовый опыт</td>
-    <td align="center" valign="middle">Увеличений статов (Сумма)</td>
-	<td align="center" valign="middle">Выносливость</td>
-    <td align="center" valign="middle">Мастерство</td>
-    <td align="center" valign="middle">Деньги (Всего)</td>
-    <td align="center" valign="middle">Опыт</td>
+    <td align="center" valign="middle">РЈСЂРѕРІРµРЅСЊ</td>
+    <td align="center" valign="middle">Р‘Р°Р·РѕРІС‹Р№ РѕРїС‹С‚</td>
+    <td align="center" valign="middle">РЈРІРµР»РёС‡РµРЅРёР№ СЃС‚Р°С‚РѕРІ (РЎСѓРјРјР°)</td>
+	<td align="center" valign="middle">Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ</td>
+    <td align="center" valign="middle">РњР°СЃС‚РµСЂСЃС‚РІРѕ</td>
+    <td align="center" valign="middle">Р”РµРЅСЊРіРё (Р’СЃРµРіРѕ)</td>
+    <td align="center" valign="middle">РћРїС‹С‚</td>
   </tr>
 '.$echo.'
 </table>';
 	unset( $echo, $cnfg );
-	
+
 ?>

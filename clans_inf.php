@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('_incl_data/__config.php');
 define('GAME',true);
 include_once('_incl_data/class/__db_connect.php');
@@ -29,9 +29,9 @@ if(!isset($_GET['allclans'])) {
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
 		<meta http-equiv="Content-Language" content="ru">
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-		<TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>
-		Произошла ошибка: <pre>Указанный клан не найден...</pre>
-		<b><p><a href = "javascript:window.history.go(-1);">Назад</b></a>
+		<TITLE>РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>
+		РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: <pre>РЈРєР°Р·Р°РЅРЅС‹Р№ РєР»Р°РЅ РЅРµ РЅР°Р№РґРµРЅ...</pre>
+		<b><p><a href = "javascript:window.history.go(-1);">РќР°Р·Р°Рґ</b></a>
 		<HR>
 		<p align="right">(c) <a href="index.html">'.$c['title'].'</a></p>
 		'.$c['counters'].'
@@ -45,7 +45,7 @@ if(!isset($_GET['allclans'])) {
 <HTML>
 <HEAD>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-<title>Таблица кланового опыта</title>
+<title>РўР°Р±Р»РёС†Р° РєР»Р°РЅРѕРІРѕРіРѕ РѕРїС‹С‚Р°</title>
 <meta content="text/html; charset=windows-1251" http-equiv=Content-type>
 <link href="http://img.xcombats.com/i/move/design3.css" rel="stylesheet" type="text/css">
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
@@ -61,7 +61,7 @@ if(!isset($_GET['allclans'])) {
 </HEAD>
 <body style="margin:10px; margin-top:5px; background-image: url(http://img.xcombats.com/i/clan/big_<?=$clan['name_mini']?>.gif); background-repeat:no-repeat; background-position: top right" bgcolor=e2e0e0>
 <table width="100%" cellpadding=0 cellspacing=0 border=0>
-<tr><td colspan=2 align=center><h3>Таблица кланов</h3></td></tr>
+<tr><td colspan=2 align=center><h3>РўР°Р±Р»РёС†Р° РєР»Р°РЅРѕРІ</h3></td></tr>
 </table>
 <br>
 <?
@@ -70,9 +70,9 @@ $pg = 1;
 <table width=700 align="center" cellpadding=2 cellspacing=0 class=exptable style="border: 1px solid #666666;">
 <tr>
 <td width=36 class=header colspan=4>&nbsp;</td>
-<td class=header><b><a href="clans_info/allclans&sort=clan&page=1">Клан</a></b></td>
-<td class=header><b><a href="clans_info/allclans&sort=exp&page=1">Уровень</a></b></td>
-<td class=header width=100><b><a href="clans_info/allclans&sort=persons&page=1">Персонажей</a></b></td>
+<td class=header><b><a href="clans_info/allclans&sort=clan&page=1">РљР»Р°РЅ</a></b></td>
+<td class=header><b><a href="clans_info/allclans&sort=exp&page=1">РЈСЂРѕРІРµРЅСЊ</a></b></td>
+<td class=header width=100><b><a href="clans_info/allclans&sort=persons&page=1">РџРµСЂСЃРѕРЅР°Р¶РµР№</a></b></td>
 </tr>
 
 <?
@@ -103,7 +103,7 @@ while($pl = mysql_fetch_array($sp)) {
 </table>
 <BR>
 <br><center>
-Страницы: <strong><font style='font-size: 14px;'>1</font></strong>
+РЎС‚СЂР°РЅРёС†С‹: <strong><font style='font-size: 14px;'>1</font></strong>
 <? 
 /*
 <a href='/clans_inf.pl?allclans&sort=clan&page=2'>2</a>
@@ -132,7 +132,7 @@ while($pl = mysql_fetch_array($sp)) {
 <HTML>
 <HEAD>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-<title>Информация о клане <?=$clan['name']?></title>
+<title>РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєР»Р°РЅРµ <?=$clan['name']?></title>
 <meta content="text/html; charset=windows-1251" http-equiv=Content-type>
 <link href="http://img.xcombats.com/i/move/design3.css" rel="stylesheet" type="text/css">
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
@@ -143,46 +143,46 @@ while($pl = mysql_fetch_array($sp)) {
 </HEAD>
 <body style="margin:10px; margin-top:5px; background-image: url(http://img.xcombats.com/i/clan/<?=$clan['name_mini']?>_big.gif); background-repeat:no-repeat; background-position: top right" bgcolor=e2e0e0>
 <table width="100%" cellpadding=0 cellspacing=0 border=0>
-<tr><td colspan=2 align=center>Информация о клане  <b>"<?=$clan['name']?>"</b></td></tr>
+<tr><td colspan=2 align=center>РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєР»Р°РЅРµ  <b>"<?=$clan['name']?>"</b></td></tr>
 </table>
 <table width="100%" cellpadding=0 cellspacing=0 border=0>
 <tr>
-<td width="50%">Уровень: <FONT color=#007200><B><?=$clan['level']?></B></FONT></td>
+<td width="50%">РЈСЂРѕРІРµРЅСЊ: <FONT color=#007200><B><?=$clan['level']?></B></FONT></td>
 <td width="50%">
-Знак клана: <img src="http://img.xcombats.com/i/clan/<?=$clan['name_mini']?>.gif"> Склонность: <img src="http://img.xcombats.com/i/align/align<?=$clan['align']?>.gif">
+Р—РЅР°Рє РєР»Р°РЅР°: <img src="http://img.xcombats.com/i/clan/<?=$clan['name_mini']?>.gif"> РЎРєР»РѕРЅРЅРѕСЃС‚СЊ: <img src="http://img.xcombats.com/i/align/align<?=$clan['align']?>.gif">
 </td>
 </tr>
 <tr>
-<td>Рейтинг: <a style='color: #007200;' href="clans_info/allclans&clan=<?=$clan['name']?>#<?=$clan['reiting']?>"><?=$clan['reiting']?></a></td>
-<td>Тип правления: <FONT color=#007200><B><? if($clan['politic'] == 1) { ?>Диктатура<? }else{ ?>Демократия<? } ?></B></FONT></td>
+<td>Р РµР№С‚РёРЅРі: <a style='color: #007200;' href="clans_info/allclans&clan=<?=$clan['name']?>#<?=$clan['reiting']?>"><?=$clan['reiting']?></a></td>
+<td>РўРёРї РїСЂР°РІР»РµРЅРёСЏ: <FONT color=#007200><B><? if($clan['politic'] == 1) { ?>Р”РёРєС‚Р°С‚СѓСЂР°<? }else{ ?>Р”РµРјРѕРєСЂР°С‚РёСЏ<? } ?></B></FONT></td>
 </tr>
 <?
 if(isset($clan['site']) && $clan['site']!='') { ?>
-<tr><td colspan=2>Сайт Клана: <a target="_blank" href="http://<?=$clan['site']?>/">http://<?=$clan['site']?>/</a></td></tr>
+<tr><td colspan=2>РЎР°Р№С‚ РљР»Р°РЅР°: <a target="_blank" href="http://<?=$clan['site']?>/">http://<?=$clan['site']?>/</a></td></tr>
 <tr>
 <? } ?>
 <tr><td colspan=2>&nbsp;</td></tr>
 <tr>
 <? if(isset($clan_inf['deviz']) && $clan_inf['deviz']!='') { ?>
-<tr><td colspan=2>Девиз Клана: &laquo;<b><?=$clan_inf['deviz']?></b>&raquo;</td></tr>
+<tr><td colspan=2>Р”РµРІРёР· РљР»Р°РЅР°: &laquo;<b><?=$clan_inf['deviz']?></b>&raquo;</td></tr>
 <tr>
 <? } 
 if(isset($clan_inf['info']) && $clan_inf['info']!='') { ?>
-<tr><td colspan=2>Описание Клана:<br><div id="infoCL" style="width:500px;min-width:64px;overflow:hidden;position:relative;"><div id="infoCL2" style="position:absolute;top:0px;left:0px;">&nbsp; &nbsp;<i><?=$clan_inf['info']?></i></div></div><br>
+<tr><td colspan=2>РћРїРёСЃР°РЅРёРµ РљР»Р°РЅР°:<br><div id="infoCL" style="width:500px;min-width:64px;overflow:hidden;position:relative;"><div id="infoCL2" style="position:absolute;top:0px;left:0px;">&nbsp; &nbsp;<i><?=$clan_inf['info']?></i></div></div><br>
 <script>
 var ih = Math.round($('#infoCL').height()/16);
 var ih2 = Math.round($('#infoCL2').height()/16);
 if(ih2 > 4) {
-	document.write('<div align="center" style="width:500px;border-top:1px solid #cac9c7;margin-top:5px;padding-top:5px;margin-right: 15px;"><a href="javascript:void" onclick="opn()"><span id="infoCLm">Развернуть</span> информацию о клане</a></div>');
+	document.write('<div align="center" style="width:500px;border-top:1px solid #cac9c7;margin-top:5px;padding-top:5px;margin-right: 15px;"><a href="javascript:void" onclick="opn()"><span id="infoCLm">Р Р°Р·РІРµСЂРЅСѓС‚СЊ</span> РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РєР»Р°РЅРµ</a></div>');
 }
 $('#infoCL').height((4*16)+'px');
 function opn() {
 	if(top.ih2 > top.ih) {
 		$('#infoCL').animate({'height':(top.ih2*16)+'px'},'fast',null,function(){top.ih = Math.round($('#infoCL').height()/16);});
-		$('#infoCLm').html('Свернуть');
+		$('#infoCLm').html('РЎРІРµСЂРЅСѓС‚СЊ');
 	}else{
 		$('#infoCL').animate({'height':(4*16)+'px'},'fast',null,function(){top.ih = Math.round($('#infoCL').height()/16);});
-		$('#infoCLm').html('Развернуть');
+		$('#infoCLm').html('Р Р°Р·РІРµСЂРЅСѓС‚СЊ');
 	}
 }
 </script>
@@ -210,14 +210,14 @@ while($pl = mysql_fetch_array($sp)) {
 }
 ?>
 <div style="margin-right: 15px;">
-Глава клана: <?=$glv?>
+Р“Р»Р°РІР° РєР»Р°РЅР°: <?=$glv?>
 </div>
 <? if($clan['join1'] > 0) {
 $j1 = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.$clan['join1'].'" AND `type` = "1" LIMIT 1'));
 if(isset($j1['id'])) {	
 ?>
 <div style="border-top:1px solid #cac9c7;margin-top:5px;padding-top:5px;margin-right: 15px;">
-Союз: <b><?=$j1['name']?></b> (
+РЎРѕСЋР·: <b><?=$j1['name']?></b> (
 <?
 $r = '';
 $sp = mysql_query('SELECT * FROM `clan` WHERE `join1` = "'.$j1['id'].'"');
@@ -238,7 +238,7 @@ $j2 = mysql_fetch_array(mysql_query('SELECT * FROM `clan_joint` WHERE `id` = "'.
 if(isset($j2['id'])) {	
 ?>
 <div style="border-top:1px solid #cac9c7;margin-top:5px;padding-top:5px;margin-right: 15px;">
-Альянс: <b><?=$j2['name']?></b> (<?
+РђР»СЊСЏРЅСЃ: <b><?=$j2['name']?></b> (<?
 $r = '';
 $sp = mysql_query('SELECT * FROM `clan` WHERE `join2` = "'.$j2['id'].'"');
 while($pl = mysql_fetch_array($sp)) {
@@ -256,15 +256,15 @@ echo $r;
 
 </td>
 <td>
-Бойцы клана:<br>
+Р‘РѕР№С†С‹ РєР»Р°РЅР°:<br>
 <?=$usrs?>
-Всего: <b><?=$i?></b>
+Р’СЃРµРіРѕ: <b><?=$i?></b>
 </td>
 </tr>
 <tr>
 <td colspan=2 align=right>
-<a href="clans_info/allclans">таблица кланов</a><br>
-Место клана в рейтинге: <a href="clans_info/allclans#<?=$clan['reiting']?>"><?=$clan['reiting']?></a>
+<a href="clans_info/allclans">С‚Р°Р±Р»РёС†Р° РєР»Р°РЅРѕРІ</a><br>
+РњРµСЃС‚Рѕ РєР»Р°РЅР° РІ СЂРµР№С‚РёРЅРіРµ: <a href="clans_info/allclans#<?=$clan['reiting']?>"><?=$clan['reiting']?></a>
 </td>
 </tr>
 </table>

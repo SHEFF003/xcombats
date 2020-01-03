@@ -55,9 +55,9 @@ while( $pl = mysql_fetch_array($sp) ) {
 	$sp2 = 0+$sp2[0];
 	$html_ref .= ($i_ref + 1).'. '.$u->microLogin($pl['id'],1).'';
 	if($sp2==0) {
-		$html_ref .= ' <font color=grey>['.$sp2.'/1] Персонаж должен пригласить одного реферала</font>';
+		$html_ref .= ' <font color=grey>['.$sp2.'/1] РџРµСЂСЃРѕРЅР°Р¶ РґРѕР»Р¶РµРЅ РїСЂРёРіР»Р°СЃРёС‚СЊ РѕРґРЅРѕРіРѕ СЂРµС„РµСЂР°Р»Р°</font>';
 	}else{
-		$html_ref .= ' <font color=green>[1/1] Завершено!</font>';
+		$html_ref .= ' <font color=green>[1/1] Р—Р°РІРµСЂС€РµРЅРѕ!</font>';
 		$pf += 10;
 	}
 	$pf += 23;
@@ -70,14 +70,14 @@ if( $pf >= 99 ) {
 }
 
 if($html_ref == '') {
-	$html_ref = '<center>По Вашей ссылке еще никто не зарегистрировался</center>';
+	$html_ref = '<center>РџРѕ Р’Р°С€РµР№ СЃСЃС‹Р»РєРµ РµС‰Рµ РЅРёРєС‚Рѕ РЅРµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»СЃСЏ</center>';
 }
 
 if(isset($_GET['activated'])) {
 	if($pf == 100) {
-		$er = 'Вы будете оповещены по E-mail о начале бета тестинга, в настоящий момент нельзя активировать персонажа!';
+		$er = 'Р’С‹ Р±СѓРґРµС‚Рµ РѕРїРѕРІРµС‰РµРЅС‹ РїРѕ E-mail Рѕ РЅР°С‡Р°Р»Рµ Р±РµС‚Р° С‚РµСЃС‚РёРЅРіР°, РІ РЅР°СЃС‚РѕСЏС‰РёР№ РјРѕРјРµРЅС‚ РЅРµР»СЊР·СЏ Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°!';
 	}else{
-		$er = 'Задание выполнено на <small>'.$pf.'</small>/100%! Выполните задание полностью!';
+		$er = 'Р—Р°РґР°РЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ РЅР° <small>'.$pf.'</small>/100%! Р’С‹РїРѕР»РЅРёС‚Рµ Р·Р°РґР°РЅРёРµ РїРѕР»РЅРѕСЃС‚СЊСЋ!';
 	}
 }
 
@@ -86,21 +86,21 @@ if(isset($_GET['activated'])) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>ОлдБК: Старый Бойцовский Клуб</title>
+<title>РћР»РґР‘Рљ: РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±</title>
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 </head>
 
 <body style="height:100%; background-color:#E2E0E0;">
 <div align="center" style="font-size:18px;">
-  <div style="position:relative"><b><img src="http://img.xcombats.com/i/align/align1.gif" width="12" height="15"> Активация Персонажа <img src="http://img.xcombats.com/i/align/align3.gif" width="12" height="15"></b></div>
+  <div style="position:relative"><b><img src="http://img.xcombats.com/i/align/align1.gif" width="12" height="15"> РђРєС‚РёРІР°С†РёСЏ РџРµСЂСЃРѕРЅР°Р¶Р° <img src="http://img.xcombats.com/i/align/align3.gif" width="12" height="15"></b></div>
   <div><img src="http://img.xcombats.com/img/banner.png" width="568" height="74"></div>
 </div>
 <table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">
     <b style="color:#550000">
-    	Для активации персонажа необходимо пригласить 3 игроков<br>
-        <small>(Каждый реферал должен пригласить хотя бы одного игрока)</small>
+    	Р”Р»СЏ Р°РєС‚РёРІР°С†РёРё РїРµСЂСЃРѕРЅР°Р¶Р° РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРёРіР»Р°СЃРёС‚СЊ 3 РёРіСЂРѕРєРѕРІ<br>
+        <small>(РљР°Р¶РґС‹Р№ СЂРµС„РµСЂР°Р» РґРѕР»Р¶РµРЅ РїСЂРёРіР»Р°СЃРёС‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅРѕРіРѕ РёРіСЂРѕРєР°)</small>
     </b><br>
     <div id=hint5 style='visibility: hidden'></div>
     </td>
@@ -114,25 +114,25 @@ if(isset($_GET['activated'])) {
 	?>
     <hr style="border-color:#CCC;">
     <div style="padding:10px;">
-    Пригласительная ссылка: <input name="urlref" style="font-size:12px;width:200px;text-align:center;" type="text" value="<?=$refUrl['url']?>" ><br>
-    <small>Рефералы с одного компьютера или ip не учитываются, в первую очередь данное требование вводится для повышения общего онлайна, каждый игрок вносит вклад в развитие проекта.</small>
+    РџСЂРёРіР»Р°СЃРёС‚РµР»СЊРЅР°СЏ СЃСЃС‹Р»РєР°: <input name="urlref" style="font-size:12px;width:200px;text-align:center;" type="text" value="<?=$refUrl['url']?>" ><br>
+    <small>Р РµС„РµСЂР°Р»С‹ СЃ РѕРґРЅРѕРіРѕ РєРѕРјРїСЊСЋС‚РµСЂР° РёР»Рё ip РЅРµ СѓС‡РёС‚С‹РІР°СЋС‚СЃСЏ, РІ РїРµСЂРІСѓСЋ РѕС‡РµСЂРµРґСЊ РґР°РЅРЅРѕРµ С‚СЂРµР±РѕРІР°РЅРёРµ РІРІРѕРґРёС‚СЃСЏ РґР»СЏ РїРѕРІС‹С€РµРЅРёСЏ РѕР±С‰РµРіРѕ РѕРЅР»Р°Р№РЅР°, РєР°Р¶РґС‹Р№ РёРіСЂРѕРє РІРЅРѕСЃРёС‚ РІРєР»Р°Рґ РІ СЂР°Р·РІРёС‚РёРµ РїСЂРѕРµРєС‚Р°.</small>
     <br><br>
         <div><?=$html_ref?></div>
     </div>
     <br>
     <div style="border:1px solid #CCC;position:relative;">
-    	<div style="position:absolute;left:10px;top:1px;">Задание выполнено на <?=$pf?>%</div>
+    	<div style="position:absolute;left:10px;top:1px;">Р—Р°РґР°РЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ РЅР° <?=$pf?>%</div>
     	<img src="http://img.xcombats.com/1x1.gif" style="background-color:#DEE;height:20px;width:<?=$pf?>%;display:inline-block;vertical-align:bottom;">
     </div>
     <br>
     <center><? if( $pf == 100 ) { ?>
-    	<input onClick="location.href='/bk?activated'" type="submit" class="btnnew3" value="Активировать персонажа!"><? }else{ ?>
-        <input onClick="alert('Вы должны пригласить трех рефералов и каждый из них должен пригласить хотя бы по одному рефералу!');" type="submit" class="btnnew3" value="Активировать персонажа!"><? } ?>
+    	<input onClick="location.href='/bk?activated'" type="submit" class="btnnew3" value="РђРєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°!"><? }else{ ?>
+        <input onClick="alert('Р’С‹ РґРѕР»Р¶РЅС‹ РїСЂРёРіР»Р°СЃРёС‚СЊ С‚СЂРµС… СЂРµС„РµСЂР°Р»РѕРІ Рё РєР°Р¶РґС‹Р№ РёР· РЅРёС… РґРѕР»Р¶РµРЅ РїСЂРёРіР»Р°СЃРёС‚СЊ С…РѕС‚СЏ Р±С‹ РїРѕ РѕРґРЅРѕРјСѓ СЂРµС„РµСЂР°Р»Сѓ!');" type="submit" class="btnnew3" value="РђРєС‚РёРІРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°!"><? } ?>
     </center>
     </td>
   </tr>
   <tr>
-    <td align="center"><hr style="border-color:#CCC;">Старый Бойцовский Клуб &copy; 2014-<?=date('Y')?>, «www.xcombats.com»™ &nbsp; &nbsp; </font></td>
+    <td align="center"><hr style="border-color:#CCC;">РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± &copy; 2014-<?=date('Y')?>, В«www.xcombats.comВ»в„ў &nbsp; &nbsp; </font></td>
   </tr>
 </table>
 

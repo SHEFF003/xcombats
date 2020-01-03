@@ -1,16 +1,16 @@
-<?
+<?php
 $u->stats = $u->getStats($u->info['id'],0);
 ?>
 <link rel="stylesheet" href="/pay/main.css">
 <script type="text/javascript" src="/scripts/psi.js"></script>
 <div class="pm" style="background-color:#eccb4d">
-	<b style="float:left;">Благословление Ангелов:</b>
+	<b style="float:left;">Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ:</b>
     <span style="float:right"><? if($u->info['id']>0){ echo $u->microLogin($u->info['id'],1); } ?></span>
 </div>
 <div class="pm2" style="background-color:#f6e7ab">
 	<center>
-    	Если вы не нашли подходящий раздел или услугу, вы можете обратиться к Администрации через e-mail:<br />
-    	<a href="mailto:support@xcombats.com">support@xcombats.com</a>, в теме письма напишите "Благословление Ангелов".
+    	Р•СЃР»Рё РІС‹ РЅРµ РЅР°С€Р»Рё РїРѕРґС…РѕРґСЏС‰РёР№ СЂР°Р·РґРµР» РёР»Рё СѓСЃР»СѓРіСѓ, РІС‹ РјРѕР¶РµС‚Рµ РѕР±СЂР°С‚РёС‚СЊСЃСЏ Рє РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё С‡РµСЂРµР· e-mail:<br />
+    	<a href="mailto:support@xcombats.com">support@xcombats.com</a>, РІ С‚РµРјРµ РїРёСЃСЊРјР° РЅР°РїРёС€РёС‚Рµ "Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ".
     </center>
     <div>
 	<?
@@ -76,7 +76,7 @@ function testPrice(id) {
 			val = 1980;
 		}
 	}
-	$('#prc'+id).html( val + '.00 екр.' );
+	$('#prc'+id).html( val + '.00 РµРєСЂ.' );
 }
 </script>
 <?
@@ -103,20 +103,20 @@ if( isset($_POST['sel1']) ) {
 	);
 	
 	$prc = $prc[$id][$val];
-	$day = array( '7 дней','30 дней','1 год' );
+	$day = array( '7 РґРЅРµР№','30 РґРЅРµР№','1 РіРѕРґ' );
 	
 	if($u->bank['id'] < 1 ) {
-		$er = 'Авторизируйтесь в банке прежде чем приобрести Благославление';
+		$er = 'РђРІС‚РѕСЂРёР·РёСЂСѓР№С‚РµСЃСЊ РІ Р±Р°РЅРєРµ РїСЂРµР¶РґРµ С‡РµРј РїСЂРёРѕР±СЂРµСЃС‚Рё Р‘Р»Р°РіРѕСЃР»Р°РІР»РµРЅРёРµ';
 	}elseif( $id <= $u->stats['silver'] ) {
-		$er = 'На вас уже есть Благословление Ангелов такого же уровня или хуже';
+		$er = 'РќР° РІР°СЃ СѓР¶Рµ РµСЃС‚СЊ Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ С‚Р°РєРѕРіРѕ Р¶Рµ СѓСЂРѕРІРЅСЏ РёР»Рё С…СѓР¶Рµ';
 	}elseif(isset($prc) || $prc <= 0) {
 		if( $prc <= $u->bank['money2'] ) {
-			$er = 'Вы успешно приобрели Благословление Ангелов '.$id.' уровня на '.$day[$val].' за '.$prc.'.00 екр.';
+			$er = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРѕР±СЂРµР»Рё Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ '.$id.' СѓСЂРѕРІРЅСЏ РЅР° '.$day[$val].' Р·Р° '.$prc.'.00 РµРєСЂ.';
 			//
 			$u->bank['money2'] -= $prc;
 			//
-			$timeuse = time(); //1 день
-			$days = 6; //неделя
+			$timeuse = time(); //1 РґРµРЅСЊ
+			$days = 6; //РЅРµРґРµР»СЏ
 			if($val == 1) { $days = 29; }
 			if($val == 2) { $days = 364; }
 			$timeuse += 86400 * $days;
@@ -134,21 +134,21 @@ if( isset($_POST['sel1']) ) {
 			}
 			//
 			//if( $u->stats['silver'] > 0 ) {
-			mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `name` = "Благословление Ангелов" AND `uid` = "'.$u->info['id'].'" AND `delete` = 0');
+			mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `name` = "Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ" AND `uid` = "'.$u->info['id'].'" AND `delete` = 0');
 			//}
 			//
 			mysql_query('INSERT INTO `eff_users` (
 				`id_eff` , `uid` , `name` , `data` , `overType` , `timeUse` , `no_Ace`
 			) VALUES (
-				"'.$mid.'", "'.$u->info['id'].'", "Благословление Ангелов", "add_silver='.$id.'|timesilver='.$days.'", "30" ,"'.$timeuse.'","1"
+				"'.$mid.'", "'.$u->info['id'].'", "Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ", "add_silver='.$id.'|timesilver='.$days.'", "30" ,"'.$timeuse.'","1"
 			)');
 			//
 			mysql_query('UPDATE `bank` SET `money2` = "'.$u->bank['money2'].'" WHERE `id` = "'.$u->bank['id'].'" LIMIT 1');
 		}else{
-			$er = 'Пополните баланс. У вас недостаточно екр., требуется '.$prc.'.00 екр.';
+			$er = 'РџРѕРїРѕР»РЅРёС‚Рµ Р±Р°Р»Р°РЅСЃ. РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РµРєСЂ., С‚СЂРµР±СѓРµС‚СЃСЏ '.$prc.'.00 РµРєСЂ.';
 		}
 	}else{
-		$er = 'Выбранное Благословление Ангелов не найдено';
+		$er = 'Р’С‹Р±СЂР°РЅРЅРѕРµ Р‘Р»Р°РіРѕСЃР»РѕРІР»РµРЅРёРµ РђРЅРіРµР»РѕРІ РЅРµ РЅР°Р№РґРµРЅРѕ';
 	}	
 	
 	if($er != '') {
@@ -161,9 +161,9 @@ if( isset($_POST['sel1']) ) {
   <tr>
     <td width="350" bgcolor="#fae492">
     <? if( $u->bank['id'] > 0 ) { ?>
-    <b>Состояние счета:</b> <?=$u->bank['money2'].' екр.'?><br />
-    № <?=$u->bank['id']?> <a href="/pay.back.php?buy_ekr" target="_blank"><img title="Купить Еврокредиты онлайн" style="vertical-align:sub;display:inline-block;cursor:pointer" src="/buy_ekr.png"></a>
-    <? }else{ echo '<center><b style="color:red">Авторизируйтесь в банке</b></center>'; } ?>
+    <b>РЎРѕСЃС‚РѕСЏРЅРёРµ СЃС‡РµС‚Р°:</b> <?=$u->bank['money2'].' РµРєСЂ.'?><br />
+    в„– <?=$u->bank['id']?> <a href="/pay.back.php?buy_ekr" target="_blank"><img title="РљСѓРїРёС‚СЊ Р•РІСЂРѕРєСЂРµРґРёС‚С‹ РѕРЅР»Р°Р№РЅ" style="vertical-align:sub;display:inline-block;cursor:pointer" src="/buy_ekr.png"></a>
+    <? }else{ echo '<center><b style="color:red">РђРІС‚РѕСЂРёР·РёСЂСѓР№С‚РµСЃСЊ РІ Р±Р°РЅРєРµ</b></center>'; } ?>
     </td>
     <td style="border-left:1px solid #eccb4d" align="center" valign="middle"><img src="http://img.xcombats.com/blago/blago1.gif" /></td>
     <td style="border-left:1px solid #eccb4d" align="center" valign="middle"><img src="http://img.xcombats.com/blago/blago2.gif" /></td>
@@ -172,7 +172,7 @@ if( isset($_POST['sel1']) ) {
     <td style="border-left:1px solid #eccb4d" align="center" valign="middle"><img src="http://img.xcombats.com/blago/blago5.gif" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Скорость передвижения&nbsp;<strong>+20%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРґРІРёР¶РµРЅРёСЏ&nbsp;<strong>+20%</strong></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -180,7 +180,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Скорость восстановления Здоровья и Маны&nbsp;<strong>+50%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РЎРєРѕСЂРѕСЃС‚СЊ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ Р—РґРѕСЂРѕРІСЊСЏ Рё РњР°РЅС‹&nbsp;<strong>+50%</strong></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -188,7 +188,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Скидка в государственном магазине&nbsp;<strong>+5%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РЎРєРёРґРєР° РІ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅРѕРј РјР°РіР°Р·РёРЅРµ&nbsp;<strong>+5%</strong></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -196,7 +196,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Шанс выпадения зубов&nbsp;<strong>+50%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РЁР°РЅСЃ РІС‹РїР°РґРµРЅРёСЏ Р·СѓР±РѕРІ&nbsp;<strong>+50%</strong></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -204,7 +204,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Нет ослабления после боя</td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РќРµС‚ РѕСЃР»Р°Р±Р»РµРЅРёСЏ РїРѕСЃР»Рµ Р±РѕСЏ</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -212,7 +212,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Бонус к получаемому опыту&nbsp;<strong>+50%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Р‘РѕРЅСѓСЃ Рє РїРѕР»СѓС‡Р°РµРјРѕРјСѓ РѕРїС‹С‚Сѓ&nbsp;<strong>+50%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -220,7 +220,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Бонус к получаемой репутации в подземельях<strong> +50%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Р‘РѕРЅСѓСЃ Рє РїРѕР»СѓС‡Р°РµРјРѕР№ СЂРµРїСѓС‚Р°С†РёРё РІ РїРѕРґР·РµРјРµР»СЊСЏС…<strong> +50%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -228,7 +228,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Задержка на посещение подземелий&nbsp;<strong>-30%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Р—Р°РґРµСЂР¶РєР° РЅР° РїРѕСЃРµС‰РµРЅРёРµ РїРѕРґР·РµРјРµР»РёР№&nbsp;<strong>-30%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -236,7 +236,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Дополнительный&nbsp;<strong>бросок</strong>&nbsp;вероятности на выпадение дропа в подземельях</td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№&nbsp;<strong>Р±СЂРѕСЃРѕРє</strong>&nbsp;РІРµСЂРѕСЏС‚РЅРѕСЃС‚Рё РЅР° РІС‹РїР°РґРµРЅРёРµ РґСЂРѕРїР° РІ РїРѕРґР·РµРјРµР»СЊСЏС…</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -244,7 +244,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Уменьшение задержки на телепортацию между городами на&nbsp;<strong>50%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РЈРјРµРЅСЊС€РµРЅРёРµ Р·Р°РґРµСЂР¶РєРё РЅР° С‚РµР»РµРїРѕСЂС‚Р°С†РёСЋ РјРµР¶РґСѓ РіРѕСЂРѕРґР°РјРё РЅР°&nbsp;<strong>50%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
@@ -252,7 +252,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Экипировка&nbsp;<strong>не ломается</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Р­РєРёРїРёСЂРѕРІРєР°&nbsp;<strong>РЅРµ Р»РѕРјР°РµС‚СЃСЏ</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -260,7 +260,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Грузоподьемность <b>+50%</b></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Р“СЂСѓР·РѕРїРѕРґСЊРµРјРЅРѕСЃС‚СЊ <b>+50%</b></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -268,7 +268,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Комиссия на аукционе&nbsp;<strong>2.5%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РљРѕРјРёСЃСЃРёСЏ РЅР° Р°СѓРєС†РёРѕРЅРµ&nbsp;<strong>2.5%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -276,7 +276,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Скидка на ремонт&nbsp;<strong>50%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РЎРєРёРґРєР° РЅР° СЂРµРјРѕРЅС‚&nbsp;<strong>50%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -284,7 +284,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Бонус к получаемому опыту&nbsp;<strong>+50% (дополнительно)</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Р‘РѕРЅСѓСЃ Рє РїРѕР»СѓС‡Р°РµРјРѕРјСѓ РѕРїС‹С‚Сѓ&nbsp;<strong>+50% (РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ)</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -292,7 +292,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Увеличение лимита получаемого опыта&nbsp;<strong>+100%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РЈРІРµР»РёС‡РµРЅРёРµ Р»РёРјРёС‚Р° РїРѕР»СѓС‡Р°РµРјРѕРіРѕ РѕРїС‹С‚Р°&nbsp;<strong>+100%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -300,7 +300,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Бонус к получаемому клановому опыту&nbsp;<strong>+50%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Р‘РѕРЅСѓСЃ Рє РїРѕР»СѓС‡Р°РµРјРѕРјСѓ РєР»Р°РЅРѕРІРѕРјСѓ РѕРїС‹С‚Сѓ&nbsp;<strong>+50%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -308,7 +308,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">Скидка в магазинах при покупке за еврокредиты<strong> +5%</strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">РЎРєРёРґРєР° РІ РјР°РіР°Р·РёРЅР°С… РїСЂРё РїРѕРєСѓРїРєРµ Р·Р° РµРІСЂРѕРєСЂРµРґРёС‚С‹<strong> +5%</strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -316,7 +316,7 @@ if( isset($_POST['sel1']) ) {
     <td align="center" valign="middle" bgcolor="#fae492" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><img src="http://img.xcombats.com/good.png" width="15" height="15" /></td>
   </tr>
   <tr class="selz1">
-    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;"><strong>Удваивает</strong> получаемые зубы за бой<strong></strong></td>
+    <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;"><strong>РЈРґРІР°РёРІР°РµС‚</strong> РїРѕР»СѓС‡Р°РµРјС‹Рµ Р·СѓР±С‹ Р·Р° Р±РѕР№<strong></strong></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">&nbsp;</td>
@@ -325,63 +325,63 @@ if( isset($_POST['sel1']) ) {
   </tr>
   <tr class="selz1">
     <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">&nbsp;</td>
-    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc1">4.00 екр.</td>
-    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc2">8.00 екр.</td>
-    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc3">14.00 екр.</td>
-    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc4">30.00 екр.</td>
-    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc5">60.00 екр.</td>
+    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc1">4.00 РµРєСЂ.</td>
+    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc2">8.00 РµРєСЂ.</td>
+    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc3">14.00 РµРєСЂ.</td>
+    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc4">30.00 РµРєСЂ.</td>
+    <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;" id="prc5">60.00 РµРєСЂ.</td>
   </tr>
   <tr>
     <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">&nbsp;</td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">
     <select style="background-color:#eccb4d;color:#895a00;" onchange="testPrice(1);" name="sel1" id="sel1">
-        <option value="0">7 дней</option>        
-        <option value="1">30 дней</option>        
-        <option value="2">1 год</option>
+        <option value="0">7 РґРЅРµР№</option>        
+        <option value="1">30 РґРЅРµР№</option>        
+        <option value="2">1 РіРѕРґ</option>
     </select>
     </td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><span class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">
       <select style="background-color:#eccb4d;color:#895a00;" onchange="testPrice(2);" name="sel2" id="sel2">
-        <option value="0">7 дней</option>
-        <option value="1">30 дней</option>
-        <option value="2">1 год</option>
+        <option value="0">7 РґРЅРµР№</option>
+        <option value="1">30 РґРЅРµР№</option>
+        <option value="2">1 РіРѕРґ</option>
       </select>
     </span></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><span class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">
       <select style="background-color:#eccb4d;color:#895a00;" onchange="testPrice(3);" name="sel3" id="sel3">
-        <option value="0">7 дней</option>
-        <option value="1">30 дней</option>
-        <option value="2">1 год</option>
+        <option value="0">7 РґРЅРµР№</option>
+        <option value="1">30 РґРЅРµР№</option>
+        <option value="2">1 РіРѕРґ</option>
       </select>
     </span></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><span class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">
       <select style="background-color:#eccb4d;color:#895a00;" onchange="testPrice(4);" name="sel4" id="sel4">
-        <option value="0">7 дней</option>
-        <option value="1">30 дней</option>
-        <option value="2">1 год</option>
+        <option value="0">7 РґРЅРµР№</option>
+        <option value="1">30 РґРЅРµР№</option>
+        <option value="2">1 РіРѕРґ</option>
       </select>
     </span></td>
     <td align="center" valign="middle" class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><span class="selz2" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;">
       <select style="background-color:#eccb4d;color:#895a00;" onchange="testPrice(5);" name="sel5" id="sel5">
-        <option value="0">7 дней</option>
-        <option value="1">30 дней</option>
-        <option value="2">1 год</option>
+        <option value="0">7 РґРЅРµР№</option>
+        <option value="1">30 РґРЅРµР№</option>
+        <option value="2">1 РіРѕРґ</option>
       </select>
     </span></td>
   </tr>
   <tr>
     <td style="border-top:1px solid #eccb4d;padding-top:10px;padding-bottom:10px;">&nbsp;</td>
-    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input class="btnnew" type="submit" name="button1" id="button1" value="Купить" /></td>
-    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input type="submit" name="button2" id="button2" class="btnnew" value="Купить" /></td>
-    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input type="submit" name="button3" id="button3" class="btnnew" value="Купить" /></td>
-    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input type="submit" name="button4" id="button4" class="btnnew" value="Купить" /></td>
-    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input type="submit" name="button5" id="button5" class="btnnew" value="Купить" /></td>
+    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input class="btnnew" type="submit" name="button1" id="button1" value="РљСѓРїРёС‚СЊ" /></td>
+    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input type="submit" name="button2" id="button2" class="btnnew" value="РљСѓРїРёС‚СЊ" /></td>
+    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input type="submit" name="button3" id="button3" class="btnnew" value="РљСѓРїРёС‚СЊ" /></td>
+    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input type="submit" name="button4" id="button4" class="btnnew" value="РљСѓРїРёС‚СЊ" /></td>
+    <td align="center" valign="middle" style="border-left:1px solid #eccb4d;border-top:1px solid #eccb4d;"><input type="submit" name="button5" id="button5" class="btnnew" value="РљСѓРїРёС‚СЊ" /></td>
   </tr>
 </table>
 </form>
 <?
 	}else{
-		echo '<center><br><br>Для просмотра раздела необходимо авторизироваться с <a href="/">Главной страницы</a><br><br></center>';
+		echo '<center><br><br>Р”Р»СЏ РїСЂРѕСЃРјРѕС‚СЂР° СЂР°Р·РґРµР»Р° РЅРµРѕР±С…РѕРґРёРјРѕ Р°РІС‚РѕСЂРёР·РёСЂРѕРІР°С‚СЊСЃСЏ СЃ <a href="/">Р“Р»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹</a><br><br></center>';
 	}
 	?>
     </div>

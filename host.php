@@ -1,4 +1,4 @@
-<?
+<?php
 define('GAME',true);
 setlocale(LC_CTYPE ,"ru_RU.CP1251");
 include('_incl_data/__config.php');
@@ -7,7 +7,7 @@ include('_incl_data/class/__user.php');
 
 $html = '';
 if(isset($_GET['detail'])) {
-	echo '<a href="?">Вернуться</a> &nbsp; | | | | | | &nbsp;<b>'.$_GET['detail'].'</b><hr>';
+	echo '<a href="?">Р’РµСЂРЅСѓС‚СЊСЃСЏ</a> &nbsp; | | | | | | &nbsp;<b>'.$_GET['detail'].'</b><hr>';
 	$sp = mysql_query('SELECT * FROM `antireflesh` WHERE `ip` = "'.mysql_real_escape_string($_GET['detail']).'" ORDER BY `id` DESC LIMIT 1000');
 	while( $pl = mysql_fetch_array($sp) ) {
 		$clr = '';
@@ -39,12 +39,12 @@ if(isset($_GET['detail'])) {
 		if( $u->info['admin'] > 0 ) {
 			$html .= '[<a href="?detail='.$pl['ip'].'">'.$pl['ip'].'</a>]';	
 		}
-		$html .= ' - - - ['.$u->microLogin($plu,2).'] - - - - - [Запросов за последнюю минуту: '.$plz[0].'] - - - [персов онлайн: '.$plzc[0].'] [запросов в секунду: '.round($plz[0]/60).']';
+		$html .= ' - - - ['.$u->microLogin($plu,2).'] - - - - - [Р—Р°РїСЂРѕСЃРѕРІ Р·Р° РїРѕСЃР»РµРґРЅСЋСЋ РјРёРЅСѓС‚Сѓ: '.$plz[0].'] - - - [РїРµСЂСЃРѕРІ РѕРЅР»Р°Р№РЅ: '.$plzc[0].'] [Р·Р°РїСЂРѕСЃРѕРІ РІ СЃРµРєСѓРЅРґСѓ: '.round($plz[0]/60).']';
 		$html .= '</div>';
 	}
 	$xxx = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `antireflesh` WHERE `time` > "'.(time()-61).'" LIMIT 1'));
 	$xxx = $xxx[0];
-	$html .= '<hr>[Всего запросов за минуту: '.$xxx.']';
+	$html .= '<hr>[Р’СЃРµРіРѕ Р·Р°РїСЂРѕСЃРѕРІ Р·Р° РјРёРЅСѓС‚Сѓ: '.$xxx.']';
 }
 ?>
 <!doctype html>

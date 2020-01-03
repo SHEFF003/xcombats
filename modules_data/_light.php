@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
@@ -16,38 +16,38 @@ if($_POST['enter'] && $_POST['pass']) {
 		if($data){
 			$_SESSION['moder'] = md5(md5($u->info['id']));
 		}else{
-			echo'Ошибка входа.';
+			echo'РћС€РёР±РєР° РІС…РѕРґР°.';
 		}
 }
 if($u->info['admin']>0) {
-	$atp = 'Приветствую тебя ангел';
+	$atp = 'РџСЂРёРІРµС‚СЃС‚РІСѓСЋ С‚РµР±СЏ Р°РЅРіРµР»';
 }
 if($u->info['align']=='0.99'){
 	if ($u->info['sex'] == 0) {
-		$atp = 'Мироздатель с нами, собрат';
+		$atp = 'РњРёСЂРѕР·РґР°С‚РµР»СЊ СЃ РЅР°РјРё, СЃРѕР±СЂР°С‚';
 	}else{
-		$atp = 'Мироздатель с нами, сестра';
+		$atp = 'РњРёСЂРѕР·РґР°С‚РµР»СЊ СЃ РЅР°РјРё, СЃРµСЃС‚СЂР°';
 	}
 }
 if($u->info['align']>1 && $u->info['align']<2){
 	if($u->info['sex'] == 0) {
-		$atp = 'Да пребудет с тобой сила, брат';
+		$atp = 'Р”Р° РїСЂРµР±СѓРґРµС‚ СЃ С‚РѕР±РѕР№ СЃРёР»Р°, Р±СЂР°С‚';
 	}else{
-		$atp = 'Да пребудет с тобой сила, сестра';
+		$atp = 'Р”Р° РїСЂРµР±СѓРґРµС‚ СЃ С‚РѕР±РѕР№ СЃРёР»Р°, СЃРµСЃС‚СЂР°';
 	}
 }
 if ($u->info['align'] == '3') {
 	if ($u->info['sex'] == 0) {
-		$atp = 'Мусорщик с нами, собрат';
+		$atp = 'РњСѓСЃРѕСЂС‰РёРє СЃ РЅР°РјРё, СЃРѕР±СЂР°С‚';
 	}else{
-		$atp = 'Мусорщик с нами, сестра';
+		$atp = 'РњСѓСЃРѕСЂС‰РёРє СЃ РЅР°РјРё, СЃРµСЃС‚СЂР°';
 	}
 }
 if($u->info['align']>3 && $u->info['align']<4){
 	if($u->info['sex'] == 0) {
-		$atp = 'Да пребудет с тобой сила, брат';
+		$atp = 'Р”Р° РїСЂРµР±СѓРґРµС‚ СЃ С‚РѕР±РѕР№ СЃРёР»Р°, Р±СЂР°С‚';
 	}else{
-		$atp = 'Да пребудет с тобой сила, сестра';
+		$atp = 'Р”Р° РїСЂРµР±СѓРґРµС‚ СЃ С‚РѕР±РѕР№ СЃРёР»Р°, СЃРµСЃС‚СЂР°';
 	}
 }
 $p = mysql_fetch_array(mysql_query('SELECT * FROM `moder` WHERE `align` = "'.$u->info['align'].'" LIMIT 1'));
@@ -85,7 +85,7 @@ function openMod(title,dat)
 	var d = document.getElementById('useMagic');
 	if(d!=undefined)
 	{
-		document.getElementById('modtitle').innerHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="top">'+title+'</td><td width="30" valign="top"><div align="right"><a title="Закрыть окно" onClick="closeMod(); return false;" href="#">x</a></div></td></tr></table>';
+		document.getElementById('modtitle').innerHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="top">'+title+'</td><td width="30" valign="top"><div align="right"><a title="Р—Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ" onClick="closeMod(); return false;" href="#">x</a></div></td></tr></table>';
 		document.getElementById('moddata').innerHTML = dat;
 		d.style.display = '';
 	}
@@ -111,7 +111,7 @@ function closeMod()
 <tr>
 <table>
 <tr><td>
-<?	//показываем панель модератора
+<?	//РїРѕРєР°Р·С‹РІР°РµРј РїР°РЅРµР»СЊ РјРѕРґРµСЂР°С‚РѕСЂР°
 	$go = 0;
 if(isset($_GET['go'])){$go = round($_GET['go']);}
 if($go==2 && $u->info['admin']>0){
@@ -125,23 +125,23 @@ if($go==1 && $p['editAlign']==1){
 <div class="mt" id="modtitle"></div><div class="md" id="moddata"></div></div>
 <?if($go==0){?>
 <?if($u->info['align']>=0.99 && $u->info['align']<2 || $u->info['admin']>0){?>
-<a href="#" onClick="openMod('<b>&quot;Исцеление&quot;</b>','<form action=\'main.php?<?=$zv?>=1&usemod=<? echo $code; ?>\' method=\'post\'>Логин: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'usevampir\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/invoke_spellcure.gif" title="Исцеление" /></a>
-<a href="#" onClick="openMod('<b>&quot;Рассеять Тьму&quot;</b>','<form action=\'main.php?<?=$zv?>=1&usemod=<? echo $code; ?>\' method=\'post\'>Логин: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'usevampir\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/ATTACK.GIF" title="Рассеять Тьму" /></a>
+<a href="#" onClick="openMod('<b>&quot;РСЃС†РµР»РµРЅРёРµ&quot;</b>','<form action=\'main.php?<?=$zv?>=1&usemod=<? echo $code; ?>\' method=\'post\'>Р›РѕРіРёРЅ: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'usevampir\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/invoke_spellcure.gif" title="РСЃС†РµР»РµРЅРёРµ" /></a>
+<a href="#" onClick="openMod('<b>&quot;Р Р°СЃСЃРµСЏС‚СЊ РўСЊРјСѓ&quot;</b>','<form action=\'main.php?<?=$zv?>=1&usemod=<? echo $code; ?>\' method=\'post\'>Р›РѕРіРёРЅ: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'usevampir\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/ATTACK.GIF" title="Р Р°СЃСЃРµСЏС‚СЊ РўСЊРјСѓ" /></a>
 <?}?>
 <?if($u->info['align']>=3 && $u->info['align']<4 || $u->info['admin']>0){?>
-<a href="#" onClick="openMod('<b>&quot;Вампиризм&quot;</b>','<form action=\'main.php?<?=$zv?>=1&usemod=<? echo $code; ?>\' method=\'post\'>Логин: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'usevampir\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/vampir.gif" title="Вампиризм" /></a>
-<a href="#" onClick="openMod('<b>&quot;Помочь Темному Собрату&quot;</b>','<form action=\'main.php?<?=$zv?>=1&usemod=<? echo $code; ?>\' method=\'post\'>Логин: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'usevampir\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/ATTACK.GIF" title="Помочь темному собрату" /></a>
+<a href="#" onClick="openMod('<b>&quot;Р’Р°РјРїРёСЂРёР·Рј&quot;</b>','<form action=\'main.php?<?=$zv?>=1&usemod=<? echo $code; ?>\' method=\'post\'>Р›РѕРіРёРЅ: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'usevampir\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/vampir.gif" title="Р’Р°РјРїРёСЂРёР·Рј" /></a>
+<a href="#" onClick="openMod('<b>&quot;РџРѕРјРѕС‡СЊ РўРµРјРЅРѕРјСѓ РЎРѕР±СЂР°С‚Сѓ&quot;</b>','<form action=\'main.php?<?=$zv?>=1&usemod=<? echo $code; ?>\' method=\'post\'>Р›РѕРіРёРЅ: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'usevampir\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/ATTACK.GIF" title="РџРѕРјРѕС‡СЊ С‚РµРјРЅРѕРјСѓ СЃРѕР±СЂР°С‚Сѓ" /></a>
 <?}?>
 </td></tr></table>
 <?}if(!$_SESSION['moder'] && $p['trPass']!=''){
 ?>
 <TABLE align=center><TR><FORM action="main.php?<?=$zv?>" name="F2" method=POST><TD>
-<FIELDSET><LEGEND><B><font color=blue>Проверка пароля</font></B> </LEGEND>
+<FIELDSET><LEGEND><B><font color=blue>РџСЂРѕРІРµСЂРєР° РїР°СЂРѕР»СЏ</font></B> </LEGEND>
 <TABLE>
 <TR><TD valign=top>
 <TABLE>
-<TR><TD>Пароль</td><td> <INPUT style='width:90;' type=password value="" name=pass></td><TD style='padding: 0, 0, 3, 5'><img border=0 SRC="http://img.combats.com/i/misc/klav_transparent.gif" style='cursor: hand' onClick="KeypadShow(1, 'F2', 'pass', 'keypad2');"></TD></tr>
-<TR><TD colspan=3 align=center><INPUT TYPE=submit value="Войти" name=enter></td></tr>
+<TR><TD>РџР°СЂРѕР»СЊ</td><td> <INPUT style='width:90;' type=password value="" name=pass></td><TD style='padding: 0, 0, 3, 5'><img border=0 SRC="http://img.combats.com/i/misc/klav_transparent.gif" style='cursor: hand' onClick="KeypadShow(1, 'F2', 'pass', 'keypad2');"></TD></tr>
+<TR><TD colspan=3 align=center><INPUT TYPE=submit value="Р’РѕР№С‚Рё" name=enter></td></tr>
 </TABLE>
 </TD>
 <TD><div id="keypad2" align=center style="display: none;"></div></TD></TR>
@@ -150,11 +150,11 @@ if($go==1 && $p['editAlign']==1){
 </TD></TR></TABLE></FORM>
 <?
 }else{
-														/*подключаем скрипты к абилкам ;)*/
+														/*РїРѕРґРєР»СЋС‡Р°РµРј СЃРєСЂРёРїС‚С‹ Рє Р°Р±РёР»РєР°Рј ;)*/
 $uer = '';
 	if(isset($_GET['usemod'])){
-	$srok = array(5=>'5 минут',15=>'15 минут',30=>'30 минут',60=>'один час',180=>'три часа',360=>'шесть часов',720=>'двенадцать часов',1440=>'одни сутки',4320=>'трое суток');
-	$srokt = array(1=>'1 день',3=>'3 дня',7=>'неделю',14=>'2 недели',30=>'месяц',60=>'2 месяца',365=>'год',24=>'бессрочно',6=>'часик');
+	$srok = array(5=>'5 РјРёРЅСѓС‚',15=>'15 РјРёРЅСѓС‚',30=>'30 РјРёРЅСѓС‚',60=>'РѕРґРёРЅ С‡Р°СЃ',180=>'С‚СЂРё С‡Р°СЃР°',360=>'С€РµСЃС‚СЊ С‡Р°СЃРѕРІ',720=>'РґРІРµРЅР°РґС†Р°С‚СЊ С‡Р°СЃРѕРІ',1440=>'РѕРґРЅРё СЃСѓС‚РєРё',4320=>'С‚СЂРѕРµ СЃСѓС‚РѕРє');
+	$srokt = array(1=>'1 РґРµРЅСЊ',3=>'3 РґРЅСЏ',7=>'РЅРµРґРµР»СЋ',14=>'2 РЅРµРґРµР»Рё',30=>'РјРµСЃСЏС†',60=>'2 РјРµСЃСЏС†Р°',365=>'РіРѕРґ',24=>'Р±РµСЃСЃСЂРѕС‡РЅРѕ',6=>'С‡Р°СЃРёРє');
 	if(isset($_POST['usem1'])){include('moder/usem1.php');}
 	elseif(isset($_POST['usem2'])){include('moder/usem2.php');}
 	elseif(isset($_POST['usesm'])){include('moder/usesm.php');}
@@ -164,24 +164,24 @@ $uer = '';
 	elseif(isset($_POST['useshaos'])){include('moder/useshaos.php');}
 	
 	}
-														/*подключаем скрипты к абилкам ;)*/
+														/*РїРѕРґРєР»СЋС‡Р°РµРј СЃРєСЂРёРїС‚С‹ Рє Р°Р±РёР»РєР°Рј ;)*/
 	if($go==0) {
 		if($u->info['admin']>0 || ($u->info['align']>1 && $u->info['align']<2) || ($u->info['align']>3 && $u->info['align']<4)){?>
-			<h4>Наложить/Снять заклятия</h4>
+			<h4>РќР°Р»РѕР¶РёС‚СЊ/РЎРЅСЏС‚СЊ Р·Р°РєР»СЏС‚РёСЏ</h4>
 			<table width="100%">
 				<tr>
 					<td>
-						<? if($u->info['admin']>0){ echo '<a href="main.php?'.$zv.'&go=2"><img width="40" height="25" title="Редактировать квесты, задания и обучающие программы" src="http://img.xcombats.com/editor2.gif"></a>'; } ?>
-						<? if($p['editAlign']==1){ echo '<a href="main.php?'.$zv.'&go=1"><img title="Редактировать возможности подчиненных" src="http://img.xcombats.com/editor.gif"></a>'; } ?>
-						<? if($p['m1']==1 || $p['citym1']==1){ ?> <a href="#" onClick="openMod('<b>Заклятие молчания</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Время заклятия: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'5\'>5 минут</option><option value=\'15\'>15 минут</option><option value=\'30\'>30 минут</option><option value=\'60\'>1 час</option><option value=\'180\'>3 часа</option><option value=\'360\'>6 часов</option><option value=\'720\'>12 часов</option><option value=\'1440\'>Сутки</option></select> <input type=\'submit\' name=\'usem1\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/sleep.gif" title="Заклятие молчания" /></a> <? } ?>
-						<? if($p['m2']==1 || $p['citym2']==1){ ?> <a href="#" onClick="openMod('<b>Заклятие форумного молчания</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Время заклятия: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'30\'>30 минут</option><option value=\'60\'>1 час</option><option value=\'180\'>3 часа</option><option value=\'360\'>6 часов</option><option value=\'720\'>12 часов</option><option value=\'1440\'>Сутки</option></select> <input type=\'submit\' name=\'usem2\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/sleepf.gif" title="Заклятие форумного молчания" /></a> <? } ?>
-						<? if($p['sm1']==1 || $p['sm2']==1 || $p['citysm1']==1 || $p['citysm2']==1){ ?><a href="#" onClick="openMod('<b>Заклятие форумного молчания</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Снять заклятие: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'1\'>чат</option><option value=\'2\'>форум</option><option value=\'3\'>чат + форум</option></select> <input type=\'submit\' name=\'usesm\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/sleep_off.gif" title="Снять заклятие молчания" /></a> <? } ?>
-						<? if($p['banned']==1 || $p['ban0']==1){ ?> <a href="#" onClick="openMod('<b>Заклятие смерти</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'useban\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/pal_button6.gif" title="Заклятье смерти" /></a> <? } ?>
-						<? if($p['unbanned']==1){ ?> <a href="#" onClick="openMod('<b>Снять заклятие смерти</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'useunban\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/pal_button7.gif" title="Снять заклятье смерти" /></a> <? } ?>
-						<? if($p['haos']==1){ ?> <a href="#" onClick="openMod('<b>Отправить в хаос</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Время заклятия: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'7\'>Неделя</option><option value=\'14\'>2 недели</option><option value=\'30\'>Месяц</option><option value=\'60\'>2 месяца</option><? if($p['haosInf']==1){ ?><option value=\'1\'>Бессрочно</option><? } ?> <input type=\'submit\' name=\'usehaos\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/pal_button4.gif" title="Отправить в хаос" /></a> <? } ?>
-						<? if($p['shaos']==1){ ?> <a href="#" onClick="openMod('<b>Выпустить из хаоса</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'useshaos\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/pal_button5.gif" title="Выпустить из хаоса" /></a> <? } ?>
-						<? if($p['deletInfo']==1){ ?> <a href="#" onClick="openMod('<b>Обезличивание</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Время заклятия: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'7\'>Неделя</option><option value=\'14\'>2 недели</option><option value=\'30\'>Месяц</option><option value=\'60\'>2 месяца</option><option value=\'1\'>Бессрочно</option> <input type=\'submit\' name=\'usedeletinfo\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/cui.gif" title="Обезличивание" /></a>
-                        <a href="#" onClick="openMod('<b>Снять заклятие обезличивания</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Логин персонажа: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'unusedeletinfo\' value=\'Исп-ть\'></form>');"><img src="http://<?=$c['img'];?>/i/items/uncui.gif" title="Снять обезличивание" /></a> <? } ?>
+						<? if($u->info['admin']>0){ echo '<a href="main.php?'.$zv.'&go=2"><img width="40" height="25" title="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РєРІРµСЃС‚С‹, Р·Р°РґР°РЅРёСЏ Рё РѕР±СѓС‡Р°СЋС‰РёРµ РїСЂРѕРіСЂР°РјРјС‹" src="http://img.xcombats.com/editor2.gif"></a>'; } ?>
+						<? if($p['editAlign']==1){ echo '<a href="main.php?'.$zv.'&go=1"><img title="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїРѕРґС‡РёРЅРµРЅРЅС‹С…" src="http://img.xcombats.com/editor.gif"></a>'; } ?>
+						<? if($p['m1']==1 || $p['citym1']==1){ ?> <a href="#" onClick="openMod('<b>Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Р’СЂРµРјСЏ Р·Р°РєР»СЏС‚РёСЏ: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'5\'>5 РјРёРЅСѓС‚</option><option value=\'15\'>15 РјРёРЅСѓС‚</option><option value=\'30\'>30 РјРёРЅСѓС‚</option><option value=\'60\'>1 С‡Р°СЃ</option><option value=\'180\'>3 С‡Р°СЃР°</option><option value=\'360\'>6 С‡Р°СЃРѕРІ</option><option value=\'720\'>12 С‡Р°СЃРѕРІ</option><option value=\'1440\'>РЎСѓС‚РєРё</option></select> <input type=\'submit\' name=\'usem1\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/sleep.gif" title="Р—Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ" /></a> <? } ?>
+						<? if($p['m2']==1 || $p['citym2']==1){ ?> <a href="#" onClick="openMod('<b>Р—Р°РєР»СЏС‚РёРµ С„РѕСЂСѓРјРЅРѕРіРѕ РјРѕР»С‡Р°РЅРёСЏ</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Р’СЂРµРјСЏ Р·Р°РєР»СЏС‚РёСЏ: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'30\'>30 РјРёРЅСѓС‚</option><option value=\'60\'>1 С‡Р°СЃ</option><option value=\'180\'>3 С‡Р°СЃР°</option><option value=\'360\'>6 С‡Р°СЃРѕРІ</option><option value=\'720\'>12 С‡Р°СЃРѕРІ</option><option value=\'1440\'>РЎСѓС‚РєРё</option></select> <input type=\'submit\' name=\'usem2\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/sleepf.gif" title="Р—Р°РєР»СЏС‚РёРµ С„РѕСЂСѓРјРЅРѕРіРѕ РјРѕР»С‡Р°РЅРёСЏ" /></a> <? } ?>
+						<? if($p['sm1']==1 || $p['sm2']==1 || $p['citysm1']==1 || $p['citysm2']==1){ ?><a href="#" onClick="openMod('<b>Р—Р°РєР»СЏС‚РёРµ С„РѕСЂСѓРјРЅРѕРіРѕ РјРѕР»С‡Р°РЅРёСЏ</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>РЎРЅСЏС‚СЊ Р·Р°РєР»СЏС‚РёРµ: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'1\'>С‡Р°С‚</option><option value=\'2\'>С„РѕСЂСѓРј</option><option value=\'3\'>С‡Р°С‚ + С„РѕСЂСѓРј</option></select> <input type=\'submit\' name=\'usesm\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/sleep_off.gif" title="РЎРЅСЏС‚СЊ Р·Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ" /></a> <? } ?>
+						<? if($p['banned']==1 || $p['ban0']==1){ ?> <a href="#" onClick="openMod('<b>Р—Р°РєР»СЏС‚РёРµ СЃРјРµСЂС‚Рё</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'useban\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/pal_button6.gif" title="Р—Р°РєР»СЏС‚СЊРµ СЃРјРµСЂС‚Рё" /></a> <? } ?>
+						<? if($p['unbanned']==1){ ?> <a href="#" onClick="openMod('<b>РЎРЅСЏС‚СЊ Р·Р°РєР»СЏС‚РёРµ СЃРјРµСЂС‚Рё</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'useunban\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/pal_button7.gif" title="РЎРЅСЏС‚СЊ Р·Р°РєР»СЏС‚СЊРµ СЃРјРµСЂС‚Рё" /></a> <? } ?>
+						<? if($p['haos']==1){ ?> <a href="#" onClick="openMod('<b>РћС‚РїСЂР°РІРёС‚СЊ РІ С…Р°РѕСЃ</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Р’СЂРµРјСЏ Р·Р°РєР»СЏС‚РёСЏ: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'7\'>РќРµРґРµР»СЏ</option><option value=\'14\'>2 РЅРµРґРµР»Рё</option><option value=\'30\'>РњРµСЃСЏС†</option><option value=\'60\'>2 РјРµСЃСЏС†Р°</option><? if($p['haosInf']==1){ ?><option value=\'1\'>Р‘РµСЃСЃСЂРѕС‡РЅРѕ</option><? } ?> <input type=\'submit\' name=\'usehaos\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/pal_button4.gif" title="РћС‚РїСЂР°РІРёС‚СЊ РІ С…Р°РѕСЃ" /></a> <? } ?>
+						<? if($p['shaos']==1){ ?> <a href="#" onClick="openMod('<b>Р’С‹РїСѓСЃС‚РёС‚СЊ РёР· С…Р°РѕСЃР°</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'useshaos\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/pal_button5.gif" title="Р’С‹РїСѓСЃС‚РёС‚СЊ РёР· С…Р°РѕСЃР°" /></a> <? } ?>
+						<? if($p['deletInfo']==1){ ?> <a href="#" onClick="openMod('<b>РћР±РµР·Р»РёС‡РёРІР°РЅРёРµ</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br>Р’СЂРµРјСЏ Р·Р°РєР»СЏС‚РёСЏ: &nbsp; <select style=\'margin-left:2px;\' name=\'time\'><option value=\'7\'>РќРµРґРµР»СЏ</option><option value=\'14\'>2 РЅРµРґРµР»Рё</option><option value=\'30\'>РњРµСЃСЏС†</option><option value=\'60\'>2 РјРµСЃСЏС†Р°</option><option value=\'1\'>Р‘РµСЃСЃСЂРѕС‡РЅРѕ</option> <input type=\'submit\' name=\'usedeletinfo\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/cui.gif" title="РћР±РµР·Р»РёС‡РёРІР°РЅРёРµ" /></a>
+                        <a href="#" onClick="openMod('<b>РЎРЅСЏС‚СЊ Р·Р°РєР»СЏС‚РёРµ РѕР±РµР·Р»РёС‡РёРІР°РЅРёСЏ</b>','<form action=\'main.php?<? echo $zv.'&usemod='.$code; ?>\' method=\'post\'>Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°: <input type=\'text\' style=\'width:144px;\' id=\'logingo\' name=\'logingo\'><br> <input style=\'float:right;\' type=\'submit\' name=\'unusedeletinfo\' value=\'РСЃРї-С‚СЊ\'></form>');"><img src="http://<?=$c['img'];?>/i/items/uncui.gif" title="РЎРЅСЏС‚СЊ РѕР±РµР·Р»РёС‡РёРІР°РЅРёРµ" /></a> <? } ?>
        
 						
 						

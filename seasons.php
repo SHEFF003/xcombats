@@ -34,20 +34,20 @@ if(isset($_GET['upi'])) {
 		$i2 = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.mysql_real_escape_string($k[$i]).'" LIMIT 1'));
 		$i3 = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.mysql_real_escape_string($k[$i+1]).'" LIMIT 1'));
 		if(isset($i2['id'])) {
-			//Проводим работу
+			//РџСЂРѕРІРѕРґРёРј СЂР°Р±РѕС‚Сѓ
 			if(isset($i3['id'])) {
-				//Добавляем апгрейд i2 -> i3
+				//Р”РѕР±Р°РІР»СЏРµРј Р°РїРіСЂРµР№Рґ i2 -> i3
 				$test = mysql_fetch_array(mysql_query('SELECT * FROM `items_upgrade` WHERE `iid` = "'.$i2['id'].'" AND `iup` = "'.$i3['id'].'" LIMIT 1'));
 				if(!isset($test['id'])) {
 					mysql_query('INSERT INTO `items_upgrade` (`iid`,`iup`,`price1`,`price2`) VALUES (
 						"'.$i2['id'].'","'.$i3['id'].'","0","'.($i3['price2']-$i2['price2']).'"
 					)');
-					echo '['.$i2['id'].']->['.$i3['id'].'] за '.($i3['price2']-$i2['price2']).'екр.<br>';
+					echo '['.$i2['id'].']->['.$i3['id'].'] Р·Р° '.($i3['price2']-$i2['price2']).'РµРєСЂ.<br>';
 				}
 			}
 			if(isset($i1['id']) || !isset($i3['id'])) {
-				//Удаляем i2 из магазина
-				echo '[Удаляем '.$i2['id'].' с прилавка]<br>';
+				//РЈРґР°Р»СЏРµРј i2 РёР· РјР°РіР°Р·РёРЅР°
+				echo '[РЈРґР°Р»СЏРµРј '.$i2['id'].' СЃ РїСЂРёР»Р°РІРєР°]<br>';
 				mysql_query('UPDATE `items_shop` SET `kolvo` = 0 WHERE `item_id` = "'.$i2['id'].'"');
 			}
 		}
@@ -71,14 +71,14 @@ if($u->info['bithday'] == '01.01.1800' && $u->info['inTurnirnew'] == 0) {
 }
 
 /*if( !eregi("combatz\.ru", $_SERVER['HTTP_REFERER']) ) { 
-	//die('Перезайдите в игру, сессия закрыта.<br>last_page:%'.$_SERVER['HTTP_REFERER'].'');
+	//die('РџРµСЂРµР·Р°Р№РґРёС‚Рµ РІ РёРіСЂСѓ, СЃРµСЃСЃРёСЏ Р·Р°РєСЂС‹С‚Р°.<br>last_page:%'.$_SERVER['HTTP_REFERER'].'');
 }*/
 
 if( $u->info['id'] == 1000001 ) {
 	$u->info['admin'] = 0;
 }
 
-#--------для общаги, и позже для почты
+#--------РґР»СЏ РѕР±С‰Р°РіРё, Рё РїРѕР·Р¶Рµ РґР»СЏ РїРѕС‡С‚С‹
 if($u->info['online'] < time()-60)
 {
 	$filter->setOnline($u->info['online'],$u->info['id'],0);
@@ -112,7 +112,7 @@ season::$yy = season::$yy[season::$date['m']];
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <meta http-equiv=Cache-Control Content=no-cache>
 <meta http-equiv=PRAGMA content=NO-CACHE>
@@ -121,51 +121,51 @@ season::$yy = season::$yy[season::$date['m']];
 <link href="/sss_css.css" rel="stylesheet" type="text/css">
 </head>
 <body style="padding-top:0px; margin-top:7px; background-color:#E2E0E0;"><script type="text/javascript" src="js/jquery.js"></script>
-<h3 style="font-size:25px;"><?=season::$yy[3]?> сезон, <?=season::$date['Y']?></h3>
+<h3 style="font-size:25px;"><?=season::$yy[3]?> СЃРµР·РѕРЅ, <?=season::$date['Y']?></h3>
 <table width="912" border="0" align="center" cellpadding="0" cellspacing="0" class="sss_bg<?=season::$date['m']?>">
   <tr>
     <td style="min-height:450px;">
     <!-- -->
     <?
 	if( $rz == 1 ) {
-		//Сезонная линейка
+		//РЎРµР·РѕРЅРЅР°СЏ Р»РёРЅРµР№РєР°
 		$html = '';
 		$sp = mysql_query('SELECT * FROM `sss_m` WHERE `s` = "'.mysql_real_escape_string(season::$date['m']).'"');
 		while( $pl = mysql_fetch_array($sp) ) {
 			if( $pl['dd'] > season::$date['d'] ) {
-				//Миссия еще закрыта
+				//РњРёСЃСЃРёСЏ РµС‰Рµ Р·Р°РєСЂС‹С‚Р°
 				$html .= '<div onClick="location.href=\'seasons.php?rz=2&mis='.$pl['id'].'\';"	 style="background-image:url(http://img.xcombats.com/ss_boss0.png);" class="sss_block_m">'.
-				'<div class="sss_block_m_in2" align="center"><small>Дата открытия</small><br>'.$pl['dd'].'.'.season::$date['m'].'.'.season::$date['Y'].'</div>'.
+				'<div class="sss_block_m_in2" align="center"><small>Р”Р°С‚Р° РѕС‚РєСЂС‹С‚РёСЏ</small><br>'.$pl['dd'].'.'.season::$date['m'].'.'.season::$date['Y'].'</div>'.
 				'</div>';
 			}else{
-				//Открытая миссия
+				//РћС‚РєСЂС‹С‚Р°СЏ РјРёСЃСЃРёСЏ
 				$html .= '<div onClick="location.href=\'seasons.php?rz=2&mis='.$pl['id'].'\';" style="background-image:url(http://img.xcombats.com/'.$pl['img'].');" class="sss_block_m">'.
-				'<div class="sss_block_m_in">Приступить!</div>'.
+				'<div class="sss_block_m_in">РџСЂРёСЃС‚СѓРїРёС‚СЊ!</div>'.
 				'</div>';
 			}
 		}
 		if( $html == '' ) {
-			$html = 'Нет миссий для текущего сезона';	
+			$html = 'РќРµС‚ РјРёСЃСЃРёР№ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ СЃРµР·РѕРЅР°';	
 		}
 		echo '<div align="center">' . $html . '</div>';
 	}elseif( $rz == 2 ) {
-		//Открытая миссия
+		//РћС‚РєСЂС‹С‚Р°СЏ РјРёСЃСЃРёСЏ
 		$html = '';
 		season::data( $_GET['mis'] );
 		if( !isset(season::$m['id']) ) {
-			$html = 'Миссия для текущего сезона не найдена';	
+			$html = 'РњРёСЃСЃРёСЏ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ СЃРµР·РѕРЅР° РЅРµ РЅР°Р№РґРµРЅР°';	
 		}else{
 			if( season::$m['dd'] > season::$date['d'] ) {
-				//Миссия еще закрыта
+				//РњРёСЃСЃРёСЏ РµС‰Рµ Р·Р°РєСЂС‹С‚Р°
 				$html .= '<div onClick="location.href=\'seasons.php?rz=2&mis='.season::$m['id'].'\';" style="background-image:url(http://img.xcombats.com/ss_boss0.png);" class="sss_block_m">'.
-				'<div class="sss_block_m_in2" align="center"><small>Дата открытия</small><br>'.season::$m['dd'].'.'.season::$date['m'].'.'.season::$date['Y'].'</div>'.
+				'<div class="sss_block_m_in2" align="center"><small>Р”Р°С‚Р° РѕС‚РєСЂС‹С‚РёСЏ</small><br>'.season::$m['dd'].'.'.season::$date['m'].'.'.season::$date['Y'].'</div>'.
 				'</div>';
 			}else{
-				//Открытая миссия
+				//РћС‚РєСЂС‹С‚Р°СЏ РјРёСЃСЃРёСЏ
 				$html .= '<div onClick="location.href=\'seasons.php?rz=2&mis='.season::$m['id'].'\';" style="float:left;background-image:url(http://img.xcombats.com/'.season::$m['img'].');" class="sss_block_m">'.
-				'<div class="sss_block_m_in3">&nbsp;<small>Выполнено заданий:<br>0 / ??</small></div>'.
+				'<div class="sss_block_m_in3">&nbsp;<small>Р’С‹РїРѕР»РЅРµРЅРѕ Р·Р°РґР°РЅРёР№:<br>0 / ??</small></div>'.
 				'</div>';
-				//Задания в миссии
+				//Р—Р°РґР°РЅРёСЏ РІ РјРёСЃСЃРёРё
 				$sp = mysql_query('SELECT * FROM `sss_q` WHERE `m` = "'.season::$m['id'].'"');
 				$ends = array();
 				$i = 0;
@@ -179,7 +179,7 @@ season::$yy = season::$yy[season::$date['m']];
 					}
 					//
 					if( $pl['type'] == 1 ) {
-						//Сбор ресурсов
+						//РЎР±РѕСЂ СЂРµСЃСѓСЂСЃРѕРІ
 						$c1 = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `items_users` WHERE `time_create` > "'.$tss.'" AND `uid` = "'.$u->info['id'].'" AND `delete` < 1001 AND `item_id` = "'.$pl['value'].'" LIMIT 1'));
 						$qe = $c1[0];
 					}elseif( $pl['type'] == 2 || $pl['type'] == 3 ) {
@@ -215,9 +215,9 @@ season::$yy = season::$yy[season::$date['m']];
 					$html .= '<div style="width:500px;margin-top:10px;height:50px;"><small>' . $pl['info'] . '</small></div>';
 						
 					if( $nogo == true ) {
-						//Еще не готов выполнять
+						//Р•С‰Рµ РЅРµ РіРѕС‚РѕРІ РІС‹РїРѕР»РЅСЏС‚СЊ
 					}elseif( $f == 1 ) {
-						//Выполнено
+						//Р’С‹РїРѕР»РЅРµРЅРѕ
 					}elseif( $nogo == false && $f == 0 && isset($_GET['endq']) && $_GET['endq'] == $pl['id'] && $qe == $pl['var'] ) {
 						$f = 1;
 						mysql_query('INSERT INTO `sss_f` (`m`,`y`,`uid`,`time`) VALUES (
@@ -229,16 +229,16 @@ season::$yy = season::$yy[season::$date['m']];
 					}else{
 						$html .= '<div class="sss_line1"><div style="width:'.round($qe/$pl['var']*300).'px;" class="sss_line2"></div></div>';
 						if( $qe == $pl['var'] ) {
-							$html .= ' <button onclick="location.href=\'seasons.php?rz=2&mis='.round((int)$_GET['mis']).'&endq='.$pl['id'].'\';" class="sss_btn1">Завершить</button>';
+							$html .= ' <button onclick="location.href=\'seasons.php?rz=2&mis='.round((int)$_GET['mis']).'&endq='.$pl['id'].'\';" class="sss_btn1">Р—Р°РІРµСЂС€РёС‚СЊ</button>';
 						}
 						$html .= ' &nbsp; '.$qe.' / '.$pl['var'].'';
 					}
 					
 					if( $f == 1 ) {
 						$ends[$i] = true;
-						$html .= '<b style="color:#efefef"><img src="http://img.xcombats.com/i/ico/wins.gif"> Задание выполнено.</b>';
+						$html .= '<b style="color:#efefef"><img src="http://img.xcombats.com/i/ico/wins.gif"> Р—Р°РґР°РЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ.</b>';
 					}elseif( $nogo == true ) {
-						$html .= '<i style="color:#ffa5a5"><img src="http://img.xcombats.com/i/ico/draw.gif"> Требует выполнение предыдущего задания.</i>';
+						$html .= '<i style="color:#ffa5a5"><img src="http://img.xcombats.com/i/ico/draw.gif"> РўСЂРµР±СѓРµС‚ РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРµРґС‹РґСѓС‰РµРіРѕ Р·Р°РґР°РЅРёСЏ.</i>';
 					}
 						
 					$html .= '</div>';

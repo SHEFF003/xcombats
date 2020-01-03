@@ -1,9 +1,9 @@
 <?php
 if(!isset($_GET['mmm'])) {	
-	die('Õðåí òåáå, à íå e-mail!');
+	die('Ð¥Ñ€ÐµÐ½ Ñ‚ÐµÐ±Ðµ, Ð° Ð½Ðµ e-mail!');
 }
-$dbgo = mysql_connect('localhost','ëîãèí','ïàðîëü');
-mysql_select_db('èìÿ áàçû',$dbgo);
+$dbgo = mysql_connect('localhost','Ð»Ð¾Ð³Ð¸Ð½','Ð¿Ð°Ñ€Ð¾Ð»ÑŒ');
+mysql_select_db('Ð¸Ð¼Ñ Ð±Ð°Ð·Ñ‹',$dbgo);
 mysql_query('SET NAMES cp1251');
 $sp = mysql_query('SELECT * FROM `users`');
 while( $pl = mysql_fetch_array($sp) ) {

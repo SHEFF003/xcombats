@@ -12,7 +12,7 @@ $urla = explode('?',$_SERVER["REQUEST_URI"]);
 $url = explode('/',$urla[0]);
 
 if( $url[2] == 'js_data' ) {
-	//Генерация JS контента, базы ВСЕГО!
+	//Р“РµРЅРµСЂР°С†РёСЏ JS РєРѕРЅС‚РµРЅС‚Р°, Р±Р°Р·С‹ Р’РЎР•Р“Рћ!
 	
 	//
 	die();	
@@ -21,7 +21,7 @@ if( $url[2] == 'js_data' ) {
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <meta http-equiv=Cache-Control Content=no-cache>
 <meta http-equiv=PRAGMA content=NO-CACHE>
@@ -36,7 +36,7 @@ if( $url[2] == 'js_data' ) {
 var u = {
 	info:{
 			'id':0,
-			'login':'Логин персонажа',
+			'login':'Р›РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°',
 			'level':0,
 			'up':0,
 			'align':'0',
@@ -56,22 +56,22 @@ var u = {
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="300" align="center" valign="top" id="main1">
-        	логин, слоты, приемы, обкасты
+        	Р»РѕРіРёРЅ, СЃР»РѕС‚С‹, РїСЂРёРµРјС‹, РѕР±РєР°СЃС‚С‹
         </td>
         <td valign="top" id="main2">
-        	Статы, Умения, Статы за награду, зверь, склонка, образ, клан
+        	РЎС‚Р°С‚С‹, РЈРјРµРЅРёСЏ, РЎС‚Р°С‚С‹ Р·Р° РЅР°РіСЂР°РґСѓ, Р·РІРµСЂСЊ, СЃРєР»РѕРЅРєР°, РѕР±СЂР°Р·, РєР»Р°РЅ
         </td>
         <td valign="top" id="main3">
-        	Основные, Модификаторы, Мощность, Защита, Прочее
+        	РћСЃРЅРѕРІРЅС‹Рµ, РњРѕРґРёС„РёРєР°С‚РѕСЂС‹, РњРѕС‰РЅРѕСЃС‚СЊ, Р—Р°С‰РёС‚Р°, РџСЂРѕС‡РµРµ
         </td>
         <td valign="top" id="main4">
-        	Стоимость, дополнительные настройки
+        	РЎС‚РѕРёРјРѕСЃС‚СЊ, РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё
         </td>
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td>Описание и благодарности.</td>
+    <td>РћРїРёСЃР°РЅРёРµ Рё Р±Р»Р°РіРѕРґР°СЂРЅРѕСЃС‚Рё.</td>
   </tr>
 </table>
 </body>

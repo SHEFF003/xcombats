@@ -1,4 +1,4 @@
-<?
+<?php
 if(!defined('GAME'))
 {
 	die();
@@ -6,12 +6,12 @@ if(!defined('GAME'))
 ?>
 <br />
 <br />
-Опыт: <a href="http://lib.xcombats.com/main/85" target="_blank"><?=$u->info['exp']?></a> (<?=$u->stats['levels']['exp']?>)<br />
-Уровень: <?=$u->info['level']?><br />
-Побед: <?=$u->info['win']?><br />
-Поражений: <?=$u->info['lose']?><br />
-Ничьих: <?=$u->info['nich']?><br />
-Деньги: <b><?=$u->info['money']?></b> кр.
+РћРїС‹С‚: <a href="http://lib.xcombats.com/main/85" target="_blank"><?=$u->info['exp']?></a> (<?=$u->stats['levels']['exp']?>)<br />
+РЈСЂРѕРІРµРЅСЊ: <?=$u->info['level']?><br />
+РџРѕР±РµРґ: <?=$u->info['win']?><br />
+РџРѕСЂР°Р¶РµРЅРёР№: <?=$u->info['lose']?><br />
+РќРёС‡СЊРёС…: <?=$u->info['nich']?><br />
+Р”РµРЅСЊРіРё: <b><?=$u->info['money']?></b> РєСЂ.
 <hr />
 <?
 $aba = '';
@@ -23,29 +23,29 @@ if( $u->info['skills'] > 0 ) {
 	$skls = ' <a href="main.php?skills=1&side=5"><img src="http://img.xcombats.com/i/up.gif"></a>';
 }
 ?>
-Сила: <?=$u->stats['s1'].$aba?><br />
-Ловкость: <?=$u->stats['s2'].$aba?><br />
-Интуиция: <?=$u->stats['s3'].$aba?><br />
-Выносливость: <?=$u->stats['s4'].$aba?><br />
-<? if( $u->info['level'] > 3 || $u->stats['s5'] != 0 ) { ?>Интелект: <?=$u->stats['s5'].$aba?><br /><? } ?>
-<? if( $u->info['level'] > 6 || $u->stats['s6'] != 0 ) { ?>Мудрость: <?=$u->stats['s6'].$aba?><br /><? } ?>
-<font color=green>Возможных увеличений: <?=$u->info['ability']?> </font>
+РЎРёР»Р°: <?=$u->stats['s1'].$aba?><br />
+Р›РѕРІРєРѕСЃС‚СЊ: <?=$u->stats['s2'].$aba?><br />
+РРЅС‚СѓРёС†РёСЏ: <?=$u->stats['s3'].$aba?><br />
+Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ: <?=$u->stats['s4'].$aba?><br />
+<? if( $u->info['level'] > 3 || $u->stats['s5'] != 0 ) { ?>РРЅС‚РµР»РµРєС‚: <?=$u->stats['s5'].$aba?><br /><? } ?>
+<? if( $u->info['level'] > 6 || $u->stats['s6'] != 0 ) { ?>РњСѓРґСЂРѕСЃС‚СЊ: <?=$u->stats['s6'].$aba?><br /><? } ?>
+<font color=green>Р’РѕР·РјРѕР¶РЅС‹С… СѓРІРµР»РёС‡РµРЅРёР№: <?=$u->info['ability']?> </font>
 <hr />
-Урон: <?=str_replace('-',' - ',$u->inform('yron'))?><br />
-Модификаторы<br />
-&nbsp;&nbsp;&nbsp;уворот:  <?=$u->inform('m4')?>% <br />
-&nbsp;&nbsp;&nbsp;антиуворот:  <?=$u->inform('m5')?>% <br />
-&nbsp;&nbsp;&nbsp;крит:  <?=$u->inform('m1')?>% <br />
-&nbsp;&nbsp;&nbsp;антикрит:  <?=$u->inform('m2')?>% <br />
-Броня<br />
-&nbsp;&nbsp;&nbsp;головы:  <?=$u->stats['mab1']?><br />
-&nbsp;&nbsp;&nbsp;корпуса:  <?=$u->stats['mab2']?><br />
-&nbsp;&nbsp;&nbsp;пояса:  <?=$u->stats['mab3']?><br />
-&nbsp;&nbsp;&nbsp;ног:  <?=$u->stats['mab4']?><br />
+РЈСЂРѕРЅ: <?=str_replace('-',' - ',$u->inform('yron'))?><br />
+РњРѕРґРёС„РёРєР°С‚РѕСЂС‹<br />
+&nbsp;&nbsp;&nbsp;СѓРІРѕСЂРѕС‚:  <?=$u->inform('m4')?>% <br />
+&nbsp;&nbsp;&nbsp;Р°РЅС‚РёСѓРІРѕСЂРѕС‚:  <?=$u->inform('m5')?>% <br />
+&nbsp;&nbsp;&nbsp;РєСЂРёС‚:  <?=$u->inform('m1')?>% <br />
+&nbsp;&nbsp;&nbsp;Р°РЅС‚РёРєСЂРёС‚:  <?=$u->inform('m2')?>% <br />
+Р‘СЂРѕРЅСЏ<br />
+&nbsp;&nbsp;&nbsp;РіРѕР»РѕРІС‹:  <?=$u->stats['mab1']?><br />
+&nbsp;&nbsp;&nbsp;РєРѕСЂРїСѓСЃР°:  <?=$u->stats['mab2']?><br />
+&nbsp;&nbsp;&nbsp;РїРѕСЏСЃР°:  <?=$u->stats['mab3']?><br />
+&nbsp;&nbsp;&nbsp;РЅРѕРі:  <?=$u->stats['mab4']?><br />
 <hr />
-Мастерство владения:<br />
-&nbsp;&nbsp;&nbsp;ножами и кастетами: <?=(0+$u->stats['a1'])?><?=$skls?><br />
-&nbsp;&nbsp;&nbsp;мечами: <?=(0+$u->stats['a4'])?><?=$skls?><br />
-&nbsp;&nbsp;&nbsp;дубинами, булавами: <?=(0+$u->stats['a3'])?><?=$skls?><br />
-&nbsp;&nbsp;&nbsp;топорами и секирами: <?=(0+$u->stats['a2'])?><?=$skls?><br />
-<font color=navy>Возможных увеличений: <?=$u->info['skills']?></font>
+РњР°СЃС‚РµСЂСЃС‚РІРѕ РІР»Р°РґРµРЅРёСЏ:<br />
+&nbsp;&nbsp;&nbsp;РЅРѕР¶Р°РјРё Рё РєР°СЃС‚РµС‚Р°РјРё: <?=(0+$u->stats['a1'])?><?=$skls?><br />
+&nbsp;&nbsp;&nbsp;РјРµС‡Р°РјРё: <?=(0+$u->stats['a4'])?><?=$skls?><br />
+&nbsp;&nbsp;&nbsp;РґСѓР±РёРЅР°РјРё, Р±СѓР»Р°РІР°РјРё: <?=(0+$u->stats['a3'])?><?=$skls?><br />
+&nbsp;&nbsp;&nbsp;С‚РѕРїРѕСЂР°РјРё Рё СЃРµРєРёСЂР°РјРё: <?=(0+$u->stats['a2'])?><?=$skls?><br />
+<font color=navy>Р’РѕР·РјРѕР¶РЅС‹С… СѓРІРµР»РёС‡РµРЅРёР№: <?=$u->info['skills']?></font>

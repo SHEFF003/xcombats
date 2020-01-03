@@ -26,8 +26,8 @@ $u->info['admin'] = 0;
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-<title>Старый Бойцовский Клуб | Библиотека
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± | Р‘РёР±Р»РёРѕС‚РµРєР°
 </title>
 <link href="/main1.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -82,11 +82,11 @@ document.write('<table cellspacing=0 cellpadding=0 bgcolor=#f2e5b1 border=0 widt
   <tr valign=top>
       <td width="29" rowspan=2 background="http://xcombats.com/forum_script/img/leftground.jpg"><img src="http://img.xcombats.com/i/encicl/pictlr_subject.jpg" width="29" height="256"></td>
       <td width="278" height="257" align="left"><img id="imleft2" src="http://img.xcombats.com/i/encicl/pictl_subject.jpg" width="118" height="257"><BR></td>
-    <td rowspan=2 align="left"><p><b>&raquo;</b> <a href="http://xcombats.com/library/">Библиотека</a> /
-      <h2>Библиотека Анти Бойцовского Клуба</h2>
+    <td rowspan=2 align="left"><p><b>&raquo;</b> <a href="http://xcombats.com/library/">Р‘РёР±Р»РёРѕС‚РµРєР°</a> /
+      <h2>Р‘РёР±Р»РёРѕС‚РµРєР° РђРЅС‚Рё Р‘РѕР№С†РѕРІСЃРєРѕРіРѕ РљР»СѓР±Р°</h2>
         <img src="http://img.xcombats.com/i/encicl/ln3.jpg" width="400" height="1">
         </p>
-	  Выберите один из разделов слева, чтобы отобразить содержимое<br>      <p align="center">&nbsp;</p>
+	  Р’С‹Р±РµСЂРёС‚Рµ РѕРґРёРЅ РёР· СЂР°Р·РґРµР»РѕРІ СЃР»РµРІР°, С‡С‚РѕР±С‹ РѕС‚РѕР±СЂР°Р·РёС‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ<br>      <p align="center">&nbsp;</p>
         <BR>
         <p>
           <!-- End of text -->
@@ -98,7 +98,7 @@ document.write('<table cellspacing=0 cellpadding=0 bgcolor=#f2e5b1 border=0 widt
     
     <!-- -->
     
-    <b><span style="COLOR: #8f0000;  FONT-FAMILY: Arial;  FONT-SIZE: 11pt;">Меню Библиотеки</span></b><br>
+    <b><span style="COLOR: #8f0000;  FONT-FAMILY: Arial;  FONT-SIZE: 11pt;">РњРµРЅСЋ Р‘РёР±Р»РёРѕС‚РµРєРё</span></b><br>
     <table width="100%" height="11" border="0" cellpadding="0" cellspacing="0">
     <tr>
 		<td width="12" align="left"><img src="http://img.xcombats.com/ram12_33.gif" width="12" height="11"></td>
@@ -126,14 +126,14 @@ document.write('<table cellspacing=0 cellpadding=0 bgcolor=#f2e5b1 border=0 widt
 	}	
 	if($u->info['admin'] > 0) {
 		//
-		$html = '<form method="post" action="/library">'.$html.'<center><input type="submit" name="save_posmenu" value="Сохранить позиции"></center></form>';
+		$html = '<form method="post" action="/library">'.$html.'<center><input type="submit" name="save_posmenu" value="РЎРѕС…СЂР°РЅРёС‚СЊ РїРѕР·РёС†РёРё"></center></form>';
 		//
 		$html .= '<hr><form method="post" action="/library"><div>';
-		$html .= '<b>Добавить новое меню:</b><br>';
-		$html .= 'Заголовок: <br><input style="width:210px" type="text" value="" name="menu_title"><br>';
-		$html .= 'Ссылка: <br><input style="width:210px" type="text" value="" name="menu_url"><br>';
-		$html .= 'Тип: <select name="menu_type"><option value="0">Заголовок</option><option value="1">Внутреняя ссылка</option><option value="2">Внешняя ссылка</option></select><br>';
-		$html .= '<center><input type="submit" class="btnnew" value="Добавить"></center>';
+		$html .= '<b>Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРµ РјРµРЅСЋ:</b><br>';
+		$html .= 'Р—Р°РіРѕР»РѕРІРѕРє: <br><input style="width:210px" type="text" value="" name="menu_title"><br>';
+		$html .= 'РЎСЃС‹Р»РєР°: <br><input style="width:210px" type="text" value="" name="menu_url"><br>';
+		$html .= 'РўРёРї: <select name="menu_type"><option value="0">Р—Р°РіРѕР»РѕРІРѕРє</option><option value="1">Р’РЅСѓС‚СЂРµРЅСЏСЏ СЃСЃС‹Р»РєР°</option><option value="2">Р’РЅРµС€РЅСЏСЏ СЃСЃС‹Р»РєР°</option></select><br>';
+		$html .= '<center><input type="submit" class="btnnew" value="Р”РѕР±Р°РІРёС‚СЊ"></center>';
 		$html .= '</div></form>';
 	}
 	echo $html;
@@ -158,7 +158,7 @@ document.write('<table cellspacing=0 cellpadding=0 bgcolor=#f2e5b1 border=0 widt
     <td width="20%"><div align="center">
 &nbsp;
       </div></td>
-    <td align=center valign=middle><div align="center" style="padding: 5px 0px; height: 32px; box-sizing: border-box;"><NOBR><span class="style6">Copyright © 2016-<?=date('Y')?> «www.xcombats.com»</span></NOBR><br><Br></div></td>
+    <td align=center valign=middle><div align="center" style="padding: 5px 0px; height: 32px; box-sizing: border-box;"><NOBR><span class="style6">Copyright В© 2016-<?=date('Y')?> В«www.xcombats.comВ»</span></NOBR><br><Br></div></td>
     <td width="20%"></td>
   </tr>
 </table>

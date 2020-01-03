@@ -1,4 +1,4 @@
-<?
+<?php
 define('GAME',true);
 include('_incl_data/__config.php');
 include('_incl_data/class/__db_connect.php');
@@ -7,7 +7,7 @@ include('_incl_data/class/__user.php');
 $r = ''; $p = ''; $b = '<table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tbody>
     <tr valign="top">
-      <td valign="bottom" nowrap="" title=""><input onClick="location=location;" style="padding:5px;" type="submit" name="analiz2" value="Обновить"></td>
+      <td valign="bottom" nowrap="" title=""><input onClick="location=location;" style="padding:5px;" type="submit" name="analiz2" value="РћР±РЅРѕРІРёС‚СЊ"></td>
     </tr>
   </tbody>
 </table>';
@@ -20,7 +20,7 @@ $log = mysql_fetch_array(mysql_query('SELECT `id`,`count_bs`,`m` FROM `bs_logs` 
 if(!isset($log['id']))
 {
 	$notowerlog = true;
-	$r = '<br><br><center>Скорее всего Архивариус снова потерял пергамент с хрониками турниров ...</center>';
+	$r = '<br><br><center>РЎРєРѕСЂРµРµ РІСЃРµРіРѕ РђСЂС…РёРІР°СЂРёСѓСЃ СЃРЅРѕРІР° РїРѕС‚РµСЂСЏР» РїРµСЂРіР°РјРµРЅС‚ СЃ С…СЂРѕРЅРёРєР°РјРё С‚СѓСЂРЅРёСЂРѕРІ ...</center>';
 }else{
 	$sp = mysql_query('SELECT * FROM `bs_logs` WHERE `count_bs` = "'.$log['count_bs'].'" ORDER BY `id` ASC');
 	while( $pl = mysql_fetch_array($sp) ) {
@@ -35,8 +35,8 @@ if(!isset($log['id']))
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Архив: Турнир в Башне Смерти</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>РђСЂС…РёРІ: РўСѓСЂРЅРёСЂ РІ Р‘Р°С€РЅРµ РЎРјРµСЂС‚Рё</title>
 <script src="http://img.xcombats.com/js/Lite/gameEngine.js" type="text/javascript"></script>
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -59,9 +59,9 @@ h3 {
 </head>
 
 <body bgcolor="#E2E0E0">
-<H3> Башня Смерти. Отчет о турнире. &nbsp; <a href="http://www.xcombats.com/">www.xcombats.com</a></H3>
+<H3> Р‘Р°С€РЅСЏ РЎРјРµСЂС‚Рё. РћС‚С‡РµС‚ Рѕ С‚СѓСЂРЅРёСЂРµ. &nbsp; <a href="http://www.xcombats.com/">www.xcombats.com</a></H3>
 <? if( $notowerlog == false ) { ?>
-Призовой фонд: <b><?=$log['m']?> кр.</b>
+РџСЂРёР·РѕРІРѕР№ С„РѕРЅРґ: <b><?=$log['m']?> РєСЂ.</b>
 <? }
 echo $r; ?>
 </body>

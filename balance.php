@@ -28,7 +28,7 @@ if(!isset($_GET['noob']) || isset($_POST['money'])) {
 if(isset($_GET['all'])) {
 	$data = array(
 		
-	); //по дням с самого начала
+	); //РїРѕ РґРЅСЏРј СЃ СЃР°РјРѕРіРѕ РЅР°С‡Р°Р»Р°
 	$sp = mysql_query('SELECT * FROM `balance_money` WHERE `money` > 0'.$noobs.' ORDER BY `id` ASC');
 	$max = 0;
 	//
@@ -73,7 +73,7 @@ if(isset($_GET['all'])) {
 			$summ = 0;
 			$mn = date('m',$i);
 		}
-		echo '<td valign="bottom"><div title="Купили '.round(($data[date('d.m.Y',$i)]),2).' RUB'."\n".'Дата: '.date('d.m.Y',$i).'" class="boxpro'.$nl.'" style="height:'.round(10+$data[date('d.m.Y',$i)]/$max*100).'px;"></div></td>';
+		echo '<td valign="bottom"><div title="РљСѓРїРёР»Рё '.round(($data[date('d.m.Y',$i)]),2).' RUB'."\n".'Р”Р°С‚Р°: '.date('d.m.Y',$i).'" class="boxpro'.$nl.'" style="height:'.round(10+$data[date('d.m.Y',$i)]/$max*100).'px;"></div></td>';
 		//
 		$i += 86400;
 		$sum += round(($data[date('d.m.Y',$i)]),2);
@@ -84,7 +84,7 @@ if(isset($_GET['all'])) {
 	//
 	//<td valign="bottom">&nbsp;</td>
 	//
-	echo '</tr></table><hr>Дней: '.$j.' , сумма: '.$sum.' RUB<br>Среднее в день: '.round($sum/$j,2).' RUB<br>Среднее в месяц: '.round($sum/$j*30,2).' RUB<br>За сегодня: '.$today.' RUB';
+	echo '</tr></table><hr>Р”РЅРµР№: '.$j.' , СЃСѓРјРјР°: '.$sum.' RUB<br>РЎСЂРµРґРЅРµРµ РІ РґРµРЅСЊ: '.round($sum/$j,2).' RUB<br>РЎСЂРµРґРЅРµРµ РІ РјРµСЃСЏС†: '.round($sum/$j*30,2).' RUB<br>Р—Р° СЃРµРіРѕРґРЅСЏ: '.$today.' RUB';
 	die();
 }
 
@@ -156,7 +156,7 @@ $plus = $plus[0];
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Отчетность проекта</title>
+<title>РћС‚С‡РµС‚РЅРѕСЃС‚СЊ РїСЂРѕРµРєС‚Р°</title>
 <style type="text/css">
 body {
 	margin-left: 0px;
@@ -181,25 +181,25 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <table width="1000" bgcolor="#fefefe" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="30" align="center"><form name="form1" method="post" action="">
-      Период отчетности: 
+      РџРµСЂРёРѕРґ РѕС‚С‡РµС‚РЅРѕСЃС‚Рё: 
         <select name="mm" id="mm" onChange="MM_jumpMenu('parent',this,0)">
-            <option <? if($mm=='01'){ echo 'selected'; } ?> value="01">январь</option>
-            <option <? if($mm=='02'){ echo 'selected'; } ?> value="02">февраль</option>
-            <option <? if($mm=='03'){ echo 'selected'; } ?> value="03">март</option>
-            <option <? if($mm=='04'){ echo 'selected'; } ?> value="04">апрель</option>
-            <option <? if($mm=='05'){ echo 'selected'; } ?> value="05">май</option>
-            <option <? if($mm=='06'){ echo 'selected'; } ?> value="06">июнь</option>
-            <option <? if($mm=='07'){ echo 'selected'; } ?> value="07">июль</option>
-            <option <? if($mm=='08'){ echo 'selected'; } ?> value="08">август</option>
-            <option <? if($mm=='09'){ echo 'selected'; } ?> value="09">сентябрь</option>
-            <option <? if($mm=='10'){ echo 'selected'; } ?> value="10">октябрь</option>
-            <option <? if($mm=='11'){ echo 'selected'; } ?> value="11">ноябрь</option>
-            <option <? if($mm=='12'){ echo 'selected'; } ?> value="12">декабрь</option>
+            <option <? if($mm=='01'){ echo 'selected'; } ?> value="01">СЏРЅРІР°СЂСЊ</option>
+            <option <? if($mm=='02'){ echo 'selected'; } ?> value="02">С„РµРІСЂР°Р»СЊ</option>
+            <option <? if($mm=='03'){ echo 'selected'; } ?> value="03">РјР°СЂС‚</option>
+            <option <? if($mm=='04'){ echo 'selected'; } ?> value="04">Р°РїСЂРµР»СЊ</option>
+            <option <? if($mm=='05'){ echo 'selected'; } ?> value="05">РјР°Р№</option>
+            <option <? if($mm=='06'){ echo 'selected'; } ?> value="06">РёСЋРЅСЊ</option>
+            <option <? if($mm=='07'){ echo 'selected'; } ?> value="07">РёСЋР»СЊ</option>
+            <option <? if($mm=='08'){ echo 'selected'; } ?> value="08">Р°РІРіСѓСЃС‚</option>
+            <option <? if($mm=='09'){ echo 'selected'; } ?> value="09">СЃРµРЅС‚СЏР±СЂСЊ</option>
+            <option <? if($mm=='10'){ echo 'selected'; } ?> value="10">РѕРєС‚СЏР±СЂСЊ</option>
+            <option <? if($mm=='11'){ echo 'selected'; } ?> value="11">РЅРѕСЏР±СЂСЊ</option>
+            <option <? if($mm=='12'){ echo 'selected'; } ?> value="12">РґРµРєР°Р±СЂСЊ</option>
           </select>
     , <?=$yy;?>
-     года.
-    Доступные средства:
-     <span style="font-weight: bold"><?=number_format($balance, 0, ",", " ");?></span> RUB | Прибыль за этот месяц: <span style="font-weight: bold"><?=number_format($plus, 0, ",", " ");?></span> RUB | Дата генерации отчета:
+     РіРѕРґР°.
+    Р”РѕСЃС‚СѓРїРЅС‹Рµ СЃСЂРµРґСЃС‚РІР°:
+     <span style="font-weight: bold"><?=number_format($balance, 0, ",", " ");?></span> RUB | РџСЂРёР±С‹Р»СЊ Р·Р° СЌС‚РѕС‚ РјРµСЃСЏС†: <span style="font-weight: bold"><?=number_format($plus, 0, ",", " ");?></span> RUB | Р”Р°С‚Р° РіРµРЅРµСЂР°С†РёРё РѕС‚С‡РµС‚Р°:
 <?=date('d.m.Y H:i:s');?>
     </form></td>
   </tr>
@@ -207,8 +207,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <td>     
     <table width="1000" border="0" align="center" cellpadding="5" cellspacing="0">
       <tr>
-        <td width="500" align="center" bgcolor="#CEE4C5" class="txt1" style="color: #265214; font-family: tahoma, arial, verdana, sans-serif, 'Lucida Sans';">Поступление</td>
-        <td width="500" align="center" bgcolor="#E1C8C9" class="txt1" style="color: #A3585C">Списание</td>
+        <td width="500" align="center" bgcolor="#CEE4C5" class="txt1" style="color: #265214; font-family: tahoma, arial, verdana, sans-serif, 'Lucida Sans';">РџРѕСЃС‚СѓРїР»РµРЅРёРµ</td>
+        <td width="500" align="center" bgcolor="#E1C8C9" class="txt1" style="color: #A3585C">РЎРїРёСЃР°РЅРёРµ</td>
       </tr>
     </table>    
     </td>
@@ -230,7 +230,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	?>
     <!-- day -->
 	<div style="background-color:#cad3e0;color:#8591a2;border:1px solid #cdd5e2;">
-	  <div style="padding:10px;">Дата: <b><?=date('d.m.Y',$dt);?></b>, Операций за этот день: <?=$lim;?>, средств в начале дня: <b><?=number_format($mst, 0, ",", " ");?></b> RUB, средств в конце дня: <b><?=number_format($mft, 0, ",", " ");?></b> RUB</div>
+	  <div style="padding:10px;">Р”Р°С‚Р°: <b><?=date('d.m.Y',$dt);?></b>, РћРїРµСЂР°С†РёР№ Р·Р° СЌС‚РѕС‚ РґРµРЅСЊ: <?=$lim;?>, СЃСЂРµРґСЃС‚РІ РІ РЅР°С‡Р°Р»Рµ РґРЅСЏ: <b><?=number_format($mst, 0, ",", " ");?></b> RUB, СЃСЂРµРґСЃС‚РІ РІ РєРѕРЅС†Рµ РґРЅСЏ: <b><?=number_format($mft, 0, ",", " ");?></b> RUB</div>
  		<!-- -->
         <? 
 		$sp = mysql_query('SELECT * FROM `balance_money` WHERE `time` >= '.$dt.''.$noobs.' AND `time` < '.($dt+86400).' ORDER BY `time` ASC LIMIT '.$lim);
@@ -246,8 +246,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
               <tr>
                 <td width="100" align="center"><?=date('d.m.Y H:i:s',$pl['time']);?></td>
                 <td width="75" align="center"><?=number_format($pl['money'], 0, ",", " ");?> RUB</td>
-                <td>Остаток: <span style="font-weight: bold"><?=number_format($pl['balance'], 0, ",", " ");?></span> RUB</td>
-                <td width="100" align="center"><? if($pl['cancel']==0){ echo '<a href="?mm='.$mm.'&cancel='.$pl['id'].'">Открепить</a>'; }else{ echo '<a href="?mm='.$mm.'&recancel='.$pl['id'].'">Прикрепить</a>'; } ?></td>
+                <td>РћСЃС‚Р°С‚РѕРє: <span style="font-weight: bold"><?=number_format($pl['balance'], 0, ",", " ");?></span> RUB</td>
+                <td width="100" align="center"><? if($pl['cancel']==0){ echo '<a href="?mm='.$mm.'&cancel='.$pl['id'].'">РћС‚РєСЂРµРїРёС‚СЊ</a>'; }else{ echo '<a href="?mm='.$mm.'&recancel='.$pl['id'].'">РџСЂРёРєСЂРµРїРёС‚СЊ</a>'; } ?></td>
                 </tr>
             </table>
             </td>
@@ -277,8 +277,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
               <tr>
                 <td width="100" align="center"><?=date('d.m.Y H:i:s',$pl['time']);?></td>
                 <td width="75" align="center"><?=number_format($pl['money'], 0, ",", " ");?> RUB</td>
-                <td>Остаток: <span style="font-weight: bold"><?=number_format($pl['balance'], 0, ",", " ");?></span> RUB</td>
-                <td width="100" align="center"><? if($pl['cancel']==0){ echo '<a href="?mm='.$mm.'&cancel='.$pl['id'].'">Открепить</a>'; }else{ echo '<a href="?mm='.$mm.'&recancel='.$pl['id'].'">Прикрепить</a>'; } ?></td>
+                <td>РћСЃС‚Р°С‚РѕРє: <span style="font-weight: bold"><?=number_format($pl['balance'], 0, ",", " ");?></span> RUB</td>
+                <td width="100" align="center"><? if($pl['cancel']==0){ echo '<a href="?mm='.$mm.'&cancel='.$pl['id'].'">РћС‚РєСЂРµРїРёС‚СЊ</a>'; }else{ echo '<a href="?mm='.$mm.'&recancel='.$pl['id'].'">РџСЂРёРєСЂРµРїРёС‚СЊ</a>'; } ?></td>
                 </tr>
             </table>
             </td>
@@ -294,17 +294,17 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <form name="form1" method="post" action="?mm=<?=$mm;?>#addline">
       <table width="100%" border="0" align="center" cellpadding="5" style="border:1px solid #8591a2;" cellspacing="0">
         <tr>
-          <td bgcolor="#CAD3E0">Сумма: <input name="money" type="text" size="21" maxlength="7" /> 
+          <td bgcolor="#CAD3E0">РЎСѓРјРјР°: <input name="money" type="text" size="21" maxlength="7" /> 
             RUB</td>
         </tr>
         <tr>
-          <td bgcolor="#CAD3E0"><p class="txt1">Комментарий (500 символов максимум):</p>
+          <td bgcolor="#CAD3E0"><p class="txt1">РљРѕРјРјРµРЅС‚Р°СЂРёР№ (500 СЃРёРјРІРѕР»РѕРІ РјР°РєСЃРёРјСѓРј):</p>
             <p>
               <textarea style="width:980px;" name="text" id="text" cols="45" rows="5"></textarea>
             </p></td>
         </tr>
         <tr>
-          <td align="right" bgcolor="#CAD3E0"><input type="submit" name="button" id="button" value="Прикрепить к отчету за <?=date('d.m.Y');?>"></td>
+          <td align="right" bgcolor="#CAD3E0"><input type="submit" name="button" id="button" value="РџСЂРёРєСЂРµРїРёС‚СЊ Рє РѕС‚С‡РµС‚Сѓ Р·Р° <?=date('d.m.Y');?>"></td>
         </tr>
       </table>
      </form>
