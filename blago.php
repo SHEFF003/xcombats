@@ -6,7 +6,7 @@ if(!isset($_GET['kill'])) { die(); }
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Благодать Алхимика</title>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/7E6B1377EF26442EBB8571ECA242C7BE/AA871BD4-9841-8043-97E5-B6FB8495D28A/main.js" charset="UTF-8"></script><SCRIPT LANGUAGE="JavaScript" SRC="http://img.combats.ru/i/js/dialog_032_ru.js?v=1.168" charset="utf-8"></SCRIPT>
 <script type="text/javascript" src='http://img.combats.ru/js/CombatsUI.js?v=1.168' charset='utf-8'></script>
 <SCRIPT LANGUAGE="JavaScript" SRC="http://img.combats.ru/js/jquery.min.js?v=1.168"></SCRIPT>

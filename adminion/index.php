@@ -1,4 +1,4 @@
-<?
+<?php
 
 die();
 
@@ -43,7 +43,7 @@ if(!isset($_GET['ajax'])) {
 ?><!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-81251" />
 <meta http-equiv=Cache-Control Content=no-cache>
 <meta http-equiv=PRAGMA content=NO-CACHE>
 <meta http-equiv=Expires Content=0>

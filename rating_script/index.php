@@ -40,7 +40,7 @@ function  microLogin($id,$t,$nnz = 1) {
 <HTML><HEAD><TITLE>Бойцовский клуб</TITLE>
 <META content=INDEX,FOLLOW name=robots>
 <META content="1 days" name=revisit-after>
-<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META http-equiv=Pragma content=no-cache>
 <META http-equiv=Cache-control content=private>
 <META http-equiv=Expires content=0>

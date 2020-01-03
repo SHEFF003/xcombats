@@ -36,7 +36,7 @@ elseif($_GET['get']=='10'  && $is_eff[0]>0){
 ?>
 <HTML><HEAD>
     <link rel=stylesheet type="text/css" href="http://img.xcombats.com/i/main.css">
-    <meta content="text/html; charset=windows-1251" http-equiv=Content-type>
+    <meta content="text/html; charset=utf-8" http-equiv=Content-type>
     <META Http-Equiv=Cache-Control Content=no-cache>
     <meta http-equiv=PRAGMA content=NO-CACHE>
     <META Http-Equiv=Expires Content=0>

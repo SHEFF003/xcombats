@@ -292,7 +292,7 @@ function getImg($id, $num) {
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="http://img.xcombats.com/css/main.css" />
-<meta content="text/html; charset=windows-1251" http-equiv="Content-type" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-type" />
 <meta http-equiv="Cache-Control" content="no-cache, max-age=0, must-revalidate, no-store" />
 <meta http-equiv="PRAGMA" content="NO-CACHE" />
 <meta http-equiv="Expires" content="0" />

@@ -255,7 +255,7 @@ if( isset($_POST['ajax_reg']) ) {
 	{
 		 global $c;
 		 die('<html><head>
-		 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		 <meta http-equiv="Content-Language" content="ru"><TITLE>Произошла ошибка</TITLE></HEAD>
 		 <BODY text="#FFFFFF"><p><font color=black>
 		 Произошла ошибка: <pre>'.$e.'</pre><b><p><a onClick="window.history.go(-1); return false;" href="#">Назад</b></a><HR>

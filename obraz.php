@@ -123,7 +123,7 @@ if( !isset($rz[$rt[$itm['type']]][1])) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Старый Бойцовский клуб | Библиотека <? if(isset($itm['id'])) { ?>| <?=$rz[$rt[$itm['type']]][1]?> | <?=$itm['name']?><? } ?></title>
 <link href="/main1.css" rel="stylesheet" type="text/css">
 <style type="text/css">

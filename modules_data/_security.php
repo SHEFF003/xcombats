@@ -7,7 +7,7 @@ if(!defined('GAME'))
 <HTML>
 <HEAD>
 <link rel=stylesheet type="text/css" href="../i/main.css">
-<meta content="text/html; charset=windows-1251" http-equiv=Content-type>
+<meta content="text/html; charset=utf-8" http-equiv=Content-type>
 </HEAD>
 <body bgcolor=e2e0e0>
 <FORM ACTION="main.php?act_sec" METHOD=POST>

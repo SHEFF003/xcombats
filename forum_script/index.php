@@ -1,4 +1,4 @@
-<?
+<?php
 
 define('GAME',true);
 include('../_incl_data/__config.php');
@@ -140,7 +140,7 @@ $dost = array(0=>'всем пользователям',1=>'только чтен
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><? echo $c['title']; ?></title>
 <script type="text/javascript" src="http://<?=$c['host']?>/js/jquery.js"></script>
 <script type="text/javascript" src="http://<?=$c['host']?>/js/jquery.zclip.js"></script>

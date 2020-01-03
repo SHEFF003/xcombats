@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('_incl_data/__config.php');
 $c['inf'] = true;
 define('GAME',true);
@@ -85,7 +85,7 @@ if(!isset($inf['id']))
 if(!isset($inf['id']))
 {
 	die('<html><head>
-	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="Content-Language" content="ru">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 	<TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>
@@ -337,7 +337,7 @@ if(isset($_GET['short']))
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <title>Информация о <? echo $inf['login']; ?></title>
 <script type="text/javascript" src="js/jquery.js"></script>

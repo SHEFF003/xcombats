@@ -95,7 +95,7 @@ if( $pl['uid'] == 1000000 ) {
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Архив: Поединки</title>
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 </head>

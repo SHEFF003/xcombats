@@ -200,7 +200,7 @@ if( !isset($rz[$rt[$itm['type']]][1])) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Старый Бойцовский Клуб | Библиотека
 <? if(isset($itm['id'])) { ?>
 |

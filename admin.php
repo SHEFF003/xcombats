@@ -190,7 +190,7 @@ if( $u->info['admin'] > 0 ) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <title>Редактор обмундирования персонажей</title>

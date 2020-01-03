@@ -125,7 +125,7 @@ $rname = array(
 <html dir="ltr" lang="ru-RU">
 <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width" />
 <title>Новости &mdash; Старый Бойцовский Клуб</title>
 <link rel="stylesheet" type="text/css" media="all" href="/news_script/style.css" />

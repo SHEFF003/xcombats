@@ -415,7 +415,7 @@ $reg_id = str_replace('.','',$reg_id);
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Регистрация в мире &laquo;Бойцовского Клуба&raquo;</title>
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/psi.js"></script>

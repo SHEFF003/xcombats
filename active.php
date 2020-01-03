@@ -16,7 +16,7 @@ function error($e)
 {
 	 global $c;
 	 die('<html><head>
-	 <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	 <meta http-equiv="Content-Language" content="ru"><TITLE>Активация игрового аккаунта</TITLE></HEAD>
 	 <BODY text="#FFFFFF"><p><font color=black>
 	 Произошло событие: <pre>'.$e.'</pre><b><p><a href="http://xcombats.com/">Назад</b></a><HR>

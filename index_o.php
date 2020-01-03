@@ -48,7 +48,7 @@ if(isset($_GET['exit'])) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Старый Бойцовский Клуб - Бесплатная, современная браузерная онлайн игра</title>
 <meta property="og:image" content="http://www.xcombats.com/inx/image1.jpg"/>
 <meta name="keywords" content="бойцовский клуб игра, бойцовский клуб играть, игра бойцовский клуб, старый бойцовский Клуб, бойцовский клуб онлайн игра, бойцовский клуб браузерная игра, играть в бойцовский клуб, игра бк, бк игра, старый бк, играть в бк, бк онлайн игра, новый бк, легендарный бойцовский клуб, легендарный бк, combats, комбатс, combats ru, combats com, OldBK, oldbk ru, oldbk com, олдбк, old bk, олд бк, mycombats, rebk, recombats, oldcombats, obk2">

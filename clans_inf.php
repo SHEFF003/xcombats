@@ -26,7 +26,7 @@ if(!isset($_GET['allclans'])) {
 	}	
 	if(!isset($clan['id']))	{
 		die('<html><head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="Content-Language" content="ru">
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 		<TITLE>Произошла ошибка</TITLE></HEAD><BODY text="#FFFFFF"><p><font color=black>
@@ -46,7 +46,7 @@ if(!isset($_GET['allclans'])) {
 <HEAD>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <title>Таблица кланового опыта</title>
-<meta content="text/html; charset=windows-1251" http-equiv=Content-type>
+<meta content="text/html; charset=utf-8" http-equiv=Content-type>
 <link href="http://img.xcombats.com/i/move/design3.css" rel="stylesheet" type="text/css">
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -133,7 +133,7 @@ while($pl = mysql_fetch_array($sp)) {
 <HEAD>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <title>Информация о клане <?=$clan['name']?></title>
-<meta content="text/html; charset=windows-1251" http-equiv=Content-type>
+<meta content="text/html; charset=utf-8" http-equiv=Content-type>
 <link href="http://img.xcombats.com/i/move/design3.css" rel="stylesheet" type="text/css">
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>

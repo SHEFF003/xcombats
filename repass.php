@@ -141,7 +141,7 @@ define('IP',GetRealIp());
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Восстановление пароля от персонажа</title>
 <meta name="keywords" content="игра, играть, игрушки, онлайн,online, интернет, internet, RPG, fantasy, фэнтези, меч, топор, магия, кулак, удар, блок, атака, защита, Бойцовский Клуб, бой, битва, отдых, обучение, развлечение, виртуальная реальность, рыцарь, маг, знакомства, чат, лучший, форум, свет, тьма, bk, games, клан, банк, магазин, клан, БК, combats, Бойцовский клуб, История, Предметы БК, БК 2003, Броня Печали, Ветераны, Старый клуб, Старый БК, Старый Бойцовский Клуб, Ностальгия, antibk, antikombatz, online, online rpg, rpg">
 <meta name="description" content="Новая бесплатная многопользовательская MMORPG онлайн игра «Старый Бойцовский Клуб - БК II». Стань участником легендарного Бойцовского Клуба!"/>

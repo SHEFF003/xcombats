@@ -639,7 +639,7 @@ if(!isset($backdoor)) {
   <title>Покупка ЕвроКредитов - Старый Бойцовский Клуб</title>
   <!--<link rel=stylesheet type="text/css" href="/i/main.css">-->
   <script type="text/javascript" src="http://xcombats.com/res/js/jquery-1.7.1.min.js"></script>
-  <meta content="text/html; charset=windows-1251" http-equiv=Content-Type>
+  <meta content="text/html; charset=utf-8" http-equiv=Content-Type>
  <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
   <META Http-Equiv=Cache-Control Content=no-cache>
   <meta http-equiv=PRAGMA content=NO-CACHE>

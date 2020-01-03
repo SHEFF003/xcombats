@@ -682,7 +682,7 @@ if(isset($btl['id']) && $btl['team_win'] != -1 && isset($_GET['analiz'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Архив: Поединки</title>
 <script src="http://img.xcombats.com/js/Lite/gameEngine.js" type="text/javascript"></script>
 <link href="http://img.xcombats.com/css/main.css" rel="stylesheet" type="text/css">
