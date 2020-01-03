@@ -13,21 +13,21 @@ if($e['bm_a1']=='wpchr31' && $end > 0)
 		$e['imposed_name'] = str_replace('&nbsp;',' ',$e['imposed_name']);
 		//	
 		$pvr['test'] = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$uid2.'" AND `delete` = 0 AND `name` = "'.$e['imposed_name'].'" LIMIT 1'));
-		//Чары оцепенения 1%
+		//Р§Р°СЂС‹ РѕС†РµРїРµРЅРµРЅРёСЏ 1%
 		if( !isset($pvr['test']['id']) ) {
 			//
 			mysql_query("
 			INSERT INTO `eff_users` ( `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `timeAce`, `user_use`, `delete`, `v1`, `v2`, `img2`, `x`, `hod`, `bj`, `sleeptime`, `no_Ace`, `file_finish`, `tr_life_user`, `deactiveTime`, `deactiveLast`, `mark`, `bs`) VALUES
-			( 22, '".$uid2."', 'Чары оцепенения 1', 'add_s3=-30', 0, 77, 0, '".$uid1."', 0, 'priem', 316, 'enhp_3_coinst1.gif', 1, 5, 'чарыоцепенения1', 0, 0, '', 0, 0, 0, 1, 0);
+			( 22, '".$uid2."', 'Р§Р°СЂС‹ РѕС†РµРїРµРЅРµРЅРёСЏ 1', 'add_s3=-30', 0, 77, 0, '".$uid1."', 0, 'priem', 316, 'enhp_3_coinst1.gif', 1, 5, 'С‡Р°СЂС‹РѕС†РµРїРµРЅРµРЅРёСЏ1', 0, 0, '', 0, 0, 0, 1, 0);
 			");
 			//
 			$vLog = 'time1='.time().'||s1='.$this->users[$this->uids[$uid1]]['sex'].'||t1='.$this->users[$this->uids[$uid1]]['team'].'||login1='.$this->users[$this->uids[$uid1]]['login'].'||s2='.$this->users[$this->uids[$uid2]]['sex'].'||t2='.$this->users[$this->uids[$uid2]]['team'].'||login2='.$this->users[$this->uids[$uid2]]['login'].'';
 			$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>($this->hodID),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
 			$sax = '';
 			if( $this->users[$this->uids[$uid2]]['sex'] == 1 ) {
-				$sax = 'а';
+				$sax = 'Р°';
 			}
-			$mas1['text'] = '{tm1} {u2} получил'.$sax.' магическое ослабление &quot;<b>'.$e['imposed_name'].'</b>&quot;. (Интуиция: -30 на 5 ходов)';	
+			$mas1['text'] = '{tm1} {u2} РїРѕР»СѓС‡РёР»'.$sax.' РјР°РіРёС‡РµСЃРєРѕРµ РѕСЃР»Р°Р±Р»РµРЅРёРµ &quot;<b>'.$e['imposed_name'].'</b>&quot;. (РРЅС‚СѓРёС†РёСЏ: -30 РЅР° 5 С…РѕРґРѕРІ)';	
 			$this->add_log($mas1);
 		}
 	}

@@ -7,7 +7,7 @@ if(!defined('GAME'))
 if($u->room['file']=='ab/legion')
 {
 
-$dun = 13; //для новичков 2-7 лвл
+$dun = 13; //РґР»СЏ РЅРѕРІРёС‡РєРѕРІ 2-7 Р»РІР»
 
 $er = '';
 
@@ -33,24 +33,24 @@ if(isset($g11['id']))
 	$g111 = 0;
 	if(isset($_GET['start']))
 	{
-		$re = 'Поход в пещеры разрешен один раз в два часа. Осталось еще: '.$u->timeOut(7200-time()+$g11['time']);
+		$re = 'РџРѕС…РѕРґ РІ РїРµС‰РµСЂС‹ СЂР°Р·СЂРµС€РµРЅ РѕРґРёРЅ СЂР°Р· РІ РґРІР° С‡Р°СЃР°. РћСЃС‚Р°Р»РѕСЃСЊ РµС‰Рµ: '.$u->timeOut(7200-time()+$g11['time']);
 	}
 }
 if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $g111 == 1)
 {	
-	//начинаем поход
-	//начинаем поход
+	//РЅР°С‡РёРЅР°РµРј РїРѕС…РѕРґ
+	//РЅР°С‡РёРЅР°РµРј РїРѕС…РѕРґ
 	$ig = 1;
 	if($ig>0)
 	{
-		//перемещаем игроков в пещеру
+		//РїРµСЂРµРјРµС‰Р°РµРј РёРіСЂРѕРєРѕРІ РІ РїРµС‰РµСЂСѓ
 		//$u->addAction(time(),'psh13','');
 		$ins = mysql_query('INSERT INTO `dungeon_now` (`city`,`uid`,`id2`,`name`,`time_start`)
-		VALUES ("'.$zv['city'].'","'.$zv['uid'].'","'.$dun.'","Бездна","'.time().'")');
+		VALUES ("'.$zv['city'].'","'.$zv['uid'].'","'.$dun.'","Р‘РµР·РґРЅР°","'.time().'")');
 		if($ins)
 		{
 			$zid = mysql_insert_id();
-			//обновляем пользователей
+			//РѕР±РЅРѕРІР»СЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 			$su = mysql_query('SELECT `u`.`id`,`st`.`dn` FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`dn`="'.$zv['id'].'" LIMIT '.($zv['team_max']+1).'');
 			$ids = '';
 			while($pu = mysql_fetch_array($su))
@@ -63,8 +63,8 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $g111 == 1)
 			if($upd1)
 			{
 				$upd2 = mysql_query('UPDATE `users` SET `room` = "315" WHERE '.$ids.' LIMIT '.($zv['team_max']+1).'');
-				//Добавляем ботов и обьекты в пещеру $zid с for_dn = $dun
-				//Добавляем ботов
+				//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ Рё РѕР±СЊРµРєС‚С‹ РІ РїРµС‰РµСЂСѓ $zid СЃ for_dn = $dun
+				//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ
 				$vls = '';
 				$sp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `for_dn` = "'.$dun.'"');
 				while($pl = mysql_fetch_array($sp))
@@ -73,7 +73,7 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $g111 == 1)
 				}
 				$vls = rtrim($vls,',');				
 				$ins1 = mysql_query('INSERT INTO `dungeon_bots` (`dn`,`id_bot`,`colvo`,`items`,`x`,`y`,`dialog`,`atack`) VALUES '.$vls.'');
-				//Добавляем обьекты
+				//Р”РѕР±Р°РІР»СЏРµРј РѕР±СЊРµРєС‚С‹
 				$vls = '';
 				$sp = mysql_query('SELECT * FROM `dungeon_obj` WHERE `for_dn` = "'.$dun.'"');
 				while($pl = mysql_fetch_array($sp))
@@ -92,13 +92,13 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $g111 == 1)
 					mysql_query('UPDATE `dungeon_zv` SET `delete` = "'.time().'" WHERE `id` = "'.$zv['id'].'" LIMIT 1');
 					die('<script>location="main.php?rnd='.$code.'";</script>');
 				}else{
-					$re = 'Ошибка перехода в подземелье...';
+					$re = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 				}
 			}else{
-				$re = 'Ошибка перехода в подземелье...';
+				$re = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 			}
 		}else{
-			$re = 'Ошибка перехода в подземелье...';
+			$re = 'РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° РІ РїРѕРґР·РµРјРµР»СЊРµ...';
 		}
 	}
 }elseif(isset($_POST['go'],$_POST['goid']) && $g111==1)
@@ -116,30 +116,30 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $g111 == 1)
 					$upd = mysql_query('UPDATE `stats` SET `dn` = "'.$zv['id'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					if(!$upd)
 					{
-						$re = 'Не удалось вступить в эту группу';
+						$re = 'РќРµ СѓРґР°Р»РѕСЃСЊ РІСЃС‚СѓРїРёС‚СЊ РІ СЌС‚Сѓ РіСЂСѓРїРїСѓ';
 						unset($zv);
 					}else{
 						$u->info['dn'] = $zv['id'];
 					}
 				}else{
-					$re = 'В группе нет места';
+					$re = 'Р’ РіСЂСѓРїРїРµ РЅРµС‚ РјРµСЃС‚Р°';
 					unset($zv);
 				}
 			}else{
-				$re = 'Вы не подходите по уровню';
+				$re = 'Р’С‹ РЅРµ РїРѕРґС…РѕРґРёС‚Рµ РїРѕ СѓСЂРѕРІРЅСЋ';
 				unset($zv);
 			}
 		}else{
-			$re = 'Заявка не найдена';
+			$re = 'Р—Р°СЏРІРєР° РЅРµ РЅР°Р№РґРµРЅР°';
 		}
 	}else{
-		$re = 'Вы уже находитесь в группе';
+		$re = 'Р’С‹ СѓР¶Рµ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ РіСЂСѓРїРїРµ';
 	}
 }elseif(isset($_POST['leave']) && isset($zv['id']) && $g111 == 1)
 {
 	if($zv['uid']==$u->info['id'])
 	{
-		//ставим в группу нового руководителя
+		//СЃС‚Р°РІРёРј РІ РіСЂСѓРїРїСѓ РЅРѕРІРѕРіРѕ СЂСѓРєРѕРІРѕРґРёС‚РµР»СЏ
 		$ld = mysql_fetch_array(mysql_query('SELECT `id` FROM `stats` WHERE `dn` = "'.$zv['id'].'" AND `id` != "'.$u->info['id'].'" LIMIT 1'));
 		if(isset($ld['id']))
 		{
@@ -149,14 +149,14 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $g111 == 1)
 			$u->info['dn'] = 0;
 			unset($zv);
 		}else{
-			//удаляем группу целиком
+			//СѓРґР°Р»СЏРµРј РіСЂСѓРїРїСѓ С†РµР»РёРєРѕРј
 			mysql_query('UPDATE `dungeon_zv` SET `delete` = "'.time().'" WHERE `id` = "'.$zv['id'].'" LIMIT 1');
 			mysql_query('UPDATE `stats` SET `dn` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			$u->info['dn'] = 0;
 			unset($zv);
 		}
 	}else{
-		//просто выходим с группы
+		//РїСЂРѕСЃС‚Рѕ РІС‹С…РѕРґРёРј СЃ РіСЂСѓРїРїС‹
 		mysql_query('UPDATE `stats` SET `dn` = "0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 		$u->info['dn'] = 0;
 		unset($zv);
@@ -179,7 +179,7 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $g111 == 1)
 			$tmx = 5;
 		}
 		
-		//только своего уровня
+		//С‚РѕР»СЊРєРѕ СЃРІРѕРµРіРѕ СѓСЂРѕРІРЅСЏ
 		$lmn = $u->info['level'];
 		
 		$ins = mysql_query('INSERT INTO `dungeon_zv`
@@ -196,16 +196,16 @@ if(isset($_GET['start']) && $zv['uid']==$u->info['id'] && $g111 == 1)
 			$zv['id'] = $u->info['dn'];
 			$zv['uid'] = $u->info['id'];
 			mysql_query('UPDATE `stats` SET `dn` = "'.$u->info['dn'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-			$re = 'Вы успешно создали группу';
+			$re = 'Р’С‹ СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°Р»Рё РіСЂСѓРїРїСѓ';
 		}else{
-			$re = 'Не удалось создать группу';
+			$re = 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РіСЂСѓРїРїСѓ';
 		}
 	}else{
-		$re = 'Вы уже находитесь в группе';
+		$re = 'Р’С‹ СѓР¶Рµ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ РіСЂСѓРїРїРµ';
 	}
 }
 
-//Генерируем список групп
+//Р“РµРЅРµСЂРёСЂСѓРµРј СЃРїРёСЃРѕРє РіСЂСѓРїРї
 $sp = mysql_query('SELECT * FROM `dungeon_zv` WHERE `city` = "'.$u->info['city'].'" AND `delete` = "0" AND `time` > "'.(time()-60*60*2).'"');
 while($pl = mysql_fetch_array($sp))
 {
@@ -216,11 +216,11 @@ while($pl = mysql_fetch_array($sp))
 	}
 	$dzs .= '<span class="date">'.date('H:i',$pl['time']).'</span> ';
 	
-	$pus = ''; //группа
+	$pus = ''; //РіСЂСѓРїРїР°
 	$su = mysql_query('SELECT `u`.`id`,`u`.`login`,`u`.`level`,`u`.`align`,`u`.`clan`,`st`.`dn`,`u`.`city`,`u`.`room` FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`dn`="'.$pl['id'].'" LIMIT '.($pl['team_max']+1).'');
 	while($pu = mysql_fetch_array($su))
 	{
-		$pus .= '<b>'.$pu['login'].'</b> ['.$pu['level'].']<a href="info/'.$pu['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="Инф. о '.$pu['login'].'"></a>';
+		$pus .= '<b>'.$pu['login'].'</b> ['.$pu['level'].']<a href="info/'.$pu['id'].'" target="_blank"><img src="http://img.xcombats.com/i/inf_capitalcity.gif" title="РРЅС„. Рѕ '.$pu['login'].'"></a>';
 		$pus .= ', ';
 	}
 	$pus = trim($pus,', ');
@@ -232,7 +232,7 @@ while($pl = mysql_fetch_array($sp))
 		$dl = '';
 		if(($moder['boi']==1 || $u->info['admin']>0) && $pl['dcom']==0)
 		{
-			$dl .= ' (<a href="?delcom='.$pl['id'].'&key='.$u->info['nextAct'].'&rnd='.$code.'">удалить комментарий</a>)';
+			$dl .= ' (<a href="?delcom='.$pl['id'].'&key='.$u->info['nextAct'].'&rnd='.$code.'">СѓРґР°Р»РёС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№</a>)';
 			if(isset($_GET['delcom']) && $_GET['delcom']==$pl['id'] && $u->newAct($_GET['key'])==true)
 			{
 				mysql_query('UPDATE `dungeon_zv` SET `dcom` = "'.$u->info['id'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
@@ -244,7 +244,7 @@ while($pl = mysql_fetch_array($sp))
 		
 		if($pl['dcom']>0)
 		{
-			$dl = ' <font color="grey"><i>комментарий удален модератором</i></font>';
+			$dl = ' <font color="grey"><i>РєРѕРјРјРµРЅС‚Р°СЂРёР№ СѓРґР°Р»РµРЅ РјРѕРґРµСЂР°С‚РѕСЂРѕРј</i></font>';
 		}	
 		
 		if($pl['dcom']>0)
@@ -290,7 +290,7 @@ body
                         <td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
                             <tr>
                               <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-                              <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.267&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.267',1); ?>">Вход в подземелье</a></td>
+                              <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.267&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.267',1); ?>">Р’С…РѕРґ РІ РїРѕРґР·РµРјРµР»СЊРµ</a></td>
                             </tr>
                         </table></td>
                       </tr>
@@ -308,7 +308,7 @@ if($re!='')
 	echo '<font color="red"><b>'.$re.'</b></font><br>';
 }
 
-//отображаем
+//РѕС‚РѕР±СЂР°Р¶Р°РµРј
 if($dzs=='')
 {
 	$dzs = '';
@@ -317,7 +317,7 @@ if($dzs=='')
 	{
 		if($g111==1)
 		{
-			$pr = '<input name="go" type="submit" value="Вступить в группу">';
+			$pr = '<input name="go" type="submit" value="Р’СЃС‚СѓРїРёС‚СЊ РІ РіСЂСѓРїРїСѓ">';
 		}
 		$dzs = '<form action="main.php?rnd='.$code.'" method="post">'.$pr.'<br>'.$dzs.''.$pr.'</form>';
 	}
@@ -335,14 +335,14 @@ if($u->info['dn']==0)
     <td valign="top">
     <form id="from" name="from" action="main.php?pz1=<? echo $code; ?>" method="post">
       <fieldset style='padding-left: 5; width=50%'>
-      <legend><b> Группа </b> </legend>
-        Комментарий
+      <legend><b> Р“СЂСѓРїРїР° </b> </legend>
+        РљРѕРјРјРµРЅС‚Р°СЂРёР№
         <input type="text" name="text" maxlength="40" size="40" />
       <br />
-        Пароль
+        РџР°СЂРѕР»СЊ
   <input type="password" name="pass" maxlength="25" size="25" />
   <br />
-  <input type="submit" name="add" value="Создать группу" />
+  <input type="submit" name="add" value="РЎРѕР·РґР°С‚СЊ РіСЂСѓРїРїСѓ" />
   &nbsp;<br />
       </fieldset>
     </form>
@@ -356,14 +356,14 @@ if($u->info['dn']==0)
 	{
 		if($zv['uid']==$u->info['id'])
 		{
-			$psh_start = '<INPUT type=\'button\' name=\'start\' value=\'Начать\' onClick="top.frames[\'main\'].location = \'main.php?start=1&rnd='.$code.'\'"> &nbsp;';
+			$psh_start = '<INPUT type=\'button\' name=\'start\' value=\'РќР°С‡Р°С‚СЊ\' onClick="top.frames[\'main\'].location = \'main.php?start=1&rnd='.$code.'\'"> &nbsp;';
 		}
 		  
 		echo '<br><FORM id="REQUEST" method="post" style="width:210px;" action="main.php?rnd='.$code.'">
 		<FIELDSET style=\'padding-left: 5; width=50%\'>
-		<LEGEND><B> Группа </B> </LEGEND>
+		<LEGEND><B> Р“СЂСѓРїРїР° </B> </LEGEND>
 		'.$psh_start.'
-		<INPUT type=\'submit\' name=\'leave\' value=\'Покинуть группу\'> 
+		<INPUT type=\'submit\' name=\'leave\' value=\'РџРѕРєРёРЅСѓС‚СЊ РіСЂСѓРїРїСѓ\'> 
 		</FIELDSET>
 		</FORM>';
 	}
@@ -372,7 +372,7 @@ if($u->info['dn']==0)
 
 <?
 }else{
-	echo 'Поход в пещеры разрешен один раз в два часа. Осталось еще: '.$u->timeOut(7200-time()+$g11['time']).'<br><small style="color:grey">Но Вы всегда можете приобрести ключ от прохода у любого &quot;копателя пещер&quot; в Торговом зале ;)</small>';
+	echo 'РџРѕС…РѕРґ РІ РїРµС‰РµСЂС‹ СЂР°Р·СЂРµС€РµРЅ РѕРґРёРЅ СЂР°Р· РІ РґРІР° С‡Р°СЃР°. РћСЃС‚Р°Р»РѕСЃСЊ РµС‰Рµ: '.$u->timeOut(7200-time()+$g11['time']).'<br><small style="color:grey">РќРѕ Р’С‹ РІСЃРµРіРґР° РјРѕР¶РµС‚Рµ РїСЂРёРѕР±СЂРµСЃС‚Рё РєР»СЋС‡ РѕС‚ РїСЂРѕС…РѕРґР° Сѓ Р»СЋР±РѕРіРѕ &quot;РєРѕРїР°С‚РµР»СЏ РїРµС‰РµСЂ&quot; РІ РўРѕСЂРіРѕРІРѕРј Р·Р°Р»Рµ ;)</small>';
 }
 }
 

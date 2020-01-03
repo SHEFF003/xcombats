@@ -5,7 +5,7 @@ if(!defined('GAME'))
 }
 
 /*
-- доделать добавление приема в $btl->users[]['eff'] после использования, в противном случаи некотрые приемы используются через 1 ход
+- РґРѕРґРµР»Р°С‚СЊ РґРѕР±Р°РІР»РµРЅРёРµ РїСЂРёРµРјР° РІ $btl->users[]['eff'] РїРѕСЃР»Рµ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ, РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рё РЅРµРєРѕС‚СЂС‹Рµ РїСЂРёРµРјС‹ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ С‡РµСЂРµР· 1 С…РѕРґ
 */
 
 class priems
@@ -26,13 +26,13 @@ class priems
 		}	
 	}
 
-	//отнимаем ману
+	//РѕС‚РЅРёРјР°РµРј РјР°РЅСѓ
 	public function minMana($uid,$mp,$tp)
 	{
 		global $u,$btl;
 		$r = true;
-		/* уменьшаем расход маны, если $mp > 0 */
-		//с вычетом уменьшения разсхода маныss
+		/* СѓРјРµРЅСЊС€Р°РµРј СЂР°СЃС…РѕРґ РјР°РЅС‹, РµСЃР»Рё $mp > 0 */
+		//СЃ РІС‹С‡РµС‚РѕРј СѓРјРµРЅСЊС€РµРЅРёСЏ СЂР°Р·СЃС…РѕРґР° РјР°РЅС‹ss
 		$mp -= round($mp/100*$btl->stats[$btl->uids[$uid]]['min_use_mp']);
 		$btl->stats[$btl->uids[$uid]]['mpNow'] -= $mp;
 		if($btl->stats[$btl->uids[$uid]]['mpNow']<0)
@@ -48,7 +48,7 @@ class priems
 		return $r;
 	}
 	
-	//используем прием каждый ход	
+	//РёСЃРїРѕР»СЊР·СѓРµРј РїСЂРёРµРј РєР°Р¶РґС‹Р№ С…РѕРґ	
 	public function hodUsePriem($eff,$pr)
 	{
 		global $u,$btl,$c,$code;
@@ -72,7 +72,7 @@ class priems
 			}
 			if(!isset($cup))
 			{
-				//отнимаем тактики от приема
+				//РѕС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё РѕС‚ РїСЂРёРµРјР°
 				//$this->mintr($pl);
 			}
 		}elseif($pr['file3']!='0')
@@ -84,11 +84,11 @@ class priems
 			}
 			if(!isset($cup))
 			{
-				//отнимаем тактики от приема
+				//РѕС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё РѕС‚ РїСЂРёРµРјР°
 				//$this->mintr($pl);
 			}
 		}else{
-			//какие-то другие эффекты
+			//РєР°РєРёРµ-С‚Рѕ РґСЂСѓРіРёРµ СЌС„С„РµРєС‚С‹
 			
 		}
 		return $return_main;
@@ -116,14 +116,14 @@ class priems
 		return $pl;
 	}
 	
-	/* uid - на кого кастуем
-	   pr - id приема
-	   data - дата, если -1, то добавляем дату3
-	   d2 - добавляем дату3
-	   tm - время использования, 77 - вечно
-	   h - кол-во "вечных" ходов
-	   uu - id юзера который использовал
-	   tp - тип приема
+	/* uid - РЅР° РєРѕРіРѕ РєР°СЃС‚СѓРµРј
+	   pr - id РїСЂРёРµРјР°
+	   data - РґР°С‚Р°, РµСЃР»Рё -1, С‚Рѕ РґРѕР±Р°РІР»СЏРµРј РґР°С‚Сѓ3
+	   d2 - РґРѕР±Р°РІР»СЏРµРј РґР°С‚Сѓ3
+	   tm - РІСЂРµРјСЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ, 77 - РІРµС‡РЅРѕ
+	   h - РєРѕР»-РІРѕ "РІРµС‡РЅС‹С…" С…РѕРґРѕРІ
+	   uu - id СЋР·РµСЂР° РєРѕС‚РѕСЂС‹Р№ РёСЃРїРѕР»СЊР·РѕРІР°Р»
+	   tp - С‚РёРї РїСЂРёРµРјР°
 	*/
 	public function addPriem($uid,$pr,$data,$d2,$tm,$h,$uu,$max,$bj,$tp = 0,$ch = 0,$rdt = 0,$tr_life_user = 0,$noupdatebtl = 0,$noplus = 0)
 	{
@@ -176,7 +176,7 @@ class priems
 				
 				if(isset($num['id']) && ($num['user_use']!=$u->info['id'] && $pl['zmu'] != 2))
 				{
-					// удаляем эффект
+					// СѓРґР°Р»СЏРµРј СЌС„С„РµРєС‚
 					mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `id` = "'.$num['id'].'" LIMIT 1');
 					if(isset($num['id']))
 					{
@@ -185,7 +185,7 @@ class priems
 						{
 							if($btl->stats[$btl->uids[$uid]]['effects'][$i]['id']==$num['id'])
 							{
-								//обновляем
+								//РѕР±РЅРѕРІР»СЏРµРј
 								$btl->stats[$btl->uids[$uid]]['effects'][$i]['delete'] = time();
 							}
 							$i++;
@@ -202,14 +202,14 @@ class priems
 						$r = true;	
 						$lid = mysql_insert_id();
 					}
-					/* добавляем данные к $btl->eff */
+					/* РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ Рє $btl->eff */
 					if( $noupdatebtl == 0 ) {
 						$btl->stats[$btl->uids[$uid]] = $u->getStats($uid,0);
 					}
 					
 				}elseif($num['x']<$max)
 				{
-					//Добавляем еще и обновляем заряды
+					//Р”РѕР±Р°РІР»СЏРµРј РµС‰Рµ Рё РѕР±РЅРѕРІР»СЏРµРј Р·Р°СЂСЏРґС‹
 					$num['x']++; $num['hod'] = $h;
 					if( $data != -1 && $data != '' && $d2 == 2 ) {
 						$num['data'] .= '|'.$data.'';
@@ -222,7 +222,7 @@ class priems
 						$r = true;
 					}	
 				}else{
-					//обновляем заряды
+					//РѕР±РЅРѕРІР»СЏРµРј Р·Р°СЂСЏРґС‹
 					$num['hod'] = $h;
 					if( $data != -1 && $data != '' && $d2 == 2 ) {
 						$num['data'] .= '|'.$data.'';
@@ -237,7 +237,7 @@ class priems
 				
 				if($r==true)
 				{
-					//cancel_eff был здесь
+					//cancel_eff Р±С‹Р» Р·РґРµСЃСЊ
 					if($pl['cancel_eff']!='')
 					{
 						$i = 0; 
@@ -266,29 +266,29 @@ class priems
 					$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'||s2='.$btl->users[$btl->uids[$uid]]['sex'].'||t2='.$btl->users[$btl->uids[$uid]]['team'].'||login2='.$btl->users[$btl->uids[$uid]]['login'].'';
 					$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
 					if($tp > 0) {
-						$tco = array(1=>'006699',2=>'006699',3=>'006699',4=>'006699'); //не крит
-						$tcl = array(1=>'A00000',2=>'008080',3=>'0000FF',4=>'A52A2A'); //не крит
+						$tco = array(1=>'006699',2=>'006699',3=>'006699',4=>'006699'); //РЅРµ РєСЂРёС‚
+						$tcl = array(1=>'A00000',2=>'008080',3=>'0000FF',4=>'A52A2A'); //РЅРµ РєСЂРёС‚
 						$tco = $tco[$tp];
 						$tcl = $tcl[$tp];
 						$nmz = array(
-							0=>array(0=>'хаоса',1=>'хаос'),
-							1=>array(0=>'огня',1=>'огненный'),
-							2=>array(0=>'воздуха',1=>'электрический'),
-							3=>array(0=>'воды',1=>'холод'),
-							4=>array(0=>'земли',1=>'земляной'),
-							5=>array(0=>'Света',1=>'свет'),
-							6=>array(0=>'Тьмы',1=>'тьма'),
-							7=>array(0=>'нейтралитета',1=>'серая&nbsp;магия')
+							0=>array(0=>'С…Р°РѕСЃР°',1=>'С…Р°РѕСЃ'),
+							1=>array(0=>'РѕРіРЅСЏ',1=>'РѕРіРЅРµРЅРЅС‹Р№'),
+							2=>array(0=>'РІРѕР·РґСѓС…Р°',1=>'СЌР»РµРєС‚СЂРёС‡РµСЃРєРёР№'),
+							3=>array(0=>'РІРѕРґС‹',1=>'С…РѕР»РѕРґ'),
+							4=>array(0=>'Р·РµРјР»Рё',1=>'Р·РµРјР»СЏРЅРѕР№'),
+							5=>array(0=>'РЎРІРµС‚Р°',1=>'СЃРІРµС‚'),
+							6=>array(0=>'РўСЊРјС‹',1=>'С‚СЊРјР°'),
+							7=>array(0=>'РЅРµР№С‚СЂР°Р»РёС‚РµС‚Р°',1=>'СЃРµСЂР°СЏ&nbsp;РјР°РіРёСЏ')
 						);
 						$nmz = $nmz[$tp];
-						$mas1['text'] = '{tm1} {u1} {1x16x0} заклинание магии '.$nmz[0].' &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot;';	
+						$mas1['text'] = '{tm1} {u1} {1x16x0} Р·Р°РєР»РёРЅР°РЅРёРµ РјР°РіРёРё '.$nmz[0].' &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot;';	
 					}else{
-						//$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;';
+						//$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;';
 						//$btl->priemAddLogFast($u->info['id'],0,$pl['name'],'{tm1} '.$btl->addlt(1 , 17 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL).'',0,time());	
 					}
 					if($u->info['id']!=$uid)
 					{
-						$mas1['text'] .= ' на персонажа {u2}.';
+						$mas1['text'] .= ' РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° {u2}.';
 					}else{
 						$mas1['text'] .= '.';
 					}
@@ -302,7 +302,7 @@ class priems
 					{
 						if($btl->stats[$btl->uids[$uid]]['effects'][$i]['id']==$num['id'])
 						{
-							//обновляемss
+							//РѕР±РЅРѕРІР»СЏРµРјss
 							$btl->stats[$btl->uids[$uid]]['effects'][$i]['data'] = $num['data'];	
 							$btl->stats[$btl->uids[$uid]]['effects'][$i]['hod'] = $num['hod'];
 							$btl->stats[$btl->uids[$uid]]['effects'][$i]['x'] = $num['x'];
@@ -362,11 +362,11 @@ class priems
 		}
 		if($k==1 && $hpmin!=0 && $krituet==true)
 		{
-			//крит
+			//РєСЂРёС‚
 			$hpmin = $hpmin*2; 
 		}elseif($k==-1 && $hpmin!=0)
 		{
-			//промах
+			//РїСЂРѕРјР°С…
 			$hpmin = $hpmin/2; 
 			$dopyrn = $dopyrn/2;
 		}
@@ -385,7 +385,7 @@ class priems
 		
 		if($btl->users[$btl->uids[$uen]]['tactic7']>0 && $dp==0)
 		{
-			//Отнимаем тактики, если это возможно
+			//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё, РµСЃР»Рё СЌС‚Рѕ РІРѕР·РјРѕР¶РЅРѕ
 			$btl->users[$btl->uids[$uen]]['tactic7'] -= $hpmin/$btl->stats[$btl->uids[$uen]]['hpAll'];
 			$btl->users[$btl->uids[$uen]]['tactic7'] = round($btl->users[$btl->uids[$uen]]['tactic7'],2);
 			$btl->stats[$btl->uids[$uen]]['tactic7'] = $btl->users[$btl->uids[$uen]]['tactic7'];
@@ -409,11 +409,11 @@ class priems
 		{
 			$hp2 = 0;
 		}
-		$rr[0] = $hpmin; //урон
-		$rr[1] = $k; //тип
-		/* проверяем приемы защиты */
-			//получаем массив с приемами противника
-			$miny = 0; //на сколько едениц урон буде меньше (защита приема)
+		$rr[0] = $hpmin; //СѓСЂРѕРЅ
+		$rr[1] = $k; //С‚РёРї
+		/* РїСЂРѕРІРµСЂСЏРµРј РїСЂРёРµРјС‹ Р·Р°С‰РёС‚С‹ */
+			//РїРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ СЃ РїСЂРёРµРјР°РјРё РїСЂРѕС‚РёРІРЅРёРєР°
+			$miny = 0; //РЅР° СЃРєРѕР»СЊРєРѕ РµРґРµРЅРёС† СѓСЂРѕРЅ Р±СѓРґРµ РјРµРЅСЊС€Рµ (Р·Р°С‰РёС‚Р° РїСЂРёРµРјР°)
 			$minu = 0;
 			$sp1 = mysql_query('SELECT `e`.* FROM `eff_users` AS `e` WHERE `e`.`uid` = "'.$uen.'" AND `e`.`id_eff` = "22" AND `e`.`delete` = "0" AND `e`.`v1` = "priem" LIMIT 25');
 			while($pl2 = mysql_fetch_array($sp1))
@@ -433,14 +433,14 @@ class priems
 				
 			}
 					
-		/* проверяем приемы ослабления */
+		/* РїСЂРѕРІРµСЂСЏРµРј РїСЂРёРµРјС‹ РѕСЃР»Р°Р±Р»РµРЅРёСЏ */
 		
-		//отнимаем НР
+		//РѕС‚РЅРёРјР°РµРј РќР 
 		$btl->users[$btl->uids[$uen]]['hpNow'] = $hp2;
 		$btl->stats[$btl->uids[$uen]]['hpNow'] = $hp2;
 		$upd = mysql_query('UPDATE `stats` SET `hpNow` = '.$hp2.',`tactic7` = '.$btl->users[$btl->uids[$uen]]['tactic7'].' WHERE `id` = "'.$uen.'" LIMIT 1');
 		
-		//заносим в лог боя
+		//Р·Р°РЅРѕСЃРёРј РІ Р»РѕРі Р±РѕСЏ
 		$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'||s2='.$btl->users[$btl->uids[$uen]]['sex'].'||t2='.$btl->users[$btl->uids[$uen]]['team'].'||login2='.$btl->users[$btl->uids[$uen]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
 		if($rp==1)
@@ -457,26 +457,26 @@ class priems
 		}else{
 			$hpmin = '--';
 		}
-		$tco = array(1=>'006699',2=>'006699',3=>'006699',4=>'006699'); //не крит
-		$tcl = array(1=>'A00000',2=>'008080',3=>'0000FF',4=>'A52A2A'); //не крит
+		$tco = array(1=>'006699',2=>'006699',3=>'006699',4=>'006699'); //РЅРµ РєСЂРёС‚
+		$tcl = array(1=>'A00000',2=>'008080',3=>'0000FF',4=>'A52A2A'); //РЅРµ РєСЂРёС‚
 		$tco = $tco[$tmp];
 		$tcl = $tcl[$tmp];
 		if($k==1)
 		{
-			//крит
+			//РєСЂРёС‚
 			$tco = 'FF0000';
 			$tcl = 'FF0000';
 		}elseif($k==-1)
 		{
-			//промах
+			//РїСЂРѕРјР°С…
 			$tco = '979797';
 			$tcl = '979797'; 
 		}
 		$nmz = array(
-			1=>array(0=>'огня',1=>'огненная'),
-			2=>array(0=>'воздуха',1=>'электрическая'),
-			3=>array(0=>'воды',1=>'водная'),
-			4=>array(0=>'земли',1=>'земляная')
+			1=>array(0=>'РѕРіРЅСЏ',1=>'РѕРіРЅРµРЅРЅР°СЏ'),
+			2=>array(0=>'РІРѕР·РґСѓС…Р°',1=>'СЌР»РµРєС‚СЂРёС‡РµСЃРєР°СЏ'),
+			3=>array(0=>'РІРѕРґС‹',1=>'РІРѕРґРЅР°СЏ'),
+			4=>array(0=>'Р·РµРјР»Рё',1=>'Р·РµРјР»СЏРЅР°СЏ')
 			);
 		$nmz = $nmz[$tmp];
 		
@@ -487,10 +487,10 @@ class priems
 				//$tcl = '000000';
 				//$tco = '008000';
 			}
-			$sx = array(0=>'',1=>'а');
-			$mas1['text'] = '{tm1} Заклинание &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot; восстановило здоровье персонажа {u2}. <b><font title=Тип&nbsp;регенерации:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';
+			$sx = array(0=>'',1=>'Р°');
+			$mas1['text'] = '{tm1} Р—Р°РєР»РёРЅР°РЅРёРµ &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot; РІРѕСЃСЃС‚Р°РЅРѕРІРёР»Рѕ Р·РґРѕСЂРѕРІСЊРµ РїРµСЂСЃРѕРЅР°Р¶Р° {u2}. <b><font title=РўРёРї&nbsp;СЂРµРіРµРЅРµСЂР°С†РёРё:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';
 		}else{
-			$mas1['text'] = '{tm1} {u1} {1x16x0} заклинание &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot; и восстановил здоровье персонажа {u2} магией '.$nmz[0].'. <b><font title=Тип&nbsp;регенерации:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';	
+			$mas1['text'] = '{tm1} {u1} {1x16x0} Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot; Рё РІРѕСЃСЃС‚Р°РЅРѕРІРёР» Р·РґРѕСЂРѕРІСЊРµ РїРµСЂСЃРѕРЅР°Р¶Р° {u2} РјР°РіРёРµР№ '.$nmz[0].'. <b><font title=РўРёРї&nbsp;СЂРµРіРµРЅРµСЂР°С†РёРё:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';	
 		}
 		$btl->add_log($mas1);
 		$pz[(int)$id] = 1;	
@@ -526,32 +526,32 @@ class priems
 		$r = $yron;
 		//
 		$prm = array(
-			'y' => $btl->stats[$btl->uids[$u1]]['mg'.$btl->mname[$type]], //умелки
-			'yv' => 0, //умения, значение коф.
-			'max_krit' => 0 //вероятность крита
+			'y' => $btl->stats[$btl->uids[$u1]]['mg'.$btl->mname[$type]], //СѓРјРµР»РєРё
+			'yv' => 0, //СѓРјРµРЅРёСЏ, Р·РЅР°С‡РµРЅРёРµ РєРѕС„.
+			'max_krit' => 0 //РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РєСЂРёС‚Р°
 		);
 		//
-		// (уровень цени)*2 - 7 - минимальное умелок, чтобы не было промахов
+		// (СѓСЂРѕРІРµРЅСЊ С†РµРЅРё)*2 - 7 - РјРёРЅРёРјР°Р»СЊРЅРѕРµ СѓРјРµР»РѕРє, С‡С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ РїСЂРѕРјР°С…РѕРІ
 		/*
-		Для магии Света/Тьмы по формуле: Уровень Цели * 2 – 9 
-		каждая умелка выше этой нормы увеличивает маг крит на 3%. но не больше 30%
+		Р”Р»СЏ РјР°РіРёРё РЎРІРµС‚Р°/РўСЊРјС‹ РїРѕ С„РѕСЂРјСѓР»Рµ: РЈСЂРѕРІРµРЅСЊ Р¦РµР»Рё * 2 вЂ“ 9 
+		РєР°Р¶РґР°СЏ СѓРјРµР»РєР° РІС‹С€Рµ СЌС‚РѕР№ РЅРѕСЂРјС‹ СѓРІРµР»РёС‡РёРІР°РµС‚ РјР°Рі РєСЂРёС‚ РЅР° 3%. РЅРѕ РЅРµ Р±РѕР»СЊС€Рµ 30%
 		*/
-		//Рассчет урона от приема
+		//Р Р°СЃСЃС‡РµС‚ СѓСЂРѕРЅР° РѕС‚ РїСЂРёРµРјР°
 		/*
-		b - базовый урон
-		m - мощь
-		z - защита цели [ед.]
-		p - подавление [ед.]
-		k - коэффициент ; k=250 для 8ки, k=300 для 9ки и т.д. +20% на уровень
+		b - Р±Р°Р·РѕРІС‹Р№ СѓСЂРѕРЅ
+		m - РјРѕС‰СЊ
+		z - Р·Р°С‰РёС‚Р° С†РµР»Рё [РµРґ.]
+		p - РїРѕРґР°РІР»РµРЅРёРµ [РµРґ.]
+		k - РєРѕСЌС„С„РёС†РёРµРЅС‚ ; k=250 РґР»СЏ 8РєРё, k=300 РґР»СЏ 9РєРё Рё С‚.Рґ. +20% РЅР° СѓСЂРѕРІРµРЅСЊ
 		*/
-		$prm['b'] = round($r,2); //базовый урон
-		$prm['m'] = $btl->stats[$btl->uids[$u1]]['pm'.$btl->mname[$type]]; //мощь
-		$prm['z'] = $btl->stats[$btl->uids[$u2]]['zm'.$btl->mname[$type]]; //защита цели (ед.)
+		$prm['b'] = round($r,2); //Р±Р°Р·РѕРІС‹Р№ СѓСЂРѕРЅ
+		$prm['m'] = $btl->stats[$btl->uids[$u1]]['pm'.$btl->mname[$type]]; //РјРѕС‰СЊ
+		$prm['z'] = $btl->stats[$btl->uids[$u2]]['zm'.$btl->mname[$type]]; //Р·Р°С‰РёС‚Р° С†РµР»Рё (РµРґ.)
 		if( $prm['z'] < 0 ) {
 			$prm['z'] = 0;
 		}
-		$prm['p'] = $btl->stats[$btl->uids[$u1]]['pzm'.$btl->mname[$type]]+$btl->stats[$btl->uids[$u1]]['pzm']; //подавление (ед.)
-		$prm['k'] = $this->cof_mag[$btl->users[$btl->uids[$u2]]['level']]; //коэффицент
+		$prm['p'] = $btl->stats[$btl->uids[$u1]]['pzm'.$btl->mname[$type]]+$btl->stats[$btl->uids[$u1]]['pzm']; //РїРѕРґР°РІР»РµРЅРёРµ (РµРґ.)
+		$prm['k'] = $this->cof_mag[$btl->users[$btl->uids[$u2]]['level']]; //РєРѕСЌС„С„РёС†РµРЅС‚
 		if( $prm['k'] == 0 ) {
 			$prm['k'] = 1;
 		}
@@ -563,16 +563,16 @@ class priems
 			$prm['p'] = round(($prm['z']+$prm['k'])/10);
 		}
 		
-		//echo '[Мощность '.$prm['m'].'%, Подавление '.$prm['p'].' ед., Защита цели '.$prm['z'].' ед., Коэффицент '.$prm['k'].']';
+		//echo '[РњРѕС‰РЅРѕСЃС‚СЊ '.$prm['m'].'%, РџРѕРґР°РІР»РµРЅРёРµ '.$prm['p'].' РµРґ., Р—Р°С‰РёС‚Р° С†РµР»Рё '.$prm['z'].' РµРґ., РљРѕСЌС„С„РёС†РµРЅС‚ '.$prm['k'].']';
 		
 		//$prm['p'] = round($prm['p']*2);
 		
-		//$r = $prm['b']*(1+$prm['m']/100)*pow(2,(($prm['p']*10-$prm['z'])/$prm['k'])); (верная старая)
-		//$r = $prm['b']*(1+$prm['m']/100)*pow(2,((0-($prm['z']-$prm['p']*10))/$prm['k'])); (хз какая, старая)
+		//$r = $prm['b']*(1+$prm['m']/100)*pow(2,(($prm['p']*10-$prm['z'])/$prm['k'])); (РІРµСЂРЅР°СЏ СЃС‚Р°СЂР°СЏ)
+		//$r = $prm['b']*(1+$prm['m']/100)*pow(2,((0-($prm['z']-$prm['p']*10))/$prm['k'])); (С…Р· РєР°РєР°СЏ, СЃС‚Р°СЂР°СЏ)
 		//
 		$prm['znew'] = ( ( $prm['z'] / 100) * ( 100 - $prm['p'] ) ) - 5 * $prm['p'];
 		//
-		//Занижаем мощность на 10% - убрал временно занижение.
+		//Р—Р°РЅРёР¶Р°РµРј РјРѕС‰РЅРѕСЃС‚СЊ РЅР° 10% - СѓР±СЂР°Р» РІСЂРµРјРµРЅРЅРѕ Р·Р°РЅРёР¶РµРЅРёРµ.
 		$r = ($prm['b']*((1+$prm['m']/100)))/100*(100-$btl->zmgo($prm['znew']));
 		//echo '['.$prm['b'].'*(1+'.$prm['m'].'/100)*pow(2,(('.$prm['p'].'*10-'.$prm['z'].')/'.$prm['k'].'));]';
 		
@@ -595,15 +595,15 @@ class priems
 				$prm['max_krit'] = 3 * ( $prm['y'] - $prm['yv'] );
 				if( $prm['max_krit'] < 0 ) {
 					$prm['max_krit'] = 0;
-					//Утсноавил макс крит 25 процентов
+					//РЈС‚СЃРЅРѕР°РІРёР» РјР°РєСЃ РєСЂРёС‚ 25 РїСЂРѕС†РµРЅС‚РѕРІ
 				}elseif( $prm['max_krit'] > 25 ) {
 					$prm['max_krit'] = 25;
 				}
 				//$prm['max_krit'] = round($prm['max_krit']/2);
-				//Крит возможен
+				//РљСЂРёС‚ РІРѕР·РјРѕР¶РµРЅ
 				
 				if( $btl->stats[$btl->uids[$u1]]['acestar'] ) {
-					//Крит 100%
+					//РљСЂРёС‚ 100%
 					$prm['max_krit'] = 100;
 					mysql_query('DELETE FROM `eff_users` WHERE `uid` = "'.$u1.'" AND `data` LIKE "%add_acestar=%" AND `delete` = 0 LIMIT 1');
 				}
@@ -619,7 +619,7 @@ class priems
 			$promah = false;
 		}else{
 			$krit = false;
-			//Вероятность промоха
+			//Р’РµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РїСЂРѕРјРѕС…Р°
 			$prm['promah'] = 3 * ( $prm['yv'] - $prm['y'] );
 			if( $prm['promah'] < 0 ) {
 				$prm['promah'] = 0;
@@ -663,30 +663,30 @@ class priems
 		}
 		//
 		$prm = array(
-			'ym' => $btl->stats[$btl->uids[$u1]]['mg'.$btl->mname[$ymelki]], //умелки (магические умелки)
-			'y' => $btl->stats[$btl->uids[$u1]]['a'.$btl->mname[$ymelki]], //умелки
-			'yv' => 0, //умения, значение коф.
-			'max_krit' => 0 //вероятность крита
+			'ym' => $btl->stats[$btl->uids[$u1]]['mg'.$btl->mname[$ymelki]], //СѓРјРµР»РєРё (РјР°РіРёС‡РµСЃРєРёРµ СѓРјРµР»РєРё)
+			'y' => $btl->stats[$btl->uids[$u1]]['a'.$btl->mname[$ymelki]], //СѓРјРµР»РєРё
+			'yv' => 0, //СѓРјРµРЅРёСЏ, Р·РЅР°С‡РµРЅРёРµ РєРѕС„.
+			'max_krit' => 0 //РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РєСЂРёС‚Р°
 		);
 		//
-		// (уровень цени)*2 - 7 - минимальное умелок, чтобы не было промахов
+		// (СѓСЂРѕРІРµРЅСЊ С†РµРЅРё)*2 - 7 - РјРёРЅРёРјР°Р»СЊРЅРѕРµ СѓРјРµР»РѕРє, С‡С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ РїСЂРѕРјР°С…РѕРІ
 		/*
-		Для магии Света/Тьмы по формуле: Уровень Цели * 2 – 9 
-		каждая умелка выше этой нормы увеличивает маг крит на 3%. но не больше 30%
+		Р”Р»СЏ РјР°РіРёРё РЎРІРµС‚Р°/РўСЊРјС‹ РїРѕ С„РѕСЂРјСѓР»Рµ: РЈСЂРѕРІРµРЅСЊ Р¦РµР»Рё * 2 вЂ“ 9 
+		РєР°Р¶РґР°СЏ СѓРјРµР»РєР° РІС‹С€Рµ СЌС‚РѕР№ РЅРѕСЂРјС‹ СѓРІРµР»РёС‡РёРІР°РµС‚ РјР°Рі РєСЂРёС‚ РЅР° 3%. РЅРѕ РЅРµ Р±РѕР»СЊС€Рµ 30%
 		*/
-		//Рассчет урона от приема
+		//Р Р°СЃСЃС‡РµС‚ СѓСЂРѕРЅР° РѕС‚ РїСЂРёРµРјР°
 		/*
-		b - базовый урон
-		m - мощь
-		z - защита цели [ед.]
-		p - подавление [ед.]
-		k - коэффициент ; k=250 для 8ки, k=300 для 9ки и т.д. +20% на уровень
+		b - Р±Р°Р·РѕРІС‹Р№ СѓСЂРѕРЅ
+		m - РјРѕС‰СЊ
+		z - Р·Р°С‰РёС‚Р° С†РµР»Рё [РµРґ.]
+		p - РїРѕРґР°РІР»РµРЅРёРµ [РµРґ.]
+		k - РєРѕСЌС„С„РёС†РёРµРЅС‚ ; k=250 РґР»СЏ 8РєРё, k=300 РґР»СЏ 9РєРё Рё С‚.Рґ. +20% РЅР° СѓСЂРѕРІРµРЅСЊ
 		*/
-		$prm['b'] = $r; //базовый урон
-		$prm['m'] = $btl->stats[$btl->uids[$u1]]['pa'.$btl->mname[$type]]; //мощь
-		$prm['z'] = $btl->stats[$btl->uids[$u2]]['za'.$btl->mname[$type]]; //защита цели (ед.)
-		$prm['p'] = $btl->stats[$btl->uids[$u1]]['pza'.$btl->mname[$type]]; //подавление (ед.)
-		$prm['k'] = $this->cof_mag[$btl->users[$btl->uids[$u1]]['level']]; //коэффицент
+		$prm['b'] = $r; //Р±Р°Р·РѕРІС‹Р№ СѓСЂРѕРЅ
+		$prm['m'] = $btl->stats[$btl->uids[$u1]]['pa'.$btl->mname[$type]]; //РјРѕС‰СЊ
+		$prm['z'] = $btl->stats[$btl->uids[$u2]]['za'.$btl->mname[$type]]; //Р·Р°С‰РёС‚Р° С†РµР»Рё (РµРґ.)
+		$prm['p'] = $btl->stats[$btl->uids[$u1]]['pza'.$btl->mname[$type]]; //РїРѕРґР°РІР»РµРЅРёРµ (РµРґ.)
+		$prm['k'] = $this->cof_mag[$btl->users[$btl->uids[$u1]]['level']]; //РєРѕСЌС„С„РёС†РµРЅС‚
 		//
 		if( $prm['p']*10 > $prm['k'] ) {
 			$prm['p'] = floor($prm['k']/10);
@@ -720,7 +720,7 @@ class priems
 					$prm['max_krit'] = 30;
 				}
 				//$prm['max_krit'] = round($prm['max_krit']/2);
-				//Крит возможен
+				//РљСЂРёС‚ РІРѕР·РјРѕР¶РµРЅ
 				if( rand( 0 , 100 ) <= $prm['max_krit'] ) {
 					$krit = true;
 				}else{
@@ -732,7 +732,7 @@ class priems
 			$promah = false;
 		}else{
 			$krit = false;
-			//Вероятность промоха
+			//Р’РµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РїСЂРѕРјРѕС…Р°
 			$prm['promah'] = 3 * ( $prm['yv'] - $prm['ym'] );
 			if( $prm['promah'] < 0 ) {
 				$prm['promah'] = 0;
@@ -785,12 +785,12 @@ class priems
 			if($fiz==0)
 			{
 		
-				//магический урон
+				//РјР°РіРёС‡РµСЃРєРёР№ СѓСЂРѕРЅ
 				if($nomf == 0) {
 					$hpmin = $this->testPower($btl->stats[$btl->uids[$usu]],$btl->stats[$btl->uids[$uen]],$hpmin,$tmp,2);
 				}
 			}else{
-				//физический урон
+				//С„РёР·РёС‡РµСЃРєРёР№ СѓСЂРѕРЅ
 				$wAp += $btl->stats[$btl->uids[$usu]]['pa'.$tmp.''];
 				$wAp += $btl->stats[$btl->uids[$usu]]['m10'];
 				$wAp -= $btl->stats[$btl->uids[$uen]]['antpa'.$tmp.'']*1.75;
@@ -800,7 +800,7 @@ class priems
 				$hpmin -= round(  $hpmin/100*(35*($btl->stats[$btl->uids[$uen]]['za']+$btl->stats[$btl->uids[$uen]]['za'.$tmp])/1200) );
 				$hpmin = round($hpmin);
 				
-				if(isset($btl->stats[$btl->uids[$uen]]['zaproc']) || isset($btl->stats[$btl->uids[$uen]]['za'.$fiz.'proc'])) //защита от урона (призрачки)
+				if(isset($btl->stats[$btl->uids[$uen]]['zaproc']) || isset($btl->stats[$btl->uids[$uen]]['za'.$fiz.'proc'])) //Р·Р°С‰РёС‚Р° РѕС‚ СѓСЂРѕРЅР° (РїСЂРёР·СЂР°С‡РєРё)
 				{
 					$hpmin = floor($hpmin/100*(100-$btl->stats[$btl->uids[$uen]]['zaproc']-$btl->stats[$btl->uids[$uen]]['za'.$fiz.'proc']));
 					if($hpmin<0)
@@ -813,11 +813,11 @@ class priems
 		$hpmin = round($hpmin);
 		if($k==1 and $krituet==true)
 		{
-			//крит
+			//РєСЂРёС‚
 			$hpmin = $hpmin*2; 
 		}elseif($k==-1)
 		{
-			//промах
+			//РїСЂРѕРјР°С…
 			$hpmin = $hpmin/2; 
 		}
 		if($hpmin<$nhpmin*0.2) {
@@ -838,11 +838,11 @@ class priems
 				$hpmin = $mxx*2;	
 			}
 		}
-		$rr[0] = $hpmin; //урон
-		$rr[1] = $k; //тип
-		/* проверяем приемы защиты */
-			//получаем массив с приемами противника
-			$miny = 0; //на сколько едениц урон буде меньше (защита приема)
+		$rr[0] = $hpmin; //СѓСЂРѕРЅ
+		$rr[1] = $k; //С‚РёРї
+		/* РїСЂРѕРІРµСЂСЏРµРј РїСЂРёРµРјС‹ Р·Р°С‰РёС‚С‹ */
+			//РїРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ СЃ РїСЂРёРµРјР°РјРё РїСЂРѕС‚РёРІРЅРёРєР°
+			$miny = 0; //РЅР° СЃРєРѕР»СЊРєРѕ РµРґРµРЅРёС† СѓСЂРѕРЅ Р±СѓРґРµ РјРµРЅСЊС€Рµ (Р·Р°С‰РёС‚Р° РїСЂРёРµРјР°)
 			$minu = 0;
 			$sp1 = mysql_query('SELECT `e`.* FROM `eff_users` AS `e` WHERE `e`.`uid` = "'.$uen.'" AND `e`.`id_eff` = "22" AND `e`.`delete` = "0" AND `e`.`v1` = "priem" LIMIT 25');
 			while($pl2 = mysql_fetch_array($sp1))
@@ -872,7 +872,7 @@ class priems
 		$hp2 = floor($btl->stats[$btl->uids[$uen]]['hpNow'] - $hpmin);
 		
 		if($btl->stats[$btl->uids[$usu]]['yrnhealmpprocmg'.$tmp] > 0 && $fiz == 0) {
-			//Часть урона восставнавливает ману
+			//Р§Р°СЃС‚СЊ СѓСЂРѕРЅР° РІРѕСЃСЃС‚Р°РІРЅР°РІР»РёРІР°РµС‚ РјР°РЅСѓ
 			$btl->stats[$btl->uids[$usu]]['mpNow'] += round($hpmin/100*$btl->stats[$btl->uids[$usu]]['yrnhealmpprocmg'.$tmp]);
 			//if($btl->stats[$btl->uids[$usu]]['mpNow'] > $btl->stats[$btl->uids[$usu]]['mpAll']) {
 				//$btl->stats[$btl->uids[$usu]]['mpNow'] = $btl->stats[$btl->uids[$usu]]['mpAll'];
@@ -896,7 +896,7 @@ class priems
 			
 		if($heal != 0) {
 			if($heal == -1) {
-				//хил на текущий урон с учетом мф
+				//С…РёР» РЅР° С‚РµРєСѓС‰РёР№ СѓСЂРѕРЅ СЃ СѓС‡РµС‚РѕРј РјС„
 				$btl->stats[$btl->uids[$eff['user_use']]]['hpNow'] += $hpmin;
 				if($btl->stats[$btl->uids[$eff['user_use']]]['hpNow'] < 0) {
 					$btl->stats[$btl->uids[$eff['user_use']]]['hpNow'] = 0;
@@ -912,14 +912,14 @@ class priems
 				
 				$upd = mysql_query('UPDATE `stats` SET `hpNow` = "'.$btl->stats[$btl->uids[$eff['user_use']]]['hpNow'].'" WHERE `id` = "'.$eff['user_use'].'" LIMIT 1');
 			}else{
-				//хил на конкретное число
+				//С…РёР» РЅР° РєРѕРЅРєСЂРµС‚РЅРѕРµ С‡РёСЃР»Рѕ
 				
 			}
 		}
 					
-		/* проверяем приемы ослабления */
+		/* РїСЂРѕРІРµСЂСЏРµРј РїСЂРёРµРјС‹ РѕСЃР»Р°Р±Р»РµРЅРёСЏ */
 
-		//отнимаем НР
+		//РѕС‚РЅРёРјР°РµРј РќР 
 		$btl->users[$btl->uids[$uen]]['hpNow'] = $hp2;
 		$btl->stats[$btl->uids[$uen]]['hpNow'] = $hp2;
 		
@@ -927,18 +927,18 @@ class priems
 			$u->stats['hpNow'] = $hp2;
 		}
 		
-		// тяж травма для кровавых
+		// С‚СЏР¶ С‚СЂР°РІРјР° РґР»СЏ РєСЂРѕРІР°РІС‹С…
 		if($btl->info['type']==99 and $hp2==0 and $trawm_off==false){
 		//$eff['user_use']
 		//$sp1 = mysql_query('SELECT `e`.* FROM `eff_users` AS `e` WHERE `e`.`uid` = "'.$uen.'" AND `e`.`id_eff` = "22" AND `e`.`delete` = "0" AND `e`.`v1` = "priem" LIMIT 25');
 
 								    $trawm_off=true;
-								    //$at[2][$i]['ttravm']='получил <font color=red><b>Тяжелую травму</b></font>.';
+								    //$at[2][$i]['ttravm']='РїРѕР»СѓС‡РёР» <font color=red><b>РўСЏР¶РµР»СѓСЋ С‚СЂР°РІРјСѓ</b></font>.';
 									$btl->addTravm($btl->users[$btl->uids[$uen]]['id'],3,$btl->users[$btl->uids[$eff['user_use']]]['level']);
 								}
 		$upd = mysql_query('UPDATE `stats` SET `hpNow` = '.$hp2.',`last_hp` = "'.$btl->stats[$btl->uids[$uen]]['last_hp'].'" WHERE `id` = "'.$uen.'" LIMIT 1');
 		
-		//заносим в лог боя
+		//Р·Р°РЅРѕСЃРёРј РІ Р»РѕРі Р±РѕСЏ
 		$vLog = 'time1='.time().'||s1='.$btl->users[$btl->uids[$usu]]['sex'].'||t1='.$btl->users[$btl->uids[$usu]]['team'].'||login1='.$btl->users[$btl->uids[$usu]]['login'].'||s2='.$btl->users[$btl->uids[$uen]]['sex'].'||t2='.$btl->users[$btl->uids[$uen]]['team'].'||login2='.$btl->users[$btl->uids[$uen]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
 		if($rp>0)
@@ -975,38 +975,38 @@ class priems
 		}else{
 			$hpmin = '--';
 		}
-		$tco = array(1=>'006699',2=>'006699',3=>'006699',4=>'006699',5=>'006699',6=>'006699',7=>'006699'); //не крит
-		$tcl = array(1=>'A00000',2=>'008080',3=>'0000FF',4=>'A52A2A',5=>'006699',6=>'006699',7=>'006699'); //не крит
+		$tco = array(1=>'006699',2=>'006699',3=>'006699',4=>'006699',5=>'006699',6=>'006699',7=>'006699'); //РЅРµ РєСЂРёС‚
+		$tcl = array(1=>'A00000',2=>'008080',3=>'0000FF',4=>'A52A2A',5=>'006699',6=>'006699',7=>'006699'); //РЅРµ РєСЂРёС‚
 		$tco = $tco[$tmp];
 		$tcl = $tcl[$tmp];
 		if($k==1)
 		{
-			//крит
+			//РєСЂРёС‚
 			$tco = 'FF0000';
 			$tcl = 'FF0000';
 		}elseif($k==-1)
 		{
-			//промах
+			//РїСЂРѕРјР°С…
 			$tco = 'CCCCCC';
 			$tcl = 'CCCCCC'; 
 		}
 		$nmz = array(
-			1=>array(0=>'огня',1=>'огненный'),
-			2=>array(0=>'воздуха',1=>'электрический'),
-			3=>array(0=>'воды',1=>'холод'),
-			4=>array(0=>'земли',1=>'земляной'),
-			5=>array(0=>'Свет',1=>'Свет'),
-			6=>array(0=>'Тьма',1=>'Тьма'),
-			7=>array(0=>'Серая&nbsp;магия',1=>'Серая&nbsp;магия')
+			1=>array(0=>'РѕРіРЅСЏ',1=>'РѕРіРЅРµРЅРЅС‹Р№'),
+			2=>array(0=>'РІРѕР·РґСѓС…Р°',1=>'СЌР»РµРєС‚СЂРёС‡РµСЃРєРёР№'),
+			3=>array(0=>'РІРѕРґС‹',1=>'С…РѕР»РѕРґ'),
+			4=>array(0=>'Р·РµРјР»Рё',1=>'Р·РµРјР»СЏРЅРѕР№'),
+			5=>array(0=>'РЎРІРµС‚',1=>'РЎРІРµС‚'),
+			6=>array(0=>'РўСЊРјР°',1=>'РўСЊРјР°'),
+			7=>array(0=>'РЎРµСЂР°СЏ&nbsp;РјР°РіРёСЏ',1=>'РЎРµСЂР°СЏ&nbsp;РјР°РіРёСЏ')
 			);
 		$nmz = $nmz[$tmp];
 		if($fiz>0)
 		{
 			$nmz = array(
-			1=>array(0=>', колющая атака , ',1=>'колющий'),
-			2=>array(0=>', рубящая атака , ',1=>'рубящий'),
-			3=>array(0=>', дробящая атака , ',1=>'дробящий'),
-			4=>array(0=>', режущая атака , ',1=>'режущий')
+			1=>array(0=>', РєРѕР»СЋС‰Р°СЏ Р°С‚Р°РєР° , ',1=>'РєРѕР»СЋС‰РёР№'),
+			2=>array(0=>', СЂСѓР±СЏС‰Р°СЏ Р°С‚Р°РєР° , ',1=>'СЂСѓР±СЏС‰РёР№'),
+			3=>array(0=>', РґСЂРѕР±СЏС‰Р°СЏ Р°С‚Р°РєР° , ',1=>'РґСЂРѕР±СЏС‰РёР№'),
+			4=>array(0=>', СЂРµР¶СѓС‰Р°СЏ Р°С‚Р°РєР° , ',1=>'СЂРµР¶СѓС‰РёР№')
 			);
 			$nmz = $nmz[$fiz];
 		}
@@ -1018,13 +1018,13 @@ class priems
 				$tcl = '000000';
 				$tco = '008000';
 			}
-			$sx = array(0=>'',1=>'а');
-			$mas1['text'] = '{tm1} {u2} утратил'.$sx[$btl->users[$btl->uids[$uen]]['sex']].' здоровье от &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot;. <b><font title=Тип&nbsp;урона:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';
+			$sx = array(0=>'',1=>'Р°');
+			$mas1['text'] = '{tm1} {u2} СѓС‚СЂР°С‚РёР»'.$sx[$btl->users[$btl->uids[$uen]]['sex']].' Р·РґРѕСЂРѕРІСЊРµ РѕС‚ &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot;. <b><font title=РўРёРї&nbsp;СѓСЂРѕРЅР°:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';
 		}else{
 			if( $fiz == 1 ) {
-				$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot; и поразил {u2}. <b><font title=Тип&nbsp;урона:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';
+				$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot; Рё РїРѕСЂР°Р·РёР» {u2}. <b><font title=РўРёРї&nbsp;СѓСЂРѕРЅР°:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';
 			}else{
-				$mas1['text'] = '{tm1} {u1} {1x16x0} заклинание &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot; и поразил магией '.$nmz[0].' {u2}. <b><font title=Тип&nbsp;урона:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';	
+				$mas1['text'] = '{tm1} {u1} {1x16x0} Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b><font color=#'.$tcl.'>'.$pl['name'].'</font></b>&quot; Рё РїРѕСЂР°Р·РёР» РјР°РіРёРµР№ '.$nmz[0].' {u2}. <b><font title=РўРёРї&nbsp;СѓСЂРѕРЅР°:&nbsp;'.$nmz[1].' color=#'.$tco.'>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$uen]]['hpAll'].']';	
 			}
 		}
 		$btl->add_log($mas1);
@@ -1052,13 +1052,13 @@ class priems
 	public function testRazmenOldUser( $u2 , $u1 ) {
 		global $btl,$u;
 		$r = 0;
-		//Уровень -противника- ниже уровня -цели-
+		//РЈСЂРѕРІРµРЅСЊ -РїСЂРѕС‚РёРІРЅРёРєР°- РЅРёР¶Рµ СѓСЂРѕРІРЅСЏ -С†РµР»Рё-
 		if( $btl->users[$btl->uids[$u2]]['id'] != $u->info['id'] ) {
 			if( $btl->users[$btl->uids[$u1]]['level'] < $btl->users[$btl->uids[$u2]]['level'] ) {
 				$r = 1;
-				echo '<center><b><font color=red>Нельзя кастовать через слабого противника в сильного</font></b></center>';
+				echo '<center><b><font color=red>РќРµР»СЊР·СЏ РєР°СЃС‚РѕРІР°С‚СЊ С‡РµСЂРµР· СЃР»Р°Р±РѕРіРѕ РїСЂРѕС‚РёРІРЅРёРєР° РІ СЃРёР»СЊРЅРѕРіРѕ</font></b></center>';
 			}elseif( $btl->users[$btl->uids[$u1]]['bot'] > 0 && $btl->users[$btl->uids[$u2]]['bot'] == 0 ) {
-				//echo '<center><b><font color=red>Нельзя кастовать через монстров или зверя</font></b></center>';
+				//echo '<center><b><font color=red>РќРµР»СЊР·СЏ РєР°СЃС‚РѕРІР°С‚СЊ С‡РµСЂРµР· РјРѕРЅСЃС‚СЂРѕРІ РёР»Рё Р·РІРµСЂСЏ</font></b></center>';
 				//$r = 1;
 			}
 		}
@@ -1067,7 +1067,7 @@ class priems
 	
 	public function testDie($u1) {
 		global $btl;
-		//Персонаж 1 погиб от рук персонаж 2
+		//РџРµСЂСЃРѕРЅР°Р¶ 1 РїРѕРіРёР± РѕС‚ СЂСѓРє РїРµСЂСЃРѕРЅР°Р¶ 2
 		if( isset($btl->stats[$btl->uids[$u1]]['id']) && floor($btl->stats[$btl->uids[$u1]]['hpNow']) < 1 ) {
 			$vLog = 'at1=00000||at2=00000||zb1='.$btl->stats[$btl->uids[$u1]]['zonb'].'||zb2=||bl1=||bl2=||time1='.time().'||time2='.time().'||s2=||s1='.$btl->users[$btl->uids[$u1]]['sex'].'||t2=||t1='.$btl->users[$btl->uids[$u1]]['team'].'||login1='.$btl->users[$btl->uids[$u1]]['login2'].'||login2=';
 			mysql_query('DELETE FROM `battle_act` WHERE `uid1` = "'.$u1.'" OR `uid2` = "'.$u1.'"');
@@ -1080,7 +1080,7 @@ class priems
 				'vars' => $vLog,
 				'type' => 1
 			);
-			$mas['text'] = '{tm1} <b>'.$btl->stats[$btl->uids[$u1]]['login'].'</b> погиб.';
+			$mas['text'] = '{tm1} <b>'.$btl->stats[$btl->uids[$u1]]['login'].'</b> РїРѕРіРёР±.';
 			$btl->add_log($mas);
 		}
 	}
@@ -1095,13 +1095,13 @@ class priems
 			{				
 				$a = mysql_fetch_array(mysql_query('SELECT * FROM `users_animal` WHERE `uid` = "'.$u->info['id'].'" AND `id` = "'.$u->info['animal'].'" AND `pet_in_cage` = "0" AND `delete` = "0" LIMIT 1'));
 				if($u->stats['hpNow'] < 1) {
-					echo 'Вы не можете выпустить зверя, вы потеряли все НР';
+					echo 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РІС‹РїСѓСЃС‚РёС‚СЊ Р·РІРµСЂСЏ, РІС‹ РїРѕС‚РµСЂСЏР»Рё РІСЃРµ РќР ';
 				}elseif(isset($a['id']) && $a['eda']<1) {
-					echo 'Вы не накормили зверя...';
+					echo 'Р’С‹ РЅРµ РЅР°РєРѕСЂРјРёР»Рё Р·РІРµСЂСЏ...';
 				}elseif(isset($a['id']))
 				{
-					//Добавляем зверя в бой
-					$tp = array(1=>'Кот',2=>'Сова',3=>'Светляк',4=>'Чертяка',5=>'Пес',6=>'Свин',7=>'Дракон');
+					//Р”РѕР±Р°РІР»СЏРµРј Р·РІРµСЂСЏ РІ Р±РѕР№
+					$tp = array(1=>'РљРѕС‚',2=>'РЎРѕРІР°',3=>'РЎРІРµС‚Р»СЏРє',4=>'Р§РµСЂС‚СЏРєР°',5=>'РџРµСЃ',6=>'РЎРІРёРЅ',7=>'Р”СЂР°РєРѕРЅ');
 					$id = mysql_fetch_array(mysql_query('SELECT `id` FROM `test_bot` WHERE `login` = "'.$tp[$a['type']].' ['.$a['level'].']" LIMIT 1'));
 					if(isset($id['id']))
 					{
@@ -1113,10 +1113,10 @@ class priems
 								$a['eda'] = 0;
 							}
 							
-							//Добавляем эффект
+							//Р”РѕР±Р°РІР»СЏРµРј СЌС„С„РµРєС‚
 							//$anl = mysql_fetch_array(mysql_query('SELECT `bonus` FROM `levels_animal` WHERE `type` = "'.$a['type'].'" AND `level` = "'.$a['level'].'" LIMIT 1'));
 							//$anl = $anl['bonus'];							
-							//mysql_query('INSERT INTO `eff_users` (`hod`,`v2`,`img2`,`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`,`v1`,`user_use`) VALUES ("-1","201","pet_unleash.gif",22,"'.$u->info['id'].'","Эффект от зверя","'.$anl.'","0","77","priem","'.$u->info['id'].'")');
+							//mysql_query('INSERT INTO `eff_users` (`hod`,`v2`,`img2`,`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`,`v1`,`user_use`) VALUES ("-1","201","pet_unleash.gif",22,"'.$u->info['id'].'","Р­С„С„РµРєС‚ РѕС‚ Р·РІРµСЂСЏ","'.$anl.'","0","77","priem","'.$u->info['id'].'")');
 							
 							//$anl = $u->lookStats($anl);
 							$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'';
@@ -1133,34 +1133,34 @@ class priems
 							}
 							$ba = trim($ba,', ');
 							if($ba == '') {
-								$ba = 'Отсутсвует';
+								$ba = 'РћС‚СЃСѓС‚СЃРІСѓРµС‚';
 							}*/
 							
 							if($u->info['sex'] == 1) {
-								$mas1['text'] = '{tm1} {u1} выпустила зверя &quot;<b>'.$a['name'].'&quot;</b>';
+								$mas1['text'] = '{tm1} {u1} РІС‹РїСѓСЃС‚РёР»Р° Р·РІРµСЂСЏ &quot;<b>'.$a['name'].'&quot;</b>';
 							}else{
-								$mas1['text'] = '{tm1} {u1} выпустил зверя &quot;<b>'.$a['name'].'&quot;</b>';
+								$mas1['text'] = '{tm1} {u1} РІС‹РїСѓСЃС‚РёР» Р·РІРµСЂСЏ &quot;<b>'.$a['name'].'&quot;</b>';
 							}
 							$btl->add_log($mas1);
 							
-							mysql_query('UPDATE `users` SET `login` = "'.$a['name'].' (зверь '.$u->info['login'].')",`obraz` = "'.$a['obraz'].'.gif",`battle` = "'.$btl->info['id'].'" WHERE `id` = "'.$b['id'].'" LIMIT 1');
+							mysql_query('UPDATE `users` SET `login` = "'.$a['name'].' (Р·РІРµСЂСЊ '.$u->info['login'].')",`obraz` = "'.$a['obraz'].'.gif",`battle` = "'.$btl->info['id'].'" WHERE `id` = "'.$b['id'].'" LIMIT 1');
 							mysql_query('UPDATE `stats` SET `team` = "'.$u->info['team'].'" WHERE `id` = "'.$b['id'].'" LIMIT 1');
 							mysql_query('UPDATE `users_animal` SET `eda` = "'.$a['eda'].'" WHERE `id` = "'.$a['id'].'" LIMIT 1');
 							$u->addAction(time(),'animal_use'.$btl->info['id'],$a['level']);
 						}else{
-							echo 'Не удалось выпустить зверя...';
+							echo 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїСѓСЃС‚РёС‚СЊ Р·РІРµСЂСЏ...';
 						}
 					}else{
-						//Бот не найден
-						echo 'Не удалось выпустить зверя ...';
+						//Р‘РѕС‚ РЅРµ РЅР°Р№РґРµРЅ
+						echo 'РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїСѓСЃС‚РёС‚СЊ Р·РІРµСЂСЏ ...';
 					}
 				}else{
-					//зверь не найден
-					echo 'У Вас нет зверя ...';
+					//Р·РІРµСЂСЊ РЅРµ РЅР°Р№РґРµРЅ
+					echo 'РЈ Р’Р°СЃ РЅРµС‚ Р·РІРµСЂСЏ ...';
 				}
 			}else{
-				//зверь уже выпущен
-				echo 'Вы уже выпускали зверя в этом бою ...';
+				//Р·РІРµСЂСЊ СѓР¶Рµ РІС‹РїСѓС‰РµРЅ
+				echo 'Р’С‹ СѓР¶Рµ РІС‹РїСѓСЃРєР°Р»Рё Р·РІРµСЂСЏ РІ СЌС‚РѕРј Р±РѕСЋ ...';
 			}
 		}else{
 			
@@ -1176,7 +1176,7 @@ class priems
 						unset($pl);
 					}elseif($pl['activ']>1)
 					{
-						//Книжный прием
+						//РљРЅРёР¶РЅС‹Р№ РїСЂРёРµРј
 						if($this->testActiv($pl['activ'])==0)
 						{
 							unset($pl);
@@ -1218,17 +1218,17 @@ class priems
 							$notr++;
 						}
 						if($pl['team'] == 1) {
-							//свои
+							//СЃРІРѕРё
 							if($u->info['team'] != $this->ue['team']) {
 								$notr++;
 							}
 						}elseif($pl['team'] == 2) {
-							//противники
+							//РїСЂРѕС‚РёРІРЅРёРєРё
 							if($u->info['team'] == $this->ue['team']) {
 								$notr++;
 							}
 						}elseif($pl['team'] == 0) {
-							//любая команда
+							//Р»СЋР±Р°СЏ РєРѕРјР°РЅРґР°
 							
 						}
 					}else{
@@ -1254,7 +1254,7 @@ class priems
 					{					
 						mysql_query('UPDATE `stats` SET `last_pr` = "'.$pl['id'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 						
-						//Приемы на персонажах
+						//РџСЂРёРµРјС‹ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°С…
 						if( $this->ue['id'] > 0 ) {
 							$btl->priemsRazmen(array($u->info['id'],$this->ue['id']),'fast');
 							mysql_query('UPDATE `eff_users` SET `mark` = 1 WHERE `uid` = "'.$this->ue['id'].'" AND `delete` = 0');
@@ -1274,7 +1274,7 @@ class priems
 						/*echo 'combo::'.$pl['type'].'->';
 						if($pl['type']==1)
 						{*/
-							//используется моментально
+							//РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РјРѕРјРµРЅС‚Р°Р»СЊРЅРѕ
 							/*$pz[(int)$id] = 0;
 							if($pl['file']!='0')
 							{							
@@ -1283,7 +1283,7 @@ class priems
 									echo 'test1';
 								}
 							}else{*/
-								//всякие цели и т.д.
+								//РІСЃСЏРєРёРµ С†РµР»Рё Рё С‚.Рґ.
 								/*echo 'test2';
 							}
 							if(!isset($cup))
@@ -1296,7 +1296,7 @@ class priems
 							}
 						}elseif($pl['type']==2)
 						{*/
-							//Используется на себя (не моментально)
+							//РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РЅР° СЃРµР±СЏ (РЅРµ РјРѕРјРµРЅС‚Р°Р»СЊРЅРѕ)
 							//$this->addEffPr($pl,$id);
 							/*echo 'test3->';
 							if(file_exists('../../_incl_data/class/priem/'.$pl['id'].'.php')) {
@@ -1315,7 +1315,7 @@ class priems
 							}*/
 						/*}elseif($pl['type']==3)
 						{
-							echo 'Использовать приемы данного типа временно запрещено';
+							echo 'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїСЂРёРµРјС‹ РґР°РЅРЅРѕРіРѕ С‚РёРїР° РІСЂРµРјРµРЅРЅРѕ Р·Р°РїСЂРµС‰РµРЅРѕ';
 						}
 						*/
 						
@@ -1324,7 +1324,7 @@ class priems
 							mysql_query('UPDATE `dailybonus` SET `usepriem` = `usepriem` + 1 WHERE `date_finish` != "'.date('d.m.Y').'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
 							//
 							$this->uppz($pl,$id);
-							//Отнимаем тактики
+							//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 							//$this->mintr($pl);
 							if($pl['tr_hod']>0) {
 								$this->trhod($pl);
@@ -1427,7 +1427,7 @@ class priems
 			$a1 = mysql_fetch_array(mysql_query('SELECT * FROM `battle_act` WHERE `battle` = "'.$btl->info['id'].'" AND `uid2` = "'.$u->info['id'].'" AND `uid1` = "'.$u->info['enemy'].'" LIMIT 1'));
 			if(isset($a1['id']))
 			{
-				//противник ударил, пишем что игрок 2 пропустил ход
+				//РїСЂРѕС‚РёРІРЅРёРє СѓРґР°СЂРёР», РїРёС€РµРј С‡С‚Рѕ РёРіСЂРѕРє 2 РїСЂРѕРїСѓСЃС‚РёР» С…РѕРґ
 				mysql_query('UPDATE `battle_act` SET `out2` = "1",`tpo2` = "2" WHERE `id` = "'.$a1['id'].'" LIMIT 1');
 				$a1['out2'] = 1;
 				$a1['tpo2'] = 2;
@@ -1435,7 +1435,7 @@ class priems
 				$btl->users[$u->info['id']]['priems_z'] = $u->info['priems_z'];
 				$btl->startAtack($a1['id']);
 			}else{
-				//бьем противника с пропуском хода
+				//Р±СЊРµРј РїСЂРѕС‚РёРІРЅРёРєР° СЃ РїСЂРѕРїСѓСЃРєРѕРј С…РѕРґР°
 				mysql_query('INSERT INTO `battle_act` (`battle`,`uid1`,`uid2`,`time`,`out1`,`type`,`tpo1`) VALUES ("'.$btl->info['id'].'","'.$u->info['id'].'","'.$u->info['enemy'].'","'.time().'","1","1","2")');			
 			}
 		}
@@ -1445,8 +1445,8 @@ class priems
 		global $u;
 		$j1 = $u->lookStats($d1);
 		$j2 = $u->lookStats($this->redate($d2,$u->info['id']));
-		$v = $u->lookKeys($this->redate($d2,$u->info['id']),0); // ключи 2
-		//добавляем данные друг к другу
+		$v = $u->lookKeys($this->redate($d2,$u->info['id']),0); // РєР»СЋС‡Рё 2
+		//РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ РґСЂСѓРі Рє РґСЂСѓРіСѓ
 		$i = 0; $inf = '';
 		while($i<count($v))
 		{
@@ -1512,11 +1512,11 @@ class priems
 		$pld = array(0=>''); $nc = 0;
 		if(isset($mpr['id']) && $j['onlyOne']==1)
 		{
-			//отнимаем тактики
+			//РѕС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 			$addch = 1;
 			$this->mintr($pl);
 			$this->uppz($pl,$id);
-			//добавляем прием в эффекты
+			//РґРѕР±Р°РІР»СЏРµРј РїСЂРёРµРј РІ СЌС„С„РµРєС‚С‹
 			if(isset($this->ue['id']))
 			{
 				$btl->stats[$btl->uids[$uid]] = $u->getStats($this->ue,0);
@@ -1547,13 +1547,13 @@ class priems
 			}
 			mysql_query('INSERT INTO `eff_users` (`hod`,`v2`,`img2`,`id_eff`,`uid`,`name`,`data`,`overType`,`timeUse`,`v1`,`user_use`) VALUES ("'.$hd1.'","'.$pl['id'].'","'.$pl['img'].'.gif",22,"'.$uid.'","'.$pl['name'].'","'.$data.'","0","'.$tm.'","priem","'.$u->info['id'].'")');
 			unset($hd1);
-			//отнимаем тактики
+			//РѕС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 			$addch = 1;
 			$rcu = true;
 			$nc = 1;
 			$this->mintr($pl);
 			//$this->uppz($pl,$id);
-			//добавляем прием в эффекты
+			//РґРѕР±Р°РІР»СЏРµРј РїСЂРёРµРј РІ СЌС„С„РµРєС‚С‹
 			if(isset($this->ue['id']))
 			{
 				$btl->stats[$btl->uids[$uid]] = $u->getStats($this->ue,0);
@@ -1568,8 +1568,8 @@ class priems
 				{
 					$j1 = $u->lookStats($mpr['data']);
 					$j2 = $u->lookStats($this->redate($pl['date3'],$u->info['id']));
-					$v = $u->lookKeys($this->redate($pl['date3'],$u->info['id']),0); // ключи 2
-					//добавляем данные друг к другу
+					$v = $u->lookKeys($this->redate($pl['date3'],$u->info['id']),0); // РєР»СЋС‡Рё 2
+					//РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ РґСЂСѓРі Рє РґСЂСѓРіСѓ
 					$i = 0; $inf = '';
 					while($i<count($v))
 					{
@@ -1595,10 +1595,10 @@ class priems
 					$upd = mysql_query('UPDATE `eff_users` SET `hod` = "'.$mpr['hod'].'",`data` = "'.$j1.'",`x` = `x`+1 WHERE `id` = "'.$mpr['id'].'" LIMIT 1');
 					if($upd)
 					{
-						//отнимаем тактики
+						//РѕС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 						$this->mintr($pl);
 						$this->uppz($pl,$id);
-						//добавляем прием в эффекты
+						//РґРѕР±Р°РІР»СЏРµРј РїСЂРёРµРј РІ СЌС„С„РµРєС‚С‹
 						if(isset($this->ue['id']))
 						{
 							$btl->stats[$btl->uids[$uid]] = $u->getStats($this->ue,0);
@@ -1612,7 +1612,7 @@ class priems
 				}				
 			}
 		}
-		/* тратим свой ход */
+		/* С‚СЂР°С‚РёРј СЃРІРѕР№ С…РѕРґ */
 		if($nc==1 && $pl['tr_hod']>0)
 		{
 			$this->trhod($pl);
@@ -1676,18 +1676,18 @@ class priems
 			while($i<count($pe))
 			{
 				if($pl['sbr'] == 0) {
-					//все блокируем
+					//РІСЃРµ Р±Р»РѕРєРёСЂСѓРµРј
 					$psp = mysql_fetch_array(mysql_query('SELECT * FROM `priems` WHERE `id` = "'.((int)$pe[$i]).'" LIMIT 1'));
 				}else{
-					//Только текущую школу магии
+					//РўРѕР»СЊРєРѕ С‚РµРєСѓС‰СѓСЋ С€РєРѕР»Сѓ РјР°РіРёРё
 					$imgnm = '';
 					$nm = explode('_',$pl['img']);
-					if($nm[0] == 'wis') { //магия
+					if($nm[0] == 'wis') { //РјР°РіРёСЏ
 					$imgnm = $nm[0].'_'.$nm[1].'%';
 					}else{
 						$imgnm = $nm[0].'%';						
 					}
-					//только данной школы
+					//С‚РѕР»СЊРєРѕ РґР°РЅРЅРѕР№ С€РєРѕР»С‹
 					$psp = mysql_fetch_array(mysql_query('SELECT * FROM `priems` WHERE `id` = "'.((int)$pe[$i]).'" AND `img` LIKE "'.$imgnm.'" LIMIT 1'));
 				}
 				if( $pl['noprid'] == 0 ) {
@@ -1754,7 +1754,7 @@ class priems
 				if(isset($piz[$p[$i]]))
 				{
 					if( $pl['id'] == 281 ) {
-						//Жертва воде + воздуху дает 5 ед. задержки на землю и огонь
+						//Р–РµСЂС‚РІР° РІРѕРґРµ + РІРѕР·РґСѓС…Сѓ РґР°РµС‚ 5 РµРґ. Р·Р°РґРµСЂР¶РєРё РЅР° Р·РµРјР»СЋ Рё РѕРіРѕРЅСЊ
 						if($p[(int)$i] == 246 || $p[(int)$i] == 186) {
 							$pz[(int)$i] = 5;
 						}else{
@@ -1798,7 +1798,7 @@ class priems
 		$p = explode('|',$u->info['priems']);
 		if($p[(int)$id]>0)
 		{
-			//снимаем прием
+			//СЃРЅРёРјР°РµРј РїСЂРёРµРј
 			$p[(int)$id] = 0;
 			$p = implode('|',$p);
 			$upd = mysql_query('UPDATE `stats` SET `priems` = "'.mysql_real_escape_string($p).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -1834,7 +1834,7 @@ class priems
 				{
 					if($non!=-1)
 					{
-						//одеваем прием
+						//РѕРґРµРІР°РµРј РїСЂРёРµРј
 						$p[$non] = $pl['id'];
 						$p = implode('|',$p);
 						$upd = mysql_query('UPDATE `stats` SET `priems` = "'.$p.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -1843,18 +1843,18 @@ class priems
 							$u->info['priems'] = $p;							
 						}
 					}else{
-						//снимаем последний прием
-						echo 'Снимаем последний прием...';
+						//СЃРЅРёРјР°РµРј РїРѕСЃР»РµРґРЅРёР№ РїСЂРёРµРј
+						echo 'РЎРЅРёРјР°РµРј РїРѕСЃР»РµРґРЅРёР№ РїСЂРёРµРј...';
 					}
 				}else{
-					//такой прием уже стоит, ничего не делаем
+					//С‚Р°РєРѕР№ РїСЂРёРµРј СѓР¶Рµ СЃС‚РѕРёС‚, РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµРј
 				}	
 								
 			}
 		}
 	}
 	
-	//выводим приемы $id - 1 (вне боя), 2 - в бою
+	//РІС‹РІРѕРґРёРј РїСЂРёРµРјС‹ $id - 1 (РІРЅРµ Р±РѕСЏ), 2 - РІ Р±РѕСЋ
 	public function seeMy($t)
 	{
 		global $u,$c,$code,$btl;
@@ -1880,7 +1880,7 @@ class priems
 					}else{
 						if($pl['type']==1)
 						{
-							//моментально
+							//РјРѕРјРµРЅС‚Р°Р»СЊРЅРѕ
 							if($pl['onUser']==1)
 							{
 								$oninuser = '';
@@ -1904,11 +1904,11 @@ class priems
 							}
 						}elseif($pl['type']==2)
 						{
-							//длительное
+							//РґР»РёС‚РµР»СЊРЅРѕРµ
 							$cl = 'href="javascript:void(0);" onClick="usepriem('.$i.',1);"';
 						}elseif($pl['type']==3)
 						{
-							$cl = 'href="javascript:void(0);" onClick="alert(\'Возможно используем?\');"';
+							$cl = 'href="javascript:void(0);" onClick="alert(\'Р’РѕР·РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·СѓРµРј?\');"';
 						}
 					}
 					
@@ -1929,7 +1929,7 @@ class priems
 					if($t==1)
 					{
 						if(isset($_GET['inv'])) {
-							$pr .= '<a title="Перейти к настройкам приемов" href="javascript:void(0)" onclick="location.href=\'main.php?all='.((int)$_GET['all']).'&skills=1&rz=4&p_raz=all\'"><img style="margin-top:4px; margin-left:4px;" src="http://img.xcombats.com/i/items/w/clearPriem.gif" width="40" height="25" /></a>';
+							$pr .= '<a title="РџРµСЂРµР№С‚Рё Рє РЅР°СЃС‚СЂРѕР№РєР°Рј РїСЂРёРµРјРѕРІ" href="javascript:void(0)" onclick="location.href=\'main.php?all='.((int)$_GET['all']).'&skills=1&rz=4&p_raz=all\'"><img style="margin-top:4px; margin-left:4px;" src="http://img.xcombats.com/i/items/w/clearPriem.gif" width="40" height="25" /></a>';
 						}else{
 							$pr .= '<img style="margin-top:4px; margin-left:4px;" src="http://img.xcombats.com/i/items/w/clearPriem.gif" width="40" height="25" />';
 						}
@@ -1943,10 +1943,10 @@ class priems
 				if(!isset($use_lst['id']))
 				{
 					$cl2 = '';
-					$pr .= '<a onMouseOver="top.hi(this,\'<b>Выпустить зверя</b><Br>Ваш зверь вмешивается в поединок. Можно применять один раз за бой.\',event,3,0,1,1,\'width:240px\');" onMouseOut="top.hic();" onMouseDown="top.hic();" href="javascript:void(0);" onClick="usepriem(100500,1);"><img style="margin-top:1px; '.$cl2.' margin-left:3px;" src="http://img.xcombats.com/i/eff/pet_unleash.gif" width="40" height="25" /></a>';
+					$pr .= '<a onMouseOver="top.hi(this,\'<b>Р’С‹РїСѓСЃС‚РёС‚СЊ Р·РІРµСЂСЏ</b><Br>Р’Р°С€ Р·РІРµСЂСЊ РІРјРµС€РёРІР°РµС‚СЃСЏ РІ РїРѕРµРґРёРЅРѕРє. РњРѕР¶РЅРѕ РїСЂРёРјРµРЅСЏС‚СЊ РѕРґРёРЅ СЂР°Р· Р·Р° Р±РѕР№.\',event,3,0,1,1,\'width:240px\');" onMouseOut="top.hic();" onMouseDown="top.hic();" href="javascript:void(0);" onClick="usepriem(100500,1);"><img style="margin-top:1px; '.$cl2.' margin-left:3px;" src="http://img.xcombats.com/i/eff/pet_unleash.gif" width="40" height="25" /></a>';
 				}else{
 					$cl2 = '" class="nopriemuse';
-					$pr .= '<img onMouseOver="top.hi(this,\'<b>Выпустить зверя</b><Br>Ваш зверь вмешивается в поединок. Можно применять один раз за бой.\',event,3,0,1,1,\'width:240px\');" onMouseOut="top.hic();" onMouseDown="top.hic();" style="margin-top:1px; margin-left:2px;'.$cl2.'" src="http://img.xcombats.com/i/eff/pet_unleash.gif" width="40" height="25" />';
+					$pr .= '<img onMouseOver="top.hi(this,\'<b>Р’С‹РїСѓСЃС‚РёС‚СЊ Р·РІРµСЂСЏ</b><Br>Р’Р°С€ Р·РІРµСЂСЊ РІРјРµС€РёРІР°РµС‚СЃСЏ РІ РїРѕРµРґРёРЅРѕРє. РњРѕР¶РЅРѕ РїСЂРёРјРµРЅСЏС‚СЊ РѕРґРёРЅ СЂР°Р· Р·Р° Р±РѕР№.\',event,3,0,1,1,\'width:240px\');" onMouseOut="top.hic();" onMouseDown="top.hic();" style="margin-top:1px; margin-left:2px;'.$cl2.'" src="http://img.xcombats.com/i/eff/pet_unleash.gif" width="40" height="25" />';
 	
 				}
 			}
@@ -1978,7 +1978,7 @@ class priems
 		
 		if(isset($btl->stats[$btl->uids[$u->info['id']]]['nousepriem']) && $btl->stats[$btl->uids[$u->info['id']]]['nousepriem'] > 0 && $pl['nosh'] == 0) {
 			if( $btl->stats[$btl->uids[$u->info['id']]]['noshock_voda'] > 0 && substr($pl['img'],0,10) == 'wis_water_' ) {
-				//вода
+				//РІРѕРґР°
 			}else{
 				$notr++;
 			}
@@ -2060,7 +2060,7 @@ class priems
 			}
 		//}
 		
-		//Требует чтобы не было
+		//РўСЂРµР±СѓРµС‚ С‡С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ
 		if(isset($tr['tr_nousepriem'])) {
 			$x = 0;
 			$nouse = explode(',',$tr['tr_nousepriem']);
@@ -2081,7 +2081,7 @@ class priems
 		}
 		
 		if(isset($tr['tr_type_itm1'])) {
-			//требует наличие предмета определенного типа
+			//С‚СЂРµР±СѓРµС‚ РЅР°Р»РёС‡РёРµ РїСЂРµРґРјРµС‚Р° РѕРїСЂРµРґРµР»РµРЅРЅРѕРіРѕ С‚РёРїР°
 			$itmt = mysql_fetch_array(mysql_query('SELECT `u`.`id` FROM `items_users` AS `u` LEFT JOIN `items_main` AS `m` ON `m`.`id` = `u`.`item_id` WHERE `m`.`type` = "'.$tr['tr_type_itm1'].'" AND `u`.`inOdet` > 0 AND `u`.`uid` = "'.$u->info['id'].'" AND `u`.`delete` = "0" LIMIT 1'));
 			if(!isset($itmt['id'])) {
 				$notr++;
@@ -2108,14 +2108,14 @@ class priems
 		{
 			if($pl['trUser']==1)
 			{
-				//требует чтобы пользователь с кем-то разменивался (при ожидании прием гаснит)
+				//С‚СЂРµР±СѓРµС‚ С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ РєРµРј-С‚Рѕ СЂР°Р·РјРµРЅРёРІР°Р»СЃСЏ (РїСЂРё РѕР¶РёРґР°РЅРёРё РїСЂРёРµРј РіР°СЃРЅРёС‚)
 				if(isset($btl->ga[$u->info['id']][$u->info['enemy']]))
 				{
 					$notr++;
 				}
 			}elseif($pl['trUser']==2 && $o > 0)
 			{
-				//требует чтобы пользователь с кем-то разменивался (при ожидании не пропадает, но не используется)
+				//С‚СЂРµР±СѓРµС‚ С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ РєРµРј-С‚Рѕ СЂР°Р·РјРµРЅРёРІР°Р»СЃСЏ (РїСЂРё РѕР¶РёРґР°РЅРёРё РЅРµ РїСЂРѕРїР°РґР°РµС‚, РЅРѕ РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ)
 				$ga = mysql_fetch_array(mysql_query('SELECT * FROM `battle_act` WHERE `battle` = "'.$btl->info['id'].'" AND `uid1` = "'.$u->info['id'].'" AND `uid2` = "'.$btl->users[$btl->uids[$u->info['id']]]['enemy'].'" LIMIT 1'));
 				if(isset($ga['id']))
 				{
@@ -2147,7 +2147,7 @@ class priems
 				{
 					$trs .= '<font color=red>'; $notr++;
 				}
-				$trs .= '<br>• ';
+				$trs .= '<br>вЂў ';
 				$trs .= $u->is[$n].': '.$tr['tr_'.$n];
 				if($tr['tr_'.$n] > $u->stats[$n])
 				{
@@ -2174,15 +2174,15 @@ class priems
 			{
 				$lvar .= '<br>';
 			}
-			$lvar .= 'Сила духа: '.round($pl['tt'.$j],2).'<br>';
+			$lvar .= 'РЎРёР»Р° РґСѓС…Р°: '.round($pl['tt'.$j],2).'<br>';
 		}
 		$lvar .= '<br>';
 		if($pl['zad']>0)
 		{
-			$lvar .= 'Задержка: '.$pl['zad'];
+			$lvar .= 'Р—Р°РґРµСЂР¶РєР°: '.$pl['zad'];
 			if($pz[$id]>0)
 			{
-				$lvar .= ' (еще '.$pz[$id].')';
+				$lvar .= ' (РµС‰Рµ '.$pz[$id].')';
 			}
 			$lvar .= '<br>';
 		}
@@ -2191,18 +2191,18 @@ class priems
 			$tr['tr_mpNow'] -= round($tr['tr_mpNow']/100*$u->stats['min_use_mp']);
 			if($u->info['mpNow']<$tr['tr_mpNow'] || (isset($btl->stats[$btl->uids[$u->info['id']]]) && $btl->stats[$btl->uids[$u->info['id']]]['mpNow']<$tr['tr_mpNow']))
 			{
-				$lvar .= '<font color=red>• Расход маны: '.$tr['tr_mpNow'].'</font><br>';
+				$lvar .= '<font color=red>вЂў Р Р°СЃС…РѕРґ РјР°РЅС‹: '.$tr['tr_mpNow'].'</font><br>';
 			}else{
-				$lvar .= '• Расход маны: '.$tr['tr_mpNow'].'<br>';	
+				$lvar .= 'вЂў Р Р°СЃС…РѕРґ РјР°РЅС‹: '.$tr['tr_mpNow'].'<br>';	
 			}
 		}
 		if($pl['tr_hod']>0)
 		{
-			$lvar .= '• Прием тратит ход<br>';
+			$lvar .= 'вЂў РџСЂРёРµРј С‚СЂР°С‚РёС‚ С…РѕРґ<br>';
 		}
 		if($trs!='')
 		{
-			$lvar .= '<b>Требования:</b>'.$trs.'<br><br>';
+			$lvar .= '<b>РўСЂРµР±РѕРІР°РЅРёСЏ:</b>'.$trs.'<br><br>';
 		}else{
 			$lvar .= '<br>';
 		}
@@ -2212,7 +2212,7 @@ class priems
 		return $lvar;
 	}
 	
-	//Мощность / подавление / сопротивление и т.д.
+	//РњРѕС‰РЅРѕСЃС‚СЊ / РїРѕРґР°РІР»РµРЅРёРµ / СЃРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ Рё С‚.Рґ.
 		public function testPower($s1,$s2,$y,$t,$t2)
 		{
 			global $u,$btl;
@@ -2220,7 +2220,7 @@ class priems
 			$r = 0;
 			if($t2==2)
 			{
-				//урон магией
+				//СѓСЂРѕРЅ РјР°РіРёРµР№
 				$pm = array(0=>0,1=>0,2=>0,3=>0);
 				if($t<5)
 				{
@@ -2235,25 +2235,25 @@ class priems
 					$pm[3] = round($pm[3]);
 				}
 
-				//$p += $p/100*($s1['pm'.$t]*0.75+$pm[0]*1.01+$s1['m11a']*0.75-($s2['antpm'.$t]+$s2['antm11a']+$pm[2])) - $p/75*$pm[3]; //от мощностей и защита противника
+				//$p += $p/100*($s1['pm'.$t]*0.75+$pm[0]*1.01+$s1['m11a']*0.75-($s2['antpm'.$t]+$s2['antm11a']+$pm[2])) - $p/75*$pm[3]; //РѕС‚ РјРѕС‰РЅРѕСЃС‚РµР№ Рё Р·Р°С‰РёС‚Р° РїСЂРѕС‚РёРІРЅРёРєР°
 				
 				//$kfl = 250;
 				
 				//$p = $y*(1+ ( $s1['pm'.$t]-$s2['antpm'.$t]-$s2['antm11a']-$pm[2] ) /100)*pow(2,(( ( $s2['pzm'.$t]  ) * 10-(($s2['zma']+$pm[1]) + $s2['zm'.$t]) )/$kfl));
 				
-				//урон = b*(1+m/100)*2^((p*10-z)/k)
+				//СѓСЂРѕРЅ = b*(1+m/100)*2^((p*10-z)/k)
 				$fx_vl = array(
 					250,250,250,250,250,250,250,250,250,300,350,400,450,500,550,600,650,700,750,800,850,900
 				);
 				
 				$fx = array(
-					'b' => $y, //базовый урон
-					'm' => round( $s1['pm'.$t] * 1 - $s2['antpm'.$t] ), //мощь
-					'z' => round( $s2['zm'.$t] ), //защита цели ед.
-					'p' => round( $s1['pzm'] + $s1['pzm'.$t] ), //подавление
-					'k' => $fx_vl[(0+$s1['lvl'])] //коэффициент ; k=250 для 8ки, k=300 для 9ки и т.д. +20% на уровень
+					'b' => $y, //Р±Р°Р·РѕРІС‹Р№ СѓСЂРѕРЅ
+					'm' => round( $s1['pm'.$t] * 1 - $s2['antpm'.$t] ), //РјРѕС‰СЊ
+					'z' => round( $s2['zm'.$t] ), //Р·Р°С‰РёС‚Р° С†РµР»Рё РµРґ.
+					'p' => round( $s1['pzm'] + $s1['pzm'.$t] ), //РїРѕРґР°РІР»РµРЅРёРµ
+					'k' => $fx_vl[(0+$s1['lvl'])] //РєРѕСЌС„С„РёС†РёРµРЅС‚ ; k=250 РґР»СЏ 8РєРё, k=300 РґР»СЏ 9РєРё Рё С‚.Рґ. +20% РЅР° СѓСЂРѕРІРµРЅСЊ
 				);				
-				if( ($fx['z']+250) - $fx['p']*10 < 0 ) { //защита не может уйти больше, чем в 250 ед.
+				if( ($fx['z']+250) - $fx['p']*10 < 0 ) { //Р·Р°С‰РёС‚Р° РЅРµ РјРѕР¶РµС‚ СѓР№С‚Рё Р±РѕР»СЊС€Рµ, С‡РµРј РІ 250 РµРґ.
 					$fx['p'] = ($fx['z']+250)/10;
 				}
 				$fx['p'] = 0;
@@ -2269,8 +2269,8 @@ class priems
 					$p = $y*10;
 				}
 				
-				//$p += $p/100*($s1['pzm']+$s1['pzm'.$t]); //от подавления маг.защиты	
-				if(isset($s2['zmproc']) || isset($s2['zm'.$t.'proc'])) //защита от магии стихий (призрачки)
+				//$p += $p/100*($s1['pzm']+$s1['pzm'.$t]); //РѕС‚ РїРѕРґР°РІР»РµРЅРёСЏ РјР°Рі.Р·Р°С‰РёС‚С‹	
+				if(isset($s2['zmproc']) || isset($s2['zm'.$t.'proc'])) //Р·Р°С‰РёС‚Р° РѕС‚ РјР°РіРёРё СЃС‚РёС…РёР№ (РїСЂРёР·СЂР°С‡РєРё)
 				{
 			        
 					$p = floor($p/100*(100/*-$s2['zmproc']*/-$s2['zm'.$t.'proc']));
@@ -2285,7 +2285,7 @@ class priems
 				$r = $p;
 
 			}else{
-				//урон оружием
+				//СѓСЂРѕРЅ РѕСЂСѓР¶РёРµРј
 				
 			}	
 			
@@ -2300,7 +2300,7 @@ class priems
 			$r = 0;
 			if($t2==2)
 			{
-				//урон магией
+				//СѓСЂРѕРЅ РјР°РіРёРµР№
 				$pm = array(0=>0,1=>0,2=>0,3=>0);
 				if($t<5)
 				{
@@ -2310,8 +2310,8 @@ class priems
 				}
 				$p = $y;
 				
-				//$p += ($s1['s5']*($p/100*0.52)); //от интелекта
-				$p += 0; //от умений
+				//$p += ($s1['s5']*($p/100*0.52)); //РѕС‚ РёРЅС‚РµР»РµРєС‚Р°
+				$p += 0; //РѕС‚ СѓРјРµРЅРёР№
 				
 				if(isset($btl->info['id']))
 				{
@@ -2320,11 +2320,11 @@ class priems
 					$pm[3] = round($pm[3]);
 				}
 
-				$p += $p/100*($s1['pm'.$t]*0.75+$pm[0]*1.01+$s1['m11a']*0.75-($s2['antpm'.$t]+$s2['antm11a']+$pm[2])) - $p/75*$pm[3]; //от мощностей и защита противника
+				$p += $p/100*($s1['pm'.$t]*0.75+$pm[0]*1.01+$s1['m11a']*0.75-($s2['antpm'.$t]+$s2['antm11a']+$pm[2])) - $p/75*$pm[3]; //РѕС‚ РјРѕС‰РЅРѕСЃС‚РµР№ Рё Р·Р°С‰РёС‚Р° РїСЂРѕС‚РёРІРЅРёРєР°
 				
 				
-				$p += $p/100*($s1['pzm']+$s1['pzm'.$t]); //от подавления маг.защиты	
-				if(isset($s2['zmproc']) || isset($s2['zm'.$t.'proc'])) //защита от магии стихий (призрачки)
+				$p += $p/100*($s1['pzm']+$s1['pzm'.$t]); //РѕС‚ РїРѕРґР°РІР»РµРЅРёСЏ РјР°Рі.Р·Р°С‰РёС‚С‹	
+				if(isset($s2['zmproc']) || isset($s2['zm'.$t.'proc'])) //Р·Р°С‰РёС‚Р° РѕС‚ РјР°РіРёРё СЃС‚РёС…РёР№ (РїСЂРёР·СЂР°С‡РєРё)
 				{
 			        
 					$p = floor($p/100*(100-$s2['zmproc']-$s2['zm'.$t.'proc']));
@@ -2338,7 +2338,7 @@ class priems
 				$r = $p;
 
 			}else{
-				//урон оружием
+				//СѓСЂРѕРЅ РѕСЂСѓР¶РёРµРј
 				
 			}	
 			//if($u->info['id']==340379 or $u->info['id']==399105){
@@ -2364,7 +2364,7 @@ class priems
 		return $r;
 	}
 	
-	//выводим все доступные приемы игроку на его уровне - 1, выводим все доступные приемы только игроку - 2
+	//РІС‹РІРѕРґРёРј РІСЃРµ РґРѕСЃС‚СѓРїРЅС‹Рµ РїСЂРёРµРјС‹ РёРіСЂРѕРєСѓ РЅР° РµРіРѕ СѓСЂРѕРІРЅРµ - 1, РІС‹РІРѕРґРёРј РІСЃРµ РґРѕСЃС‚СѓРїРЅС‹Рµ РїСЂРёРµРјС‹ С‚РѕР»СЊРєРѕ РёРіСЂРѕРєСѓ - 2
 	public function seePriems($mt)
 	{
 		global $u,$c,$code;

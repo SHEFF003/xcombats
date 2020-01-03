@@ -1,6 +1,6 @@
 <?php
 
-die('Проект закрыт на доработку. Вся информация и доступ будет в 17:00 по МСК.');
+die('РџСЂРѕРµРєС‚ Р·Р°РєСЂС‹С‚ РЅР° РґРѕСЂР°Р±РѕС‚РєСѓ. Р’СЃСЏ РёРЅС„РѕСЂРјР°С†РёСЏ Рё РґРѕСЃС‚СѓРї Р±СѓРґРµС‚ РІ 17:00 РїРѕ РњРЎРљ.');
 
 if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
   $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
@@ -53,7 +53,7 @@ mysql_query('INSERT INTO `antireflesh` ( `page`,`login`,`time`,`ip` ) VALUES (
 ) ');
 */
 if(isset($ipbant['id']) || isset($_GET['ipban'])) {
-	echo 'Ваш ip %<b>'.$ipban.'</b> заблокирован. Код блокировки: '.$ipban['id'].'<br>По всем возникшим вопросам обращайтесь по эл.почте: <a href="mailto:support@xcombats.com">support@xcombats.com</a>';
+	echo 'Р’Р°С€ ip %<b>'.$ipban.'</b> Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ. РљРѕРґ Р±Р»РѕРєРёСЂРѕРІРєРё: '.$ipban['id'].'<br>РџРѕ РІСЃРµРј РІРѕР·РЅРёРєС€РёРј РІРѕРїСЂРѕСЃР°Рј РѕР±СЂР°С‰Р°Р№С‚РµСЃСЊ РїРѕ СЌР».РїРѕС‡С‚Рµ: <a href="mailto:support@xcombats.com">support@xcombats.com</a>';
 	die();
 }
 unset($ipbant);

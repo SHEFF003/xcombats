@@ -20,5 +20,3 @@ class GeneralException extends \Exception {
 		file_put_contents(PROJECT_PATH . DS . 'log/error.log', $s . "\n", FILE_APPEND);
 	}
 }
-
-?>

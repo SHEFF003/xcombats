@@ -6,12 +6,12 @@ if(!defined('GAME'))
 $hpadd_pr_color = '';
 
 if(isset($hod)) {
-/*ПРИЕМЫ КАЖДЫЙ ХОД*/
+/*РџР РР•РњР« РљРђР–Р”Р«Р™ РҐРћР”*/
 	$krituetli = 0;
 	
 	if($pr['id']==231 && isset($hod))
 	{
-		//Глухая защита (восстанавливаем НР)
+		//Р“Р»СѓС…Р°СЏ Р·Р°С‰РёС‚Р° (РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј РќР )
 		$hpadd_pr = floor(round($u->stats['hpAll']/100*15)/6);
 		$hpadd_pr_color = 'green';
 		$trduh = 1;
@@ -27,21 +27,21 @@ if(isset($hod)) {
 		$pl['name'] = $pr['name'];
 	}
 		
-/*ПРИЕМЫ КАЖДЫЙ ХОД*/
+/*РџР РР•РњР« РљРђР–Р”Р«Р™ РҐРћР”*/
 }elseif($pl['id']==231) {
-	//Глухая защита
-	$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,6,$u->info['id'],1,'глухаязащита',0,1);
+	//Р“Р»СѓС…Р°СЏ Р·Р°С‰РёС‚Р°
+	$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,6,$u->info['id'],1,'РіР»СѓС…Р°СЏР·Р°С‰РёС‚Р°',0,1);
 }elseif($pl['id']==3)
 {
-	//прием собрать зубы
+	//РїСЂРёРµРј СЃРѕР±СЂР°С‚СЊ Р·СѓР±С‹
 	$hpadd = rand(2,5); $trduh = 1;
 }elseif($pl['id']==5)
 {
-	//прием утереть пот
+	//РїСЂРёРµРј СѓС‚РµСЂРµС‚СЊ РїРѕС‚
 	$hpadd = $u->info['level']*2;
 }elseif($pl['id']==6)
 {
-	//прием воля к победе
+	//РїСЂРёРµРј РІРѕР»СЏ Рє РїРѕР±РµРґРµ
 	$hpadd = round($u->info['level']*5+7);
 	if($btl->stats[$btl->uids[$u->info['id']]]['hpNow']<($btl->stats[$btl->uids[$u->info['id']]]['hpAll']*0.33))
 	{
@@ -49,30 +49,30 @@ if(isset($hod)) {
 	}
 }elseif($pl['priem']['id']==189)
 {
-	//Ошеломить
+	//РћС€РµР»РѕРјРёС‚СЊ
 	$imun = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u2['id'].'" and `v2`="191" and `delete`="0" LIMIT 1'));
 	//echo $u2['id'];
 	if($imun){
 		$cup = true;
 		$vLog = 'time1='.time().'||s1='.$u1['sex'].'||t1='.$u1['team'].'||login1='.$u1['login'].'||s2='.$this->users[$this->uids[$u2['id']]]['sex'].'||t2='.$this->users[$this->uids[$u2['id']]]['team'].'||login2='.$this->users[$this->uids[$u2['id']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>$this->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;, но у {u2} иммунитет к ошеломлению.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;, РЅРѕ Сѓ {u2} РёРјРјСѓРЅРёС‚РµС‚ Рє РѕС€РµР»РѕРјР»РµРЅРёСЋ.';	
 	}elseif($this->stats[$this->uids[$u2['id']]]['hpNow']>=1)	{
-		//ошеломить
-		$re = $priem->addPriem($u2['id'],230,'add_m10=-100|add_m11=-100',0,77,2,$u1['id'],2,'ошеломить');
-		$re = $priem->addPriem($u2['id'],191,'',0,77,6,$u1['id'],5,'иммунитеткошеломить');
+		//РѕС€РµР»РѕРјРёС‚СЊ
+		$re = $priem->addPriem($u2['id'],230,'add_m10=-100|add_m11=-100',0,77,2,$u1['id'],2,'РѕС€РµР»РѕРјРёС‚СЊ');
+		$re = $priem->addPriem($u2['id'],191,'',0,77,6,$u1['id'],5,'РёРјРјСѓРЅРёС‚РµС‚РєРѕС€РµР»РѕРјРёС‚СЊ');
 		if($re==false)
 		{
-			echo '[Er::Ошеломить[xX]]';
+			echo '[Er::РћС€РµР»РѕРјРёС‚СЊ[xX]]';
 		}
 		$sx = '';
 		if($u1['sex']==1)
 		{
-			$sx = 'а';
+			$sx = 'Р°';
 		}
 		$vLog = 'time1='.time().'||s1='.$u1['sex'].'||t1='.$u1['team'].'||login1='.$u1['login'].'||s2='.$this->users[$this->uids[$u2['id']]]['sex'].'||t2='.$this->users[$this->uids[$u2['id']]]['team'].'||login2='.$this->users[$this->uids[$u2['id']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>$this->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и ошеломил'.$sx.' {u2} на два хода.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё РѕС€РµР»РѕРјРёР»'.$sx.' {u2} РЅР° РґРІР° С…РѕРґР°.';	
 		$pz = $this->users[$this->uids[$u2['id']]]['priems_z'];
 		$p_id = $this->users[$this->uids[$u2['id']]]['priems'];
 		$pz = explode('|',$pz);
@@ -96,30 +96,30 @@ if(isset($hod)) {
 	}
 }elseif($pl['priem']['id']==235)
 {
-	//Шокирующий удар
+	//РЁРѕРєРёСЂСѓСЋС‰РёР№ СѓРґР°СЂ
 	$imun = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u2['id'].'" and `v2`="191" and `delete`="0" LIMIT 1'));
 	//echo $u2['id'];
 	if($imun){
 		$cup = true;
 		$vLog = 'time1='.time().'||s1='.$u1['sex'].'||t1='.$u1['team'].'||login1='.$u1['login'].'||s2='.$this->users[$this->uids[$u2['id']]]['sex'].'||t2='.$this->users[$this->uids[$u2['id']]]['team'].'||login2='.$this->users[$this->uids[$u2['id']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>$this->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;, но у {u2} иммунитет к ошеломлению.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;, РЅРѕ Сѓ {u2} РёРјРјСѓРЅРёС‚РµС‚ Рє РѕС€РµР»РѕРјР»РµРЅРёСЋ.';	
 	}elseif($this->stats[$this->uids[$u2['id']]]['hpNow']>=1)	{
-		//ошеломить
-		$re = $priem->addPriem($u2['id'],236,'add_notactic=1',0,77,2,$u1['id'],2,'шокирующийудар');
-		$re = $priem->addPriem($u2['id'],191,'',0,77,6,$u1['id'],5,'иммунитеткошеломить');
+		//РѕС€РµР»РѕРјРёС‚СЊ
+		$re = $priem->addPriem($u2['id'],236,'add_notactic=1',0,77,2,$u1['id'],2,'С€РѕРєРёСЂСѓСЋС‰РёР№СѓРґР°СЂ');
+		$re = $priem->addPriem($u2['id'],191,'',0,77,6,$u1['id'],5,'РёРјРјСѓРЅРёС‚РµС‚РєРѕС€РµР»РѕРјРёС‚СЊ');
 		if($re==false)
 		{
-			echo '[Er::ШокирующийУдар[xX]]';
+			echo '[Er::РЁРѕРєРёСЂСѓСЋС‰РёР№РЈРґР°СЂ[xX]]';
 		}
 		$sx = '';
 		if($u1['sex']==1)
 		{
-			$sx = 'а';
+			$sx = 'Р°';
 		}
 		$vLog = 'time1='.time().'||s1='.$u1['sex'].'||t1='.$u1['team'].'||login1='.$u1['login'].'||s2='.$this->users[$this->uids[$u2['id']]]['sex'].'||t2='.$this->users[$this->uids[$u2['id']]]['team'].'||login2='.$this->users[$this->uids[$u2['id']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>$this->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и ошеломил'.$sx.' {u2} на два хода.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё РѕС€РµР»РѕРјРёР»'.$sx.' {u2} РЅР° РґРІР° С…РѕРґР°.';	
 		$pz = $this->users[$this->uids[$u2['id']]]['priems_z'];
 		$p_id = $this->users[$this->uids[$u2['id']]]['priems'];
 		$pz = explode('|',$pz);
@@ -143,28 +143,28 @@ if(isset($hod)) {
 	}
 }elseif($pl['priem']['id']==237)
 {
-	//Разведка боем
+	//Р Р°Р·РІРµРґРєР° Р±РѕРµРј
 		$imun = mysql_fetch_array(mysql_query('SELECT `id` FROM `eff_users` WHERE `uid` = "'.$u2['id'].'" and `v2`="237" and `delete`="0" LIMIT 1'));
 		if(isset($imun['id'])) {
 			mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `id` = "'.$imun['id'].'" LIMIT 1');
 		}
-		//Разведка боем
-		$re = $priem->addPriem($u2['id'],238,'add_notactic=1',0,77,4,$u1['id'],5,'разведкабоем');
+		//Р Р°Р·РІРµРґРєР° Р±РѕРµРј
+		$re = $priem->addPriem($u2['id'],238,'add_notactic=1',0,77,4,$u1['id'],5,'СЂР°Р·РІРµРґРєР°Р±РѕРµРј');
 		if($re==false)
 		{
-			echo '[Er::РазведкаБоем[xX]]';
+			echo '[Er::Р Р°Р·РІРµРґРєР°Р‘РѕРµРј[xX]]';
 		}
 		$sx = '';
 		if($u1['sex']==1)
 		{
-			$sx = 'а';
+			$sx = 'Р°';
 		}
 		$vLog = 'time1='.time().'||s1='.$u1['sex'].'||t1='.$u1['team'].'||login1='.$u1['login'].'||s2='.$this->users[$this->uids[$u2['id']]]['sex'].'||t2='.$this->users[$this->uids[$u2['id']]]['team'].'||login2='.$this->users[$this->uids[$u2['id']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>$this->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и раскрыл'.$sx.' тактику {u2} на пять ходов.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё СЂР°СЃРєСЂС‹Р»'.$sx.' С‚Р°РєС‚РёРєСѓ {u2} РЅР° РїСЏС‚СЊ С…РѕРґРѕРІ.';	
 }elseif($pl['priem']['id']==239)
 {
-	//Поступь смерти
+	//РџРѕСЃС‚СѓРїСЊ СЃРјРµСЂС‚Рё
 	$pl['data_re'] = $u->lookStats($pl['data']);
 	if($pl['data_re']['step'] < 10) {
 		$pl['data_re']['add_maxAtack'] += $this->users[$this->uids[$pl['uid']]]['level'];
@@ -179,10 +179,10 @@ if(isset($hod)) {
 	
 }elseif($pl['priem']['id']==240)
 {
-	//Хлебнуть Крови
+	//РҐР»РµР±РЅСѓС‚СЊ РљСЂРѕРІРё
 	$pl['data_re'] = $u->lookStats($pl['data']);
 	if(isset($pl['data_re']['step']) || $pl['data_re']['step'] == 0) {
-		//Добавляем силу
+		//Р”РѕР±Р°РІР»СЏРµРј СЃРёР»Сѓ
 		if($this->users[$this->uids[$u2['id']]]['level'] == 7) {
 			$pl['data_re']['add_s1'] = 10;
 		}elseif($this->users[$this->uids[$u2['id']]]['level'] == 8) {
@@ -201,11 +201,11 @@ if(isset($hod)) {
 	if($pl['hod'] == -1) {
 		$pl['hod'] = 4;
 		$this->rehodeff[$pl['id']] = $pl['hod'];
-		//Хиляемся 
+		//РҐРёР»СЏРµРјСЃСЏ 
 		$hpadd_pl = $yrn*0.679;
 		$pl['data_re']['step']++;
 	}elseif($pl['data_re']['step'] == 2 || $pl['data_re']['step'] == 3) {
-		//Хиляемся еще 2 хода от любых ударов
+		//РҐРёР»СЏРµРјСЃСЏ РµС‰Рµ 2 С…РѕРґР° РѕС‚ Р»СЋР±С‹С… СѓРґР°СЂРѕРІ
 		$hpadd_pl = $yrn*0.573;
 		$pl['data_re']['step']++;
 	}else{
@@ -246,12 +246,12 @@ if(isset($hod)) {
 			$i++;
 		}
 
-		//Ограничиваем конкретными приемами
+		//РћРіСЂР°РЅРёС‡РёРІР°РµРј РєРѕРЅРєСЂРµС‚РЅС‹РјРё РїСЂРёРµРјР°РјРё
 		/*
-		приёмом "Очиститься кровью" можно снять: пожирающее пламя, переохлаждение, ядовитое облако, кристаллизация, отравление, цель огня, цель воды, цель воздуха и цель земли. 
+		РїСЂРёС‘РјРѕРј "РћС‡РёСЃС‚РёС‚СЊСЃСЏ РєСЂРѕРІСЊСЋ" РјРѕР¶РЅРѕ СЃРЅСЏС‚СЊ: РїРѕР¶РёСЂР°СЋС‰РµРµ РїР»Р°РјСЏ, РїРµСЂРµРѕС…Р»Р°Р¶РґРµРЅРёРµ, СЏРґРѕРІРёС‚РѕРµ РѕР±Р»Р°РєРѕ, РєСЂРёСЃС‚Р°Р»Р»РёР·Р°С†РёСЏ, РѕС‚СЂР°РІР»РµРЅРёРµ, С†РµР»СЊ РѕРіРЅСЏ, С†РµР»СЊ РІРѕРґС‹, С†РµР»СЊ РІРѕР·РґСѓС…Р° Рё С†РµР»СЊ Р·РµРјР»Рё. 
 		*/
-		$add_where .= ' AND (`name` LIKE "Цель Воды%" OR `name` LIKE "Цель Огня%" OR `name` LIKE "Цель Воздуха%" OR `name` LIKE "Цель Земли%" 
-OR `name` LIKE "Пожирающее Пламя%" OR `name` LIKE "Переохлаждение%" OR `name` LIKE "Ядовитое Облако%" OR `name` LIKE "Кристаллизация%" OR `name` LIKE "%Отравление%" OR `name` LIKE "Искалечить%") ';
+		$add_where .= ' AND (`name` LIKE "Р¦РµР»СЊ Р’РѕРґС‹%" OR `name` LIKE "Р¦РµР»СЊ РћРіРЅСЏ%" OR `name` LIKE "Р¦РµР»СЊ Р’РѕР·РґСѓС…Р°%" OR `name` LIKE "Р¦РµР»СЊ Р—РµРјР»Рё%" 
+OR `name` LIKE "РџРѕР¶РёСЂР°СЋС‰РµРµ РџР»Р°РјСЏ%" OR `name` LIKE "РџРµСЂРµРѕС…Р»Р°Р¶РґРµРЅРёРµ%" OR `name` LIKE "РЇРґРѕРІРёС‚РѕРµ РћР±Р»Р°РєРѕ%" OR `name` LIKE "РљСЂРёСЃС‚Р°Р»Р»РёР·Р°С†РёСЏ%" OR `name` LIKE "%РћС‚СЂР°РІР»РµРЅРёРµ%" OR `name` LIKE "РСЃРєР°Р»РµС‡РёС‚СЊ%") ';
 
         $dell = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `user_use`!= "" and `delete`="0" and `uid`="'.$u->info['id'].'" and `v1`="priem" '.$add_where.'  LIMIT 1'));
 		
@@ -264,8 +264,8 @@ OR `name` LIKE "Пожирающее Пламя%" OR `name` LIKE "Переохлаждение%" OR `name` LI
 			$e = explode('|',$dell['data']);
 			while($i<count($e)){
 			    $f = explode('=',$e[$i]);
-			    $stack=$f[1]/$dell['x'];//вычисляем влятельность заряда на х-ки 
-			    $f[1]-=$stack;// отнимаем заряд
+			    $stack=$f[1]/$dell['x'];//РІС‹С‡РёСЃР»СЏРµРј РІР»СЏС‚РµР»СЊРЅРѕСЃС‚СЊ Р·Р°СЂСЏРґР° РЅР° С…-РєРё 
+			    $f[1]-=$stack;// РѕС‚РЅРёРјР°РµРј Р·Р°СЂСЏРґ
 				$e[$i] = implode('=',$f);
 				$i++;
 			}
@@ -275,7 +275,7 @@ OR `name` LIKE "Пожирающее Пламя%" OR `name` LIKE "Переохлаждение%" OR `name` LI
 			mysql_query('UPDATE `eff_users` SET `data` = "'.$dell['data'].'", `x`="'.$dell['x'].'"  WHERE `id` = "'.$dell['id'].'"');
 				$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'';
 				$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>$btl->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-				$mas1['text'] = '{u1} Ослабил эфект &quot;<b>'.$dell['name'].'</b>&quot; с помощью <b>Очиститься Кровью</b> .';
+				$mas1['text'] = '{u1} РћСЃР»Р°Р±РёР» СЌС„РµРєС‚ &quot;<b>'.$dell['name'].'</b>&quot; СЃ РїРѕРјРѕС‰СЊСЋ <b>РћС‡РёСЃС‚РёС‚СЊСЃСЏ РљСЂРѕРІСЊСЋ</b> .';
 				$btl->add_log($mas1);
 			}
   	    }
@@ -316,7 +316,7 @@ if(isset($hpadd))
 		}else{
 			$hpadd = '--';
 		}
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и {1x17x0} здоровье. <b><font color=#006699>'.$hpadd.'</font></b> ['.ceil($u->info['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['id']]]['hpAll'].']';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё {1x17x0} Р·РґРѕСЂРѕРІСЊРµ. <b><font color=#006699>'.$hpadd.'</font></b> ['.ceil($u->info['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['id']]]['hpAll'].']';	
 		$btl->add_log($mas1);
 		$pz[(int)$id] = 1;
 	}else{
@@ -364,7 +364,7 @@ if(isset($hpadd))
 		if($hpadd_pr_color == '') {
 			$hpaa_pr_color = '#006699';
 		}
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pr['name'].'</b>&quot; и {1x17x0} здоровье. <b><font color='.$hpaa_pr_color.'>'.$hpadd_pr.'</font></b> ['.ceil($btl->stats[$btl->uids[$ue['id']]]['hpNow']).'/'.$btl->stats[$btl->uids[$ue['id']]]['hpAll'].']';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pr['name'].'</b>&quot; Рё {1x17x0} Р·РґРѕСЂРѕРІСЊРµ. <b><font color='.$hpaa_pr_color.'>'.$hpadd_pr.'</font></b> ['.ceil($btl->stats[$btl->uids[$ue['id']]]['hpNow']).'/'.$btl->stats[$btl->uids[$ue['id']]]['hpAll'].']';	
 		$btl->add_log($mas1);
 		$pz[(int)$id] = 1;
 	}else{
@@ -412,7 +412,7 @@ if(isset($hpadd))
 		if($hpadd_pr_color == '') {
 			$hpaa_pr_color = '#006699';
 		}
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$plname.'</b>&quot; и {1x17x0} здоровье. <b><font color='.$hpaa_pr_color.'>'.$hpadd_pl.'</font></b> ['.ceil($this->stats[$this->uids[$hid]]['hpNow']).'/'.$this->stats[$this->uids[$hid]]['hpAll'].']';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$plname.'</b>&quot; Рё {1x17x0} Р·РґРѕСЂРѕРІСЊРµ. <b><font color='.$hpaa_pr_color.'>'.$hpadd_pl.'</font></b> ['.ceil($this->stats[$this->uids[$hid]]['hpNow']).'/'.$this->stats[$this->uids[$hid]]['hpAll'].']';	
 		$this->add_log($mas1);
 		$pz[(int)$id] = 1;
 	}else{

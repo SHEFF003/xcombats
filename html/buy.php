@@ -8,13 +8,13 @@ $pgd = mysql_fetch_array(mysql_query('SELECT * FROM `library_content` WHERE `id`
 if( isset($pgd['id']) ) {
 	echo '<div style="padding:10px;">';
 	if( $bp != 75 ) {
-		echo '<h3><a href="http://xcombats.com/buy/">Услуги</a> &nbsp; &raquo; &nbsp; '.$pgd['title'].'</h3><br>';
+		echo '<h3><a href="http://xcombats.com/buy/">РЈСЃР»СѓРіРё</a> &nbsp; &raquo; &nbsp; '.$pgd['title'].'</h3><br>';
 	}else{
 		echo '<h3>'.$pgd['title'].'</h3><br>';
 	}
 	echo $pgd['text'];
 	echo '</div>';
 }else{
-	echo 'Страница не надена!';
+	echo 'РЎС‚СЂР°РЅРёС†Р° РЅРµ РЅР°РґРµРЅР°!';
 }
 ?>

@@ -7,7 +7,7 @@ if(!defined('GAME'))
 //Forum class
 class forum 
 {
-	public $mod = 0,$see = array(), $lst = array(),$gd = array(),$menu = '',$pages = '',$r ,$user = false,$fm = false,$error,$acs = array(0=>'Доступ закрыт',1=>'Только чтение',2=>'Разрешено добавлять ответы',3=>'Разрешено создовать топики',4=>'Разрешено добавлять ответы и создавать топики');
+	public $mod = 0,$see = array(), $lst = array(),$gd = array(),$menu = '',$pages = '',$r ,$user = false,$fm = false,$error,$acs = array(0=>'Р”РѕСЃС‚СѓРї Р·Р°РєСЂС‹С‚',1=>'РўРѕР»СЊРєРѕ С‡С‚РµРЅРёРµ',2=>'Р Р°Р·СЂРµС€РµРЅРѕ РґРѕР±Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹',3=>'Р Р°Р·СЂРµС€РµРЅРѕ СЃРѕР·РґРѕРІР°С‚СЊ С‚РѕРїРёРєРё',4=>'Р Р°Р·СЂРµС€РµРЅРѕ РґРѕР±Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹ Рё СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё');
 
 	
 	public function paginator($t,$pagers=0){
@@ -100,12 +100,12 @@ class forum
 							if(isset($this->user['id'])) {
 								if(isset($yg['id'])) {
 									if($yg['answer'] == $j) {
-										$zm = '<tr class="answ1h"><td>&bull; <b>'.$ra[$j].'</b></td><td> &nbsp; &nbsp; - &nbsp; '.$prc.'% &nbsp; <small style="color:red">(Ваш голос)</small></td></tr>';
+										$zm = '<tr class="answ1h"><td>&bull; <b>'.$ra[$j].'</b></td><td> &nbsp; &nbsp; - &nbsp; '.$prc.'% &nbsp; <small style="color:red">(Р’Р°С€ РіРѕР»РѕСЃ)</small></td></tr>';
 									}else{
 										$zm = '<tr><td>&bull; '.$ra[$j].'</td><td> &nbsp; &nbsp; - &nbsp; '.$prc.'%</td></tr>';
 									}
 								}else{
-									$zm = '<tr onclick="location.href=\'?read='.round((int)$_GET['read']).'&page='.round((int)$_GET['page']).'&q_now='.$i.'&answer_now='.$j.'\'" class="answ1" title="Голосовать за этот вариант"><td>&bull; '.$ra[$j].'</td><td> &nbsp; &nbsp; - &nbsp; '.$prc.'%</td></tr>';
+									$zm = '<tr onclick="location.href=\'?read='.round((int)$_GET['read']).'&page='.round((int)$_GET['page']).'&q_now='.$i.'&answer_now='.$j.'\'" class="answ1" title="Р“РѕР»РѕСЃРѕРІР°С‚СЊ Р·Р° СЌС‚РѕС‚ РІР°СЂРёР°РЅС‚"><td>&bull; '.$ra[$j].'</td><td> &nbsp; &nbsp; - &nbsp; '.$prc.'%</td></tr>';
 								}
 							}else{
 								$zm = '<tr><td>&bull; '.$ra[$j].'</td><td> &nbsp; &nbsp; - &nbsp; '.$prc.'%</td></tr>';
@@ -127,13 +127,13 @@ class forum
 			}
 			$i++;
 		}
-		$text = str_replace('[/?]','</table><br><br>Всего проголосовало людей '.$pr_us_all.'<div class="line2"></div>',$text);	
+		$text = str_replace('[/?]','</table><br><br>Р’СЃРµРіРѕ РїСЂРѕРіРѕР»РѕСЃРѕРІР°Р»Рѕ Р»СЋРґРµР№ '.$pr_us_all.'<div class="line2"></div>',$text);	
 		return $text;
 	}
 	
 	public function startForum()
 	{
-		//Выделяем пользователя
+		//Р’С‹РґРµР»СЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 		$ufr = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `login` = "'.mysql_real_escape_string($_COOKIE['login']).'" AND `pass` = "'.mysql_real_escape_string($_COOKIE['pass']).'" AND `banned` = "0" LIMIT 1'));
 		if(!isset($ufr['id']) || $ufr['banned']>0)
 		{
@@ -143,15 +143,15 @@ class forum
 			$this->user = $ufr;
 		}
 		
-		//Выделяем раздел который просматривает пользователь
+		//Р’С‹РґРµР»СЏРµРј СЂР°Р·РґРµР» РєРѕС‚РѕСЂС‹Р№ РїСЂРѕСЃРјР°С‚СЂРёРІР°РµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ
 		if(isset($_GET['read']))
 		{
-			//читаем сообщение
+			//С‡РёС‚Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ
 			$see = mysql_fetch_array(mysql_query('SELECT * FROM `forum_msg` WHERE `id` = "'.mysql_real_escape_string($_GET['read']).'" AND `delete` = "0" LIMIT 1'));
 			if(!isset($see['id']) || ($see['fid']==65 && $this->user['admin']==0 && ($this->user['align']<=1 || $this->user['align']>=2)) || ($see['fid']==75 && $this->user['admin']==0 && ($this->user['align']<=3 || $this->user['align']>=4)))
 			{
 				$this->r = -2;
-				$this->error = 'Топик форума не найден.';
+				$this->error = 'РўРѕРїРёРє С„РѕСЂСѓРјР° РЅРµ РЅР°Р№РґРµРЅ.';
 			}else{
 				$this->r = -1;
 				$see['goodAdd'] = 1;
@@ -192,7 +192,7 @@ class forum
 			{
 				$this->r = -2;
 				$this->fm = false;
-				$this->error = 'Раздел форума не найден.';
+				$this->error = 'Р Р°Р·РґРµР» С„РѕСЂСѓРјР° РЅРµ РЅР°Р№РґРµРЅ.';
 			}else{
 				$this->fm = $fm;
 			}
@@ -202,17 +202,17 @@ class forum
 		
 		$this->lst = mysql_fetch_array(mysql_query('SELECT `id`,`time` FROM `forum_msg` WHERE `uid` = "'.$this->user['id'].'"  AND `delete` = "0" ORDER BY `time` DESC LIMIT 1'));
 		
-		//Проверяем форум на доступность
+		//РџСЂРѕРІРµСЂСЏРµРј С„РѕСЂСѓРј РЅР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ
 		if($this->gd[$this->fm['id']]==0 && $ufr['admin']==0)
 		{
-			//просмотр закрыт
+			//РїСЂРѕСЃРјРѕС‚СЂ Р·Р°РєСЂС‹С‚
 			$this->r = -2;
-			$this->error = 'Вы не можете читать данную конференцию.';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ С‡РёС‚Р°С‚СЊ РґР°РЅРЅСѓСЋ РєРѕРЅС„РµСЂРµРЅС†РёСЋ.';
 		}elseif($this->fm['only_admin']==1 && $this->user['admin']==0)
 		{
-			//просмотр закрыт
+			//РїСЂРѕСЃРјРѕС‚СЂ Р·Р°РєСЂС‹С‚
 			$this->r = -2;
-			$this->error = 'Вы не можете читать данную конференцию.';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ С‡РёС‚Р°С‚СЊ РґР°РЅРЅСѓСЋ РєРѕРЅС„РµСЂРµРЅС†РёСЋ.';
 		}
 	}
 	
@@ -232,16 +232,16 @@ class forum
 			
 		}elseif(isset($this->see['id']))
 		{
-			//Выводим заголовок
+			//Р’С‹РІРѕРґРёРј Р·Р°РіРѕР»РѕРІРѕРє
 			echo $this->genuser($this->see['uid'],$this->see['login'],$this->see['level'],$this->see['align'],$this->see['clan'],$this->see['invis'],$this->see['city'],$this->see['cityreg']);
 			if($this->user['admin']>0 || ($this->user['align'] > 1 && $this->user['align'] < 2) || ($this->user['align'] > 3 && $this->user['align'] < 4))
 			{
 				echo '&nbsp; <div class="btnAdm">';
 				if($this->user['admin']>0) {
-					echo '<a href="?aem='.$this->see['id'].'"><img title="Редактировать" src="http://xcombats.com/forum_script/img/ic_acc3.gif" width="10" height="10"></a>';
+					echo '<a href="?aem='.$this->see['id'].'"><img title="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ" src="http://xcombats.com/forum_script/img/ic_acc3.gif" width="10" height="10"></a>';
 				}
-				echo '<a href="?delete_msg='.$this->see['id'].'&read='.$this->see['id'].'"><img title="Стереть запись" src="http://xcombats.com/forum_script/img/ic_acc0.gif" width="10" height="10"></a>';
-				echo '<img onclick="acma('.$this->see['id'].');" title="Комментировать" src="http://xcombats.com/forum_script/img/ic_acc2.gif" width="10" height="10" style="cursor:pointer">';
+				echo '<a href="?delete_msg='.$this->see['id'].'&read='.$this->see['id'].'"><img title="РЎС‚РµСЂРµС‚СЊ Р·Р°РїРёСЃСЊ" src="http://xcombats.com/forum_script/img/ic_acc0.gif" width="10" height="10"></a>';
+				echo '<img onclick="acma('.$this->see['id'].');" title="РљРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ" src="http://xcombats.com/forum_script/img/ic_acc2.gif" width="10" height="10" style="cursor:pointer">';
 				echo '</div>';
 			}
 			echo ' &nbsp; &nbsp; (<span class="date">'.date('d.m.Y H:i',$this->see['time']).'</span>)<br>';
@@ -264,7 +264,7 @@ class forum
 						$uslist .= '<br>';
 					}
 				}
-				$this->see['text'] = str_replace("{users-list}", '<b style="color:green">Список участников</b> ['.$xu1.'/25]:<br>'.$uslist.'<br>', $this->see['text']);
+				$this->see['text'] = str_replace("{users-list}", '<b style="color:green">РЎРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ</b> ['.$xu1.'/25]:<br>'.$uslist.'<br>', $this->see['text']);
 				unset($uslist,$pu1,$su1,$xu1,$usrs);
 			}*/
 			
@@ -282,19 +282,19 @@ class forum
 				if($this->user['admin'] > 0) {
 					$rtrn .= '<div style="margin-left:31px;color:#9d9472;padding:10px;border:1px solid #ebdca0;">'.$this->see['text'].'</div>';
 				}
-				$rtrn .= '<div style="margin-left:31px;"><font color=red>Запись была удалена';
+				$rtrn .= '<div style="margin-left:31px;"><font color=red>Р—Р°РїРёСЃСЊ Р±С‹Р»Р° СѓРґР°Р»РµРЅР°';
 				if($this->user['del_admin'] == 0) {
 					$rtrn .= ', <img src="http://'.$c['img'].'/i/align/align'.$this->see['del_align'].'.gif"><b>'.$this->see['del_login'].'</b>';
 				}
 				$rtrn .= '</font></div>';
 			}
 			
-			//Записи модераторов и ангелов
+			//Р—Р°РїРёСЃРё РјРѕРґРµСЂР°С‚РѕСЂРѕРІ Рё Р°РЅРіРµР»РѕРІ
 			$sp1 = mysql_query('SELECT * FROM `forum_msg_mod` WHERE `msg_id` = "'.$this->see['id'].'"');
 			while($pl1 = mysql_fetch_array($sp1)) {
 				$rtrn .= '<div style="margin-left:31px;color:'.$pl1['color'].';">';
 				if($pl1['from_admin'] == 1) {
-					$pl1['login'] = '<Администрация>';
+					$pl1['login'] = '<РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ>';
 					$pl1['city'] = '';
 					$pl1['align'] = 0;
 					$pl1['cityreg'] = '';
@@ -309,7 +309,7 @@ class forum
 			}
 			
 			$rtrn .= '</div><div class="line2"></div>';
-			//Выводим комментарии
+			//Р’С‹РІРѕРґРёРј РєРѕРјРјРµРЅС‚Р°СЂРёРё
 			$sp = mysql_query('SELECT * FROM `forum_msg` WHERE `topic` = "'.$this->see['id'].'" AND `delete` = "0" ORDER BY `time` ASC LIMIT '.$start.','.$fd_limit );
 			while($pl = mysql_fetch_array($sp))
 			{
@@ -319,10 +319,10 @@ class forum
 				{
 					$rtrn .= '&nbsp; <div class="btnAdm">';
 					if($this->user['admin']>0) {
-						$rtrn .= '<a href="?aem='.$pl['id'].'"><img title="Редактировать" src="http://xcombats.com/forum_script/img/ic_acc3.gif" width="10" height="10"></a>';
+						$rtrn .= '<a href="?aem='.$pl['id'].'"><img title="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ" src="http://xcombats.com/forum_script/img/ic_acc3.gif" width="10" height="10"></a>';
 					}
-					$rtrn .= '<a href="?delete_msg='.$pl['id'].'&read='.$pl['topic'].'"><img title="Стереть комментарий" src="http://xcombats.com/forum_script/img/ic_acc0.gif" width="10" height="10"></a>';
-					$rtrn .= '<img onclick="acma('.$pl['id'].');" title="Комментировать" src="http://xcombats.com/forum_script/img/ic_acc2.gif" width="10" height="10" style="cursor:pointer">';
+					$rtrn .= '<a href="?delete_msg='.$pl['id'].'&read='.$pl['topic'].'"><img title="РЎС‚РµСЂРµС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№" src="http://xcombats.com/forum_script/img/ic_acc0.gif" width="10" height="10"></a>';
+					$rtrn .= '<img onclick="acma('.$pl['id'].');" title="РљРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ" src="http://xcombats.com/forum_script/img/ic_acc2.gif" width="10" height="10" style="cursor:pointer">';
 					$rtrn .= '</div>';
 				}
 				$rtrn .= ' &nbsp; &nbsp; (<span class="date">'.date('d.m.Y H:i',$pl['time']).'</span>)<br>';
@@ -334,19 +334,19 @@ class forum
 					if($this->user['admin'] > 0) {
 						$rtrn .= '<div style="margin-left:31px;color:#9d9472;padding:10px;border:1px solid #ebdca0;">'.$pl['text'].'</div>';
 					}
-					$rtrn .= '<div style="margin-left:31px;"><font color=red>Комментарий удален';
+					$rtrn .= '<div style="margin-left:31px;"><font color=red>РљРѕРјРјРµРЅС‚Р°СЂРёР№ СѓРґР°Р»РµРЅ';
 					if($this->user['del_admin'] == 0) {
 						$rtrn .= ', <img src="http://'.$c['img'].'/i/align/align'.$pl['del_align'].'.gif"><b>'.$pl['del_login'].'</b>';
 					}
 					$rtrn .= '</font></div>';
 				}
 				
-				//Записи модераторов и ангелов
+				//Р—Р°РїРёСЃРё РјРѕРґРµСЂР°С‚РѕСЂРѕРІ Рё Р°РЅРіРµР»РѕРІ
 				$sp1 = mysql_query('SELECT * FROM `forum_msg_mod` WHERE `msg_id` = "'.$pl['id'].'"');
 				while($pl1 = mysql_fetch_array($sp1)) {
 					$rtrn .= '<div style="margin-left:31px;color:'.$pl1['color'].';">';
 					if($pl1['from_admin'] == 1) {
-						$pl1['login'] = '<Администрация>';
+						$pl1['login'] = '<РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ>';
 						$pl1['align'] = 0;
 						$pl1['city'] = '';
 						$pl1['cityreg'] = '';
@@ -379,11 +379,11 @@ class forum
 	{
 		global $c,$code;
 		$ufr = '';
-		if($align>0 && $login != '<Администрация>')
+		if($align>0 && $login != '<РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ>')
 		{
 			$u .= '<img src="http://'.$c['img'].'/i/align/align'.$align.'.gif" />';
 		}
-		if($clan>0 && $login != '<Администрация>')
+		if($clan>0 && $login != '<РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ>')
 		{
 			$clan = mysql_fetch_array(mysql_query('SELECT * FROM `clan` WHERE `id` = "'.((int)$clan).'" LIMIT 1'));
 			if(isset($clan['id']))
@@ -392,14 +392,14 @@ class forum
 			}
 		}
 		
-		if($login == '<Администрация>')
+		if($login == '<РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ>')
 		{
-			$login = 'Администрация';
+			$login = 'РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ';
 		}
 		
-		$u .= '<b>'.$login.'</b> ['.$level.']<a href="http://'.$c['host'].'/info/'.$id.'" target="_blank" title="Инф. о '.$login.'"><img src="http://'.$c['img'].'/i/inf_capitalcity.gif"></a>';
+		$u .= '<b>'.$login.'</b> ['.$level.']<a href="http://'.$c['host'].'/info/'.$id.'" target="_blank" title="РРЅС„. Рѕ '.$login.'"><img src="http://'.$c['img'].'/i/inf_capitalcity.gif"></a>';
 		
-		if($city!='' && $login != '<Администрация>')
+		if($city!='' && $login != '<РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ>')
 		{
 			$ufr = '<img title="'.$city.'" src="http://xcombats.com/forum_script/img/city/'.$city.'.gif" width="17" height="15"> &nbsp; '.$u;
 		}
@@ -408,14 +408,14 @@ class forum
 	
 	public function pravasee()
 	{
-		$prava = 1; //можно добавлять и просматривать
+		$prava = 1; //РјРѕР¶РЅРѕ РґРѕР±Р°РІР»СЏС‚СЊ Рё РїСЂРѕСЃРјР°С‚СЂРёРІР°С‚СЊ
 		if($this->see['fid']==65 && $this->user['admin']==0 && ($this->user['align']<=1 || $this->user['align']>=2))
 		{
-			//топик ОС
+			//С‚РѕРїРёРє РћРЎ
 			$prava = 0;
 		}elseif($this->see['fid']==75 && $this->user['admin']==0 && ($this->user['align']<=3 || $this->user['align']>=4))
 		{
-			//топик Армады
+			//С‚РѕРїРёРє РђСЂРјР°РґС‹
 			$prava = 0;
 		}elseif(isset($this->see['id']) && $this->see['nocom']==3 && $this->user['admin']==0 && ($this->user['align']<=3 || $this->user['align']>=4))
 		{
@@ -440,25 +440,25 @@ class forum
 		
 		$msg = mysql_fetch_array(mysql_query('SELECT `id` FROM `forum_msg` WHERE `id` = "'.mysql_real_escape_string($id).'" LIMIT 1'));
 		if(!isset($msg['id'])) {
-			$this->error = 'Сообщение не найдено';
+			$this->error = 'РЎРѕРѕР±С‰РµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅРѕ';
 		}elseif(trim($text,' ')=='' || iconv_strlen(trim($text,' '),'cp1251')<2)
 		{
-			$this->error = 'Минимальная длина сообщения должна быть не менее 2-х символов';
+			$this->error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° СЃРѕРѕР±С‰РµРЅРёСЏ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 2-С… СЃРёРјРІРѕР»РѕРІ';
 		}elseif($this->user['molch2']>time())
 		{
-			$this->error = 'Вы не можете писать сообщения и создавать топики на форуме, на вас наложено заклятие молчания';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРёСЃР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ Рё СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё РЅР° С„РѕСЂСѓРјРµ, РЅР° РІР°СЃ РЅР°Р»РѕР¶РµРЅРѕ Р·Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ';
 		}elseif(isset($this->see['id']) && $this->see['nocom']==3 && $this->user['admin']==0 && ($this->user['align']<=3 || $this->user['align']>=4))
 		{
-			$this->error = 'В этом топике запрещено оставлять ответы';
+			$this->error = 'Р’ СЌС‚РѕРј С‚РѕРїРёРєРµ Р·Р°РїСЂРµС‰РµРЅРѕ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹';
 		}elseif(isset($this->see['id']) && $this->see['nocom']==2 && $this->user['admin']==0 && ($this->user['align']<=1 || $this->user['align']>=2))
 		{
-			$this->error = 'В этом топике запрещено оставлять ответы';
+			$this->error = 'Р’ СЌС‚РѕРј С‚РѕРїРёРєРµ Р·Р°РїСЂРµС‰РµРЅРѕ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹';
 		}elseif(isset($this->see['id']) && $this->see['nocom']==1 && $this->user['admin']==0)
 		{
-			$this->error = 'В этом топике запрещено оставлять ответы';			
+			$this->error = 'Р’ СЌС‚РѕРј С‚РѕРїРёРєРµ Р·Р°РїСЂРµС‰РµРЅРѕ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹';			
 		}elseif($this->user['level'] < 4)
 		{
-			$this->error = 'Вы не можете писать сообщения и создавать топики на форуме, это возможно со 4-го уровня';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРёСЃР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ Рё СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё РЅР° С„РѕСЂСѓРјРµ, СЌС‚Рѕ РІРѕР·РјРѕР¶РЅРѕ СЃРѕ 4-РіРѕ СѓСЂРѕРІРЅСЏ';
 		}else{
 			mysql_query('INSERT INTO `forum_msg_mod` (`uid`,`login`,`align`,`level`,`admin`,`clan`,`time`,`text`,`msg_id`,`delete`,`color`,`city`,`cityreg`,`from_admin`) VALUES 
 			("'.$this->user['id'].'","'.$this->user['login'].'","'.$this->user['align'].'","'.$this->user['level'].'","'.$this->user['admin'].'","'.$this->user['clan'].'",
@@ -480,7 +480,7 @@ class forum
 		$text = preg_replace('/\[\/code\]/', '</code></pre>', $text);
 		
 		$text = preg_replace('/\[(\/?)quote\]/', "<$1blockquote>", $text);
-		$text = preg_replace('/\[(\/?)quote(\s*=\s*([\'"]?)([^\'"]+)\3\s*)?\]/', "<$1blockquote>Цитата $4:<br>", $text);
+		$text = preg_replace('/\[(\/?)quote(\s*=\s*([\'"]?)([^\'"]+)\3\s*)?\]/', "<$1blockquote>Р¦РёС‚Р°С‚Р° $4:<br>", $text);
 		
 		//$text = preg_replace('/\[url\](?:http:\/\/)?([a-z0-9-.]+\.\w{2,4})\[\/url\]/', "<a href=\"http://$1\">$1</a>", $text);
 		$text = preg_replace('/\[url=(.+?)\](.+?)\[\/url\]/', "<a target=\"_blank\" href=\"$1\">$2</a>", $text);
@@ -495,8 +495,8 @@ class forum
 		return $text;
 	}
 	
-	// $s - строка, в которой необходимо закрыть теги
-	// $tags - список тегов для закрытия через символ | (b|u|i)
+	// $s - СЃС‚СЂРѕРєР°, РІ РєРѕС‚РѕСЂРѕР№ РЅРµРѕР±С…РѕРґРёРјРѕ Р·Р°РєСЂС‹С‚СЊ С‚РµРіРё
+	// $tags - СЃРїРёСЃРѕРє С‚РµРіРѕРІ РґР»СЏ Р·Р°РєСЂС‹С‚РёСЏ С‡РµСЂРµР· СЃРёРјРІРѕР» | (b|u|i)
 	public function close_dangling_tags($html){
 		  #put all opened tags into an array
 		  preg_match_all("#<([a-z]+)( .*)?(?!/)>#iU",$html,$result);
@@ -529,25 +529,25 @@ class forum
 	{
 		if(trim($text,' ')=='' || iconv_strlen(trim($text,' '),'cp1251')<5)
 		{
-			$this->error = 'Минимальная длина сообщения должна быть не менее 5-ти символов';
+			$this->error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° СЃРѕРѕР±С‰РµРЅРёСЏ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 5-С‚Рё СЃРёРјРІРѕР»РѕРІ';
 		}elseif($this->user['molch2']>time())
 		{
-			$this->error = 'Вы не можете писать сообщения и создавать топики на форуме, на вас наложено заклятие молчания';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРёСЃР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ Рё СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё РЅР° С„РѕСЂСѓРјРµ, РЅР° РІР°СЃ РЅР°Р»РѕР¶РµРЅРѕ Р·Р°РєР»СЏС‚РёРµ РјРѕР»С‡Р°РЅРёСЏ';
 		}elseif((trim($title,' ')=='' || iconv_strlen(trim($title,' '),'cp1251')<5) && $topic == -1)
 		{
-			$this->error = 'Минимальная длина заголовка должна быть не менее 5-ти символов';
+			$this->error = 'РњРёРЅРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° Р·Р°РіРѕР»РѕРІРєР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 5-С‚Рё СЃРёРјРІРѕР»РѕРІ';
 		}elseif(isset($this->see['id']) && $this->see['nocom']==3 && $this->user['admin']==0 && ($this->user['align']<=3 || $this->user['align']>=4))
 		{
-			$this->error = 'В этом топике запрещено оставлять ответы';
+			$this->error = 'Р’ СЌС‚РѕРј С‚РѕРїРёРєРµ Р·Р°РїСЂРµС‰РµРЅРѕ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹';
 		}elseif(isset($this->see['id']) && $this->see['nocom']==2 && $this->user['admin']==0 && ($this->user['align']<=1 || $this->user['align']>=2))
 		{
-			$this->error = 'В этом топике запрещено оставлять ответы';
+			$this->error = 'Р’ СЌС‚РѕРј С‚РѕРїРёРєРµ Р·Р°РїСЂРµС‰РµРЅРѕ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹';
 		}elseif(isset($this->see['id']) && $this->see['nocom']==1 && $this->user['admin']==0)
 		{
-			$this->error = 'В этом топике запрещено оставлять ответы';
+			$this->error = 'Р’ СЌС‚РѕРј С‚РѕРїРёРєРµ Р·Р°РїСЂРµС‰РµРЅРѕ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹';
 		}elseif($this->user['level'] < 4)
 		{
-			$this->error = 'Общение на форуме доступно с 4-го уровня';
+			$this->error = 'РћР±С‰РµРЅРёРµ РЅР° С„РѕСЂСѓРјРµ РґРѕСЃС‚СѓРїРЅРѕ СЃ 4-РіРѕ СѓСЂРѕРІРЅСЏ';
 		}elseif($this->gd[$fid]>0 && $this->lst['time']<time()-60)
 		{
 			$ico= (int)$ico;
@@ -558,7 +558,7 @@ class forum
 			$tl = array();
 			if(isset($_POST['adminname']) && $this->user['admin']>0)
 			{
-				$tl['login'] = '<Администрация>';
+				$tl['login'] = '<РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ>';
 				$tl['level'] = '??';
 				$tl['align'] = '0';
 				$tl['clan']  = '0';
@@ -578,13 +578,13 @@ class forum
 			$ins = mysql_query('INSERT INTO `forum_msg` (`cityreg`,`city`,`align`,`clan`,`level`,`login`,`fid`,`title`,`topic`,`ico`,`text`,`time`,`ip`,`uid`) VALUES ("'.mysql_real_escape_string($tl['cityreg']).'","'.mysql_real_escape_string($tl['city']).'","'.mysql_real_escape_string($tl['align']).'","'.mysql_real_escape_string($tl['clan']).'","'.mysql_real_escape_string($tl['level']).'","'.mysql_real_escape_string($tl['login']).'","'.mysql_real_escape_string($fid).'","'.mysql_real_escape_string(htmlspecialchars($title, NULL , 'cp1251')).'","'.mysql_real_escape_string($topic).'","'.mysql_real_escape_string($ico).'","'.mysql_real_escape_string(htmlspecialchars($text, NULL , 'cp1251')).'","'.mysql_real_escape_string($time).'","'.$_SERVER['HTTP_X_REAL_IP'].'","'.$tl['id'].'")');
 			if(!$ins)
 			{
-				$this->error = 'Ошибка создания топика';
+				$this->error = 'РћС€РёР±РєР° СЃРѕР·РґР°РЅРёСЏ С‚РѕРїРёРєР°';
 				return false;
 			}else{
 				if($topic != -1) {
-					//Если автор предыдущего сообщения не текущий юзер - отправляем в чат сообщение о новом ответе
+					//Р•СЃР»Рё Р°РІС‚РѕСЂ РїСЂРµРґС‹РґСѓС‰РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ РЅРµ С‚РµРєСѓС‰РёР№ СЋР·РµСЂ - РѕС‚РїСЂР°РІР»СЏРµРј РІ С‡Р°С‚ СЃРѕРѕР±С‰РµРЅРёРµ Рѕ РЅРѕРІРѕРј РѕС‚РІРµС‚Рµ
 					if($lst['uid']+1!=$this->user['id']) {
-						$fnt = '<b>'.date('d.m.Y H:i').'</b> На форуме опубликован новый ответ в обсуждении, в котором вы принимали участие. <a href=http://xcombats.com/forum?read='.$topic.' target=_blank \>Читать далее</a>';
+						$fnt = '<b>'.date('d.m.Y H:i').'</b> РќР° С„РѕСЂСѓРјРµ РѕРїСѓР±Р»РёРєРѕРІР°РЅ РЅРѕРІС‹Р№ РѕС‚РІРµС‚ РІ РѕР±СЃСѓР¶РґРµРЅРёРё, РІ РєРѕС‚РѕСЂРѕРј РІС‹ РїСЂРёРЅРёРјР°Р»Рё СѓС‡Р°СЃС‚РёРµ. <a href=http://xcombats.com/forum?read='.$topic.' target=_blank \>Р§РёС‚Р°С‚СЊ РґР°Р»РµРµ</a>';
 						$ins = ''; $ll = array();
 						$sp = mysql_query('SELECT `u`.`city`,`u`.`id`,`u`.`login`,`f`.`uid`,`f`.`login` FROM `forum_msg` AS `f` LEFT JOIN `users` AS `u` ON `f`.`uid` = `u`.`id` WHERE `f`.`delete` = "0" AND (`f`.`topic` = "'.mysql_real_escape_string($topic).'" OR (`f`.`topic` = "-1" AND `f`.`id` = "'.mysql_real_escape_string($topic).'")) LIMIT 1');
 						while($pl = mysql_fetch_array($sp)) {
@@ -611,9 +611,9 @@ class forum
 			}
 		}elseif($this->lst['time']>time()-60)
 		{
-			$this->error = 'Вы не можете оставлять ответы и создавать топики так быстро';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹ Рё СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё С‚Р°Рє Р±С‹СЃС‚СЂРѕ';
 		}else{
-			$this->error = 'Вы не можете оставлять ответы и создавать топики в этой конференции';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹ Рё СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё РІ СЌС‚РѕР№ РєРѕРЅС„РµСЂРµРЅС†РёРё';
 		}
 	}
 	
@@ -627,7 +627,7 @@ class forum
 		//echo 'SELECT * FROM `forum_msg` WHERE `topic` < "0" AND `fid` = "'.$this->r.'" AND `delete` = "0" ORDER BY `id` DESC LIMIT '.$start.','.$fd_limit;
 		}
 		global $code,$c,$filter;
-		//отображаем топики данной конференции
+		//РѕС‚РѕР±СЂР°Р¶Р°РµРј С‚РѕРїРёРєРё РґР°РЅРЅРѕР№ РєРѕРЅС„РµСЂРµРЅС†РёРё
 		$re = '';
 		if(isset($_GET['search'])) {
 			$sp = mysql_query('SELECT * FROM `forum_msg` WHERE ( `text` LIKE "%'.mysql_real_escape_string($_GET['search']).'%" OR `title` LIKE "%'.mysql_real_escape_string($_GET['search']).'%" OR `login` LIKE "%'.mysql_real_escape_string($_GET['search']).'%" ) AND `topic` < "0" AND `delete` = "0" ORDER BY `id` DESC LIMIT '.$start.','.$fd_limit );
@@ -652,12 +652,12 @@ class forum
 			$re .= '<div>'.$fxd.'<img style="border:0px;" src="http://xcombats.com/forum_script/img/icon'.$pl['ico'].'.gif"> <a href="?read='.$pl['id'].'&rnd='.$code.'"><b>'.$pl['title'].'</b></a> '.$plist.' &nbsp; '.$this->genuser($pl['uid'],$pl['login'],$pl['level'],$pl['align'],$pl['clan'],$pl['invis'],$pl['city'],$pl['cityreg']).'</div>';
 			$re .= '<div style="margin-left:21px;"><small class="date">'.date('d.m.Y H:i',$pl['time']).'</small> &raquo; <small style="color:#606060;">';
 			if($pl['fid'] == 24) {
-				$re .= $filter->str_count(str_replace('[?]','Вопрос: ',str_replace('[/?]','',str_replace('[:]',', ',$pl['text']))),250);
+				$re .= $filter->str_count(str_replace('[?]','Р’РѕРїСЂРѕСЃ: ',str_replace('[/?]','',str_replace('[:]',', ',$pl['text']))),250);
 			}else{
-				$re .= $filter->str_count(str_replace('[?]','Вопрос: ',str_replace('[/?]','',str_replace('[:]',', ',$pl['text']))),250);
+				$re .= $filter->str_count(str_replace('[?]','Р’РѕРїСЂРѕСЃ: ',str_replace('[/?]','',str_replace('[:]',', ',$pl['text']))),250);
 			}
 			$re .= '</small></div>';
-			$re .= '<div style="margin-left:21px;"><small>Ответов: <b>'.$row.'</b> ... ';
+			$re .= '<div style="margin-left:21px;"><small>РћС‚РІРµС‚РѕРІ: <b>'.$row.'</b> ... ';
 			
 			$pku = mysql_query('SELECT `login`,`invis`,`time` FROM `forum_msg` WHERE `topic` = "'.$pl['id'].'" AND `delete` = 0 ORDER BY `id` DESC LIMIT 10');		
 			$pkusr = '';
@@ -688,43 +688,43 @@ class forum
 	{
 		if($id==1)
 		{
-			//удалить топик \ коммент
+			//СѓРґР°Р»РёС‚СЊ С‚РѕРїРёРє \ РєРѕРјРјРµРЅС‚
 			$up = mysql_query('UPDATE `forum_msg` SET `delete` = "'.time().'",`del_login`="'.$this->user['login'].'" WHERE `id` = "'.$this->see['id'].'" LIMIT 1');
 			$this->see['delete'] = time();
 		}elseif($id==2)
 		{
-			//запретить комментировать
+			//Р·Р°РїСЂРµС‚РёС‚СЊ РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ
 			mysql_query('UPDATE `forum_msg` SET `nocom` = "1" WHERE `id` = "'.$this->see['id'].'" LIMIT 1');
 			$this->see['nocom'] = 1;
 		}elseif($id==3)
 		{
-			//разрешить комментировать только Ангелам
+			//СЂР°Р·СЂРµС€РёС‚СЊ РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РђРЅРіРµР»Р°Рј
 			mysql_query('UPDATE `forum_msg` SET `nocom` = "2" WHERE `id` = "'.$this->see['id'].'" LIMIT 1');
 			$this->see['nocom'] = 2;
 		}elseif($id==4)
 		{
-			//разрешить комментировать только паладинам
+			//СЂР°Р·СЂРµС€РёС‚СЊ РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РїР°Р»Р°РґРёРЅР°Рј
 			mysql_query('UPDATE `forum_msg` SET `nocom` = "3" WHERE `id` = "'.$this->see['id'].'" LIMIT 1');
 			$this->see['nocom'] = 3;
 		}elseif($id==5)
 		{
-			//разрешить комментировать только тарманам
+			//СЂР°Р·СЂРµС€РёС‚СЊ РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ С‚Р°СЂРјР°РЅР°Рј
 			mysql_query('UPDATE `forum_msg` SET `nocom` = "4" WHERE `id` = "'.$this->see['id'].'" LIMIT 1');
 			$this->see['nocom'] = 4;
 		}elseif($id==6)
 		{
-			//разрешить комментировать всем
+			//СЂР°Р·СЂРµС€РёС‚СЊ РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РІСЃРµРј
 			mysql_query('UPDATE `forum_msg` SET `nocom` = "0" WHERE `id` = "'.$this->see['id'].'" LIMIT 1');
 			$this->see['nocom'] = 0;
 		}elseif($id==9)
 		{
-			//разрешить комментировать всем
+			//СЂР°Р·СЂРµС€РёС‚СЊ РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РІСЃРµРј
 			$rzn = mysql_fetch_array(mysql_query('SELECT * FROM `forum_menu` WHERE `id` = "'.mysql_real_escape_string($_GET['trm']).'" LIMIT 1'));
 			if(isset($rzn['id'])) {
 				mysql_query('UPDATE `forum_msg` SET `fid` = "'.mysql_real_escape_string($rzn['id']).'" WHERE `id` = "'.$this->see['id'].'" LIMIT 1');
 			}
 		}elseif($id==7) {
-			//фиксация топика или сообщения
+			//С„РёРєСЃР°С†РёСЏ С‚РѕРїРёРєР° РёР»Рё СЃРѕРѕР±С‰РµРЅРёСЏ
 			if( $this->see['fixed'] == 0 ) {
 				$this->see['fixed'] = time();
 			}else{
@@ -732,7 +732,7 @@ class forum
 			}
 			mysql_query('UPDATE `forum_msg` SET `fixed` = "'.$this->see['fixed'].'" WHERE `id` = "'.$this->see['id'].'" LIMIT 1');
 		}elseif($id==8) {
-			//удаление сообщения
+			//СѓРґР°Р»РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ
 			$tpdms = mysql_fetch_array(mysql_query('SELECT `id`,`clear`,`delete` FROM `forum_msg` WHERE `id` = "'.mysql_real_escape_string(round((int)$_GET['delete_msg'])).'" LIMIT 1' ));
 			if(isset($tpdms['id'])) {
 			//	if(isset($this->see['id'])) {
@@ -758,18 +758,18 @@ class forum
 		$rt = '';
 		if(isset($pl['id']))
 		{
-			//0 - доступ закрыт, нелья даже читать, 1 - только чтение, 2 - разрешено добавлять ответы, 3 - разрешено создавать топики, 4 - разрешено создавать топики и добавлять ответы
+			//0 - РґРѕСЃС‚СѓРї Р·Р°РєСЂС‹С‚, РЅРµР»СЊСЏ РґР°Р¶Рµ С‡РёС‚Р°С‚СЊ, 1 - С‚РѕР»СЊРєРѕ С‡С‚РµРЅРёРµ, 2 - СЂР°Р·СЂРµС€РµРЅРѕ РґРѕР±Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹, 3 - СЂР°Р·СЂРµС€РµРЅРѕ СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё, 4 - СЂР°Р·СЂРµС€РµРЅРѕ СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё Рё РґРѕР±Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹
 			$ico = 4;
 			if($pl['level']>$this->user['level'])
 			{
 				$ico = 1;
 			}
-			//проверяем уровень доступа		
+			//РїСЂРѕРІРµСЂСЏРµРј СѓСЂРѕРІРµРЅСЊ РґРѕСЃС‚СѓРїР°		
 			$this->gd[$pl['id']] = $ico;	
 			$ico = '<img width="10" height="10" title="'.$this->acs[$ico].'" src="http://xcombats.com/forum_script/img/ic_acc'.$ico.'.gif">';
 			$rt = ''.$ico.' <a href="?r='.$pl['id'].'&rnd='.$code.'"><b>'.$pl['name'].'</b></a>';
 		}else{
-			$rt = 'Раздел не найден';
+			$rt = 'Р Р°Р·РґРµР» РЅРµ РЅР°Р№РґРµРЅ';
 		}
 		return $rt;
 	}

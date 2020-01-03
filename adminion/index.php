@@ -47,7 +47,7 @@ if(!isset($_GET['ajax'])) {
 <meta http-equiv=Cache-Control Content=no-cache>
 <meta http-equiv=PRAGMA content=NO-CACHE>
 <meta http-equiv=Expires Content=0>
-<title>Центр управления "Adminion"</title>
+<title>Р¦РµРЅС‚СЂ СѓРїСЂР°РІР»РµРЅРёСЏ "Adminion"</title>
 <link href="http://<?=$c['img']?>/css/main.css" rel="stylesheet" type="text/css">
 <style>
 .tblbr2 {
@@ -62,12 +62,12 @@ if(!isset($_GET['ajax'])) {
 	border-bottom:1px solid #AEAFAE;
 	border-right:1px solid #AEAFAE;
 }
-.стиль1 {border-left: 1px solid #AEAFAE; border-top: 1px solid #AEAFAE; border-bottom: 1px solid #EEEFEE; border-right: 1px solid #EEEFEE; font-size: 12px; }
-.стиль2 {
+.СЃС‚РёР»СЊ1 {border-left: 1px solid #AEAFAE; border-top: 1px solid #AEAFAE; border-bottom: 1px solid #EEEFEE; border-right: 1px solid #EEEFEE; font-size: 12px; }
+.СЃС‚РёР»СЊ2 {
 	font-size: 12px;
 	color: #999999;
 }
-.стиль5 {font-size: 12px}
+.СЃС‚РёР»СЊ5 {font-size: 12px}
 .test a {
 	font-weight: normal;	
 }
@@ -77,7 +77,7 @@ if(!isset($_GET['ajax'])) {
 <body style="padding-top:0px; margin-top:2px; background-color:#dedfde;">
 <table class="tblbr" width="100%" border="0" cellspacing="0" cellpadding="5">
   <tr>
-    <td class="стиль1"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <td class="СЃС‚РёР»СЊ1"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td>Adminion v0.0.0
         <? if($auth==true){
@@ -86,14 +86,14 @@ if(!isset($_GET['ajax'])) {
 	$la[1]=$la[1]/4;
 	$la[2]=$la[2]/4;
 		?>
-         / Время сервера: <?=date('H:i')?> ( <?=time()?> ) / <? 
-		 	echo "Нагрузка: ".round($la[0]*100,2)."% ";
+         / Р’СЂРµРјСЏ СЃРµСЂРІРµСЂР°: <?=date('H:i')?> ( <?=time()?> ) / <? 
+		 	echo "РќР°РіСЂСѓР·РєР°: ".round($la[0]*100,2)."% ";
 	if ($la[1] < 0.16) {
-		echo "<font color=green>низкая</font>";
+		echo "<font color=green>РЅРёР·РєР°СЏ</font>";
 	} elseif ($la[1] < 0.25) {
-		echo "<font color=orange>средняя</font>";
+		echo "<font color=orange>СЃСЂРµРґРЅСЏСЏ</font>";
 	} elseif ($la[1] > 0.25) {
-		echo "<font color=red>высокая</font>";
+		echo "<font color=red>РІС‹СЃРѕРєР°СЏ</font>";
 	}
 		 ?>
         <? }
@@ -103,9 +103,9 @@ if(!isset($_GET['ajax'])) {
 		{
 			$online++;
 		}
-		?> / Онлайн: <?=$online?> / Нагрузка USI: <?=round((round($la[2]*100,2)/$online),2)?>%</td>
+		?> / РћРЅР»Р°Р№РЅ: <?=$online?> / РќР°РіСЂСѓР·РєР° USI: <?=round((round($la[2]*100,2)/$online),2)?>%</td>
         <td>&nbsp;</td>
-        <td><? if($auth==true){ ?><div align="right"><a href="../adminion/?exit=<?=$code?>">Выйти</a></div><? } ?></td>
+        <td><? if($auth==true){ ?><div align="right"><a href="../adminion/?exit=<?=$code?>">Р’С‹Р№С‚Рё</a></div><? } ?></td>
       </tr>
       
     </table></td>
@@ -117,12 +117,12 @@ if(!isset($_GET['ajax'])) {
     if(!isset($_COOKIE['pass3']) || $_COOKIE['pass3']!=$psw){
 	?>
       <form action="../adminion/index.php" method="post"><center><br><br>
-        <span class="стиль5"><br>
-        Для входа в панель требуется пароль</span>
+        <span class="СЃС‚РёР»СЊ5"><br>
+        Р”Р»СЏ РІС…РѕРґР° РІ РїР°РЅРµР»СЊ С‚СЂРµР±СѓРµС‚СЃСЏ РїР°СЂРѕР»СЊ</span>
         <hr>
-        <span class="стиль5">Введите пароль: 
+        <span class="СЃС‚РёР»СЊ5">Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: 
         <input value="" name="psw" type="password">
-        <input type="submit" value="ок" />
+        <input type="submit" value="РѕРє" />
         </span>
       </form>
 </div>
@@ -133,115 +133,115 @@ if(!isset($_GET['ajax'])) {
       <tr>
         <td width="200" height="18" valign="top"><table class="test" width="100%" border="0" align="left" cellpadding="2" cellspacing="0">
           <tr>
-            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Общие настройки</strong></div></td>
+            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">РћР±С‰РёРµ РЅР°СЃС‚СЂРѕР№РєРё</strong></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="#">Настройка сервера</a></div></td>
+            <td><div align="left"><a href="#">РќР°СЃС‚СЂРѕР№РєР° СЃРµСЂРІРµСЂР°</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="#">Настройки модулей</a></div></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Персонажи</strong></div></td>
-          </tr>
-          <tr>
-            <td><div align="left"><a href="#">Поиск персонажей</a></div></td>
-          </tr>
-          <tr>
-            <td><div align="left"><a href="#">Работа с персонажем</a></div></td>
-          </tr>
-          <tr>
-            <td><div align="left"><a href="#">Работа с ботом</a></div></td>
+            <td><div align="left"><a href="#">РќР°СЃС‚СЂРѕР№РєРё РјРѕРґСѓР»РµР№</a></div></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Предметы</strong></div></td>
+            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">РџРµСЂСЃРѕРЅР°Р¶Рё</strong></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="#">Поиск предмета</a></div></td>
+            <td><div align="left"><a href="#">РџРѕРёСЃРє РїРµСЂСЃРѕРЅР°Р¶РµР№</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="#">Работа с предметом</a></div></td>
+            <td><div align="left"><a href="#">Р Р°Р±РѕС‚Р° СЃ РїРµСЂСЃРѕРЅР°Р¶РµРј</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="#">Предметы у персонажей</a></div></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Локации</strong></div></td>
-          </tr>
-          <tr>
-            <td><div align="left"><a href="#">Поиск локации</a></div></td>
-          </tr>
-          <tr>
-            <td><div align="left"><a href="#">Работа с локацией</a></div></td>
-          </tr>
-          <tr>
-            <td><div align="left"><a href="#">Добавить локацию</a></div></td>
+            <td><div align="left"><a href="#">Р Р°Р±РѕС‚Р° СЃ Р±РѕС‚РѕРј</a></div></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Действия</strong></div></td>
+            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">РџСЂРµРґРјРµС‚С‹</strong></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="/adminion/?mod=chatsee">Наблюдать за чатом</a></div></td>
+            <td><div align="left"><a href="#">РџРѕРёСЃРє РїСЂРµРґРјРµС‚Р°</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="/adminion/?mod=chatsys">Системный лог</a></div></td>
+            <td><div align="left"><a href="#">Р Р°Р±РѕС‚Р° СЃ РїСЂРµРґРјРµС‚РѕРј</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="/adminion/?mod=realbucks">Реальщики</a></div></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Поединки</strong></div></td>
-          </tr>
-          <tr>
-            <td><div align="left"><a href="#">Поиск поединка</a></div></td>
-          </tr>
-          <tr>
-            <td><div align="left"><a href="#">Настройки баланса</a></div></td>
+            <td><div align="left"><a href="#">РџСЂРµРґРјРµС‚С‹ Сѓ РїРµСЂСЃРѕРЅР°Р¶РµР№</a></div></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Пещеры</strong></div></td>
+            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Р›РѕРєР°С†РёРё</strong></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="../adminion/?mod=dungeon_list">Список пещер</a></div></td>
+            <td><div align="left"><a href="#">РџРѕРёСЃРє Р»РѕРєР°С†РёРё</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="../adminion/?mod=dungeon&r=1">Редактор лабиринтов</a></div></td>
+            <td><div align="left"><a href="#">Р Р°Р±РѕС‚Р° СЃ Р»РѕРєР°С†РёРµР№</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="../adminion/?mod=dungeon_bots">Редактор ботов</a></div></td>
+            <td><div align="left"><a href="#">Р”РѕР±Р°РІРёС‚СЊ Р»РѕРєР°С†РёСЋ</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="../adminion/?mod=dungeon_editor">Редактор пещер</a></div></td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
-            <td><div align="left"><a href="../adminion/?mod=dobj&r=1">Работа с обьектами</a></div></td>
+            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">Р”РµР№СЃС‚РІРёСЏ</strong></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="#">Создать пещеру</a></div></td>
+            <td><div align="left"><a href="/adminion/?mod=chatsee">РќР°Р±Р»СЋРґР°С‚СЊ Р·Р° С‡Р°С‚РѕРј</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="#">Работа с квестами</a></div></td>
+            <td><div align="left"><a href="/adminion/?mod=chatsys">РЎРёСЃС‚РµРјРЅС‹Р№ Р»РѕРі</a></div></td>
           </tr>
           <tr>
-            <td><div align="left"><a href="#">Создать квест</a></div></td>
+            <td><div align="left"><a href="/adminion/?mod=realbucks">Р РµР°Р»СЊС‰РёРєРё</a></div></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">РџРѕРµРґРёРЅРєРё</strong></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="#">РџРѕРёСЃРє РїРѕРµРґРёРЅРєР°</a></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="#">РќР°СЃС‚СЂРѕР№РєРё Р±Р°Р»Р°РЅСЃР°</a></div></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C2C0"><div align="left" class="tblbr"><strong style="margin-left:10px;">РџРµС‰РµСЂС‹</strong></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="../adminion/?mod=dungeon_list">РЎРїРёСЃРѕРє РїРµС‰РµСЂ</a></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="../adminion/?mod=dungeon&r=1">Р РµРґР°РєС‚РѕСЂ Р»Р°Р±РёСЂРёРЅС‚РѕРІ</a></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="../adminion/?mod=dungeon_bots">Р РµРґР°РєС‚РѕСЂ Р±РѕС‚РѕРІ</a></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="../adminion/?mod=dungeon_editor">Р РµРґР°РєС‚РѕСЂ РїРµС‰РµСЂ</a></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="../adminion/?mod=dobj&r=1">Р Р°Р±РѕС‚Р° СЃ РѕР±СЊРµРєС‚Р°РјРё</a></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="#">РЎРѕР·РґР°С‚СЊ РїРµС‰РµСЂСѓ</a></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="#">Р Р°Р±РѕС‚Р° СЃ РєРІРµСЃС‚Р°РјРё</a></div></td>
+          </tr>
+          <tr>
+            <td><div align="left"><a href="#">РЎРѕР·РґР°С‚СЊ РєРІРµСЃС‚</a></div></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -269,14 +269,14 @@ if(!isset($_GET['ajax'])) {
 				include('../adminion/mod/'.htmlspecialchars($_GET['mod'],NULL,'cp1251').'.php');
 			}else{
 				if(!isset($_GET['ajax'])) {
-					echo '<center>У вас нет доступа к данному разделу</center>';
+					echo '<center>РЈ РІР°СЃ РЅРµС‚ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅРѕРјСѓ СЂР°Р·РґРµР»Сѓ</center>';
 				}else{
 					echo '{"error":"-1"}';
 				}
 			}
 		}else{
 			if(!isset($_GET['ajax'])) {
-				echo '<center>Выберите раздел</center>';
+				echo '<center>Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР»</center>';
 			}else{
 				echo '{"error":"-2"}';
 			}
@@ -289,7 +289,7 @@ if(!isset($_GET['ajax'])) {
 	?></td>
   </tr>
   <tr>
-    <td><div align="center" class="стиль2">Панель управления СБК, xcombats.com &copy; <?=date('Y')?><hr>Pluon, PluGameCMS © 2011-2012<BR>
+    <td><div align="center" class="СЃС‚РёР»СЊ2">РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ РЎР‘Рљ, xcombats.com &copy; <?=date('Y')?><hr>Pluon, PluGameCMS В© 2011-2012<BR>
     All rights reserved.</div></td>
   </tr>
 </table>

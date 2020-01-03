@@ -106,7 +106,7 @@ class telegram
 		
 		if($fromType==1)
 		{
-			$from = '<a href="info/login='.$from.'" target="_blank" title="Инф. о '.$from.'">'.$from.'</a>';
+			$from = '<a href="info/login='.$from.'" target="_blank" title="РРЅС„. Рѕ '.$from.'">'.$from.'</a>';
 		}elseif($read==0)
 		{
 			$from = '<b id="tablePostTxtB'.$id.'">'.$from.'</b>';
@@ -116,10 +116,10 @@ class telegram
 			  <tr>
 				<td width="30" class="underLine2"><div align="center">'.$i1.'</div></td>
 				<td width="200" id="tablePostTxt'.$id.'" class="underLine2">'.$from.'</td>
-				<td width="290" class="underLine2"><a onClick="openPost('.$id.'); return false;" href="#read'.$id.'" title="Прочитать сообщение">'.substr($ttl,0,30).'...</a></td>
+				<td width="290" class="underLine2"><a onClick="openPost('.$id.'); return false;" href="#read'.$id.'" title="РџСЂРѕС‡РёС‚Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ">'.substr($ttl,0,30).'...</a></td>
 				<td width="120" class="underLine2">'.date('d.m.y H:i',$time).'</td>
-				<td width="30" class="underLine2"><div align="center"><IMG style="cursor:pointer;" onClick="lockPost('.$id.');" title="Блокировка сообщения" src="http://img.combats.ru/i/locked.gif"></div></td>
-				<td width="30" class="underLine2"><div align="center"><IMG style="cursor:pointer;" onClick="deletePost('.$id.','.$pg.');" title="Удалить сообщение" src="http://img.combats.ru/i/clear.gif" width="11" height="11"></div></td>
+				<td width="30" class="underLine2"><div align="center"><IMG style="cursor:pointer;" onClick="lockPost('.$id.');" title="Р‘Р»РѕРєРёСЂРѕРІРєР° СЃРѕРѕР±С‰РµРЅРёСЏ" src="http://img.combats.ru/i/locked.gif"></div></td>
+				<td width="30" class="underLine2"><div align="center"><IMG style="cursor:pointer;" onClick="deletePost('.$id.','.$pg.');" title="РЈРґР°Р»РёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ" src="http://img.combats.ru/i/clear.gif" width="11" height="11"></div></td>
 			  </tr>
 			  </table>
 			  <div id="readMSG'.$id.'" style="display:none;" class="unreadMSG">'.$ttl.'</div>';
@@ -132,11 +132,11 @@ class telegram
 			  <table width="100%" border="0" cellspacing="0" cellpadding="0">
 			  <tr>
 				<td width="30" class="underLine"><div align="center"></div></td>
-				<td width="200" class="underLine"><b>От кого</b></td>
-				<td width="290" class="underLine"><b>Заголовок сообщения</b></td>
-				<td width="120" class="underLine"><b>Когда</b></td>
-				<td width="30" class="underLine"><div align="center"><IMG alt="Блокировка сообщений" src="http://img.combats.ru/i/lock_message.gif"></div></td>
-				<td width="30" class="underLine"><div align="center"><IMG style="cursor:pointer;" onClick="deletePostAll('.$page.');" alt="Удалить все прочитанные сообщения" src="http://img.combats.ru/i/clear.gif" width="11" height="11"></div></td>
+				<td width="200" class="underLine"><b>РћС‚ РєРѕРіРѕ</b></td>
+				<td width="290" class="underLine"><b>Р—Р°РіРѕР»РѕРІРѕРє СЃРѕРѕР±С‰РµРЅРёСЏ</b></td>
+				<td width="120" class="underLine"><b>РљРѕРіРґР°</b></td>
+				<td width="30" class="underLine"><div align="center"><IMG alt="Р‘Р»РѕРєРёСЂРѕРІРєР° СЃРѕРѕР±С‰РµРЅРёР№" src="http://img.combats.ru/i/lock_message.gif"></div></td>
+				<td width="30" class="underLine"><div align="center"><IMG style="cursor:pointer;" onClick="deletePostAll('.$page.');" alt="РЈРґР°Р»РёС‚СЊ РІСЃРµ РїСЂРѕС‡РёС‚Р°РЅРЅС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ" src="http://img.combats.ru/i/clear.gif" width="11" height="11"></div></td>
 			  </tr> 
 			  </table>';
 		
@@ -161,7 +161,7 @@ class telegram
 		
 		if($i[0]==0)
 		{
-			echo '<div class="noMsg" align="center">Сообщений нет</div>';
+			echo '<div class="noMsg" align="center">РЎРѕРѕР±С‰РµРЅРёР№ РЅРµС‚</div>';
 		}elseif($i[0]>$maxPages){				
 			$pages = '';
 			$i = 1;
@@ -178,7 +178,7 @@ class telegram
 			echo '<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				  <tr>
 					<td width="30"><div align="center"></div></td>
-					<td width="200">Страницы: '.$pages.'</td>
+					<td width="200">РЎС‚СЂР°РЅРёС†С‹: '.$pages.'</td>
 					<td width="240"></td>
 					<td width="170"></td>
 					<td width="30"></td>
@@ -190,7 +190,7 @@ class telegram
 	
 	public function __clone()
 	{
-		trigger_error('Дублирование не допускается.', E_USER_ERROR);
+		trigger_error('Р”СѓР±Р»РёСЂРѕРІР°РЅРёРµ РЅРµ РґРѕРїСѓСЃРєР°РµС‚СЃСЏ.', E_USER_ERROR);
 	}
 }
 

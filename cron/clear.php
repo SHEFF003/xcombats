@@ -31,12 +31,12 @@ if( isset($_GET['actions']) ) {
 
 /*
 
-	CRON Очистки сервера от ненужной информации
-	Действия:
-	1.  Очистка чата
-	2.	Очистка заявок в поединки
-	3.	Очистка заявок в пещеры
-	4.	Очистка походов
+	CRON РћС‡РёСЃС‚РєРё СЃРµСЂРІРµСЂР° РѕС‚ РЅРµРЅСѓР¶РЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё
+	Р”РµР№СЃС‚РІРёСЏ:
+	1.  РћС‡РёСЃС‚РєР° С‡Р°С‚Р°
+	2.	РћС‡РёСЃС‚РєР° Р·Р°СЏРІРѕРє РІ РїРѕРµРґРёРЅРєРё
+	3.	РћС‡РёСЃС‚РєР° Р·Р°СЏРІРѕРє РІ РїРµС‰РµСЂС‹
+	4.	РћС‡РёСЃС‚РєР° РїРѕС…РѕРґРѕРІ
 
 */
 
@@ -120,16 +120,16 @@ function delete_user_all( $uid , $login ) {
 			mysql_query('DELETE FROM `_clan` WHERE `uid` = "'.$uid.'"');
 }
 
-//1. Очистка чата, остается чат только за последние 3 дня
+//1. РћС‡РёСЃС‚РєР° С‡Р°С‚Р°, РѕСЃС‚Р°РµС‚СЃСЏ С‡Р°С‚ С‚РѕР»СЊРєРѕ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 3 РґРЅСЏ
 mysql_query('DELETE FROM `chat` WHERE `time` < '.(time()-86400*3).'');
 
-//2. Очистка заявок в поединки
+//2. РћС‡РёСЃС‚РєР° Р·Р°СЏРІРѕРє РІ РїРѕРµРґРёРЅРєРё
 mysql_query('DELETE FROM `zayvki` WHERE `start` > 0 OR `cancel` > 0 OR `time` < "'.(time()-86400*1).'"');
 
-//3. Очистка заявок в пещеры
+//3. РћС‡РёСЃС‚РєР° Р·Р°СЏРІРѕРє РІ РїРµС‰РµСЂС‹
 mysql_query('DELETE FROM `dungeon_zv` WHERE `delete` > 0 OR `time` < "'.(time()-86400*1).'"');
 
-//4. Очистка походов
+//4. РћС‡РёСЃС‚РєР° РїРѕС…РѕРґРѕРІ
 $sp = mysql_query('SELECT * FROM `dungeon_now` WHERE `time_start` < "'.(time()-86400*1).'" OR `time_finish` > 0');
 while( $pl = mysql_fetch_array($sp) ) {
 	mysql_query('DELETE FROM `dungeon_actions` WHERE `dn` = "'.$pl['id'].'"');
@@ -139,14 +139,14 @@ while( $pl = mysql_fetch_array($sp) ) {
 	mysql_query('DELETE FROM `dungeon_now` WHERE `id` = "'.$pl['id'].'"');
 }
 
-//5. Очистка монстров
+//5. РћС‡РёСЃС‚РєР° РјРѕРЅСЃС‚СЂРѕРІ
 $i = 0;
 $sp = mysql_query('SELECT * FROM `users` WHERE `real` = 0 ORDER BY `id` ASC LIMIT 100');
 while( $pl = mysql_fetch_array($sp) ) {
 	$btl = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `id` = "'.$pl['battle'].'" LIMIT 1'));
 	$clon = mysql_fetch_array(mysql_query('SELECT `id` FROM `users` WHERE `inUser` = "'.$pl['id'].'" LIMIT 1'));
 	if( (!isset($btl['id']) || $btl['team_win'] >= 0) && !isset($clon['id']) ) {
-		//Очищаем бота
+		//РћС‡РёС‰Р°РµРј Р±РѕС‚Р°
 		delete_user_all( $pl['id'] , $pl['login'] );
 		$i++;
 	}
@@ -157,10 +157,10 @@ $x = $x[0];
 mysql_query('DELETE FROM `stats` WHERE `id` NOT IN (SELECT `id` FROM `users`);');
 mysql_query('DELETE FROM `items_users` WHERE `delete` > `time_create` AND `delete` > 0');
 
-//6. Очистка личного дела
+//6. РћС‡РёСЃС‚РєР° Р»РёС‡РЅРѕРіРѕ РґРµР»Р°
 mysql_query('DELETE FROM `users_delo` WHERE `time` < "'.(time()-86400*30).'" LIMIT 1000');
 
-//echo '<div>Очищено ботов\монстров: '.$i.'/'.$x.'</div>';
+//echo '<div>РћС‡РёС‰РµРЅРѕ Р±РѕС‚РѕРІ\РјРѕРЅСЃС‚СЂРѕРІ: '.$i.'/'.$x.'</div>';
 /*if( $i > 0 ) {
 	die('<script>function test(){ top.location = top.location; } setTimeout("test()",1000);</script>');
 }*/

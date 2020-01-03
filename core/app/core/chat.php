@@ -4,7 +4,7 @@ namespace Core;
 
 class Chat {
 
-	//Ñèñòåìíîå ñîîáùåíèå
+	//Ð¡Ð¸ÑÑ‚ÐµÐ¼Ð½Ð¾Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ
 	public static function send_system( $uid , $text ) {
 		if( !is_string($uid) ) {
 			$uid = \Core\Database::query( 'SELECT `login` FROM `users` WHERE `uid` = :uid ORDER BY `id` ASC LIMIT 1' , array(
@@ -26,5 +26,3 @@ class Chat {
 	}
 		
 }
-
-?>

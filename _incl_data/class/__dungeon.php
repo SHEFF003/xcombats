@@ -7,7 +7,7 @@ if(!defined('GAME'))
 class dungeon
 {
 	public $bs,$info,$see,$error,$gs = 1,$information, $map = array(
-				0 => array() //карта
+				0 => array() //РєР°СЂС‚Р°
 			)	,$id_dng,$cord = array('x' => 0),$sg = array(1 => array(1=>1,2=>2,3=>3,4=>4),2 => array(1=>2,2=>3,3=>4,4=>1),3 => array(1=>3,2=>4,3=>1,4=>2),4 => array(1=>4,2=>1,3=>2,4=>3));
 	public function start()
 	{
@@ -26,7 +26,7 @@ class dungeon
 			$this->bs = mysql_fetch_array(mysql_query('SELECT * FROM `bs_turnirs` WHERE `city` = "'.$u->info['city'].'" AND `id` = "'.$this->info['bsid'].'" AND `time_start` = "'.$this->info['time_start'].'" LIMIT 1'));
 			if(isset($this->bs['id']))
 			{
-				//Если БС закончена
+				//Р•СЃР»Рё Р‘РЎ Р·Р°РєРѕРЅС‡РµРЅР°
 				/*if($this->bs['users']-$this->bs['users_finish'] < 2)
 				{
 					$u->bsfinish($this->bs,false,NULL);
@@ -81,23 +81,23 @@ class dungeon
 			$u->info['s'] = $this->gs;
 		}elseif(isset($_GET['go']))
 		{
-			//перемещение
+			//РїРµСЂРµРјРµС‰РµРЅРёРµ
 			$this->testGo((int)$_GET['go']);
 		}
 		
-		/* генерируем вид персонажа (только карта)
-			$this->gs = 1; //смотрим прямо
-						2; //смотрим лево
-						3; //смотрим вниз
-						4; //смотрим право
+		/* РіРµРЅРµСЂРёСЂСѓРµРј РІРёРґ РїРµСЂСЃРѕРЅР°Р¶Р° (С‚РѕР»СЊРєРѕ РєР°СЂС‚Р°)
+			$this->gs = 1; //СЃРјРѕС‚СЂРёРј РїСЂСЏРјРѕ
+						2; //СЃРјРѕС‚СЂРёРј Р»РµРІРѕ
+						3; //СЃРјРѕС‚СЂРёРј РІРЅРёР·
+						4; //СЃРјРѕС‚СЂРёРј РїСЂР°РІРѕ
 						( ( ( `y` >= '.$u->info['y'].' && `y` <= '.($u->info['y']+4).' ) && ( `x` >= '.($u->info['x']-1).' && `x` <= '.($u->info['x']+1).' ) ) || ( (`x` = '.($u->info['x']+2).' || `x` = '.($u->info['x']-2).') && ( `y` = '.($u->info['y']+3).' || `y` = '.($u->info['y']+4).' ) ) )
 		*/
 		
 		$whr = array(
-					1 => ' ((`x` <= '.($u->info['x']+2).' && `x` >= '.($u->info['x']-2).') && (`y` >= '.$u->info['y'].' && `y` <= '.($u->info['y']+4).')) ', //прямо 
-					3 => ' ((`x` <= '.($u->info['x']+2).' && `x` >= '.($u->info['x']-2).') && (`y` <= '.$u->info['y'].' && `y` >= '.($u->info['y']-4).')) ', //вниз
-					2 => ' ((`x` <= '.$u->info['x'].' && `x` >= '.($u->info['x']-4).') && (`y` <= '.($u->info['y']+2).' && `y` >= '.($u->info['y']-2).')) ', //лево				
-					4 => ' ((`x` >= '.$u->info['x'].' && `x` <= '.($u->info['x']+4).') && (`y` <= '.($u->info['y']+2).' && `y` >= '.($u->info['y']-2).')) ' //право
+					1 => ' ((`x` <= '.($u->info['x']+2).' && `x` >= '.($u->info['x']-2).') && (`y` >= '.$u->info['y'].' && `y` <= '.($u->info['y']+4).')) ', //РїСЂСЏРјРѕ 
+					3 => ' ((`x` <= '.($u->info['x']+2).' && `x` >= '.($u->info['x']-2).') && (`y` <= '.$u->info['y'].' && `y` >= '.($u->info['y']-4).')) ', //РІРЅРёР·
+					2 => ' ((`x` <= '.$u->info['x'].' && `x` >= '.($u->info['x']-4).') && (`y` <= '.($u->info['y']+2).' && `y` >= '.($u->info['y']-2).')) ', //Р»РµРІРѕ				
+					4 => ' ((`x` >= '.$u->info['x'].' && `x` <= '.($u->info['x']+4).') && (`y` <= '.($u->info['y']+2).' && `y` >= '.($u->info['y']-2).')) ' //РїСЂР°РІРѕ
 				);
 		
 		$i = 1;
@@ -107,7 +107,7 @@ class dungeon
 			$this->map[0][$pl['y'].'_'.$pl['x']] = $pl;
 			$i++;
 		}
-		$this->map['good'] = $i; //целых клеток
+		$this->map['good'] = $i; //С†РµР»С‹С… РєР»РµС‚РѕРє
 		$this->map[1] = $this->genMatix();
 		$this->lookDungeon();
 	}
@@ -116,20 +116,20 @@ class dungeon
 		global $u;
 		$itm = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$itm.'" LIMIT 1'));
 		if( isset($itm['id']) ) {
-			$tou = 0; //какому юзеру предназначено
-			/* выделяем случайного юзера из команды */
+			$tou = 0; //РєР°РєРѕРјСѓ СЋР·РµСЂСѓ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅРѕ
+			/* РІС‹РґРµР»СЏРµРј СЃР»СѓС‡Р°Р№РЅРѕРіРѕ СЋР·РµСЂР° РёР· РєРѕРјР°РЅРґС‹ */
 			$itmnm = mysql_fetch_array(mysql_query('SELECT `name` FROM `items_main` WHERE `id` = "'.$itmz[0].'" LIMIT 1'));
 			$itmnm = $itmnm['name'];
 			$asex = '';
 			if( $u->info['sex'] == 1 ) {
-				$asex = 'а';
+				$asex = 'Р°';
 			}
 							
 			if($for > 0 ) {
 				$tou = $for;
-				$rtxt = '<b>'.$u->info['login'].'</b> обнаружил'.$asex.' предмет &quot;'.$itm['name'].'&quot; в &quot;'.$obj['name'].'&quot;';
+				$rtxt = '<b>'.$u->info['login'].'</b> РѕР±РЅР°СЂСѓР¶РёР»'.$asex.' РїСЂРµРґРјРµС‚ &quot;'.$itm['name'].'&quot; РІ &quot;'.$obj['name'].'&quot;';
 			}else{
-				$rtxt = '<b>'.$u->info['login'].'</b> обнаружил'.$asex.' предмет &quot;'.$itm['name'].'&quot; в &quot;'.$obj['name'].'&quot;, и вы решили разыграть его';
+				$rtxt = '<b>'.$u->info['login'].'</b> РѕР±РЅР°СЂСѓР¶РёР»'.$asex.' РїСЂРµРґРјРµС‚ &quot;'.$itm['name'].'&quot; РІ &quot;'.$obj['name'].'&quot;, Рё РІС‹ СЂРµС€РёР»Рё СЂР°Р·С‹РіСЂР°С‚СЊ РµРіРѕ';
 			}
 			if($dn_delete == true) { $dn_delete = 1; } else { $dn_delete = 0; }
 			mysql_query("INSERT INTO `chat` (`dn`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['dnow']."','".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1','1')");								
@@ -171,21 +171,21 @@ class dungeon
 				$r .= 'style="padding-top:12px"';
 			}
 $r .= '>
-<div style="position:relative;"><div id="vhp'.($pl['id']+1000000000000).'" title="Уровень жизни" align="left" class="seehp" style="position:absolute; top:-10px; width:120px; height:10px; z-index:12;"> '.floor($stt['hpNow']).'/'.$stt['hpAll'].'</div>
-<div title="Уровень жизни" class="hpborder" style="position:absolute; top:-10px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
+<div style="position:relative;"><div id="vhp'.($pl['id']+1000000000000).'" title="РЈСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё" align="left" class="seehp" style="position:absolute; top:-10px; width:120px; height:10px; z-index:12;"> '.floor($stt['hpNow']).'/'.$stt['hpAll'].'</div>
+<div title="РЈСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё" class="hpborder" style="position:absolute; top:-10px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
 <div class="hp_3 senohp" style="height:9px; width:'.floor(120/100*$ph).'px; position:absolute; top:-10px; z-index:11;" id="lhp'.($pl['id']+1000000000000).'"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
-<div title="Уровень жизни" class="hp_none" style="position:absolute; top:-10px; width:120px; height:10px; z-index:10;"><img src="http://img.xcombats.com/1x1.gif" height="10"></div>
+<div title="РЈСЂРѕРІРµРЅСЊ Р¶РёР·РЅРё" class="hp_none" style="position:absolute; top:-10px; width:120px; height:10px; z-index:10;"><img src="http://img.xcombats.com/1x1.gif" height="10"></div>
 ';
 if($stt['mpAll']>0)
 {
-	$r .= '<div id="vmp'.($pl['id']+1000000000000).'" title="Уровень маны" align="left" class="seemp" style="position:absolute; top:0px; width:120px; height:10px; z-index:12;"> '.floor($stt['mpNow']).'/'.$stt['mpAll'].'</div>
-<div title="Уровень маны" class="hpborder" style="position:absolute; top:0px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
+	$r .= '<div id="vmp'.($pl['id']+1000000000000).'" title="РЈСЂРѕРІРµРЅСЊ РјР°РЅС‹" align="left" class="seemp" style="position:absolute; top:0px; width:120px; height:10px; z-index:12;"> '.floor($stt['mpNow']).'/'.$stt['mpAll'].'</div>
+<div title="РЈСЂРѕРІРµРЅСЊ РјР°РЅС‹" class="hpborder" style="position:absolute; top:0px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
 <div class="hp_mp senohp" style="height:9px; position:absolute; top:0px; width:'.floor(120/100*$pm).'px; z-index:11;" id="lmp'.($pl['id']+1000000000000).'"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
-<div title="Уровень маны" class="hp_none" style="position:absolute; top:0px; width:120px; height:10px; z-index:10;"></div>';
+<div title="РЈСЂРѕРІРµРЅСЊ РјР°РЅС‹" class="hp_none" style="position:absolute; top:0px; width:120px; height:10px; z-index:10;"></div>';
 }
 $r .= '</div></td><td>';
 if( $this->info['uid'] == $pl['id'] ) {
-	$r .= '<img src="http://img.xcombats.com/i/lead1.gif" title="Лидер группы" >';
+	$r .= '<img src="http://img.xcombats.com/i/lead1.gif" title="Р›РёРґРµСЂ РіСЂСѓРїРїС‹" >';
 }
 $r .= '</td></tr></table><br>';
 $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['hpNow']).','.(0+$stt['hpAll']).','.(0+$stt['mpNow']).','.(0+$stt['mpAll']).',0,0,0,0,1);</script>';
@@ -199,13 +199,13 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 		$bot = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_bots` WHERE `id2` = "'.$id.'" AND `for_dn` = "0" AND `dn` = "'.$this->info['id'].'" AND `delete` = "0" LIMIT 1'));
 		if(isset($bot['id2'])){
 			if( ($u->info['x'] != $bot['x'] || $bot['y'] != $u->info['y']) && $this->testLike($u->info['x'],$u->info['y'],$bot['x'],$bot['y']) == 1 ){
-				//Создаем подеинок
+				//РЎРѕР·РґР°РµРј РїРѕРґРµРёРЅРѕРє
 				$tbtl = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `dn_id` = "'.$this->info['id'].'" AND `team_win` = "-1" AND `x` = "'.$bot['x'].'" AND `y` = "'.$bot['y'].'" LIMIT 1'));
 				if(isset($tbtl['id'])) {
-					//вступаем в поединок
+					//РІСЃС‚СѓРїР°РµРј РІ РїРѕРµРґРёРЅРѕРє
 					mysql_query('UPDATE `users` SET `battle` = "'.$tbtl['id'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					mysql_query('UPDATE `stats` SET `team` = "1" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-					/*#$this->error = 'Нападаем ... '; // <script>location="main.php?rnd='.$code.'";</script>*/
+					/*#$this->error = 'РќР°РїР°РґР°РµРј ... '; // <script>location="main.php?rnd='.$code.'";</script>*/
 					header('location: main.php');
 				} else {
 					$btl_id = 0;
@@ -252,11 +252,11 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 										
 								$me_real = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`align`,`clan`,`battle`,`level` FROM `users` WHERE `inUser` = "'.$u->info['id'].'" AND `login` = "'.$u->info['login'].'" LIMIT 1'));
 
-								//Заносим в лог БС
+								//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 								if( $u->info['sex'] == 0 ) {
-									$text = '{u1} вмешался в поединок напав на {u2} <a target=_blank href=/logs.php?log='.$tbtl['id'].' >»»</a>';
+									$text = '{u1} РІРјРµС€Р°Р»СЃСЏ РІ РїРѕРµРґРёРЅРѕРє РЅР°РїР°РІ РЅР° {u2} <a target=_blank href=/logs.php?log='.$tbtl['id'].' >В»В»</a>';
 								}else{
-									$text = '{u1} вмешалася в поединок напав на {u2} <a target=_blank href=/logs.php?log='.$tbtl['id'].' >»»</a>';
+									$text = '{u1} РІРјРµС€Р°Р»Р°СЃСЏ РІ РїРѕРµРґРёРЅРѕРє РЅР°РїР°РІ РЅР° {u2} <a target=_blank href=/logs.php?log='.$tbtl['id'].' >В»В»</a>';
 								}								
 								if( isset($usr_real['id'])) {
 									$usrreal = '';
@@ -268,7 +268,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 									}
 									$usrreal .= '<b>'.$bott['login'].'</b>['.$bott['level'].']<a target=_blank href=http://xcombats.com/info/'.$bott['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 								}else{
-									$mereal = '<i>Невидимка</i>[??]';
+									$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 								}
 								if( isset($me_real['id']) ) {
 									$mereal = '';
@@ -280,11 +280,11 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 									}
 									$mereal .= '<b>'.$me_real['login'].'</b>['.$me_real['level'].']<a target=_blank href=http://xcombats.com/info/'.$me_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 								}else{
-									$mereal = '<i>Невидимка</i>[??]';
+									$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 								}
 								$text = str_replace('{u1}',$mereal,$text);
 								$text = str_replace('{u2}',$usrreal,$text);
-								//Добавляем в лог БС
+								//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
 								mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 									"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$this->bs['id'].'", "'.$this->bs['count'].'", "'.$this->bs['city'].'",
 									"'.round($this->bs['money']*0.85,2).'","'.$i.'"
@@ -293,7 +293,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 							}
 					
 					if($btl_id>0) {
-						//Добавляем ботов
+						//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ
 						$sp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `for_dn` = "0" AND `dn` = "'.$this->info['id'].'" AND `x` = "'.$bot['x'].'" AND `y` = "'.$bot['y'].'" AND `delete` = "0" LIMIT 50');
 						$j = 0; $logins_bot = array();
 						while($pl = mysql_fetch_array($sp)){
@@ -318,28 +318,28 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 						if($j>0){
 							mysql_query('UPDATE `users` SET `battle` = "'.$btl_id.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 							mysql_query('UPDATE `stats` SET `team` = "1" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
-							/*#$this->error = 'Нападаем ...';// <script>location="main.php?rnd='.$code.'";</script>*/
+							/*#$this->error = 'РќР°РїР°РґР°РµРј ...';// <script>location="main.php?rnd='.$code.'";</script>*/
 							//
 							header('location: main.php'); 
 						}else{
-							$this->error = 'Не удалось напасть, ошибка обьекта нападения ...';	
+							$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°РїР°СЃС‚СЊ, РѕС€РёР±РєР° РѕР±СЊРµРєС‚Р° РЅР°РїР°РґРµРЅРёСЏ ...';	
 						}
 					}else{
-						$this->error = 'Не удалось создать поединок ...';	
+						$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїРѕРµРґРёРЅРѕРє ...';	
 					}
 				}
 			}else{
-				$this->error = 'Не удалось напасть ...';	
+				$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°РїР°СЃС‚СЊ ...';	
 			}
 		} else {
 			if(isset($this->bs['id']) || $this->info['id2'] == 15) {
 				$bot = mysql_fetch_array(mysql_query('SELECT `u`.*,`st`.* FROM `users` AS `u` LEFT JOIN `stats` AS `st` ON (`u`.`id` = `st`.`id`) WHERE `u`.`id` = "'.mysql_real_escape_string($id).'" LIMIT 1'));
 				if(($u->info['x']!=$bot['x'] || $bot['y']!=$u->info['y']) && $this->testLike($u->info['x'],$u->info['y'],$bot['x'],$bot['y'])==1){
-					//Создаем подеинок
+					//РЎРѕР·РґР°РµРј РїРѕРґРµРёРЅРѕРє
 					$tbtl = mysql_fetch_array(mysql_query('SELECT * FROM `battle` WHERE `dn_id` = "'.$this->info['id'].'" AND `team_win` = "-1" AND `x` = "'.$bot['x'].'" AND `y` = "'.$bot['y'].'" LIMIT 1'));
-					//die('Нападения временно запрещены. ['.$tbtl['id'].'] 5-10 мин.');
+					//die('РќР°РїР°РґРµРЅРёСЏ РІСЂРµРјРµРЅРЅРѕ Р·Р°РїСЂРµС‰РµРЅС‹. ['.$tbtl['id'].'] 5-10 РјРёРЅ.');
 					if(isset($tbtl['id'])){
-						//вступаем в поединок
+						//РІСЃС‚СѓРїР°РµРј РІ РїРѕРµРґРёРЅРѕРє
 						$lstm = mysql_fetch_array(mysql_query('SELECT `u`.*,`st`.* FROM `users` AS `u` LEFT JOIN `stats` AS `st` ON (`u`.`id` = `st`.`id`) WHERE `u`.`battle`="'.mysql_real_escape_string($tbtl['id']).'" ORDER BY  `st`.`team` DESC LIMIT 1'));	
 						mysql_query('UPDATE `users` SET `battle` = "'.$tbtl['id'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 						mysql_query('UPDATE `stats` SET `team` = "'.($lstm['team']+1).'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -349,11 +349,11 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 								$me_real = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`align`,`clan`,`battle`,`level` FROM `users` WHERE `inUser` = "'.$u->info['id'].'" AND `login` = "'.$u->info['login'].'" LIMIT 1'));
 								$usr_real = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`align`,`clan`,`battle`,`level` FROM `users` WHERE `inUser` = "'.$bot['id'].'" AND `login` = "'.$bot['login'].'" LIMIT 1'));
 
-								//Заносим в лог БС
+								//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 								if( $u->info['sex'] == 0 ) {
-									$text = '{u1} вмешался в поединок напав на {u2} <a target=_blank href=/logs.php?log='.$tbtl['id'].' >»»</a>';
+									$text = '{u1} РІРјРµС€Р°Р»СЃСЏ РІ РїРѕРµРґРёРЅРѕРє РЅР°РїР°РІ РЅР° {u2} <a target=_blank href=/logs.php?log='.$tbtl['id'].' >В»В»</a>';
 								}else{
-									$text = '{u1} вмешалася в поединок напав на {u2} <a target=_blank href=/logs.php?log='.$tbtl['id'].' >»»</a>';
+									$text = '{u1} РІРјРµС€Р°Р»Р°СЃСЏ РІ РїРѕРµРґРёРЅРѕРє РЅР°РїР°РІ РЅР° {u2} <a target=_blank href=/logs.php?log='.$tbtl['id'].' >В»В»</a>';
 								}								
 								if( isset($usr_real['id'])) {
 									$usrreal = '';
@@ -365,7 +365,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 									}
 									$usrreal .= '<b>'.$usr_real['login'].'</b>['.$usr_real['level'].']<a target=_blank href=http://xcombats.com/info/'.$usr_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 								}else{
-									$mereal = '<i>Невидимка</i>[??]';
+									$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 								}
 								if( isset($me_real['id']) ) {
 									$mereal = '';
@@ -377,11 +377,11 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 									}
 									$mereal .= '<b>'.$me_real['login'].'</b>['.$me_real['level'].']<a target=_blank href=http://xcombats.com/info/'.$me_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 								}else{
-									$mereal = '<i>Невидимка</i>[??]';
+									$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 								}
 								$text = str_replace('{u1}',$mereal,$text);
 								$text = str_replace('{u2}',$usrreal,$text);
-								//Добавляем в лог БС
+								//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
 								mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 									"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$this->bs['id'].'", "'.$this->bs['count'].'", "'.$this->bs['city'].'",
 									"'.round($this->bs['money']*0.85,2).'","'.$i.'"
@@ -389,7 +389,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 								//
 							}
 						//
-						$this->error = 'Нападаем ... <script>location="main.php?rnd='.$code.'";</script>';
+						$this->error = 'РќР°РїР°РґР°РµРј ... <script>location="main.php?rnd='.$code.'";</script>';
 					}else{
 						$btl_id = 0;
 						//$expB = -77.77;
@@ -434,7 +434,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 						
 						if($btl_id>0)
 						{
-							//Добавляем ботов 
+							//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ 
 							mysql_query('UPDATE `users` SET `battle` = "'.$btl_id.'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 							mysql_query('UPDATE `stats` SET `team` = "1" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 							
@@ -458,11 +458,11 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 								$me_real = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`align`,`clan`,`battle`,`level` FROM `users` WHERE `inUser` = "'.$u->info['id'].'" AND `login` = "'.$u->info['login'].'" LIMIT 1'));
 								$usr_real = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`align`,`clan`,`battle`,`level` FROM `users` WHERE `inUser` = "'.$bot['id'].'" AND `login` = "'.$bot['login'].'" LIMIT 1'));
 
-								//Заносим в лог БС
+								//Р—Р°РЅРѕСЃРёРј РІ Р»РѕРі Р‘РЎ
 								if( $u->info['sex'] == 0 ) {
-									$text = '{u1} напал на {u2} завязался бой <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+									$text = '{u1} РЅР°РїР°Р» РЅР° {u2} Р·Р°РІСЏР·Р°Р»СЃСЏ Р±РѕР№ <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 								}else{
-									$text = '{u1} напала на {u2} завязался бой <a target=_blank href=/logs.php?log='.$btl_id.' >»»</a>';
+									$text = '{u1} РЅР°РїР°Р»Р° РЅР° {u2} Р·Р°РІСЏР·Р°Р»СЃСЏ Р±РѕР№ <a target=_blank href=/logs.php?log='.$btl_id.' >В»В»</a>';
 								}								
 								if( isset($usr_real['id'])) {
 									$usrreal = '';
@@ -474,7 +474,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 									}
 									$usrreal .= '<b>'.$usr_real['login'].'</b>['.$usr_real['level'].']<a target=_blank href=http://xcombats.com/info/'.$usr_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 								}else{
-									$mereal = '<i>Невидимка</i>[??]';
+									$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 								}
 								if( isset($me_real['id']) ) {
 									$mereal = '';
@@ -486,11 +486,11 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 									}
 									$mereal .= '<b>'.$me_real['login'].'</b>['.$me_real['level'].']<a target=_blank href=http://xcombats.com/info/'.$me_real['id'].' ><img width=12 hiehgt=11 src=http://img.xcombats.com/i/inf_capitalcity.gif ></a>';
 								}else{
-									$mereal = '<i>Невидимка</i>[??]';
+									$mereal = '<i>РќРµРІРёРґРёРјРєР°</i>[??]';
 								}
 								$text = str_replace('{u1}',$mereal,$text);
 								$text = str_replace('{u2}',$usrreal,$text);
-								//Добавляем в лог БС
+								//Р”РѕР±Р°РІР»СЏРµРј РІ Р»РѕРі Р‘РЎ
 								mysql_query('INSERT INTO `bs_logs` (`type`,`text`,`time`,`id_bs`,`count_bs`,`city`,`m`,`u`) VALUES (
 									"1", "'.mysql_real_escape_string($text).'", "'.time().'", "'.$this->bs['id'].'", "'.$this->bs['count'].'", "'.$this->bs['city'].'",
 									"'.round($this->bs['money']*0.85,2).'","'.$i.'"
@@ -498,16 +498,16 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 								//
 							}
 							
-							$this->error = 'Нападаем ... <script>location="main.php?rnd='.$code.'";</script>';
+							$this->error = 'РќР°РїР°РґР°РµРј ... <script>location="main.php?rnd='.$code.'";</script>';
 						}else{
-							$this->error = 'Не удалось создать поединок ...';	
+							$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїРѕРµРґРёРЅРѕРє ...';	
 						}
 					}
 				}else{
-					$this->error = 'Не удалось напасть ...';	
+					$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°РїР°СЃС‚СЊ ...';	
 				}	
 			}else{
-				$this->error = 'Не удалось напасть, слишком далеко (id'.$id.')	...';	
+				$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°РїР°СЃС‚СЊ, СЃР»РёС€РєРѕРј РґР°Р»РµРєРѕ (id'.$id.')	...';	
 			}
 		}
 	}
@@ -523,14 +523,14 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			    mysql_query('INSERT INTO `dungeon_actions` (`dn`,`uid`,`x`,`y`,`time`,`vars`,`vals`) VALUES (
 				    "'.$u->info['dnow'].'","'.$u->info['id'].'","'.$u->info['x'].'","'.$u->info['y'].'","'.time().'","die",""
 			    )');
-			    //21:50 Ярополк трагически погиб и находится в комнате "Этаж 2 - Водосток"
+			    //21:50 РЇСЂРѕРїРѕР»Рє С‚СЂР°РіРёС‡РµСЃРєРё РїРѕРіРёР± Рё РЅР°С…РѕРґРёС‚СЃСЏ РІ РєРѕРјРЅР°С‚Рµ "Р­С‚Р°Р¶ 2 - Р’РѕРґРѕСЃС‚РѕРє"
 				$dnow = mysql_fetch_array(mysql_query('SELECT id2 FROM `dungeon_now` WHERE  `id` = "'.$u->info['dnow'].'" LIMIT 1'));
 				$room = mysql_fetch_array(mysql_query('SELECT name FROM `dungeon_map_info` WHERE `x` = "'.$u->info['res_x'].'" AND  `y` = "'.$u->info['res_y'].'" AND `id_dng` = "'.$dnow['id2'].'" LIMIT 1'));
 
 			    if( $u->info['sex'] == 0 ) {
-				    $this->sys_chat('<b>'.$u->info['login'].'</b> трагически погиб и находится в комнате &quot;'.$room['name'].'&quot;');
+				    $this->sys_chat('<b>'.$u->info['login'].'</b> С‚СЂР°РіРёС‡РµСЃРєРё РїРѕРіРёР± Рё РЅР°С…РѕРґРёС‚СЃСЏ РІ РєРѕРјРЅР°С‚Рµ &quot;'.$room['name'].'&quot;');
 			    }else{
-				    $this->sys_chat('<b>'.$u->info['login'].'</b> трагически погибла и находится в комнате &quot;'.$room['name'].'&quot;');
+				    $this->sys_chat('<b>'.$u->info['login'].'</b> С‚СЂР°РіРёС‡РµСЃРєРё РїРѕРіРёР±Р»Р° Рё РЅР°С…РѕРґРёС‚СЃСЏ РІ РєРѕРјРЅР°С‚Рµ &quot;'.$room['name'].'&quot;');
 			    }
 			    mysql_query('UPDATE `stats` SET `hpNow` = "1",`x` = "'.$u->info['res_x'].'",`y` = "'.$u->info['res_y'].'",`s` = "'.$u->info['res_s'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			    header('location: main.php');
@@ -538,18 +538,18 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			    mysql_query('INSERT INTO `dungeon_actions` (`dn`,`uid`,`x`,`y`,`time`,`vars`,`vals`) VALUES (
 				    "'.$u->info['dnow'].'","'.$u->info['id'].'","'.$u->info['x'].'","'.$u->info['y'].'","'.time().'","die",""
 			    )');
-			    //21:50 Ярополк трагически погиб и находится в комнате "Этаж 2 - Водосток"
+			    //21:50 РЇСЂРѕРїРѕР»Рє С‚СЂР°РіРёС‡РµСЃРєРё РїРѕРіРёР± Рё РЅР°С…РѕРґРёС‚СЃСЏ РІ РєРѕРјРЅР°С‚Рµ "Р­С‚Р°Р¶ 2 - Р’РѕРґРѕСЃС‚РѕРє"
 			    if( $u->info['sex'] == 0 ) {
-				    $this->sys_chat('<b>'.$u->info['login'].'</b> трагически погиб без права на воскрешение');
+				    $this->sys_chat('<b>'.$u->info['login'].'</b> С‚СЂР°РіРёС‡РµСЃРєРё РїРѕРіРёР± Р±РµР· РїСЂР°РІР° РЅР° РІРѕСЃРєСЂРµС€РµРЅРёРµ');
 			    }else{
-				    $this->sys_chat('<b>'.$u->info['login'].'</b> трагически погибла без права на воскрешение');
+				    $this->sys_chat('<b>'.$u->info['login'].'</b> С‚СЂР°РіРёС‡РµСЃРєРё РїРѕРіРёР±Р»Р° Р±РµР· РїСЂР°РІР° РЅР° РІРѕСЃРєСЂРµС€РµРЅРёРµ');
 			    }
 			    $_GET['exitd'] = true;
 			}
 		}
 	}
 	
-	//Предметы для БС
+	//РџСЂРµРґРјРµС‚С‹ РґР»СЏ Р‘РЎ
 	public $itbs = array(
                 0 => 1,1 => 131,2 => 130,3 => 6,4 => 7,5 => 129,6 => 128,7 => 127,8 => 126,9 => 125,10 => 124,11 => 123,12 => 122,13 => 121,14 => 120,15 => 119,16 => 118,17 => 117,18 => 116,19 => 115,20 => 114,21 => 113,22 => 112,23 => 111,24 => 110,25 => 109,26 => 108,27 => 107,28 => 106,29 => 105,30 => 104,31 => 103,32 => 102,33 => 101,34 => 100,35 => 99,36 => 98,37 => 97,38 => 96,39 => 95,40 => 94,41 => 93,42 => 92,43 => 91,44 => 90,45 => 89,46 => 88,47 => 87,48 => 84,49 => 85,50 => 86,51 => 73,52 => 83,55 => 82,56 => 81,57 => 132,58 => 133,59 => 134,60 => 135,61 => 136,62 => 137,63 => 138,64 => 139,65 => 140,66 => 141,67 => 142,68 => 143,69 => 144,70 => 145,71 => 146,72 => 147,73 => 148,74 => 149,75 => 150,76 => 151,77 => 152,78 => 153,79 => 154,80 => 155,81 => 156,82 => 157,83 => 158,84 => 159,85 => 160,86 => 161,87 => 162,88 => 163,89 => 164,90 => 165,91 => 166,92 => 167,93 => 168,94 => 169,95 => 170,96 => 171,97 => 172,98 => 173,99 => 174,100 => 175,101 => 176,102 => 177,103 => 178,104 => 179,105 => 180,106 => 181,107 => 182,108 => 183,109 => 184,110 => 185,111 => 186,112 => 187,113 => 188,114 => 189,115 => 190,116 => 191,117 => 192,118 => 193,119 => 194,120 => 195,121 => 196,122 => 197,123 => 198,124 => 199,125 => 200,126 => 201,127 => 202,128 => 203,129 => 204,130 => 205,131 => 206,132 => 207,133 => 208,134 => 209,135 => 210,136 => 211,137 => 212,138 => 213,139 => 214,140 => 215,141 => 216,142 => 217,143 => 218,144 => 219,145 => 220,146 => 221,147 => 222,148 => 223,149 => 224,150 => 225,151 => 226,152 => 227,153 => 228,154 => 229,155 => 230,156 => 231,157 => 232,158 => 233,159 => 234,160 => 235,161 => 236,162 => 237,163 => 238,164 => 239,165 => 240,166 => 241,167 => 242,168 => 243,169 => 244,170 => 245,171 => 246,172 => 247,173 => 248,174 => 249,175 => 250,176 => 251,177 => 252,178 => 253,179 => 254,180 => 255,181 => 256,182 => 257,183 => 258,184 => 259,185 => 260,186 => 261,187 => 262,188 => 263,189 => 264,190 => 265,191 => 266,192 => 267,193 => 268,194 => 269,195 => 270,196 => 271,197 => 272,198 => 273,199 => 274,200 => 275,201 => 276,202 => 277,203 => 278,204 => 279,205 => 280,206 => 281,207 => 282,208 => 283,209 => 284,210 => 285,211 => 286,212 => 287,213 => 288,214 => 289,215 => 290,216 => 291,217 => 292,218 => 293,219 => 294,220 => 295,221 => 296,222 => 297,223 => 298,224 => 299,225 => 300,226 => 301,227 => 302,228 => 304,229 => 305,230 => 306,231 => 307,232 => 308,233 => 309,234 => 310,235 => 311,236 => 312,237 => 313,238 => 314,239 => 315,240 => 316,241 => 317,242 => 318,243 => 319,244 => 320,245 => 321,246 => 322,247 => 323,248 => 324,249 => 325,250 => 326,251 => 327,252 => 328,253 => 329,254 => 330,255 => 331,256 => 332,257 => 333,258 => 334,259 => 335,260 => 336,261 => 337,262 => 338,263 => 339,264 => 340,265 => 341,266 => 342,267 => 343,268 => 344,269 => 345,270 => 346,271 => 347,272 => 348,273 => 349,274 => 350,275 => 351,276 => 352,277 => 353,278 => 354,279 => 355,280 => 356,281 => 357,282 => 358,283 => 359,284 => 360,285 => 361,286 => 362,287 => 363,288 => 364,289 => 365,290 => 366,291 => 367,292 => 368,293 => 369,294 => 370,295 => 371,296 => 372,297 => 373,298 => 374,299 => 375,300 => 376,301 => 377,302 => 378,303 => 379,304 => 380,305 => 381,306 => 382,307 => 383,308 => 384,309 => 385,310 => 386,311 => 387,312 => 388,313 => 389,314 => 390,315 => 391,316 => 392,317 => 393,318 => 394,319 => 395,320 => 396,321 => 397,322 => 398,323 => 399,324 => 400,325 => 401,326 => 402,327 => 403,328 => 404,329 => 405,330 => 406,331 => 407,332 => 408,333 => 409,334 => 410,335 => 411,336 => 412,337 => 413,338 => 414,339 => 415,340 => 416,341 => 417,342 => 418,343 => 419,344 => 420,345 => 421,346 => 422,347 => 423,348 => 424,349 => 425,350 => 426,351 => 427,352 => 428,353 => 429,354 => 430,355 => 431,356 => 432,357 => 433,358 => 434,359 => 435,360 => 436,361 => 437,362 => 438,363 => 439,364 => 440,365 => 441,366 => 442,367 => 443,368 => 444,369 => 445,370 => 446,371 => 447,372 => 448,373 => 449,374 => 450,375 => 451,376 => 452,377 => 453,378 => 454,379 => 455,380 => 456,381 => 457,382 => 458,383 => 459,384 => 460,385 => 461,386 => 462,387 => 463,388 => 464,389 => 465,390 => 466,391 => 467,392 => 468,393 => 469,394 => 470,395 => 471,396 => 472,397 => 473,398 => 474,399 => 475,400 => 476,401 => 477,402 => 478,403 => 479,404 => 480,405 => 481,406 => 482,407 => 483,408 => 484,409 => 485,410 => 486,411 => 487,412 => 488,413 => 489,414 => 490,415 => 491,416 => 492,417 => 493,418 => 494,419 => 495,420 => 496,421 => 497,422 => 498,423 => 499,424 => 500,425 => 501,426 => 502,427 => 503,428 => 504,429 => 505,430 => 506,431 => 507,432 => 508,433 => 509,434 => 510,435 => 511,436 => 512,437 => 513,438 => 514,439 => 515,440 => 516,441 => 517,442 => 518,443 => 519,444 => 520,445 => 521,446 => 522,447 => 523,448 => 524,449 => 525,450 => 526,451 => 527,452 => 528,453 => 529,454 => 530,455 => 531,456 => 532,457 => 533,458 => 534,459 => 535,460 => 536,461 => 537,462 => 538,463 => 539,464 => 540,465 => 541,466 => 542,467 => 543,468 => 544,469 => 545,470 => 546,471 => 547,472 => 548,473 => 549,474 => 550,475 => 1015,632            );
 	
@@ -567,7 +567,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			
 
 			$i = 0;
-			# Создаем МАССИВ { $act_sl['save_pos'] = "save_pos" }или { $act_sl['port'] = "10:20" }
+			# РЎРѕР·РґР°РµРј РњРђРЎРЎРР’ { $act_sl['save_pos'] = "save_pos" }РёР»Рё { $act_sl['port'] = "10:20" }
 			$act_sl = array();
 			$act_sm = explode('|',$obj['action']);
 			while( $i < count($act_sm) ) {
@@ -581,9 +581,9 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			}
 
 			if( isset($tbot['id2']) ) {
-				$this->error = 'Не удалось, что-то или кто-то мешает ...';
+				$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ, С‡С‚Рѕ-С‚Рѕ РёР»Рё РєС‚Рѕ-С‚Рѕ РјРµС€Р°РµС‚ ...';
 			} elseif($this->testLike($u->info['x'],$u->info['y'],$obj['x'],$obj['y'])!=1) {
-				$this->error = 'Не удалось, слишком далеко ...';
+				$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ, СЃР»РёС€РєРѕРј РґР°Р»РµРєРѕ ...';
 			} else {
 				$a = explode('|',$obj['action']);
 				$r = '';
@@ -592,11 +592,11 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 					$s = explode(':',$a[$i]);
 					
 					if( $s[0] == 'kill_bot' ) {
-						//Требуется убить ботов
+						//РўСЂРµР±СѓРµС‚СЃСЏ СѓР±РёС‚СЊ Р±РѕС‚РѕРІ
 						$t = explode(',',$s[1]);
 						$tr_gd = 0;
 						
-						//Проверяем кого нужно убить и убили-ли
+						//РџСЂРѕРІРµСЂСЏРµРј РєРѕРіРѕ РЅСѓР¶РЅРѕ СѓР±РёС‚СЊ Рё СѓР±РёР»Рё-Р»Рё
 						$j = 1; $jn = 0;
 						while($j < count($t)) {
 							$itm = explode('.',$t[$j]);
@@ -615,18 +615,18 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 						unset($itm,$bot_itm,$jn);	
 						if($tr_gd == 0) {					
 							if($t[0]=='0'){
-								$r .= 'Не удалось, что-то или кто-то мешает ...';
+								$r .= 'РќРµ СѓРґР°Р»РѕСЃСЊ, С‡С‚Рѕ-С‚Рѕ РёР»Рё РєС‚Рѕ-С‚Рѕ РјРµС€Р°РµС‚ ...';
 							}else{
 								$r .= $t[0];
 							}
 							$i = count($a);
 						}
 					}elseif($s[0]=='kill_bot_d') {
-						//Требуется убить ботов (все боты нападают , если что-то не так )
+						//РўСЂРµР±СѓРµС‚СЃСЏ СѓР±РёС‚СЊ Р±РѕС‚РѕРІ (РІСЃРµ Р±РѕС‚С‹ РЅР°РїР°РґР°СЋС‚ , РµСЃР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє )
 						$t = explode(',',$s[1]);
 						$tr_gd = 0;
 						
-						//Проверяем кого нужно убить и убили-ли
+						//РџСЂРѕРІРµСЂСЏРµРј РєРѕРіРѕ РЅСѓР¶РЅРѕ СѓР±РёС‚СЊ Рё СѓР±РёР»Рё-Р»Рё
 						$j = 1; $jn = 0;
 						$tuz = mysql_fetch_array(mysql_query('SELECT `x`,`y`,`id`,`hpNow` FROM `stats` WHERE `dnow` = "'.$this->info['id'].'" AND ( (`x` = '.($pl['x']+1).' AND `y` = '.($pl['y']).') OR (`x` = '.($pl['x']-1).' AND `y` = '.($pl['y']).') OR (`x` = '.($pl['x']).' AND `y` = '.($pl['y']+1).') OR (`x` = '.($pl['x']).' AND `y` = '.($pl['y']-1).') ) LIMIT 1'));
 						while($j < count($t)) {
@@ -647,15 +647,15 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 						unset($itm,$bot_itm,$jn);	
 						if($tr_gd == 0) {					
 							if($t[0]=='0'){
-								$r .= 'Не удалось, что-то или кто-то мешает ...';
+								$r .= 'РќРµ СѓРґР°Р»РѕСЃСЊ, С‡С‚Рѕ-С‚Рѕ РёР»Рё РєС‚Рѕ-С‚Рѕ РјРµС€Р°РµС‚ ...';
 							}else{
 								$r .= $t[0];
 							}
-							$r .= ' Монстры начали атаковать вас!';
+							$r .= ' РњРѕРЅСЃС‚СЂС‹ РЅР°С‡Р°Р»Рё Р°С‚Р°РєРѕРІР°С‚СЊ РІР°СЃ!';
 							$i = count($a);
 						}
 					}elseif($s[0]=='ditm') {
-						//требует предмет для действия
+						//С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚ РґР»СЏ РґРµР№СЃС‚РІРёСЏ
 						$j = 0;
 						$t = explode(',',$s[1]);
 						$tr_gd = 1;
@@ -663,11 +663,11 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 							$itm = explode('=',$t[$j]);
 							$uitm = mysql_fetch_array(mysql_query('SELECT `name` FROM `items_main` WHERE `id` = "'.$itm[0].'" LIMIT 1'));
 							mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `item_id` = "'.$itm[0].'" AND `uid` = "'.$u->info['id'].'" AND (`delete` = 0 OR `delete` = 100) AND `inShop` = 0 AND `inTransfer` = 0 AND `inOdet` = 0 LIMIT '.$itm[1]);
-							$r .= 'Предмет &quot;<b>'.$uitm['name'].'</b>&quot; (x'.$itm[1].') был утрачен...<br>';
+							$r .= 'РџСЂРµРґРјРµС‚ &quot;<b>'.$uitm['name'].'</b>&quot; (x'.$itm[1].') Р±С‹Р» СѓС‚СЂР°С‡РµРЅ...<br>';
 							$j++;
 						}
 					}elseif($s[0]=='tritm') {
-						//требует предмет для действия
+						//С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚ РґР»СЏ РґРµР№СЃС‚РІРёСЏ
 						$j = 0;
 						$t = explode(',',$s[1]);
 						$j = 0;
@@ -679,16 +679,16 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 							if($uitm < $itm[1]){
 								$tr_gd = 0;
 								$uitm = mysql_fetch_array(mysql_query('SELECT `name` FROM `items_main` WHERE `id` = "'.$itm[0].'" LIMIT 1'));
-								$r .= 'Требуется предмет &quot;<b>'.$uitm['name'].'</b>&quot; (x'.$itm[1].')<br>';
+								$r .= 'РўСЂРµР±СѓРµС‚СЃСЏ РїСЂРµРґРјРµС‚ &quot;<b>'.$uitm['name'].'</b>&quot; (x'.$itm[1].')<br>';
 							}
 							$j++;
 						}
 						if(rand(0,10000)>$itm[2]*100) {
 							$tr_gd = 0;
-							$r .= 'Странно, но ничего не произошло...<br>';
+							$r .= 'РЎС‚СЂР°РЅРЅРѕ, РЅРѕ РЅРёС‡РµРіРѕ РЅРµ РїСЂРѕРёР·РѕС€Р»Рѕ...<br>';
 						}
 						if($tr_gd == 1) {
-							//все отлично
+							//РІСЃРµ РѕС‚Р»РёС‡РЅРѕ
 						}else{
 							$i = count($a);
 						}
@@ -697,52 +697,52 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
                       die();
                       //header('Location: ../../modules_data/location/_dungeon_replace.php');
 					}elseif($s[0]=='add_eff') {
-						//Кастуем эффект
+						//РљР°СЃС‚СѓРµРј СЌС„С„РµРєС‚
 						$t = explode(',',$s[1]);
 						$j = 0;
 						while($j<count($t)) {
 							$itm = explode('=',$t[$j]);
-							$ch = $u->testAction('`vars` = "add_eff_'.$this->info['id'].'_'.$obj['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //кол-во прошлых попыток
+							$ch = $u->testAction('`vars` = "add_eff_'.$this->info['id'].'_'.$obj['id'].'" AND `uid` = "'.$u->info['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //РєРѕР»-РІРѕ РїСЂРѕС€Р»С‹С… РїРѕРїС‹С‚РѕРє
 							$ch = $ch[0];
-							$ch2 = $u->testAction(' `vars` = "add_eff_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[4]).'',2); //кол-во прошлых попыток (все юзеры)
+							$ch2 = $u->testAction(' `vars` = "add_eff_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[4]).'',2); //РєРѕР»-РІРѕ РїСЂРѕС€Р»С‹С… РїРѕРїС‹С‚РѕРє (РІСЃРµ СЋР·РµСЂС‹)
 							$ch2 = $ch2[0];
 							if(($ch2 < $itm[4] || $itm[4]==0) && $ch < $itm[2]) {
 								if($itm[1]*100 >= rand(0,10000)) {
-									//удачно
+									//СѓРґР°С‡РЅРѕ
 									$eff_d = mysql_fetch_array(mysql_query('SELECT `id2`,`mname` FROM `eff_main` WHERE `id2` = "'.$itm[0].'" LIMIT 1'));
 									if(isset($eff_d['id2'])) {										
-										//добавляем эффект
+										//РґРѕР±Р°РІР»СЏРµРј СЌС„С„РµРєС‚
 										$us = $magic->add_eff($u->info['id'],$itm[0],1);
 										if($us[0]==1) {
-											$r .= '<div>На Вас наложили заклятие &quot;'.$eff_d['mname'].'&quot;.</div>';
+											$r .= '<div>РќР° Р’Р°СЃ РЅР°Р»РѕР¶РёР»Рё Р·Р°РєР»СЏС‚РёРµ &quot;'.$eff_d['mname'].'&quot;.</div>';
 										}else{
-											$r .= '<div>Что-то пошло не так... Ощущается чье-то присутствие...</div>';
+											$r .= '<div>Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє... РћС‰СѓС‰Р°РµС‚СЃСЏ С‡СЊРµ-С‚Рѕ РїСЂРёСЃСѓС‚СЃС‚РІРёРµ...</div>';
 										}
 									}else{
-										$r .= '<div>Что-то пошло не так... Слышен чей-то вой...</div>';
+										$r .= '<div>Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє... РЎР»С‹С€РµРЅ С‡РµР№-С‚Рѕ РІРѕР№...</div>';
 									}
 									unset($eff_d,$us);
 								}else{
-									//не удачно
-									$r .= '<div>Не удалось...</div>';
+									//РЅРµ СѓРґР°С‡РЅРѕ
+									$r .= '<div>РќРµ СѓРґР°Р»РѕСЃСЊ...</div>';
 								}
 								$u->addAction(time(),'add_eff_'.$this->info['id'].'_'.$obj['id'],$u->info['city']);
 							}else{
-								//уже нельзя юзать
-								$r .= '<div>Что-то пошло не так...</div>';
+								//СѓР¶Рµ РЅРµР»СЊР·СЏ СЋР·Р°С‚СЊ
+								$r .= '<div>Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє...</div>';
 							}
 							
 							unset($ch,$ch2);
 							$j++;	
 						}
 					}elseif($s[0]=='mfast') {
-						//Добавляем баф //Ловушки и бафы
+						//Р”РѕР±Р°РІР»СЏРµРј Р±Р°С„ //Р›РѕРІСѓС€РєРё Рё Р±Р°С„С‹
 						$j = 0;
 						$t = explode(',',$s[1]);
 						while($j<count($t))
 						{
 							$itm = explode('=',$t[$j]);
-							$ch = $u->testAction('`vars` = "bafit_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //кол-во прошлых попыток
+							$ch = $u->testAction('`vars` = "bafit_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //РєРѕР»-РІРѕ РїСЂРѕС€Р»С‹С… РїРѕРїС‹С‚РѕРє
 							$ch = $ch[0];
 							if($ch<$itm[3])
 							{
@@ -754,13 +754,13 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 											$itm[1] = rand($mm[0],$mm[1]);
 										}
 										if($itm[1]<0) {
-											$r .= '<div>Вы попали в ловушку... Здоровье: <b>'.$itm[1].' HP</b></div>';
+											$r .= '<div>Р’С‹ РїРѕРїР°Р»Рё РІ Р»РѕРІСѓС€РєСѓ... Р—РґРѕСЂРѕРІСЊРµ: <b>'.$itm[1].' HP</b></div>';
 										}elseif($itm[1]>0){
-											$r .= '<div>Вы прикоснулись к магии... Здоровье: <b>+'.$itm[1].' HP</b></div>';
+											$r .= '<div>Р’С‹ РїСЂРёРєРѕСЃРЅСѓР»РёСЃСЊ Рє РјР°РіРёРё... Р—РґРѕСЂРѕРІСЊРµ: <b>+'.$itm[1].' HP</b></div>';
 										}
 										$u->info['hpNow'] += $itm[1];
 										if($u->info['hpNow']<1) {
-											$r .= '<div>Вы перемещены в точку возрождения...</div>';
+											$r .= '<div>Р’С‹ РїРµСЂРµРјРµС‰РµРЅС‹ РІ С‚РѕС‡РєСѓ РІРѕР·СЂРѕР¶РґРµРЅРёСЏ...</div>';
 											mysql_query('UPDATE `stats` SET `hpNow` = "'.$u->info['hpNow'].'",`x` = "'.$u->info['res_x'].'",`y` = "'.$u->info['res_y'].'",`s` = "'.$u->info['res_s'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 										}else{
 											mysql_query('UPDATE `stats` SET `hpNow` = "'.$u->info['hpNow'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');	
@@ -769,7 +769,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 								}
 								$u->addAction(time(),'bafit_'.$this->info['id'].'_'.$obj['id'],$u->info['city']);
 							}
-							//записываем попытку							
+							//Р·Р°РїРёСЃС‹РІР°РµРј РїРѕРїС‹С‚РєСѓ							
 							$j++;
 						}
 					}elseif($s[0]=='save_pos') {
@@ -778,7 +778,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 							$obj['x'] = $itm[0];
 							$obj['y'] = $itm[1];
 						}
-						#$r .= 'Позиция сохранена. Теперь после смерти вы оживете здесь.';
+						#$r .= 'РџРѕР·РёС†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°. РўРµРїРµСЂСЊ РїРѕСЃР»Рµ СЃРјРµСЂС‚Рё РІС‹ РѕР¶РёРІРµС‚Рµ Р·РґРµСЃСЊ.';
 						mysql_query('UPDATE `stats` SET `res_x` = "'.$obj['x'].'",`res_y` = "'.$obj['y'].'",`res_s` = "'.$u->info['s'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					}elseif($s[0]=='look_text') {
 						$itm = explode('=',$s[1]);
@@ -789,12 +789,12 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 						$u->info['res_y'] = $itm[1];
 						$upd = mysql_query('UPDATE `stats` SET `res_x` = "'.$u->info['x'].'",`res_y` = "'.$u->info['y'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 						if($upd){
-							$r .= 'Вы куда-то переместились... на этот раз удачно...<br>';
+							$r .= 'Р’С‹ РєСѓРґР°-С‚Рѕ РїРµСЂРµРјРµСЃС‚РёР»РёСЃСЊ... РЅР° СЌС‚РѕС‚ СЂР°Р· СѓРґР°С‡РЅРѕ...<br>';
 						}else{
-							$r .= 'Что-то здесь не так ...';	
+							$r .= 'Р§С‚Рѕ-С‚Рѕ Р·РґРµСЃСЊ РЅРµ С‚Р°Рє ...';	
 						}
 					}elseif($s[0]=='port'){
-						//телепортирует пользователя
+						//С‚РµР»РµРїРѕСЂС‚РёСЂСѓРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 						$itm = explode('=',$s[1]);
 						$u->info['x'] = $itm[0];
 						$u->info['y'] = $itm[1];
@@ -803,9 +803,9 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 						WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 						if($upd)
 						{
-							$r .= 'Вы куда-то переместились... на этот раз удачно...<br>';
+							$r .= 'Р’С‹ РєСѓРґР°-С‚Рѕ РїРµСЂРµРјРµСЃС‚РёР»РёСЃСЊ... РЅР° СЌС‚РѕС‚ СЂР°Р· СѓРґР°С‡РЅРѕ...<br>';
 						}else{
-							$r .= 'Что-то здесь не так ...';	
+							$r .= 'Р§С‚Рѕ-С‚Рѕ Р·РґРµСЃСЊ РЅРµ С‚Р°Рє ...';	
 						}
                     } elseif($s[0] == 'save_port') {
                       $itm = explode('=', $s[1]);
@@ -814,118 +814,118 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
                       $upd = mysql_query('UPDATE `stats` SET `res_x` = "'.$u->info['res_x'].'", `res_y` = "'.$u->info['res_y'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					} elseif($s[0]=='itm')
 					{
-						//Добавляем предмет
+						//Р”РѕР±Р°РІР»СЏРµРј РїСЂРµРґРјРµС‚
 						$j = 0;
 						$t = explode(',',$s[1]);
 						while($j<count($t))
 						{
 							$itm = explode('=',$t[$j]);
-							$ch = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vars` = "takeit_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //кол-во прошлых попыток
+							$ch = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vars` = "takeit_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //РєРѕР»-РІРѕ РїСЂРѕС€Р»С‹С… РїРѕРїС‹С‚РѕРє
 							$ch = $ch[0];
 							if($ch>=$itm[2])
 							{
-								//закончились попытки
-								$r = 'Не удалось найти что-либо еще ... <br>';
+								//Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ РїРѕРїС‹С‚РєРё
+								$r = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё С‡С‚Рѕ-Р»РёР±Рѕ РµС‰Рµ ... <br>';
 							}else{
 								if($itm[1]*1000>=rand(1,100000))
 								{
 									
-									//Случайный предмет (Башня смерти)
+									//РЎР»СѓС‡Р°Р№РЅС‹Р№ РїСЂРµРґРјРµС‚ (Р‘Р°С€РЅСЏ СЃРјРµСЂС‚Рё)
 									if($itm[0] == 'random1') {
 										$itm[0] = $this->itbs[rand(0,count($this->itbs))];
 									}
 									
-									//удачная попытка
+									//СѓРґР°С‡РЅР°СЏ РїРѕРїС‹С‚РєР°
 									$it = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id`="'.((int)$itm[0]).'" LIMIT 1'));
 									if(isset($it['id']))
 									{
-										$r .= 'Вы обнаружили предмет &quot;<b>'.$it['name'].'</b>&quot;.<br>';
+										$r .= 'Р’С‹ РѕР±РЅР°СЂСѓР¶РёР»Рё РїСЂРµРґРјРµС‚ &quot;<b>'.$it['name'].'</b>&quot;.<br>';
 										$this->addItem(array('uid'=>$u->info['id'],'iid'=>$it['id'],'time'=>time(),'x'=>$u->info['x'],'y'=>$u->info['y'],'bid'=>0,'del'=>(int)$itm[4]));
 									}
 								}else{
-									//неудачная попытка
-									$r .= 'В этот раз не удалось найти что-либо еще ... <br>';
+									//РЅРµСѓРґР°С‡РЅР°СЏ РїРѕРїС‹С‚РєР°
+									$r .= 'Р’ СЌС‚РѕС‚ СЂР°Р· РЅРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё С‡С‚Рѕ-Р»РёР±Рѕ РµС‰Рµ ... <br>';
 								}
 								$u->addAction(time(),'takeit_'.$this->info['id'].'_'.$obj['id'],$u->info['city']);
 							}
-							//записываем попытку							
+							//Р·Р°РїРёСЃС‹РІР°РµРј РїРѕРїС‹С‚РєСѓ							
 							$j++;
 						}
 					}elseif($s[0]=='itm1')
 					{
-							//Добавляем предмет , только 1 предмет из всех и все юзеры могут тоже
+							//Р”РѕР±Р°РІР»СЏРµРј РїСЂРµРґРјРµС‚ , С‚РѕР»СЊРєРѕ 1 РїСЂРµРґРјРµС‚ РёР· РІСЃРµС… Рё РІСЃРµ СЋР·РµСЂС‹ РјРѕРіСѓС‚ С‚РѕР¶Рµ
 							$nj = 0;
 							$t = explode(',',$s[1]);
 							$j = rand(0,count($t));
 							if($nj == 0) {
 								$itm = explode('=',$t[$j]);
-								$ch = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vars` = "takeit_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //кол-во прошлых попыток
+								$ch = $u->testAction('`uid` = "'.$u->info['id'].'" AND `vars` = "takeit_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //РєРѕР»-РІРѕ РїСЂРѕС€Р»С‹С… РїРѕРїС‹С‚РѕРє
 								$ch = $ch[0];
 								if($ch>=$itm[2])
 								{
-									//закончились попытки
-									$r .= 'Не удалось найти что-либо еще ... <br>';
+									//Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ РїРѕРїС‹С‚РєРё
+									$r .= 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё С‡С‚Рѕ-Р»РёР±Рѕ РµС‰Рµ ... <br>';
 								}else{
 									if($itm[1]*1000>=rand(1,100000))
 									{
 										
-										//Случайный предмет (Башня смерти)
+										//РЎР»СѓС‡Р°Р№РЅС‹Р№ РїСЂРµРґРјРµС‚ (Р‘Р°С€РЅСЏ СЃРјРµСЂС‚Рё)
 										if($itm[0] == 'random1') {
 											$itm[0] = $this->itbs[rand(0,count($this->itbs))];
 										}
 										
-										//удачная попытка
+										//СѓРґР°С‡РЅР°СЏ РїРѕРїС‹С‚РєР°
 										$it = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id`="'.((int)$itm[0]).'" LIMIT 1'));
 										if(isset($it['id']))
 										{
-											$r .= 'Вы обнаружили предмет &quot;<b>'.$it['name'].'</b>&quot;.<br>';
+											$r .= 'Р’С‹ РѕР±РЅР°СЂСѓР¶РёР»Рё РїСЂРµРґРјРµС‚ &quot;<b>'.$it['name'].'</b>&quot;.<br>';
 											$u->addAction(time(),'takeit_'.$this->info['id'].'_'.$obj['id'],$u->info['city']);
 											$this->addItem(array('uid'=>$u->info['id'],'iid'=>$it['id'],'time'=>time(),'x'=>$u->info['x'],'y'=>$u->info['y'],'bid'=>0,'del'=>(int)$itm[4]));
 											$nj++;
 										}
 									}else{
-										//неудачная попытка
+										//РЅРµСѓРґР°С‡РЅР°СЏ РїРѕРїС‹С‚РєР°
 										$u->addAction(time(),'takeit_'.$this->info['id'].'_'.$obj['id'],$u->info['city']);
-										$r .= 'В этот раз не удалось найти что-либо еще ... <br>';
+										$r .= 'Р’ СЌС‚РѕС‚ СЂР°Р· РЅРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё С‡С‚Рѕ-Р»РёР±Рѕ РµС‰Рµ ... <br>';
 									}
 								}
 							}
 					}elseif($s[0]=='itm2')
 					{
-							//Добавляем предмет , только 1 предмет из всех и только 1 юзер может поднять
+							//Р”РѕР±Р°РІР»СЏРµРј РїСЂРµРґРјРµС‚ , С‚РѕР»СЊРєРѕ 1 РїСЂРµРґРјРµС‚ РёР· РІСЃРµС… Рё С‚РѕР»СЊРєРѕ 1 СЋР·РµСЂ РјРѕР¶РµС‚ РїРѕРґРЅСЏС‚СЊ
 							$nj = 0;
 							$t = explode(',',$s[1]);
 							$j = rand(0,count($t)-1);
 							if($nj == 0) {
 								$itm = explode('=',$t[$j]);
-								$ch = $u->testAction('`vars` = "takeit_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //кол-во прошлых попыток
+								$ch = $u->testAction('`vars` = "takeit_'.$this->info['id'].'_'.$obj['id'].'" LIMIT '.(1+(int)$itm[2]).'',2); //РєРѕР»-РІРѕ РїСЂРѕС€Р»С‹С… РїРѕРїС‹С‚РѕРє
 								$ch = $ch[0];
 								if($ch>=$itm[2])
 								{
-									//закончились попытки
-									$r .= 'Не удалось найти что-либо еще ... <br>';
+									//Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ РїРѕРїС‹С‚РєРё
+									$r .= 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё С‡С‚Рѕ-Р»РёР±Рѕ РµС‰Рµ ... <br>';
 								}else{
 									if($itm[1]*1000>=rand(1,100000))
 									{
 										
-										//Случайный предмет (Башня смерти)
+										//РЎР»СѓС‡Р°Р№РЅС‹Р№ РїСЂРµРґРјРµС‚ (Р‘Р°С€РЅСЏ СЃРјРµСЂС‚Рё)
 										if($itm[0] == 'random1') {
 											$itm[0] = $this->itbs[rand(0,count($this->itbs))];
 										}
 										
-										//удачная попытка
+										//СѓРґР°С‡РЅР°СЏ РїРѕРїС‹С‚РєР°
 										$it = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id`="'.((int)$itm[0]).'" LIMIT 1'));
 										if(isset($it['id']))
 										{
-											$r .= 'Вы обнаружили предмет &quot;<b>'.$it['name'].'</b>&quot;.<br>';
+											$r .= 'Р’С‹ РѕР±РЅР°СЂСѓР¶РёР»Рё РїСЂРµРґРјРµС‚ &quot;<b>'.$it['name'].'</b>&quot;.<br>';
 											$u->addAction(time(),'takeit_'.$this->info['id'].'_'.$obj['id'],$u->info['city']);
 											$this->addItem(array('uid'=>$u->info['id'],'iid'=>$it['id'],'time'=>time(),'x'=>$u->info['x'],'y'=>$u->info['y'],'bid'=>0,'del'=>(int)$itm[4]));
 											$nj++;
 										}
 									}else{
-										//неудачная попытка
+										//РЅРµСѓРґР°С‡РЅР°СЏ РїРѕРїС‹С‚РєР°
 										$u->addAction(time(),'takeit_'.$this->info['id'].'_'.$obj['id'],$u->info['city']);
-										$r .= 'В этот раз не удалось найти что-либо еще ... <br>';
+										$r .= 'Р’ СЌС‚РѕС‚ СЂР°Р· РЅРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё С‡С‚Рѕ-Р»РёР±Рѕ РµС‰Рµ ... <br>';
 									}
 								}
 							}
@@ -937,18 +937,18 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 				$r = rtrim($r,'\<br\>');	
 				if($r=='')
 				{		
-					$r = 'Ничего не произошло';
+					$r = 'РќРёС‡РµРіРѕ РЅРµ РїСЂРѕРёР·РѕС€Р»Рѕ';
 				}
 				$this->error = $r;
 			}
 		}else{
-			$this->error = 'Предмет не найден ...';
+			$this->error = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ ...';
 		}
 	}
 	
 	public function addItem($i)
 	{
-		//добавляем предмет в пещеру (возможно выпал из бота или из сундука)
+		//РґРѕР±Р°РІР»СЏРµРј РїСЂРµРґРјРµС‚ РІ РїРµС‰РµСЂСѓ (РІРѕР·РјРѕР¶РЅРѕ РІС‹РїР°Р» РёР· Р±РѕС‚Р° РёР»Рё РёР· СЃСѓРЅРґСѓРєР°)
 		$ins = mysql_query('INSERT INTO `dungeon_items` (`dn`,`user`,`item_id`,`time`,`x`,`y`,`bot`,`del`) VALUES ("'.$this->info['id'].'","'.$i['uid'].'","'.$i['iid'].'","'.$i['time'].'","'.$i['x'].'","'.$i['y'].'","'.$i['bid'].'","'.((int)$i['del']).'")');
 		return $ins;
 	}
@@ -965,14 +965,14 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 				'user_count' => mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `stats` WHERE `dnow` = "'.$this->info['id'].'" LIMIT 1'))
 			);
 			if($obj['user'] == 0 && $fxv['user_count'][0] > $fxv['luck_count'][0] && $fxv['user_count'][0] > 1 && $this->info['bsid'] == 0 ) {
-				$this->error = 'Вы не можете сейчас поднять этот предмет, дождитесь завершения розыгрыша. Осталось '.$u->timeOut($obj['time']-time()+300);
+				$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СЃРµР№С‡Р°СЃ РїРѕРґРЅСЏС‚СЊ СЌС‚РѕС‚ РїСЂРµРґРјРµС‚, РґРѕР¶РґРёС‚РµСЃСЊ Р·Р°РІРµСЂС€РµРЅРёСЏ СЂРѕР·С‹РіСЂС‹С€Р°. РћСЃС‚Р°Р»РѕСЃСЊ '.$u->timeOut($obj['time']-time()+300);
 			}elseif($u->info['x']!=$obj['x'] || $obj['y']!=$u->info['y'])
 			{
-				$this->error = 'Предмет не найден ...';
+				$this->error = 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ ...';
 			}else{
 				if($obj['take']>0)
 				{
-					$this->error = 'Кто-то опередил вас ...';
+					$this->error = 'РљС‚Рѕ-С‚Рѕ РѕРїРµСЂРµРґРёР» РІР°СЃ ...';
 				}else{
 					if($obj['user']>0 && $obj['user']!=$u->info['id'] && $obj['time']>time()-300)
 					{
@@ -980,14 +980,14 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 					}
 					if(isset($uo['id']))
 					{
-						$this->error = 'Предмет предназначен для &quot;'.$uo['login'].'&quot;. Вы сможете забрать этот предмет, если ';
+						$this->error = 'РџСЂРµРґРјРµС‚ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅ РґР»СЏ &quot;'.$uo['login'].'&quot;. Р’С‹ СЃРјРѕР¶РµС‚Рµ Р·Р°Р±СЂР°С‚СЊ СЌС‚РѕС‚ РїСЂРµРґРјРµС‚, РµСЃР»Рё ';
 						if($uo['sex']==1)
 						{
-							$this->error .= 'она ';
+							$this->error .= 'РѕРЅР° ';
 						}else{
-							$this->error .= 'он ';
+							$this->error .= 'РѕРЅ ';
 						}
-						$this->error .= ' не поднимет его в течении '.ceil(5-(time()-$obj['time'])/60).' мин.';
+						$this->error .= ' РЅРµ РїРѕРґРЅРёРјРµС‚ РµРіРѕ РІ С‚РµС‡РµРЅРёРё '.ceil(5-(time()-$obj['time'])/60).' РјРёРЅ.';
 						unset($uo);
 					}else{
 						$upd = mysql_query('UPDATE `dungeon_items` SET `take` = "'.$u->info['id'].'" WHERE `id` = "'.$obj['id'].'" LIMIT 1');
@@ -1012,19 +1012,19 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 								mysql_query('UPDATE `dailybonus` SET `dun_res` = `dun_res` + 1 WHERE `date_finish` != "'.date('d.m.Y').'" AND `uid` = "'.$u->info['id'].'" LIMIT 1');
 								//
 								if($this->info['bsid'] == 0) {
-									$rtxt = '<b>'.$u->info['login'].'</b> поднял предмет &quot;'.$it['name'].'&quot;';
+									$rtxt = '<b>'.$u->info['login'].'</b> РїРѕРґРЅСЏР» РїСЂРµРґРјРµС‚ &quot;'.$it['name'].'&quot;';
 									if( $obj['quest'] > 0 ) {
-										$rtxt .= ' (Квест)';
+										$rtxt .= ' (РљРІРµСЃС‚)';
 									}
 									mysql_query("INSERT INTO `chat` (`dn`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`,`typeTime`,`new`) VALUES ('".$u->info['dnow']."','".$u->info['city']."','".$u->info['room']."','','','".$rtxt."','".time()."','6','0','1','1')");
 								}
 								
-								$this->error = 'Вы подняли &quot;'.$it['name'].'&quot;';
+								$this->error = 'Р’С‹ РїРѕРґРЅСЏР»Рё &quot;'.$it['name'].'&quot;';
 							}else{
-								$this->error = 'Не удалось найти предмет ...';
+								$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё РїСЂРµРґРјРµС‚ ...';
 							}
 						}else{
-							$this->error = 'Не удалось добавить предмет в инвентарь ...';
+							$this->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РґРѕР±Р°РІРёС‚СЊ РїСЂРµРґРјРµС‚ РІ РёРЅРІРµРЅС‚Р°СЂСЊ ...';
 						}
 					}
 				}
@@ -1033,7 +1033,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 	}
 
 	
-	//Розыгрыш предмета
+	//Р РѕР·С‹РіСЂС‹С€ РїСЂРµРґРјРµС‚Р°
 	public function test_luck($id) {
 		global $u;
 		$fxv = array(
@@ -1052,28 +1052,28 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			$fxv['win_val'] = 0;
 			while( $fxv['pl'] = mysql_fetch_array($fxv['sp']) ) {
 				if( $fxv['pl']['vals'] > $fxv['win_val'] ) {
-					//Победитель
+					//РџРѕР±РµРґРёС‚РµР»СЊ
 					unset($fxv['winner']);
 					$fxv['winner'][] = $fxv['pl']['uid'];
 					$fxv['win_val'] = $fxv['pl']['vals'];
 				}elseif( $fxv['pl']['vals'] > 0 && $fxv['pl']['vals'] == $fxv['win_val'] ) {
-					//ничья
+					//РЅРёС‡СЊСЏ
 					$fxv['winner'][] = $fxv['pl']['uid'];
 				}
 			}
 			unset($fxv['pl'],$fxv['sp']);
 			if( count($fxv['winner']) > 1 ) {
-				//Розыгрыш еще раз между победителями
-				$this->error .= '<div>Розыгрыш завершен!</div>';
+				//Р РѕР·С‹РіСЂС‹С€ РµС‰Рµ СЂР°Р· РјРµР¶РґСѓ РїРѕР±РµРґРёС‚РµР»СЏРјРё
+				$this->error .= '<div>Р РѕР·С‹РіСЂС‹С€ Р·Р°РІРµСЂС€РµРЅ!</div>';
 			}elseif(count($fxv['winner']) == 1) {
 				$fxv['user_win'] = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`sex` FROM `users` WHERE `id` = "'.$fxv['winner'][0].'" LIMIT 1'));
-				$fxv['text'] = '<b>'.$fxv['user_win']['login'].'</b> выигрывает в споре за предмет &quot;'.$fxv['itm']['name'].'&quot;';
+				$fxv['text'] = '<b>'.$fxv['user_win']['login'].'</b> РІС‹РёРіСЂС‹РІР°РµС‚ РІ СЃРїРѕСЂРµ Р·Р° РїСЂРµРґРјРµС‚ &quot;'.$fxv['itm']['name'].'&quot;';
 				$this->sys_chat($fxv['text']);
 				mysql_query('UPDATE `dungeon_items` SET `time` = "'.time().'",`user` = "'.$fxv['user_win']['id'].'" WHERE `id` = "'.$fxv['itm']['id'].'" LIMIT 1');
-				$this->error .= '<div>Розыгрыш завершен! Победитель <b>'.$fxv['user_win']['login'].'</b>!</div>';
+				$this->error .= '<div>Р РѕР·С‹РіСЂС‹С€ Р·Р°РІРµСЂС€РµРЅ! РџРѕР±РµРґРёС‚РµР»СЊ <b>'.$fxv['user_win']['login'].'</b>!</div>';
 			}
 		}else{
-			$this->error .= '<div>У остальных участников осталось '.$u->timeOut($fxv['itm']['time']+300-time()).' мин. до конца розыгрыша</div>';
+			$this->error .= '<div>РЈ РѕСЃС‚Р°Р»СЊРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РѕСЃС‚Р°Р»РѕСЃСЊ '.$u->timeOut($fxv['itm']['time']+300-time()).' РјРёРЅ. РґРѕ РєРѕРЅС†Р° СЂРѕР·С‹РіСЂС‹С€Р°</div>';
 		}
 		unset($fxv);
 	}
@@ -1085,15 +1085,15 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			'luck' => mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$this->info['id'].'" AND `vars` = "luck_itm'.mysql_real_escape_string($id).'" LIMIT 1')),
 			'luck2' => mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$this->info['id'].'" AND `vars` = "luck_itm'.mysql_real_escape_string($id).'" LIMIT 1'))
 		);
-		if( $u->stats['silver'] >= 3 ) { //дополнительный бросок
+		if( $u->stats['silver'] >= 3 ) { //РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ Р±СЂРѕСЃРѕРє
 			$fxv['luck2'][0]--;
 		}
 		if( $fxv['itm']['user'] > 0 ) {
-			$this->error = 'Розыгрыш предмет уже завершился...';
+			$this->error = 'Р РѕР·С‹РіСЂС‹С€ РїСЂРµРґРјРµС‚ СѓР¶Рµ Р·Р°РІРµСЂС€РёР»СЃСЏ...';
 		}elseif( !isset($fxv['itm']['id']) ) {
-			$this->error .= '<div>Предмет не найден</div>';
+			$this->error .= '<div>РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ</div>';
 		}elseif( $fxv['luck2'][0] > 0 ) {
-			$this->error .= '<div>Вы уже учавствуете в розыгрыше &quot;'.$fxv['itm']['name'].'&quot;, ожидаем других участников еще '.$u->timeOut($fxv['itm']['time']-time()+300).'</div>';
+			$this->error .= '<div>Р’С‹ СѓР¶Рµ СѓС‡Р°РІСЃС‚РІСѓРµС‚Рµ РІ СЂРѕР·С‹РіСЂС‹С€Рµ &quot;'.$fxv['itm']['name'].'&quot;, РѕР¶РёРґР°РµРј РґСЂСѓРіРёС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РµС‰Рµ '.$u->timeOut($fxv['itm']['time']-time()+300).'</div>';
 		}else{
 			$luck_users = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$this->info['id'].'" AND `vars` = "luck_itm'.mysql_real_escape_string($id).'" LIMIT 1'));
 			$luck_users = $luck_users[0];
@@ -1106,12 +1106,12 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 				"luck_itm'.mysql_real_escape_string($id).'","'.$rndl.'"
 			)');
 			if( $u->info['sex'] == 0 ) {
-				$fxv['text'] = '<b>'.$u->info['login'].'</b> выбросил *'.$rndl.'* в споре за предмет &quot;'.$fxv['itm']['name'].'&quot;';
+				$fxv['text'] = '<b>'.$u->info['login'].'</b> РІС‹Р±СЂРѕСЃРёР» *'.$rndl.'* РІ СЃРїРѕСЂРµ Р·Р° РїСЂРµРґРјРµС‚ &quot;'.$fxv['itm']['name'].'&quot;';
 			}else{
-				$fxv['text'] = '<b>'.$u->info['login'].'</b> выбросила *'.$rndl.'* в споре за предмет &quot;'.$fxv['itm']['name'].'&quot;';
+				$fxv['text'] = '<b>'.$u->info['login'].'</b> РІС‹Р±СЂРѕСЃРёР»Р° *'.$rndl.'* РІ СЃРїРѕСЂРµ Р·Р° РїСЂРµРґРјРµС‚ &quot;'.$fxv['itm']['name'].'&quot;';
 			}
 			$this->sys_chat($fxv['text']);
-			$this->error .= '<div>Вы выбросили <b>'.$rndl.'</b> в споре за &quot;'.$fxv['itm']['name'].'&quot;</div>';
+			$this->error .= '<div>Р’С‹ РІС‹Р±СЂРѕСЃРёР»Рё <b>'.$rndl.'</b> РІ СЃРїРѕСЂРµ Р·Р° &quot;'.$fxv['itm']['name'].'&quot;</div>';
 		}
 		$this->test_luck($id);
 		unset($fxv);
@@ -1124,14 +1124,14 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			'luck' => mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$this->info['id'].'" AND `vars` = "luck_itm'.mysql_real_escape_string($id).'" LIMIT 1'))
 		);
 		if( $fxv['itm']['user'] > 0 ) {
-			$this->error = 'Розыгрыш предмет уже завершился...';
+			$this->error = 'Р РѕР·С‹РіСЂС‹С€ РїСЂРµРґРјРµС‚ СѓР¶Рµ Р·Р°РІРµСЂС€РёР»СЃСЏ...';
 		}elseif( !isset($fxv['itm']['id']) ) {
-			$this->error .= '<div>Предмет не найден</div>';
+			$this->error .= '<div>РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ</div>';
 		}elseif( isset($fxv['luck']['id']) ) {
 			if( $fxv['luck']['vals'] == 0 ) {
-				$this->error .= '<div>Вы уже отказались от участия в розыгрыше &quot;'.$fxv['itm']['name'].'&quot;</div>';
+				$this->error .= '<div>Р’С‹ СѓР¶Рµ РѕС‚РєР°Р·Р°Р»РёСЃСЊ РѕС‚ СѓС‡Р°СЃС‚РёСЏ РІ СЂРѕР·С‹РіСЂС‹С€Рµ &quot;'.$fxv['itm']['name'].'&quot;</div>';
 			}else{
-				$this->error .= '<div>Вы уже учавствуете в розыгрыше &quot;'.$fxv['itm']['name'].'&quot;, ожидаем других участников еще '.$u->timeOut($fxv['itm']['time']-time()+300).'</div>';
+				$this->error .= '<div>Р’С‹ СѓР¶Рµ СѓС‡Р°РІСЃС‚РІСѓРµС‚Рµ РІ СЂРѕР·С‹РіСЂС‹С€Рµ &quot;'.$fxv['itm']['name'].'&quot;, РѕР¶РёРґР°РµРј РґСЂСѓРіРёС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РµС‰Рµ '.$u->timeOut($fxv['itm']['time']-time()+300).'</div>';
 			}
 		}else{	
 			$luck_users = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$this->info['id'].'" AND `vars` = "luck_itm'.mysql_real_escape_string($id).'" LIMIT 1'));
@@ -1140,16 +1140,16 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 				mysql_query('UPDATE `dungeon_items` SET `time` = "'.time().'" WHERE `id` = "'.$fxv['itm']['id'].'" LIMIT 1');
 			}
 			if( $u->info['sex'] == 0 ) {
-				$fxv['text'] = '<b>'.$u->info['login'].'</b> отказался от спора за предмет &quot;'.$fxv['itm']['name'].'&quot;';
+				$fxv['text'] = '<b>'.$u->info['login'].'</b> РѕС‚РєР°Р·Р°Р»СЃСЏ РѕС‚ СЃРїРѕСЂР° Р·Р° РїСЂРµРґРјРµС‚ &quot;'.$fxv['itm']['name'].'&quot;';
 			}else{
-				$fxv['text'] = '<b>'.$u->info['login'].'</b> отказалась от спора за предмет &quot;'.$fxv['itm']['name'].'&quot;';
+				$fxv['text'] = '<b>'.$u->info['login'].'</b> РѕС‚РєР°Р·Р°Р»Р°СЃСЊ РѕС‚ СЃРїРѕСЂР° Р·Р° РїСЂРµРґРјРµС‚ &quot;'.$fxv['itm']['name'].'&quot;';
 			}
 			$this->sys_chat($fxv['text']);
 			mysql_query('INSERT INTO `dungeon_actions` (`uid`,`dn`,`x`,`y`,`time`,`vars`,`vals`) VALUES (
 				"'.$u->info['id'].'","'.$u->info['dnow'].'","'.$u->info['x'].'","'.$u->info['y'].'","'.time().'",
 				"luck_itm'.mysql_real_escape_string($id).'","0"
 			)');
-			$this->error .= '<div>Вы отказались от участия в розыгрыше &quot;'.$fxv['itm']['name'].'&quot;</div>';
+			$this->error .= '<div>Р’С‹ РѕС‚РєР°Р·Р°Р»РёСЃСЊ РѕС‚ СѓС‡Р°СЃС‚РёСЏ РІ СЂРѕР·С‹РіСЂС‹С€Рµ &quot;'.$fxv['itm']['name'].'&quot;</div>';
 		}
 		unset($fxv);
 	}
@@ -1169,27 +1169,27 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			if( $pl['user'] == 0 && $live_users > 1 && ( $pl['time']+300 > time() || $luck_users < 1 ) ) {
 				$fxv =  mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_actions` WHERE `uid` = "'.$u->info['id'].'" AND `dn` = "'.$this->info['id'].'" AND `vars` = "luck_itm'.$pl['id'].'" LIMIT 1'));
 				if( !isset($fxv['id']) ) {
-					//Розыгрыш
+					//Р РѕР·С‹РіСЂС‹С€
 					if( $this->info['bsid'] == 0 ) {
 						$action = 'javascript:top.fartgame(\''.$pl['id'].'\',\''.$pl['img'].'\',\''.$pl['name'].'\',1,\'\');';
 					}
 				}else{
-					//$action = 'javascript:alert(\'Вы уже учавствуете в розыгрыше данного предмета\');';
+					//$action = 'javascript:alert(\'Р’С‹ СѓР¶Рµ СѓС‡Р°РІСЃС‚РІСѓРµС‚Рµ РІ СЂРѕР·С‹РіСЂС‹С€Рµ РґР°РЅРЅРѕРіРѕ РїСЂРµРґРјРµС‚Р°\');';
 				}
 			}
-			$r .= '<a href="'.$action.'"><img style="padding:5px;cursor:pointer;" title="Взять &quot;'.$pl['name'].'&quot;" src="http://img.xcombats.com/i/items/'.$pl['img'].'" /></a>';
+			$r .= '<a href="'.$action.'"><img style="padding:5px;cursor:pointer;" title="Р’Р·СЏС‚СЊ &quot;'.$pl['name'].'&quot;" src="http://img.xcombats.com/i/items/'.$pl['img'].'" /></a>';
 		}
 		if($r!='')
 		{
-			$r = '<H4>В комнате разбросаны вещи:</H4>'.$r;
+			$r = '<H4>Р’ РєРѕРјРЅР°С‚Рµ СЂР°Р·Р±СЂРѕСЃР°РЅС‹ РІРµС‰Рё:</H4>'.$r;
 		}
 		return $r;
 	}
 	
 	public function testLike($x1,$y1,$x2,$y2)
 	{
-		//из $x1,$y1 в $x2,$y2
-		//доступна-ли эта клетка для действий
+		//РёР· $x1,$y1 РІ $x2,$y2
+		//РґРѕСЃС‚СѓРїРЅР°-Р»Рё СЌС‚Р° РєР»РµС‚РєР° РґР»СЏ РґРµР№СЃС‚РІРёР№
 		$r = 0;
 		$c1 = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$x1.'" AND `y` = "'.$y1.'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
 		$c2 = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$x2.'" AND `y` = "'.$y2.'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
@@ -1198,16 +1198,16 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			if($x1==$x2 && $y1==$y2)
 			{
 				$r = 1;
-			}elseif($x1==$x2-1 && $c1['go_1']==1) //право
+			}elseif($x1==$x2-1 && $c1['go_1']==1) //РїСЂР°РІРѕ
 			{
 				$r = 1;
-			}elseif($x1==$x2+1 && $c1['go_2']==1) //лево
+			}elseif($x1==$x2+1 && $c1['go_2']==1) //Р»РµРІРѕ
 			{
 				$r = 1;
-			}elseif($y1==$y2-1 && $c1['go_3']==1) //верх
+			}elseif($y1==$y2-1 && $c1['go_3']==1) //РІРµСЂС…
 			{
 				$r = 1;
-			}elseif($y1==$y2+1 && $c1['go_4']==1) //низ
+			}elseif($y1==$y2+1 && $c1['go_4']==1) //РЅРёР·
 			{
 				$r = 1;
 			}	
@@ -1218,14 +1218,14 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 	public function genObjects() {
 		global $u,$c,$code;
 		////i:{id,name,mapPoint,action,img,type},
-		//'count':1,0:{0:1234,1:'Сундук',2:5,3:'',4:'test.gif',5:0,6:position,7:width,8:heigh,9:left,10:top},
-		//psition 0 - по центру , 1- сверху, 2- слева, 3- снизу, 4- справа
+		//'count':1,0:{0:1234,1:'РЎСѓРЅРґСѓРє',2:5,3:'',4:'test.gif',5:0,6:position,7:width,8:heigh,9:left,10:top},
+		//psition 0 - РїРѕ С†РµРЅС‚СЂСѓ , 1- СЃРІРµСЂС…Сѓ, 2- СЃР»РµРІР°, 3- СЃРЅРёР·Сѓ, 4- СЃРїСЂР°РІР°
 		$r = ''; 
 		$whr = array(
-			1 => ' (((`u`.`x` <= '.($u->info['x']+2).' && `u`.`x` >= '.($u->info['x']-2).') && (`u`.`y` >= '.($u->info['y']+1).' && `u`.`y` <= '.($u->info['y']+4).')) OR (`u`.`y` = '.$u->info['y'].' && `u`.`x` = '.$u->info['x'].')) ', //прямо 
-			3 => ' (((`u`.`x` <= '.($u->info['x']+2).' && `u`.`x` >= '.($u->info['x']-2).') && (`u`.`y` <= '.($u->info['y']-1).' && `u`.`y` >= '.($u->info['y']-4).')) OR (`u`.`y` = '.$u->info['y'].' && `u`.`x` = '.$u->info['x'].')) ', //вниз
-			2 => ' (((`u`.`x` <= '.($u->info['x']-1).' && `u`.`x` >= '.($u->info['x']-4).') && (`u`.`y` <= '.($u->info['y']+2).' && `u`.`y` >= '.($u->info['y']-2).'))OR (`u`.`y` = '.$u->info['y'].' && `u`.`x` = '.$u->info['x'].')) ', //лево				
-			4 => ' (((`u`.`x` >= '.($u->info['x']+1).' && `u`.`x` <= '.($u->info['x']+4).') && (`u`.`y` <= '.($u->info['y']+2).' && `u`.`y` >= '.($u->info['y']-2).')) OR (`u`.`y` = '.$u->info['y'].' && `u`.`x` = '.$u->info['x'].')) ' //право
+			1 => ' (((`u`.`x` <= '.($u->info['x']+2).' && `u`.`x` >= '.($u->info['x']-2).') && (`u`.`y` >= '.($u->info['y']+1).' && `u`.`y` <= '.($u->info['y']+4).')) OR (`u`.`y` = '.$u->info['y'].' && `u`.`x` = '.$u->info['x'].')) ', //РїСЂСЏРјРѕ 
+			3 => ' (((`u`.`x` <= '.($u->info['x']+2).' && `u`.`x` >= '.($u->info['x']-2).') && (`u`.`y` <= '.($u->info['y']-1).' && `u`.`y` >= '.($u->info['y']-4).')) OR (`u`.`y` = '.$u->info['y'].' && `u`.`x` = '.$u->info['x'].')) ', //РІРЅРёР·
+			2 => ' (((`u`.`x` <= '.($u->info['x']-1).' && `u`.`x` >= '.($u->info['x']-4).') && (`u`.`y` <= '.($u->info['y']+2).' && `u`.`y` >= '.($u->info['y']-2).'))OR (`u`.`y` = '.$u->info['y'].' && `u`.`x` = '.$u->info['x'].')) ', //Р»РµРІРѕ				
+			4 => ' (((`u`.`x` >= '.($u->info['x']+1).' && `u`.`x` <= '.($u->info['x']+4).') && (`u`.`y` <= '.($u->info['y']+2).' && `u`.`y` >= '.($u->info['y']-2).')) OR (`u`.`y` = '.$u->info['y'].' && `u`.`x` = '.$u->info['x'].')) ' //РїСЂР°РІРѕ
 		); 
 		$sp = mysql_query('SELECT `u`.* FROM `dungeon_obj` AS `u` WHERE `u`.`dn` = "'.$u->info['dnow'].'" AND `u`.`for_dn` = "0" AND ((`u`.`s` = "0" OR `u`.`s` = "'.$this->gs.'") OR `u`.`s2` = "'.$this->gs.'") AND '.$whr[$this->gs].' LIMIT 76');
 		$i = 0; $pos = array();
@@ -1246,8 +1246,8 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 						$da[$dt2[$is][0]] = $dt2[$is][1];
 						$is++;
 					}
-					if(isset($da['use'])) unset($da['use']); // Справа
-					if(isset($da['rl2']))$da['rl2'] = -round((int)$da['rl2'] * 1.55); // Слева
+					if(isset($da['use'])) unset($da['use']); // РЎРїСЂР°РІР°
+					if(isset($da['rl2']))$da['rl2'] = -round((int)$da['rl2'] * 1.55); // РЎР»РµРІР°
 					if(isset($da['rl3']))$da['rl3'] = round((int)$da['rl3'] +160);
 					if(isset($da['rl4']))$da['rl4'] = round((int)$da['rl4'] -120);
 					$pl['date'] = str_replace('"', '', json_encode($da));
@@ -1265,8 +1265,8 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 						$da[$dt2[$is][0]] = $dt2[$is][1];
 						$is++;
 					} 
-					if(isset($da['use'])) unset($da['use']); // Справа
-					if(isset($da['rl2']))$da['rl2'] = 355-round((int)$da['rl2'] * 0.30); // Справа
+					if(isset($da['use'])) unset($da['use']); // РЎРїСЂР°РІР°
+					if(isset($da['rl2']))$da['rl2'] = 355-round((int)$da['rl2'] * 0.30); // РЎРїСЂР°РІР°
 					if(isset($da['rl3']))$da['rl3'] = round((int)$da['rl3'] -160);
 					if(isset($da['rl4']))$da['rl4'] = round((int)$da['rl4'] +120);
 					$pl['date'] = str_replace('"', '', json_encode($da));
@@ -1287,7 +1287,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			$btli = mysql_fetch_array(mysql_query('SELECT `id` FROM `battle` WHERE `id` = "'.$user['battle'].'" AND `team_win` = "-1" LIMIT 1'));
 	    }
 
-	    if( !isset($btli['id']) ) { //Создаем поединок
+	    if( !isset($btli['id']) ) { //РЎРѕР·РґР°РµРј РїРѕРµРґРёРЅРѕРє
 			$btl_id = 0;
 			$expB = 0;
 			$btl = array('players'=>'', 'timeout'=>180, 'type'=>0, 'invis'=>0, 'noinc'=>0, 'travmChance'=>0, 'typeBattle'=>0, 'addExp'=>$expB, 'money'=>0 );
@@ -1296,8 +1296,8 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 
 			$btl_id = mysql_insert_id();
 	
-			if( $btl_id > 0 ) { //Добавляем ботов 
-				$sp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `for_dn` = "0" AND `delete` = "0" AND `dn` = "'.$this->info['id'].'" AND `id2` = "'.$bot['id2'].'" LIMIT 1'); // Только тот, который напал и жив ли он?
+			if( $btl_id > 0 ) { //Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ 
+				$sp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `for_dn` = "0" AND `delete` = "0" AND `dn` = "'.$this->info['id'].'" AND `id2` = "'.$bot['id2'].'" LIMIT 1'); // РўРѕР»СЊРєРѕ С‚РѕС‚, РєРѕС‚РѕСЂС‹Р№ РЅР°РїР°Р» Рё Р¶РёРІ Р»Рё РѕРЅ?
 				$j = 0;
 				$logins_bot = array();
 				while($pl = mysql_fetch_array($sp)) {
@@ -1326,7 +1326,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			}
 	    } else {
 			$btl_id = $btli['id'];
-			//Добавляем ботов
+			//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ
 			$sp = mysql_query('SELECT * FROM `dungeon_bots` WHERE `for_dn` = "0" AND `delete` = "0" AND `dn` = "'.$this->info['id'].'" AND `id2` = "'.$bot['id2'].'" LIMIT 1'); 
 			$j = 0; $logins_bot = array();
 			$logins_bot_text =array(); 
@@ -1350,7 +1350,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 					$jui++;
 				}
 				if( $j>0 ){
-					$logins_bot_text = '{tm1} В поединок вмешались: '.implode(', ',$logins_bot_text).'.';
+					$logins_bot_text = '{tm1} Р’ РїРѕРµРґРёРЅРѕРє РІРјРµС€Р°Р»РёСЃСЊ: '.implode(', ',$logins_bot_text).'.';
 					$logins_bot_vars = implode('||',$logins_bot_vars); 
 					$battle_log  =  mysql_fetch_array(mysql_query('SELECT * FROM `battle_logs` WHERE `battle`='.$btl_id.' ORDER BY `id_hod` DESC LIMIT 1'));
 					if($battle_log['id_hod']>0){
@@ -1372,10 +1372,10 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 		//'count':1,0:{0:1015,1:'Test1',2:5,3:0,4:'1',5:'user',6:1},
 		$r = '';
 		$whr = array(
-		    1 => ' ((`u`.`x` <= '.($u->info['x']+2).' && `u`.`x` >= '.($u->info['x']-2).') && (`u`.`y` >= '.$u->info['y'].' && `u`.`y` <= '.($u->info['y']+4).')) ', //прямо 
-		    3 => ' ((`u`.`x` <= '.($u->info['x']+2).' && `u`.`x` >= '.($u->info['x']-2).') && (`u`.`y` <= '.$u->info['y'].' && `u`.`y` >= '.($u->info['y']-4).')) ', //вниз
-		    2 => ' ((`u`.`x` <= '.$u->info['x'].' && `u`.`x` >= '.($u->info['x']-4).') && (`u`.`y` <= '.($u->info['y']+2).' && `u`.`y` >= '.($u->info['y']-2).')) ', //лево				
-		    4 => ' ((`u`.`x` >= '.$u->info['x'].' && `u`.`x` <= '.($u->info['x']+4).') && (`u`.`y` <= '.($u->info['y']+2).' && `u`.`y` >= '.($u->info['y']-2).')) ' //право
+		    1 => ' ((`u`.`x` <= '.($u->info['x']+2).' && `u`.`x` >= '.($u->info['x']-2).') && (`u`.`y` >= '.$u->info['y'].' && `u`.`y` <= '.($u->info['y']+4).')) ', //РїСЂСЏРјРѕ 
+		    3 => ' ((`u`.`x` <= '.($u->info['x']+2).' && `u`.`x` >= '.($u->info['x']-2).') && (`u`.`y` <= '.$u->info['y'].' && `u`.`y` >= '.($u->info['y']-4).')) ', //РІРЅРёР·
+		    2 => ' ((`u`.`x` <= '.$u->info['x'].' && `u`.`x` >= '.($u->info['x']-4).') && (`u`.`y` <= '.($u->info['y']+2).' && `u`.`y` >= '.($u->info['y']-2).')) ', //Р»РµРІРѕ				
+		    4 => ' ((`u`.`x` >= '.$u->info['x'].' && `u`.`x` <= '.($u->info['x']+4).') && (`u`.`y` <= '.($u->info['y']+2).' && `u`.`y` >= '.($u->info['y']-2).')) ' //РїСЂР°РІРѕ
 		);
 		//
 		$tmsu = mysql_fetch_array(mysql_query('SELECT * FROM `katok_now` WHERE `clone` = "'.$u->info['id'].'" LIMIT 1'));
@@ -1389,7 +1389,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 				$noat = 1;
 			}
 			if( $this->info['id2'] == 15 ) {
-				//Хоккей
+				//РҐРѕРєРєРµР№
 		    	$r .= ','.($i-1).':{8:'.$noat.',0:'.$pl['id'].',1:\''.$pl['login'].'\',2:'.(0+$this->cord[$pl['y'].'_'.$pl['x']]).',3:'.$pl['sex'].',4:\''.str_replace('.gif','',$pl['obraz']).'\',5:\'user\',6:'.$pos[$this->cord[$pl['y'].'_'.$pl['x']]].'';
 				//
 				$tms = mysql_fetch_array(mysql_query('SELECT * FROM `katok_now` WHERE `clone` = "'.$pl['id'].'" LIMIT 1'));
@@ -1406,15 +1406,15 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			}
 		}	
 		
-		//отображаем ботов
+		//РѕС‚РѕР±СЂР°Р¶Р°РµРј Р±РѕС‚РѕРІ
 		//
 		//$sp = mysql_query('SELECT `u`.*,`st`.*  FROM `dungeon_bots` AS `u` LEFT JOIN `test_bot` AS `st` ON (`u`.`id_bot` = `st`.`id`) WHERE `u`.`dn` = "'.$u->info['dnow'].'" AND `u`.`atack` = "0" AND `u`.`delete` = "0" AND `u`.`inBattle` = "0" AND `u`.`go_bot` > 0 ORDER BY `u`.`go_bot` ASC LIMIT 35');
 		
-		// Выбираем Ботов в подземельи, которые Не в бою, Живые, и не дальше чем -\+30 по X и -\+35 по Y (дабы не гонять всех ботов, меньше выборка).
+		// Р’С‹Р±РёСЂР°РµРј Р‘РѕС‚РѕРІ РІ РїРѕРґР·РµРјРµР»СЊРё, РєРѕС‚РѕСЂС‹Рµ РќРµ РІ Р±РѕСЋ, Р–РёРІС‹Рµ, Рё РЅРµ РґР°Р»СЊС€Рµ С‡РµРј -\+30 РїРѕ X Рё -\+35 РїРѕ Y (РґР°Р±С‹ РЅРµ РіРѕРЅСЏС‚СЊ РІСЃРµС… Р±РѕС‚РѕРІ, РјРµРЅСЊС€Рµ РІС‹Р±РѕСЂРєР°).
 		/*
 		$sp = mysql_query('SELECT `db`.*, `tb`.*  FROM `dungeon_bots` AS `db` LEFT JOIN `test_bot` AS `tb` ON (`db`.`id_bot` = `tb`.`id`) LEFT JOIN `stats` as `st` ON (`st`.`dnow` = `db`.`dn`) WHERE `db`.`dn` = "'.$u->info['dnow'].'" AND `db`.`x` > `st`.`x`-30 AND `db`.`x` < `st`.`x`+30 AND `db`.`y` > `st`.`y`-35 AND `db`.`y` < `st`.`y`+35 AND `db`.`atack` = "0" AND `db`.`delete` = "0" AND `db`.`inBattle` = "0" AND `db`.`go_bot` > 0 GROUP BY `db`.`id2` ORDER BY `db`.`go_bot` ASC LIMIT 50');
 		while($pl = mysql_fetch_array($sp)){
-		    //перемещение бота, каждые 3-10 сек.
+		    //РїРµСЂРµРјРµС‰РµРЅРёРµ Р±РѕС‚Р°, РєР°Р¶РґС‹Рµ 3-10 СЃРµРє.
 		    if( $pl['go_bot'] > 0 && $pl['go_bot'] <= time() ) {
 				$tgx = rand(-1,1);
 				$tgy = rand(-1,1);
@@ -1426,12 +1426,12 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 					}
 				}
 				$vlb = $this->testLike($pl['x'],$pl['y'],$pl['x']+$tgx,$pl['y']+$tgy);
-				//Кто-то рядом
+				//РљС‚Рѕ-С‚Рѕ СЂСЏРґРѕРј
 				$tuz = mysql_fetch_array(mysql_query('SELECT `x`,`y`,`id`,`hpNow` FROM `stats` WHERE `dnow` = "'.$this->info['id'].'" AND ( (`x` = '.($pl['x']+1).' AND `y` = '.($pl['y']).') OR (`x` = '.($pl['x']-1).' AND `y` = '.($pl['y']).') OR (`x` = '.($pl['x']).' AND `y` = '.($pl['y']+1).') OR (`x` = '.($pl['x']).' AND `y` = '.($pl['y']-1).') ) LIMIT 1'));
 				
 				if(isset($tuz['id']) && $this->testLike($pl['x'],$pl['y'],$tuz['x'],$tuz['y'])==1){ 
 					$this->botAtack($pl,$tuz,1);
-				}elseif($vlb == 1){ // Передвижение ботов. 
+				}elseif($vlb == 1){ // РџРµСЂРµРґРІРёР¶РµРЅРёРµ Р±РѕС‚РѕРІ. 
 					$pl['go_bot'] = time()+10+rand(1,5);
 					$pl['x'] += $tgx;
 					$pl['y'] += $tgy;
@@ -1466,19 +1466,19 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 		$go = 0;
 		if($id==1)
 		{
-			//вперед
+			//РІРїРµСЂРµРґ
 			$go = $this->sg[$this->gs][1];
 		}elseif($id==2)
 		{
-			//назад
+			//РЅР°Р·Р°Рґ
 			$go = $this->sg[$this->gs][3];
 		}elseif($id==3)
 		{
-			//на право
+			//РЅР° РїСЂР°РІРѕ
 			$go = $this->sg[$this->gs][4];
 		}elseif($id==4)
 		{
-			//на лево
+			//РЅР° Р»РµРІРѕ
 			$go = $this->sg[$this->gs][2];
 		}
 		$thp = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$u->info['x'].'" AND `y` = "'.$u->info['y'].'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
@@ -1514,7 +1514,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 		}
 		
 		$tmap = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$u->info['x'].'" AND `y` = "'.$u->info['y'].'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
-		//наличие предмета
+		//РЅР°Р»РёС‡РёРµ РїСЂРµРґРјРµС‚Р°
 		if($tmap['tr_items']!='')
 		{
 			$ti = explode(',',$tmap['tr_items']);
@@ -1544,21 +1544,21 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			if($trnit!='')
 			{
 				$trnit = rtrim($trnit,', ');	
-				$this->error = 'У вас нет подходящего предмета. Требуется '.$trnit;
+				$this->error = 'РЈ РІР°СЃ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РµРіРѕ РїСЂРµРґРјРµС‚Р°. РўСЂРµР±СѓРµС‚СЃСЏ '.$trnit;
 			}
 		}
 		
-		$tmGo  = $u->info['timeGo']-time(); //сколько секунд осталось
+		$tmGo  = $u->info['timeGo']-time(); //СЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ РѕСЃС‚Р°Р»РѕСЃСЊ
 		if($tmGo>0)
 		{
 			$go = 0;
-			$this->error = 'Не так быстро...';	
+			$this->error = 'РќРµ С‚Р°Рє Р±С‹СЃС‚СЂРѕ...';	
 		}
 		
 		if($u->aves['now']>=$u->aves['max'])
 		{
 			$go = 0;
-			$this->error = 'Вы не можете перемещаться, рюкзак переполнен ...';
+			$this->error = 'Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРµСЂРµРјРµС‰Р°С‚СЊСЃСЏ, СЂСЋРєР·Р°Рє РїРµСЂРµРїРѕР»РЅРµРЅ ...';
 		}
 		
 		if($go>0)
@@ -1590,7 +1590,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 				if( isset($tmap1['id']) ) {
 					$u->info['x'] = $tmap1['x'];
 					$u->info['y'] = $tmap1['y'];
-					$this->error = 'Вы переместились в другую комнату...';
+					$this->error = 'Р’С‹ РїРµСЂРµРјРµСЃС‚РёР»РёСЃСЊ РІ РґСЂСѓРіСѓСЋ РєРѕРјРЅР°С‚Сѓ...';
 				}
 			}
 			$upd = mysql_query('UPDATE `stats` SET `x` = "'.$u->info['x'].'",`y` = "'.$u->info['y'].'",`timeGo` = "'.$u->info['timeGo'].'",`timeGoL` = "'.$u->info['timeGoL'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
@@ -1603,19 +1603,19 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 		$go = 0;
 		if($id==1)
 		{
-			//вперед
+			//РІРїРµСЂРµРґ
 			$go = $this->sg[$this->gs][1];
 		}elseif($id==2)
 		{
-			//назад
+			//РЅР°Р·Р°Рґ
 			$go = $this->sg[$this->gs][3];
 		}elseif($id==3)
 		{
-			//на право
+			//РЅР° РїСЂР°РІРѕ
 			$go = $this->sg[$this->gs][4];
 		}elseif($id==4)
 		{
-			//на лево
+			//РЅР° Р»РµРІРѕ
 			$go = $this->sg[$this->gs][2];
 		}
 		$thp = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$u->info['x'].'" AND `y` = "'.$u->info['y'].'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
@@ -1651,7 +1651,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 		}
 		
 		$tmap = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_map` WHERE `x` = "'.$u->info['x'].'" AND `y` = "'.$u->info['y'].'" AND `id_dng` = "'.$this->info['id2'].'" LIMIT 1'));
-		//наличие предмета
+		//РЅР°Р»РёС‡РёРµ РїСЂРµРґРјРµС‚Р°
 		/*
 		if($tmap['tr_items']!='')
 		{
@@ -1686,7 +1686,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 	public function testSt($id,$s)
 	{
 		$r = 0;
-		//заменяем отображение стен в зависимости от угла обзора
+		//Р·Р°РјРµРЅСЏРµРј РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃС‚РµРЅ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СѓРіР»Р° РѕР±Р·РѕСЂР°
 		$s = $this->sg[$this->gs][$s];
 		if(isset($this->map[1][$id]['id']))
 		{
@@ -1698,10 +1698,10 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 	public function lookDungeon()
 	{
 		global $u,$c,$code,$pd;
-		/* Генерируем изображение карты */
+		/* Р“РµРЅРµСЂРёСЂСѓРµРј РёР·РѕР±СЂР°Р¶РµРЅРёРµ РєР°СЂС‚С‹ */
 		/* LEVEL 1 */
 		
-		// Исправления от 29/10/2014 относительно D5, 2 этаж, ПТП. Покрутиться и все гуд.  и от 22/11/2014 для обратных стен. Если стена к нам задницей, мы её не видим.
+		// РСЃРїСЂР°РІР»РµРЅРёСЏ РѕС‚ 29/10/2014 РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ D5, 2 СЌС‚Р°Р¶, РџРўРџ. РџРѕРєСЂСѓС‚РёС‚СЊСЃСЏ Рё РІСЃРµ РіСѓРґ.  Рё РѕС‚ 22/11/2014 РґР»СЏ РѕР±СЂР°С‚РЅС‹С… СЃС‚РµРЅ. Р•СЃР»Рё СЃС‚РµРЅР° Рє РЅР°Рј Р·Р°РґРЅРёС†РµР№, РјС‹ РµС‘ РЅРµ РІРёРґРёРј.
 		if($this->testSt(2,4)>0 /* || $this->testSt(3,2)>0 */){ $pd[28] = 1; }
 		if(/*$this->testSt(1,4)>0 ||*/ $this->testSt(2,2)>0){ $pd[27] = 1; }
 		if($this->testSt(2,1)>0 /*|| $this->testSt(5,3)>0*/){ $pd[26] = 1; } 
@@ -1733,9 +1733,9 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 		if($this->testSt(16,4)>0 || $this->testSt(15,2)>0){ $pd[4] = 1; }
 		if($this->testSt(15,4)>0 || $this->testSt(17,2)>0){ $pd[3] = 1; }
 	 
-		/* Генерируем предметы на карте */
+		/* Р“РµРЅРµСЂРёСЂСѓРµРј РїСЂРµРґРјРµС‚С‹ РЅР° РєР°СЂС‚Рµ */
 		
-		/* Генерируем персонажей и ботов на карте */
+		/* Р“РµРЅРµСЂРёСЂСѓРµРј РїРµСЂСЃРѕРЅР°Р¶РµР№ Рё Р±РѕС‚РѕРІ РЅР° РєР°СЂС‚Рµ */
 		
 	}
 
@@ -1752,30 +1752,30 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 		$r = array();
 		if($this->gs == 1)
 		{
-			//1; //смотрим прямо
-			$r[1]  = $this->getMatrix(0,-1); # слева от меня
-			$r[2]  = $this->getMatrix(0,0); # подомной
-			$r[3]  = $this->getMatrix(0,1); # справа от меня
-			$r[4]  = $this->getMatrix(1,-1); # слева +1 вперед
-			$r[5]  = $this->getMatrix(1,0); # передомной +1
-			$r[6]  = $this->getMatrix(1,1); # справа +1 вперед
-			$r[7]  = $this->getMatrix(2,1); # справа +2 вперед
-			$r[8]  = $this->getMatrix(2,0); # передомной +2
-			$r[9]  = $this->getMatrix(2,-1); # слева +2 вперед
-			$r[10] = $this->getMatrix(3,-2); # слева через одну, +3 вперед
-			$r[11] = $this->getMatrix(3,-1); # слева +3 вперед
-			$r[12] = $this->getMatrix(3,0); # передомной +3
-			$r[13] = $this->getMatrix(3,1); # справа +3 вперед
-			$r[14] = $this->getMatrix(3,2); # справа через одну, +3 вперед
-			$r[15] = $this->getMatrix(4,0); # передомной +4
-			$r[16] = $this->getMatrix(4,-1); # слева +4 вперед
-			$r[17] = $this->getMatrix(4,1); # справа +4 вперед
-			$r[18] = $this->getMatrix(4,2); # справа через одну, +4 вперед
-			$r[19] = $this->getMatrix(4,-2); # слева через одну, +4 вперед
+			//1; //СЃРјРѕС‚СЂРёРј РїСЂСЏРјРѕ
+			$r[1]  = $this->getMatrix(0,-1); # СЃР»РµРІР° РѕС‚ РјРµРЅСЏ
+			$r[2]  = $this->getMatrix(0,0); # РїРѕРґРѕРјРЅРѕР№
+			$r[3]  = $this->getMatrix(0,1); # СЃРїСЂР°РІР° РѕС‚ РјРµРЅСЏ
+			$r[4]  = $this->getMatrix(1,-1); # СЃР»РµРІР° +1 РІРїРµСЂРµРґ
+			$r[5]  = $this->getMatrix(1,0); # РїРµСЂРµРґРѕРјРЅРѕР№ +1
+			$r[6]  = $this->getMatrix(1,1); # СЃРїСЂР°РІР° +1 РІРїРµСЂРµРґ
+			$r[7]  = $this->getMatrix(2,1); # СЃРїСЂР°РІР° +2 РІРїРµСЂРµРґ
+			$r[8]  = $this->getMatrix(2,0); # РїРµСЂРµРґРѕРјРЅРѕР№ +2
+			$r[9]  = $this->getMatrix(2,-1); # СЃР»РµРІР° +2 РІРїРµСЂРµРґ
+			$r[10] = $this->getMatrix(3,-2); # СЃР»РµРІР° С‡РµСЂРµР· РѕРґРЅСѓ, +3 РІРїРµСЂРµРґ
+			$r[11] = $this->getMatrix(3,-1); # СЃР»РµРІР° +3 РІРїРµСЂРµРґ
+			$r[12] = $this->getMatrix(3,0); # РїРµСЂРµРґРѕРјРЅРѕР№ +3
+			$r[13] = $this->getMatrix(3,1); # СЃРїСЂР°РІР° +3 РІРїРµСЂРµРґ
+			$r[14] = $this->getMatrix(3,2); # СЃРїСЂР°РІР° С‡РµСЂРµР· РѕРґРЅСѓ, +3 РІРїРµСЂРµРґ
+			$r[15] = $this->getMatrix(4,0); # РїРµСЂРµРґРѕРјРЅРѕР№ +4
+			$r[16] = $this->getMatrix(4,-1); # СЃР»РµРІР° +4 РІРїРµСЂРµРґ
+			$r[17] = $this->getMatrix(4,1); # СЃРїСЂР°РІР° +4 РІРїРµСЂРµРґ
+			$r[18] = $this->getMatrix(4,2); # СЃРїСЂР°РІР° С‡РµСЂРµР· РѕРґРЅСѓ, +4 РІРїРµСЂРµРґ
+			$r[19] = $this->getMatrix(4,-2); # СЃР»РµРІР° С‡РµСЂРµР· РѕРґРЅСѓ, +4 РІРїРµСЂРµРґ
 			
 		}elseif($this->gs == 2)
 		{
-			//2; //смотрим лево
+			//2; //СЃРјРѕС‚СЂРёРј Р»РµРІРѕ
 			$r[1]  = $this->getMatrix(-1,0);
 			$r[2]  = $this->getMatrix(0,0);
 			$r[3]  = $this->getMatrix(1,0);
@@ -1797,7 +1797,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			$r[19] = $this->getMatrix(-2,-4);
 		}elseif($this->gs == 3)
 		{
-			//3; //смотрим вниз
+			//3; //СЃРјРѕС‚СЂРёРј РІРЅРёР·
 			$r[1]  = $this->getMatrix(0,1);
 			$r[2]  = $this->getMatrix(0,0);
 			$r[3]  = $this->getMatrix(0,-1);
@@ -1819,7 +1819,7 @@ $r .= '<script>top.startHpRegen("main",'.($pl['id']+1000000000000).','.(0+$stt['
 			$r[19] = $this->getMatrix(-4,2);
 		}elseif($this->gs == 4)
 		{
-			//4; //смотрим право
+			//4; //СЃРјРѕС‚СЂРёРј РїСЂР°РІРѕ
 			$r[1]  = $this->getMatrix(1,0);
 			$r[2]  = $this->getMatrix(0,0);
 			$r[3]  = $this->getMatrix(-1,0);

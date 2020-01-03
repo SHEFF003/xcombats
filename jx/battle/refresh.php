@@ -97,7 +97,7 @@ if(!isset($CRON_CORE)) {
 `zayvki` WRITE;");*/
 				
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","INFINITY","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","INFINITY","6","1","-1")');
 }
 
 if(isset($_GET['cron_core'])) {
@@ -131,7 +131,7 @@ if(!isset($CRON_CORE)) {
 		flock($fp_lock, LOCK_EX); 
 	} else { 
 		unlink($lock_file);
-		die('<b><center><font color=red>Не удалось отправить запрос, повторите попытку снова...</font></center></b>');
+		die('<b><center><font color=red>РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РїСЂР°РІРёС‚СЊ Р·Р°РїСЂРѕСЃ, РїРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ СЃРЅРѕРІР°...</font></center></b>');
 	}*/
 }
 
@@ -158,7 +158,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 				$u->info['battle_lsto'] = true;
 				mysql_query('UPDATE `stats` SET `battle_text` = "",`last_b`="0" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				mysql_query('UPDATE `battle_users` SET `finish` = 1 WHERE `uid` = "'.$u->info['id'].'"');
-				echo '<script>alert("Поединок для вас завершился.");location.href="main.php?finish=1";</script>';
+				echo '<script>alert("РџРѕРµРґРёРЅРѕРє РґР»СЏ РІР°СЃ Р·Р°РІРµСЂС€РёР»СЃСЏ.");location.href="main.php?finish=1";</script>';
 			}
 		}		
 				
@@ -171,39 +171,39 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 		
 		function json_fix_cyr($json_str) { 
 			/*	$cyr_chars = array ( 
-				'\u0430' => 'а', '\u0410' => 'А', 
-				'\u0431' => 'б', '\u0411' => 'Б', 
-				'\u0432' => 'в', '\u0412' => 'В', 
-				'\u0433' => 'г', '\u0413' => 'Г', 
-				'\u0434' => 'д', '\u0414' => 'Д', 
-				'\u0435' => 'е', '\u0415' => 'Е', 
-				'\u0451' => 'ё', '\u0401' => 'Ё', 
-				'\u0436' => 'ж', '\u0416' => 'Ж', 
-				'\u0437' => 'з', '\u0417' => 'З', 
-				'\u0438' => 'и', '\u0418' => 'И', 
-				'\u0439' => 'й', '\u0419' => 'Й', 
-				'\u043a' => 'к', '\u041a' => 'К', 
-				'\u043b' => 'л', '\u041b' => 'Л', 
-				'\u043c' => 'м', '\u041c' => 'М', 
-				'\u043d' => 'н', '\u041d' => 'Н', 
-				'\u043e' => 'о', '\u041e' => 'О', 
-				'\u043f' => 'п', '\u041f' => 'П', 
-				'\u0440' => 'р', '\u0420' => 'Р', 
-				'\u0441' => 'с', '\u0421' => 'С', 
-				'\u0442' => 'т', '\u0422' => 'Т', 
-				'\u0443' => 'у', '\u0423' => 'У', 
-				'\u0444' => 'ф', '\u0424' => 'Ф', 
-				'\u0445' => 'х', '\u0425' => 'Х', 
-				'\u0446' => 'ц', '\u0426' => 'Ц', 
-				'\u0447' => 'ч', '\u0427' => 'Ч', 
-				'\u0448' => 'ш', '\u0428' => 'Ш', 
-				'\u0449' => 'щ', '\u0429' => 'Щ', 
-				'\u044a' => 'ъ', '\u042a' => 'Ъ', 
-				'\u044b' => 'ы', '\u042b' => 'Ы', 
-				'\u044c' => 'ь', '\u042c' => 'Ь', 
-				'\u044d' => 'э', '\u042d' => 'Э', 
-				'\u044e' => 'ю', '\u042e' => 'Ю', 
-				'\u044f' => 'я', '\u042f' => 'Я', 
+				'\u0430' => 'Р°', '\u0410' => 'Рђ', 
+				'\u0431' => 'Р±', '\u0411' => 'Р‘', 
+				'\u0432' => 'РІ', '\u0412' => 'Р’', 
+				'\u0433' => 'Рі', '\u0413' => 'Р“', 
+				'\u0434' => 'Рґ', '\u0414' => 'Р”', 
+				'\u0435' => 'Рµ', '\u0415' => 'Р•', 
+				'\u0451' => 'С‘', '\u0401' => 'РЃ', 
+				'\u0436' => 'Р¶', '\u0416' => 'Р–', 
+				'\u0437' => 'Р·', '\u0417' => 'Р—', 
+				'\u0438' => 'Рё', '\u0418' => 'Р', 
+				'\u0439' => 'Р№', '\u0419' => 'Р™', 
+				'\u043a' => 'Рє', '\u041a' => 'Рљ', 
+				'\u043b' => 'Р»', '\u041b' => 'Р›', 
+				'\u043c' => 'Рј', '\u041c' => 'Рњ', 
+				'\u043d' => 'РЅ', '\u041d' => 'Рќ', 
+				'\u043e' => 'Рѕ', '\u041e' => 'Рћ', 
+				'\u043f' => 'Рї', '\u041f' => 'Рџ', 
+				'\u0440' => 'СЂ', '\u0420' => 'Р ', 
+				'\u0441' => 'СЃ', '\u0421' => 'РЎ', 
+				'\u0442' => 'С‚', '\u0422' => 'Рў', 
+				'\u0443' => 'Сѓ', '\u0423' => 'РЈ', 
+				'\u0444' => 'С„', '\u0424' => 'Р¤', 
+				'\u0445' => 'С…', '\u0425' => 'РҐ', 
+				'\u0446' => 'С†', '\u0426' => 'Р¦', 
+				'\u0447' => 'С‡', '\u0427' => 'Р§', 
+				'\u0448' => 'С€', '\u0428' => 'РЁ', 
+				'\u0449' => 'С‰', '\u0429' => 'Р©', 
+				'\u044a' => 'СЉ', '\u042a' => 'РЄ', 
+				'\u044b' => 'С‹', '\u042b' => 'Р«', 
+				'\u044c' => 'СЊ', '\u042c' => 'Р¬', 
+				'\u044d' => 'СЌ', '\u042d' => 'Р­', 
+				'\u044e' => 'СЋ', '\u042e' => 'Р®', 
+				'\u044f' => 'СЏ', '\u042f' => 'РЇ', 
 				
 				'\r' => '', 
 				'\n' => '<br />', 
@@ -234,12 +234,12 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 		{
 			if($u->info['battle']==-1)
 			{
-				//завершаем поединок
+				//Р·Р°РІРµСЂС€Р°РµРј РїРѕРµРґРёРЅРѕРє
 				$upd = mysql_query('UPDATE `users` SET `battle` = "0",`online` = "'.time().'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				if(!$upd)
 				{
 					if(!isset($CRON_CORE)) {
-						die('Ошибка завершения поединка.');
+						die('РћС€РёР±РєР° Р·Р°РІРµСЂС€РµРЅРёСЏ РїРѕРµРґРёРЅРєР°.');
 					}
 				}else{
 					$filter->setOnline($u->info['online'],$u->info['id'],0);
@@ -252,7 +252,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 				}
 			}
 		}else{
-			//получаем массив с игроками в бою
+			//РїРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ СЃ РёРіСЂРѕРєР°РјРё РІ Р±РѕСЋ
 				$btl->teamsTake();
 				
 			if(isset($_POST['useitem']) && $btl->testUsersLive() == true) {
@@ -262,28 +262,28 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 				}
 			}
 				
-			//заносим удары,приемы,эффекты и т.д.
-				//удар
+			//Р·Р°РЅРѕСЃРёРј СѓРґР°СЂС‹,РїСЂРёРµРјС‹,СЌС„С„РµРєС‚С‹ Рё С‚.Рґ.
+				//СѓРґР°СЂ
 					if(isset($_POST['atack']) && isset($_POST['block']))
 					{
 						$btl->addAtack();
 					}
-				//прием
+				//РїСЂРёРµРј
 					if(isset($_POST['usepriem']) && $btl->testUsersLive() == true && isset($btl->users[$btl->uids[$u->info['enemy']]]))
 					{
 						$priem->pruse($_POST['usepriem']);
 					}
-				//используем заклятие / пирожки
+				//РёСЃРїРѕР»СЊР·СѓРµРј Р·Р°РєР»СЏС‚РёРµ / РїРёСЂРѕР¶РєРё
 					
 					
-			//проводим действия (удары, использование приемов, если есть возможность нанести удар или использовать прием)			
+			//РїСЂРѕРІРѕРґРёРј РґРµР№СЃС‚РІРёСЏ (СѓРґР°СЂС‹, РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РїСЂРёРµРјРѕРІ, РµСЃР»Рё РµСЃС‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РЅР°РЅРµСЃС‚Рё СѓРґР°СЂ РёР»Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїСЂРёРµРј)			
 				//if(!isset($_POST['usepriem'])) {
 					$btl->testActions();
 				//}
-			//авто-смена противника, либо просто смена противника
+			//Р°РІС‚Рѕ-СЃРјРµРЅР° РїСЂРѕС‚РёРІРЅРёРєР°, Р»РёР±Рѕ РїСЂРѕСЃС‚Рѕ СЃРјРµРЅР° РїСЂРѕС‚РёРІРЅРёРєР°
 				if($u->stats['hpNow']>=1)
 				{
-					//ручная смена
+					//СЂСѓС‡РЅР°СЏ СЃРјРµРЅР°
 					if(isset($_POST['smn']) && $_POST['smn']!='none')
 					{
 						/* ---------------- */
@@ -301,7 +301,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 						unset($rsm);
 						$js .= 'smena_login = \'none\';';
 					}
-					//авто-смена
+					//Р°РІС‚Рѕ-СЃРјРµРЅР°
 					if($u->info['enemy']==0 || $btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']<=0 || isset($btl->ga[$u->info['id']][$u->info['enemy']]))
 					{
 						$btl->autoSmena();
@@ -309,7 +309,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 				}else{
 					$btl->mainStatus = 3;
 				}
-			//Флаги
+			//Р¤Р»Р°РіРё
 				if(isset($_POST['ldrl']) && $_POST['ldrl'] != 'none' &&  $u->info['lider'] == $u->info['battle'] && $btl->info['team_win'] == -1) {
 					//
 					$_POST['ldrl'] = iconv('UTF-8', 'windows-1251', $_POST['ldrl']);
@@ -325,21 +325,21 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 					//
 					if( $ltype == 1 ) {
 						if(!isset($uidz['id']) || $uidz['team'] != $u->info['team'] || $uidz['real'] == 0 || $uidz['hpNow'] < 1 || $uidz['id'] == $u->info['id']) {
-							echo '<font color=red><center><b>Персонаж не найден в вашей команде</b></center></font>';
+							echo '<font color=red><center><b>РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ РІР°С€РµР№ РєРѕРјР°РЅРґРµ</b></center></font>';
 						}else{
 							mysql_query('UPDATE `users` SET `lider` = 0 WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 							mysql_query('UPDATE `users` SET `lider` = "'.$u->info['battle'].'" WHERE `id` = "'.$uidz['id'].'" LIMIT 1');
 							$u->info['lider'] = 0;
-							$btl->addFlog( '{tm1} <b><span class=CSSteam'.$u->info['team'].' >'.$u->info['login'].'</span></b> передал лидерство <img src=http://img.xcombats.com/i/lead1.gif ><span class=CSSteam'.$u->info['team'].' ><b>'.$uidz['login'].'</b></span>.' , 0 , 0 );
-							echo '<font color=red><center><b>Персонаж &quot;'.$uidz['login'].'&quot; назначен новым лидером команды!</b></center></font>';
+							$btl->addFlog( '{tm1} <b><span class=CSSteam'.$u->info['team'].' >'.$u->info['login'].'</span></b> РїРµСЂРµРґР°Р» Р»РёРґРµСЂСЃС‚РІРѕ <img src=http://img.xcombats.com/i/lead1.gif ><span class=CSSteam'.$u->info['team'].' ><b>'.$uidz['login'].'</b></span>.' , 0 , 0 );
+							echo '<font color=red><center><b>РџРµСЂСЃРѕРЅР°Р¶ &quot;'.$uidz['login'].'&quot; РЅР°Р·РЅР°С‡РµРЅ РЅРѕРІС‹Рј Р»РёРґРµСЂРѕРј РєРѕРјР°РЅРґС‹!</b></center></font>';
 						}
 					}else{
 						if(!isset($uidz['id']) || $uidz['team'] != $u->info['team'] || $uidz['hpNow'] < 1 || $uidz['id'] == $u->info['id']) {
-							echo '<font color=red><center><b>Персонаж не найден в вашей команде...</b></center></font>';
+							echo '<font color=red><center><b>РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ РІ РІР°С€РµР№ РєРѕРјР°РЅРґРµ...</b></center></font>';
 						}else{
 							mysql_query('UPDATE `stats` SET `hpNow` = 0,`mpNow` = 0 WHERE `id` = "'.$uidz['id'].'" LIMIT 1');
-							$btl->addFlog( '{tm1} Лидер <img src=http://img.xcombats.com/i/lead1.gif ><b><span class=CSSteam'.$u->info['team'].' >'.$u->info['login'].'</span></b> убил союзника <span class=CSSteam'.$u->info['team'].' ><b>'.$uidz['login'].'</b></span>.' , 0 , 0 );
-							echo '<font color=red><center><b>Вы убили персонажа &quot;'.$uidz['login'].'&quot;. На правах лидера.</b></center></font>';
+							$btl->addFlog( '{tm1} Р›РёРґРµСЂ <img src=http://img.xcombats.com/i/lead1.gif ><b><span class=CSSteam'.$u->info['team'].' >'.$u->info['login'].'</span></b> СѓР±РёР» СЃРѕСЋР·РЅРёРєР° <span class=CSSteam'.$u->info['team'].' ><b>'.$uidz['login'].'</b></span>.' , 0 , 0 );
+							echo '<font color=red><center><b>Р’С‹ СѓР±РёР»Рё РїРµСЂСЃРѕРЅР°Р¶Р° &quot;'.$uidz['login'].'&quot;. РќР° РїСЂР°РІР°С… Р»РёРґРµСЂР°.</b></center></font>';
 						}
 					}
 					//
@@ -347,11 +347,11 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 					//
 				}
 			
-			//получаем данные о поединке
+			//РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ Рѕ РїРѕРµРґРёРЅРєРµ
 				
-			//получаем данные о логе боя
+			//РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ Рѕ Р»РѕРіРµ Р±РѕСЏ
 				
-			//Если бой сыгран - завершаем
+			//Р•СЃР»Рё Р±РѕР№ СЃС‹РіСЂР°РЅ - Р·Р°РІРµСЂС€Р°РµРј
 			if(!isset($_POST['usepriem'])) {
 				if($btl->info['team_win']==-1)
 				{
@@ -376,7 +376,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 			
 			if(!isset($CRON_CORE)) {
 				$js .= $btl->myInfo($u->info['id'],1);
-				//выводим данные	
+				//РІС‹РІРѕРґРёРј РґР°РЅРЅС‹Рµ	
 				if($btl->e!='')
 				{
 					echo '<font color="red"><center><b>'.$btl->e.'</b></center></font>';
@@ -433,11 +433,11 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || isset($CRON_CORE))
 				//}
 			$tmr = round(($btl->info['timeout']/60),2);
 			//if($btl->info['timeout'] < 60) {
-			//	$tmr = $btl->info['timeout'].' сек.';
+			//	$tmr = $btl->info['timeout'].' СЃРµРє.';
 			//}
 			
 			$dtxtn = '';
-			//$dtxtn = '<br></b><small>Текущий противник: '.$btl->users[$btl->uids[$u->info['enemy']]]['login'].' ('.$u->info['enemy'].')<br>'.$btl->users[$btl->uids[$u->info['enemy']]]['hpNow'].'</small><b>';
+			//$dtxtn = '<br></b><small>РўРµРєСѓС‰РёР№ РїСЂРѕС‚РёРІРЅРёРє: '.$btl->users[$btl->uids[$u->info['enemy']]]['login'].' ('.$u->info['enemy'].')<br>'.$btl->users[$btl->uids[$u->info['enemy']]]['hpNow'].'</small><b>';
 			
 			$rehtml .= '<script type="text/javascript">eatk='.$atk1.';
 			$("#nabito").html("'.(floor($btl->users[$btl->uids[$u->info['id']]]['battle_yron'])).$dtxtn.'");

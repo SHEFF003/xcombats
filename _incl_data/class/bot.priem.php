@@ -15,7 +15,7 @@ class botPriemLogic {
 		$test = self::testpriem( self::$p );
 		
 		if( isset(self::$p['id']) && $test == 0 ) {			
-			//Используем прием под номером $id
+			//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРёРµРј РїРѕРґ РЅРѕРјРµСЂРѕРј $id
 				if( $id == 1	) {	self::priem1( $i );		}
 			elseif( $id == 2	) {	self::priem2( $i );		}
 			elseif( $id == 3	) {	self::priem3( $i );		}
@@ -45,7 +45,7 @@ class botPriemLogic {
 	static function usePriem($id,$on) {
 		
 		//if(self::$p['id'] > 7 && self::$p['id'] < 11) {
-			//botLogic::e(botLogic::$bot['login'].', использую прием &quot;'.self::$p['name'].'&quot; , battle: <a target=_blank href=http://xcombats.com/logs.php?log='.botLogic::$bot['battle'].'>Link</a>');
+			//botLogic::e(botLogic::$bot['login'].', РёСЃРїРѕР»СЊР·СѓСЋ РїСЂРёРµРј &quot;'.self::$p['name'].'&quot; , battle: <a target=_blank href=http://xcombats.com/logs.php?log='.botLogic::$bot['battle'].'>Link</a>');
 		//}
 		
 		$go_txt = '&usepriem='.$id;
@@ -57,10 +57,10 @@ class botPriemLogic {
 	}
 	
 	
-		//Силовое поле
+		//РЎРёР»РѕРІРѕРµ РїРѕР»Рµ
 				static function priem175( $i ) {
 					$su = true;					
-					//Логика использования приема
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
 					/*if(botLogic::$st['hpNow'] >= botLogic::$st['hpAll']) {
 						$su = false;
 					}elseif(botLogic::$st['hpNow'] < 5) {
@@ -74,10 +74,10 @@ class botPriemLogic {
 					}		
 				}
 	
-		//Прикрыться
+		//РџСЂРёРєСЂС‹С‚СЊСЃСЏ
 				static function priem1( $i ) {
 					$su = true;					
-					//Логика использования приема
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
 					if(botLogic::$st['hpNow'] >= botLogic::$st['hpAll']) {
 						$su = false;
 					}elseif(botLogic::$st['hpNow'] < 5) {
@@ -91,10 +91,10 @@ class botPriemLogic {
 					}		
 				}
 				
-		//Вломить
+		//Р’Р»РѕРјРёС‚СЊ
 				static function priem2( $i ) {
 					$su = true;					
-					//Логика использования приема
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
 					if(isset(botLogic::$pr[1]) && botLogic::$pr[1] < 1 && botLogic::$st['hpNow'] > 5 && rand(0,100) >= 50) {
 						$su = false;
 					}
@@ -104,10 +104,10 @@ class botPriemLogic {
 					}		
 				}
 				
-		//Собрать зубы
+		//РЎРѕР±СЂР°С‚СЊ Р·СѓР±С‹
 				static function priem3( $i ) {
 					$su = true;					
-					//Логика использования приема					
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°					
 					if(botLogic::$st['hpNow'] >= botLogic::$st['hpAll']) {
 						$su = false;
 					}elseif(botLogic::$st['hpNow'] < 10) {
@@ -121,10 +121,10 @@ class botPriemLogic {
 					}		
 				}
 	
-		//Воля к победе
+		//Р’РѕР»СЏ Рє РїРѕР±РµРґРµ
 				static function priem6( $i ) {
 					$su = true;					
-					//Логика использования приема
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
 					if(self::hp() > 32) {
 						$su = false;
 					}					
@@ -134,50 +134,50 @@ class botPriemLogic {
 					}		
 				}
 			
-		//Танец ветра
+		//РўР°РЅРµС† РІРµС‚СЂР°
 				static function priem8( $i ) {
 					$su = true;					
-					//Логика использования приема		
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°		
 					
 					if($su == true) {
 						self::usePriem( $i );
 					}		
 				}
 				
-		//Дикая удача
+		//Р”РёРєР°СЏ СѓРґР°С‡Р°
 				static function priem9( $i ) {
 					$su = true;					
-					//Логика использования приема		
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°		
 					
 					if($su == true) {
 						self::usePriem( $i );
 					}		
 				}
 				
-		//Предвиденье
+		//РџСЂРµРґРІРёРґРµРЅСЊРµ
 				static function priem10( $i ) {
 					$su = true;					
-					//Логика использования приема		
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°		
 					
 					if($su == true) {
 						self::usePriem( $i );
 					}		
 				}
 				
-		//Рывок
+		//Р С‹РІРѕРє
 				static function priem223( $i ) {
 					$su = true;					
-					//Логика использования приема		
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°		
 					
 					if($su == true) {
 						self::usePriem( $i );
 					}		
 				}
 	
-		//Удачный удар
+		//РЈРґР°С‡РЅС‹Р№ СѓРґР°СЂ
 				static function priem11( $i ) {
 					$su = true;					
-					//Логика использования приема
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
 					if(isset(botLogic::$pr[6]) && botLogic::$st['tactic7'] > 0 && self::hp() < 66 && botLogic::$st['tactic1'] < 14) {
 						$su = false;
 					}
@@ -187,10 +187,10 @@ class botPriemLogic {
 					}		
 				}
 				
-		//Сильный удар
+		//РЎРёР»СЊРЅС‹Р№ СѓРґР°СЂ
 				static function priem4( $i ) {
 					$su = true;					
-					//Логика использования приема
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
 					if(isset(botLogic::$pr[6]) && botLogic::$st['tactic7'] > 0 && self::hp() < 66 && botLogic::$st['tactic1'] < 14) {
 						$su = false;
 					}elseif((isset(botLogic::$pr[11]) || isset(botLogic::$pr[6])) && rand(0,100) <= 75) {
@@ -202,20 +202,20 @@ class botPriemLogic {
 					}		
 				}
 	
-		//Агрессивная защита
+		//РђРіСЂРµСЃСЃРёРІРЅР°СЏ Р·Р°С‰РёС‚Р°
 				static function priem211( $i ) {
 					$su = true;					
-					//Логика использования приема
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
 					
 					if($su == true) {
 						self::usePriem( $i );
 					}		
 				}
 				
-		//Утереть пот
+		//РЈС‚РµСЂРµС‚СЊ РїРѕС‚
 				static function priem5( $i ) {
 					$su = true;					
-					//Логика использования приема					
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°					
 					if(self::hp() > 95) {
 						$su = false;
 					}
@@ -225,10 +225,10 @@ class botPriemLogic {
 					}		
 				}
 	
-		//Абсолютная защита
+		//РђР±СЃРѕР»СЋС‚РЅР°СЏ Р·Р°С‰РёС‚Р°
 				static function priem45( $i ) {
 					$su = true;					
-					//Логика использования приема
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
 					
 					if($su == true) {
 						self::usePriem( $i );
@@ -236,11 +236,11 @@ class botPriemLogic {
 				}
 				
 				
-		//Активная защита
+		//РђРєС‚РёРІРЅР°СЏ Р·Р°С‰РёС‚Р°
 				static function priem7( $i ) {
 					$su = true;					
-					//Логика использования приема
-					/*						Если есть абсолютная защита (агрессивную) и её возможно исопльзовать, а так-же НР менее 70%					*/
+					//Р›РѕРіРёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјР°
+					/*						Р•СЃР»Рё РµСЃС‚СЊ Р°Р±СЃРѕР»СЋС‚РЅР°СЏ Р·Р°С‰РёС‚Р° (Р°РіСЂРµСЃСЃРёРІРЅСѓСЋ) Рё РµС‘ РІРѕР·РјРѕР¶РЅРѕ РёСЃРѕРїР»СЊР·РѕРІР°С‚СЊ, Р° С‚Р°Рє-Р¶Рµ РќР  РјРµРЅРµРµ 70%					*/
 					if( ( (isset(botLogic::$pr[45]) && botLogic::$pr[45] < 1) || (isset(botLogic::$pr[211]) && botLogic::$pr[211] < 1) ) && self::hp() < 80 ) {
 						$su = false;
 					}
@@ -257,7 +257,7 @@ class botPriemLogic {
 		return $p;
 	}
 	
-	//Тест на возможность использования
+	//РўРµСЃС‚ РЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 	static function testpriem($pl) {
 		global $u;
 		$notr = 0;
@@ -315,7 +315,7 @@ class botPriemLogic {
 		
 		if($pl['trUser']==1)
 		{
-			//требует чтобы пользователь с кем-то разменивался (при ожидании прием гаснит)
+			//С‚СЂРµР±СѓРµС‚ С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ РєРµРј-С‚Рѕ СЂР°Р·РјРµРЅРёРІР°Р»СЃСЏ (РїСЂРё РѕР¶РёРґР°РЅРёРё РїСЂРёРµРј РіР°СЃРЅРёС‚)
 			$ga = mysql_fetch_array(mysql_query('SELECT `id` FROM `battle_act` WHERE `battle` = "'.botLogic::$bot['battle'].'" AND `uid1` = "'.botLogic::$bot['id'].'" AND `uid2` = "'.botLogic::$bot['enemy'].'" LIMIT 1'));
 			if(isset($ga['id']))
 			{
@@ -323,7 +323,7 @@ class botPriemLogic {
 			}
 		}	
 		
-		//Если прием уже использовали
+		//Р•СЃР»Рё РїСЂРёРµРј СѓР¶Рµ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё
 		if(botLogic::$st['prsu'][$pl['id']]>0) {
 			$notr++;
 		}

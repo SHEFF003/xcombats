@@ -88,7 +88,7 @@ if(isset($f->user['id']))
 			$add = $f->addnewtop($_POST['title'],$_POST['text'],$_POST['icon'],time(),$f->user['login'],$f->user['id'],$_POST['add_top'],-1);
 			if($add>0)
 			{
-				$fnt = 'На форуме, в разделе &quot;Новости&quot; опубликована новая статья &quot;<b>'.$_POST['title'].'</b>&quot;. <a href=http://'.$c['host'].'/forum?read='.$add.' target=_blank \>Читать далее</a>';
+				$fnt = 'РќР° С„РѕСЂСѓРјРµ, РІ СЂР°Р·РґРµР»Рµ &quot;РќРѕРІРѕСЃС‚Рё&quot; РѕРїСѓР±Р»РёРєРѕРІР°РЅР° РЅРѕРІР°СЏ СЃС‚Р°С‚СЊСЏ &quot;<b>'.$_POST['title'].'</b>&quot;. <a href=http://'.$c['host'].'/forum?read='.$add.' target=_blank \>Р§РёС‚Р°С‚СЊ РґР°Р»РµРµ</a>';
 				mysql_query('INSERT INTO `chat` (`type`,`time`,`text`) VALUES ("45","'.time().'","'.$fnt.'")');
 			}
 		//}
@@ -135,7 +135,7 @@ if(isset($_GET['read']) && $f->mod==1)
 	}
 }
 
-$dost = array(0=>'всем пользователям',1=>'только чтение',2=>'только для Ангелов',3=>'только для Паладинов',4=>'только для Тарманов');
+$dost = array(0=>'РІСЃРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј',1=>'С‚РѕР»СЊРєРѕ С‡С‚РµРЅРёРµ',2=>'С‚РѕР»СЊРєРѕ РґР»СЏ РђРЅРіРµР»РѕРІ',3=>'С‚РѕР»СЊРєРѕ РґР»СЏ РџР°Р»Р°РґРёРЅРѕРІ',4=>'С‚РѕР»СЊРєРѕ РґР»СЏ РўР°СЂРјР°РЅРѕРІ');
 ?>
 <!DOCTYPE html>
 <html>
@@ -358,7 +358,7 @@ div.fixed_topik_in {
 }
 .btnAdm img {
 	padding:5px;
-	display:bloack;
+	display:block;
 	float:left;
 }
 .btnAdm img:hover {
@@ -404,7 +404,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 }
 function bbcodearea(area,bb) {
 	if( bb == 'a' ) {
-		bb = '[url=http://]Название ссылки[/url]';
+		bb = '[url=http://]РќР°Р·РІР°РЅРёРµ СЃСЃС‹Р»РєРё[/url]';
 	}else if( bb == 'img' ) {
 		bb = '[img]http://[/img]';
 	}else{
@@ -419,29 +419,29 @@ function acma(id) {
 	 html += '<form method="post" action="http://xcombats.com/forum?read=<?=round((int)$_GET['read'])?>&page=<?=$_GET['page']?>">'+
                      '<table align="center">'+
                        '<tr>'+
-                         '<td><h4>Текст вашей записи:</h4></td>'+
+                         '<td><h4>РўРµРєСЃС‚ РІР°С€РµР№ Р·Р°РїРёСЃРё:</h4></td>'+
                        '</tr>'+
                        '<tr>'+
                          '<td><textarea rows="8" class="inup" name="text2_adm" id="text2_adm" cols="85" wrap="virtual"></textarea></td>'+
-                         '<td><input onclick="bbcodearea(\'text2_adm\',\'b\');" style="width:55px;" name="add2" type="button" class="btn" value=" Ж " title="Жирный">'+
+                         '<td><input onclick="bbcodearea(\'text2_adm\',\'b\');" style="width:55px;" name="add2" type="button" class="btn" value=" Р– " title="Р–РёСЂРЅС‹Р№">'+
                              '<br />'+
-                             '<input onclick="bbcodearea(\'text2_adm\',\'i\');" style="width:55px;" name="add2" type="button" class="btn" value=" К " title="Наклонный">'+
+                             '<input onclick="bbcodearea(\'text2_adm\',\'i\');" style="width:55px;" name="add2" type="button" class="btn" value=" Рљ " title="РќР°РєР»РѕРЅРЅС‹Р№">'+
                              '<br />'+
-                             '<input onclick="bbcodearea(\'text2_adm\',\'u\');" style="width:55px;" name="add2" type="button" class="btn" value=" Ч " title="Подчеркнутый">'+
+                             '<input onclick="bbcodearea(\'text2_adm\',\'u\');" style="width:55px;" name="add2" type="button" class="btn" value=" Р§ " title="РџРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№">'+
                              '<br />'+
-                             '<input onclick="bbcodearea(\'text2_adm\',\'code\');" style="width:55px;" name="add2" type="button" class="btn" value="Код" title="Текст программы">'+
+                             '<input onclick="bbcodearea(\'text2_adm\',\'code\');" style="width:55px;" name="add2" type="button" class="btn" value="РљРѕРґ" title="РўРµРєСЃС‚ РїСЂРѕРіСЂР°РјРјС‹">'+
 							 '<br />'+
-                             '<input onclick="bbcodearea(\'text2_adm\',\'a\');" style="width:55px;" name="add2" type="button" class="btn" value="Ссылка">'+
+                             '<input onclick="bbcodearea(\'text2_adm\',\'a\');" style="width:55px;" name="add2" type="button" class="btn" value="РЎСЃС‹Р»РєР°">'+
 							 '<br />'+
-                             '<input onclick="bbcodearea(\'text2_adm\',\'img\');" style="width:55px;" name="add2" type="button" class="btn" value="Картинка"></td>'+
+                             '<input onclick="bbcodearea(\'text2_adm\',\'img\');" style="width:55px;" name="add2" type="button" class="btn" value="РљР°СЂС‚РёРЅРєР°"></td>'+
                        '</tr>'+
                        '<tr>'+
                          '<td colspan="2"><table width="100%">'+
                              '<tr>'+
                                <? if($f->user['admin'] > 0 ) { ?>
-							   '<td><div align="left"><input name="adminname_adm" id="adminname_adm" type="checkbox" value="1" /><label for="adminname_adm"> От имени Администрации проекта.</label></div><br><br /></td>'+
+							   '<td><div align="left"><input name="adminname_adm" id="adminname_adm" type="checkbox" value="1" /><label for="adminname_adm"> РћС‚ РёРјРµРЅРё РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РїСЂРѕРµРєС‚Р°.</label></div><br><br /></td>'+
                                <? } ?>
-							   '<td width="120" align="right"><input type="submit" class="btn" value="Добавить" name="add2_adm" />'+
+							   '<td width="120" align="right"><input type="submit" class="btn" value="Р”РѕР±Р°РІРёС‚СЊ" name="add2_adm" />'+
                                    '<input type="hidden" id="add_otv_adm" name="add_otv_adm" value="'+id+'" /></td>'+
                              '</tr>'+
                          '</table></td>'+
@@ -450,7 +450,7 @@ function acma(id) {
                    '</form>';
 
 	
-	win.add('cmments1forum','Оставить запись к комментарию',html,{'a1':'alert('+id+');'},0,1,'width:630px;');
+	win.add('cmments1forum','РћСЃС‚Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ Рє РєРѕРјРјРµРЅС‚Р°СЂРёСЋ',html,{'a1':'alert('+id+');'},0,1,'width:630px;');
 }
 //-->
 </script>
@@ -478,22 +478,22 @@ function acma(id) {
 	  {
 	  ?>
       <div style="margin:30px;">
-        <p><a href="javascript:void(0);" onClick="history.back();">Вернуться назад</a></p>
+        <p><a href="javascript:void(0);" onClick="history.back();">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</a></p>
         <br>
         <?
 		$ed = mysql_fetch_array(mysql_query('SELECT * FROM `forum_msg` WHERE `id` = "'.((int)$_GET['aem']).'" LIMIT 1'));
 		if(!isset($ed['id']))
 		{
-			echo '<br><br><center>Данные для редактирования не найдены</center><br><br>';
+			echo '<br><br><center>Р”Р°РЅРЅС‹Рµ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РЅРµ РЅР°Р№РґРµРЅС‹</center><br><br>';
 		}else{
 			$fm = mysql_fetch_array(mysql_query('SELECT * FROM `forum_menu` WHERE `id` = "'.$ed['fid'].'" LIMIT 1'));
-			echo 'ID: '.$ed['id'].'<br>Раздел: <b>'.$fm['name'].'</b><br>';
+			echo 'ID: '.$ed['id'].'<br>Р Р°Р·РґРµР»: <b>'.$fm['name'].'</b><br>';
 		}
 		?>
         </div>
         <?
 	  }elseif(isset($_GET['search'])) {
-	  //Ищем на форуме
+	  //РС‰РµРј РЅР° С„РѕСЂСѓРјРµ
 	  if(isset($_POST['search'])) {
 		 $_GET['search'] = $_POST['search']; 
 	  }else{
@@ -511,15 +511,15 @@ function acma(id) {
               <td valign="top"><img src="http://xcombats.com/forum_script/img/fone1.jpg" width="118" height="257" style="margin-left:-15px;"></td>
               </tr>
             <tr>
-              <td><div align="center"><? if($f->user==false){ echo 'Вы не авторизованы<br><a href="http://'.$c['host'].'/">Войти на персонажа</a>'; }else{ echo 'Вы вошли как: <br>'.$f->user['sl'].'<br><br>'; } ?>
-                <? if(($f->user['align']>1 && $f->user['align']<2) || ($f->user['align']>3 && $f->user['align']<4) || $f->user['admin']>0){ echo '<br><a href="?r='.$_GET['r'].'&mod_use&rnd='.$code.'">«Модерирование» ['.$mod.']</a>'; }
-				   if($f->user['admin']>0 || $mod2=='on'){ echo '<br><a href="?r='.$_GET['r'].'&mod_use2&rnd='.$code.'">«Администрирование» ['.$mod2.']</a>'; }  ?>
+              <td><div align="center"><? if($f->user==false){ echo 'Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹<br><a href="http://'.$c['host'].'/">Р’РѕР№С‚Рё РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°</a>'; }else{ echo 'Р’С‹ РІРѕС€Р»Рё РєР°Рє: <br>'.$f->user['sl'].'<br><br>'; } ?>
+                <? if(($f->user['align']>1 && $f->user['align']<2) || ($f->user['align']>3 && $f->user['align']<4) || $f->user['admin']>0){ echo '<br><a href="?r='.$_GET['r'].'&mod_use&rnd='.$code.'">В«РњРѕРґРµСЂРёСЂРѕРІР°РЅРёРµВ» ['.$mod.']</a>'; }
+				   if($f->user['admin']>0 || $mod2=='on'){ echo '<br><a href="?r='.$_GET['r'].'&mod_use2&rnd='.$code.'">В«РђРґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµВ» ['.$mod2.']</a>'; }  ?>
               </div></td>
             </tr>
             <tr>
               <td height="50" valign="bottom">
               <div align="center" class="text1">
-                <div align="left"><b>Конференция</b></div>
+                <div align="left"><b>РљРѕРЅС„РµСЂРµРЅС†РёСЏ</b></div>
                 <div class="line1"></div>
               </div>              </td>
             </tr>
@@ -529,7 +529,7 @@ function acma(id) {
               <div class="line1"></div>              </td>
             </tr>
             <tr>
-              <td><div align="center"><img src="http://xcombats.com/forum_script/img/icon7.gif" width="15" height="15" title="Смайлики"> <a href="?smiles=1">Смайлики</a></div>
+              <td><div align="center"><img src="http://xcombats.com/forum_script/img/icon7.gif" width="15" height="15" title="РЎРјР°Р№Р»РёРєРё"> <a href="?smiles=1">РЎРјР°Р№Р»РёРєРё</a></div>
                 <br><br><br></td>
             </tr>
           </table></td>
@@ -537,7 +537,7 @@ function acma(id) {
             <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
               <tr>
                 <td><div align="center">
-                  <? echo '<H3>Результаты поиска по запросу: &quot;'.$word.'&quot;. Найдено записей '.$limw.' шт.</H3><br>'; ?></div><div align="left"></div></td>
+                  <? echo '<H3>Р РµР·СѓР»СЊС‚Р°С‚С‹ РїРѕРёСЃРєР° РїРѕ Р·Р°РїСЂРѕСЃСѓ: &quot;'.$word.'&quot;. РќР°Р№РґРµРЅРѕ Р·Р°РїРёСЃРµР№ '.$limw.' С€С‚.</H3><br>'; ?></div><div align="left"></div></td>
               </tr>
               <tr>
                 <td>
@@ -546,8 +546,8 @@ function acma(id) {
 				  <?
 				  $p_list=$f->paginator(1);
 				  ?>
-                    <td><div align="left"><img src="http://xcombats.com/forum_script/img/news.gif" width="16" height="16"> Страницы:  <?echo $p_list;?></div></td>
-                    <td width="250"><div class="line2"></div><form method="post" action="?search">Поиск: <input type="text" value="<?=$word?>" name="search"/> <input type="submit" value="найти"></form></td>
+                    <td><div align="left"><img src="http://xcombats.com/forum_script/img/news.gif" width="16" height="16"> РЎС‚СЂР°РЅРёС†С‹:  <?echo $p_list;?></div></td>
+                    <td width="250"><div class="line2"></div><form method="post" action="?search">РџРѕРёСЃРє: <input type="text" value="<?=$word?>" name="search"/> <input type="submit" value="РЅР°Р№С‚Рё"></form></td>
                   </tr>
                 </table>
                 <div class="line2"></div></td>
@@ -558,7 +558,7 @@ function acma(id) {
                 </div></td>
               </tr>
               <tr>
-                <td><div align="left" style="margin-top:5px;"><img src="http://xcombats.com/forum_script/img/news.gif" width="16" height="16"> Страницы:  <?echo $p_list;?></div></td>
+                <td><div align="left" style="margin-top:5px;"><img src="http://xcombats.com/forum_script/img/news.gif" width="16" height="16"> РЎС‚СЂР°РЅРёС†С‹:  <?echo $p_list;?></div></td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
@@ -569,7 +569,7 @@ function acma(id) {
       </table>
 	  <?
 	  }elseif($f->r>=1){
-	  //смотрим разделы
+	  //СЃРјРѕС‚СЂРёРј СЂР°Р·РґРµР»С‹
 	  ?>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -578,15 +578,15 @@ function acma(id) {
               <td valign="top"><img src="http://xcombats.com/forum_script/img/fone1.jpg" width="118" height="257" style="margin-left:-15px;"></td>
               </tr>
             <tr>
-              <td><div align="center"><? if($f->user==false){ echo 'Вы не авторизованы<br><a href="http://'.$c['host'].'/">Войти на персонажа</a>'; }else{ echo 'Вы вошли как: <br>'.$f->user['sl'].'<br><br>'; } ?>
-                <? if(($f->user['align']>1 && $f->user['align']<2) || ($f->user['align']>3 && $f->user['align']<4) || $f->user['admin']>0){ echo '<br><a href="?r='.$_GET['r'].'&mod_use&rnd='.$code.'">«Модерирование» ['.$mod.']</a>'; }
-				   if($f->user['admin']>0 || $mod2=='on'){ echo '<br><a href="?r='.$_GET['r'].'&mod_use2&rnd='.$code.'">«Администрирование» ['.$mod2.']</a>'; }  ?>
+              <td><div align="center"><? if($f->user==false){ echo 'Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹<br><a href="http://'.$c['host'].'/">Р’РѕР№С‚Рё РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°</a>'; }else{ echo 'Р’С‹ РІРѕС€Р»Рё РєР°Рє: <br>'.$f->user['sl'].'<br><br>'; } ?>
+                <? if(($f->user['align']>1 && $f->user['align']<2) || ($f->user['align']>3 && $f->user['align']<4) || $f->user['admin']>0){ echo '<br><a href="?r='.$_GET['r'].'&mod_use&rnd='.$code.'">В«РњРѕРґРµСЂРёСЂРѕРІР°РЅРёРµВ» ['.$mod.']</a>'; }
+				   if($f->user['admin']>0 || $mod2=='on'){ echo '<br><a href="?r='.$_GET['r'].'&mod_use2&rnd='.$code.'">В«РђРґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµВ» ['.$mod2.']</a>'; }  ?>
               </div></td>
             </tr>
             <tr>
               <td height="50" valign="bottom">
               <div align="center" class="text1">
-                <div align="left"><b>Конференция</b></div>
+                <div align="left"><b>РљРѕРЅС„РµСЂРµРЅС†РёСЏ</b></div>
                 <div class="line1"></div>
               </div>              </td>
             </tr>
@@ -596,7 +596,7 @@ function acma(id) {
               <div class="line1"></div>              </td>
             </tr>
             <tr>
-              <td><div align="center"><img src="http://xcombats.com/forum_script/img/icon7.gif" width="15" height="15" title="Смайлики"> <a href="?smiles=1">Смайлики</a></div>
+              <td><div align="center"><img src="http://xcombats.com/forum_script/img/icon7.gif" width="15" height="15" title="РЎРјР°Р№Р»РёРєРё"> <a href="?smiles=1">РЎРјР°Р№Р»РёРєРё</a></div>
                 <br><br><br></td>
             </tr>
           </table></td>
@@ -604,7 +604,7 @@ function acma(id) {
             <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
               <tr>
                 <td><div align="center">
-                  <? echo '<H3>Конференция "'.$f->fm['name'].'"</H3><br><br>'.$f->fm['opisan']; ?></div><div align="left"></div></td>
+                  <? echo '<H3>РљРѕРЅС„РµСЂРµРЅС†РёСЏ "'.$f->fm['name'].'"</H3><br><br>'.$f->fm['opisan']; ?></div><div align="left"></div></td>
               </tr>
               <tr>
                 <td>
@@ -613,8 +613,8 @@ function acma(id) {
 				  <?
 				  $p_list=$f->paginator(1);
 				  ?>
-                    <td><div align="left"><img src="http://xcombats.com/forum_script/img/news.gif" width="16" height="16"> Страницы:  <?echo $p_list;?></div></td>
-                    <td width="250"><div class="line2"></div><form method="post" action="?search">Поиск: <input type="text" value="" name="search"/> <input type="submit" value="найти"></form></td>
+                    <td><div align="left"><img src="http://xcombats.com/forum_script/img/news.gif" width="16" height="16"> РЎС‚СЂР°РЅРёС†С‹:  <?echo $p_list;?></div></td>
+                    <td width="250"><div class="line2"></div><form method="post" action="?search">РџРѕРёСЃРє: <input type="text" value="" name="search"/> <input type="submit" value="РЅР°Р№С‚Рё"></form></td>
                   </tr>
                 </table>
                 <div class="line2"></div></td>
@@ -625,7 +625,7 @@ function acma(id) {
                 </div></td>
               </tr>
               <tr>
-                <td><div align="left" style="margin-top:5px;"><img src="http://xcombats.com/forum_script/img/news.gif" width="16" height="16"> Страницы:  <?echo $p_list;?></div></td>
+                <td><div align="left" style="margin-top:5px;"><img src="http://xcombats.com/forum_script/img/news.gif" width="16" height="16"> РЎС‚СЂР°РЅРёС†С‹:  <?echo $p_list;?></div></td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
@@ -637,29 +637,29 @@ function acma(id) {
                 <? 
 				if($f->gd[$f->fm['id']]!=2 && $f->gd[$f->fm['id']]!=4 && $f->user['admin']==0)
 				{
-					echo '<center><br>Вы не можете создавать топики в этой конференции<br><br></center>';
+					echo '<center><br>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СЃРѕР·РґР°РІР°С‚СЊ С‚РѕРїРёРєРё РІ СЌС‚РѕР№ РєРѕРЅС„РµСЂРµРЅС†РёРё<br><br></center>';
 				}elseif($f->lst['time']<time()-60){ ?>
                 <form method="post" action="http://xcombats.com/forum?r=<? echo $f->r.'&rnd='.$code.''; ?>">
                 <table align="center">
                   <tr>
-                    <td colspan="2"><h4>Добавить свой вопрос в форум</h4>
-                      Тема сообщения
+                    <td colspan="2"><h4>Р”РѕР±Р°РІРёС‚СЊ СЃРІРѕР№ РІРѕРїСЂРѕСЃ РІ С„РѕСЂСѓРј</h4>
+                      РўРµРјР° СЃРѕРѕР±С‰РµРЅРёСЏ
                       <input type="text" class="inup" name="title" size="57" maxlength="70" value="" /></td>
                   </tr>
                   <tr>
                     <td><textarea rows="8" class="inup" name="text" id="text" cols="85" wrap="virtual"></textarea>
                     </td>
-                    <td><input onclick="bbcodearea('text','b');" name="add" style="width:55px;" type="button" class="btn" value=" Ж " title="Жирный">
+                    <td><input onclick="bbcodearea('text','b');" name="add" style="width:55px;" type="button" class="btn" value=" Р– " title="Р–РёСЂРЅС‹Р№">
                         <br />
-                        <input onclick="bbcodearea('text','i');" name="add" style="width:55px;" type="button" class="btn" value=" К " title="Наклонный">
+                        <input onclick="bbcodearea('text','i');" name="add" style="width:55px;" type="button" class="btn" value=" Рљ " title="РќР°РєР»РѕРЅРЅС‹Р№">
                       <br />
-                        <input onclick="bbcodearea('text','u');" name="add" style="width:55px;" type="button" class="btn" value=" Ч " title="Подчеркнутый">
+                        <input onclick="bbcodearea('text','u');" name="add" style="width:55px;" type="button" class="btn" value=" Р§ " title="РџРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№">
                       <br />
-                        <input onclick="bbcodearea('text','code');" name="add" style="width:55px;" type="button" class="btn" value="Код" title="Текст программы">
+                        <input onclick="bbcodearea('text','code');" name="add" style="width:55px;" type="button" class="btn" value="РљРѕРґ" title="РўРµРєСЃС‚ РїСЂРѕРіСЂР°РјРјС‹">
                       <br />
-                        <input onclick="bbcodearea('text','a');" name="add" style="width:55px;" type="button" class="btn" value="Ссылка">
+                        <input onclick="bbcodearea('text','a');" name="add" style="width:55px;" type="button" class="btn" value="РЎСЃС‹Р»РєР°">
                       <br />
-                        <input onclick="bbcodearea('text','img');" name="add" style="width:55px;" type="button" class="btn" value="Картинка">
+                        <input onclick="bbcodearea('text','img');" name="add" style="width:55px;" type="button" class="btn" value="РљР°СЂС‚РёРЅРєР°">
                     </td>
                   </tr>
                   <tr>
@@ -668,7 +668,7 @@ function acma(id) {
                           <td><?
 					  if($f->user['admin']>0)
 					  {
-					  	echo '<div align="left"><input name="adminname" id="adminname" type="checkbox" value="1" /><label for="adminname"> От имени Администрации проекта.</label></div><br>';
+					  	echo '<div align="left"><input name="adminname" id="adminname" type="checkbox" value="1" /><label for="adminname"> РћС‚ РёРјРµРЅРё РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РїСЂРѕРµРєС‚Р°.</label></div><br>';
 					  }
 					  ?>
                             <input type="radio" name="icon" value="13" checked>
@@ -700,7 +700,7 @@ function acma(id) {
                               <input type="radio" name="icon" value="8">
                             <img src="http://xcombats.com/forum_script/img/icon8.gif" height="15" width="15"> <br /></td>
                           <td align="right" valign="top">
-                          	  <input type="submit" class="btn" value="Добавить" name="add" />
+                          	  <input type="submit" class="btn" value="Р”РѕР±Р°РІРёС‚СЊ" name="add" />
                               <input type="hidden" id="key" name="key" value="<? echo $f->user['nextAct']; ?>" />
                               <input type="hidden" id="add_top" name="add_top" value="<? echo $f->fm['id']; ?>" />                          </td>
                         </tr>
@@ -708,7 +708,7 @@ function acma(id) {
                   </tr>
                 </table>
                 </form>
-                <? }else{ echo '<br><center>Временное ограничение на создание топиков.<br> Осталось подождать '.round($f->lst['time']+61-time()).' сек.</center><br>'; } ?>
+                <? }else{ echo '<br><center>Р’СЂРµРјРµРЅРЅРѕРµ РѕРіСЂР°РЅРёС‡РµРЅРёРµ РЅР° СЃРѕР·РґР°РЅРёРµ С‚РѕРїРёРєРѕРІ.<br> РћСЃС‚Р°Р»РѕСЃСЊ РїРѕРґРѕР¶РґР°С‚СЊ '.round($f->lst['time']+61-time()).' СЃРµРє.</center><br>'; } ?>
                 </div>
                 <? } ?>
                 </td>
@@ -718,7 +718,7 @@ function acma(id) {
         </tr>
       </table>
      <? }elseif($f->r==-1){
-	  //оставляем комментарий
+	  //РѕСЃС‚Р°РІР»СЏРµРј РєРѕРјРјРµРЅС‚Р°СЂРёР№
 	  ?>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -734,18 +734,18 @@ function acma(id) {
 				$url2 = mysql_fetch_array(mysql_query('SELECT `id`,`title` FROM `forum_msg` WHERE `fid` = "'.$f->see['fid'].'" AND `topic` = "-1" AND `delete` = "0" AND `id` < '.$f->see['id'].' ORDER BY `id` DESC LIMIT 1'));
 				
 				if(isset($url1['id'])) {
-					$url1 = '<a href="?read='.$url1['id'].'" title="'.$url1['title'].'"><b>&laquo; предыдущая ветвь</b></a>';
+					$url1 = '<a href="?read='.$url1['id'].'" title="'.$url1['title'].'"><b>&laquo; РїСЂРµРґС‹РґСѓС‰Р°СЏ РІРµС‚РІСЊ</b></a>';
 				}else{
-					$url1 = '&laquo; предыдущая ветвь';
+					$url1 = '&laquo; РїСЂРµРґС‹РґСѓС‰Р°СЏ РІРµС‚РІСЊ';
 				}
 				if(isset($url2['id'])) {
-					$url2 = '<a href="?read='.$url2['id'].'" title="'.$url2['title'].'"><b>следующая ветвь &raquo;</b></a>';
+					$url2 = '<a href="?read='.$url2['id'].'" title="'.$url2['title'].'"><b>СЃР»РµРґСѓСЋС‰Р°СЏ РІРµС‚РІСЊ &raquo;</b></a>';
 				}else{
-					$url2 = 'следующая ветвь &raquo;';
+					$url2 = 'СЃР»РµРґСѓСЋС‰Р°СЏ РІРµС‚РІСЊ &raquo;';
 				}
 				
 				?>
-                  <DIV align="center"><?=$url1?> | <A href="?r=<? echo $f->fm['id']; ?>" title="Конференция &quot;<? echo $f->fm['name']; ?>&quot;"><b>форум</b></A> | <?=$url2?><BR>
+                  <DIV align="center"><?=$url1?>В |В <A href="?r=<? echo $f->fm['id']; ?>" title="РљРѕРЅС„РµСЂРµРЅС†РёСЏ &quot;<? echo $f->fm['name']; ?>&quot;"><b>С„РѕСЂСѓРј</b></A>В |В <?=$url2?><BR>
                   </DIV>
               </div></td>
             </tr>
@@ -756,16 +756,16 @@ function acma(id) {
 			<?
 			$p_list=$f->paginator(2);
 			?>
-              <td>Страницы: <?echo $p_list;?></td>
+              <td>РЎС‚СЂР°РЅРёС†С‹: <?echo $p_list;?></td>
             </tr>
             <tr>
               <td style="padding-top:11px; padding-bottom:11px;" align="left">
               <div style="float:left"><h4><img src="http://xcombats.com/forum_script/img/icon<? echo $f->see['ico']; ?>.gif"> <a href="?r=<? echo $f->fm['id'].'&rnd='.$code; ?>"><b><? echo $f->fm['name']; ?></b></a> &gt; <? echo $f->see['title']; ?></h4></div>
               <? if(($f->user['align']>1.5 || $f->user['align']>3.05 || $f->user['admin']>0) && $f->mod == 1){ ?>
               <div style="float:right;">
-                  Доступ: <? echo $dost[$f->see['nocom']]; ?><br>
+                  Р”РѕСЃС‚СѓРї: <? echo $dost[$f->see['nocom']]; ?><br>
                   <select name="jumpTopic" id="jumpTopic" onChange="MM_jumpMenu('parent',this,0)">
-                    <option selected="selected">--------- переместить ---------</option>
+                    <option selected="selected">--------- РїРµСЂРµРјРµСЃС‚РёС‚СЊ ---------</option>
                     <?
 					$rtn = '';
 					$sp = mysql_query('SELECT * FROM `forum_menu`');
@@ -778,15 +778,15 @@ function acma(id) {
 					?>
                   </select><br>
                   <select name="actionTopic" id="actionTopic" onChange="MM_jumpMenu('parent',this,0)">
-                    <option selected>----------- действия -----------</option>
+                    <option selected>----------- РґРµР№СЃС‚РІРёСЏ -----------</option>
                     <? if($f->see['nocom']==0) { ?>
-                    <option value="?read=<? echo $_GET['read'].'&nocomment=1&rnd='.$code.''; ?>">Запретить оставлять ответы</option>
+                    <option value="?read=<? echo $_GET['read'].'&nocomment=1&rnd='.$code.''; ?>">Р—Р°РїСЂРµС‚РёС‚СЊ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹</option>
                     <? } ?>
-                    <option value="?read=<? echo $_GET['read'].'&delete=1&rnd='.$code.''; ?>">удалить топик</option>
+                    <option value="?read=<? echo $_GET['read'].'&delete=1&rnd='.$code.''; ?>">СѓРґР°Р»РёС‚СЊ С‚РѕРїРёРє</option>
                     <? if($f->see['fixed']==0) { ?>
-                    <option value="?read=<? echo $_GET['read'].'&fixed=1&rnd='.$code.''; ?>">Зафиксировать топик</option>
+                    <option value="?read=<? echo $_GET['read'].'&fixed=1&rnd='.$code.''; ?>">Р—Р°С„РёРєСЃРёСЂРѕРІР°С‚СЊ С‚РѕРїРёРє</option>
                     <? }else{ ?>
-                    <option value="?read=<? echo $_GET['read'].'&fixed=1&rnd='.$code.''; ?>">Убрать фиксацию топика</option>
+                    <option value="?read=<? echo $_GET['read'].'&fixed=1&rnd='.$code.''; ?>">РЈР±СЂР°С‚СЊ С„РёРєСЃР°С†РёСЋ С‚РѕРїРёРєР°</option>
                     <?
 					}
                     if($f->see['nocom']==0)
@@ -794,24 +794,24 @@ function acma(id) {
 				    if($f->user['admin']>0)
 					{
 					?>
-                    <option value="?read=<? echo $_GET['read'].'&onlyadmin=1&rnd='.$code.''; ?>">только для Ангелов</option>
+                    <option value="?read=<? echo $_GET['read'].'&onlyadmin=1&rnd='.$code.''; ?>">С‚РѕР»СЊРєРѕ РґР»СЏ РђРЅРіРµР»РѕРІ</option>
                     <?
 					}
 					if(($f->user['align']>1.5 && $f->user['align']<2) || $f->user['admin']>0)
 					{
 					?>
-                    <option value="?read=<? echo $_GET['read'].'&onlymoder=1&rnd='.$code.''; ?>">только для Паладинов</option>
+                    <option value="?read=<? echo $_GET['read'].'&onlymoder=1&rnd='.$code.''; ?>">С‚РѕР»СЊРєРѕ РґР»СЏ РџР°Р»Р°РґРёРЅРѕРІ</option>
                     <?
 					}
 					if(($f->user['align']>3.05 && $f->user['align']<4) || $f->user['admin']>0)
 					{
 					?>
-                    <option value="?read=<? echo $_GET['read'].'&onlymoder=2&rnd='.$code.''; ?>">только для Тарманов</option>
+                    <option value="?read=<? echo $_GET['read'].'&onlymoder=2&rnd='.$code.''; ?>">С‚РѕР»СЊРєРѕ РґР»СЏ РўР°СЂРјР°РЅРѕРІ</option>
                     <?
 					}
 					}else{
 					?>
-                    <option value="?read=<? echo $_GET['read'].'&onlyall=1&rnd='.$code.''; ?>">разрешить оставлять ответ</option>
+                    <option value="?read=<? echo $_GET['read'].'&onlyall=1&rnd='.$code.''; ?>">СЂР°Р·СЂРµС€РёС‚СЊ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚</option>
                     <?
 					}
 					?>
@@ -824,7 +824,7 @@ function acma(id) {
             	<td><? $f->seeTopic(); ?></td>
             </tr>
             <tr>
-              <td style="padding-top:3px; padding-bottom:3px;" align="left">Страницы:  <?echo $p_list;?></td>
+              <td style="padding-top:3px; padding-bottom:3px;" align="left">РЎС‚СЂР°РЅРёС†С‹:  <?echo $p_list;?></td>
             </tr>
             <tr>
               <td style="padding-top:3px; padding-bottom:3px;" align="left"><? if(isset($f->user['id']) || !isset($f->user['id'])){ ?>
@@ -832,32 +832,32 @@ function acma(id) {
                   <?
 				    if($f->see['nocom']>0)
 					{
-						echo '<center><br><font color="red"><b>Обсуждение закрыто</b></font><br><br></center>';
+						echo '<center><br><font color="red"><b>РћР±СЃСѓР¶РґРµРЅРёРµ Р·Р°РєСЂС‹С‚Рѕ</b></font><br><br></center>';
 					}elseif($f->see['goodAdd']!=1 || $f->pravasee()!=1)
 					{
-						echo '<center><br>Вы не можете оставлять ответы в этом топике.<br>Попробуйте через '.round($f->lst['time']+62-time()).' сек.<br><br></center>';
+						echo '<center><br>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹ РІ СЌС‚РѕРј С‚РѕРїРёРєРµ.<br>РџРѕРїСЂРѕР±СѓР№С‚Рµ С‡РµСЂРµР· '.round($f->lst['time']+62-time()).' СЃРµРє.<br><br></center>';
 					}/*elseif($f->gd[$f->see['fid']]!=3 && $f->gd[$f->see['fid']]!=4 && $f->user['admin']==0)
 					{
-						echo '<center><br>Вы не можете оставлять ответы в этом топике<br><br></center>';
+						echo '<center><br>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РѕСЃС‚Р°РІР»СЏС‚СЊ РѕС‚РІРµС‚С‹ РІ СЌС‚РѕРј С‚РѕРїРёРєРµ<br><br></center>';
 					}*/elseif($f->lst['time']<time()-60){ ?>
                   <form method="post" action="http://xcombats.com/forum?read=<? echo $f->see['id'].'&rnd='.$code.''; ?>">
                     <table align="center">
                       <tr>
-                        <td colspan="2"><h4>Добавить свой ответ</h4>                      </td>
+                        <td colspan="2"><h4>Р”РѕР±Р°РІРёС‚СЊ СЃРІРѕР№ РѕС‚РІРµС‚</h4>                      </td>
                       </tr>
                       <tr>
                         <td><textarea rows="8" class="inup" id="text2" name="text2" cols="85" wrap="virtual"></textarea>                        </td>
-                        <td><input onclick="bbcodearea('text2','b');" style="width:55px;" name="add2" type="button" class="btn" value=" Ж " title="Жирный">
+                        <td><input onclick="bbcodearea('text2','b');" style="width:55px;" name="add2" type="button" class="btn" value=" Р– " title="Р–РёСЂРЅС‹Р№">
                             <br />
-                            <input onclick="bbcodearea('text2','i');" style="width:55px;" name="add2" type="button" class="btn" value=" К " title="Наклонный">
+                            <input onclick="bbcodearea('text2','i');" style="width:55px;" name="add2" type="button" class="btn" value=" Рљ " title="РќР°РєР»РѕРЅРЅС‹Р№">
                             <br />
-                            <input onclick="bbcodearea('text2','u');" style="width:55px;" name="add2" type="button" class="btn" value=" Ч " title="Подчеркнутый">
+                            <input onclick="bbcodearea('text2','u');" style="width:55px;" name="add2" type="button" class="btn" value=" Р§ " title="РџРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№">
                             <br />
-                            <input onclick="bbcodearea('text2','code');" style="width:55px;" name="add2" type="button" class="btn" value="Код" title="Текст программы">
+                            <input onclick="bbcodearea('text2','code');" style="width:55px;" name="add2" type="button" class="btn" value="РљРѕРґ" title="РўРµРєСЃС‚ РїСЂРѕРіСЂР°РјРјС‹">
                             <br />
-                            <input onclick="bbcodearea('text2','a');" style="width:55px;" name="add2" type="button" class="btn" value="Ссылка">
+                            <input onclick="bbcodearea('text2','a');" style="width:55px;" name="add2" type="button" class="btn" value="РЎСЃС‹Р»РєР°">
                             <br />
-                            <input onclick="bbcodearea('text2','img');" style="width:55px;" name="add2" type="button" class="btn" value="Картинка">
+                            <input onclick="bbcodearea('text2','img');" style="width:55px;" name="add2" type="button" class="btn" value="РљР°СЂС‚РёРЅРєР°">
                          </td>
                       </tr>
                       <tr>
@@ -866,10 +866,10 @@ function acma(id) {
                               <td><?
 					  if($f->user['admin']>0)
 					  {
-					  	echo '<div align="left"><input name="adminname" id="adminname" type="checkbox" value="1" /><label for="adminname"> От имени Администрации проекта.</label></div><br>';
+					  	echo '<div align="left"><input name="adminname" id="adminname" type="checkbox" value="1" /><label for="adminname"> РћС‚ РёРјРµРЅРё РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РїСЂРѕРµРєС‚Р°.</label></div><br>';
 					  }
 					  ?>                                <br /></td>
-                              <td width="120" align="right"><input type="submit" class="btn" value="Добавить" name="add2" />
+                              <td width="120" align="right"><input type="submit" class="btn" value="Р”РѕР±Р°РІРёС‚СЊ" name="add2" />
                                   <input type="hidden" id="key2" name="key2" value="<? echo $f->user['nextAct']; ?>" />
                                   <input type="hidden" id="add_otv" name="add_otv" value="<? echo $f->see['id']; ?>" />                              </td>
                             </tr>
@@ -877,7 +877,7 @@ function acma(id) {
                       </tr>
                     </table>
                   </form>
-                  <? }else{ echo '<br><center>Временное ограничение на добавление ответов.</center><br>'; } ?>
+                  <? }else{ echo '<br><center>Р’СЂРµРјРµРЅРЅРѕРµ РѕРіСЂР°РЅРёС‡РµРЅРёРµ РЅР° РґРѕР±Р°РІР»РµРЅРёРµ РѕС‚РІРµС‚РѕРІ.</center><br>'; } ?>
                 </div>
                 <? } ?></td>
             </tr>
@@ -886,11 +886,11 @@ function acma(id) {
         </tr>
       </table>
       <? }elseif($f->r==-2){
-	  //МЕГА-выводим ошибку
+	  //РњР•Р“Рђ-РІС‹РІРѕРґРёРј РѕС€РёР±РєСѓ
 	  ?>
       <table width="100%" height="500" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td valign="middle" align="center"><strong>Ошибка:</strong> <? echo $f->error; ?><br><a href="http://xcombats.com/forum?rnd=<? echo $code; ?>">Вернуться на форум</a></td>
+          <td valign="middle" align="center"><strong>РћС€РёР±РєР°:</strong> <? echo $f->error; ?><br><a href="http://xcombats.com/forum?rnd=<? echo $code; ?>">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° С„РѕСЂСѓРј</a></td>
         </tr>
       </table>
 	  <? } ?>

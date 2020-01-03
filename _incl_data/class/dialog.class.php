@@ -40,7 +40,7 @@ class dialog
 			$pg = 1;
 			$go = 1;
 			$txt = '';
-			//Переход по страницам
+			//РџРµСЂРµС…РѕРґ РїРѕ СЃС‚СЂР°РЅРёС†Р°Рј
 			if(isset($_GET['act']))
 			{
 				$ta = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_dlg` WHERE `type` = "0" AND `id` = "'.mysql_real_escape_string((int)$_GET['act']).'" AND `id_dg` = "'.$this->info['id'].'" LIMIT 1'));
@@ -54,7 +54,7 @@ class dialog
 						$i = 0;
 						$x = explode('|',$ta['tr']);
 						while($i < count($x)) {
-							//Требования
+							//РўСЂРµР±РѕРІР°РЅРёСЏ
 							$k = explode('=',$x[$i]);								
 							if($k[0]=='data') {
 								$date = explode('-',$k[1]);
@@ -71,104 +71,104 @@ class dialog
 								}
 								
 							}elseif($k[0]=='diact') {
-								//Действия
+								//Р”РµР№СЃС‚РІРёСЏ
 								//user_id # all # all # lukaqst1 # -1
 								if($this->quest_act($k[1])==false) {
 									$go1 = 'delete';
 									$i = count($x);
 								}								
 							}elseif($k[0]=='quest_end') {
-								//Квест можно выполнять несколько раз в текущей пещере
+								//РљРІРµСЃС‚ РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅСЏС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ СЂР°Р· РІ С‚РµРєСѓС‰РµР№ РїРµС‰РµСЂРµ
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id`,`vals` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$k[1].'" ORDER BY `id` DESC LIMIT 1'));
 								if(isset($qlst['id']) && $qlst['vals'] != 'win' && $qlst['vals'] != 'end' && $qlst['vals'] != 'bad') {
 									$go1 = 0;
-									$txt .= '<br><b><font color=red>Что-то не так, Вы уже взяли данное задание...</font>';
+									$txt .= '<br><b><font color=red>Р§С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє, Р’С‹ СѓР¶Рµ РІР·СЏР»Рё РґР°РЅРЅРѕРµ Р·Р°РґР°РЅРёРµ...</font>';
 									$pg = $ta['page'];	
 								}
 							}elseif($k[0]=='quest_only_one') {
-								//Квест можно выполнять только один раз
+								//РљРІРµСЃС‚ РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅСЏС‚СЊ С‚РѕР»СЊРєРѕ РѕРґРёРЅ СЂР°Р·
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id`,`vals` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$k[1].'" ORDER BY `id` DESC LIMIT 1'));
 								if(isset($qlst['id']) && ($qlst['vals'] == 'win' || $qlst['vals'] == 'bad')) {
 									$go1 = 0;
-									$txt .= '<br><b><font color=red>Что-то не так, Вы уже выполняли данное задание...</font>';
+									$txt .= '<br><b><font color=red>Р§С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє, Р’С‹ СѓР¶Рµ РІС‹РїРѕР»РЅСЏР»Рё РґР°РЅРЅРѕРµ Р·Р°РґР°РЅРёРµ...</font>';
 									$pg = $ta['page'];	
 								}
 							}elseif($k[0]=='quest_now') {
-								//Квест должен быть взят
+								//РљРІРµСЃС‚ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІР·СЏС‚
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id`,`vals` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$k[1].'" ORDER BY `id` DESC LIMIT 1'));
 								if(isset($qlst['id']) && $qlst['vals'] != 'win' && $qlst['vals'] != 'end' && $qlst['vals'] != 'bad'){}else{
 									$go1 = 0;
-									$txt .= '<br><b><font color=red>Что-то не так, требуется взять задание...</font>';
+									$txt .= '<br><b><font color=red>Р§С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє, С‚СЂРµР±СѓРµС‚СЃСЏ РІР·СЏС‚СЊ Р·Р°РґР°РЅРёРµ...</font>';
 									$pg = $ta['page'];	
 								}
 							}elseif($k[0]=='tr_itm') {
-								//Квест требует предмет
+								//РљРІРµСЃС‚ С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚
 								$qlst = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "'.$k[1].'" AND `inOdet` = 0 AND `inTransfer` = 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if($qlst[0] < $k[2]){
 									$go1 = 0;
 									$itmqs = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$k[1].'" LIMIT 1'));
 									if(isset($itmqs['id'])) {
-										$txt .= '<br><b><font color=red>Требуется предмет &quot;'.$itmqs['name'].'&quot; (x'.$k[2].').</font>';
+										$txt .= '<br><b><font color=red>РўСЂРµР±СѓРµС‚СЃСЏ РїСЂРµРґРјРµС‚ &quot;'.$itmqs['name'].'&quot; (x'.$k[2].').</font>';
 									}
 									$pg = $ta['page'];	
 								}
 							}elseif($k[0]=='tr_itmodet') {
-								//Квест требует предмет
+								//РљРІРµСЃС‚ С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚
 								$k[1] = str_replace(',','" OR `item_id` = "',$k[1]);
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND (`item_id` = "'.$k[1].'") AND `inOdet` > 0 AND `inTransfer` = 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if(!isset($qlst['id'])){
 									$go1 = 0;
 									$itmqs = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$k[1].'" LIMIT 1'));
 									if(isset($itmqs['id'])) {
-										$txt .= '<br><b><font color=red>Требуется предмет &quot;'.$itmqs['name'].'&quot;.</font>';
+										$txt .= '<br><b><font color=red>РўСЂРµР±СѓРµС‚СЃСЏ РїСЂРµРґРјРµС‚ &quot;'.$itmqs['name'].'&quot;.</font>';
 									}
 									$pg = $ta['page'];	
 								}
 							}elseif($k[0]=='tr_noitmodet') {
-								//Квест требует предмет
+								//РљРІРµСЃС‚ С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚
 								$k[1] = str_replace(',','" OR `item_id` = "',$k[1]);
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND (`item_id` = "'.$k[1].'") AND `inOdet` > 0 AND `inTransfer` = 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if(isset($qlst['id'])){
 									$go1 = 0;
 									$itmqs = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$k[1].'" LIMIT 1'));
 									if(isset($itmqs['id'])) {
-										$txt .= '<br><b><font color=red>У вас уже есть требуемый предмет &quot;'.$itmqs['name'].'&quot;.</font>';
+										$txt .= '<br><b><font color=red>РЈ РІР°СЃ СѓР¶Рµ РµСЃС‚СЊ С‚СЂРµР±СѓРµРјС‹Р№ РїСЂРµРґРјРµС‚ &quot;'.$itmqs['name'].'&quot;.</font>';
 									}
 									$pg = $ta['page'];	
 								}
 							}elseif($k[0]=='tr_noitm') {
-								//Квест требует предмет
+								//РљРІРµСЃС‚ С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚
 								$k[1] = str_replace(',','" OR `item_id` = "',$k[1]);
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND (`item_id` = "'.$k[1].'") AND `inTransfer` = 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if(isset($qlst['id'])){
 									$go1 = 0;
 									$itmqs = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$k[1].'" LIMIT 1'));
 									if(isset($itmqs['id'])) {
-										$txt .= '<br><b><font color=red>У вас уже есть требуемый предмет &quot;'.$itmqs['name'].'&quot;.</font>';
+										$txt .= '<br><b><font color=red>РЈ РІР°СЃ СѓР¶Рµ РµСЃС‚СЊ С‚СЂРµР±СѓРµРјС‹Р№ РїСЂРµРґРјРµС‚ &quot;'.$itmqs['name'].'&quot;.</font>';
 									}
 									$pg = $ta['page'];	
 								}
 							}elseif($k[0]=='del_itm') {
-								//Квест удаляет предмет
+								//РљРІРµСЃС‚ СѓРґР°Р»СЏРµС‚ РїСЂРµРґРјРµС‚
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "'.$k[1].'" AND `inOdet` = 0 AND `inTransfer` = 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if(isset($qlst['id'])){
 									$itmqs = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$k[1].'" LIMIT 1'));
 									if(isset($itmqs['id'])) {
 										if(mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `id` = "'.$qlst['id'].'" LIMIT 1')) {
-											$txt .= '<br><b><font color=red>Вы отдали &quot;'.$itmqs['name'].'&quot;</font>';
+											$txt .= '<br><b><font color=red>Р’С‹ РѕС‚РґР°Р»Рё &quot;'.$itmqs['name'].'&quot;</font>';
 										}
 									}
 									$pg = $ta['page'];	
 								}
 							} elseif( $k[0] == 'needRep' ) {
-								// разговор требует репутации в пещере.
+								// СЂР°Р·РіРѕРІРѕСЂ С‚СЂРµР±СѓРµС‚ СЂРµРїСѓС‚Р°С†РёРё РІ РїРµС‰РµСЂРµ.
 								$temp = explode(',', $k[1]);
 								$needRep = array('city' => $temp[0], 'rep' => (int)$temp[1]); 
-								if( isset($needRep) ) { # Проверяем репутацию. 
+								if( isset($needRep) ) { # РџСЂРѕРІРµСЂСЏРµРј СЂРµРїСѓС‚Р°С†РёСЋ. 
 									if($u->rep['rep'.$needRep['city']] < $needRep['rep'] ) {
 										$swapActStatus = 0;
 										$go1 = 0;
-										$txt = '<font color=red>Я тебя раньше здесь не видел, уходи прочь негодник!</font>';
+										$txt = '<font color=red>РЇ С‚РµР±СЏ СЂР°РЅСЊС€Рµ Р·РґРµСЃСЊ РЅРµ РІРёРґРµР», СѓС…РѕРґРё РїСЂРѕС‡СЊ РЅРµРіРѕРґРЅРёРє!</font>';
 										$pg = $ta['page'];
 									}
 								}
@@ -183,14 +183,14 @@ class dialog
 							if(file_exists('_incl_data/class/quest/'.htmlspecialchars($act0[1]).'.php')) {
 								include('_incl_data/class/quest/'.htmlspecialchars($act0[1]).'.php');
 							}else{
-								$txt .= '<br><b><font color=red>Квест не найден в списках NPS...</b></font>';
+								$txt .= '<br><b><font color=red>РљРІРµСЃС‚ РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєР°С… NPS...</b></font>';
 							}
 							$pg = $act[1];
 						}elseif( $act[0]=='dialog_act_update') {
 							$act33 = $this->dialog_act_update($act[2]);
 							if( $act33[0] == false ) {
 								if( $act33[1] == '' ) {
-									$txt .= '<br><b><font color=red>Что-то пошло не так...</b></font>';
+									$txt .= '<br><b><font color=red>Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє...</b></font>';
 								}else{
 									$txt .= '<br><b><font color=red>'.$act33[1].'</font></b>';
 								}
@@ -199,7 +199,7 @@ class dialog
 							}
 							$pg = $act[1];
 						}elseif( $act[0]=='quest_act' ) {
-							$txt .= '<br><b><font color=red>Вы получили новое задание.</b></font>';
+							$txt .= '<br><b><font color=red>Р’С‹ РїРѕР»СѓС‡РёР»Рё РЅРѕРІРѕРµ Р·Р°РґР°РЅРёРµ.</b></font>';
 							mysql_query('INSERT INTO `dialog_act` (
 								`uid`,`city`,`time`,`var`,`val`,`btl_bot`,`itms`,`now`,`max`,`info`
 							) VALUES (
@@ -208,31 +208,31 @@ class dialog
 							)');
 							$pg = $act1[2];
 							if( $act1[8] != 0 ) {
-								//Выдаем предмет для квеста
+								//Р’С‹РґР°РµРј РїСЂРµРґРјРµС‚ РґР»СЏ РєРІРµСЃС‚Р°
 								$itmb = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$act1[8].'" LIMIT 1'));
 								if(isset($itmb['id'])) {
 									$u->addItem($act1[8],$u->info['id'],'|nodelete=1');
-									$txt .= '<br><b><font color=red>Вы получили предмет &quot;'.$itmb['name'].'&quot;</font></b>';
+									$txt .= '<br><b><font color=red>Р’С‹ РїРѕР»СѓС‡РёР»Рё РїСЂРµРґРјРµС‚ &quot;'.$itmb['name'].'&quot;</font></b>';
 								}
 							}
 						}elseif( $act[0]=='buyitm' ) {
 							$itmb = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$act1[0].'" LIMIT 1'));
 							if(isset($itmb['id'])) {
 								if( $u->info['money'] < $act1[1] ) {
-									$txt .= '<br><b><font color=red>Вам не хватает денег для покупки &quot;'.$itmb['name'].'&quot;, требуется '.$act1[1].' кр.';
+									$txt .= '<br><b><font color=red>Р’Р°Рј РЅРµ С…РІР°С‚Р°РµС‚ РґРµРЅРµРі РґР»СЏ РїРѕРєСѓРїРєРё &quot;'.$itmb['name'].'&quot;, С‚СЂРµР±СѓРµС‚СЃСЏ '.$act1[1].' РєСЂ.';
 								}else{
 									$act1dt = '';
-									$txt .= '<br><b><font color=red>Вы успешно приобрели &quot;'.$itmb['name'].'&quot;';
+									$txt .= '<br><b><font color=red>Р’С‹ СѓСЃРїРµС€РЅРѕ РїСЂРёРѕР±СЂРµР»Рё &quot;'.$itmb['name'].'&quot;';
 									if($act1[1] > 0) {
-										$txt .= ' за '.$act1[1].' кр.';
+										$txt .= ' Р·Р° '.$act1[1].' РєСЂ.';
 										$u->info['money'] -= $act1[1];
 										mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 									}
 									if($act1[2] > 0) {
-										$txt .= ' за '.$act1[2].' екр.';
+										$txt .= ' Р·Р° '.$act1[2].' РµРєСЂ.';
 									}
 									if( $act1[3] > 0 ) {
-										$txt .= ' на срок '.$u->timeOut($act1[3]).'';
+										$txt .= ' РЅР° СЃСЂРѕРє '.$u->timeOut($act1[3]).'';
 										$act1dt .= '|srok='.$act1[3].'';
 									}
 									$txt .= '</font></b>';
@@ -241,16 +241,16 @@ class dialog
 									$pg = $act1[4];
 								}
 							}else{
-								$txt .= '<br><b><font color=red>Неудалось приобрести предмет...</font></b>';
+								$txt .= '<br><b><font color=red>РќРµСѓРґР°Р»РѕСЃСЊ РїСЂРёРѕР±СЂРµСЃС‚Рё РїСЂРµРґРјРµС‚...</font></b>';
 								$pg = 1;	
 							}
 						}elseif( $act1[0]=='quest' ) {
 							$pg = $act1[1];	
 							$act2 = explode('=',$act[1]);													
 							if($act2[0] > 0 && $q->testGood($act2[0])==1) {
-								//выдаем квест
+								//РІС‹РґР°РµРј РєРІРµСЃС‚
 								if($act2[1]!='0') {
-									//Выдача предмета
+									//Р’С‹РґР°С‡Р° РїСЂРµРґРјРµС‚Р°
 									$ic1 = 0;
 									$act21 = explode(',',$act2[1]);
 									while($ic1 < count($act21)) {
@@ -258,11 +258,11 @@ class dialog
 										$itmqs = mysql_fetch_array(mysql_query('SELECT `id`,`name` FROM `items_main` WHERE `id` = "'.$act3[0].'" LIMIT 1'));
 										if(isset($itmqs['id'])) {
 											if($act3[2] > 1) {
-												//несколько
-												$txt .= '<br><b><font color=red>Вы получили предмет &quot;'.$itmqs['name'].'&quot; (x'.$act3[2].' шт.).</font></b>';
+												//РЅРµСЃРєРѕР»СЊРєРѕ
+												$txt .= '<br><b><font color=red>Р’С‹ РїРѕР»СѓС‡РёР»Рё РїСЂРµРґРјРµС‚ &quot;'.$itmqs['name'].'&quot; (x'.$act3[2].' С€С‚.).</font></b>';
 											}else{
-												//один
-												$txt .= '<br><b><font color=red>Вы получили квестовый предмет &quot;'.$itmqs['name'].'&quot;.</font></b>';
+												//РѕРґРёРЅ
+												$txt .= '<br><b><font color=red>Р’С‹ РїРѕР»СѓС‡РёР»Рё РєРІРµСЃС‚РѕРІС‹Р№ РїСЂРµРґРјРµС‚ &quot;'.$itmqs['name'].'&quot;.</font></b>';
 											}
 											$ic2 = 1;
 											while($ic2 <= $act3[2]) {
@@ -277,12 +277,12 @@ class dialog
 								$txt .= '<br><b><font color=red>'.$u->error.'.</font></b>';
 								$u->error = '';
 							} else {
-								$txt .= '<br><b><font color=red>Не удалось получить задание, не соответствуют условия получения...</font></b>';	
+								$txt .= '<br><b><font color=red>РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ Р·Р°РґР°РЅРёРµ, РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ СѓСЃР»РѕРІРёСЏ РїРѕР»СѓС‡РµРЅРёСЏ...</font></b>';	
 							}
 						} elseif($act[0]=='go' && $go1 == 1) {
 							$pg = $act[1];	
 						} elseif($act[0]=='atackbot' && $go1 == 1) {
-							//Нападение на монстра
+							//РќР°РїР°РґРµРЅРёРµ РЅР° РјРѕРЅСЃС‚СЂР°
 							if( round((int)$act[1]) > 0 ) {
 								$btl_id = 0;
 								//$expB = -77.77;
@@ -318,7 +318,7 @@ class dialog
 								$btl_id = mysql_insert_id();
 								
 								if($btl_id > 0) {
-									//Добавляем ботов
+									//Р”РѕР±Р°РІР»СЏРµРј Р±РѕС‚РѕРІ
 									$k = $u->addNewbot(round((int)$act[1]),NULL,NULL,array());
 									mysql_query('UPDATE `users` SET `battle` = "'.$btl_id.'" WHERE `id` = "'.$k['id'].'" LIMIT 1');
 									mysql_query('UPDATE `stats` SET `x`="'.$u->info['x'].'",`y`="'.$u->info['y'].'",`team` = "2" WHERE `id` = "'.$k['id'].'" LIMIT 1');
@@ -328,7 +328,7 @@ class dialog
 								}
 								header('location: main.php');
 							}else{
-								echo '<b><font title="'.$act[1].'" color=red>Поединок почему-то не начался...</font></b>';
+								echo '<b><font title="'.$act[1].'" color=red>РџРѕРµРґРёРЅРѕРє РїРѕС‡РµРјСѓ-С‚Рѕ РЅРµ РЅР°С‡Р°Р»СЃСЏ...</font></b>';
 							}
 							die();
 						} elseif($act[0]=='goroom' && $go1 == 1) {
@@ -337,55 +337,55 @@ class dialog
 							header('location: main.php');
 							die();	
 						} elseif($act[0]=='transfer2' && $go1 == 1) {
-							//Обменник тыквоголового
+							//РћР±РјРµРЅРЅРёРє С‚С‹РєРІРѕРіРѕР»РѕРІРѕРіРѕ
 							$txt = '';
 							
-							$xtik = 0; //Требуется тыкв
+							$xtik = 0; //РўСЂРµР±СѓРµС‚СЃСЏ С‚С‹РєРІ
 							
 							if( $act[1] == 1 && true == false ) {
-								$txt .= 'Обмен 1...';
+								$txt .= 'РћР±РјРµРЅ 1...';
 								$xtik = 10;
 								$itik = 4465;
 								
 							}elseif( $act[1] == 2 ) {
-								$txt .= 'Обмен 2...';
+								$txt .= 'РћР±РјРµРЅ 2...';
 								$xtik = 15;
 								$itik = 2143;
 								
 							}elseif( $act[1] == 3 ) {
-								$txt .= 'Обмен 3...';
+								$txt .= 'РћР±РјРµРЅ 3...';
 								$xtik = 15;
 								$itik = 2144;
 								
 							}elseif( $act[1] == 4 && true == false ) {
-								$txt .= 'Обмен 4...';
+								$txt .= 'РћР±РјРµРЅ 4...';
 								$xtik = 6;
-								//арт воина
+								//Р°СЂС‚ РІРѕРёРЅР°
 								$itik = -1;
 								
 							}elseif( $act[1] == 5 && true == false ) {
-								$txt .= 'Обмен 5...';
+								$txt .= 'РћР±РјРµРЅ 5...';
 								$xtik = 6;
-								//арт мага
+								//Р°СЂС‚ РјР°РіР°
 								$itik = -2;
 								
 							}elseif( $act[1] == 6 ) {
-								$txt .= 'Обмен 6...';
+								$txt .= 'РћР±РјРµРЅ 6...';
 								$xtik = 50;
-								//значок 1
+								//Р·РЅР°С‡РѕРє 1
 								$itik = -3;
 								
 							}elseif( $act[1] == 7 ) {
-								$txt .= 'Обмен 7...';
+								$txt .= 'РћР±РјРµРЅ 7...';
 								$xtik = 70;
-								//значок 2
+								//Р·РЅР°С‡РѕРє 2
 								$itik = -4;
 								
 							}else{
-								$txt .= 'Тыквоголовый не меняет этот хлам...';
+								$txt .= 'РўС‹РєРІРѕРіРѕР»РѕРІС‹Р№ РЅРµ РјРµРЅСЏРµС‚ СЌС‚РѕС‚ С…Р»Р°Рј...';
 							}
 							
-							$txt = 'Обменник начнет свою работу 3 ноября';
+							$txt = 'РћР±РјРµРЅРЅРёРє РЅР°С‡РЅРµС‚ СЃРІРѕСЋ СЂР°Р±РѕС‚Сѓ 3 РЅРѕСЏР±СЂСЏ';
 							
 							$itms = array();
 							$sp = mysql_query('SELECT * FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "4504" AND (`delete` = "0" OR `delete` = "1000") AND `inOdet` = "0" AND `inShop` = "0" LIMIT 100');
@@ -395,8 +395,8 @@ class dialog
 		
 							$t = $this->trnObj($itms[4504],$xtik);
 							if($t[0] > 0) {
-								// $t[0] - сколько предметов награды даем,  $cn[$i]['add'][0] - item_id предмета награды
-								//удаляем ингридиенты
+								// $t[0] - СЃРєРѕР»СЊРєРѕ РїСЂРµРґРјРµС‚РѕРІ РЅР°РіСЂР°РґС‹ РґР°РµРј,  $cn[$i]['add'][0] - item_id РїСЂРµРґРјРµС‚Р° РЅР°РіСЂР°РґС‹
+								//СѓРґР°Р»СЏРµРј РёРЅРіСЂРёРґРёРµРЅС‚С‹
 	
 								$gdtik = 1;
 	
@@ -405,14 +405,14 @@ class dialog
 									//echo 'UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "4504" AND (`delete` = "0" OR `delete` = "1000") AND `inOdet` = "0" AND `inShop` = "0" LIMIT '.$t[0].'';
 									if($upd) {
 										if( $itik > 0 ) {
-											//Выдаем предметы
+											//Р’С‹РґР°РµРј РїСЂРµРґРјРµС‚С‹
 											$u->addItem($itik,$u->info['id'],'|nosale=1|srok='.(7*86400).'',NULL,1);
 											$itm_nm = mysql_fetch_array(mysql_query('SELECT `name` FROM `items_main` WHERE `id` = "'.$itik.'" LIMIT 1'));
-											$txt = 'Вы получили предмет &quot;'.$itm_nm['name'].'&quot;';
+											$txt = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РїСЂРµРґРјРµС‚ &quot;'.$itm_nm['name'].'&quot;';
 										}else{
-											//Что-то уникальное
+											//Р§С‚Рѕ-С‚Рѕ СѓРЅРёРєР°Р»СЊРЅРѕРµ
 											if( $itik == -1 ) {
-												//Артефакт воин
+												//РђСЂС‚РµС„Р°РєС‚ РІРѕРёРЅ
 												$arts_1 = array();
 												$arts_lvl = $u->info['level'];
 												if( $arts_lvl < 4 ) {
@@ -430,9 +430,9 @@ class dialog
 												}
 												$itm_nm = mysql_fetch_array(mysql_query('SELECT `name` FROM `items_main` WHERE `id` = "'.$arts_1.'" LIMIT 1'));
 											
-												$txt = 'Вы получили артефакт для воина &quot;'.$itm_nm['name'].'&quot; на срок 12 часов.';
+												$txt = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё Р°СЂС‚РµС„Р°РєС‚ РґР»СЏ РІРѕРёРЅР° &quot;'.$itm_nm['name'].'&quot; РЅР° СЃСЂРѕРє 12 С‡Р°СЃРѕРІ.';
 											}elseif( $itik == -2 ) {
-												//Артефакт мага
+												//РђСЂС‚РµС„Р°РєС‚ РјР°РіР°
 												$arts_1 = array();
 												$arts_lvl = $u->info['level'];
 												if( $arts_lvl < 4 ) {
@@ -450,43 +450,43 @@ class dialog
 												}
 												$itm_nm = mysql_fetch_array(mysql_query('SELECT `name` FROM `items_main` WHERE `id` = "'.$arts_1.'" LIMIT 1'));
 											
-												$txt = 'Вы получили артефакт для мага &quot;'.$itm_nm['name'].'&quot; на срок 12 часов.';
+												$txt = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё Р°СЂС‚РµС„Р°РєС‚ РґР»СЏ РјР°РіР° &quot;'.$itm_nm['name'].'&quot; РЅР° СЃСЂРѕРє 12 С‡Р°СЃРѕРІ.';
 											}elseif( $itik == -3 ) {
-												//Значок +1
+												//Р—РЅР°С‡РѕРє +1
 												mysql_query('DELETE FROM `users_ico` WHERE `uid` = "'.$u->info['id'].'" AND (`img` = "helloween_2014m1.gif" OR `img` = "helloween_2014m2.gif")');
 												mysql_query('INSERT INTO `users_ico` (`uid`,`time`,`text`,`img`,`endTime`,`bonus`,`type`,`x`) VALUES (
 													"'.$u->info['id'].'",
 													"'.time().'",
-													"<b>Хэллоуин</b>`'.date('Y').'<br>Обыкновенный собиратель тыкв!",
+													"<b>РҐСЌР»Р»РѕСѓРёРЅ</b>`'.date('Y').'<br>РћР±С‹РєРЅРѕРІРµРЅРЅС‹Р№ СЃРѕР±РёСЂР°С‚РµР»СЊ С‚С‹РєРІ!",
 													"helloween_2014m1.gif",
 													"'.(time()+86400*365).'",
 													"add_exp=1",
 													"1",
 													"1"
 												)');
-												$txt = 'Вы получили значок &quot;Хэллоуин`'.date('Y').' Обыкновенный&quot;';
+												$txt = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё Р·РЅР°С‡РѕРє &quot;РҐСЌР»Р»РѕСѓРёРЅ`'.date('Y').' РћР±С‹РєРЅРѕРІРµРЅРЅС‹Р№&quot;';
 											}elseif( $itik == -4 ) {
-												//Значок +5	
+												//Р—РЅР°С‡РѕРє +5	
 												mysql_query('DELETE FROM `users_ico` WHERE `uid` = "'.$u->info['id'].'" AND (`img` = "helloween_2014m1.gif" OR `img` = "helloween_2014m2.gif")');
 												mysql_query('INSERT INTO `users_ico` (`uid`,`time`,`text`,`img`,`endTime`,`bonus`,`type`,`x`) VALUES (
 													"'.$u->info['id'].'",
 													"'.time().'",
-													"<b>Хэллоуин</b>`'.date('Y').'<br>Лучший собиратель тыкв!",
+													"<b>РҐСЌР»Р»РѕСѓРёРЅ</b>`'.date('Y').'<br>Р›СѓС‡С€РёР№ СЃРѕР±РёСЂР°С‚РµР»СЊ С‚С‹РєРІ!",
 													"helloween_2014m2.gif",
 													"'.(time()+86400*365).'",
 													"add_exp=5",
 													"1",
 													"1"
 												)');
-												$txt = 'Вы получили значок &quot;Хэллоуин`'.date('Y').' Лучший&quot;';
+												$txt = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё Р·РЅР°С‡РѕРє &quot;РҐСЌР»Р»РѕСѓРёРЅ`'.date('Y').' Р›СѓС‡С€РёР№&quot;';
 											}
 										}
 									}
 								}else{
-									$txt = 'Неудалось совершить обмен...';
+									$txt = 'РќРµСѓРґР°Р»РѕСЃСЊ СЃРѕРІРµСЂС€РёС‚СЊ РѕР±РјРµРЅ...';
 								}
 							}else{
-								$txt = 'Недостаточно тыкв для обмена...';
+								$txt = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ С‚С‹РєРІ РґР»СЏ РѕР±РјРµРЅР°...';
 							}
 							
 							if($txt!=''){
@@ -494,43 +494,43 @@ class dialog
 							}
 							$pg = 3;
 						} elseif($act[0]=='transfer1' && $go1 == 1) {
-							//Меняем гайки и прочий мусор из канализации на жетоны
-							//ИХ больше у тебя нету... Неси еще, Луке нужно больше ИХ!
+							//РњРµРЅСЏРµРј РіР°Р№РєРё Рё РїСЂРѕС‡РёР№ РјСѓСЃРѕСЂ РёР· РєР°РЅР°Р»РёР·Р°С†РёРё РЅР° Р¶РµС‚РѕРЅС‹
+							//РРҐ Р±РѕР»СЊС€Рµ Сѓ С‚РµР±СЏ РЅРµС‚Сѓ... РќРµСЃРё РµС‰Рµ, Р›СѓРєРµ РЅСѓР¶РЅРѕ Р±РѕР»СЊС€Рµ РРҐ!
 							$pg = $act[1]; $itms = array();
 							$sp = mysql_query('SELECT * FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND (`item_id` = "1002" OR `item_id` = "1003" OR `item_id` = "1004" OR `item_id` = "1005" OR (`item_id` >= "1009" AND`item_id` <= "1014")) AND (`delete` = "0" OR `delete` = "1000") AND `inOdet` = "0" AND `inShop` = "0" LIMIT 250');
 							while($pl = mysql_fetch_array($sp)) {
 								$itms[$pl['item_id']]++;	
 							}
-							//Предметы
+							//РџСЂРµРґРјРµС‚С‹
 							$cn = array( 
-								0 => 3, //кол-во классификаций
+								0 => 3, //РєРѕР»-РІРѕ РєР»Р°СЃСЃРёС„РёРєР°С†РёР№
 								1 => array(
-									//гайка
-									1     => array('n'=>'Гайка',0=>1002,1=>3,7=>9,8=>15),
-									//болт
-									2     => array('n'=>'Болт',0=>1003,1=>1,7=>3,8=>5),
-									//вентиль
-									3     => array('n'=>'Вентиль',0=>1005,1=>(1/3),7=>1,8=>2),
-									'add' => array(0=>1006,1=>'Жетон') //предмет вознаграждения, бронзовый жетон					
-									), //бронза
+									//РіР°Р№РєР°
+									1     => array('n'=>'Р“Р°Р№РєР°',0=>1002,1=>3,7=>9,8=>15),
+									//Р±РѕР»С‚
+									2     => array('n'=>'Р‘РѕР»С‚',0=>1003,1=>1,7=>3,8=>5),
+									//РІРµРЅС‚РёР»СЊ
+									3     => array('n'=>'Р’РµРЅС‚РёР»СЊ',0=>1005,1=>(1/3),7=>1,8=>2),
+									'add' => array(0=>1006,1=>'Р–РµС‚РѕРЅ') //РїСЂРµРґРјРµС‚ РІРѕР·РЅР°РіСЂР°Р¶РґРµРЅРёСЏ, Р±СЂРѕРЅР·РѕРІС‹Р№ Р¶РµС‚РѕРЅ					
+									), //Р±СЂРѕРЅР·Р°
 								2 => array(
-									//гайка
-									1     => array('n'=>'Чистая гайка',0=>1009,1=>3,7=>9,8=>15),
-									//болт
-									2     => array('n'=>'Длинный Болт',0=>1010,1=>1,7=>3,8=>5),
-									//вентиль
-									3     => array('n'=>'Чистый вентиль',0=>1011,1=>(1/3),7=>1,8=>2),
-									'add' => array(0=>1007,1=>'Серебряный жетон') //предмет вознаграждения, бронзовый жетон					
-								), //серебро
+									//РіР°Р№РєР°
+									1     => array('n'=>'Р§РёСЃС‚Р°СЏ РіР°Р№РєР°',0=>1009,1=>3,7=>9,8=>15),
+									//Р±РѕР»С‚
+									2     => array('n'=>'Р”Р»РёРЅРЅС‹Р№ Р‘РѕР»С‚',0=>1010,1=>1,7=>3,8=>5),
+									//РІРµРЅС‚РёР»СЊ
+									3     => array('n'=>'Р§РёСЃС‚С‹Р№ РІРµРЅС‚РёР»СЊ',0=>1011,1=>(1/3),7=>1,8=>2),
+									'add' => array(0=>1007,1=>'РЎРµСЂРµР±СЂСЏРЅС‹Р№ Р¶РµС‚РѕРЅ') //РїСЂРµРґРјРµС‚ РІРѕР·РЅР°РіСЂР°Р¶РґРµРЅРёСЏ, Р±СЂРѕРЅР·РѕРІС‹Р№ Р¶РµС‚РѕРЅ					
+								), //СЃРµСЂРµР±СЂРѕ
 								3 => array(
-									//гайка
-									1     => array('n'=>'Гайка с Резьбой',0=>1012,1=>3,7=>9,8=>15),
-									//болт
-									2     => array('n'=>'Нужный болт',0=>1013,1=>1,7=>3,8=>5),
-									//вентиль
-									3     => array('n'=>'Рабочий вентиль',0=>1014,1=>(1/3),7=>1,8=>2),
-									'add' => array(0=>1008,1=>'Золотой жетон') //предмет вознаграждения, бронзовый жетон		
-								) //золото
+									//РіР°Р№РєР°
+									1     => array('n'=>'Р“Р°Р№РєР° СЃ Р РµР·СЊР±РѕР№',0=>1012,1=>3,7=>9,8=>15),
+									//Р±РѕР»С‚
+									2     => array('n'=>'РќСѓР¶РЅС‹Р№ Р±РѕР»С‚',0=>1013,1=>1,7=>3,8=>5),
+									//РІРµРЅС‚РёР»СЊ
+									3     => array('n'=>'Р Р°Р±РѕС‡РёР№ РІРµРЅС‚РёР»СЊ',0=>1014,1=>(1/3),7=>1,8=>2),
+									'add' => array(0=>1008,1=>'Р—РѕР»РѕС‚РѕР№ Р¶РµС‚РѕРЅ') //РїСЂРµРґРјРµС‚ РІРѕР·РЅР°РіСЂР°Р¶РґРµРЅРёСЏ, Р±СЂРѕРЅР·РѕРІС‹Р№ Р¶РµС‚РѕРЅ		
+								) //Р·РѕР»РѕС‚Рѕ
 								);
 								
 							$i = 1;
@@ -544,8 +544,8 @@ class dialog
 									$t = $this->trnObj($itms[$cn[$i][$j][0]],$this->objLevel($cn[$i][$j],$u->info['level']));
 									if($t[0]>0)
 									{
-										// $t[0] - сколько предметов награды даем,  $cn[$i]['add'][0] - item_id предмета награды
-										//удаляем ингридиенты
+										// $t[0] - СЃРєРѕР»СЊРєРѕ РїСЂРµРґРјРµС‚РѕРІ РЅР°РіСЂР°РґС‹ РґР°РµРј,  $cn[$i]['add'][0] - item_id РїСЂРµРґРјРµС‚Р° РЅР°РіСЂР°РґС‹
+										//СѓРґР°Р»СЏРµРј РёРЅРіСЂРёРґРёРµРЅС‚С‹
 										$upd = mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "'.$cn[$i][$j][0].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" LIMIT '.($t[0]*$this->objLevel($cn[$i][$j],$u->info['level'])).'');
 										if($upd)
 										{
@@ -558,7 +558,7 @@ class dialog
 											}
 											$txt .= $cn[$i][$j]['n'].' x'.($t[0]*$this->objLevel($cn[$i][$j],$u->info['level'])).' = '.$cn[$i]['add'][1].' x'.$t[0].'<br>';
 										}else{
-											$txt .= 'Не удалось обменять предмет &quot;'.$cn[$i][$j]['n'].'&quot;, что-то не так ...<br>';	
+											$txt .= 'РќРµ СѓРґР°Р»РѕСЃСЊ РѕР±РјРµРЅСЏС‚СЊ РїСЂРµРґРјРµС‚ &quot;'.$cn[$i][$j]['n'].'&quot;, С‡С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє ...<br>';	
 										}
 									}
 									$j++;	
@@ -570,20 +570,20 @@ class dialog
 								$txt = '<br><font color="red">'.$txt.'</font>';	
 							}
 						} elseif($act[0]=='transfer3' && $go1 == 1) {
-							//ИХ больше у тебя нету... Неси еще, Луке нужно больше ИХ!
-							//Серебро на золото, 3 к 1
+							//РРҐ Р±РѕР»СЊС€Рµ Сѓ С‚РµР±СЏ РЅРµС‚Сѓ... РќРµСЃРё РµС‰Рµ, Р›СѓРєРµ РЅСѓР¶РЅРѕ Р±РѕР»СЊС€Рµ РРҐ!
+							//РЎРµСЂРµР±СЂРѕ РЅР° Р·РѕР»РѕС‚Рѕ, 3 Рє 1
 							$pg = $act[1]; $itms = array();
 							$sp = mysql_query('SELECT * FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "1007" AND (`delete` = "0" OR `delete` = "1000") AND `inOdet` = "0" AND `inShop` = "0" LIMIT 250');
 							while($pl = mysql_fetch_array($sp)) {
 								$itms[$pl['item_id']]++;	
 							}
-							//Предметы
+							//РџСЂРµРґРјРµС‚С‹
 							$cn = array( 
-								0 => 1, //кол-во классификаций
+								0 => 1, //РєРѕР»-РІРѕ РєР»Р°СЃСЃРёС„РёРєР°С†РёР№
 								1 => array(
-									//гайка
-									1     => array('n'=>'Серебряный жетон',0=>1007,1=>3,7=>3,8=>3),
-									'add' => array(0=>1008,1=>'Золотой жетон') //предмет вознаграждения, бронзовый жетон					
+									//РіР°Р№РєР°
+									1     => array('n'=>'РЎРµСЂРµР±СЂСЏРЅС‹Р№ Р¶РµС‚РѕРЅ',0=>1007,1=>3,7=>3,8=>3),
+									'add' => array(0=>1008,1=>'Р—РѕР»РѕС‚РѕР№ Р¶РµС‚РѕРЅ') //РїСЂРµРґРјРµС‚ РІРѕР·РЅР°РіСЂР°Р¶РґРµРЅРёСЏ, Р±СЂРѕРЅР·РѕРІС‹Р№ Р¶РµС‚РѕРЅ					
 									)
 								);
 								
@@ -598,8 +598,8 @@ class dialog
 									$t = $this->trnObj($itms[$cn[$i][$j][0]],$this->objLevel($cn[$i][$j],$u->info['level']));
 									if($t[0]>0)
 									{
-										// $t[0] - сколько предметов награды даем,  $cn[$i]['add'][0] - item_id предмета награды
-										//удаляем ингридиенты
+										// $t[0] - СЃРєРѕР»СЊРєРѕ РїСЂРµРґРјРµС‚РѕРІ РЅР°РіСЂР°РґС‹ РґР°РµРј,  $cn[$i]['add'][0] - item_id РїСЂРµРґРјРµС‚Р° РЅР°РіСЂР°РґС‹
+										//СѓРґР°Р»СЏРµРј РёРЅРіСЂРёРґРёРµРЅС‚С‹
 										$upd = mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "'.$cn[$i][$j][0].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" LIMIT '.($t[0]*$this->objLevel($cn[$i][$j],$u->info['level'])).'');
 										if($upd)
 										{
@@ -612,7 +612,7 @@ class dialog
 											}
 											$txt .= $cn[$i][$j]['n'].' x'.($t[0]*$this->objLevel($cn[$i][$j],$u->info['level'])).' = '.$cn[$i]['add'][1].' x'.$t[0].'<br>';
 										}else{
-											$txt .= 'Не удалось обменять предмет &quot;'.$cn[$i][$j]['n'].'&quot;, что-то не так ...<br>';	
+											$txt .= 'РќРµ СѓРґР°Р»РѕСЃСЊ РѕР±РјРµРЅСЏС‚СЊ РїСЂРµРґРјРµС‚ &quot;'.$cn[$i][$j]['n'].'&quot;, С‡С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє ...<br>';	
 										}
 									}
 									$j++;	
@@ -624,20 +624,20 @@ class dialog
 								$txt = '<br><font color="red">'.$txt.'</font>';	
 							}
 						} elseif($act[0]=='transfer4' && $go1 == 1) {
-							//ИХ больше у тебя нету... Неси еще, мне нужно больше ИХ!
-							//Засоры к золоту, 20 к 1
+							//РРҐ Р±РѕР»СЊС€Рµ Сѓ С‚РµР±СЏ РЅРµС‚Сѓ... РќРµСЃРё РµС‰Рµ, РјРЅРµ РЅСѓР¶РЅРѕ Р±РѕР»СЊС€Рµ РРҐ!
+							//Р—Р°СЃРѕСЂС‹ Рє Р·РѕР»РѕС‚Сѓ, 20 Рє 1
 							$pg = $act[1]; $itms = array();
 							$sp = mysql_query('SELECT * FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "4728" AND (`delete` = "0" OR `delete` = "1000") AND `inOdet` = "0" AND `inShop` = "0" LIMIT 250');
 							while($pl = mysql_fetch_array($sp)) {
 								$itms[$pl['item_id']]++;	
 							}
-							//Предметы
+							//РџСЂРµРґРјРµС‚С‹
 							$cn = array( 
-								0 => 1, //кол-во классификаций
+								0 => 1, //РєРѕР»-РІРѕ РєР»Р°СЃСЃРёС„РёРєР°С†РёР№
 								1 => array(
-									//гайка
-									1     => array('n'=>'Засоры',0=>4728,1=>20,7=>20,8=>20),
-									'add' => array(0=>1008,1=>'Золотой жетон') //предмет вознаграждения, бронзовый жетон					
+									//РіР°Р№РєР°
+									1     => array('n'=>'Р—Р°СЃРѕСЂС‹',0=>4728,1=>20,7=>20,8=>20),
+									'add' => array(0=>1008,1=>'Р—РѕР»РѕС‚РѕР№ Р¶РµС‚РѕРЅ') //РїСЂРµРґРјРµС‚ РІРѕР·РЅР°РіСЂР°Р¶РґРµРЅРёСЏ, Р±СЂРѕРЅР·РѕРІС‹Р№ Р¶РµС‚РѕРЅ					
 									)
 								);
 								
@@ -652,8 +652,8 @@ class dialog
 									$t = $this->trnObj($itms[$cn[$i][$j][0]],$this->objLevel($cn[$i][$j],$u->info['level']));
 									if($t[0]>0)
 									{
-										// $t[0] - сколько предметов награды даем,  $cn[$i]['add'][0] - item_id предмета награды
-										//удаляем ингридиенты
+										// $t[0] - СЃРєРѕР»СЊРєРѕ РїСЂРµРґРјРµС‚РѕРІ РЅР°РіСЂР°РґС‹ РґР°РµРј,  $cn[$i]['add'][0] - item_id РїСЂРµРґРјРµС‚Р° РЅР°РіСЂР°РґС‹
+										//СѓРґР°Р»СЏРµРј РёРЅРіСЂРёРґРёРµРЅС‚С‹
 										$upd = mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "'.$cn[$i][$j][0].'" AND `delete` = "0" AND `inOdet` = "0" AND `inShop` = "0" LIMIT '.($t[0]*$this->objLevel($cn[$i][$j],$u->info['level'])).'');
 										if($upd)
 										{
@@ -666,7 +666,7 @@ class dialog
 											}
 											$txt .= $cn[$i][$j]['n'].' x'.($t[0]*$this->objLevel($cn[$i][$j],$u->info['level'])).' = '.$cn[$i]['add'][1].' x'.$t[0].'<br>';
 										}else{
-											$txt .= 'Не удалось обменять предмет &quot;'.$cn[$i][$j]['n'].'&quot;, что-то не так ...<br>';	
+											$txt .= 'РќРµ СѓРґР°Р»РѕСЃСЊ РѕР±РјРµРЅСЏС‚СЊ РїСЂРµРґРјРµС‚ &quot;'.$cn[$i][$j]['n'].'&quot;, С‡С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє ...<br>';	
 										}
 									}
 									$j++;	
@@ -675,7 +675,7 @@ class dialog
 							}
 							
 							if( $txt == '' ) {
-								$txt = 'Необходимо минимум 20 засоров для обмена.';
+								$txt = 'РќРµРѕР±С…РѕРґРёРјРѕ РјРёРЅРёРјСѓРј 20 Р·Р°СЃРѕСЂРѕРІ РґР»СЏ РѕР±РјРµРЅР°.';
 							}
 							
 							if($txt!='') {
@@ -686,68 +686,68 @@ class dialog
 							$swapItem = $act[1];
 							$swapError = $act[2];
 							$swapTrue = $act[3];
-							# Обмениваем предметы у Забытого (Мастерская Забытых)
-							if( !isset($swapActStatus) ) $swapActStatus = 1; # Все окей, проблем нет!
-							$swapAct = array();  # Собираем данные об обмене.
+							# РћР±РјРµРЅРёРІР°РµРј РїСЂРµРґРјРµС‚С‹ Сѓ Р—Р°Р±С‹С‚РѕРіРѕ (РњР°СЃС‚РµСЂСЃРєР°СЏ Р—Р°Р±С‹С‚С‹С…)
+							if( !isset($swapActStatus) ) $swapActStatus = 1; # Р’СЃРµ РѕРєРµР№, РїСЂРѕР±Р»РµРј РЅРµС‚!
+							$swapAct = array();  # РЎРѕР±РёСЂР°РµРј РґР°РЅРЅС‹Рµ РѕР± РѕР±РјРµРЅРµ.
 							$temp = explode ("\\", $swapItem);
 							foreach ( $temp as $t ) {
 								$t = explode('=', $t); 
-								if( $t[0] == 'tr'  ) { // Нужны для обмена
+								if( $t[0] == 'tr'  ) { // РќСѓР¶РЅС‹ РґР»СЏ РѕР±РјРµРЅР°
 									$temp2 = explode(',', $t[1]); $tr_items = array();
 									foreach( $temp2 as $t2 ) {
 										$temp3 = explode('x', $t2);
-										if( !isset($temp3[1]) ) $temp3[1] = 1; // Если количество не задано, задаем 1ед.
-										if( isset($temp3[2]) && $temp3[2]=='del' ) $temp3[2] = true; else $temp3[2]=false; // Удаляем даже при неудачной попытке совершить обмен!
+										if( !isset($temp3[1]) ) $temp3[1] = 1; // Р•СЃР»Рё РєРѕР»РёС‡РµСЃС‚РІРѕ РЅРµ Р·Р°РґР°РЅРѕ, Р·Р°РґР°РµРј 1РµРґ.
+										if( isset($temp3[2]) && $temp3[2]=='del' ) $temp3[2] = true; else $temp3[2]=false; // РЈРґР°Р»СЏРµРј РґР°Р¶Рµ РїСЂРё РЅРµСѓРґР°С‡РЅРѕР№ РїРѕРїС‹С‚РєРµ СЃРѕРІРµСЂС€РёС‚СЊ РѕР±РјРµРЅ!
 										$tr_items[] = array('item_id' => $temp3[0], 'colvo' => (int)$temp3[1], 'delete' => $temp3[2]);
 									}
 									$swapAct['tr'] = $tr_items;
 									
-								} elseif( $t[0] == 'needQuest' ){ // Если нужен какой-то квест для приобретения. 
+								} elseif( $t[0] == 'needQuest' ){ // Р•СЃР»Рё РЅСѓР¶РµРЅ РєР°РєРѕР№-С‚Рѕ РєРІРµСЃС‚ РґР»СЏ РїСЂРёРѕР±СЂРµС‚РµРЅРёСЏ. 
 									
-								} elseif( $t[0] == 'needRep' ){ // Если нужна репутация в подземельи 
+								} elseif( $t[0] == 'needRep' ){ // Р•СЃР»Рё РЅСѓР¶РЅР° СЂРµРїСѓС‚Р°С†РёСЏ РІ РїРѕРґР·РµРјРµР»СЊРё 
 									$temp2 = explode(',', $t[1]); $need_rep = array();
 									$need_rep[] = array('city' => $temp2[0], 'rep' => (int)$temp2[1]);
 									
 									$swapAct['need_rep'] = $need_rep;
 									
-								} elseif( $t[0] == 'add' ){ // Какие предметы даем.
+								} elseif( $t[0] == 'add' ){ // РљР°РєРёРµ РїСЂРµРґРјРµС‚С‹ РґР°РµРј.
 									$temp2 = explode(',', $t[1]); $add_items = array();
 									foreach($temp2 as $t2) {
 										$temp3 = explode('x', $t2);
-										if( !isset($temp3[1]) ) $temp3[1] = 1; // Если количество не задано, задаем 1ед.
+										if( !isset($temp3[1]) ) $temp3[1] = 1; // Р•СЃР»Рё РєРѕР»РёС‡РµСЃС‚РІРѕ РЅРµ Р·Р°РґР°РЅРѕ, Р·Р°РґР°РµРј 1РµРґ.
 										$add_items[] = array('item_id' => $temp3[0], 'colvo' => (int)$temp3[1]);
 									}
 									$swapAct['add'] = $add_items; 
-								} elseif( $t[0] == 'uses' ){ // Если нужна репутация в подземельи
+								} elseif( $t[0] == 'uses' ){ // Р•СЃР»Рё РЅСѓР¶РЅР° СЂРµРїСѓС‚Р°С†РёСЏ РІ РїРѕРґР·РµРјРµР»СЊРё
 									$swapAct['uses'] = $t[1];
 								}
-							} // Цикл обработки данных разговора.
+							} // Р¦РёРєР» РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С… СЂР°Р·РіРѕРІРѕСЂР°.
 							unset($temp,$temp2,$temp3,$t2,$tr_items,$add_items);
 							
 							if( $swapActStatus == 0 ) {
-								$txt = 'Я тебя раньше здесь не видел, уходи прочь негодник!';
+								$txt = 'РЇ С‚РµР±СЏ СЂР°РЅСЊС€Рµ Р·РґРµСЃСЊ РЅРµ РІРёРґРµР», СѓС…РѕРґРё РїСЂРѕС‡СЊ РЅРµРіРѕРґРЅРёРє!';
 								$pg = $swapError; 
-							} elseif ( isset($swapAct['need_rep']) ) { # Проверяем репутацию.
-								foreach($swapAct['need_rep'] as $rep) { # Если несколько репутаций
+							} elseif ( isset($swapAct['need_rep']) ) { # РџСЂРѕРІРµСЂСЏРµРј СЂРµРїСѓС‚Р°С†РёСЋ.
+								foreach($swapAct['need_rep'] as $rep) { # Р•СЃР»Рё РЅРµСЃРєРѕР»СЊРєРѕ СЂРµРїСѓС‚Р°С†РёР№
 									if($u->rep['rep'.$rep['city']] < $rep['rep'] ) {
 										$swapActStatus = 0;
-										$txt = 'Я тебя раньше здесь не видел, уходи прочь негодник!';
+										$txt = 'РЇ С‚РµР±СЏ СЂР°РЅСЊС€Рµ Р·РґРµСЃСЊ РЅРµ РІРёРґРµР», СѓС…РѕРґРё РїСЂРѕС‡СЊ РЅРµРіРѕРґРЅРёРє!';
 										$pg = $swapError; 
 									}
 								}
 							}
 
-							if( isset($swapAct['uses']) ) { # Проверяем количество раз использований.
+							if( isset($swapAct['uses']) ) { # РџСЂРѕРІРµСЂСЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЂР°Р· РёСЃРїРѕР»СЊР·РѕРІР°РЅРёР№.
 								#$swapAct['uses'] = mysql_fetch_array(mysql_query('SELECT `id`,`vals` FROM `actions` WHERE `room` = "'.$u->info['room'].'" AND `vals` = "masteryUses'.$u->info['dnow'].'" ORDER BY `id` DESC LIMIT '.$swapAct['uses'] .''));
 								if( isset($swapAct['uses']['id']) ) {
 									$swapActStatus = 0;
-									$txt = 'Кто-то уже побывал здесь и испортил кузницу, ничего не получится...';
+									$txt = 'РљС‚Рѕ-С‚Рѕ СѓР¶Рµ РїРѕР±С‹РІР°Р» Р·РґРµСЃСЊ Рё РёСЃРїРѕСЂС‚РёР» РєСѓР·РЅРёС†Сѓ, РЅРёС‡РµРіРѕ РЅРµ РїРѕР»СѓС‡РёС‚СЃСЏ...';
 									$pg = 0; 
 								}
 							} 
 
-							if( isset($swapAct['tr']) AND $swapActStatus == 1 ) { # Проверяем необходимые предметы.
-								foreach($swapAct['tr'] as $item) { # Если несколько предметов. 
+							if( isset($swapAct['tr']) AND $swapActStatus == 1 ) { # РџСЂРѕРІРµСЂСЏРµРј РЅРµРѕР±С…РѕРґРёРјС‹Рµ РїСЂРµРґРјРµС‚С‹.
+								foreach($swapAct['tr'] as $item) { # Р•СЃР»Рё РЅРµСЃРєРѕР»СЊРєРѕ РїСЂРµРґРјРµС‚РѕРІ. 
 									$item_info = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$item['item_id'].'" LIMIT 1'));
 									if( isset($item_info['id']) ) {
 										$query = mysql_query('SELECT * FROM `items_users` WHERE `item_id` = "'.$item['item_id'].'" AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inShop` = "0" AND `inOdet` = "0" LIMIT '.$item['colvo'].'');
@@ -756,7 +756,7 @@ class dialog
 											$j++;
 										}
 										if( $j < $item['colvo'] ) { 
-											$txt .= 'У вас недостаточно предметов "'.$item_info['name'].'"!  ('.$item['item_id'].')<br/>';
+											$txt .= 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂРµРґРјРµС‚РѕРІ "'.$item_info['name'].'"!  ('.$item['item_id'].')<br/>';
 											$swapActStatus = 3;
 											$pg = $swapError;
 										} elseif( $swapActStatus != 3) {
@@ -766,25 +766,25 @@ class dialog
 								}
 							}
 
-							if( isset($swapAct['tr']) AND $swapActStatus == 3 ) { # Забираем предметы del==true.
-								$mess = 'Израсходованы ресурсы: ';
+							if( isset($swapAct['tr']) AND $swapActStatus == 3 ) { # Р—Р°Р±РёСЂР°РµРј РїСЂРµРґРјРµС‚С‹ del==true.
+								$mess = 'РР·СЂР°СЃС…РѕРґРѕРІР°РЅС‹ СЂРµСЃСѓСЂСЃС‹: ';
 								$qsw = 0;
-								foreach($swapAct['tr'] as $item) { # Если несколько предметов.
+								foreach($swapAct['tr'] as $item) { # Р•СЃР»Рё РЅРµСЃРєРѕР»СЊРєРѕ РїСЂРµРґРјРµС‚РѕРІ.
 									if ( $item['delete'] == true ){
 										$query = mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `item_id` = "'.$item['item_id'].'" AND `uid` = "'.$u->info['id'].'" AND `delete` = "0" AND `inShop` = "0" AND `inOdet` = "0" ORDER BY inGroup DESC LIMIT '.$item['colvo'].''); 
 										if($query){
 											$item_info = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$item['item_id'].'" LIMIT 1'));
 											if( $qsw > 0 ) $mess .=', ';
 											$mess .= '"'.$item_info['name'].'"';
-											if( $item['colvo'] > 1 ) $mess .= '('.$item['item_id'].'шт)';
+											if( $item['colvo'] > 1 ) $mess .= '('.$item['item_id'].'С€С‚)';
 											$qsw++;	
 										}
 									}
 								}
 								$mess .= '.<br/>';
 								if( $qsw > 0 ) $txt .= $mess;
-							} elseif( isset($swapAct['tr']) AND $swapActStatus == 2 ) { # Забираем предметы все. 
-								$mess = 'Израсходованы ресурсы: ';
+							} elseif( isset($swapAct['tr']) AND $swapActStatus == 2 ) { # Р—Р°Р±РёСЂР°РµРј РїСЂРµРґРјРµС‚С‹ РІСЃРµ. 
+								$mess = 'РР·СЂР°СЃС…РѕРґРѕРІР°РЅС‹ СЂРµСЃСѓСЂСЃС‹: ';
 								$qsw = 0;
 								foreach($swapAct['tr'] as $item) {
 									$query = mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `item_id` = "'.$item['item_id'].'" AND `uid` = "'.$u->info['id'].'" AND (`delete` = "0" OR `delete` = "1000") AND `inShop` = "0" AND `inOdet` = "0" ORDER BY inGroup DESC LIMIT '.$item['colvo'].'');
@@ -792,7 +792,7 @@ class dialog
 										$item_info = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$item['item_id'].'" LIMIT 1'));
 										if( $qsw > 0 ) $mess .=', ';
 										$mess .= '"'.$item_info['name'].'"';
-										if( $item['colvo'] > 1 ) $mess .= '('.$item['item_id'].'шт)';
+										if( $item['colvo'] > 1 ) $mess .= '('.$item['item_id'].'С€С‚)';
 										$qsw++;
 									}
 								}
@@ -800,11 +800,11 @@ class dialog
 								if( $qsw > 0 ) $txt .= $mess;
 							}
 							
-							if( isset($swapAct['add']) AND $swapActStatus == 2 ) { # Выдаем предметы. 
+							if( isset($swapAct['add']) AND $swapActStatus == 2 ) { # Р’С‹РґР°РµРј РїСЂРµРґРјРµС‚С‹. 
 								foreach($swapAct['add'] as $item) {
 									$qsw = 0;
 									while($qsw < $item['colvo']) {
-										$txt .= '<br/>Вы получили предмет';
+										$txt .= '<br/>Р’С‹ РїРѕР»СѓС‡РёР»Рё РїСЂРµРґРјРµС‚';
 										$u->addItem($item['item_id'],$u->info['id']);
 										$qsw++;
 									}
@@ -827,7 +827,7 @@ class dialog
 			}
 						
 			if($this->info['tr_dn']!=0) {
-				//требует пещеру
+				//С‚СЂРµР±СѓРµС‚ РїРµС‰РµСЂСѓ
 				global $d;
 				if($this->info['tr_dn']!=$d->info['id2'])
 				{
@@ -838,7 +838,7 @@ class dialog
 					{						
 						$go = 0;
 					}
-					//если бот погиб
+					//РµСЃР»Рё Р±РѕС‚ РїРѕРіРёР±
 					$dbot = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_bots` WHERE `dn` = "'.$u->info['dnow'].'" AND `x` = "'.$this->info['x'].'" AND `y` = "'.$this->info['y'].'" LIMIT 1'));
 					if(!isset($dbot['id2']))
 					{
@@ -849,27 +849,27 @@ class dialog
 
 			if($go==1) {
 				//dlg_nps:=:3=7
-				//квест (с наградой)
+				//РєРІРµСЃС‚ (СЃ РЅР°РіСЂР°РґРѕР№)
 				$qs_sp = mysql_query('SELECT `id`,`act_date` FROM `quests` WHERE `act_date` LIKE "%dlg_nps:=:'.$this->info['id'].'='.$pg.'=1=e%" LIMIT 1');
 				while($qs_pl = mysql_fetch_array($qs_sp)) {
 					$q->endq($qs_pl['id'],'win');
 					$gsex = explode('=e'.$this->info['id'].$pg.'=',$qs_pl['act_date']);
 					if($gsex[1] > 0) {
-						//выдаем добавочный квест
+						//РІС‹РґР°РµРј РґРѕР±Р°РІРѕС‡РЅС‹Р№ РєРІРµСЃС‚
 						$q->startq($gsex[1]);
-						$txt .= '<br><font color="red"><b>Задание изменилось</b></font>';
+						$txt .= '<br><font color="red"><b>Р—Р°РґР°РЅРёРµ РёР·РјРµРЅРёР»РѕСЃСЊ</b></font>';
 					}
 				}
 				
-				//квест (без наградой)
+				//РєРІРµСЃС‚ (Р±РµР· РЅР°РіСЂР°РґРѕР№)
 				$qs_sp = mysql_query('SELECT `id`,`act_date` FROM `quests` WHERE `act_date` LIKE "%dlg_nps:=:'.$this->info['id'].'='.$pg.'=0=e%" LIMIT 1');
 				while($qs_pl = mysql_fetch_array($qs_sp)) {
 					$q->endq($qs_pl['id'],'end');
 					$gsex = explode('=e'.$this->info['id'].$pg.'=',$qs_pl['act_date']);
 					if($gsex[1] > 0) {
-						//выдаем добавочный квест $gsex[1]
+						//РІС‹РґР°РµРј РґРѕР±Р°РІРѕС‡РЅС‹Р№ РєРІРµСЃС‚ $gsex[1]
 						$q->startq($gsex[1]);
-						$txt .= '<br><font color="red"><b>Задание изменилось</b></font>';
+						$txt .= '<br><font color="red"><b>Р—Р°РґР°РЅРёРµ РёР·РјРµРЅРёР»РѕСЃСЊ</b></font>';
 					}
 				}
 				
@@ -877,13 +877,13 @@ class dialog
 				$this->youInfo = $u->getInfoPers($u->info['id'],1);
 				$this->youInfo = $this->youInfo[0];
 				$this->botInfo = $this->infoBot($this->info['bot_id']);
-				//Диалог
+				//Р”РёР°Р»РѕРі
 				$qpl = mysql_fetch_array(mysql_query('SELECT * FROM `dungeon_dlg` WHERE `type` = "1" AND `qid` = "0" AND `id_dg` = "'.$this->info['id'].'" AND `page` = "'.((int)$pg).'" LIMIT 1'));
 				if( !isset($qpl['id']) ) {
 					if($txt == '' ){
-						$qpl['text'] = 'Диалог не найден ...';	
+						$qpl['text'] = 'Р”РёР°Р»РѕРі РЅРµ РЅР°Р№РґРµРЅ ...';	
 					} else {
-						$qpl['text'] = $txt.' (<a href="main.php?rnd='.$code.'">уйти</a>)';
+						$qpl['text'] = $txt.' (<a href="main.php?rnd='.$code.'">СѓР№С‚Рё</a>)';
 						$txt = '';
 					}
 				} else {
@@ -892,11 +892,11 @@ class dialog
 				
 				if( $u->info['admin'] > 0 ) {
 					if( isset($_GET['add_new_qid']) ) {
-						mysql_query('INSERT INTO `dungeon_dlg` (`type`,`qid`,`id_dg`,`text`) VALUES ("0","'.$qpl['id'].'","'.$this->info['id'].'","<i>Новый вариант ответа</i>")');
+						mysql_query('INSERT INTO `dungeon_dlg` (`type`,`qid`,`id_dg`,`text`) VALUES ("0","'.$qpl['id'].'","'.$this->info['id'].'","<i>РќРѕРІС‹Р№ РІР°СЂРёР°РЅС‚ РѕС‚РІРµС‚Р°</i>")');
 					}
 				}
 				
-				//Варианты ответа
+				//Р’Р°СЂРёР°РЅС‚С‹ РѕС‚РІРµС‚Р°
 				$a = '';
 				$sp = mysql_query('SELECT * FROM `dungeon_dlg` WHERE `type` = "0" AND `qid` = "'.$qpl['id'].'" AND `id_dg` = "'.$this->info['id'].'" ORDER BY `sort` DESC LIMIT 25');
 				while($pl = mysql_fetch_array($sp))
@@ -912,7 +912,7 @@ class dialog
 						$i = 0;
 						$x = explode('|',$pl['tr']);
 						while($i < count($x)) {
-							//Требования
+							//РўСЂРµР±РѕРІР°РЅРёСЏ
 							$k = explode('=',$x[$i]);								
 							if($k[0]=='data') {
 								$date = explode('-',$k[1]);
@@ -929,7 +929,7 @@ class dialog
 								}
 								
 							}elseif($k[0]=='diact') {
-								//Действия
+								//Р”РµР№СЃС‚РІРёСЏ
 								//user_id # all # all # lukaqst1 # -1
 								if($this->quest_act($k[1])==false) {
 									$go1 = 'delete';
@@ -937,37 +937,37 @@ class dialog
 								}
 								
 							}elseif($k[0]=='quest_end') {
-								//Квест можно выполнять несколько раз в текущей пещере
+								//РљРІРµСЃС‚ РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅСЏС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ СЂР°Р· РІ С‚РµРєСѓС‰РµР№ РїРµС‰РµСЂРµ
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id`,`vals` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$k[1].'" ORDER BY `id` DESC LIMIT 1'));
 								if(isset($qlst['id']) && $qlst['vals'] != 'win' && $qlst['vals'] != 'end' && $qlst['vals'] != 'bad') {
-									//$go1 .= "Вы уже взяли данное задание\n";
+									//$go1 .= "Р’С‹ СѓР¶Рµ РІР·СЏР»Рё РґР°РЅРЅРѕРµ Р·Р°РґР°РЅРёРµ\n";
 									$go1 = 'delete';
 									$i = count($x);
 								}
 							}elseif($k[0]=='quest_only_one') {
-								//Квест можно выполнять только один раз
+								//РљРІРµСЃС‚ РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅСЏС‚СЊ С‚РѕР»СЊРєРѕ РѕРґРёРЅ СЂР°Р·
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id`,`vals` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$k[1].'" ORDER BY `id` DESC LIMIT 1'));
 								if(isset($qlst['id']) && ($qlst['vals'] == 'win' || $qlst['vals'] == 'bad')) {
-									//$go1 .= "Вы уже взяли данное задание\n";
+									//$go1 .= "Р’С‹ СѓР¶Рµ РІР·СЏР»Рё РґР°РЅРЅРѕРµ Р·Р°РґР°РЅРёРµ\n";
 									$go1 = 'delete';
 									$i = count($x);
 								}
 							}elseif($k[0]=='quest_now') {
-								//Квест должен быть взят
+								//РљРІРµСЃС‚ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІР·СЏС‚
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id`,`vals` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$k[1].'" ORDER BY `id` DESC LIMIT 1'));
 								if(isset($qlst['id']) && $qlst['vals'] != 'win' && $qlst['vals'] != 'end' && $qlst['vals'] != 'bad'){}else{
 									$go1 = 'delete';
 									$i = count($x);
 								}
 							}elseif($k[0]=='tr_itm') {
-								//Квест требует предмет
+								//РљРІРµСЃС‚ С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚
 								$qlst = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "'.$k[1].'" AND `inOdet` = 0 AND `inTransfer` = 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if($qlst[0] < $k[2]){
 									$go1 = 'delete';
 									$i = count($x);
 								}
 							}elseif($k[0]=='tr_itmodet') {
-								//Квест требует предмет
+								//РљРІРµСЃС‚ С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚
 								$k[1] = str_replace(',','" OR `item_id` = "',$k[1]);
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND (`item_id` = "'.$k[1].'") AND `inOdet` > 0 AND `inTransfer` = 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if(!isset($qlst['id'])){
@@ -975,7 +975,7 @@ class dialog
 									$i = count($x);
 								}
 							}elseif($k[0]=='tr_noitmodet') {
-								//Квест требует предмет
+								//РљРІРµСЃС‚ С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚
 								$k[1] = str_replace(',','" OR `item_id` = "',$k[1]);
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND (`item_id` = "'.$k[1].'") AND `inTransfer` = 0 AND `inOdet` > 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if(isset($qlst['id'])){
@@ -983,7 +983,7 @@ class dialog
 									$i = count($x);
 								}
 							}elseif($k[0]=='tr_noitm') {
-								//Квест требует предмет
+								//РљРІРµСЃС‚ С‚СЂРµР±СѓРµС‚ РїСЂРµРґРјРµС‚
 								$k[1] = str_replace(',','" OR `item_id` = "',$k[1]);
 								$qlst = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND (`item_id` = "'.$k[1].'") AND `inTransfer` = 0 AND `delete` = 0 AND `inShop` = 0 LIMIT 1'));
 								if(isset($qlst['id'])){
@@ -995,7 +995,7 @@ class dialog
 						}
 					}
 					if($u->info['admin'] > 0) {
-						$a .= '<small>(<a href="javascript:window.open(\'http://xcombats.com/quest_dlg_edit.php?pid='.$pl['id'].'\',\'winEdi1\',\'width=850,height=400,top=400,left=500,resizable=no,scrollbars=yes,status=no\');" title="Редактировать вариант ответа">ред.</a>)</small> &nbsp; ';
+						$a .= '<small>(<a href="javascript:window.open(\'http://xcombats.com/quest_dlg_edit.php?pid='.$pl['id'].'\',\'winEdi1\',\'width=850,height=400,top=400,left=500,resizable=no,scrollbars=yes,status=no\');" title="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РІР°СЂРёР°РЅС‚ РѕС‚РІРµС‚Р°">СЂРµРґ.</a>)</small> &nbsp; ';
 					}
 					if($go1 == '') {
 						$a .= '&bull; <a href="'.$pl['action'].'">'.$pl['text'].'</a><br>';
@@ -1010,16 +1010,16 @@ class dialog
 				
 				
 				if($u->info['admin'] > 0) {
-					$a .= '<small style="border-top:1px solid #BABABA;padding-top:5px;display:block;margin-top:5px;"><a href="main.php?talk='.((int)$_GET['talk']).'&act='.((int)$_GET['act']).'&add_new_qid=1">Добавить вариант ответа</a></small>';
+					$a .= '<small style="border-top:1px solid #BABABA;padding-top:5px;display:block;margin-top:5px;"><a href="main.php?talk='.((int)$_GET['talk']).'&act='.((int)$_GET['act']).'&add_new_qid=1">Р”РѕР±Р°РІРёС‚СЊ РІР°СЂРёР°РЅС‚ РѕС‚РІРµС‚Р°</a></small>';
 				}
 				
 				$this->dText = $qpl['text'].'<br>'.$txt;
 				$this->aText = $a;				
 			}else{
-				$this->aText = '<center>Диалог не доступен, вернуться <a href="main.php?rnd='.$code.'">назад</a><br></center>';		
+				$this->aText = '<center>Р”РёР°Р»РѕРі РЅРµ РґРѕСЃС‚СѓРїРµРЅ, РІРµСЂРЅСѓС‚СЊСЃСЏ <a href="main.php?rnd='.$code.'">РЅР°Р·Р°Рґ</a><br></center>';		
 			}
 		}else{
-			$this->aText = '<center>Диалог не найден, вернуться <a href="main.php?rnd='.$code.'">назад</a><br><font color="white">'.((int)$id).'</font></center>';	
+			$this->aText = '<center>Р”РёР°Р»РѕРі РЅРµ РЅР°Р№РґРµРЅ, РІРµСЂРЅСѓС‚СЊСЃСЏ <a href="main.php?rnd='.$code.'">РЅР°Р·Р°Рґ</a><br><font color="white">'.((int)$id).'</font></center>';	
 		}
 	}
 	
@@ -1033,7 +1033,7 @@ class dialog
 			$var = $k[0];
 			$val = $k[1];
 			if( $var == 'take_item' ) {
-				//Забираем предмет
+				//Р—Р°Р±РёСЂР°РµРј РїСЂРµРґРјРµС‚
 				$itms = array();
 				$sp = mysql_query('SELECT * FROM `items_users` WHERE `uid` = "'.$u->info['id'].'" AND `item_id` = "'.mysql_real_escape_string($val).'" AND (`delete` = "0" OR `delete` = "1000") AND `inOdet` = "0" AND `inShop` = "0" LIMIT 100');
 				while($pl = mysql_fetch_array($sp))	{
@@ -1048,9 +1048,9 @@ class dialog
 					$i = count($x);
 					$r[0] = false;
 					$itm = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$val.'" LIMIT 1'));
-					$r[1] = 'У вас нет нужного предмета! Требуется &quot;'.$itm['name'].'&quot;';
+					$r[1] = 'РЈ РІР°СЃ РЅРµС‚ РЅСѓР¶РЅРѕРіРѕ РїСЂРµРґРјРµС‚Р°! РўСЂРµР±СѓРµС‚СЃСЏ &quot;'.$itm['name'].'&quot;';
 					if( $k[2] > 1 ) {
-						$r[1] .= ' ('.$k[2].' шт.)';
+						$r[1] .= ' ('.$k[2].' С€С‚.)';
 					}
 				}
 				//
@@ -1059,7 +1059,7 @@ class dialog
 				$i1 = 0;
 				while( $i1 < $k[2] ) {
 					if( $val == 4797 ) {
-						//Повестка
+						//РџРѕРІРµСЃС‚РєР°
 						if( $u->info['level'] >= 4 && $u->info['level'] <= 7 ) {
 							$val = 4797;
 						}elseif( $u->info['level'] >= 8 && $u->info['level'] <= 9 ) {
@@ -1113,7 +1113,7 @@ class dialog
 			}elseif( $f[3] != $ql['var'] && $f[3] != 'all' ) {
 				$r = false;
 			}elseif( $f[4] == -1 ) {
-				//Не должен взять задание
+				//РќРµ РґРѕР»Р¶РµРЅ РІР·СЏС‚СЊ Р·Р°РґР°РЅРёРµ
 				$r = false;
 			}elseif( $f[4] != $ql['val'] ) {
 				$r = false;
@@ -1142,29 +1142,29 @@ class dialog
 		$bot = mysql_fetch_array(mysql_query('SELECT * FROM `test_bot` WHERE `id` = "'.((int)$id).'" LIMIT 1'));
 		if(isset($bot['id']))
 		{
-			//Характеристики от предметов и их изображение
+			//РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РѕС‚ РїСЂРµРґРјРµС‚РѕРІ Рё РёС… РёР·РѕР±СЂР°Р¶РµРЅРёРµ
 			$witm    = array();
-			$witm[1] = '<img width="60" height="60" style="display:block;" title="Пустой слот шлем" src="http://img.xcombats.com/i/items/w/w9.gif">';
-			$witm[2] = '<img width="60" height="40" style="display:block;" title="Пустой слот наручи" src="http://img.xcombats.com/i/items/w/w13.gif">';
-			$witm[3] = '<img width="60" height="60" style="display:block;" title="Пустой слот оружие" src="http://img.xcombats.com/i/items/w/w3.gif">';
-			$witm[4] = '<img width="60" height="80" style="display:block;" title="Пустой слот броня" src="http://img.xcombats.com/i/items/w/w4.gif">';
-			$witm[7] = '<img width="60" height="40" style="display:block;" title="Пустой слот пояс" src="http://img.xcombats.com/i/items/w/w5.gif">';
-			$witm[8] = '<img width="60" height="20" style="display:block;" title="Пустой слот серьги" src="http://img.xcombats.com/i/items/w/w1.gif">';
-			$witm[9] = '<img width="60" height="20" style="display:block;" title="Пустой слот ожерелье" src="http://img.xcombats.com/i/items/w/w2.gif">';
-			$witm[10] = '<img width="20" height="20" style="display:block;" title="Пустой слот кольцо" src="http://img.xcombats.com/i/items/w/w6.gif">';
-			$witm[11] = '<img width="20" height="20" style="display:block;" title="Пустой слот кольцо" src="http://img.xcombats.com/i/items/w/w6.gif">';
-			$witm[12] = '<img width="20" height="20" style="display:block;" title="Пустой слот кольцо" src="http://img.xcombats.com/i/items/w/w6.gif">';
-			$witm[13] = '<img width="60" height="40" style="display:block;" title="Пустой слот перчатки" src="http://img.xcombats.com/i/items/w/w11.gif">';
-			$witm[14] = '<img width="60" height="60" style="display:block;" title="Пустой слот щит" src="http://img.xcombats.com/i/items/w/w10.gif">';
-			$witm[16] = '<img width="60" height="80" style="display:block;" title="Пустой слот поножи" src="http://img.xcombats.com/i/items/w/w19.gif">';
-			$witm[17] = '<img width="60" height="40" style="display:block;" title="Пустой слот обувь" src="http://img.xcombats.com/i/items/w/w12.gif">';
-			//40-52 слот под магию		
-			$witm[53] = '<img style="display:block;" title="Пустой слот правый карман" src="http://img.xcombats.com/i/items/w/w15.gif">';
-			$witm[54] = '<img style="display:block;" title="Пустой слот левый карман" src="http://img.xcombats.com/i/items/w/w15.gif">';
-			$witm[55] = '<img style="display:block;" title="Пустой слот центральный карман" src="http://img.xcombats.com/i/items/w/w15.gif">';
-			$witm[56] = '<img style="display:block;" title="Пустой слот смена" src="http://img.xcombats.com/i/items/w/w20.gif">';
-			$witm[57] = '<img style="display:block;" title="Пустой слот смена" src="http://img.xcombats.com/i/items/w/w20.gif">';
-			$witm[58] = '<img style="display:block;" title="Пустой слот смена" src="http://img.xcombats.com/i/items/w/w20.gif">';
+			$witm[1] = '<img width="60" height="60" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С€Р»РµРј" src="http://img.xcombats.com/i/items/w/w9.gif">';
+			$witm[2] = '<img width="60" height="40" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РЅР°СЂСѓС‡Рё" src="http://img.xcombats.com/i/items/w/w13.gif">';
+			$witm[3] = '<img width="60" height="60" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РѕСЂСѓР¶РёРµ" src="http://img.xcombats.com/i/items/w/w3.gif">';
+			$witm[4] = '<img width="60" height="80" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р±СЂРѕРЅСЏ" src="http://img.xcombats.com/i/items/w/w4.gif">';
+			$witm[7] = '<img width="60" height="40" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РїРѕСЏСЃ" src="http://img.xcombats.com/i/items/w/w5.gif">';
+			$witm[8] = '<img width="60" height="20" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ СЃРµСЂСЊРіРё" src="http://img.xcombats.com/i/items/w/w1.gif">';
+			$witm[9] = '<img width="60" height="20" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РѕР¶РµСЂРµР»СЊРµ" src="http://img.xcombats.com/i/items/w/w2.gif">';
+			$witm[10] = '<img width="20" height="20" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РєРѕР»СЊС†Рѕ" src="http://img.xcombats.com/i/items/w/w6.gif">';
+			$witm[11] = '<img width="20" height="20" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РєРѕР»СЊС†Рѕ" src="http://img.xcombats.com/i/items/w/w6.gif">';
+			$witm[12] = '<img width="20" height="20" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РєРѕР»СЊС†Рѕ" src="http://img.xcombats.com/i/items/w/w6.gif">';
+			$witm[13] = '<img width="60" height="40" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РїРµСЂС‡Р°С‚РєРё" src="http://img.xcombats.com/i/items/w/w11.gif">';
+			$witm[14] = '<img width="60" height="60" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С‰РёС‚" src="http://img.xcombats.com/i/items/w/w10.gif">';
+			$witm[16] = '<img width="60" height="80" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РїРѕРЅРѕР¶Рё" src="http://img.xcombats.com/i/items/w/w19.gif">';
+			$witm[17] = '<img width="60" height="40" style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РѕР±СѓРІСЊ" src="http://img.xcombats.com/i/items/w/w12.gif">';
+			//40-52 СЃР»РѕС‚ РїРѕРґ РјР°РіРёСЋ		
+			$witm[53] = '<img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ РїСЂР°РІС‹Р№ РєР°СЂРјР°РЅ" src="http://img.xcombats.com/i/items/w/w15.gif">';
+			$witm[54] = '<img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ Р»РµРІС‹Р№ РєР°СЂРјР°РЅ" src="http://img.xcombats.com/i/items/w/w15.gif">';
+			$witm[55] = '<img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ С†РµРЅС‚СЂР°Р»СЊРЅС‹Р№ РєР°СЂРјР°РЅ" src="http://img.xcombats.com/i/items/w/w15.gif">';
+			$witm[56] = '<img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ СЃРјРµРЅР°" src="http://img.xcombats.com/i/items/w/w20.gif">';
+			$witm[57] = '<img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ СЃРјРµРЅР°" src="http://img.xcombats.com/i/items/w/w20.gif">';
+			$witm[58] = '<img style="display:block;" title="РџСѓСЃС‚РѕР№ СЃР»РѕС‚ СЃРјРµРЅР°" src="http://img.xcombats.com/i/items/w/w20.gif">';
 			
 			$pb = '';
 			$hpmp = '??&nbsp;';
@@ -1214,7 +1214,7 @@ class dialog
 				  <tr>
 					<td valign="top">
 					<div style="position:relative;height:220px;">
-						<!-- образ -->
+						<!-- РѕР±СЂР°Р· -->
 							<div style="position:absolute; width:120px; height:220px; z-index:1;"><a href="#obraz_pers"><img width="120" height="220" src="http://img.xcombats.com/i/obraz/'.$bot['sex'].'/'.$bot['obraz'].'" '.$oi.'></a></div>
 							<div style="position:absolute; width:120px; height:220px; z-index:3;" align="left">'.$eff.'</div>'.$anml.'
 					</div>

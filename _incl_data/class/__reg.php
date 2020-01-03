@@ -29,7 +29,7 @@ if($_SERVER['HTTP_REFERER'] == 'http://btl4.net/' && $_COOKIE['b4n'] != '2') {
 
 /*
 if(IP != '') {
-	die('Регистрация временно отключена. Идет восстановление персонажей.');
+	die('Р РµРіРёСЃС‚СЂР°С†РёСЏ РІСЂРµРјРµРЅРЅРѕ РѕС‚РєР»СЋС‡РµРЅР°. РРґРµС‚ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶РµР№.');
 }
 */
 
@@ -44,7 +44,7 @@ class register
 	{
 		$g = false;
 		$en = preg_match("/^(([0-9a-zA-Z _-])+)$/i", $txt);
-		$ru = preg_match("/^(([0-9а-яА-Я _-])+)$/i", $txt);
+		$ru = preg_match("/^(([0-9Р°-СЏРђ-РЇ _-])+)$/i", $txt);
 		if(($ru && $en) || (!$ru && !$en))
 		{
 			$g = true;
@@ -62,7 +62,7 @@ class register
 			$lr = mysql_fetch_array(mysql_query('SELECT `id`,`ipreg` FROM `users` WHERE `cityreg`="capitalcity" AND `timereg`>"'.(time()-60*60*1).'" AND `ipreg` = "'.mysql_real_escape_string(IP).'" LIMIT 1'));
 			if(isset($_COOKIE['reg_capitalcity']) || (int)$_COOKIE['reg_capitalcity']>time() || isset($lr['id']))
 			{
-				$error .= 'Недавно с вашего IP уже регистрировался персонаж. С одного IP адреса разрешена регистрация персонажей не чаще, чем раз в час. Попробуйте позже.<br>'; $_POST['step'] = 1;
+				$error .= 'РќРµРґР°РІРЅРѕ СЃ РІР°С€РµРіРѕ IP СѓР¶Рµ СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»СЃСЏ РїРµСЂСЃРѕРЅР°Р¶. РЎ РѕРґРЅРѕРіРѕ IP Р°РґСЂРµСЃР° СЂР°Р·СЂРµС€РµРЅР° СЂРµРіРёСЃС‚СЂР°С†РёСЏ РїРµСЂСЃРѕРЅР°Р¶РµР№ РЅРµ С‡Р°С‰Рµ, С‡РµРј СЂР°Р· РІ С‡Р°СЃ. РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕР·Р¶Рµ.<br>'; $_POST['step'] = 1;
 			}
 			
 			if($error=='')
@@ -81,22 +81,22 @@ class register
 							$uz = mysql_fetch_array(mysql_query('SELECT `id`,`login` FROM `users` WHERE `id` = "'.mysql_real_escape_string($cd['uid']).'" LIMIT 1'));
 							if(!isset($uz['id']))
 							{
-								$uz['login'] = '<i>Невидимка</i>';
+								$uz['login'] = '<i>РќРµРІРёРґРёРјРєР°</i>';
 							}
-							$error .= 'Вы успешно активировали приглашение от '.$uz['login'].'. Теперь вы можете зарегистрироваться. Код действует только на эту регистрацию.<br>';
-							mysql_query("UPDATE `items_users` SET `data`='info=Код приглашения: <b>".$cd['code']."</b><br>При утери приглашения регистрация по данному коду будет запрещена.<br><div style=\"color:brown;\">Кто-то регестрируется по вашему приглашению. Дата: ".date('d.n.Y H:i',time())."</div>' WHERE `secret_id` = '".$cd['code']."' LIMIT 1");
+							$error .= 'Р’С‹ СѓСЃРїРµС€РЅРѕ Р°РєС‚РёРІРёСЂРѕРІР°Р»Рё РїСЂРёРіР»Р°С€РµРЅРёРµ РѕС‚ '.$uz['login'].'. РўРµРїРµСЂСЊ РІС‹ РјРѕР¶РµС‚Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ. РљРѕРґ РґРµР№СЃС‚РІСѓРµС‚ С‚РѕР»СЊРєРѕ РЅР° СЌС‚Сѓ СЂРµРіРёСЃС‚СЂР°С†РёСЋ.<br>';
+							mysql_query("UPDATE `items_users` SET `data`='info=РљРѕРґ РїСЂРёРіР»Р°С€РµРЅРёСЏ: <b>".$cd['code']."</b><br>РџСЂРё СѓС‚РµСЂРё РїСЂРёРіР»Р°С€РµРЅРёСЏ СЂРµРіРёСЃС‚СЂР°С†РёСЏ РїРѕ РґР°РЅРЅРѕРјСѓ РєРѕРґСѓ Р±СѓРґРµС‚ Р·Р°РїСЂРµС‰РµРЅР°.<br><div style=\"color:brown;\">РљС‚Рѕ-С‚Рѕ СЂРµРіРµСЃС‚СЂРёСЂСѓРµС‚СЃСЏ РїРѕ РІР°С€РµРјСѓ РїСЂРёРіР»Р°С€РµРЅРёСЋ. Р”Р°С‚Р°: ".date('d.n.Y H:i',time())."</div>' WHERE `secret_id` = '".$cd['code']."' LIMIT 1");
 							$cd['use'] = $reg['id'];
 							
 							if($cd['time_create']<time()-60*60)
 							{
-								$error .= 'Регистрационный код просрочен.<br>';
+								$error .= 'Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РєРѕРґ РїСЂРѕСЃСЂРѕС‡РµРЅ.<br>';
 								$reg_bonus = false;
 							}
 						}else{
-							$error .= 'Ошибка подтверждения. Попробуйте позже...';
+							$error .= 'РћС€РёР±РєР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ. РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕР·Р¶Рµ...';
 						}					
 					}else{
-						$error .= 'Регистрационный код был использован ранее, либо не существует.<br>';
+						$error .= 'Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РєРѕРґ Р±С‹Р» РёСЃРїРѕР»СЊР·РѕРІР°РЅ СЂР°РЅРµРµ, Р»РёР±Рѕ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.<br>';
 					}
 				}	
 				
@@ -104,24 +104,24 @@ class register
 				if(!isset($cd['id']))
 				{
 					$reg_bonus = false;
-					$error .= 'Предмет не найден. (приглашение в инвентаре пользователя)<br>';
+					$error .= 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ. (РїСЂРёРіР»Р°С€РµРЅРёРµ РІ РёРЅРІРµРЅС‚Р°СЂРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ)<br>';
 				}else{
 					$reg_bonus = true;
 					$cdi = mysql_fetch_array(mysql_query('SELECT * FROM `items_users` WHERE `secret_id` = "'.$cd['code'].'" AND `delete` = "0" AND `inShop` = "0" LIMIT 1'));
 					if(!isset($cdi['id']))
 					{
 						$reg_bonus = false;
-						$error .= 'Предмет не найден.';
+						$error .= 'РџСЂРµРґРјРµС‚ РЅРµ РЅР°Р№РґРµРЅ.';
 					}
 				}	
 				
 				
 				//$reg_bonus = true;
 				
-				//регистрация требует приглашения
+				//СЂРµРіРёСЃС‚СЂР°С†РёСЏ С‚СЂРµР±СѓРµС‚ РїСЂРёРіР»Р°С€РµРЅРёСЏ
 				if($reg_bonus==false)
 				{
-					$error .= '<form action="register.php" method="post">Регистрация только по приглашению. Введите код приглашения:<br><input name="register_code" type="text" style="width:200px;"> <input type="submit" value="Ввести код"></form>'; $_POST['step'] = 1;
+					$error .= '<form action="register.php" method="post">Р РµРіРёСЃС‚СЂР°С†РёСЏ С‚РѕР»СЊРєРѕ РїРѕ РїСЂРёРіР»Р°С€РµРЅРёСЋ. Р’РІРµРґРёС‚Рµ РєРѕРґ РїСЂРёРіР»Р°С€РµРЅРёСЏ:<br><input name="register_code" type="text" style="width:200px;"> <input type="submit" value="Р’РІРµСЃС‚Рё РєРѕРґ"></form>'; $_POST['step'] = 1;
 				}
 				*/
 			}
@@ -130,51 +130,51 @@ class register
 			
 			if($_POST['step']>1)
 			{
-				//Запрещенные логины
-				$nologin = array(0=>'ангел',1=>'angel',2=>'администрация',3=>'administration',4=>'Комментатор',5=>'Мироздатель',6=>'Мусорщик',7=>'Падальщик',8=>'Повелитель',9=>'Архивариус',10=>'Пересмешник',11=>'Волынщик',12=>'Лорд Разрушитель',13=>'Милосердие',14=>'Справедливость',15=>'Искушение',16=>'Вознесение');
-				$blacklist = "!@#$%^&*()\+Ёё|/'`\"";
-				$sr = '_-йцукенгшщзхъфывапролджэячсмитьбюё1234567890';
+				//Р—Р°РїСЂРµС‰РµРЅРЅС‹Рµ Р»РѕРіРёРЅС‹
+				$nologin = array(0=>'Р°РЅРіРµР»',1=>'angel',2=>'Р°РґРјРёРЅРёСЃС‚СЂР°С†РёСЏ',3=>'administration',4=>'РљРѕРјРјРµРЅС‚Р°С‚РѕСЂ',5=>'РњРёСЂРѕР·РґР°С‚РµР»СЊ',6=>'РњСѓСЃРѕСЂС‰РёРє',7=>'РџР°РґР°Р»СЊС‰РёРє',8=>'РџРѕРІРµР»РёС‚РµР»СЊ',9=>'РђСЂС…РёРІР°СЂРёСѓСЃ',10=>'РџРµСЂРµСЃРјРµС€РЅРёРє',11=>'Р’РѕР»С‹РЅС‰РёРє',12=>'Р›РѕСЂРґ Р Р°Р·СЂСѓС€РёС‚РµР»СЊ',13=>'РњРёР»РѕСЃРµСЂРґРёРµ',14=>'РЎРїСЂР°РІРµРґР»РёРІРѕСЃС‚СЊ',15=>'РСЃРєСѓС€РµРЅРёРµ',16=>'Р’РѕР·РЅРµСЃРµРЅРёРµ');
+				$blacklist = "!@#$%^&*()\+РЃС‘|/'`\"";
+				$sr = '_-Р№С†СѓРєРµРЅРіС€С‰Р·С…СЉС„С‹РІР°РїСЂРѕР»РґР¶СЌСЏС‡СЃРјРёС‚СЊР±СЋС‘1234567890';
 				$i = 0;
 				while($i<count($nologin))
 				{
 					if(preg_match("/".$nologin[$i]."/i",$filter->mystr($reg_d[0])))
 					{
-						$error .= 'Выберите, пожалуйста, другой ник.<br>'; $_POST['step'] = 1; $i = count($nologin);
+						$error .= 'Р’С‹Р±РµСЂРёС‚Рµ, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РґСЂСѓРіРѕР№ РЅРёРє.<br>'; $_POST['step'] = 1; $i = count($nologin);
 					}
 					$i++;
 				}
 				$reg_d[0] = str_replace('  ',' ',$reg_d[0]);
-				//Логин от 2 до 20 символов
+				//Р›РѕРіРёРЅ РѕС‚ 2 РґРѕ 20 СЃРёРјРІРѕР»РѕРІ
 				if(strlen($reg_d[0])>20) 
 				{ 
-					$error .= 'Логин должен содержать не более 20 символов.<br>'; $_POST['step'] = 1;
+					$error .= 'Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ Р±РѕР»РµРµ 20 СЃРёРјРІРѕР»РѕРІ.<br>'; $_POST['step'] = 1;
 				}
 				if(strlen($reg_d[0])<2) 
 				{ 
-					$error .= 'Логин должен содержать не менее 2 символов.<br>'; $_POST['step'] = 1;
+					$error .= 'Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ РјРµРЅРµРµ 2 СЃРёРјРІРѕР»РѕРІ.<br>'; $_POST['step'] = 1;
 				}
-				//Один алфавит
+				//РћРґРёРЅ Р°Р»С„Р°РІРёС‚
 				$er = $this->en_ru($reg_d[0]);
 				if($er==true)
 				{
-					$error .= 'В логине разрешено использовать только буквы одного алфавита русского или английского. Нельзя смешивать.<br>'; $_POST['step'] = 1;
+					$error .= 'Р’ Р»РѕРіРёРЅРµ СЂР°Р·СЂРµС€РµРЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹ РѕРґРЅРѕРіРѕ Р°Р»С„Р°РІРёС‚Р° СЂСѓСЃСЃРєРѕРіРѕ РёР»Рё Р°РЅРіР»РёР№СЃРєРѕРіРѕ. РќРµР»СЊР·СЏ СЃРјРµС€РёРІР°С‚СЊ.<br>'; $_POST['step'] = 1;
 				}
-				//Запрещенный символы
+				//Р—Р°РїСЂРµС‰РµРЅРЅС‹Р№ СЃРёРјРІРѕР»С‹
 				if(strpos($sr,$reg_d[0]))
 				{
-					$error .= 'Логин содержит запрещенные символы.<br>'; $_POST['step'] = 1;
+					$error .= 'Р›РѕРіРёРЅ СЃРѕРґРµСЂР¶РёС‚ Р·Р°РїСЂРµС‰РµРЅРЅС‹Рµ СЃРёРјРІРѕР»С‹.<br>'; $_POST['step'] = 1;
 				}				
-				//Персонажи в базе
+				//РџРµСЂСЃРѕРЅР°Р¶Рё РІ Р±Р°Р·Рµ
 				$log = mysql_fetch_array(mysql_query('SELECT `id` from `users` where `login`="'.mysql_real_escape_string($reg_d[0]).'" LIMIT 1'));
 				$log2 = mysql_fetch_array(mysql_query('SELECT `id` from `lastNames` where `login`="'.mysql_real_escape_string($reg_d[0]).'" LIMIT 1'));
 				if(isset($log['id']) || isset($log2['id']))
 				{
-					$error .= 'Логин '.$reg_d[0].' уже занят, выберите другой.<br>'; $_POST['step'] = 1;
+					$error .= 'Р›РѕРіРёРЅ '.$reg_d[0].' СѓР¶Рµ Р·Р°РЅСЏС‚, РІС‹Р±РµСЂРёС‚Рµ РґСЂСѓРіРѕР№.<br>'; $_POST['step'] = 1;
 				}
-				//Разделители
+				//Р Р°Р·РґРµР»РёС‚РµР»Рё
 				if(substr_count($reg_d[0],' ')+substr_count($reg_d[0],'-')+substr_count($reg_d[0],'_')>2)
 				{
-					$error .= 'Не более двух разделителей одновременно (пробел, тире, нижнее подчеркивание).<br>'; $_POST['step'] = 1;
+					$error .= 'РќРµ Р±РѕР»РµРµ РґРІСѓС… СЂР°Р·РґРµР»РёС‚РµР»РµР№ РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ (РїСЂРѕР±РµР», С‚РёСЂРµ, РЅРёР¶РЅРµРµ РїРѕРґС‡РµСЂРєРёРІР°РЅРёРµ).<br>'; $_POST['step'] = 1;
 				}
 				$reg_d[0] = trim($reg_d[0],' ');				
 				
@@ -186,18 +186,18 @@ class register
 			}
 			if($_POST['step']>2)
 			{
-				//проверяем пароль
+				//РїСЂРѕРІРµСЂСЏРµРј РїР°СЂРѕР»СЊ
 				if(strlen($reg_d[1])<6 || strlen($reg_d[1])>30)
 				{
-					$error .= 'Длина пароля не может быть меньше 6 символов или более 30 символов.<br>'; $_POST['step'] = 2;
+					$error .= 'Р”Р»РёРЅР° РїР°СЂРѕР»СЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ 6 СЃРёРјРІРѕР»РѕРІ РёР»Рё Р±РѕР»РµРµ 30 СЃРёРјРІРѕР»РѕРІ.<br>'; $_POST['step'] = 2;
 				}
 				if($reg_d[1]!=$reg_d[2])
 				{
-					$error .= 'В анкете пароль нужно ввести дважды, для проверки. Во второй раз вы его ввели неверно, будьте внимательнее.<br>'; $_POST['step'] = 2;
+					$error .= 'Р’ Р°РЅРєРµС‚Рµ РїР°СЂРѕР»СЊ РЅСѓР¶РЅРѕ РІРІРµСЃС‚Рё РґРІР°Р¶РґС‹, РґР»СЏ РїСЂРѕРІРµСЂРєРё. Р’Рѕ РІС‚РѕСЂРѕР№ СЂР°Р· РІС‹ РµРіРѕ РІРІРµР»Рё РЅРµРІРµСЂРЅРѕ, Р±СѓРґСЊС‚Рµ РІРЅРёРјР°С‚РµР»СЊРЅРµРµ.<br>'; $_POST['step'] = 2;
 				}
 				if(preg_match('/'.$reg_d[0].'/i',$reg_d[1]))
 				{
-					$error .= 'Пароль содержит элементы логина.<br>'; $_POST['step'] = 2;
+					$error .= 'РџР°СЂРѕР»СЊ СЃРѕРґРµСЂР¶РёС‚ СЌР»РµРјРµРЅС‚С‹ Р»РѕРіРёРЅР°.<br>'; $_POST['step'] = 2;
 				}
 				if($_POST['step']!=2)
 				{
@@ -206,15 +206,15 @@ class register
 			}
 			if($_POST['step']>3)
 			{
-				//проверяем e-mail
+				//РїСЂРѕРІРµСЂСЏРµРј e-mail
 				if(strlen($reg_d[3])<6 || strlen($reg_d[3])>50)
 				{
-					$error .= 'E-mail не может быть короче 6-х символов и длинее 50-ти.<br>'; $_POST['step'] = 3;
+					$error .= 'E-mail РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РєРѕСЂРѕС‡Рµ 6-С… СЃРёРјРІРѕР»РѕРІ Рё РґР»РёРЅРµРµ 50-С‚Рё.<br>'; $_POST['step'] = 3;
 				}
 				
 				if(!preg_match('#^[a-z0-9.!\#$%&\'*+-/=?^_`{|}~]+@([0-9.]+|([^\s]+\.+[a-z]{2,6}))$#si', $reg_d[3]))
 				{
-					$error .= 'Вы указали явно ошибочный E-mail.<br>'; $_POST['step'] = 3;
+					$error .= 'Р’С‹ СѓРєР°Р·Р°Р»Рё СЏРІРЅРѕ РѕС€РёР±РѕС‡РЅС‹Р№ E-mail.<br>'; $_POST['step'] = 3;
 				}
 				
 				$reg_d[4] = $chat->str_count($reg_d[4],30);
@@ -227,11 +227,11 @@ class register
 			}
 			if($_POST['step']>4)
 			{
-				//Имя, Пол, Город, Девиз и т.д.
+				//РРјСЏ, РџРѕР», Р“РѕСЂРѕРґ, Р”РµРІРёР· Рё С‚.Рґ.
 				$er = $this->en_ru($reg_d[6]);
 				if($er==true || strlen($reg_d[6])<2)
 				{
-					$error .= 'Укажите ваше реальное имя!<br>'; $_POST['step'] = 4;
+					$error .= 'РЈРєР°Р¶РёС‚Рµ РІР°С€Рµ СЂРµР°Р»СЊРЅРѕРµ РёРјСЏ!<br>'; $_POST['step'] = 4;
 				}
 				
 				$reg_d[6] = $chat->str_count($reg_d[6],90);
@@ -241,17 +241,17 @@ class register
 				
 				if($reg_d[7]<1 || $reg_d[7]>31 || $reg_d[8]<1 || $reg_d[8]>12 || $reg_d[9]<1920 || $reg_d[9]>2006)
 				{
-					$error .= 'Ошибка в написании дня рождения.<br>'; $_POST['step'] = 4;
+					$error .= 'РћС€РёР±РєР° РІ РЅР°РїРёСЃР°РЅРёРё РґРЅСЏ СЂРѕР¶РґРµРЅРёСЏ.<br>'; $_POST['step'] = 4;
 				}
 				
 				if($reg_d[15]!=0 && $reg_d[15]!=1)
 				{
-					$error .= 'Вы указали не верный пол.<br>'; $_POST['step'] = 4;
+					$error .= 'Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµ РІРµСЂРЅС‹Р№ РїРѕР».<br>'; $_POST['step'] = 4;
 				}
 				
 				if($reg_d[14]!='Black' && $reg_d[14]!='Blue' && $reg_d[14]!='Fuchsia' && $reg_d[14]!='Gray' && $reg_d[14]!='Green' && $reg_d[14]!='Maroon' && $reg_d[14]!='Navy' && $reg_d[14]!='Olive' && $reg_d[14]!='Purple' && $reg_d[14]!='Teal' && $reg_d[14]!='Orange' && $reg_d[14]!='Chocolate' && $reg_d[14]!='DarkKhaki' && $reg_d[14]!='SandyBrown')
 				{
-					$error .= 'Вы указали не верный цвет сообщения в чате.<br>'; $_POST['step'] = 4;
+					$error .= 'Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµ РІРµСЂРЅС‹Р№ С†РІРµС‚ СЃРѕРѕР±С‰РµРЅРёСЏ РІ С‡Р°С‚Рµ.<br>'; $_POST['step'] = 4;
 				}				
 				
 				if($_POST['step']!=4)
@@ -261,25 +261,25 @@ class register
 			}
 			if($_POST['step']>5)
 			{
-				//Соглашение с законами 
+				//РЎРѕРіР»Р°С€РµРЅРёРµ СЃ Р·Р°РєРѕРЅР°РјРё 
 				if(!isset($_POST['law_'.$reg['id']]) || $_POST['law_'.$reg['id']]!='on')
 				{
-					$error .= 'Извините, без принятия правил нашего клуба, вы не можете зарегистрировать свой персонаж.<br>'; $_POST['step'] = 5;
+					$error .= 'РР·РІРёРЅРёС‚Рµ, Р±РµР· РїСЂРёРЅСЏС‚РёСЏ РїСЂР°РІРёР» РЅР°С€РµРіРѕ РєР»СѓР±Р°, РІС‹ РЅРµ РјРѕР¶РµС‚Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ СЃРІРѕР№ РїРµСЂСЃРѕРЅР°Р¶.<br>'; $_POST['step'] = 5;
 				}
 				
 				if(!isset($_POST['law2_'.$reg['id']]) || $_POST['law2_'.$reg['id']]!='on')
 				{
-					$error .= 'Извините, без принятия <u>Соглашения о предоставлении сервиса игры '.$c['title'].'</u>, вы не можете зарегистрировать персонаж.<br>'; $_POST['step'] = 5;
+					$error .= 'РР·РІРёРЅРёС‚Рµ, Р±РµР· РїСЂРёРЅСЏС‚РёСЏ <u>РЎРѕРіР»Р°С€РµРЅРёСЏ Рѕ РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёРё СЃРµСЂРІРёСЃР° РёРіСЂС‹ '.$c['title'].'</u>, РІС‹ РЅРµ РјРѕР¶РµС‚Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶.<br>'; $_POST['step'] = 5;
 				}
 				
 				if($_POST['code']!=$_SESSION['code'] || $_SESSION['code']<100 || $_POST['code']=='')
 				{
-					$error .= 'Ошибка введения кода.<br>'; $_POST['step'] = 5;
+					$error .= 'РћС€РёР±РєР° РІРІРµРґРµРЅРёСЏ РєРѕРґР°.<br>'; $_POST['step'] = 5;
 				}
 				
 				if($_POST['step']!=5)
 				{
-					//завершение регистрации и редирект в игру
+					//Р·Р°РІРµСЂС€РµРЅРёРµ СЂРµРіРёСЃС‚СЂР°С†РёРё Рё СЂРµРґРёСЂРµРєС‚ РІ РёРіСЂСѓ
 					
 					if($filter->spamFiltr($reg_d[13])!=0)
 					{
@@ -303,7 +303,7 @@ where t1.id + 1 not in (select id from users where id > 9999) AND t1.id > 9998')
 						*/
 					$mbid = 'NULL';
 					/*}else{
-						/* чистим возможные данные */
+						/* С‡РёСЃС‚РёРј РІРѕР·РјРѕР¶РЅС‹Рµ РґР°РЅРЅС‹Рµ */
 						/*if($mbid [0]> 0) {
 							mysql_query('DELETE FROM `items_users` WHERE `uid` = "'.$mbid[0].'" LIMIT 1');
 							mysql_query('DELETE FROM `eff_users` WHERE `uid` = "'.$mbid[0].'" LIMIT 1');
@@ -351,27 +351,27 @@ where t1.id + 1 not in (select id from users where id > 9999) AND t1.id > 9998')
 						$refer = mysql_fetch_array(mysql_query('SELECT `id`,`login`,`banned`,`admin`,`level` FROM `users` WHERE `id` = "'.mysql_real_escape_string($reg['referal']).'" LIMIT 1'));
 						if(isset($refer['id'])) {
 							mysql_query("INSERT INTO `items_users` (`gift`,`uid`,`item_id`,`data`,`iznosMAX`,`geniration`,`maidin`,`time_create`) VALUES ('".$refer['login']."','".$uid."','3199','noodet=1|items_in_file=sunduk_new|var_id=1|open=1|noremont=1|nodelete=1|nosale=1',1,2,'capitalcity',".time().")");
-							$text = '<font color=red>Вы стали воспитанником игрока &quot;'.$refer['login'].'&quot;! В инвентаре (раздел -прочее-) вы найдете вспомогательные предметы.</font>';
+							$text = '<font color=red>Р’С‹ СЃС‚Р°Р»Рё РІРѕСЃРїРёС‚Р°РЅРЅРёРєРѕРј РёРіСЂРѕРєР° &quot;'.$refer['login'].'&quot;! Р’ РёРЅРІРµРЅС‚Р°СЂРµ (СЂР°Р·РґРµР» -РїСЂРѕС‡РµРµ-) РІС‹ РЅР°Р№РґРµС‚Рµ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РїСЂРµРґРјРµС‚С‹.</font>';
 							mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('capitalcity','0','','".$reg_d[0]."','".$text."','".time()."','11','0')");
 						}
 						
 						mysql_query("INSERT INTO `online` (`uid`,`timeStart`) VALUES ('".$uid."','".time()."')");
 						mysql_query("INSERT INTO `stats` (`id`,`stats`) VALUES ('".$uid."','s1=3|s2=3|s3=3|s4=3|rinv=40|m9=5|m6=10')");
-						//Добавляем предметы
-						mysql_query("INSERT INTO `items_users` (`gift`,`uid`,`item_id`,`data`,`iznosMAX`,`geniration`,`maidin`,`time_create`) VALUES ('Мироздатель','".$uid."','1','add_hpAll=3',10,2,'capitalcity',".time().")");
-						mysql_query("INSERT INTO `items_users` (`gift`,`uid`,`item_id`,`data`,`iznosMAX`,`geniration`,`maidin`,`time_create`) VALUES ('Мусорщик','".$uid."','73','add_mib3=1|add_mab3=1|add_mib4=1|add_mab4=1',20,2,'capitalcity',".time().")");
+						//Р”РѕР±Р°РІР»СЏРµРј РїСЂРµРґРјРµС‚С‹
+						mysql_query("INSERT INTO `items_users` (`gift`,`uid`,`item_id`,`data`,`iznosMAX`,`geniration`,`maidin`,`time_create`) VALUES ('РњРёСЂРѕР·РґР°С‚РµР»СЊ','".$uid."','1','add_hpAll=3',10,2,'capitalcity',".time().")");
+						mysql_query("INSERT INTO `items_users` (`gift`,`uid`,`item_id`,`data`,`iznosMAX`,`geniration`,`maidin`,`time_create`) VALUES ('РњСѓСЃРѕСЂС‰РёРє','".$uid."','73','add_mib3=1|add_mab3=1|add_mib4=1|add_mab4=1',20,2,'capitalcity',".time().")");
 						mysql_query("INSERT INTO `items_users` (`uid`,`item_id`,`data`,`iznosMAX`,`geniration`,`maidin`,`time_create`) VALUES ('".$uid."','724','moment=1|sudba=".mysql_real_escape_string($reg_d[0])."|moment_hp=100|nohaos=1|musor=2|noremont=1',100,2,'capitalcity',".time().")");
 						mysql_query("INSERT INTO `items_users` (`uid`,`item_id`,`data`,`iznosMAX`,`geniration`,`maidin`,`time_create`) VALUES ('".$uid."','865','tr_lvl=1|sudba=".mysql_real_escape_string($reg_d[0])."|useOnLogin=1|musor=1|noremont=1',50,2,'capitalcity',".time().")");
 						mysql_query("INSERT INTO `items_users` (`uid`,`item_id`,`data`,`iznosMAX`,`geniration`,`maidin`,`time_create`) VALUES ('".$uid."','4014','sudba=".mysql_real_escape_string($reg_d[0])."|noremont=1|usefromfile=1|musor=1|nodelete=1|nosale=1|expUpg=300000',1,2,'capitalcity',".time().")");
 						
 						/*
-						$text = 'Администрация проекта: Желаем приятного общения, великих побед и незабываемых впечатлений в нашей с вами игре! :-)';
+						$text = 'РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ РїСЂРѕРµРєС‚Р°: Р–РµР»Р°РµРј РїСЂРёСЏС‚РЅРѕРіРѕ РѕР±С‰РµРЅРёСЏ, РІРµР»РёРєРёС… РїРѕР±РµРґ Рё РЅРµР·Р°Р±С‹РІР°РµРјС‹С… РІРїРµС‡Р°С‚Р»РµРЅРёР№ РІ РЅР°С€РµР№ СЃ РІР°РјРё РёРіСЂРµ! :-)';
 						mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('capitalcity','0','','".$reg_d[0]."','".$text."','".time()."','11','0')");
-						$text = 'Вы получили предмет [img[items/pot_cureHP100_20.gif]][1] &quot;Зелье Жизни&quot;, он находится в инвентаре, в разделе &quot;эликсиры&quot;';
+						$text = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РїСЂРµРґРјРµС‚ [img[items/pot_cureHP100_20.gif]][1] &quot;Р—РµР»СЊРµ Р–РёР·РЅРё&quot;, РѕРЅ РЅР°С…РѕРґРёС‚СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ, РІ СЂР°Р·РґРµР»Рµ &quot;СЌР»РёРєСЃРёСЂС‹&quot;';
 						mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('capitalcity','0','','".$reg_d[0]."','".$text."','".time()."','11','0')");
-						$text = 'Вы получили предмет [img[items/pal_button8.gif]][1] &quot;Нападение&quot;, он находится в инвентаре, в разделе &quot;заклятия&quot;';
+						$text = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РїСЂРµРґРјРµС‚ [img[items/pal_button8.gif]][1] &quot;РќР°РїР°РґРµРЅРёРµ&quot;, РѕРЅ РЅР°С…РѕРґРёС‚СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ, РІ СЂР°Р·РґРµР»Рµ &quot;Р·Р°РєР»СЏС‚РёСЏ&quot;';
 						mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('capitalcity','0','','".$reg_d[0]."','".$text."','".time()."','11','0')");
-						$text = 'Вы получили предмет [img[items/qsvit_hran.gif]][1] &quot;Свиток Обучения&quot;, он находится в инвентаре, в разделе &quot;заклятия&quot;. <b><font color=red>Использовав данный свиток Вы получите +300.000 ед. опыта</font></b>';
+						$text = 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РїСЂРµРґРјРµС‚ [img[items/qsvit_hran.gif]][1] &quot;РЎРІРёС‚РѕРє РћР±СѓС‡РµРЅРёСЏ&quot;, РѕРЅ РЅР°С…РѕРґРёС‚СЃСЏ РІ РёРЅРІРµРЅС‚Р°СЂРµ, РІ СЂР°Р·РґРµР»Рµ &quot;Р·Р°РєР»СЏС‚РёСЏ&quot;. <b><font color=red>РСЃРїРѕР»СЊР·РѕРІР°РІ РґР°РЅРЅС‹Р№ СЃРІРёС‚РѕРє Р’С‹ РїРѕР»СѓС‡РёС‚Рµ +300.000 РµРґ. РѕРїС‹С‚Р°</font></b>';
 						mysql_query("INSERT INTO `chat` (`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('capitalcity','0','','".$reg_d[0]."','".$text."','".time()."','11','0')");
 						*/
 						
@@ -384,15 +384,15 @@ where t1.id + 1 not in (select id from users where id > 9999) AND t1.id > 9998')
 						setcookie('pass',md5($reg_d[1]),time()+60*60*24*7,'',$c['host']);
 						setcookie('auth',md5($reg_d[1].'AUTH'.IP),time()+60*60*24*365,'',$c['host']);
 						setcookie('reg_capitalcity',true,time()+60*60,'',$c['host']);
-						$chat->send('',1,'capitalcity','','','Вас приветствует новичок: [login:'.$reg_d[0].']',time(),12,1,0,0);
+						$chat->send('',1,'capitalcity','','','Р’Р°СЃ РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ РЅРѕРІРёС‡РѕРє: [login:'.$reg_d[0].']',time(),12,1,0,0);
 						mysql_query("UPDATE `users` SET `online`='".time()."' WHERE `uid` = '".$uid."' LIMIT 1");
 						mysql_query("UPDATE `register_code` SET `reg_id`='".$uid."',`time_finish`='".time()."' WHERE `id` = '".$cd['id']."' LIMIT 1");
 						mysql_query("UPDATE `items_users` SET `delete`='".time()."' WHERE `secret_id` = '".$cd['code']."' LIMIT 1");
 						mysql_query('DELETE FROM `register` WHERE `id` = "'.$reg['id'].'" LIMIT 1');
 						header('location: /bk');						
-						die('Регистарция прошла успешно...');
+						die('Р РµРіРёСЃС‚Р°СЂС†РёСЏ РїСЂРѕС€Р»Р° СѓСЃРїРµС€РЅРѕ...');
 					}else{
-						$error .= 'Ошибка регистрации. Попробуйте позже...<br>';
+						$error .= 'РћС€РёР±РєР° СЂРµРіРёСЃС‚СЂР°С†РёРё. РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕР·Р¶Рµ...<br>';
 					}
 				}			
 			}

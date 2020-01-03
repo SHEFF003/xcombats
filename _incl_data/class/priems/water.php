@@ -8,7 +8,7 @@ if(isset($hod))
 {
 	if($pr['id']==73)
 	{
-		//олединение [5]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [5]
 		$krituetli=false;
 		$hpmin = 6;
 		if($eff['x']>1)
@@ -17,7 +17,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==21)
 	{
-		//олединение [4]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [4]
 		$krituetli=false;
 		$hpmin = 3;
 		if($eff['x']>1)
@@ -26,7 +26,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==74)
 	{
-		//олединение [6] 
+		//РѕР»РµРґРёРЅРµРЅРёРµ [6] 
         $krituetli=false;
 		$hpmin = 7;
 		if($eff['x']>1)
@@ -35,7 +35,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==75)
 	{
-		//олединение [7] 
+		//РѕР»РµРґРёРЅРµРЅРёРµ [7] 
         $krituetli=false;
 		$hpmin = 8;
 		if($eff['x']>1)
@@ -44,7 +44,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==76)
 	{
-		//олединение [8] 
+		//РѕР»РµРґРёРЅРµРЅРёРµ [8] 
         $krituetli=false;
 		$hpmin = 10;
 		if($eff['x']>1)
@@ -53,7 +53,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==77)
 	{
-		//олединение [9] 
+		//РѕР»РµРґРёРЅРµРЅРёРµ [9] 
         $krituetli=false;
 		$hpmin = 12;
 		if($eff['x']>1)
@@ -62,7 +62,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==78)
 	{
-		//олединение [10] 
+		//РѕР»РµРґРёРЅРµРЅРёРµ [10] 
         $krituetli=false;
 		$hpmin = 14;
 		if($eff['x']>1)
@@ -71,7 +71,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==79)
 	{
-		//олединение [11] 
+		//РѕР»РµРґРёРЅРµРЅРёРµ [11] 
         $krituetli=false;
 		$hpmin = 16;
 		if($eff['x']>1)
@@ -81,7 +81,7 @@ if(isset($hod))
 	}elseif($pr['id']==22)
 	{
 	
-		//отравление [6]
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [6]
 		$krituetli=false;
 		$hpmin = 6.1;
 		$minmp = 3;
@@ -91,7 +91,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==80)
 	{
-		//отравление [7]
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [7]
 		$krituetli=false;
 		$hpmin = 7.3;
 		$minmp = 5;
@@ -101,7 +101,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==81)
 	{
-		//отравление [8]
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [8]
 		$krituetli=false;
 		$hpmin = 8.8;
 		$minmp = 7;
@@ -111,7 +111,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==82)
 	{
-		//отравление [9]
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [9]
 		$krituetli=false;
 		$hpmin = 10.5;
 		$minmp = 9;
@@ -121,7 +121,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==83)
 	{
-		//отравление [10]
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [10]
 		$krituetli=false;
 		$hpmin = 12.7;
 		$minmp = 11;
@@ -131,7 +131,7 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==84)
 	{
-		//отравление [11]
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [11]
 		$krituetli=false;
 		$hpmin = 15.2;
 		$minmp = 12;
@@ -141,70 +141,70 @@ if(isset($hod))
 		}
 	}elseif($pr['id']==23)
 	{
-		//ядовитое облако [8]
+		//СЏРґРѕРІРёС‚РѕРµ РѕР±Р»Р°РєРѕ [8]
 		$krituetli=false;
 		$hpmin = 13;
 	}elseif($pr['id']==32)
 	{
-		//Знак воды
+		//Р—РЅР°Рє РІРѕРґС‹
 		$minmp = (int)$u->info['level'];
 	}elseif($pr['id']==36)
 	{
-		//Регенерация [5] 
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [5] 
         $krituetli=false;
 		$hpadd = 7.5;
 		$mpmin = 4;
 	}
 	elseif($pr['id']==85)
 	{
-		//Регенерация [6] 
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [6] 
         $krituetli=false;
 		$hpadd = 9;
 		$mpmin = 6;
 	}
 	elseif($pr['id']==86)
 	{
-		//Регенерация [7] 
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [7] 
         $krituetli=false;
 		$hpadd = 11;
 		$mpmin = 8;
 	}
 	elseif($pr['id']==87)
 	{
-		//Регенерация [8] 
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [8] 
         $krituetli=false;
 		$hpadd = 13;
 		$mpmin = 10;
 	}
 	elseif($pr['id']==88)
 	{
-		//Регенерация [9] 
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [9] 
         $krituetli=false;
 		$hpadd = 16;
 		$mpmin = 12;
 	}
 	elseif($pr['id']==89)
 	{
-		//Регенерация [10] 
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [10] 
         $krituetli=false;
 		$hpadd = 19;
 		$mpmin = 14;
 	}
 	elseif($pr['id']==90)
 	{
-		//Регенерация [11] 
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [11] 
         $krituetli=false;
 		$hpadd = 23;
 		$mpmin = 16;
 	}
-	//добавляем НР к цели
+	//РґРѕР±Р°РІР»СЏРµРј РќР  Рє С†РµР»Рё
 	if($hpadd>0)
 	{
 		if($btl->users[$btl->uids[$eff['uid']]]['hpNow']>0)
 		{
 			$this->magicRegen($ue,$hpadd,3,$pr,$eff,1,0,$krituetli);	
 		}else{
-			$cup = true; //не удалось использовать прием
+			$cup = true; //РЅРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїСЂРёРµРј
 		}
 	}
 	if($hpmin>0)
@@ -213,15 +213,15 @@ if(isset($hod))
 	}
 	if(isset($minmp))
 	{
-		//отнимаем МР у кастера
+		//РѕС‚РЅРёРјР°РµРј РњР  Сѓ РєР°СЃС‚РµСЂР°
 		if($this->minMana($eff['user_use'],$minmp,3)==false)
 		{
-			//снимаем эффект, мана закончилась
+			//СЃРЅРёРјР°РµРј СЌС„С„РµРєС‚, РјР°РЅР° Р·Р°РєРѕРЅС‡РёР»Р°СЃСЊ
 			$btl->delPriem($eff,$btl->users[$btl->uids[$eff['uid']]],2);
 		}
 	}
 }else{
-	$uen = $u->info['enemy']; //на кого используем прием
+	$uen = $u->info['enemy']; //РЅР° РєРѕРіРѕ РёСЃРїРѕР»СЊР·СѓРµРј РїСЂРёРµРј
 	
 	if(isset($_POST['useon']) && $_POST['useon']!='' && $_POST['useon']!='none')
 	{
@@ -234,17 +234,17 @@ if(isset($hod))
 		}
 	}
 	if($pl['id']==267) {
-		//Кристаллизация		
+		//РљСЂРёСЃС‚Р°Р»Р»РёР·Р°С†РёСЏ		
 		$hpmin = $btl->stats[$btl->uids[$uen]]['s1'];
 		if($hpmin > $u->info['level']*10) {
 			$hpmin = $u->info['level']*10;
 		}
 		$this->magicAtack($btl->users[$btl->uids[$uen]],$hpmin,3,$pl,$eff,0,0,0,1,$krituetli);	
 		unset($hpmin);		
-		$this->addPriem($uen,268,'|add_s1=-'.$btl->stats[$btl->uids[$u->info['id']]]['mg3'].'|add_s2=-'.$btl->stats[$btl->uids[$u->info['id']]]['mg3'].'',1,77,4,$u->info['id'],1,'кристаллизация');
+		$this->addPriem($uen,268,'|add_s1=-'.$btl->stats[$btl->uids[$u->info['id']]]['mg3'].'|add_s2=-'.$btl->stats[$btl->uids[$u->info['id']]]['mg3'].'',1,77,4,$u->info['id'],1,'РєСЂРёСЃС‚Р°Р»Р»РёР·Р°С†РёСЏ');
 	}elseif($pl['id'] == 265) {
-		//олединение: разбить
-		$mg = mysql_fetch_array(mysql_query('SELECT `id`,`x` FROM `eff_users` WHERE `uid` = "'.$btl->users[$btl->uids[$uen]]['id'].'" AND `bj` = "оледенение" AND `user_use` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1'));
+		//РѕР»РµРґРёРЅРµРЅРёРµ: СЂР°Р·Р±РёС‚СЊ
+		$mg = mysql_fetch_array(mysql_query('SELECT `id`,`x` FROM `eff_users` WHERE `uid` = "'.$btl->users[$btl->uids[$uen]]['id'].'" AND `bj` = "РѕР»РµРґРµРЅРµРЅРёРµ" AND `user_use` = "'.$u->info['id'].'" ORDER BY `id` DESC LIMIT 1'));
 		if(isset($mg['id'])) {
 			
 			$hpmin = 21;
@@ -264,104 +264,104 @@ if(isset($hod))
 				$hpmin = 68;
 			}
 			$hpmin += round($hpmin/100*(50*$mg['x']));
-			echo '<font color=red><b>Прием &quot;'.$pl['name'].'&quot; успешно использован.</b></font>';
+			echo '<font color=red><b>РџСЂРёРµРј &quot;'.$pl['name'].'&quot; СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅ.</b></font>';
 			mysql_query('DELETE FROM `eff_users` WHERE `id` = "'.$mg['id'].'" LIMIT 1');
 		}else{
-			echo '<font color=red><b>На цели нет приема &quot;Оледенение&quot;</b></font>';
+			echo '<font color=red><b>РќР° С†РµР»Рё РЅРµС‚ РїСЂРёРµРјР° &quot;РћР»РµРґРµРЅРµРЅРёРµ&quot;</b></font>';
 			$cup = true;
 		}
 		
 	}elseif($pl['id']==73)
 	{
-		//олединение [5]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [5]
 		$hpmin = 23;
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'оледенение');
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ');
 	}elseif($pl['id']==21)
 	{
-		//олединение [4]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [4]
 		$hpmin = 21;
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'оледенение');
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ');
 	}elseif($pl['id']==74)
 	{
-		//олединение [6]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [6]
 		$hpmin = 27;
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'оледенение');
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ');
 	}elseif($pl['id']==75)
 	{
-		//олединение [7]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [7]
 		$hpmin = 33;
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'оледенение');
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ');
 	}elseif($pl['id']==76)
 	{
-		//олединение [8]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [8]
 		$hpmin = 39;
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'оледенение');
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ');
 	}elseif($pl['id']==77)
 	{
-		//олединение [9]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [9]
 		$hpmin = 47;
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'оледенение');
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ');
 	}elseif($pl['id']==78)
 	{
-		//олединение [10]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [10]
 		$hpmin = 57;
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'оледенение');
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ');
 	}elseif($pl['id']==79)
 	{
-		//олединение [11]
+		//РѕР»РµРґРёРЅРµРЅРёРµ [11]
 		$hpmin = 68;
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'оледенение');
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ');
 	}elseif($pl['id']==22)
 	{
-		//отравление [6]
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'отравление',3,1);
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [6]
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'РѕС‚СЂР°РІР»РµРЅРёРµ',3,1);
 		if($re==false)
 		{
-			echo '[Er::Отравление[xX]]';
+			echo '[Er::РћС‚СЂР°РІР»РµРЅРёРµ[xX]]';
 		}
 	}elseif($pl['id']==80)
 	{
-		//отравление [7]
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'отравление',3,1);
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [7]
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'РѕС‚СЂР°РІР»РµРЅРёРµ',3,1);
 		if($re==false)
 		{
-			echo '[Er::Отравление[xX]]';
+			echo '[Er::РћС‚СЂР°РІР»РµРЅРёРµ[xX]]';
 		}
 	}elseif($pl['id']==81)
 	{
-		//отравление [8]
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'отравление',3,1);
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [8]
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'РѕС‚СЂР°РІР»РµРЅРёРµ',3,1);
 		if($re==false)
 		{
-			echo '[Er::Отравление[xX]]';
+			echo '[Er::РћС‚СЂР°РІР»РµРЅРёРµ[xX]]';
 		}
 	}elseif($pl['id']==82)
 	{
-		//отравление [9]
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'отравление',3,1);
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [9]
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'РѕС‚СЂР°РІР»РµРЅРёРµ',3,1);
 		if($re==false)
 		{
-			echo '[Er::Отравление[xX]]';
+			echo '[Er::РћС‚СЂР°РІР»РµРЅРёРµ[xX]]';
 		}
 	}elseif($pl['id']==83)
 	{
-		//отравление [10]
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'отравление',3,1);
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [10]
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'РѕС‚СЂР°РІР»РµРЅРёРµ',3,1);
 		if($re==false)
 		{
-			echo '[Er::Отравление[xX]]';
+			echo '[Er::РћС‚СЂР°РІР»РµРЅРёРµ[xX]]';
 		}
 	}elseif($pl['id']==84)
 	{
-		//отравление [11]
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'отравление',3,1);
+		//РѕС‚СЂР°РІР»РµРЅРёРµ [11]
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,10,$u->info['id'],1,'РѕС‚СЂР°РІР»РµРЅРёРµ',3,1);
 		if($re==false)
 		{
-			echo '[Er::Отравление[xX]]';
+			echo '[Er::РћС‚СЂР°РІР»РµРЅРёРµ[xX]]';
 		}
 	}elseif($pl['id']==23)
 	{
-		//Ядовитое Облако [8] 3-5 целей
+		//РЇРґРѕРІРёС‚РѕРµ РћР±Р»Р°РєРѕ [8] 3-5 С†РµР»РµР№
 		$rx = rand(20,40);
 		$rx = floor($rx/10);
 		$xx = 0;
@@ -371,65 +371,65 @@ if(isset($hod))
 			
 			if($btl->stats[$ix]['hpNow']>0 && $btl->users[$ix]['team']!=$u->info['team'] && $xx<$rx && $uen!=$btl->users[$ix]['id'])
 			{
-				$re = $this->addPriem($btl->users[$ix]['id'],$pl['id'],'',0,77,5,$u->info['id'],1,'ядовитоеоблако',3,1);
+				$re = $this->addPriem($btl->users[$ix]['id'],$pl['id'],'',0,77,5,$u->info['id'],1,'СЏРґРѕРІРёС‚РѕРµРѕР±Р»Р°РєРѕ',3,1);
 				if($re==false)
 				{
-					echo '[Er::ЯдовитоеОблако[xX]]';
+					echo '[Er::РЇРґРѕРІРёС‚РѕРµРћР±Р»Р°РєРѕ[xX]]';
 				}
 				$xx++;
 			}
 			$ix++;
 		}
-		$re = $this->addPriem($uen,$pl['id'],'',0,77,5,$u->info['id'],1,'ядовитоеоблако',3,1);
+		$re = $this->addPriem($uen,$pl['id'],'',0,77,5,$u->info['id'],1,'СЏРґРѕРІРёС‚РѕРµРѕР±Р»Р°РєРѕ',3,1);
 		if($re==false)
 		{
-			echo '[Er::ЯдовитоеОблако[xX]]';
+			echo '[Er::РЇРґРѕРІРёС‚РѕРµРћР±Р»Р°РєРѕ[xX]]';
 		}
 	}elseif($pl['id']==32)
 	{
-		//Знак воды
-		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,-2,$u->info['id'],1,'знакводы',3,1);
+		//Р—РЅР°Рє РІРѕРґС‹
+		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,-2,$u->info['id'],1,'Р·РЅР°РєРІРѕРґС‹',3,1);
 	}elseif($pl['id']==36)
 	{
-		//Регенерация [5]
-		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'регенерация',3,1);
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [5]
+		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'СЂРµРіРµРЅРµСЂР°С†РёСЏ',3,1);
 	}elseif($pl['id']==85)
 	{
-		//Регенерация [6]
-		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'регенерация',3,1);
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [6]
+		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'СЂРµРіРµРЅРµСЂР°С†РёСЏ',3,1);
 	}elseif($pl['id']==86)
 	{
-		//Регенерация [7]
-		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'регенерация',3,1);
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [7]
+		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'СЂРµРіРµРЅРµСЂР°С†РёСЏ',3,1);
 	}elseif($pl['id']==87)
 	{
-		//Регенерация [8]
-		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'регенерация',3,1);
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [8]
+		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'СЂРµРіРµРЅРµСЂР°С†РёСЏ',3,1);
 	}elseif($pl['id']==88)
 	{
-		//Регенерация [9]
-		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'регенерация',3,1);
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [9]
+		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'СЂРµРіРµРЅРµСЂР°С†РёСЏ',3,1);
 	}elseif($pl['id']==89)
 	{
-		//Регенерация [10]
-		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'регенерация',3,1);
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [10]
+		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'СЂРµРіРµРЅРµСЂР°С†РёСЏ',3,1);
 	}elseif($pl['id']==90)
 	{
-		//Регенерация [11]
-		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'регенерация',3,1);
+		//Р РµРіРµРЅРµСЂР°С†РёСЏ [11]
+		$re = $this->addPriem($u->info['id'],$pl['id'],-1,0,77,8,$u->info['id'],1,'СЂРµРіРµРЅРµСЂР°С†РёСЏ',3,1);
 	}elseif($pl['id']==164)
 	{
-		//Острая грань
+		//РћСЃС‚СЂР°СЏ РіСЂР°РЅСЊ
 		if($uen>0 && $btl->stats[$btl->uids[$uen]]['hpNow']>0)
 		{
 			$re = $this->magicAtack($ue,150,3,$pl,$eff,0,0,1);
 		}else{
-			$cup = true; //не удалось использовать прием	
+			$cup = true; //РЅРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїСЂРёРµРј	
 		}
 	}
 	elseif($pl['id']==174)
 	{
-		//Ледяное сердце
+		//Р›РµРґСЏРЅРѕРµ СЃРµСЂРґС†Рµ
 		$upd = $this->rezadEff($u->info['id'],'wis_water');
 		if($upd==false)
 		{
@@ -437,13 +437,13 @@ if(isset($hod))
 		}else{
 			$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'];
 			$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-			$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;. <small>(Сняты задержки на магию Воды)</small>';	
+			$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;. <small>(РЎРЅСЏС‚С‹ Р·Р°РґРµСЂР¶РєРё РЅР° РјР°РіРёСЋ Р’РѕРґС‹)</small>';	
 			$btl->add_log($mas1);
 		}
 		unset($upd);
 	}
 	elseif($pl['id'] == 205) {
-	//Чистота Воды
+	//Р§РёСЃС‚РѕС‚Р° Р’РѕРґС‹
 	
 		$i=0;
 		$add_where='';
@@ -466,12 +466,12 @@ if(isset($hod))
 	
 	if($hpmin>0)
 	{
-		//отнимаем НР у противника
+		//РѕС‚РЅРёРјР°РµРј РќР  Сѓ РїСЂРѕС‚РёРІРЅРёРєР°
 		if(isset($hpmin) && $hpmin>0 && $uen>0 && $btl->stats[$btl->uids[$uen]]['hpNow']>0)
 		{
 			$re = $this->magicAtack($btl->users[$btl->uids[$uen]],$hpmin,3,$pl,$eff,0,0,0,0,$krituetli);
 		}else{
-			$cup = true; //не удалось использовать прием	
+			$cup = true; //РЅРµ СѓРґР°Р»РѕСЃСЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїСЂРёРµРј	
 		}
 	}
 }

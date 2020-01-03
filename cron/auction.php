@@ -7,14 +7,14 @@ include('/var/www/xcombats/data/www/xcombats.com/_incl_data/class/__user.php');
 
 /*
 
-	CRON Комиссионного магазина
-	Действия:
-	1.  Если предмет висит уже 2 и более недель, продавать предмет за 50% от его стоимости с учетом износа
-		деньги отсылаются на почту.
+	CRON РљРѕРјРёСЃСЃРёРѕРЅРЅРѕРіРѕ РјР°РіР°Р·РёРЅР°
+	Р”РµР№СЃС‚РІРёСЏ:
+	1.  Р•СЃР»Рё РїСЂРµРґРјРµС‚ РІРёСЃРёС‚ СѓР¶Рµ 2 Рё Р±РѕР»РµРµ РЅРµРґРµР»СЊ, РїСЂРѕРґР°РІР°С‚СЊ РїСЂРµРґРјРµС‚ Р·Р° 50% РѕС‚ РµРіРѕ СЃС‚РѕРёРјРѕСЃС‚Рё СЃ СѓС‡РµС‚РѕРј РёР·РЅРѕСЃР°
+		РґРµРЅСЊРіРё РѕС‚СЃС‹Р»Р°СЋС‚СЃСЏ РЅР° РїРѕС‡С‚Сѓ.
 
 */
 
-$time_last = 86400; //1 день
+$time_last = 86400; //1 РґРµРЅСЊ
 
 $sp = mysql_query('SELECT * FROM `items_auc` WHERE `time_end` = 0 AND `time` < "'.(time()-$time_last).'" ORDER BY `user_buy` ASC');
 while( $pl = mysql_fetch_array($sp) ) {
@@ -25,25 +25,25 @@ while( $pl = mysql_fetch_array($sp) ) {
 	//
 	$user = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$pl['uid'].'" LIMIT 1'));
 	if( $pl['user_buy'] > 0 ) {
-		//Предмет купили
+		//РџСЂРµРґРјРµС‚ РєСѓРїРёР»Рё
 		$buyer = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.$pl['user_buy'].'" LIMIT 1'));
 		if(isset($buyer['id'])) {
 			mysql_query('UPDATE `items_users` SET `uid` = "'.$buyer['id'].'",`lastUPD` = "'.time().'" WHERE (`id` = "'.$pl['item_id'].'" OR `inGroup` = "'.$pl['item_id'].'") AND `uid` = 0');
-			$u->send('','','','<font color=#009966 >Филиал Аукциона</font>',$buyer['login'],'Вы выиграли торги. Предмет &quot;'.$pl['name'].'&quot; за <b>'.$pl['price'].' кр.</b> был добавлен к вам в инвентарь.',time(),6,0,0,0,1,0);
+			$u->send('','','','<font color=#009966 >Р¤РёР»РёР°Р» РђСѓРєС†РёРѕРЅР°</font>',$buyer['login'],'Р’С‹ РІС‹РёРіСЂР°Р»Рё С‚РѕСЂРіРё. РџСЂРµРґРјРµС‚ &quot;'.$pl['name'].'&quot; Р·Р° <b>'.$pl['price'].' РєСЂ.</b> Р±С‹Р» РґРѕР±Р°РІР»РµРЅ Рє РІР°Рј РІ РёРЅРІРµРЅС‚Р°СЂСЊ.',time(),6,0,0,0,1,0);
 		}
 		if(isset($user['id'])) {
-			$u->send('','','','<font color=#009966 >Филиал Аукциона</font>',$user['login'],'Предмет &quot;'.$pl['name'].'&quot; был продан на торгах, <b>'.$pl['price'].'</b> кр. за товар отправлены вам по почте.',time(),6,0,0,0,1,0);
+			$u->send('','','','<font color=#009966 >Р¤РёР»РёР°Р» РђСѓРєС†РёРѕРЅР°</font>',$user['login'],'РџСЂРµРґРјРµС‚ &quot;'.$pl['name'].'&quot; Р±С‹Р» РїСЂРѕРґР°РЅ РЅР° С‚РѕСЂРіР°С…, <b>'.$pl['price'].'</b> РєСЂ. Р·Р° С‚РѕРІР°СЂ РѕС‚РїСЂР°РІР»РµРЅС‹ РІР°Рј РїРѕ РїРѕС‡С‚Рµ.',time(),6,0,0,0,1,0);
 			//
 			mysql_query('INSERT INTO `items_users` (`delete`,`item_id`,`1price`,`uid`,`lastUPD`) VALUES ("0","1220","'.$pl['price'].'","-51'.$user['id'].'","'.time().'")');
 			mysql_query('INSERT INTO `post` (`uid`,`sender_id`,`time`,`money`,`text`) VALUES (
-				"'.$user['id'].'","0","'.time().'","'.$pl['price'].'","Филиал Аукциона: Предмет &quot;'.$pl['name'].'&quot; был продан за <b>'.$pl['price'].' кр</b>."
+				"'.$user['id'].'","0","'.time().'","'.$pl['price'].'","Р¤РёР»РёР°Р» РђСѓРєС†РёРѕРЅР°: РџСЂРµРґРјРµС‚ &quot;'.$pl['name'].'&quot; Р±С‹Р» РїСЂРѕРґР°РЅ Р·Р° <b>'.$pl['price'].' РєСЂ</b>."
 			)');
 		}
 	}else{
-		//Предмет не купили, возвращаем его обратно
+		//РџСЂРµРґРјРµС‚ РЅРµ РєСѓРїРёР»Рё, РІРѕР·РІСЂР°С‰Р°РµРј РµРіРѕ РѕР±СЂР°С‚РЅРѕ
 		if(isset($user['id'])) {
 			mysql_query('UPDATE `items_users` SET `uid` = "'.$user['id'].'",`lastUPD` = "'.time().'" WHERE (`id` = "'.$pl['item_id'].'" OR `inGroup` = "'.$pl['item_id'].'") AND `uid` = 0');
-			$u->send('','','','<font color=#009966 >Филиал Аукциона</font>',$user['login'],'Предмет &quot;'.$pl['name'].'&quot; не был продан, он возвращен вам в инвентарь.',time(),6,0,0,0,1,0);
+			$u->send('','','','<font color=#009966 >Р¤РёР»РёР°Р» РђСѓРєС†РёРѕРЅР°</font>',$user['login'],'РџСЂРµРґРјРµС‚ &quot;'.$pl['name'].'&quot; РЅРµ Р±С‹Р» РїСЂРѕРґР°РЅ, РѕРЅ РІРѕР·РІСЂР°С‰РµРЅ РІР°Рј РІ РёРЅРІРµРЅС‚Р°СЂСЊ.',time(),6,0,0,0,1,0);
 		}
 	}
 	mysql_query('UPDATE `items_auc` SET `time_end` = "'.time().'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');

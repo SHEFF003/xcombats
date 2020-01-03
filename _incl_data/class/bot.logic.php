@@ -25,7 +25,7 @@ class botLogic {
 	
 	static function battle_priems() {
 		
-		//используем приемы в бою	
+		//РёСЃРїРѕР»СЊР·СѓРµРј РїСЂРёРµРјС‹ РІ Р±РѕСЋ	
 		if(self::$st['hpNow'] > 0 && self::$bot['battle'] > 0 && self::$bot['level'] >= 4) {
 			
 			$pr = explode('|',self::$bot['priems']);
@@ -40,7 +40,7 @@ class botLogic {
 			$i = 0;
 			while($i < count($pr)) {
 				if($rz[$i] < 1 && $pr[$i] > 0) {
-					//Можно использовать прием, подключаем логику
+					//РњРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїСЂРёРµРј, РїРѕРґРєР»СЋС‡Р°РµРј Р»РѕРіРёРєСѓ
 					botPriemLogic::start( $i, $pr[$i] );					
 				}
 				$i++;
@@ -53,20 +53,20 @@ class botLogic {
 	
 	static function clear_bot() {
 		
-		//Очистка бота, обнуляем его до [0], удаляем эффекты, предметы и т.д, а текущему ставим логин delete
+		//РћС‡РёСЃС‚РєР° Р±РѕС‚Р°, РѕР±РЅСѓР»СЏРµРј РµРіРѕ РґРѕ [0], СѓРґР°Р»СЏРµРј СЌС„С„РµРєС‚С‹, РїСЂРµРґРјРµС‚С‹ Рё С‚.Рґ, Р° С‚РµРєСѓС‰РµРјСѓ СЃС‚Р°РІРёРј Р»РѕРіРёРЅ delete
 		
-		//Удаляем сообщения в чате
+		//РЈРґР°Р»СЏРµРј СЃРѕРѕР±С‰РµРЅРёСЏ РІ С‡Р°С‚Рµ
 		mysql_query('DELETE FROM `chat` WHERE `to` = "'.self::$bot['login'].'"');
-		//Удаляем шмотки и эффекты
+		//РЈРґР°Р»СЏРµРј С€РјРѕС‚РєРё Рё СЌС„С„РµРєС‚С‹
 		mysql_query('DELETE FROM `items_users` WHERE `uid` = "'.self::$bot['id'].'"');
 		mysql_query('DELETE FROM `eff_users` WHERE `uid` = "'.self::$bot['id'].'"');
 		
-		//Удаляем статы и поле в юзерс
+		//РЈРґР°Р»СЏРµРј СЃС‚Р°С‚С‹ Рё РїРѕР»Рµ РІ СЋР·РµСЂСЃ
 		mysql_query('DELETE FROM `users` WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 		mysql_query('DELETE FROM `stats` WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 		mysql_query('DELETE FROM `online` WHERE `uid` = "'.self::$bot['id'].'" LIMIT 1');
 		mysql_query('DELETE FROM `actions` WHERE `uid` = "'.self::$bot['id'].'" LIMIT 1');
-		//Добавляем статы и юзерс
+		//Р”РѕР±Р°РІР»СЏРµРј СЃС‚Р°С‚С‹ Рё СЋР·РµСЂСЃ
 		//mysql_query('UPDATE `users` SET `login` = "delete",`login2` = `login` WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 		//self::createNewBot(self::$bot['login'],self::$bot['sex']);
 		/*
@@ -123,7 +123,7 @@ class botLogic {
 		}
 	}
 	
-	//ПРоверка на файтрум
+	//РџР РѕРІРµСЂРєР° РЅР° С„Р°Р№С‚СЂСѓРј
 	static function test_fr( $id , $city = 'capitalcity' ) {
 		$r = true;		
 		if( $city == 'capitalcity' ) {
@@ -134,16 +134,16 @@ class botLogic {
 		return $r;
 	}
 	
-	//Действия бота вне боя
+	//Р”РµР№СЃС‚РІРёСЏ Р±РѕС‚Р° РІРЅРµ Р±РѕСЏ
 	static function actions() {
 		
 		global $u;
 		
 		if( self::$bot['battle'] == 0 && self::$bot['zv'] == 0 && self::$bot['pass'] == 'saintlucia' ) {
 			
-			//Можно: сменить фулл, перейти в другую комнату, входить наймом, делать бафы
+			//РњРѕР¶РЅРѕ: СЃРјРµРЅРёС‚СЊ С„СѓР»Р», РїРµСЂРµР№С‚Рё РІ РґСЂСѓРіСѓСЋ РєРѕРјРЅР°С‚Сѓ, РІС…РѕРґРёС‚СЊ РЅР°Р№РјРѕРј, РґРµР»Р°С‚СЊ Р±Р°С„С‹
 					
-			//Переходим в другую комнату
+			//РџРµСЂРµС…РѕРґРёРј РІ РґСЂСѓРіСѓСЋ РєРѕРјРЅР°С‚Сѓ
 			if( true == false && self::$bot['a1'] != 0 && self::$bot['a1'] != self::$bot['room'] ) {
 				
 				self::_loc( self::$bot['a1'] );
@@ -166,27 +166,27 @@ class botLogic {
 							mysql_query('UPDATE `stats` SET `exp` = "3500000" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 						}
 							
-						//Действие в комнате
-						//Магазин
+						//Р”РµР№СЃС‚РІРёРµ РІ РєРѕРјРЅР°С‚Рµ
+						//РњР°РіР°Р·РёРЅ
 						if( self::$bot['room'] == 10 ) {
 
-							//Покупаем кристалл вечности
+							//РџРѕРєСѓРїР°РµРј РєСЂРёСЃС‚Р°Р»Р» РІРµС‡РЅРѕСЃС‚Рё
 							if( self::$bot['level'] == 5 && self::$bot['exp'] >= 12499) {
 								$cr = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `item_id` = "1204" AND `uid` = "'.self::$bot['id'].'" AND `delete` = "0" LIMIT 1'));
 								if( !isset($cr['id']) ) {	
-									//Покупаем кристалл
+									//РџРѕРєСѓРїР°РµРј РєСЂРёСЃС‚Р°Р»Р»
 									$u->addItem(1204,self::$bot['id']);
 								}
 							}
 							
 						}
 						
-						//Переходим в комнату для сражений
+						//РџРµСЂРµС…РѕРґРёРј РІ РєРѕРјРЅР°С‚Сѓ РґР»СЏ СЃСЂР°Р¶РµРЅРёР№
 						self::_loc( self::_loc_zv() );
 						
 					}else{
 						
-						//Стоим на месте, бо сражается ))
+						//РЎС‚РѕРёРј РЅР° РјРµСЃС‚Рµ, Р±Рѕ СЃСЂР°Р¶Р°РµС‚СЃСЏ ))
 						
 						
 					}
@@ -196,7 +196,7 @@ class botLogic {
 				
 			}
 			
-			//Если бот уже набрал опыт для перехода на 6-ой
+			//Р•СЃР»Рё Р±РѕС‚ СѓР¶Рµ РЅР°Р±СЂР°Р» РѕРїС‹С‚ РґР»СЏ РїРµСЂРµС…РѕРґР° РЅР° 6-РѕР№
 			if( self::$bot['level'] == 5 && self::$bot['exp'] >= 12499 ) {					
 				$cr = mysql_fetch_array(mysql_query('SELECT `id` FROM `items_users` WHERE `item_id` = "1204" AND `uid` = "'.self::$bot['id'].'" AND `delete` = "0" LIMIT 1'));
 				if( !isset($cr['id']) ) {				
@@ -204,12 +204,12 @@ class botLogic {
 				}
 			}
 			
-			//Похоже что боту пора сменить комплект ))
+			//РџРѕС…РѕР¶Рµ С‡С‚Рѕ Р±РѕС‚Сѓ РїРѕСЂР° СЃРјРµРЅРёС‚СЊ РєРѕРјРїР»РµРєС‚ ))
 			if( self::$bot['clss'] == 0 ) {
 				
-				//Выбираем новый класс и шмотки :)
+				//Р’С‹Р±РёСЂР°РµРј РЅРѕРІС‹Р№ РєР»Р°СЃСЃ Рё С€РјРѕС‚РєРё :)
 
-				//Меняем класс
+				//РњРµРЅСЏРµРј РєР»Р°СЃСЃ
 				self::$bot['clss'] = rand( 1, 4 );
 								
 				$x = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `a_bot_tree` WHERE `level` = "'.(self::$bot['level']).'" '));
@@ -219,7 +219,7 @@ class botLogic {
 					if( $x[0] > 1 ) {
 						
 						$x = rand( 1 , $x[0] );
-						//выбираем 1 из нескольких
+						//РІС‹Р±РёСЂР°РµРј 1 РёР· РЅРµСЃРєРѕР»СЊРєРёС…
 						$da = array('ASC','DESC','DESC','ASC');
 						$da = $da[rand(0,5)];
 						$com = mysql_fetch_array(mysql_query('SELECT * FROM `a_bot_tree` WHERE `level` = "'.(self::$bot['level']).'" ORDER BY `id` '.$da.' LIMIT '.($x-1).',1'));
@@ -237,12 +237,12 @@ class botLogic {
 						
 						mysql_query('UPDATE `users` SET `clss` = "'.self::$bot['clss'].'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 						
-						/* Забираем старые шмотки и эффекты */
+						/* Р—Р°Р±РёСЂР°РµРј СЃС‚Р°СЂС‹Рµ С€РјРѕС‚РєРё Рё СЌС„С„РµРєС‚С‹ */
 						mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `gift` = "" AND `item_id` != "1204" AND `uid` = "'.self::$bot['id'].'" AND `delete` = "0"');
 						mysql_query('UPDATE `items_users` SET `iznosNOW` = "0" WHERE `uid` = "'.self::$bot['id'].'" AND `delete` = "0"');
 						mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'" WHERE `uid` = "'.self::$bot['id'].'" AND `delete` = "0"');
 						
-						/* Обновляем статы и приемы */
+						/* РћР±РЅРѕРІР»СЏРµРј СЃС‚Р°С‚С‹ Рё РїСЂРёРµРјС‹ */
 						
 						if($com['pr'] == '') {
 							$i = 1;
@@ -255,13 +255,13 @@ class botLogic {
 						
 						mysql_query('UPDATE `stats` SET `stats` = "'.$com['stats'].'",`priems` = "'.$com['pr'].'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 						
-						/* Выдаем новые предметы и эффекты */
+						/* Р’С‹РґР°РµРј РЅРѕРІС‹Рµ РїСЂРµРґРјРµС‚С‹ Рё СЌС„С„РµРєС‚С‹ */
 						/*
 						$e = explode(',',$com['eff']);
 						$i = 0;
 						while($i < count($e)) {
 							if( $e[$i] > 0 ) {
-								//Кастуем эффект на персонажа без срока годности
+								//РљР°СЃС‚СѓРµРј СЌС„С„РµРєС‚ РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° Р±РµР· СЃСЂРѕРєР° РіРѕРґРЅРѕСЃС‚Рё
 															
 							}
 							$i++;
@@ -271,7 +271,7 @@ class botLogic {
 						$i = 1;
 						while($i <= 20) {
 							if($com['e'.$i] > 0) {
-								//Выдаем и надеваем предмет
+								//Р’С‹РґР°РµРј Рё РЅР°РґРµРІР°РµРј РїСЂРµРґРјРµС‚
 								//$it = $u->addItem($com['e'.$i],self::$bot['id']);
 								$eff = mysql_fetch_array(mysql_query('SELECT * FROM `eff_main` WHERE `id2` = "'.$com['e'.$i].'" LIMIT 1'));	
 								mysql_query('INSERT INTO `eff_users` (`overType`,`id_eff`,`uid`,`name`,`timeUse`,`data`,`no_Ace`) VALUES ("'.$eff['oneType'].'","'.$eff['id2'].'","'.self::$bot['id'].'","'.$eff['mname'].'","'.(time()+9640000).'","'.$eff['mdata'].'","'.$eff['noAce'].'")');
@@ -282,7 +282,7 @@ class botLogic {
 						$i = 1;
 						while($i <= 20) {
 							if($com['w'.$i] > 0) {
-								//Выдаем и надеваем предмет
+								//Р’С‹РґР°РµРј Рё РЅР°РґРµРІР°РµРј РїСЂРµРґРјРµС‚
 								$it = $u->addItem($com['w'.$i],self::$bot['id']);
 								if($it > 0) {
 									mysql_query('UPDATE `items_users` SET `inOdet` = "'.$i.'",`delete` = "0" WHERE `uid` = "'.self::$bot['id'].'" AND `id` = "'.$it.'" LIMIT 1');
@@ -298,12 +298,12 @@ class botLogic {
 					}
 					
 				}else{
-					//жопа, нет комплектов! ходим в старом
+					//Р¶РѕРїР°, РЅРµС‚ РєРѕРјРїР»РµРєС‚РѕРІ! С…РѕРґРёРј РІ СЃС‚Р°СЂРѕРј
 				}
 				
 			}
 			
-			//если бот уже 1-ый уровень, а сидит в новичках :) кидаем его в залы
+			//РµСЃР»Рё Р±РѕС‚ СѓР¶Рµ 1-С‹Р№ СѓСЂРѕРІРµРЅСЊ, Р° СЃРёРґРёС‚ РІ РЅРѕРІРёС‡РєР°С… :) РєРёРґР°РµРј РµРіРѕ РІ Р·Р°Р»С‹
 			if( self::$bot['city'] == 'capitalcity' ) {
 				
 				if( self::$bot['level'] < 2 && self::$bot['room'] == 0 && self::$bot['a1'] == 0) {
@@ -312,11 +312,11 @@ class botLogic {
 				
 				}else{
 					
-					//Если куда-то нужно - переходим
+					//Р•СЃР»Рё РєСѓРґР°-С‚Рѕ РЅСѓР¶РЅРѕ - РїРµСЂРµС…РѕРґРёРј
 					
 					if( self::$bot['a1'] > 0 ) {
 						
-						//Топаем в эту комнату
+						//РўРѕРїР°РµРј РІ СЌС‚Сѓ РєРѕРјРЅР°С‚Сѓ
 						
 						
 					}
@@ -328,7 +328,7 @@ class botLogic {
 			
 
 			
-			/* ЗАВЕРШЕНИЕ ДЕЙСТВИЙ ВНЕ БОЯ */
+			/* Р—РђР’Р•Р РЁР•РќРР• Р”Р•Р™РЎРўР’РР™ Р’РќР• Р‘РћРЇ */
 			
 		}
 		
@@ -336,7 +336,7 @@ class botLogic {
 	
 	public $bot_last_action = array();
 
-	//Включаем логику бота
+	//Р’РєР»СЋС‡Р°РµРј Р»РѕРіРёРєСѓ Р±РѕС‚Р°
 	static function start( $id ) {		
 		if(!isset($bot_last_action[$id])) {
 			global $u;
@@ -353,12 +353,12 @@ class botLogic {
 				
 				self::$st = $u->getStats( self::$bot, 0 );
 				
-				//Заходим ботом в онлайн
+				//Р—Р°С…РѕРґРёРј Р±РѕС‚РѕРј РІ РѕРЅР»Р°Р№РЅ
 				self::_online();			
 				
 				if( self::$bot['battle'] > 0 ) {
 									
-					//Действия бота в поединке
+					//Р”РµР№СЃС‚РІРёСЏ Р±РѕС‚Р° РІ РїРѕРµРґРёРЅРєРµ
 					self::$btl = mysql_fetch_array( mysql_query('SELECT * FROM `battle` WHERE `id` = "'.mysql_real_escape_string(self::$bot['battle']).'" AND `team_win` = "-1" LIMIT 1') );
 					if( isset( self::$btl['id'] ) ) {
 	
@@ -367,13 +367,13 @@ class botLogic {
 						
 						$a1 = mysql_fetch_array(mysql_query('SELECT `id`,`uid1`,`uid2`,`time` FROM `battle_act` WHERE `battle` = "'.self::$btl['id'].'" AND `uid1` = "'.self::$bot['id'].'" ORDER BY `time` ASC LIMIT 1'));
 												
-						//Проверяем возможность использования приемов и делаем список что использовать					
-						//используем приемы					
+						//РџСЂРѕРІРµСЂСЏРµРј РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРёРµРјРѕРІ Рё РґРµР»Р°РµРј СЃРїРёСЃРѕРє С‡С‚Рѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ					
+						//РёСЃРїРѕР»СЊР·СѓРµРј РїСЂРёРµРјС‹					
 						self::battle_priems();
 						
 						if( isset( $a1['id'] ) ) {
 							
-							//Бот сделал удар, но никто не ответил, проверяем таймаут и если что заходим
+							//Р‘РѕС‚ СЃРґРµР»Р°Р» СѓРґР°СЂ, РЅРѕ РЅРёРєС‚Рѕ РЅРµ РѕС‚РІРµС‚РёР», РїСЂРѕРІРµСЂСЏРµРј С‚Р°Р№РјР°СѓС‚ Рё РµСЃР»Рё С‡С‚Рѕ Р·Р°С…РѕРґРёРј
 							if( $a1['time'] + self::$btl['timeout'] < time() ) {
 								$go_bot = true;
 							}
@@ -384,9 +384,9 @@ class botLogic {
 						$a2_sp = mysql_query('SELECT `id`,`uid1`,`uid2`,`time` FROM `battle_act` WHERE `battle` = "'.self::$btl['id'].'" AND `uid2` = "'.self::$bot['id'].'" ORDER BY `time` ASC LIMIT 5');
 						while( $a2 = mysql_fetch_array( $a2_sp ) ) {
 							
-							//Бота ударили - делаем ответный удар и заходим
+							//Р‘РѕС‚Р° СѓРґР°СЂРёР»Рё - РґРµР»Р°РµРј РѕС‚РІРµС‚РЅС‹Р№ СѓРґР°СЂ Рё Р·Р°С…РѕРґРёРј
 							if( $a2['time'] + self::$btl['timeout'] < time() ) {
-								//Заходим на персонажа
+								//Р—Р°С…РѕРґРёРј РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°
 								$go_bot = true;
 							}else{
 								mysql_query('UPDATE `stats` SET `enemy` = "'.$a2['uid1'].'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
@@ -406,7 +406,7 @@ class botLogic {
 						}
 						
 						
-						//Размен с противником
+						//Р Р°Р·РјРµРЅ СЃ РїСЂРѕС‚РёРІРЅРёРєРѕРј
 						$a1 = mysql_fetch_array(mysql_query('SELECT `id` FROM `battle_act` WHERE `battle` = "'.self::$btl['id'].'" AND `uid1` = "'.self::$bot['id'].'" AND `uid2` = "'.self::$bot['enemy'].'" LIMIT 1'));
 						if( !isset( $a1['id'] ) ) {
 							$go_bot = true;
@@ -424,35 +424,35 @@ class botLogic {
 						
 						
 						unset($a1,$a2_sp,$a2);					
-						//Заходим на персонажа
+						//Р—Р°С…РѕРґРёРј РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°
 						if( $go_bot == true ) {
 							self::inuser_go_btl( self::$bot , $go_txt );
 						}
 						
 					}else{
 						
-						//Заходим на персонажа
+						//Р—Р°С…РѕРґРёРј РЅР° РїРµСЂСЃРѕРЅР°Р¶Р°
 						self::inuser_go_btl( self::$bot );
 						
-						//Поединок уже завершился, выкидываем из боя
+						//РџРѕРµРґРёРЅРѕРє СѓР¶Рµ Р·Р°РІРµСЂС€РёР»СЃСЏ, РІС‹РєРёРґС‹РІР°РµРј РёР· Р±РѕСЏ
 						self::$bot['battle'] = 0;
 						mysql_query( 'UPDATE `users` SET `battle` = "'.self::$bot['battle'].'" WHERE `id` = "'.mysql_real_escape_string(self::$bot['id']).'" LIMIT 1 ' );
 					}
 					
 				}else{
 					
-					//Действия бота вне поединка
+					//Р”РµР№СЃС‚РІРёСЏ Р±РѕС‚Р° РІРЅРµ РїРѕРµРґРёРЅРєР°
 					if( self::$bot['timeMain'] < time() ) {
 						
 						mysql_query('UPDATE `chat` SET `time` = "'.time().'" WHERE `to` = "'.self::$bot['login'].'" AND `time` = "-1"');
 						
-						//Действие возможно произвести
+						//Р”РµР№СЃС‚РІРёРµ РІРѕР·РјРѕР¶РЅРѕ РїСЂРѕРёР·РІРµСЃС‚Рё
 						if( self::$bot['ipreg'] == 1 || self::$bot['ipreg'] == 2 || self::$bot['ipreg'] == 4 ) {
-							//Принимаем только хаоты
+							//РџСЂРёРЅРёРјР°РµРј С‚РѕР»СЊРєРѕ С…Р°РѕС‚С‹
 							self::$bot['ipreg'] = 3;
 						}
 						if( self::$bot['ipreg'] == 5 ) {
-							//Подаем только хаоты
+							//РџРѕРґР°РµРј С‚РѕР»СЊРєРѕ С…Р°РѕС‚С‹
 							self::$bot['ipreg'] = 7;
 						}					
 						//
@@ -463,10 +463,10 @@ class botLogic {
 								mysql_query('UPDATE `stats` SET `exp` = "270000" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 							}*/
 							
-							//Удаляем травму и ослабу
+							//РЈРґР°Р»СЏРµРј С‚СЂР°РІРјСѓ Рё РѕСЃР»Р°Р±Сѓ
 							//mysql_query('UPDATE `eff_users` SET `timeUse` = "'.(time()-86400*3).'" WHERE `uid` = "'.self::$bot['id'].'" AND `id_eff` = "4" LIMIT 100');
 							
-							//Обновляем эффекты
+							//РћР±РЅРѕРІР»СЏРµРј СЌС„С„РµРєС‚С‹
 							$com = mysql_fetch_array(mysql_query('SELECT * FROM `a_bot_tree` WHERE `level` = "'.(self::$bot['level']).'" LIMIT 1'));
 							if(isset($com['id'])) {
 								$eft = mysql_fetch_array(mysql_query('SELECT `id` FROM `eff_users` WHERE `uid` = "'.self::$bot['id'].'" AND `delete` = "0" LIMIT 1'));
@@ -475,7 +475,7 @@ class botLogic {
 									$i = 1;
 									while($i <= 20) {
 										if($com['e'.$i] > 0) {
-											//Выдаем и надеваем предмет
+											//Р’С‹РґР°РµРј Рё РЅР°РґРµРІР°РµРј РїСЂРµРґРјРµС‚
 											//$it = $u->addItem($com['e'.$i],self::$bot['id']);
 											$eff = mysql_fetch_array(mysql_query('SELECT * FROM `eff_main` WHERE `id2` = "'.$com['e'.$i].'" LIMIT 1'));	
 											mysql_query('INSERT INTO `eff_users` (`overType`,`id_eff`,`uid`,`name`,`timeUse`,`data`,`no_Ace`) VALUES ("'.$eff['oneType'].'","'.$eff['id2'].'","'.self::$bot['id'].'","'.$eff['mname'].'","'.(time()+86400*7).'","'.$eff['mdata'].'","'.$eff['noAce'].'")');
@@ -486,25 +486,25 @@ class botLogic {
 							}
 							
 							if( self::$bot['level'] >= 12 && self::$bot['clan'] == 0 && self::$bot['align'] == 0 ) {
-								//обнуляем бота
+								//РѕР±РЅСѓР»СЏРµРј Р±РѕС‚Р°
 								self::clear_bot();
 							}
 							
-							//Только-что из поединка, хиляется
+							//РўРѕР»СЊРєРѕ-С‡С‚Рѕ РёР· РїРѕРµРґРёРЅРєР°, С…РёР»СЏРµС‚СЃСЏ
 							if( self::test_fr(self::$bot['room']) == false ) {
 								
-								//В какой-то локации, видимо что-то делаем
+								//Р’ РєР°РєРѕР№-С‚Рѕ Р»РѕРєР°С†РёРё, РІРёРґРёРјРѕ С‡С‚Рѕ-С‚Рѕ РґРµР»Р°РµРј
 								
 							}elseif( self::$st['hpNow'] >= self::$st['hpAll'] ) {
 								echo 1;											
-								//Приступаем к активной деятельности :)
+								//РџСЂРёСЃС‚СѓРїР°РµРј Рє Р°РєС‚РёРІРЅРѕР№ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё :)
 								mysql_query('UPDATE `stats` SET `zv`= "0",`team`= "0",`hpNow` = "'.self::$st['hpNow'].'",`mpNow` = "'.self::$st['mpNow'].'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
-								mysql_query('UPDATE `users` SET `ipreg` = "'.self::new_action().'",`mod_zvanie` = "Стажер" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
+								mysql_query('UPDATE `users` SET `ipreg` = "'.self::new_action().'",`mod_zvanie` = "РЎС‚Р°Р¶РµСЂ" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 								
 							}else{
 							
-								if(self::$bot['mod_zvanie'] == 'Стажер100500') {
-									//Надеваем комплект + обновляем эффекты
+								if(self::$bot['mod_zvanie'] == 'РЎС‚Р°Р¶РµСЂ100500') {
+									//РќР°РґРµРІР°РµРј РєРѕРјРїР»РµРєС‚ + РѕР±РЅРѕРІР»СЏРµРј СЌС„С„РµРєС‚С‹
 									mysql_query('UPDATE `eff_users` SET `timeUse` = "'.( time() + 7200 ) .'" WHERE `uid` = "'.self::$bot['id'].'" AND `delete` = "0" AND `v1` != "priem" LIMIT 12');
 									mysql_query('UPDATE `items_users` SET `inOdet` = "0" WHERE `uid` = "'.self::$bot['id'].'" AND `inOdet` > 0 AND `delete` = "0"');
 									$sp = mysql_query('SELECT `u`.`id`,`st`.`inslot`,`st`.`2too` FROM `items_users` AS `u` LEFT JOIN `items_main` AS `st` ON `st`.`id` = `u`.`item_id` WHERE `u`.`inOdet` = 0 AND `st`.`inslot` > 0 AND `st`.`inSlot` <= 20');
@@ -535,10 +535,10 @@ class botLogic {
 											mysql_query('UPDATE `items_users` SET `inOdet` = "'.$od.'" WHERE `id` = "'.$pl['id'].'" AND `uid` = "'.self::$bot['id'].'" LIMIT 1');
 										}
 									}
-									mysql_query('UPDATE `items_users` SET `mod_zvanie` = "Cтaжер" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
+									mysql_query('UPDATE `items_users` SET `mod_zvanie` = "CС‚aР¶РµСЂ" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 								}
 								
-								//Хиляемся дальше
+								//РҐРёР»СЏРµРјСЃСЏ РґР°Р»СЊС€Рµ
 								if( self::$bot['regHP'] == 0 || self::$bot['regMP'] == 0 ) {								
 									mysql_query('UPDATE `stats` SET `regHP` = "'.time().'", `regMP` = "'.time().'",`hpNow` = "'.self::$st['hpNow'].'",`mpNow` = "'.self::$st['mpNow'].'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 								}
@@ -552,10 +552,10 @@ class botLogic {
 							
 						}elseif( self::$bot['ipreg'] == 1 ) {
 	
-							//Принять заявку на бой (физ.)
+							//РџСЂРёРЅСЏС‚СЊ Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№ (С„РёР·.)
 							if( self::$bot['zv'] == 0 ) {
 								
-								//Выделяем подходящую заявку в физ. поединке
+								//Р’С‹РґРµР»СЏРµРј РїРѕРґС…РѕРґСЏС‰СѓСЋ Р·Р°СЏРІРєСѓ РІ С„РёР·. РїРѕРµРґРёРЅРєРµ
 								$rz = 2;
 								$zv = 0;
 								$nozv = 0;
@@ -577,13 +577,13 @@ class botLogic {
 										
 										if( $uz1st['reting'] <= floor(self::$st['reting']*1.27) ) {
 											
-											//Принимаем заявку
+											//РџСЂРёРЅРёРјР°РµРј Р·Р°СЏРІРєСѓ
 											$sa = '';
 											if( self::$bot['sex'] == 2 ) {
-												$sa = 'а';
+												$sa = 'Р°';
 											}
 										
-											$text = ' [login:'.self::$bot['login'].'] принял'.$sa.' вашу заявку на бой.[reflesh_main_zv_priem:'.self::$bot['id'].']';
+											$text = ' [login:'.self::$bot['login'].'] РїСЂРёРЅСЏР»'.$sa.' РІР°С€Сѓ Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№.[reflesh_main_zv_priem:'.self::$bot['id'].']';
 											mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$uz1['city']."','','','".$uz1['login']."','".$text."','".time()."','6','0')");
 											mysql_query('UPDATE `stats` SET `zv` = "'.$zv['id'].'",`team` = "2" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 											mysql_query('UPDATE `users` SET `ipreg` = "8",`timeMain` = "'.self::rnd().'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
@@ -615,19 +615,19 @@ class botLogic {
 							
 						}elseif( self::$bot['ipreg'] == 2 ) {
 							
-							//Принять заявку на бой (груп.)
+							//РџСЂРёРЅСЏС‚СЊ Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№ (РіСЂСѓРї.)
 							self::bot_group_haot_zv( 6 );
 						}elseif( self::$bot['ipreg'] == 3 ) {
 							
-							//Принять заявку на бой (хаот.)
+							//РџСЂРёРЅСЏС‚СЊ Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№ (С…Р°РѕС‚.)
 							self::bot_group_haot_zv( 7 );
 						}elseif( self::$bot['ipreg'] == 4 ) {
 							
-							//Принять заявку на бой (турнир.)
-							self::e(''.self::$bot['login'].', я хочу принять турнир...');
+							//РџСЂРёРЅСЏС‚СЊ Р·Р°СЏРІРєСѓ РЅР° Р±РѕР№ (С‚СѓСЂРЅРёСЂ.)
+							self::e(''.self::$bot['login'].', СЏ С…РѕС‡Сѓ РїСЂРёРЅСЏС‚СЊ С‚СѓСЂРЅРёСЂ...');
 						}elseif( self::$bot['ipreg'] == 5 ) {
 							
-							//Подать заявку (физ.)
+							//РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ (С„РёР·.)
 							if( self::$bot['zv'] == 0 ) {
 								
 								$rz = 2;
@@ -665,7 +665,7 @@ class botLogic {
 							
 							self::bot_group_haot_zv( self::$bot['ipreg'] );
 							
-							//Подать заявку (груп.) или хаотов
+							//РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ (РіСЂСѓРї.) РёР»Рё С…Р°РѕС‚РѕРІ
 							//$test_zv = mysql_fetch_array(mysql_query('SELECT * FROM `zayvki` WHERE `creator` = '.self::$bot['id'].' AND `cancel` = 0 AND `start` = 0 LIMIT 1'));
 							
 							//self::e('SELECT * FROM `zayvki` WHERE `creator` = '.self::$bot['id'].' AND `cancel` = 0 AND `start` = 0 LIMIT 1');
@@ -739,34 +739,34 @@ class botLogic {
 							
 						}elseif( self::$bot['ipreg'] == 8 ) {
 							
-							//Ожидание начала поединка
+							//РћР¶РёРґР°РЅРёРµ РЅР°С‡Р°Р»Р° РїРѕРµРґРёРЅРєР°
 							if( self::$bot['zv'] == 0 ) {
 								
-								//Поединок не удалось начать
+								//РџРѕРµРґРёРЅРѕРє РЅРµ СѓРґР°Р»РѕСЃСЊ РЅР°С‡Р°С‚СЊ
 								mysql_query('UPDATE `users` SET `ipreg` = "0",`timeMain` = "'.self::rnd().'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 							}else{
 								$zv = mysql_fetch_array(mysql_query('SELECT * FROM `zayvki` WHERE `id` = "'.self::$bot['zv'].'" AND `cancel` = "0" AND `start` = "0" LIMIT 1'));
 								
 								if( !isset( $zv['id'] ) ) {
 									
-									//Обнуляем действия
+									//РћР±РЅСѓР»СЏРµРј РґРµР№СЃС‚РІРёСЏ
 									mysql_query('UPDATE `users` SET `ipreg` = "0",`timeMain` = "'.self::rnd().'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 									
 								}elseif($zv['razdel'] == 4 || $zv['razdel'] == 5) {
 									
-									//хаот или группа
+									//С…Р°РѕС‚ РёР»Рё РіСЂСѓРїРїР°
 									if( $zv['time_start'] + $zv['time'] <= time() ) {
 										
 										self::inuser_go_zv( self::$bot );										
 									}
 									
 								}else{
-									//физ
+									//С„РёР·
 									if( $zv['creator'] == self::$bot['id'] ) {
 										
 										$uz2 = mysql_fetch_array(mysql_query('SELECT `u`.`sex`,`u`.`id`,`u`.`login`,`u`.`align`,`u`.`clan`,`u`.`admin`,`u`.`city`,`u`.`room`,`u`.`online`,`u`.`level`,`u`.`battle`,`u`.`money`,`st`.* FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`zv`="'.$zv['id'].'" AND `st`.`team`="2" LIMIT 1'));
 										if( isset( $uz2['id'] ) ) {
-											//Заявку кто-то принял, реагируем! :)
+											//Р—Р°СЏРІРєСѓ РєС‚Рѕ-С‚Рѕ РїСЂРёРЅСЏР», СЂРµР°РіРёСЂСѓРµРј! :)
 											$pr = -1;
 											
 											$uz2st = $u->getStats($uz2,0);
@@ -774,12 +774,12 @@ class botLogic {
 											//btl-cof
 											if( $uz2st['reting'] > floor(self::$st['reting']*1.27)) {
 												
-												//Отказываем, в 95% случаев, противник слишком силен
+												//РћС‚РєР°Р·С‹РІР°РµРј, РІ 95% СЃР»СѓС‡Р°РµРІ, РїСЂРѕС‚РёРІРЅРёРє СЃР»РёС€РєРѕРј СЃРёР»РµРЅ
 												if( rand( 0, 100 ) > 95 ) {
-													//отправляем бота на избиение :D
+													//РѕС‚РїСЂР°РІР»СЏРµРј Р±РѕС‚Р° РЅР° РёР·Р±РёРµРЅРёРµ :D
 													$pr = 1;
 												}else{
-													//отказ
+													//РѕС‚РєР°Р·
 													$pr = 0;
 												}
 												
@@ -787,13 +787,13 @@ class botLogic {
 												$pr = 1;
 											}
 											
-											//Можно принять заявку
+											//РњРѕР¶РЅРѕ РїСЂРёРЅСЏС‚СЊ Р·Р°СЏРІРєСѓ
 											//$pr = 0;
 											
 											if( $pr == 1 ) {
 												
-												//Прием заявки
-												//создаем поединок с ботом
+												//РџСЂРёРµРј Р·Р°СЏРІРєРё
+												//СЃРѕР·РґР°РµРј РїРѕРµРґРёРЅРѕРє СЃ Р±РѕС‚РѕРј
 												$expB = 0;
 												$btl = array('players'=>'','timeout'=>$zv['timeout'],'type'=>$zv['type'],'invis'=>$zv['invis'],'noinc'=>0,'travmChance'=>0,'typeBattle'=>0,'addExp'=>$expB,'money'=>0);
 												$ins = mysql_query('INSERT INTO `battle` (`time_over`,`city`,`time_start`,`players`,`timeout`,`type`,`invis`,`noinc`,`travmChance`,`typeBattle`,`addExp`,`money`,`team_win`) VALUES (
@@ -813,13 +813,13 @@ class botLogic {
 												if($ins)
 												{
 													$btl_id = mysql_insert_id();
-													//обновляем данные о поединке						
+													//РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ Рѕ РїРѕРµРґРёРЅРєРµ						
 													mysql_query('UPDATE `users` SET `battle`="'.$btl_id.'" WHERE `id` = "'.$uz2['id'].'" LIMIT 1');
 													mysql_query('UPDATE `users` SET `battle`="'.$btl_id.'",`ipreg` = "0" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 													mysql_query('UPDATE `stats` SET `zv` = "0",`team`="1" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 													mysql_query('UPDATE `stats` SET `zv` = "0",`team`="2" WHERE `id` = "'.$uz2['id'].'" LIMIT 1');
 													
-													//Если бой кулачный, то снимаем вещи
+													//Р•СЃР»Рё Р±РѕР№ РєСѓР»Р°С‡РЅС‹Р№, С‚Рѕ СЃРЅРёРјР°РµРј РІРµС‰Рё
 													if($btl['type']==1)
 													{
 														mysql_query('UPDATE `items_users` SET `inOdet`="0" WHERE `uid` = "'.self::$bot['id'].'" AND `inOdet`!=0');
@@ -828,31 +828,31 @@ class botLogic {
 													
 													mysql_query('UPDATE `zayvki` SET `start` = "'.time().'",`btl_id` = "'.$btl_id.'" WHERE `id` = "'.$zv['id'].'" LIMIT 1');
 													
-													//обновляем заявку, что бой начался
+													//РѕР±РЅРѕРІР»СЏРµРј Р·Р°СЏРІРєСѓ, С‡С‚Рѕ Р±РѕР№ РЅР°С‡Р°Р»СЃСЏ
 													self::$bot['battle'] = $btl_id;
 													
-													//Отправляем сообщение в чат всем бойцам
+													//РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚ РІСЃРµРј Р±РѕР№С†Р°Рј
 													mysql_query("INSERT INTO `chat` (`city`,`room`,`to`,`time`,`type`,`toChat`,`sound`) VALUES ('".$u->info['city']."','".$u->info['room']."','".$uz2['login']."','".time()."','11','0','117')");
 												}
 												
 											}elseif( $pr == 0 ) {
 												
-												//Отказ
+												//РћС‚РєР°Р·
 												$sa = '';
 												if( self::$bot['sex'] == 2 ) {
-													$sa = 'а';
+													$sa = 'Р°';
 												}
-												$text = ' [login:'.self::$bot['login'].'] отказал'.$sa.' вам в поединке.';
+												$text = ' [login:'.self::$bot['login'].'] РѕС‚РєР°Р·Р°Р»'.$sa.' РІР°Рј РІ РїРѕРµРґРёРЅРєРµ.';
 												mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$uz2['city']."','','','".$uz2['login']."','".$text."','".time()."','6','0')");
 												mysql_query('UPDATE `stats` SET `zv` = "0",`team` = "1" WHERE `id` = "'.$uz2['id'].'" LIMIT 1');
 												mysql_query('UPDATE `zayvki` SET `otk` = ( `otk` + 1 ),`bcs` = "'.( time() + rand( 30, rand( 60, 180 ) ) ).'" WHERE `id` = "'.$zv['id'].'" LIMIT 1');
 											}else{
-												//Чего-то ждем...
+												//Р§РµРіРѕ-С‚Рѕ Р¶РґРµРј...
 											}
 											
 										}else{
 											
-											//Заявку никто не принял, возможно стоит отменить заявку вообще!
+											//Р—Р°СЏРІРєСѓ РЅРёРєС‚Рѕ РЅРµ РїСЂРёРЅСЏР», РІРѕР·РјРѕР¶РЅРѕ СЃС‚РѕРёС‚ РѕС‚РјРµРЅРёС‚СЊ Р·Р°СЏРІРєСѓ РІРѕРѕР±С‰Рµ!
 											if( self::$bot['timeMain'] < time() - 30 - rand((7 / $zv['otk'] ), (3*49 / $zv['otk'] )) ) {
 												
 												mysql_query('UPDATE `stats` SET `zv` = "0" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
@@ -867,7 +867,7 @@ class botLogic {
 									
 								}
 								
-								//Бот уже слишком долго ждет ответа игрока, отказываемся от заявки
+								//Р‘РѕС‚ СѓР¶Рµ СЃР»РёС€РєРѕРј РґРѕР»РіРѕ Р¶РґРµС‚ РѕС‚РІРµС‚Р° РёРіСЂРѕРєР°, РѕС‚РєР°Р·С‹РІР°РµРјСЃСЏ РѕС‚ Р·Р°СЏРІРєРё
 								if( self::$bot['timeMain'] < time() - rand((30 / $zv['otk'] ), (135 / $zv['otk'] ))  && $zv['creator'] != self::$bot['id'] && ( $zv['razdel'] == 1 || $zv['razdel'] == 2 ) ) {
 									
 									$uz1 = mysql_fetch_array(mysql_query('SELECT `u`.`sex`,`u`.`id`,`u`.`login`,`u`.`align`,`u`.`clan`,`u`.`admin`,`u`.`city`,`u`.`room`,`u`.`online`,`u`.`level`,`u`.`battle`,`u`.`money`,`st`.* FROM `stats` AS `st` LEFT JOIN `users` AS `u` ON (`st`.`id` = `u`.`id`) WHERE `st`.`zv`="'.$zv['id'].'" AND `st`.`team`="1" LIMIT 1'));
@@ -875,10 +875,10 @@ class botLogic {
 										
 										$sa = '';
 										if( self::$bot['sex'] == 2 ) {
-											$sa = 'а';
+											$sa = 'Р°';
 										}
 										
-										$text = ' [login:'.self::$bot['login'].'] отозвал'.$sa.' свой запрос на бой.';
+										$text = ' [login:'.self::$bot['login'].'] РѕС‚РѕР·РІР°Р»'.$sa.' СЃРІРѕР№ Р·Р°РїСЂРѕСЃ РЅР° Р±РѕР№.';
 										mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$uz1['city']."','','','".$uz1['login']."','".$text."','".time()."','6','0')");
 									}
 									
@@ -891,35 +891,35 @@ class botLogic {
 							
 						}elseif( self::$bot['ipreg'] == 9 ) {
 							
-							//Подать заявку (хаот.)
+							//РџРѕРґР°С‚СЊ Р·Р°СЏРІРєСѓ (С…Р°РѕС‚.)
 							
 						}elseif( self::$bot['ipreg'] == 10 ) {
 							
-							//Свободные характеристики или умения
+							//РЎРІРѕР±РѕРґРЅС‹Рµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РёР»Рё СѓРјРµРЅРёСЏ
 							
 						}elseif( self::$bot['ipreg'] == 11 ) {
 							
-							//Меняем комплект
+							//РњРµРЅСЏРµРј РєРѕРјРїР»РµРєС‚
 							
 						}elseif( self::$bot['ipreg'] == 12 ) {
 							
-							//Получили новый уровень
+							//РџРѕР»СѓС‡РёР»Рё РЅРѕРІС‹Р№ СѓСЂРѕРІРµРЅСЊ
 							
 						}elseif( self::$bot['ipreg'] == 13 ) {
 							
-							//Помочь персонажу в бою
+							//РџРѕРјРѕС‡СЊ РїРµСЂСЃРѕРЅР°Р¶Сѓ РІ Р±РѕСЋ
 							
 						}elseif( self::$bot['ipreg'] == 14 ) {
 							
-							//Вылечить персонажа от травм
+							//Р’С‹Р»РµС‡РёС‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р° РѕС‚ С‚СЂР°РІРј
 							
 						}elseif( self::$bot['ipreg'] == 15 ) {
 							
-							//Сделать каст персонажу (Сокрушение, Холодный разум, Защита от магии, Защита от оружия)
+							//РЎРґРµР»Р°С‚СЊ РєР°СЃС‚ РїРµСЂСЃРѕРЅР°Р¶Сѓ (РЎРѕРєСЂСѓС€РµРЅРёРµ, РҐРѕР»РѕРґРЅС‹Р№ СЂР°Р·СѓРј, Р—Р°С‰РёС‚Р° РѕС‚ РјР°РіРёРё, Р—Р°С‰РёС‚Р° РѕС‚ РѕСЂСѓР¶РёСЏ)
 							
 						}elseif( self::$bot['ipreg'] == 16 ) {
 							
-							//Выпить эликсиры
+							//Р’С‹РїРёС‚СЊ СЌР»РёРєСЃРёСЂС‹
 							
 						}else{
 							self::update('ipreg',0);
@@ -952,21 +952,21 @@ class botLogic {
 		if( self::$bot['level'] < 2 ) {
 			if( $r == 2 || $r == 3 || $r == 6 || $r == 7 || $r == 8 ) {
 				if( rand(0,1) == 1 ) {
-					$r = 1; //принимаем физ
+					$r = 1; //РїСЂРёРЅРёРјР°РµРј С„РёР·
 				}elseif( rand(0,1) == 0 ){
-					$r = 4; //принимаем турнир
+					$r = 4; //РїСЂРёРЅРёРјР°РµРј С‚СѓСЂРЅРёСЂ
 				}else{
-					$r = 5; //подаем физ
+					$r = 5; //РїРѕРґР°РµРј С„РёР·
 				}
 			}
 		}elseif( self::$bot['level'] == 0 ) {
 			if( rand(0,1) == 1 ) {
-				$r = 1; //принимаем физ
+				$r = 1; //РїСЂРёРЅРёРјР°РµРј С„РёР·
 			}else{
-				$r = 5; //подаем физ
+				$r = 5; //РїРѕРґР°РµРј С„РёР·
 			}
 		}else{
-			//Доступны любые заявки
+			//Р”РѕСЃС‚СѓРїРЅС‹ Р»СЋР±С‹Рµ Р·Р°СЏРІРєРё
 			
 		}
 		
@@ -980,16 +980,16 @@ class botLogic {
 	
 	
 	/*/
-	Базовые функции обучения бота
+	Р‘Р°Р·РѕРІС‹Рµ С„СѓРЅРєС†РёРё РѕР±СѓС‡РµРЅРёСЏ Р±РѕС‚Р°
 	/*/
-		//Бот ищет заявку в группы или хаот для своего уровня и подходящую ему
+		//Р‘РѕС‚ РёС‰РµС‚ Р·Р°СЏРІРєСѓ РІ РіСЂСѓРїРїС‹ РёР»Рё С…Р°РѕС‚ РґР»СЏ СЃРІРѕРµРіРѕ СѓСЂРѕРІРЅСЏ Рё РїРѕРґС…РѕРґСЏС‰СѓСЋ РµРјСѓ
 		static function bot_group_haot_zv( $id ) {
 			
 			if($id == 6) {
-				//группы
+				//РіСЂСѓРїРїС‹
 				$rz = 4;
 			}elseif($id == 7) {
-				//хаоты
+				//С…Р°РѕС‚С‹
 				$rz = 5;
 			}
 			
@@ -1044,9 +1044,9 @@ class botLogic {
 							}						
 							
 												
-							//Логика приема заявки
+							//Р›РѕРіРёРєР° РїСЂРёРµРјР° Р·Р°СЏРІРєРё
 							if( self::team_zv_cf($pl,$atm) > ( self::team_zv_cf($pl,$tmr) + self::$st['reting'] )*1.67 ||  ($zv['tm2max'] < $zv['tm1max']/2) || ($zv['tm1max'] < $zv['tm2max']/2) ) {
-								//self::e(self::$bot['login'].', я очкую '.$pl['id'].' , '.self::team_zv_cf($pl,$atm).' VS '.(self::team_zv_cf($pl,$tm) + self::$st['reting'] ).' ...');
+								//self::e(self::$bot['login'].', СЏ РѕС‡РєСѓСЋ '.$pl['id'].' , '.self::team_zv_cf($pl,$atm).' VS '.(self::team_zv_cf($pl,$tm) + self::$st['reting'] ).' ...');
 								if(rand(0,100) < 90) {
 									$go = 0;
 								}
@@ -1059,7 +1059,7 @@ class botLogic {
 							$tm[1] = 1;							
 						}
 						*/	
-						//Только 8-ки
+						//РўРѕР»СЊРєРѕ 8-РєРё
 						/*if( self::$bot['level'] <= 8 ) {
 							if( $pl['min_lvl_1'] <= 8 && $pl['max_lvl_1'] <= 8) {							
 								$tm[1] = 1;							
@@ -1086,10 +1086,10 @@ class botLogic {
 							$tm = 1;
 						}
 												
-						//self::e(self::$bot['login'].', принял участие в заявке #'.$pl['id'].', за команду №'.$tm.' ');
+						//self::e(self::$bot['login'].', РїСЂРёРЅСЏР» СѓС‡Р°СЃС‚РёРµ РІ Р·Р°СЏРІРєРµ #'.$pl['id'].', Р·Р° РєРѕРјР°РЅРґСѓ в„–'.$tm.' ');
 							
 						if( $rz == 5 ) {
-							/* считаем баланс */
+							/* СЃС‡РёС‚Р°РµРј Р±Р°Р»Р°РЅСЃ */
 							if($pl['tm1'] > $pl['tm2'])
 							{
 								$tm = 2;
@@ -1106,7 +1106,7 @@ class botLogic {
 							{
 								$nxtID = mysql_fetch_array(mysql_query('SELECT COUNT(*) FROM `stats` WHERE `zv` = "'.$pl['id'].'"'));
 								$nxtID = $nxtID[0];
-								//$u->info['login2'] = 'Боец ('.($nxtID+1).')';
+								//$u->info['login2'] = 'Р‘РѕРµС† ('.($nxtID+1).')';
 								self::$bot['login2'] = '';
 							}else{
 								self::$bot['login2'] = '';
@@ -1122,7 +1122,7 @@ class botLogic {
 												
 						if( $tm > 0 || $rz == 5 ) {
 							
-							//Принимаем участие в заявке
+							//РџСЂРёРЅРёРјР°РµРј СѓС‡Р°СЃС‚РёРµ РІ Р·Р°СЏРІРєРµ
 					    	mysql_query('UPDATE `stats` SET `zv` = "'.$pl['id'].'",`team` = "'.$tm.'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 					 	    mysql_query('UPDATE `users` SET `login2` = "'.self::$bot['login2'].'",`ipreg` = "8" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 							self::$bot['zv'] = $pl['id'];
@@ -1138,7 +1138,7 @@ class botLogic {
 			
 		}
 		
-		//Добавляем нового бота
+		//Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІРѕРіРѕ Р±РѕС‚Р°
 		static function createNewBot($login,$sex) {
 			if($sex != 1) {
 				$sex = 0;
@@ -1158,7 +1158,7 @@ class botLogic {
 						'real_bot_user',
 						'0',
 						'".mysql_real_escape_string($login)."',
-						'".md5('regnxt#$%^а0.'.time())."',
+						'".md5('regnxt#$%^Р°0.'.time())."',
 						'127.0.0.1',
 						'127.0.0.1',
 						'capitalcity',
@@ -1178,10 +1178,10 @@ class botLogic {
 			
 		}
 		
-		//Бот находится в онлайне
+		//Р‘РѕС‚ РЅР°С…РѕРґРёС‚СЃСЏ РІ РѕРЅР»Р°Р№РЅРµ
 		static function _online() {
 			if( self::$bot['online'] < time() - 60 ) {
-				//уровень/апп
+				//СѓСЂРѕРІРµРЅСЊ/Р°РїРї
 				if( self::$bot['battle'] == 0 && self::$bot['zv'] == 0) {			
 					self::_level();
 				}
@@ -1192,7 +1192,7 @@ class botLogic {
 			}			
 		}
 		
-		//Бот меняет локацию
+		//Р‘РѕС‚ РјРµРЅСЏРµС‚ Р»РѕРєР°С†РёСЋ
 		static function _loc_A( $a, $b ) {
 			$r = $b;
 			
@@ -1213,7 +1213,7 @@ class botLogic {
 			
 			if( $r == 4 ) {
 				
-				//будуар
+				//Р±СѓРґСѓР°СЂ
 				if( self::$bot['sex'] != 1 ) {
 					$r = rand(1,3);
 				}
@@ -1222,21 +1222,21 @@ class botLogic {
 			
 			if( self::$bot['city'] == 'capitalcity' ) {
 				if($r == 4) {
-					//будуар
+					//Р±СѓРґСѓР°СЂ
 					$r = 7;
 				}elseif( $r == 3 ) {
-					//ЗВ 3
+					//Р—Р’ 3
 					$r = 5;
 				}elseif( $r == 2 ) {
-					//ЗВ 2
+					//Р—Р’ 2
 					$r = 2;
 				}else{
-					//ЗВ 1
+					//Р—Р’ 1
 					$r = 4;
 				}
 				
 				if( self::$bot['level'] == 0 ) {
-					//Новички
+					//РќРѕРІРёС‡РєРё
 					$r = 0;
 				}
 				
@@ -1249,20 +1249,20 @@ class botLogic {
 			
 			if( $id == self::$bot['room'] ) {
 				
-				//ничего, уже пришли
+				//РЅРёС‡РµРіРѕ, СѓР¶Рµ РїСЂРёС€Р»Рё
 				self::update('a1',0);
 				
 			}else{
 				
-				//Прокладываем маршрут из текущей комнаты
+				//РџСЂРѕРєР»Р°РґС‹РІР°РµРј РјР°СЂС€СЂСѓС‚ РёР· С‚РµРєСѓС‰РµР№ РєРѕРјРЅР°С‚С‹
 				$rid_next = self::_loc_A(self::$bot['room'],$id);
 				if( $rid_next > 0 ) {
-					//Идем туда
+					//РРґРµРј С‚СѓРґР°
 					//$rid_next = 377;
 					mysql_query('UPDATE `users` SET `room` = "'.$rid_next.'" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 					return true;
 				}else{
-					//Невозможно дойти туда
+					//РќРµРІРѕР·РјРѕР¶РЅРѕ РґРѕР№С‚Рё С‚СѓРґР°
 					return false;
 				}
 								
@@ -1270,7 +1270,7 @@ class botLogic {
 			
 		}
 		
-		//Бот получил уровень, либо апп
+		//Р‘РѕС‚ РїРѕР»СѓС‡РёР» СѓСЂРѕРІРµРЅСЊ, Р»РёР±Рѕ Р°РїРї
 		static function _level() {	
 			global $u;
 			$lvl = mysql_fetch_array(mysql_query('SELECT `upLevel`,`nextLevel`,`exp`,`money`,`money_bonus1`,`money_bonus2`,`ability`,`skills`,`nskills`,`sskills`,`expBtlMax`,`hpRegen`,`mpRegen`,`money2` FROM `levels` WHERE `upLevel`="'.(self::$bot['upLevel']+1).'" LIMIT 1'));			
@@ -1287,7 +1287,7 @@ class botLogic {
 				if($lvl['exp'] <= self::$bot['exp']) {
 					//mysql_query('UPDATE `stats` SET `exp` = "300000" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 					//self::e('test');
-					//Получаем уровень
+					//РџРѕР»СѓС‡Р°РµРј СѓСЂРѕРІРµРЅСЊ
 					self::inuser_go_main( self::$bot );
 					mysql_query('UPDATE `users` SET `clss` = "0" WHERE `id` = "'.self::$bot['id'].'" LIMIT 1');
 					
@@ -1299,10 +1299,10 @@ class botLogic {
 		
 		}
 		
-	//Вспомогательные функции
+	//Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё
 	static function e( $t ) {
 		
-		mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity",
+		mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity",
 		"LEL","6","1","-1")');
 	
 	}

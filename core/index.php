@@ -14,7 +14,7 @@ define('DS'	, DIRECTORY_SEPARATOR);
 define('PROJECT_PATH', __DIR__);
 define('MEM', FALSE);
 define('APP_PATH', __DIR__ . DS . 'app');
-define('DP', DS . 'core'); //доп.директория
+define('DP', DS . 'core'); //РґРѕРї.РґРёСЂРµРєС‚РѕСЂРёСЏ
 define('PROJECT_CLOSE', FALSE);
 
 define('DB_HOST', 'localhost');
@@ -22,8 +22,8 @@ define('DB_NAME', 'xcombats');
 define('DB_USER', 'xcombats');
 define('DB_PASS', '');
 
-define('RIGHTS', 'Старый Бойцовский Клуб');
-define('COPY', 'Старый Бойцовский Клуб &copy; '.date('Y',OK));
+define('RIGHTS', 'РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР±');
+define('COPY', 'РЎС‚Р°СЂС‹Р№ Р‘РѕР№С†РѕРІСЃРєРёР№ РљР»СѓР± &copy; '.date('Y',OK));
 
 define('LANG', 'ru');
 require APP_PATH . DS . 'init.php';

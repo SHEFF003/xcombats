@@ -42,4 +42,3 @@ class Database {
 		return self::$connection->lastInsertId();
 	}
 }
-?>

@@ -19,7 +19,7 @@ if($ple['file_finish']=='bloodring2_end' && $this->users[$i]['team'] == $this->i
 		}else{
 			$ple['xz'] = '';
 		}
-		mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$this->users[$i]['city']."','0','','".$this->users[$i]['login']."','Вы получили предмет &quot;<b>Кровавый Рубин</b>".$ple['xz']."&quot;','-1','6','0')");
+		mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$this->users[$i]['city']."','0','','".$this->users[$i]['login']."','Р’С‹ РїРѕР»СѓС‡РёР»Рё РїСЂРµРґРјРµС‚ &quot;<b>РљСЂРѕРІР°РІС‹Р№ Р СѓР±РёРЅ</b>".$ple['xz']."&quot;','-1','6','0')");
 	}
 }
 ?>

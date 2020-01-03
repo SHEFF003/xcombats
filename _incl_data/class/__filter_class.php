@@ -8,9 +8,9 @@ class Filter {
 	//
 	public $spamtxt = 'acreshoperu|shambalru|oldcombats|oldbk2|oldbk|sebkru|oldbknet|welcombats|mycombats|vipbk|goldbk|recombats|legbkcom|febkru|skycombats|cambats|zagadnet';
 	public $abuse = array(
-		"ÎÓı","ÏÛ‰‡Í","„‡Ì‰ÓÌ","ÔË‰‡‡Ò","˜ÏÓ","ıÛÈ","ıÛÈÌˇ","ıÛÈÌË","¯Î˛ı‡","Ô‡ÒÍÛ‰‡","·Îˇ",'·ÎˇÚ¸','·Îˇ‰¸',
-		'Â·Î‡Ì','¯‡Î‡‚‡','Â·‡Î','Â·‡Ú¸','‰Ó˜ËÚ¸'
-		,'ÛÂ·Ë˘Â'
+		"–ª–æ—Ö","–º—É–¥–∞–∫","–≥–∞–Ω–¥–æ–Ω","–ø–∏–¥–∞—Ä–∞—Å","—á–º–æ","—Ö—É–π","—Ö—É–π–Ω—è","—Ö—É–π–Ω–∏","—à–ª—é—Ö–∞","–ø–∞—Å–∫—É–¥–∞","–±–ª—è",'–±–ª—è—Ç—å','–±–ª—è–¥—å',
+		'–µ–±–ª–∞–Ω','—à–∞–ª–∞–≤–∞','–µ–±–∞–ª','–µ–±–∞—Ç—å','–¥—Ä–æ—á–∏—Ç—å'
+		,'—É–µ–±–∏—â–µ'
 	);
 	//
 	public function str_count($str,$col) 
@@ -22,12 +22,12 @@ class Filter {
 		return ($str); 
 	}
 	//
-	//—Ï‡ÈÎËÍË
+	//–°–º–∞–π–ª–∏–∫–∏
 	public $sm = array("laugh"=>1,"fingal"=>1,"eek"=>1,"smoke"=>1,"hi"=>1,"bye"=>1,"king"=>1,"king2"=>1,"boks2"=>1,"boks"=>1,"gent"=>1,"lady"=>1,"tongue"=>1,"smil"=>1,"rotate"=>1,"ponder"=>1,"bow"=>1,"angel"=>1,"angel2"=>1,"hello"=>1,"dont"=>1,"idea"=>1,"mol"=>1,"super"=>1,"beer"=>1,"drink"=>1,"baby"=>1,"tongue2"=>1,"sword"=>1,"agree"=>1,"loveya"=>1,"kiss"=>1,"kiss2"=>1,"kiss3"=>1,"kiss4"=>1,"rose"=>1,"love"=>1,"love2"=>1,"confused"=>1,"yes"=>1,"no"=>1,"shuffle"=>1,"nono"=>1,"maniac"=>1,"privet"=>1,"ok"=>1,"ninja"=>1,"pif"=>1,"smash"=>1,"alien"=>1,"pirate"=>1,"gun"=>1,"trup"=>1,"mdr"=>1,"sneeze"=>1,"mad"=>1,"friday"=>1,"cry"=>1,"grust"=>1,"rupor"=>1,"fie"=>1,"nnn"=>1,"row"=>1,"red"=>1,"lick"=>1,"help"=>1,"wink"=>1,"jeer"=>1,"tease"=>1,"nunu"=>1,"inv"=>1,"duel"=>1,"susel"=>1,"nun"=>1,"kruger"=>1,"flowers"=>1,"horse"=>1,"hug"=>1,"str"=>1,"alch"=>1,"pal"=>1,"mag"=>1,"sniper"=>1,"vamp"=>1,"doc"=>1,"doc2"=>1,"sharp"=>1,"naem"=>1,"naem2"=>1,"naem3"=>1,"invis"=>1,"chtoza"=>1,"beggar"=>1,"sorry"=>1,"sorry2"=>1,
 	"creator"=>1,"grace"=>1,"dustman"=>1,"carreat"=>1,"lordhaos"=>1,"ura"=>1,"elix"=>1,"dedmoroz"=>1,"snegur"=>1,"showng"=>1,"superng"=>1,"podz"=>1,"sten"=>1,"devil"=>1,"cat"=>1,"owl"=>1,"lightfly"=>1,"snowfight"=>1,"rocket"=>1,"ball"=>1,"smile"=>1,"fuck"=>1);
 
 	public function e($t) {
-		mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("#'.date('d.m.Y').' %'.date('H:i:s').': <b>'.mysql_real_escape_string($t).'</b>","capitalcity","»„ÓÏË","6","1","-1")');
+		mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("#'.date('d.m.Y').' %'.date('H:i:s').': <b>'.mysql_real_escape_string($t).'</b>","capitalcity","–ò–≥—Ä–æ–º–∏—Ä","6","1","-1")');
 	}
 
 	public function setOnline($online,$uid,$afk,$gj = false)
@@ -80,8 +80,8 @@ class Filter {
 		$str = strtolower($string);
 		if(strtolower('S')!='s')
 		{
-			$ru  = '¿¡¬√ƒ≈®∆«»… ÀÃÕŒ–œ—“”‘’÷◊ÿŸ⁄‹€›ﬁﬂ';
-			$ru2 = '‡·‚„‰Â∏ÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙¸˚˝˛ˇ';
+			$ru  = '–ê–ë–í–ì–î–ï–Å–ñ–ó–ò–ô–ö–õ–ú–ù–û–†–ü–°–¢–£–§–•–¶–ß–®–©–™–¨–´–≠–Æ–Ø';
+			$ru2 = '–∞–±–≤–≥–¥–µ—ë–∂–∑–∏–π–∫–ª–º–Ω–æ—Ä–ø—Å—Ç—É—Ñ—Ö—Ü—á—à—â—ä—å—ã—ç—é—è';
 			$en  = 'QWERTYUIOPASDFGHJKLZXCVBNM';
 			$en2 = 'qwertyuiopasdfghjklzxcvbnm';
 			$i = 0;
@@ -115,7 +115,7 @@ class Filter {
 	public function antimat($txt) {
 		global $u;
 		$txt = ' '.$txt.' ';
-		//$vc = iconv( 'windows-1251' , 'UTF-8' , '¬÷');
+		//$vc = iconv( 'windows-1251' , 'UTF-8' , '–í–¶');
 		/*if( $u->info['admin'] > 0 ) {
 			$i = 0;
 			while( $i < count( $this->abuse ) ) {
@@ -131,7 +131,7 @@ class Filter {
 		}else{*/
 			$i = 0;
 			while( $i < count( $this->abuse ) ) {
-				$txt = str_ireplace(' '.$this->abuse[$i].' ',' <i><f c='.$this->abuse[$i].' />&lt;¬÷&gt;</i> ',$txt);
+				$txt = str_ireplace(' '.$this->abuse[$i].' ',' <i><f c='.$this->abuse[$i].' />&lt;–í–¶&gt;</i> ',$txt);
 				$i++;
 			}
 		//}
@@ -141,7 +141,7 @@ class Filter {
 	public function spamFiltr($txt)
 	{
 		
-		$txt = str_replace('∏','Â',$txt);
+		$txt = str_replace('—ë','–µ',$txt);
 		
 		$nospam = 0;
 		$txt = str_replace('&gt;','',$txt);
@@ -158,7 +158,7 @@ class Filter {
 			}
 			$i++;
 		}
-		/* ÙËÎ¸Ú */
+		/* —Ñ–∏–ª—å—Ç—Ä */
 		//$spam = $this->spamtxt;	
 		$spam = mysql_fetch_array(mysql_query('SELECT * FROM `spam_word` WHERE `id` = 1 LIMIT 1'));
 		$spam = $spam['data'];
@@ -168,44 +168,44 @@ class Filter {
 		
 		$testEN2 = str_replace('&quot;','',$testEN2);
 		$testEN2 = str_replace('&nbsp;','',$testEN2);		
-		$testEN2 = str_replace('‡','a',$testEN2);
-		$testEN2 = str_replace('·','b',$testEN2);
-		$testEN2 = str_replace('Ò','c',$testEN2);
-		$testEN2 = str_replace('‚','b',$testEN2);
-		$testEN2 = str_replace('Â','e',$testEN2);
-		$testEN2 = str_replace('Ú','t',$testEN2);
-		$testEN2 = str_replace('Ó','o',$testEN2);
-		$testEN2 = str_replace('','p',$testEN2);
-		$testEN2 = str_replace('Ï','m',$testEN2);
-		$testEN2 = str_replace('Ì','h',$testEN2);
-		$testEN2 = str_replace('Û','y',$testEN2);
-		$testEN2 = str_replace('Í','k',$testEN2);
-		$testEN2 = str_replace('Ë','u',$testEN2);
-		$testEN2 = str_replace('ı','x',$testEN2);
-		$testEN2 = str_replace('ˇ','9',$testEN2);
+		$testEN2 = str_replace('–∞','a',$testEN2);
+		$testEN2 = str_replace('–±','b',$testEN2);
+		$testEN2 = str_replace('—Å','c',$testEN2);
+		$testEN2 = str_replace('–≤','b',$testEN2);
+		$testEN2 = str_replace('–µ','e',$testEN2);
+		$testEN2 = str_replace('—Ç','t',$testEN2);
+		$testEN2 = str_replace('–æ','o',$testEN2);
+		$testEN2 = str_replace('—Ä','p',$testEN2);
+		$testEN2 = str_replace('–º','m',$testEN2);
+		$testEN2 = str_replace('–Ω','h',$testEN2);
+		$testEN2 = str_replace('—É','y',$testEN2);
+		$testEN2 = str_replace('–∫','k',$testEN2);
+		$testEN2 = str_replace('–∏','u',$testEN2);
+		$testEN2 = str_replace('—Ö','x',$testEN2);
+		$testEN2 = str_replace('—è','9',$testEN2);
 		$testEN2 = str_replace('()','o',$testEN2);
 		$testEN2 = str_replace('0','o',$testEN2);
 		$testEN2 = preg_replace('/[^a-z]*/i', '', $testEN2);		
-		$testRU = preg_replace('/[^‡-ˇ]*/i', '', $txt);
+		$testRU = preg_replace('/[^–∞-—è]*/i', '', $txt);
 		
 		$testRU2 = $txt;
-		$testRU2 = str_replace('a','‡',$testRU2);
-		$testRU2 = str_replace('b','·',$testRU2);
-		$testRU2 = str_replace('c','Ò',$testRU2);
-		$testRU2 = str_replace('b','‚',$testRU2);
-		$testRU2 = str_replace('e','Â',$testRU2);
-		$testRU2 = str_replace('t','Ú',$testRU2);
-		$testRU2 = str_replace('o','Ó',$testRU2);
-		$testRU2 = str_replace('p','',$testRU2);
-		$testRU2 = str_replace('m','Ï',$testRU2);
-		$testRU2 = str_replace('h','Ì',$testRU2);
-		$testRU2 = str_replace('y','Û',$testRU2);
-		$testRU2 = str_replace('k','Í',$testRU2);
-		$testRU2 = str_replace('x','ı',$testRU2);
-		$testRU2 = str_replace('u','Ë',$testRU2);
-		$testRU2 = str_replace('()','Ó',$testRU2);
-		$testRU2 = str_replace('0','Ó',$testRU2);
-		$testRU2 = preg_replace('/[^‡-ˇ]*/i', '', $testRU2);
+		$testRU2 = str_replace('a','–∞',$testRU2);
+		$testRU2 = str_replace('b','–±',$testRU2);
+		$testRU2 = str_replace('c','—Å',$testRU2);
+		$testRU2 = str_replace('b','–≤',$testRU2);
+		$testRU2 = str_replace('e','–µ',$testRU2);
+		$testRU2 = str_replace('t','—Ç',$testRU2);
+		$testRU2 = str_replace('o','–æ',$testRU2);
+		$testRU2 = str_replace('p','—Ä',$testRU2);
+		$testRU2 = str_replace('m','–º',$testRU2);
+		$testRU2 = str_replace('h','–Ω',$testRU2);
+		$testRU2 = str_replace('y','—É',$testRU2);
+		$testRU2 = str_replace('k','–∫',$testRU2);
+		$testRU2 = str_replace('x','—Ö',$testRU2);
+		$testRU2 = str_replace('u','–∏',$testRU2);
+		$testRU2 = str_replace('()','–æ',$testRU2);
+		$testRU2 = str_replace('0','–æ',$testRU2);
+		$testRU2 = preg_replace('/[^–∞-—è]*/i', '', $testRU2);
 		$i = 0; $spe = explode('|',$spam);
 		while($i<=count($spe))
 		{
@@ -267,7 +267,7 @@ class Filter {
 						$clk = 'onClick=\"top.addSm(\''.$h[$i].'\');\" style=\"cursor:pointer;\"';
 						if(isset($user_sm[$h[$i]]))
 						{
-							$clk = 'title=\"»ÏÂÌÌÓÈ ÒÏ‡ÈÎËÍ\"';
+							$clk = 'title=\"–ò–º–µ–Ω–Ω–æ–π —Å–º–∞–π–ª–∏–∫\"';
 						}
 						$h[$i] = '*not_dbl_ponts*<img '.$clk.' src=\"http://img.xcombats.com/i/smile/'.$h[$i].'.gif\">*not_dbl_ponts*';
 						$j++;
@@ -286,7 +286,7 @@ class Filter {
 	
 	public function __clone()
 	{
-		trigger_error('ƒÛ·ÎËÓ‚‡ÌËÂ ÌÂ ‰ÓÔÛÒÍ‡ÂÚÒˇ.', E_USER_ERROR);
+		trigger_error('–î—É–±–ª–∏—Ä–æ–≤–∞–Ω–∏–µ –Ω–µ –¥–æ–ø—É—Å–∫–∞–µ—Ç—Å—è.', E_USER_ERROR);
 	}
 }
 

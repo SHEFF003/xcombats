@@ -29,7 +29,7 @@ if($e['bm_a1'] == 'ring777') {
     } else{
 	  $hpmin = '--';
 	}
-	$mas1['text'] = '{tm2} {u1} использовала заклятие &quot;<b>Вытягивание души</b>&quot; на персонажа {u2}. <font color=#A00000><b>'.$hpmin.'</b></font></b> ['.ceil($hp2).'/'.$this->stats[$this->uids[$uid2]]['hpAll'].']';	
+	$mas1['text'] = '{tm2} {u1} РёСЃРїРѕР»СЊР·РѕРІР°Р»Р° Р·Р°РєР»СЏС‚РёРµ &quot;<b>Р’С‹С‚СЏРіРёРІР°РЅРёРµ РґСѓС€Рё</b>&quot; РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° {u2}. <font color=#A00000><b>'.$hpmin.'</b></font></b> ['.ceil($hp2).'/'.$this->stats[$this->uids[$uid2]]['hpAll'].']';	
 	$this->add_log($mas1);
 	//
 	$hpmin2 = ceil($hpmin2/5);
@@ -55,7 +55,7 @@ if($e['bm_a1'] == 'ring777') {
     } else{
 	  $hpmin2 = '--';
 	}
-	$mas1['text'] = '{tm2} {u1} исцелила себя частью урона от &quot;<b>Вытягивание души</b>&quot;. <font color=#0066aa><b>'.$hpmin2.'</b></font></b> ['.ceil($this->stats[$this->uids[$uid1]]['hpNow']).'/'.$this->stats[$this->uids[$uid1]]['hpAll'].']';	
+	$mas1['text'] = '{tm2} {u1} РёСЃС†РµР»РёР»Р° СЃРµР±СЏ С‡Р°СЃС‚СЊСЋ СѓСЂРѕРЅР° РѕС‚ &quot;<b>Р’С‹С‚СЏРіРёРІР°РЅРёРµ РґСѓС€Рё</b>&quot;. <font color=#0066aa><b>'.$hpmin2.'</b></font></b> ['.ceil($this->stats[$this->uids[$uid1]]['hpNow']).'/'.$this->stats[$this->uids[$uid1]]['hpAll'].']';	
 	$this->add_log($mas1);
 	//
   }

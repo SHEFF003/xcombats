@@ -13,13 +13,13 @@ if($u->room['file']=='ab/kareta')
 		$sp = mysql_query('SELECT * FROM `vokzal` WHERE `city` = "'.$c['thiscity'].'" OR `tocity` = "'.$c['thiscity'].'"');
 		while($pl = mysql_fetch_array($sp))
 		{
-			$vz1 = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Вокзал" AND `city` = "'.$pl['city'].'" LIMIT 1'));
-			$vz2 = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Вокзал" AND `city` = "'.$pl['tocity'].'" LIMIT 1'));		
+			$vz1 = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Р’РѕРєР·Р°Р»" AND `city` = "'.$pl['city'].'" LIMIT 1'));
+			$vz2 = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Р’РѕРєР·Р°Р»" AND `city` = "'.$pl['tocity'].'" LIMIT 1'));		
 			$crm = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "'.$pl['name'].'" LIMIT 1'));
-			//period 0 - прибытие в город (стоянка), 1 - движение, 3 - прибытие в другой город (стоянка), 4 - движение (из tocity)
+			//period 0 - РїСЂРёР±С‹С‚РёРµ РІ РіРѕСЂРѕРґ (СЃС‚РѕСЏРЅРєР°), 1 - РґРІРёР¶РµРЅРёРµ, 3 - РїСЂРёР±С‹С‚РёРµ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ (СЃС‚РѕСЏРЅРєР°), 4 - РґРІРёР¶РµРЅРёРµ (РёР· tocity)
 			if($pl['time_start_go']==0)
 			{
-				//Это новая карета обновляем данные
+				//Р­С‚Рѕ РЅРѕРІР°СЏ РєР°СЂРµС‚Р° РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ
 				mysql_query('UPDATE `vokzal` SET `time_start_go` = "'.(time()+$pl['timeStop']*60).'",`time_finish_go` = "'.(time()+$pl['timeStop']*60+$pl['time_go']*60).'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 				$pl['time_start_go'] = time()+$pl['timeStop']*60;
 				$pl['time_finish_go'] = $pl['time_start_go']+$pl['time_go']*60;
@@ -32,7 +32,7 @@ if($u->room['file']=='ab/kareta')
 			$plc = $pl['tocity'];
 			if($pl['time_start_go']-600<time() && $pl['time_start_go']>time())
 			{
-				//можно знанимать места в карете
+				//РјРѕР¶РЅРѕ Р·РЅР°РЅРёРјР°С‚СЊ РјРµСЃС‚Р° РІ РєР°СЂРµС‚Рµ
 				if(isset($crm['id']))
 				{
 					$sr = mysql_query('SELECT `uid`,`id` FROM `items_users` WHERE `secret_id` = "'.$pl['time_start_go'].'_b'.$pl['id'].'" AND `delete` = "0" LIMIT 100');
@@ -46,18 +46,18 @@ if($u->room['file']=='ab/kareta')
 					}
 				}
 			}
-				//отправляем карету в другой город
+				//РѕС‚РїСЂР°РІР»СЏРµРј РєР°СЂРµС‚Сѓ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ
 				if($pl['time_finish_go']<time())
 				{
-					//прибыли
+					//РїСЂРёР±С‹Р»Рё
 					if($pl['period']==0)
 					{
-						//Прибыли в город, время стоянки закончилось, и поехали
+						//РџСЂРёР±С‹Р»Рё РІ РіРѕСЂРѕРґ, РІСЂРµРјСЏ СЃС‚РѕСЏРЅРєРё Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ, Рё РїРѕРµС…Р°Р»Рё
 						mysql_query('UPDATE `vokzal` SET `period` = "1",`citygo` = "'.$pl['tocity'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 						$pl['period'] = 1;
 					}elseif($pl['period']==1)
 					{
-						//приехалис в другой город, делаем там стоянку выкидываем людей
+						//РїСЂРёРµС…Р°Р»РёСЃ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ, РґРµР»Р°РµРј С‚Р°Рј СЃС‚РѕСЏРЅРєСѓ РІС‹РєРёРґС‹РІР°РµРј Р»СЋРґРµР№
 						if(isset($crm['id']))
 						{
 							mysql_query('UPDATE `users` SET `city` = "'.$pl['tocity'].'",`room` = "'.$vz2['id'].'" WHERE `room` = "'.$crm['id'].'" LIMIT '.$pl['bilets_default'].'');
@@ -66,12 +66,12 @@ if($u->room['file']=='ab/kareta')
 						$pl['period'] = 3;
 					}elseif($pl['period']==3)
 					{
-						//Прибыли в город, время стоянки закончилось, и поехали
+						//РџСЂРёР±С‹Р»Рё РІ РіРѕСЂРѕРґ, РІСЂРµРјСЏ СЃС‚РѕСЏРЅРєРё Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ, Рё РїРѕРµС…Р°Р»Рё
 						mysql_query('UPDATE `vokzal` SET `period` = "4" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 						$pl['period'] = 4;
 					}elseif($pl['period']==4)
 					{
-						//приехалис в другой город, делаем там стоянку и выкидываем людей
+						//РїСЂРёРµС…Р°Р»РёСЃ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ, РґРµР»Р°РµРј С‚Р°Рј СЃС‚РѕСЏРЅРєСѓ Рё РІС‹РєРёРґС‹РІР°РµРј Р»СЋРґРµР№
 						if(isset($crm['id']))
 						{
 							mysql_query('UPDATE `users` SET `city` = "'.$pl['city'].'",`room` = "'.$vz1['id'].'" WHERE `room` = "'.$crm['id'].'" LIMIT '.$pl['bilets_default'].'');
@@ -139,15 +139,15 @@ if($u->room['file']=='ab/kareta')
               <td><div align="left"></div></td>
             </tr>
             <tr>
-              <td><div align="left">Место отбытия:</div></td>
+              <td><div align="left">РњРµСЃС‚Рѕ РѕС‚Р±С‹С‚РёСЏ:</div></td>
               <td><div align="left"><? echo $u->city_name[$c['thiscity']]; ?></div></td>
             </tr>
             <tr>
-              <td><div align="left">Место прибытия:</div></td>
+              <td><div align="left">РњРµСЃС‚Рѕ РїСЂРёР±С‹С‚РёСЏ:</div></td>
               <td><div align="left"><? echo $u->city_name[$car['citygo']]; ?></div></td>
             </tr>
             <tr>
-              <td><div align="left">Прибытие:</div></td>
+              <td><div align="left">РџСЂРёР±С‹С‚РёРµ:</div></td>
               <td><div align="left"><? echo date('H:i',$car['time_start_go']+$car['time_go']*60); ?></div></td>
             </tr>
             <tr>
@@ -171,18 +171,18 @@ if($u->room['file']=='ab/kareta')
             <div align="left">
               <?
 			/*
-			img.combats-world.com/i/kareta1.swf - весна (ночь) 1 март
-			img.combats-world.com/i/kareta2.swf - весна (день)
-			img.combats-world.com/i/kareta3.swf - зима (ночь) 1 декабря
-			img.combats-world.com/i/kareta4.swf - зима (день)
-			img.combats-world.com/i/kareta5.swf - лето (ночь) 1 июня
-			img.combats-world.com/i/kareta6.swf - лето (день) 
-			img.combats-world.com/i/kareta7.swf - осень (ночь) 1 сентября
-			img.combats-world.com/i/kareta8.swf - осень (день)
-			1 - весна
-			2 - лето
-			3 - осень
-			4 - зима
+			img.combats-world.com/i/kareta1.swf - РІРµСЃРЅР° (РЅРѕС‡СЊ) 1 РјР°СЂС‚
+			img.combats-world.com/i/kareta2.swf - РІРµСЃРЅР° (РґРµРЅСЊ)
+			img.combats-world.com/i/kareta3.swf - Р·РёРјР° (РЅРѕС‡СЊ) 1 РґРµРєР°Р±СЂСЏ
+			img.combats-world.com/i/kareta4.swf - Р·РёРјР° (РґРµРЅСЊ)
+			img.combats-world.com/i/kareta5.swf - Р»РµС‚Рѕ (РЅРѕС‡СЊ) 1 РёСЋРЅСЏ
+			img.combats-world.com/i/kareta6.swf - Р»РµС‚Рѕ (РґРµРЅСЊ) 
+			img.combats-world.com/i/kareta7.swf - РѕСЃРµРЅСЊ (РЅРѕС‡СЊ) 1 СЃРµРЅС‚СЏР±СЂСЏ
+			img.combats-world.com/i/kareta8.swf - РѕСЃРµРЅСЊ (РґРµРЅСЊ)
+			1 - РІРµСЃРЅР°
+			2 - Р»РµС‚Рѕ
+			3 - РѕСЃРµРЅСЊ
+			4 - Р·РёРјР°
 			*/
 			$outimg = array(1=>4,2=>4,3=>1,4=>1,5=>1,6=>2,7=>2,8=>2,9=>3,10=>3,11=>3,12=>4);
 			$imgo = array(1=>1,2=>5,3=>7,4=>3);
@@ -216,8 +216,8 @@ if($u->room['file']=='ab/kareta')
 	<td width="280" valign="top"><div>
 
         <div align="right">
-          <input onclick="location='main.php?rnd=<? echo $code; ?>';" type="button" value="обновить" />
-          <input type="button" value="выйти из кареты" />
+          <input onclick="location='main.php?rnd=<? echo $code; ?>';" type="button" value="РѕР±РЅРѕРІРёС‚СЊ" />
+          <input type="button" value="РІС‹Р№С‚Рё РёР· РєР°СЂРµС‚С‹" />
           <br />
         </div>
 	      <br />

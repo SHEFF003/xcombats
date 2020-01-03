@@ -6,23 +6,23 @@ if(!defined('GAME'))
 
 if($pl['id'] == 189) {
 	$imun = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u->info['enemy'].'" and `v2`="191" and `delete`="0" LIMIT 1'));
-	//Ошеломить
+	//РћС€РµР»РѕРјРёС‚СЊ
 	if($imun){
-		echo '<font color=red><b>У персонажа иммунитет к ошеломляющим приемам еше '.$imun['hod'].' ход.</b></font>';
+		echo '<font color=red><b>РЈ РїРµСЂСЃРѕРЅР°Р¶Р° РёРјРјСѓРЅРёС‚РµС‚ Рє РѕС€РµР»РѕРјР»СЏСЋС‰РёРј РїСЂРёРµРјР°Рј РµС€Рµ '.$imun['hod'].' С…РѕРґ.</b></font>';
 		$cup = true;
 	}elseif($btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']>=1)
 	{
 		//
-		$re = $this->addPriem($u->info['enemy'],230,'',0,77,2,$u->info['id'],2,'ошеломить');
-		$re = $this->addPriem($u->info['enemy'],191,'',0,77,6,$u->info['id'],5,'иммунитеткошеломить');
+		$re = $this->addPriem($u->info['enemy'],230,'',0,77,2,$u->info['id'],2,'РѕС€РµР»РѕРјРёС‚СЊ');
+		$re = $this->addPriem($u->info['enemy'],191,'',0,77,6,$u->info['id'],5,'РёРјРјСѓРЅРёС‚РµС‚РєРѕС€РµР»РѕРјРёС‚СЊ');
 		if($re==false)
 		{
-			echo '[Er::Ошеломить[xX]]';
+			echo '[Er::РћС€РµР»РѕРјРёС‚СЊ[xX]]';
 		}
 		$sx = '';
 		if($u->info['sex']==1)
 		{
-			$sx = 'а';
+			$sx = 'Р°';
 		}
 		$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'||s2='.$btl->users[$btl->uids[$u->info['enemy']]]['sex'].'||t2='.$btl->users[$btl->uids[$u->info['enemy']]]['team'].'||login2='.$btl->users[$btl->uids[$u->info['enemy']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>$btl->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
@@ -44,7 +44,7 @@ if($pl['id'] == 189) {
 			$hp = -$hp;
 		}*/
 		
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и ошеломил'.$sx.' персонажа {u2} на два хода.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё РѕС€РµР»РѕРјРёР»'.$sx.' РїРµСЂСЃРѕРЅР°Р¶Р° {u2} РЅР° РґРІР° С…РѕРґР°.';	
 		$pz = $btl->users[$btl->uids[$u->info['enemy']]]['priems_z'];
 		$p_id = $btl->users[$btl->uids[$u->info['enemy']]]['priems'];
 		$pz = explode('|',$pz);
@@ -68,23 +68,23 @@ if($pl['id'] == 189) {
 	}
 }elseif($pl['id'] == 227) {
 	$imun = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$u->info['enemy'].'" and `v2`="191" and `delete`="0" LIMIT 1'));
-	//Контузия
+	//РљРѕРЅС‚СѓР·РёСЏ
 	if($imun){
-		echo '<font color=red><b>У персонажа иммунитет к ошеломляющим приемам еше '.$imun['hod'].' ход.</b></font>';
+		echo '<font color=red><b>РЈ РїРµСЂСЃРѕРЅР°Р¶Р° РёРјРјСѓРЅРёС‚РµС‚ Рє РѕС€РµР»РѕРјР»СЏСЋС‰РёРј РїСЂРёРµРјР°Рј РµС€Рµ '.$imun['hod'].' С…РѕРґ.</b></font>';
 		$cup = true;
 	}elseif($btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']>=1)
 	{
 		//
-		$re = $this->addPriem($u->info['enemy'],$pl['id'],'',0,77,4,$u->info['id'],1,'контузия');
-		$re = $this->addPriem($u->info['enemy'],191,'',0,77,6,$u->info['id'],5,'иммунитеткошеломить');
+		$re = $this->addPriem($u->info['enemy'],$pl['id'],'',0,77,4,$u->info['id'],1,'РєРѕРЅС‚СѓР·РёСЏ');
+		$re = $this->addPriem($u->info['enemy'],191,'',0,77,6,$u->info['id'],5,'РёРјРјСѓРЅРёС‚РµС‚РєРѕС€РµР»РѕРјРёС‚СЊ');
 		if($re==false)
 		{
-			echo '[Er::Контузия[xX]]';
+			echo '[Er::РљРѕРЅС‚СѓР·РёСЏ[xX]]';
 		}
 		$sx = '';
 		if($u->info['sex']==1)
 		{
-			$sx = 'а';
+			$sx = 'Р°';
 		}
 		$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'||s2='.$btl->users[$btl->uids[$u->info['enemy']]]['sex'].'||t2='.$btl->users[$btl->uids[$u->info['enemy']]]['team'].'||login2='.$btl->users[$btl->uids[$u->info['enemy']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>$btl->hodID,'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
@@ -106,7 +106,7 @@ if($pl['id'] == 189) {
 			$hp = -$hp;
 		}
 		
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и ошеломил'.$sx.' щитом персонажа {u2} на один ход. <b><font color=#006699>'.$hp.'</font></b> ['.floor($btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['enemy']]]['hpAll'].']';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё РѕС€РµР»РѕРјРёР»'.$sx.' С‰РёС‚РѕРј РїРµСЂСЃРѕРЅР°Р¶Р° {u2} РЅР° РѕРґРёРЅ С…РѕРґ. <b><font color=#006699>'.$hp.'</font></b> ['.floor($btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['enemy']]]['hpAll'].']';	
 		$pz = $btl->users[$btl->uids[$u->info['enemy']]]['priems_z'];
 		$p_id = $btl->users[$btl->uids[$u->info['enemy']]]['priems'];
 		$pz = explode('|',$pz);
@@ -129,7 +129,7 @@ if($pl['id'] == 189) {
 		$pz[(int)$id] = 1;
 	}
 }elseif($pl['priem']['id'] == 226) {
-	//Возмездие
+	//Р’РѕР·РјРµР·РґРёРµ
 	$hp = 6*$u1['level'];
 	if($hp > 0) {			
 		$this->users[$this->uids[$u2['id']]]['last_hp'] = -$hp;
@@ -143,7 +143,7 @@ if($pl['id'] == 189) {
 	}else{
 		$hp = '--';
 	}
-	$mas1['text'] = '{tm1} {u2} утратил здоровье от приема &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($this->stats[$this->uids[$u2['id']]]['hpNow']).'/'.$this->stats[$this->uids[$u2['id']]]['hpAll'].']';	
+	$mas1['text'] = '{tm1} {u2} СѓС‚СЂР°С‚РёР» Р·РґРѕСЂРѕРІСЊРµ РѕС‚ РїСЂРёРµРјР° &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($this->stats[$this->uids[$u2['id']]]['hpNow']).'/'.$this->stats[$this->uids[$u2['id']]]['hpAll'].']';	
 }elseif($pl['id'] == 224) {
 	if($btl->stats[$btl->uids[$this->ue['id']]]['hpNow'] > 0) {
 		$btl->stats[$btl->uids[$this->ue['id']]]['tactic6']++;
@@ -154,13 +154,13 @@ if($pl['id'] == 189) {
 		mysql_query('UPDATE `stats` SET `tactic6` = "'.$btl->users[$btl->uids[$this->ue['id']]]['tactic6'].'" WHERE `id` = "'.$this->ue['id'].'" LIMIT 1');
 		$vLog = 'time1='.time().'||s1='.$btl->users[$btl->uids[$u->info['id']]]['sex'].'||t1='.$btl->users[$btl->uids[$u->info['id']]]['team'].'||login1='.$btl->users[$btl->uids[$u->info['id']]]['login'].'||s2='.$btl->users[$btl->uids[$this->ue['id']]]['sex'].'||t2='.$btl->users[$btl->uids[$this->ue['id']]]['team'].'||login2='.$btl->users[$btl->uids[$this->ue['id']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; на персонажа {u2}.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° {u2}.';	
 		$btl->add_log($mas1);
 		$pz[(int)$id] = 1;
 		unset($vLog,$mas1);
 	}
 }elseif($pl['priem']['id'] == 222) {
-	//Последний удар
+	//РџРѕСЃР»РµРґРЅРёР№ СѓРґР°СЂ
 	if(!isset($this->del_val['eff'][$pl['priem']['id']])) {
 		$hp = floor($this->stats[$this->uids[$pl['uid']]]['hpNow']);
 		$this->stats[$this->uids[$pl['uid']]]['last_hp'] = -$hp;
@@ -174,13 +174,13 @@ if($pl['id'] == 189) {
 		$this->del_val['eff'][$pl['id']] = true;	
 		$vLog = 'time1='.time().'||s1='.$this->users[$this->uids[$pl['uid']]]['sex'].'||t1='.$this->users[$this->uids[$pl['uid']]]['team'].'||login1='.$this->users[$this->uids[$pl['uid']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>($this->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;.'; // <b><font color=#006699>'.$hp.'</font></b> [0/'.$this->stats[$this->uids[$u1['id']]]['hpAll'].']';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;.'; // <b><font color=#006699>'.$hp.'</font></b> [0/'.$this->stats[$this->uids[$u1['id']]]['hpAll'].']';	
 		$this->add_log($mas1);
 		$pz[(int)$id] = 1;
 		unset($vLog,$mas1);
 	}
 }elseif($pl['id'] == 232) {
-	//Выжить
+	//Р’С‹Р¶РёС‚СЊ
 		$hp = $btl->users[$btl->uids[$u->info['id']]]['tactic1']+$btl->users[$btl->uids[$u->info['id']]]['tactic2']+$btl->users[$btl->uids[$u->info['id']]]['tactic3']+$btl->users[$btl->uids[$u->info['id']]]['tactic4']+$btl->users[$btl->uids[$u->info['id']]]['tactic5']+$btl->users[$btl->uids[$u->info['id']]]['tactic6']*0.5;
 		if($hp > 25) {
 			$hp = 25;
@@ -226,7 +226,7 @@ if($pl['id'] == 189) {
 		
 		$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($btl->stats[$btl->uids[$u->info['id']]]['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['id']]]['hpAll'].']';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($btl->stats[$btl->uids[$u->info['id']]]['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['id']]]['hpAll'].']';	
 		$btl->add_log($mas1);		
 		
 		$btl->users[$btl->uids[$u->info['id']]]['hpNow'] = $btl->stats[$btl->uids[$u->info['id']]]['hpNow'];	
@@ -236,7 +236,7 @@ if($pl['id'] == 189) {
 		
 		unset($hp021);
 }elseif($pl['id'] == 221) {
-	//Отменить
+	//РћС‚РјРµРЅРёС‚СЊ
 		$hp = $btl->users[$btl->uids[$u->info['id']]]['last_hp'];
 
 		$btl->stats[$btl->uids[$u->info['id']]]['hpNow'] -= $hp;
@@ -263,7 +263,7 @@ if($pl['id'] == 189) {
 		
 		$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($btl->stats[$btl->uids[$u->info['id']]]['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['id']]]['hpAll'].']';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($btl->stats[$btl->uids[$u->info['id']]]['hpNow']).'/'.$btl->stats[$btl->uids[$u->info['id']]]['hpAll'].']';	
 		$btl->add_log($mas1);		
 		
 		$btl->users[$btl->uids[$u->info['id']]]['hpNow'] = $btl->stats[$btl->uids[$u->info['id']]]['hpNow'];	
@@ -273,12 +273,12 @@ if($pl['id'] == 189) {
 		
 		unset($hp021);
 }elseif($pl['priem']['id'] == 220) {
-	//Ставка на опережение
+	//РЎС‚Р°РІРєР° РЅР° РѕРїРµСЂРµР¶РµРЅРёРµ
 	if(!isset($this->del_val['eff'][$pl['id']])) {
 		$this->del_val['eff'][$pl['id']] = true;	
 		$vLog = 'time1='.time().'||s1='.$u1['sex'].'||t1='.$u1['team'].'||login1='.$u1['login'].'||s2='.$u2['sex'].'||t2='.$u2['team'].'||login2='.$u2['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>($this->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; на персонажа {u2} и украл все активные приемы.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° {u2} Рё СѓРєСЂР°Р» РІСЃРµ Р°РєС‚РёРІРЅС‹Рµ РїСЂРёРµРјС‹.';	
 		$this->add_log($mas1);
 		$pz[(int)$id] = 1;	
 		$pl['delete'] = time();
@@ -286,7 +286,7 @@ if($pl['id'] == 189) {
 		$pr78 = 0;
 		while($pl031 = mysql_fetch_array($sp031)) {
 			if(mysql_query('UPDATE `eff_users` SET `uid` = "'.$u1['id'].'" WHERE `id` = "'.$pl031['id'].'" LIMIT 1')) {
-				//$mas1['text'] = '{tm1} {u1} Украл активный прием &quot;<b>'.$pl031['name'].'</b>&quot; у {u2}';	
+				//$mas1['text'] = '{tm1} {u1} РЈРєСЂР°Р» Р°РєС‚РёРІРЅС‹Р№ РїСЂРёРµРј &quot;<b>'.$pl031['name'].'</b>&quot; Сѓ {u2}';	
 				//$this->add_log($mas1);
 				$pr78++;
 			}
@@ -299,12 +299,12 @@ if($pl['id'] == 189) {
 		unset($pr78,$vLog,$mas1,$pl031,$sp031);
 	}
 }elseif($pl['priem']['id'] == 217) {
-	//разгадать тактику
+	//СЂР°Р·РіР°РґР°С‚СЊ С‚Р°РєС‚РёРєСѓ
 	if(!isset($this->del_val['eff'][$pl['id']])) {
 		$this->del_val['eff'][$pl['id']] = true;	
 		$vLog = 'time1='.time().'||s1='.$u1['sex'].'||t1='.$u1['team'].'||login1='.$u1['login'].'||s2='.$u2['sex'].'||t2='.$u2['team'].'||login2='.$u2['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$this->info['id'],'id_hod'=>($this->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; на персонажа {u2}.';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° {u2}.';	
 		$this->add_log($mas1);
 		$pz[(int)$id] = 1;	
 		$pl['delete'] = time();
@@ -312,7 +312,7 @@ if($pl['id'] == 189) {
 		$pr78 = 0;
 		while($pl031 = mysql_fetch_array($sp031)) {
 			if(mysql_query('UPDATE `eff_users` SET `delete` = "'.time().'",`uid` = "0" WHERE `id` = "'.$pl031['id'].'" LIMIT 1')) {
-				$mas1['text'] = '{tm1} Закончилось действие приема &quot;<b>'.$pl031['name'].'</b>&quot; для {u2}.';	
+				$mas1['text'] = '{tm1} Р—Р°РєРѕРЅС‡РёР»РѕСЃСЊ РґРµР№СЃС‚РІРёРµ РїСЂРёРµРјР° &quot;<b>'.$pl031['name'].'</b>&quot; РґР»СЏ {u2}.';	
 				$this->pr_not_use[$pl031['id']] = 1;
 				$this->add_log($mas1);
 				$pr78++;
@@ -327,32 +327,32 @@ if($pl['id'] == 189) {
 	}
 }elseif($pl['id']==12)
 {
-	//прием подлый удар
+	//РїСЂРёРµРј РїРѕРґР»С‹Р№ СѓРґР°СЂ
 	$hpmin = $u->info['level']*5;
 }elseif($pl['id']==271)
 {
-	//прием Прорыв 1\3 урона оружием
+	//РїСЂРёРµРј РџСЂРѕСЂС‹РІ 1\3 СѓСЂРѕРЅР° РѕСЂСѓР¶РёРµРј
 	$tp_atk = $btl->weaponTx($btl->stats[$btl->uids[$u->info['id']]]['items'][$btl->stats[$btl->uids[$u->info['id']]]['wp3id']]);
 	//$tp_atk = 0;
 	$yi_atk = $btl->weaponAt22($btl->stats[$btl->uids[$u->info['id']]]['items'][$btl->stats[$btl->uids[$u->info['id']]]['wp3id']],$btl->stats[$btl->uids[$u->info['id']]],$tp_atk);
 	$hpmin = $btl->yrn($btl->stats[$btl->uids[$u->info['id']]],$btl->stats[$btl->uids[$u->info['enemy']]],$btl->users[$btl->uids[$u->info['id']]],$btl->users[$btl->uids[$u->info['enemy']]],$btl->stats[$btl->uids[$u->info['id']]]['lvl'],$btl->stats[$btl->uids[$u->info['enemy']]]['lvl'],$tp_atk,$yi_atk[0],$yi_atk[1],0,0,0,0,$btl->stats[$btl->uids[$u->info['id']]]['m3'],0,0,0);
 	$hpmin = rand($hpmin['min'],$hpmin['max']);
 }elseif($pl['id'] == 212) {
-	//Ограниченный маневр
+	//РћРіСЂР°РЅРёС‡РµРЅРЅС‹Р№ РјР°РЅРµРІСЂ
 	$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'||s2='.$btl->users[$btl->uids[$u->info['enemy']]]['sex'].'||t2='.$btl->users[$btl->uids[$u->info['enemy']]]['team'].'||login2='.$btl->users[$btl->uids[$u->info['enemy']]]['login'].'';
 	$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-	$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; на персонажа {u2}';	
+	$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; РЅР° РїРµСЂСЃРѕРЅР°Р¶Р° {u2}';	
 	$btl->add_log($mas1);
 	$pz[(int)$id] = 1;	
 	mysql_query('UPDATE `stats` SET `smena` = "-1" WHERE `id` = "'.$u->info['enemy'].'" LIMIT 1');
 }elseif($pl['id']==46)
 {
-	//заносим в лог боя
+	//Р·Р°РЅРѕСЃРёРј РІ Р»РѕРі Р±РѕСЏ
 	if(isset($this->ue['id'],$btl->users[$btl->uids[$this->ue['id']]]) && ($btl->users[$btl->uids[$this->ue['id']]]['team']!=$u->info['team'] && $btl->stats[$btl->uids[$this->ue['id']]]['hpNow']>=1))
 	{
 		$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'||s2='.$btl->users[$btl->uids[$this->ue['id']]]['sex'].'||t2='.$btl->users[$btl->uids[$this->ue['id']]]['team'].'||login2='.$btl->users[$btl->uids[$this->ue['id']]]['login'].'';
 		$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
-		$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;. (Новая цель: {u2})';	
+		$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;. (РќРѕРІР°СЏ С†РµР»СЊ: {u2})';	
 		$btl->add_log($mas1);
 		$pz[(int)$id] = 1;	
 		$u->info['enemy'] = $this->ue['id'];
@@ -360,7 +360,7 @@ if($pl['id'] == 189) {
 	}
 }elseif($pl['priem']['id']==49)
 {
-	//восстанавливаем 5НР за каждый лвл противника
+	//РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј 5РќР  Р·Р° РєР°Р¶РґС‹Р№ Р»РІР» РїСЂРѕС‚РёРІРЅРёРєР°
 	$this->stats[$this->uids[$pl['uid']]]['hpNow'] += $this->users[$this->uids[$pl['uid']]]['level']*5;
 	$hp = $u2['level']*5;
 	if($this->stats[$this->uids[$pl['uid']]]['hpNow'] < 0)
@@ -383,7 +383,7 @@ if($pl['id'] == 189) {
 		$hp = '--';
 	}
 	
-	$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($this->stats[$this->uids[$pl['uid']]]['hpNow']).'/'.$this->stats[$this->uids[$pl['uid']]]['hpAll'].']';	
+	$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($this->stats[$this->uids[$pl['uid']]]['hpNow']).'/'.$this->stats[$this->uids[$pl['uid']]]['hpAll'].']';	
 	
 	$this->users[$this->uids[$pl['uid']]]['hpNow'] = $this->stats[$this->uids[$pl['uid']]]['hpNow'];
 	if($pl['uid']==$u->info['id'])
@@ -392,7 +392,7 @@ if($pl['id'] == 189) {
 	}
 	mysql_query('UPDATE `stats` SET `hpNow` = "'.$this->stats[$this->uids[$pl['uid']]]['hpNow'].'",`last_hp` = "'.$btl->users[$btl->uids[$pl['uid']]]['last_hp'].'" WHERE `id` = "'.$pl['uid'].'" LIMIT 1');
 }elseif($pl['priem']['id'] == 211) {
-	//Агрессивная защита
+	//РђРіСЂРµСЃСЃРёРІРЅР°СЏ Р·Р°С‰РёС‚Р°
 	$hp = 3*$u1['level'];
 	if($hp > 0) {			
 		$this->users[$this->uids[$u2['id']]]['last_hp'] = -$hp;
@@ -406,17 +406,17 @@ if($pl['id'] == 189) {
 	}else{
 		$hp = '--';
 	}
-	$mas1['text'] = '{tm1} {u2} утратил здоровье от приема &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($this->stats[$this->uids[$u2['id']]]['hpNow']).'/'.$this->stats[$this->uids[$u2['id']]]['hpAll'].']';	
+	$mas1['text'] = '{tm1} {u2} СѓС‚СЂР°С‚РёР» Р·РґРѕСЂРѕРІСЊРµ РѕС‚ РїСЂРёРµРјР° &quot;<b>'.$pl['name'].'</b>&quot;. <b><font color=#006699>'.$hp.'</font></b> ['.floor($this->stats[$this->uids[$u2['id']]]['hpNow']).'/'.$this->stats[$this->uids[$u2['id']]]['hpAll'].']';	
 }
 
-//отнимаем НР у противника
+//РѕС‚РЅРёРјР°РµРј РќР  Сѓ РїСЂРѕС‚РёРІРЅРёРєР°
 if(isset($hpmin) && $hpmin>0 && $u->info['enemy']>0)
 {
 	$hp2 = floor($btl->stats[$btl->uids[$u->info['enemy']]]['hpNow'] - $hpmin);
 	
-	/* проверяем приемы защиты */
-		//получаем массив с приемами противника
-		$miny = 0; //на сколько едениц урон буде меньше (защита приема)
+	/* РїСЂРѕРІРµСЂСЏРµРј РїСЂРёРµРјС‹ Р·Р°С‰РёС‚С‹ */
+		//РїРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ СЃ РїСЂРёРµРјР°РјРё РїСЂРѕС‚РёРІРЅРёРєР°
+		$miny = 0; //РЅР° СЃРєРѕР»СЊРєРѕ РµРґРµРЅРёС† СѓСЂРѕРЅ Р±СѓРґРµ РјРµРЅСЊС€Рµ (Р·Р°С‰РёС‚Р° РїСЂРёРµРјР°)
 		$minu = 0;
 		$sp1 = mysql_query('SELECT `e`.* FROM `eff_users` AS `e` WHERE `e`.`uid` = "'.$u->info['enemy'].'" AND `e`.`id_eff` = "22" AND `e`.`delete` = "0" AND `e`.`v1` = "priem" LIMIT 25');
 		while($pl2 = mysql_fetch_array($sp1))
@@ -436,9 +436,9 @@ if(isset($hpmin) && $hpmin>0 && $u->info['enemy']>0)
 			
 		}
 				
-	/* проверяем приемы ослабления */
+	/* РїСЂРѕРІРµСЂСЏРµРј РїСЂРёРµРјС‹ РѕСЃР»Р°Р±Р»РµРЅРёСЏ */
 	
-	//отнимаем НР
+	//РѕС‚РЅРёРјР°РµРј РќР 
 	if($hpmin > 0) {
 		$btl->users[$btl->uids[$u->info['enemy']]]['last_hp'] = -$hpmin;
 	}
@@ -446,7 +446,7 @@ if(isset($hpmin) && $hpmin>0 && $u->info['enemy']>0)
 	$btl->stats[$btl->uids[$u->info['enemy']]]['hpNow'] = $hp2;
 	$upd = mysql_query('UPDATE `stats` SET `hpNow` = '.$hp2.',`last_hp` = "'.$btl->users[$btl->uids[$u->info['enemy']]]['last_hp'].'" WHERE `id` = "'.$u->info['enemy'].'" LIMIT 1');
 	
-	//заносим в лог боя
+	//Р·Р°РЅРѕСЃРёРј РІ Р»РѕРі Р±РѕСЏ
 	$vLog = 'time1='.time().'||s1='.$u->info['sex'].'||t1='.$u->info['team'].'||login1='.$u->info['login'].'||s2='.$btl->users[$btl->uids[$u->info['enemy']]]['sex'].'||t2='.$btl->users[$btl->uids[$u->info['enemy']]]['team'].'||login2='.$btl->users[$btl->uids[$u->info['enemy']]]['login'].'';
 	$mas1 = array('time'=>time(),'battle'=>$btl->info['id'],'id_hod'=>($btl->hodID+1),'text'=>'','vars'=>$vLog,'zona1'=>'','zonb1'=>'','zona2'=>'','zonb2'=>'','type'=>'1');
 	if($hpmin>0)
@@ -455,7 +455,7 @@ if(isset($hpmin) && $hpmin>0 && $u->info['enemy']>0)
 	}else{
 		$hpmin = '--';
 	}
-	$mas1['text'] = '{tm1} {u1} {1x16x0} прием &quot;<b>'.$pl['name'].'</b>&quot; и {1x5x1} по {u2}. <b><font color=#006699>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$u->info['enemy']]]['hpAll'].']';	
+	$mas1['text'] = '{tm1} {u1} {1x16x0} РїСЂРёРµРј &quot;<b>'.$pl['name'].'</b>&quot; Рё {1x5x1} РїРѕ {u2}. <b><font color=#006699>'.$hpmin.'</font></b> ['.ceil($hp2).'/'.$btl->stats[$btl->uids[$u->info['enemy']]]['hpAll'].']';	
 	$btl->add_log($mas1);
 	$pz[(int)$id] = 1;	
 }

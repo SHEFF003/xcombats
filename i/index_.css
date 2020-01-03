@@ -185,7 +185,7 @@ A:link{
 }A:hover{
 	COLOR:#004488;
 	TEXT-DECORATION:underline
-}.inup{FONT-SIZE:8pt;COLOR:#dfddd3;FONT-FAMILY:Verdana,Arial,Helvetica,sans-serif;BACKGROUND-COLOR:#151616;border:1px double #817a63}.btn{FONT-SIZE:7.5pt;COLOR:#dfddd3;FONT-FAMILY:Verdana,Arial,Helvetica,sans-serif;BACKGROUND-COLOR:#2b2b18;border:1px double #817a63}.btkey{display:block;text-align:center;PADDING-RIGHT:1px;PADDING-LEFT:1px;FONT-SIZE:7.5pt;FONT-FAMILY:verdana,sans-serif,arial;width:20;CURSOR:hand;border:1px solid #d6d3ce;COLOR:#dfddd3;BACKGROUND-COLOR:#2b2b18}.message{FONT-SIZE:7.5pt;FONT-FAMILY:verdana,sans-serif,arial;COLOR:white}.menu{FONT-SIZE:10pt;FONT-FAMILY:verdana;COLOR:white}
+}.inup{FONT-SIZE:8pt;COLOR:#dfddd3;FONT-FAMILY:Verdana,Arial,Helvetica,sans-serif;BACKGROUND-COLOR:#151616;border:1px double #817a63}.btn{FONT-SIZE:7.5pt;COLOR:#dfddd3;FONT-FAMILY:Verdana,Arial,Helvetica,sans-serif;BACKGROUND-COLOR:#2b2b18;border:1px double #817a63}.btkey{display:block;text-align:center;PADDING-RIGHT:1px;PADDING-LEFT:1px;FONT-SIZE:7.5pt;FONT-FAMILY:verdana,sans-serif,arial;width:20px;CURSOR:hand;border:1px solid #d6d3ce;COLOR:#dfddd3;BACKGROUND-COLOR:#2b2b18}.message{FONT-SIZE:7.5pt;FONT-FAMILY:verdana,sans-serif,arial;COLOR:white}.menu{FONT-SIZE:10pt;FONT-FAMILY:verdana;COLOR:white}
 .inp1 {
 	background:url(bg_inp.png) 0 1px; background-repeat:no-repeat; height:23px; width:138px; padding-left:3px; padding-right:3px;
 }

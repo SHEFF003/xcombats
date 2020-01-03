@@ -22,12 +22,12 @@ if($u->room['file']=='ab/hram')
 			if($_GET['r']==1)
 			{	
 				$_GET['itm'] = (int)$_GET['itm'];
-				//Переплавка вещей 
+				//РџРµСЂРµРїР»Р°РІРєР° РІРµС‰РµР№ 
 				$resz = $u->plavka($_GET['itm'],1);
 				$re = '<font color=red><b>'.$resz.'</b></font>';
 				unset($resz);
 			}elseif( $_GET['r'] == 2 ){
-				//Переплавка рун
+				//РџРµСЂРµРїР»Р°РІРєР° СЂСѓРЅ
 				$resz = '';
 				
 				$itm123 = explode('x',$_GET['itm']);
@@ -42,14 +42,14 @@ if($u->room['file']=='ab/hram')
 				$itm3 = mysql_fetch_array(mysql_query('SELECT `a`.`id` AS `iid`,`a`.*,`b`.* FROM `items_users` AS `a` LEFT JOIN `items_main` AS `b` ON (`b`.`id` = `a`.`item_id` AND `b`.`type` = 31) WHERE `a`.`id` = "'.mysql_real_escape_string($itm3).'" AND `a`.`uid` = "'.$u->info['id'].'" AND `a`.`delete` = 0 AND `a`.`inShop` = 0 AND `a`.`inTransfer` = 0 LIMIT 1'));
 				
 				if($itm1['iid'] == $itm2['iid'] || $itm2['iid'] == $itm3['iid'] || $itm1['iid'] == $itm3['iid'] ) {
-					$resz = 'Не удалось расплавить одну руну, она сгорела.';
+					$resz = 'РќРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР»Р°РІРёС‚СЊ РѕРґРЅСѓ СЂСѓРЅСѓ, РѕРЅР° СЃРіРѕСЂРµР»Р°.';
 					mysql_query('UPDATE `items_users` SET `delete` = "'.time().'" WHERE `id` = "'.$itm3['iid'].'" OR `id` = "'.$itm2['iid'].'" OR `id` = "'.$itm1['iid'].'"');
 				}elseif(!isset($itm1['id']) || !isset($itm2['id']) || !isset($itm3['id'])) {
-					$resz = 'Недостаточно компонентов для преобразования.';
+					$resz = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ РґР»СЏ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ.';
 				}elseif( $itm1['level'] != $itm2['level'] || $itm1['level'] != $itm3['level'] ) {
-					$resz = 'Руны должны быть одного уровня.';
+					$resz = 'Р СѓРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕРґРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ.';
 				}elseif( $itm1['level'] == 1 ) {
-					$resz = 'Унируны нельзя преобразовывать.';
+					$resz = 'РЈРЅРёСЂСѓРЅС‹ РЅРµР»СЊР·СЏ РїСЂРµРѕР±СЂР°Р·РѕРІС‹РІР°С‚СЊ.';
 				}else{
 					$itm4 = array();
 					$sp = mysql_query('SELECT * FROM `items_main` WHERE `level` = "'.$itm1['level'].'" AND `type` = 31
@@ -62,8 +62,8 @@ if($u->room['file']=='ab/hram')
 					$u->rep['rep1'] += 1;
 					mysql_query('UPDATE `rep` SET `rep1` = "'.$u->rep['rep1'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 					$u->addItem($itm4['id'],$u->info['id']);
-					$resz = 'Удачно преобразованы руны &quot;'.$itm1['name'].'&quot;,&quot;'.$itm2['name'].'&quot; и &quot;'.$itm3['name'].'&quot; в &quot;'.$itm4['name'].'&quot;.';
-					$resz .= '<Br>Добавлена репутация Храма Знаний +1';
+					$resz = 'РЈРґР°С‡РЅРѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅС‹ СЂСѓРЅС‹ &quot;'.$itm1['name'].'&quot;,&quot;'.$itm2['name'].'&quot; Рё &quot;'.$itm3['name'].'&quot; РІ &quot;'.$itm4['name'].'&quot;.';
+					$resz .= '<Br>Р”РѕР±Р°РІР»РµРЅР° СЂРµРїСѓС‚Р°С†РёСЏ РҐСЂР°РјР° Р—РЅР°РЅРёР№ +1';
 				}
 				
 				$re = '<font color=red><b>'.$resz.'</b></font>';
@@ -116,7 +116,7 @@ if($u->room['file']=='ab/hram')
 	<? if(isset($_GET['r'])) { ?>
     <TABLE width="100%" cellspacing="0" cellpadding="0">
 	<tr><td valign="top">
-    <div align="center" class="pH3">Храм Знаний <? if($_GET['r']==2){ echo ', Алтарь рун'; }elseif($_GET['r']==1){ echo ', Алтарь предметов'; } ?></div>
+    <div align="center" class="pH3">РҐСЂР°Рј Р—РЅР°РЅРёР№ <? if($_GET['r']==2){ echo ', РђР»С‚Р°СЂСЊ СЂСѓРЅ'; }elseif($_GET['r']==1){ echo ', РђР»С‚Р°СЂСЊ РїСЂРµРґРјРµС‚РѕРІ'; } ?></div>
     <div align="left"><? if($re!=''){ echo '<font color="red"><b>'.$re.'</b></font>'; } ?></div>
 	<td width="280" valign="top" align="right"><table align="right" cellpadding="0" cellspacing="0">
 		<tr>
@@ -131,7 +131,7 @@ if($u->room['file']=='ab/hram')
 						<td nowrap="nowrap"><table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 							<tr>
 							  <td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.267&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.267',1); ?>">Центральная площадь</a></td>
+							  <td bgcolor="#D3D3D3" nowrap="nowrap"><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.267&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.267',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РїР»РѕС‰Р°РґСЊ</a></td>
 							</tr>
 						</table></td>
 					  </tr>					  <tr>
@@ -143,14 +143,14 @@ if($u->room['file']=='ab/hram')
 		</tr>
 	  </table>
 		<br /><br />
-	  <input type="button" value="Обновить" onclick="location.href = '<? if(isset($_GET['r'])) { echo 'main.php?r='.floor($_GET['r']); }else{ echo 'main.php'; } ?>';" /><? if(isset($_GET['r'])){ ?> &nbsp; <input type="button" value="Вернуться" onclick="location.href = 'main.php';" /><? } ?>
+	  <input type="button" value="РћР±РЅРѕРІРёС‚СЊ" onclick="location.href = '<? if(isset($_GET['r'])) { echo 'main.php?r='.floor($_GET['r']); }else{ echo 'main.php'; } ?>';" /><? if(isset($_GET['r'])){ ?> &nbsp; <input type="button" value="Р’РµСЂРЅСѓС‚СЊСЃСЏ" onclick="location.href = 'main.php';" /><? } ?>
 	</td>
 	</table>
 	<div id="textgo" style="visibility:hidden;"></div>
     <?
     } 	
 	if(!isset($_GET['r'])) {
-		//Диалоговый перс
+		//Р”РёР°Р»РѕРіРѕРІС‹Р№ РїРµСЂСЃ
 ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
@@ -163,7 +163,7 @@ if($u->room['file']=='ab/hram')
                 <table width="500" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td><div style="position:relative; cursor: pointer;" id="ione"> <img src="http://img.xcombats.com/city/ap_bg13_1.jpg" alt="" name="img_ione" width="500" height="268" border="1" id="img_ione"/>
-                      <div id="buttons_on_image" style="cursor:pointer; font-weight:bold; color:#D8D8D8; font-size:10px;">&nbsp; <span onmousemove="this.runtimeStyle.color = 'white';" onmouseout="this.runtimeStyle.color = this.parentElement.style.color;" onclick="window.open('http://xcombats.com/forum', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')">Форум</span> &nbsp; </div>
+                      <div id="buttons_on_image" style="cursor:pointer; font-weight:bold; color:#D8D8D8; font-size:10px;">&nbsp; <span onmousemove="this.runtimeStyle.color = 'white';" onmouseout="this.runtimeStyle.color = this.parentElement.style.color;" onclick="window.open('http://xcombats.com/forum', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')">Р¤РѕСЂСѓРј</span> &nbsp; </div>
                       <script language="javascript" type="text/javascript">
                         <!--
                         if(document.getElementById('ione'))
@@ -178,9 +178,9 @@ if($u->room['file']=='ab/hram')
                         -->
                         </script>
                       <div style="position: absolute; left: 437px; top: 96px; width: 48px; height: 33px; z-index: 94;"><img <? thisInfRm('3.180.0.267'); ?> src="http://img.xcombats.com/city/ap_exit.gif" width="57" height="26" class="aFilter" /></div>
-                      <div style="position: absolute; left: 191px; top: 12px; width: 75px; height: 68px; z-index: 94;"><img onclick="location.href='main.php?talk=11'" src="http://img.xcombats.com/city/1269_igsetee.png" width="120" height="220" class="aFilter" title="Диалог с Арквиерро" /></div>
-                      <div style="position: absolute; left: 30px; top: 127px; width: 48px; height: 33px; z-index: 94;"><img <? if($qst_hram==false){ echo 'onclick="alert(\'Арквиерро: Вы не допущены к котлам! (Выполните задание)\');"'; }else{ ?> onclick="location.href='main.php?r=1'" <? } ?> title="Алтарь Предметов" src="http://img.xcombats.com/city/ap_altar1.gif" width="147" height="93" class="aFilter" /></div>
-                      <div style="position: absolute; left: 333px; top: 129px; width: 48px; height: 33px; z-index: 94;"><img <? if($qst_hram==false){ echo 'onclick="alert(\'Арквиерро: Вы не допущены к котлам! (Выполните задание)\');"'; }else{ ?> onclick="location.href='main.php?r=2'" <? } ?> title="Алтарь Рун" src="http://img.xcombats.com/city/ap_altar2.gif" width="147" height="93" class="aFilter" /></div>
+                      <div style="position: absolute; left: 191px; top: 12px; width: 75px; height: 68px; z-index: 94;"><img onclick="location.href='main.php?talk=11'" src="http://img.xcombats.com/city/1269_igsetee.png" width="120" height="220" class="aFilter" title="Р”РёР°Р»РѕРі СЃ РђСЂРєРІРёРµСЂСЂРѕ" /></div>
+                      <div style="position: absolute; left: 30px; top: 127px; width: 48px; height: 33px; z-index: 94;"><img <? if($qst_hram==false){ echo 'onclick="alert(\'РђСЂРєРІРёРµСЂСЂРѕ: Р’С‹ РЅРµ РґРѕРїСѓС‰РµРЅС‹ Рє РєРѕС‚Р»Р°Рј! (Р’С‹РїРѕР»РЅРёС‚Рµ Р·Р°РґР°РЅРёРµ)\');"'; }else{ ?> onclick="location.href='main.php?r=1'" <? } ?> title="РђР»С‚Р°СЂСЊ РџСЂРµРґРјРµС‚РѕРІ" src="http://img.xcombats.com/city/ap_altar1.gif" width="147" height="93" class="aFilter" /></div>
+                      <div style="position: absolute; left: 333px; top: 129px; width: 48px; height: 33px; z-index: 94;"><img <? if($qst_hram==false){ echo 'onclick="alert(\'РђСЂРєРІРёРµСЂСЂРѕ: Р’С‹ РЅРµ РґРѕРїСѓС‰РµРЅС‹ Рє РєРѕС‚Р»Р°Рј! (Р’С‹РїРѕР»РЅРёС‚Рµ Р·Р°РґР°РЅРёРµ)\');"'; }else{ ?> onclick="location.href='main.php?r=2'" <? } ?> title="РђР»С‚Р°СЂСЊ Р СѓРЅ" src="http://img.xcombats.com/city/ap_altar2.gif" width="147" height="93" class="aFilter" /></div>
                       <div style="position: absolute; left: 437px; top: 96px; width: 48px; height: 33px; z-index: 94;"><img <? thisInfRm('3.180.0.267'); ?> src="http://img.xcombats.com/city/ap_exit.gif" width="57" height="26" class="aFilter" /></div>
                       
                       
@@ -189,22 +189,22 @@ if($u->room['file']=='ab/hram')
                   </tr>
                 </table>
                 <div style="display:none; height:0px " id="moveto"></div>
-                <div align="right" style="padding: 3px;"><small>&laquo;<? echo $c['title3']; ?>&raquo; приветствует Вас, <b><? echo $u->info['login']; ?></b>. Вы находить в Храме Знаний Abandoned Plain.<br />
+                <div align="right" style="padding: 3px;"><small>&laquo;<? echo $c['title3']; ?>&raquo; РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ Р’Р°СЃ, <b><? echo $u->info['login']; ?></b>. Р’С‹ РЅР°С…РѕРґРёС‚СЊ РІ РҐСЂР°РјРµ Р—РЅР°РЅРёР№ Abandoned Plain.<br />
                 </small></div></td>
-              <td><!-- <br /><span class="menutop"><nobr>Комната для новичков</nobr></span>--></td>
+              <td><!-- <br /><span class="menutop"><nobr>РљРѕРјРЅР°С‚Р° РґР»СЏ РЅРѕРІРёС‡РєРѕРІ</nobr></span>--></td>
             </tr>
           </table>
           <small>
             <hr />
             <? $hgo = $u->testHome(); if(!isset($hgo['id'])){ ?>
-            <input onclick="location.href='main.php?homeworld=<? echo $code; ?>';" class="btn" value="Возврат" type="button" name="combats2" />
+            <input onclick="location.href='main.php?homeworld=<? echo $code; ?>';" class="btn" value="Р’РѕР·РІСЂР°С‚" type="button" name="combats2" />
             <? } unset($hgo); ?>
-            <input id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Форум" type="button" name="forum" />
-            <input class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="Подсказка" type="button" />
-            <input class="btn" value="Объекты" type="button" />
+            <input id="forum" class="btn" onclick="window.open('http://xcombats.com/forum/', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value="Р¤РѕСЂСѓРј" type="button" name="forum" />
+            <input class="btn" onclick="window.open('/encicl/help/top1.html', 'help', 'height=300,width=500,location=no,menubar=no,status=no,toolbar=no,scrollbars=yes')" value="РџРѕРґСЃРєР°Р·РєР°" type="button" />
+            <input class="btn" value="РћР±СЉРµРєС‚С‹" type="button" />
             <br />
-            <strong>Внимание!</strong> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа &quot;новый город&quot;, &quot;лотерея&quot;, &quot;там, где все дают на халяву&quot;. Пароль не нужен ни паладинам, ни кланам, ни администрации, <U>только взломщикам</U> для кражи вашего героя.<br />
-            <em>Администрация.</em></small> <br />
+            <strong>Р’РЅРёРјР°РЅРёРµ!</strong> РќРёРєРѕРіРґР° Рё РЅРёРєРѕРјСѓ РЅРµ РіРѕРІРѕСЂРёС‚Рµ РїР°СЂРѕР»СЊ РѕС‚ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°. РќРµ РІРІРѕРґРёС‚Рµ РїР°СЂРѕР»СЊ РЅР° РґСЂСѓРіРёС… СЃР°Р№С‚Р°С…, С‚РёРїР° &quot;РЅРѕРІС‹Р№ РіРѕСЂРѕРґ&quot;, &quot;Р»РѕС‚РµСЂРµСЏ&quot;, &quot;С‚Р°Рј, РіРґРµ РІСЃРµ РґР°СЋС‚ РЅР° С…Р°Р»СЏРІСѓ&quot;. РџР°СЂРѕР»СЊ РЅРµ РЅСѓР¶РµРЅ РЅРё РїР°Р»Р°РґРёРЅР°Рј, РЅРё РєР»Р°РЅР°Рј, РЅРё Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё, <U>С‚РѕР»СЊРєРѕ РІР·Р»РѕРјС‰РёРєР°Рј</U> РґР»СЏ РєСЂР°Р¶Рё РІР°С€РµРіРѕ РіРµСЂРѕСЏ.<br />
+            <em>РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ.</em></small> <br />
           <? echo $rowonmax; ?><br />
         </div></td>
       </tr>
@@ -214,11 +214,11 @@ if($u->room['file']=='ab/hram')
 	$itmAll = ''; $itmAllSee = '';
 	$itmAll = $u->genInv(11,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete` = "0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" ORDER BY `lastUPD` DESC');
 	if($itmAll[0]==0){
-		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО (нет подходящих предметов)</td></tr>';
+		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ (РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ)</td></tr>';
 	}else{
 		$itmAllSee = $itmAll[2];
 	}
-	//Удачно растворен предмет "Укрепленный Костыль". Получена руна "Моно Бауни".
+	//РЈРґР°С‡РЅРѕ СЂР°СЃС‚РІРѕСЂРµРЅ РїСЂРµРґРјРµС‚ "РЈРєСЂРµРїР»РµРЅРЅС‹Р№ РљРѕСЃС‚С‹Р»СЊ". РџРѕР»СѓС‡РµРЅР° СЂСѓРЅР° "РњРѕРЅРѕ Р‘Р°СѓРЅРё".
 	?>
     <script>
 	function takeItRun(img,id,vl)
@@ -226,7 +226,7 @@ if($u->room['file']=='ab/hram')
 		if(id!=urlras)
 		{
 			urlras = id;
-			document.getElementById('use_item').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="Предмет для переплавки"/><br><a href="javascript:void(0);" onClick="cancelItRun()">Отменить</a>';
+			document.getElementById('use_item').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="РџСЂРµРґРјРµС‚ РґР»СЏ РїРµСЂРµРїР»Р°РІРєРё"/><br><a href="javascript:void(0);" onClick="cancelItRun()">РћС‚РјРµРЅРёС‚СЊ</a>';
 			document.getElementById('add_rep').innerHTML = ' + '+vl;
 		}else{
 			cancelItRun();
@@ -235,7 +235,7 @@ if($u->room['file']=='ab/hram')
 	function cancelItRun()
 	{
 		urlras = 0;
-		document.getElementById('use_item').innerHTML = 'Предмет не выбран';
+		document.getElementById('use_item').innerHTML = 'РџСЂРµРґРјРµС‚ РЅРµ РІС‹Р±СЂР°РЅ';
 		document.getElementById('add_rep').innerHTML = '';
 	}
 	urlras = 0;
@@ -243,22 +243,22 @@ if($u->room['file']=='ab/hram')
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
    	  <tr>
    	    <td align="center" valign="top" bgcolor="#D6D6D6"><?=$u->microLogin($u->info['id'],1)?></td>
-   	    <td align="center" valign="top" bgcolor="#D6D6D6">Подходящие предметы в инвентаре</td>
+   	    <td align="center" valign="top" bgcolor="#D6D6D6">РџРѕРґС…РѕРґСЏС‰РёРµ РїСЂРµРґРјРµС‚С‹ РІ РёРЅРІРµРЅС‚Р°СЂРµ</td>
       </tr>
       <tr>
     	    <td width="300" valign="top">
-            <b>Репутация: <? echo 0+$u->rep['rep1']; ?></b><span id="add_rep"></span>
-            <br /><br /><center><span id="use_item">Предмет не выбран</span><br /><br />
-            <input type="button" value="Растворить" onclick="location = '?r=<?=$_GET['r'].'&rnd='.$code.'&itm=';?>'+urlras;" /></center>
+            <b>Р РµРїСѓС‚Р°С†РёСЏ: <? echo 0+$u->rep['rep1']; ?></b><span id="add_rep"></span>
+            <br /><br /><center><span id="use_item">РџСЂРµРґРјРµС‚ РЅРµ РІС‹Р±СЂР°РЅ</span><br /><br />
+            <input type="button" value="Р Р°СЃС‚РІРѕСЂРёС‚СЊ" onclick="location = '?r=<?=$_GET['r'].'&rnd='.$code.'&itm=';?>'+urlras;" /></center>
             <br />
             <br /><small>
-            <font color="red">Внимание!</font><br />
-			Предметы при растворении и руны при слиянии необратимо теряются.</small>
+            <font color="red">Р’РЅРёРјР°РЅРёРµ!</font><br />
+			РџСЂРµРґРјРµС‚С‹ РїСЂРё СЂР°СЃС‚РІРѕСЂРµРЅРёРё Рё СЂСѓРЅС‹ РїСЂРё СЃР»РёСЏРЅРёРё РЅРµРѕР±СЂР°С‚РёРјРѕ С‚РµСЂСЏСЋС‚СЃСЏ.</small>
             </td>
     	    <td valign="top">
             <!-- -->
             <table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">
-            <? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Рюкзак закрыт.</b><br><img title="Замок для рюкзака" src="http://img.xcombats.com/i/items/box_lock.gif"> Введите пароль: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="Открыть"></form></div>'; } ?>
+            <? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Р СЋРєР·Р°Рє Р·Р°РєСЂС‹С‚.</b><br><img title="Р—Р°РјРѕРє РґР»СЏ СЂСЋРєР·Р°РєР°" src="http://img.xcombats.com/i/items/box_lock.gif"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="РћС‚РєСЂС‹С‚СЊ"></form></div>'; } ?>
             </table>
             <!-- -->
             </td>
@@ -268,11 +268,11 @@ if($u->room['file']=='ab/hram')
 	$itmAll = ''; $itmAllSee = '';
 	$itmAll = $u->genInv(14,'`iu`.`uid`="'.$u->info['id'].'" AND `iu`.`delete` = "0" AND `iu`.`inOdet`="0" AND `iu`.`inShop`="0" AND `im`.`type` = 31 ORDER BY `lastUPD` DESC');
 	if($itmAll[0]==0){
-		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">ПУСТО (нет подходящих предметов)</td></tr>';
+		$itmAllSee = '<tr><td align="center" bgcolor="#e2e0e0">РџРЈРЎРўРћ (РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёС… РїСЂРµРґРјРµС‚РѕРІ)</td></tr>';
 	}else{
 		$itmAllSee = $itmAll[2];
 	}
-	//Удачно растворен предмет "Укрепленный Костыль". Получена руна "Моно Бауни".
+	//РЈРґР°С‡РЅРѕ СЂР°СЃС‚РІРѕСЂРµРЅ РїСЂРµРґРјРµС‚ "РЈРєСЂРµРїР»РµРЅРЅС‹Р№ РљРѕСЃС‚С‹Р»СЊ". РџРѕР»СѓС‡РµРЅР° СЂСѓРЅР° "РњРѕРЅРѕ Р‘Р°СѓРЅРё".
 	?>
     <script>
 	function takeItRun(img,id,vl)
@@ -280,7 +280,7 @@ if($u->room['file']=='ab/hram')
 		if(id!=urlras)
 		{
 			urlras = id;
-			document.getElementById('use_item').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="Предмет для переплавки"/><br><a href="javascript:void(0);" onClick="cancelItRun()">Отменить</a>';
+			document.getElementById('use_item').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="РџСЂРµРґРјРµС‚ РґР»СЏ РїРµСЂРµРїР»Р°РІРєРё"/><br><a href="javascript:void(0);" onClick="cancelItRun()">РћС‚РјРµРЅРёС‚СЊ</a>';
 		}else{
 			cancelItRun();
 		}
@@ -288,7 +288,7 @@ if($u->room['file']=='ab/hram')
 	function cancelItRun()
 	{
 		urlras = 0;
-		document.getElementById('use_item').innerHTML = 'Пусто';
+		document.getElementById('use_item').innerHTML = 'РџСѓСЃС‚Рѕ';
 		document.getElementById('add_rep').innerHTML = '';
 	}
 	urlras = 0;
@@ -298,7 +298,7 @@ if($u->room['file']=='ab/hram')
 		if(id!=urlras2)
 		{
 			urlras2 = id;
-			document.getElementById('use_item2').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="Предмет для переплавки"/><br><a href="javascript:void(0);" onClick="cancelItRun2()">Отменить</a>';
+			document.getElementById('use_item2').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="РџСЂРµРґРјРµС‚ РґР»СЏ РїРµСЂРµРїР»Р°РІРєРё"/><br><a href="javascript:void(0);" onClick="cancelItRun2()">РћС‚РјРµРЅРёС‚СЊ</a>';
 		}else{
 			cancelItRun2();
 		}
@@ -306,7 +306,7 @@ if($u->room['file']=='ab/hram')
 	function cancelItRun2()
 	{
 		urlras2 = 0;
-		document.getElementById('use_item2').innerHTML = 'Пусто';
+		document.getElementById('use_item2').innerHTML = 'РџСѓСЃС‚Рѕ';
 	}
 	urlras2 = 0;
 	//
@@ -315,7 +315,7 @@ if($u->room['file']=='ab/hram')
 		if(id!=urlras3)
 		{
 			urlras3 = id;
-			document.getElementById('use_item3').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="Предмет для переплавки"/><br><a href="javascript:void(0);" onClick="cancelItRun3()">Отменить</a>';
+			document.getElementById('use_item3').innerHTML = '<img src="http://<?=$c['img'];?>/i/items/'+img+'" title="РџСЂРµРґРјРµС‚ РґР»СЏ РїРµСЂРµРїР»Р°РІРєРё"/><br><a href="javascript:void(0);" onClick="cancelItRun3()">РћС‚РјРµРЅРёС‚СЊ</a>';
 		}else{
 			cancelItRun3();
 		}
@@ -323,7 +323,7 @@ if($u->room['file']=='ab/hram')
 	function cancelItRun3()
 	{
 		urlras3 = 0;
-		document.getElementById('use_item3').innerHTML = 'Пусто';
+		document.getElementById('use_item3').innerHTML = 'РџСѓСЃС‚Рѕ';
 	}
 	urlras3 = 0;
 	//
@@ -346,32 +346,32 @@ if($u->room['file']=='ab/hram')
     <table width="100%" border="0" cellspacing="3" cellpadding="0">
    	  <tr>
    	    <td align="center" valign="top" bgcolor="#D6D6D6"><?=$u->microLogin($u->info['id'],1)?></td>
-   	    <td align="center" valign="top" bgcolor="#D6D6D6">Подходящие предметы в инвентаре</td>
+   	    <td align="center" valign="top" bgcolor="#D6D6D6">РџРѕРґС…РѕРґСЏС‰РёРµ РїСЂРµРґРјРµС‚С‹ РІ РёРЅРІРµРЅС‚Р°СЂРµ</td>
       </tr>
       <tr>
     	    <td width="300" valign="top">
-            <b>Репутация: <? echo 0+$u->rep['rep1']; ?></b><span id="add_rep"></span>
+            <b>Р РµРїСѓС‚Р°С†РёСЏ: <? echo 0+$u->rep['rep1']; ?></b><span id="add_rep"></span>
             <br /><br /><center>
             
             <table border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="80" align="center"><span id="use_item">Пусто</span></td>
-                <td width="80" align="center"><span id="use_item2">Пусто</span></td>
-                <td width="80" align="center"><span id="use_item3">Пусто</span></td>
+                <td width="80" align="center"><span id="use_item">РџСѓСЃС‚Рѕ</span></td>
+                <td width="80" align="center"><span id="use_item2">РџСѓСЃС‚Рѕ</span></td>
+                <td width="80" align="center"><span id="use_item3">РџСѓСЃС‚Рѕ</span></td>
               </tr>
             </table>
             
             <br /><br />
-            <input type="button" value="Преобразовать" onclick="location.href = '?r=<?=$_GET['r'].'&rnd='.$code.'&itm=';?>'+urlras+'x'+urlras2+'x'+urlras3;" /></center>
+            <input type="button" value="РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ" onclick="location.href = '?r=<?=$_GET['r'].'&rnd='.$code.'&itm=';?>'+urlras+'x'+urlras2+'x'+urlras3;" /></center>
             <br />
             <br /><small>
-            <font color="red">Внимание!</font><br />
-			Предметы при растворении и руны при слиянии необратимо теряются.</small>
+            <font color="red">Р’РЅРёРјР°РЅРёРµ!</font><br />
+			РџСЂРµРґРјРµС‚С‹ РїСЂРё СЂР°СЃС‚РІРѕСЂРµРЅРёРё Рё СЂСѓРЅС‹ РїСЂРё СЃР»РёСЏРЅРёРё РЅРµРѕР±СЂР°С‚РёРјРѕ С‚РµСЂСЏСЋС‚СЃСЏ.</small>
             </td>
     	    <td valign="top">
             <!-- -->
             <table width="100%" border="0" cellspacing="1" align="center" cellpadding="0" bgcolor="#A5A5A5">
-            <? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Рюкзак закрыт.</b><br><img title="Замок для рюкзака" src="http://img.xcombats.com/i/items/box_lock.gif"> Введите пароль: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="Открыть"></form></div>'; } ?>
+            <? if($u->info['invBlock']==0){ echo $itmAllSee; }else{ echo '<div align="center" style="padding:10px;background-color:#A5A5A5;"><form method="post" action="main.php?inv=1&otdel='.$_GET['otdel'].'&relockinvent"><b>Р СЋРєР·Р°Рє Р·Р°РєСЂС‹С‚.</b><br><img title="Р—Р°РјРѕРє РґР»СЏ СЂСЋРєР·Р°РєР°" src="http://img.xcombats.com/i/items/box_lock.gif"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: <input id="relockInv" name="relockInv" type="password"><input type="submit" value="РћС‚РєСЂС‹С‚СЊ"></form></div>'; } ?>
             </table>
             <!-- -->
             </td>

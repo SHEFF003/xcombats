@@ -10,14 +10,14 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 		include_once('../_incl_data/class/__user.php');
 		if(isset($_POST['gox']) && isset($_POST['goy']))
 		{
-			echo 'Переходим на: X = '.$_POST['gox'].', Y = '.$_POST['goy'].'<script>top.xxx='.((int)$_POST['gox']).';top.yyy='.((int)$_POST['goy']).';top.xn='.((int)$_POST['gox']).';top.yn='.((int)$_POST['goy']).';</script>';
+			echo 'РџРµСЂРµС…РѕРґРёРј РЅР°: X = '.$_POST['gox'].', Y = '.$_POST['goy'].'<script>top.xxx='.((int)$_POST['gox']).';top.yyy='.((int)$_POST['goy']).';top.xn='.((int)$_POST['gox']).';top.yn='.((int)$_POST['goy']).';</script>';
 			$_POST['x'] = $_POST['gox'];
 			$_POST['y'] = $_POST['goy'];
 		}
 		$u->info['x'] = 0+(int)$_POST['x'];
 		$u->info['y'] = 0+(int)$_POST['y'];
 		$dn['id2'] = (int)$_POST['ddid'];
-		//бой с ботом
+		//Р±РѕР№ СЃ Р±РѕС‚РѕРј
 		function addBot($isd,$col,$dt)
 		{
 			global $u,$c,$code;
@@ -46,7 +46,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 		
 		}elseif($u->info['admin']>0)
 		{
-			//Админка
+			//РђРґРјРёРЅРєР°
 			$act = explode('|$|',$_POST['action']);
 			if($act[0]=='save_go')
 			{
@@ -79,7 +79,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 				}
 			}elseif($act[0]=='select_image')
 			{
-				//смена изображения клетки
+				//СЃРјРµРЅР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РєР»РµС‚РєРё
 				$act = explode('|!|',$act[1]);
 				$img = $act[0];
 				$mx  = $act[1];
@@ -108,7 +108,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 					mysql_query('UPDATE `dungeon_map` SET `style` = "'.mysql_real_escape_string($mpx['style']).'", `st` = "'.mysql_real_escape_string($cx[$mpx['style']]).'" WHERE `id` = "'.$mpx['id'].'" LIMIT 1');
 					$js .= 'closeAdminion();';
 				}else{
-					//создаем клетку
+					//СЃРѕР·РґР°РµРј РєР»РµС‚РєСѓ
 					$go1 = 0;
 					$go2 = 0;
 					$go3 = 0;
@@ -161,12 +161,12 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 					$ins = mysql_query('INSERT INTO `dungeon_map` (`st`,`go_1`,`go_2`,`go_3`,`go_4`,`go_5`,`id_dng`,`x`,`y`,`style`) VALUES ("'.$cx[$img][0].$cx[$img][1].$cx[$img][2].$cx[$img][3].'","'.$go1.'","'.$go2.'","'.$go3.'","'.$go4.'","'.$go5.'","'.$dn['id2'].'","'.mysql_real_escape_string($mx).'","'.mysql_real_escape_string($my).'","'.mysql_real_escape_string($img).'")');
 					if(!$ins)
 					{
-						echo 'Ошибка создания части лабиринта';
+						echo 'РћС€РёР±РєР° СЃРѕР·РґР°РЅРёСЏ С‡Р°СЃС‚Рё Р»Р°Р±РёСЂРёРЅС‚Р°';
 					}
 				}
 			}elseif($act[0]=='delete')
 			{
-				//Удаляем клетку
+				//РЈРґР°Р»СЏРµРј РєР»РµС‚РєСѓ
 				$act = explode('|!|',$act[1]);
 				$mx  = $act[0];
 				$my  = $act[1];
@@ -183,13 +183,13 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 			$x = $u->info['x'];
 			$y = $u->info['y'];	
 			
-			//генерируем карту
+			//РіРµРЅРµСЂРёСЂСѓРµРј РєР°СЂС‚Сѓ
 			
 			$fmd5 = '';
 							
-			//пользователи
+			//РїРѕР»СЊР·РѕРІР°С‚РµР»Рё
 					
-			//координаты игрока
+			//РєРѕРѕСЂРґРёРЅР°С‚С‹ РёРіСЂРѕРєР°
 			$fmd5 .= $x.'_'.$y.'=';		
 			$sp = mysql_query('SELECT * FROM `dungeon_map` WHERE `id_dng` = "'.$dn['id2'].'" AND ((`x`<='.($x+5).' AND `x`>='.($x-5).') AND (`y`<='.($y+4).' AND `y`>='.($y-4).')) LIMIT 100');
 			while($pl = mysql_fetch_array($sp))
@@ -199,7 +199,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 			}
 			$map .= 'end';
 		
-		//предметы на клетке		
+		//РїСЂРµРґРјРµС‚С‹ РЅР° РєР»РµС‚РєРµ		
 		$itms = '';
 		$sp = mysql_query('SELECT * FROM `dungeon_items` WHERE `dn` = "'.$dn['id'].'" AND `x` = "'.$x.'" AND `y` = "'.$y.'" AND `take` = "0" LIMIT 100');
 		while($pl = mysql_fetch_array($sp))
@@ -207,14 +207,14 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 			$itm = mysql_fetch_array(mysql_query('SELECT * FROM `items_main` WHERE `id` = "'.$pl['item_id'].'" LIMIT 1'));
 			if(isset($itm['id']))
 			{
-				$itms .= '<a href=\\"#\\" onClick=\\"takeItem('.$pl['id'].'); return false;\\"><img style=\\"margin:3px;\\" src=\\"http://img.xcombats.com/i/items/'.$itm['img'].'\\" title=\\"Подобрать &quot;'.$itm['name'].'&quot;\\" \></a>';
+				$itms .= '<a href=\\"#\\" onClick=\\"takeItem('.$pl['id'].'); return false;\\"><img style=\\"margin:3px;\\" src=\\"http://img.xcombats.com/i/items/'.$itm['img'].'\\" title=\\"РџРѕРґРѕР±СЂР°С‚СЊ &quot;'.$itm['name'].'&quot;\\" \></a>';
 				$fmd5 .= $pl['id'].'=';
 			}
 		}
 		
 		if($itms!='')
 		{
-			$itms = '<Br><b style=\\"color:#8f0000;\\">Предметы в локации:</b><br><br>'.$itms;
+			$itms = '<Br><b style=\\"color:#8f0000;\\">РџСЂРµРґРјРµС‚С‹ РІ Р»РѕРєР°С†РёРё:</b><br><br>'.$itms;
 			$js .= 'document.getElementById(\'items\').innerHTML = "'.$itms.'";';
 		}else{
 			$js .= 'document.getElementById(\'items\').innerHTML = "";';
@@ -223,7 +223,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 		$fmd5 = md5($fmd5);
 		if($fmd5!=$_POST['mdf'])
 		{
-			//обновляем данные			
+			//РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ			
 			echo '<script> ';
 			echo $js;
 			echo ' users = "'.$mus.'";';
@@ -233,7 +233,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
 			echo ' xn = '.$u->info['x'].'; yn = '.$u->info['y'].'; refleshMapDate();';
             echo '</script>';
 		}else{
-			//изменений нет
+			//РёР·РјРµРЅРµРЅРёР№ РЅРµС‚
 			
 		}
 	}

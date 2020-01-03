@@ -7,14 +7,14 @@ include('/var/www/xcombats/data/www/xcombats.com/_incl_data/class/__user.php');
 
 /*
 
-	CRON Комиссионного магазина
-	Действия:
-	1.  Если предмет висит уже 2 и более недель, продавать предмет за 50% от его стоимости с учетом износа
-		деньги отсылаются на почту.
+	CRON РљРѕРјРёСЃСЃРёРѕРЅРЅРѕРіРѕ РјР°РіР°Р·РёРЅР°
+	Р”РµР№СЃС‚РІРёСЏ:
+	1.  Р•СЃР»Рё РїСЂРµРґРјРµС‚ РІРёСЃРёС‚ СѓР¶Рµ 2 Рё Р±РѕР»РµРµ РЅРµРґРµР»СЊ, РїСЂРѕРґР°РІР°С‚СЊ РїСЂРµРґРјРµС‚ Р·Р° 50% РѕС‚ РµРіРѕ СЃС‚РѕРёРјРѕСЃС‚Рё СЃ СѓС‡РµС‚РѕРј РёР·РЅРѕСЃР°
+		РґРµРЅСЊРіРё РѕС‚СЃС‹Р»Р°СЋС‚СЃСЏ РЅР° РїРѕС‡С‚Сѓ.
 
 */
 
-$time_last = 86400 * 14; //2 недели
+$time_last = 86400 * 14; //2 РЅРµРґРµР»Рё
 
 $sp = mysql_query('SELECT * FROM `items_com` WHERE `delete` = 0 AND `time` < "'.(time()-$time_last).'"');
 while( $pl = mysql_fetch_array($sp) ) {
@@ -57,14 +57,14 @@ while( $pl = mysql_fetch_array($sp) ) {
 	mysql_query('UPDATE `items_com` SET `delete` = "'.time().'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 	mysql_query('INSERT INTO `items_users` (`delete`,`item_id`,`1price`,`uid`,`lastUPD`) VALUES ("0","1220","'.$itm_user['1price'].'","-51'.$user['id'].'","'.time().'")');
 	mysql_query('INSERT INTO `post` (`uid`,`sender_id`,`time`,`money`,`text`) VALUES (
-		"'.$user['id'].'","0","'.time().'","'.$itm_user['1price'].'","Комиссионный магазин: Предмет &quot;'.$itm_main['name'].''.$grp.'&quot; (Износ: '.ceil($itm_user['iznosNOW']).'/'.ceil($itm_user['iznosMAX']).') был продан за <b>'.$itm_user['1price'].' кр</b>."
+		"'.$user['id'].'","0","'.time().'","'.$itm_user['1price'].'","РљРѕРјРёСЃСЃРёРѕРЅРЅС‹Р№ РјР°РіР°Р·РёРЅ: РџСЂРµРґРјРµС‚ &quot;'.$itm_main['name'].''.$grp.'&quot; (РР·РЅРѕСЃ: '.ceil($itm_user['iznosNOW']).'/'.ceil($itm_user['iznosMAX']).') Р±С‹Р» РїСЂРѕРґР°РЅ Р·Р° <b>'.$itm_user['1price'].' РєСЂ</b>."
 	)');
 	//
 	$grp = '';
 	if( $pl['group'] > 1 ) {
 		$grp = ' (x'.$pl['group'].')';
 	}
-	$u->send('','','','<font color=#009966 >Комиссионный магазин</font>',$user['login'],'Предмет &quot;'.$itm_main['name'].''.$grp.'&quot; (Износ: '.ceil($itm_user['iznosNOW']).'/'.ceil($itm_user['iznosMAX']).') был продан в государственный магазин за <b>'.$itm_user['1price'].' кр.</b>. Деньги доставлены к вам на почту.',time(),6,0,0,0,1,0);
+	$u->send('','','','<font color=#009966 >РљРѕРјРёСЃСЃРёРѕРЅРЅС‹Р№ РјР°РіР°Р·РёРЅ</font>',$user['login'],'РџСЂРµРґРјРµС‚ &quot;'.$itm_main['name'].''.$grp.'&quot; (РР·РЅРѕСЃ: '.ceil($itm_user['iznosNOW']).'/'.ceil($itm_user['iznosMAX']).') Р±С‹Р» РїСЂРѕРґР°РЅ РІ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ РјР°РіР°Р·РёРЅ Р·Р° <b>'.$itm_user['1price'].' РєСЂ.</b>. Р”РµРЅСЊРіРё РґРѕСЃС‚Р°РІР»РµРЅС‹ Рє РІР°Рј РЅР° РїРѕС‡С‚Сѓ.',time(),6,0,0,0,1,0);
 }
 
 ?>

@@ -13,21 +13,21 @@ if ($url[2] == 'referal') {
 }
 
 if( $rz == 1 ) {
-	$lib['html'] .= '<span class="top-title-sel">Рейтинг воинов</span>';
+	$lib['html'] .= '<span class="top-title-sel">Р РµР№С‚РёРЅРі РІРѕРёРЅРѕРІ</span>';
 }else{
-	$lib['html'] .= '<a href="http://xcombats.com/top/warriors/" class="top-title">Рейтинг воинов</a>';
+	$lib['html'] .= '<a href="http://xcombats.com/top/warriors/" class="top-title">Р РµР№С‚РёРЅРі РІРѕРёРЅРѕРІ</a>';
 }
 
 if( $rz == 2 ) {
-	$lib['html'] .= '<span class="top-title-sel">Рейтинг рефералов</span>';
+	$lib['html'] .= '<span class="top-title-sel">Р РµР№С‚РёРЅРі СЂРµС„РµСЂР°Р»РѕРІ</span>';
 }else{
-	$lib['html'] .= '<a href="http://xcombats.com/top/referal/" class="top-title">Рейтинг рефералов</a>';
+	$lib['html'] .= '<a href="http://xcombats.com/top/referal/" class="top-title">Р РµР№С‚РёРЅРі СЂРµС„РµСЂР°Р»РѕРІ</a>';
 }
 
 if( $rz == 3 ) {
-	$lib['html'] .= '<span class="top-title-sel">Рейтинг кланов</span>';
+	$lib['html'] .= '<span class="top-title-sel">Р РµР№С‚РёРЅРі РєР»Р°РЅРѕРІ</span>';
 }else{
-	$lib['html'] .= '<a href="http://xcombats.com/top/clans/" class="top-title">Рейтинг кланов</a>';
+	$lib['html'] .= '<a href="http://xcombats.com/top/clans/" class="top-title">Р РµР№С‚РёРЅРі РєР»Р°РЅРѕРІ</a>';
 }
 
 

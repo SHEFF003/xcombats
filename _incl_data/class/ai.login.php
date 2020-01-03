@@ -8,7 +8,7 @@ class botLogic {
 	
 	public $bot = array( );
 	
-	//Получение информации о боте
+	//РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ Р±РѕС‚Рµ
 	public function botInfo( $id ) {
 		
 		self::$bot = mysql_fetch_array(mysql_query('SELECT * FROM `users` WHERE `id` = "'.mysql_real_escape_string($id).'" LIMIT 1'));

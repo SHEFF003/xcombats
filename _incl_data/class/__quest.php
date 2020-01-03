@@ -6,13 +6,13 @@ if(!defined('GAME'))
 class quests {	
 	public $free_x = 28,$data = array();	
 	
-	/* проверка по окончанию боя*/	
+	/* РїСЂРѕРІРµСЂРєР° РїРѕ РѕРєРѕРЅС‡Р°РЅРёСЋ Р±РѕСЏ*/	
 	public function bfinuser($uid,$btl,$tmwin)
 	{
 		
 	}
 	
-	/* Проверка доступности квеста */
+	/* РџСЂРѕРІРµСЂРєР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРІРµСЃС‚Р° */
 	public function testGood($pl)
 	{
 	    global $c,$u;
@@ -24,13 +24,13 @@ class quests {
 	    $r = 1; $d1 = 0;
 	    $sp1 = mysql_fetch_array(mysql_query('SELECT COUNT(`id`) FROM `actions` WHERE `vars` LIKE "%start_quest%" AND `vals` = "go" AND `uid` = "'.$u->info['id'].'" LIMIT 100'));
 	    $pl1  = $pl1[0];
-	    //Если уже более 5 квестов взяли
+	    //Р•СЃР»Рё СѓР¶Рµ Р±РѕР»РµРµ 5 РєРІРµСЃС‚РѕРІ РІР·СЏР»Рё
 	    if($d1>=$this->free_x)
 	    {
 		$r = 0;
 	    }
 	    unset($d1,$pl1,$sp1);
-	    //Если квест уже взяли
+	    //Р•СЃР»Рё РєРІРµСЃС‚ СѓР¶Рµ РІР·СЏР»Рё
 	    $qlst = mysql_fetch_array(mysql_query('SELECT `id`,`vals` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" ORDER BY `id` DESC LIMIT 1'));
 	    if(isset($qlst['id']) && $qlst['vals'] != 'win' && $qlst['vals'] != 'end' && $qlst['vals'] != 'bad') {
 			$r = 0;
@@ -38,7 +38,7 @@ class quests {
 	    unset($qlst,$qlst2);
     
     $d = $this->expl($pl['tr_date']);
-    //Завершить квесты [ 1,2,3,4,5 ...
+    //Р—Р°РІРµСЂС€РёС‚СЊ РєРІРµСЃС‚С‹ [ 1,2,3,4,5 ...
 	    if(isset($d['tr_endq']))
 	    {
 		$i = 0;
@@ -54,18 +54,18 @@ class quests {
 		}
 		unset($qn,$qlst,$qlst2);
 	    }
-    //Задержка между выполнением квеста
+    //Р—Р°РґРµСЂР¶РєР° РјРµР¶РґСѓ РІС‹РїРѕР»РЅРµРЅРёРµРј РєРІРµСЃС‚Р°
 	    if(isset($d['tr_zdr']))
 	    {
 		$qlst = mysql_fetch_array(mysql_query('SELECT * FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" AND `vals` != "go" ORDER BY `time` DESC LIMIT 1'));
 		if($qlst['time']+($d['tr_zdr']*60*60)-time()>0)
 		{
-		    //$t .= '<small>(Осталось: '.$u->timeOut($qlst['time']+($d['tr_zdr']*60*60)-time()).' ч.)</small>';
+		    //$t .= '<small>(РћСЃС‚Р°Р»РѕСЃСЊ: '.$u->timeOut($qlst['time']+($d['tr_zdr']*60*60)-time()).' С‡.)</small>';
 		    $r = 0;
 		}
 		unset($qlst);
 	    }
-    //Переодичность квеста
+    //РџРµСЂРµРѕРґРёС‡РЅРѕСЃС‚СЊ РєРІРµСЃС‚Р°
 	    if(isset($d['tr_tm1']))
 	    {
 		$d['tr_tm1'] = str_replace('d',date('d'),$d['tr_tm1']);
@@ -74,9 +74,9 @@ class quests {
 		$d['tr_tm2'] = str_replace('d',date('d'),$d['tr_tm2']);
 		$d['tr_tm2'] = str_replace('m',date('m'),$d['tr_tm2']);
 		$d['tr_tm2'] = str_replace('y',date('y'),$d['tr_tm2']);
-		//проверка интервалов
+		//РїСЂРѕРІРµСЂРєР° РёРЅС‚РµСЂРІР°Р»РѕРІ
 	    }
-    //Сколько раз можно пройти квест
+    //РЎРєРѕР»СЊРєРѕ СЂР°Р· РјРѕР¶РЅРѕ РїСЂРѕР№С‚Рё РєРІРµСЃС‚
 	    if(isset($d['tr_raz']))
 	    {
 		$qlst = $u->testAction('SELECT `id` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" LIMIT '.$d['tr_raz'],2);
@@ -86,7 +86,7 @@ class quests {
 		}
 		unset($qlst);
 	    }
-    //Попыток пройти квест
+    //РџРѕРїС‹С‚РѕРє РїСЂРѕР№С‚Рё РєРІРµСЃС‚
 	    if(isset($d['tr_raz2']))
 	    {
 		$qlst = $u->testAction('SELECT `id` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" AND `vals` != "go" AND `vals` != "win"  LIMIT '.$d['tr_raz2'],2);
@@ -101,7 +101,7 @@ class quests {
 	
 	
 	public function onlyOnceQuest($quests, $uid)
-	{ // Отсеиваем одноразовые квесты
+	{ // РћС‚СЃРµРёРІР°РµРј РѕРґРЅРѕСЂР°Р·РѕРІС‹Рµ РєРІРµСЃС‚С‹
 	    $result = array();
 	    $rep = mysql_fetch_array(mysql_query('SELECT * FROM `rep` WHERE `id` = "'.$uid.'" LIMIT 1'));
 	    foreach($quests as $quest){
@@ -124,7 +124,7 @@ class quests {
 	    } 
 	    return $result;
 	}
-	/* Взять квест */
+	/* Р’Р·СЏС‚СЊ РєРІРµСЃС‚ */
 	public function startq($id, $val=NULL)
 	{
 		global $c,$u;
@@ -132,13 +132,13 @@ class quests {
 		if(isset($pl['id']))
 		{
 			$u->addAction(time(),'start_quest'.$pl['id'],'go', NULL, $val);
-			$u->error = 'Вы успешно получили задание &quot;'.$pl['name'].'&quot;';			
+			$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё Р·Р°РґР°РЅРёРµ &quot;'.$pl['name'].'&quot;';			
 		}else{
-			$u->error = 'Не удалось получить данное задание';
+			$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅРѕРµ Р·Р°РґР°РЅРёРµ';
 		}
 	}
 	
-	/* Взять квест в пещере */
+	/* Р’Р·СЏС‚СЊ РєРІРµСЃС‚ РІ РїРµС‰РµСЂРµ */
 	public function startq_dn($id, $val=NULL)
 	{
 		global $c,$u;
@@ -149,13 +149,13 @@ class quests {
 			    $u->addAction(time(),'start_quest'.$pl['id'],'go');
 			else 
 			    $u->addAction(time(),'start_quest'.$pl['id'],'go', $u->info['id'], $val);
-			$u->error = 'Вы успешно получили задание &quot;'.$pl['name'].'&quot;';			
+			$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё Р·Р°РґР°РЅРёРµ &quot;'.$pl['name'].'&quot;';			
 		}else{
-			$u->error = 'Не удалось получить данное задание';
+			$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅРѕРµ Р·Р°РґР°РЅРёРµ';
 		}
 	}
 	
-	/* Отказаться от квеста */
+	/* РћС‚РєР°Р·Р°С‚СЊСЃСЏ РѕС‚ РєРІРµСЃС‚Р° */
 	public function endq($id,$tp)
 	{
 		global $u,$c;
@@ -166,29 +166,29 @@ class quests {
 			if($tp=='end')
 			{
 				mysql_query('UPDATE `actions` SET `vals` = "end" WHERE `id` = "'.$qlst['id'].'" LIMIT 1');
-				$u->error = 'Вы успешно отказались от задания &quot;'.$pl['name'].'&quot;';
+				$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РѕС‚РєР°Р·Р°Р»РёСЃСЊ РѕС‚ Р·Р°РґР°РЅРёСЏ &quot;'.$pl['name'].'&quot;';
 			}elseif($tp=='win')
 			{
 				mysql_query('UPDATE `actions` SET `vals` = "win" WHERE `id` = "'.$qlst['id'].'" LIMIT 1');
 			}
 		}else{
-			$u->error = 'Не удалось отказаться от задания ';
+			$u->error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєР°Р·Р°С‚СЊСЃСЏ РѕС‚ Р·Р°РґР°РЅРёСЏ ';
 		}
 	}
 	
-	/* Инфо о квесте в пещерах */
+	/* РРЅС„Рѕ Рѕ РєРІРµСЃС‚Рµ РІ РїРµС‰РµСЂР°С… */
 	public function infoDng($pl) {
 		$r = '';
 		global $c,$u;
 		$r = 0; $t = '';
 		$xrz = 0;
 		$qst = mysql_fetch_array(mysql_query('SELECT * FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" AND `vals` = "go" LIMIT 1'));
-		//Условия задания которые должны удовлетворять текущим характеристикам
+		//РЈСЃР»РѕРІРёСЏ Р·Р°РґР°РЅРёСЏ РєРѕС‚РѕСЂС‹Рµ РґРѕР»Р¶РЅС‹ СѓРґРѕРІР»РµС‚РІРѕСЂСЏС‚СЊ С‚РµРєСѓС‰РёРј С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°Рј
 			$d = $this->expl($pl['tr_date']);
-			//Действия квеста
+			//Р”РµР№СЃС‚РІРёСЏ РєРІРµСЃС‚Р°
 			$d = $this->expl($pl['act_date']);
 			
-			//Поговорить с NPS
+			//РџРѕРіРѕРІРѕСЂРёС‚СЊ СЃ NPS
 				if(isset($d['dlg_nps'])) {
 					$i7 = 0;
 					$x3 = explode(',',$d['dlg_nps']);
@@ -202,7 +202,7 @@ class quests {
 					unset($x1,$x3,$x4,$i7);
 				}
 				
-			//Убить игроков
+			//РЈР±РёС‚СЊ РёРіСЂРѕРєРѕРІ
 				if(isset($d['kill_user']))
 				{
 					$x = 0;
@@ -210,7 +210,7 @@ class quests {
 					unset($x);
 				}
 				
-			//Убить ботов
+			//РЈР±РёС‚СЊ Р±РѕС‚РѕРІ
 				if(isset($d['kill_bot'])){
 					$x = '';
 					$ex = explode(',',$d['kill_bot']);
@@ -237,7 +237,7 @@ class quests {
 					unset($x,$ex,$x2,$bot2,$ex2);
 				} 
 
-			//Собрать ресурсы
+			//РЎРѕР±СЂР°С‚СЊ СЂРµСЃСѓСЂСЃС‹
 			if(isset($d['tk_itm'])) {
 				$ex = explode(',',$d['tk_itm']);
 				$i = 0;
@@ -259,7 +259,7 @@ class quests {
 				}
 			}
 
-			//Собрать трофеи
+			//РЎРѕР±СЂР°С‚СЊ С‚СЂРѕС„РµРё
 			if(isset($d['tkill_itm'])) {
 				$ex = explode(',',$d['tkill_itm']);
 				$i = 0;
@@ -293,26 +293,26 @@ class quests {
 			}
 			//$r = '['.$xrz.'/'.$r.']';
 			$r = '<table style="display:inline-block;" border="0" cellspacing="0" cellpadding="0" height="10"><tr><td valign="middle" width="120" style="padding-top:12px">
-  <div style="position:relative;"><div id="vhp-1234500000'.$pl['id'].'" title="Выполнение задания" align="left" class="seehp" style="position:absolute; top:-10px; width:120px; height:10px; z-index:12;"> '.$xrz.'/'.$r.'</div>
-  <div title="Выполнение задания" class="hpborder" style="position:absolute; top:-10px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
+  <div style="position:relative;"><div id="vhp-1234500000'.$pl['id'].'" title="Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°РЅРёСЏ" align="left" class="seehp" style="position:absolute; top:-10px; width:120px; height:10px; z-index:12;"> '.$xrz.'/'.$r.'</div>
+  <div title="Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°РЅРёСЏ" class="hpborder" style="position:absolute; top:-10px; width:120px; height:9px; z-index:13;"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
   <div class="hp_3 senohp" style="height:9px; width:120px; position:absolute; top:-10px; z-index:11;" id="lhp-1234500000'.$pl['id'].'"><img src="http://img.xcombats.com/1x1.gif" height="9" width="1"></div>
-  <div title="Выполнение задания" class="hp_none" style="position:absolute; top:-10px; width:120px; height:10px; z-index:10;"><img src="http://img.xcombats.com/1x1.gif" height="10"></div>
+  <div title="Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°РЅРёСЏ" class="hp_none" style="position:absolute; top:-10px; width:120px; height:10px; z-index:10;"><img src="http://img.xcombats.com/1x1.gif" height="10"></div>
 </div></td></tr></table><br><script>top.startHpRegen("main",-1234500000'.$pl['id'].','.$xrz.','.$r.',0,0,0,0,0,0,1);</script>';
 		}
 		return $r;
 	}
 	
-	/* Информация о квесте */
+	/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєРІРµСЃС‚Рµ */
 	public function info($pl) {
 		global $c,$u;
 		$r = ''; $t = '';
 		$qst = mysql_fetch_array(mysql_query('SELECT * FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" AND `vals` = "go" LIMIT 1'));
-		//Условия задания которые должны удовлетворять текущим характеристикам
+		//РЈСЃР»РѕРІРёСЏ Р·Р°РґР°РЅРёСЏ РєРѕС‚РѕСЂС‹Рµ РґРѕР»Р¶РЅС‹ СѓРґРѕРІР»РµС‚РІРѕСЂСЏС‚СЊ С‚РµРєСѓС‰РёРј С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°Рј
 			$d = $this->expl($pl['tr_date']);
-			//Завершить квесты [ 1,2,3,4,5 ...
+			//Р—Р°РІРµСЂС€РёС‚СЊ РєРІРµСЃС‚С‹ [ 1,2,3,4,5 ...
 				if(isset($d['tr_endq']))
 				{
-					$t .= 'Завершить квесты: ';
+					$t .= 'Р—Р°РІРµСЂС€РёС‚СЊ РєРІРµСЃС‚С‹: ';
 					$i = 0;
 					$e = explode(',',$d['tr_endq']);
 					while($i<=count($e))
@@ -331,29 +331,29 @@ class quests {
 					$t .= '<br>';
 					unset($qn);
 				}
-			//Из ботов падают предметы [ idbot-itm1=%,itm2=%|
+			//РР· Р±РѕС‚РѕРІ РїР°РґР°СЋС‚ РїСЂРµРґРјРµС‚С‹ [ idbot-itm1=%,itm2=%|
 				if(isset($d['tr_botitm']))
 				{
-					$t .= 'Из ботов выпадают предметы:<ul>';
+					$t .= 'РР· Р±РѕС‚РѕРІ РІС‹РїР°РґР°СЋС‚ РїСЂРµРґРјРµС‚С‹:<ul>';
 					$e = explode('|',$d['tr_botitm']);
 					$i = 0;
 					while($i<count($e)) {
 						$j = 0;
 						$e2 = explode('-',$e[$i]);
-						//$e2[0] - id бота
+						//$e2[0] - id Р±РѕС‚Р°
 						if($e2[0]>0){
 							$qn = mysql_fetch_array(mysql_query('SELECT `login` FROM `test_bot` WHERE `id` = "'.$e2[0].'" LIMIT 1'));
-							$t .= '&nbsp; &nbsp; &bull; Из &quot;'.$qn['login'].'&quot; выпадает: ';
+							$t .= '&nbsp; &nbsp; &bull; РР· &quot;'.$qn['login'].'&quot; РІС‹РїР°РґР°РµС‚: ';
 						}else{
-							$t .= '&nbsp; &nbsp; &bull; Из любых ботов выпадает: ';
+							$t .= '&nbsp; &nbsp; &bull; РР· Р»СЋР±С‹С… Р±РѕС‚РѕРІ РІС‹РїР°РґР°РµС‚: ';
 						}
-						//$e2[1] - предметы
+						//$e2[1] - РїСЂРµРґРјРµС‚С‹
 						$j = 0;
 						$e3 = explode(',',$e2[1]);
 						while($j<count($e3))
 						{
 							$e4 = explode('=',$e3[$j]);
-							//$e4[0] - предмет , $e4[1] - шанс
+							//$e4[0] - РїСЂРµРґРјРµС‚ , $e4[1] - С€Р°РЅСЃ
 							$qi = mysql_fetch_array(mysql_query('SELECT `id`,`name`,`img` FROM `items_main` WHERE `id` = "'.$e4[0].'" LIMIT 1'));
 							$t .= '<img src="http://img.xcombats.com/i/items/'.$qi['img'].'" style="max-height:12px"> <a href="items_info.php?id='.$qi['id'].'" target="_blank">'.$qi['name'].'</a>, ';
 							$j++;
@@ -364,10 +364,10 @@ class quests {
 					$t .= '<br>';
 					unset($qn,$qi,$e2,$e3,$e4);
 				}
-			//При выйгрыше падают предметы [ type-itm1=%,itm2=%|
+			//РџСЂРё РІС‹Р№РіСЂС‹С€Рµ РїР°РґР°СЋС‚ РїСЂРµРґРјРµС‚С‹ [ type-itm1=%,itm2=%|
 				if(isset($d['tr_winitm']))
 				{
-					$t .= 'После победы выпадают предметы:<br>';
+					$t .= 'РџРѕСЃР»Рµ РїРѕР±РµРґС‹ РІС‹РїР°РґР°СЋС‚ РїСЂРµРґРјРµС‚С‹:<br>';
 					$e = explode('|',$d['tr_winitm']);
 					$i = 0;
 					while($i<count($e))
@@ -375,20 +375,20 @@ class quests {
 						$j = 0;
 						$e2 = explode('-',$e[$i]);
 						$t .= '&nbsp; &nbsp; &bull; ';
-						//$e2[0] - id бота
+						//$e2[0] - id Р±РѕС‚Р°
 						if($e2[0]>0)
 						{
-							$t .= 'Из людей выпадает: ';
+							$t .= 'РР· Р»СЋРґРµР№ РІС‹РїР°РґР°РµС‚: ';
 						}else{
-							$t .= 'Из ботов выпадает: ';
+							$t .= 'РР· Р±РѕС‚РѕРІ РІС‹РїР°РґР°РµС‚: ';
 						}
-						//$e2[1] - предметы
+						//$e2[1] - РїСЂРµРґРјРµС‚С‹
 						$j = 0;
 						$e3 = explode(',',$e2[1]);
 						while($j<count($e3))
 						{
 							$e4 = explode('=',$e3[$j]);
-							//$e4[0] - предмет , $e4[1] - шанс
+							//$e4[0] - РїСЂРµРґРјРµС‚ , $e4[1] - С€Р°РЅСЃ
 							$qi = mysql_fetch_array(mysql_query('SELECT `id`,`name`,`img` FROM `items_main` WHERE `id` = "'.$e4[0].'" LIMIT 1'));
 							$t .= '<img src="http://img.xcombats.com/i/items/'.$qi['img'].'" style="max-height:12px"> <a href="items_info.php?id='.$qi['id'].'" target="_blank">'.$qi['name'].'</a>, ';
 							$j++;
@@ -399,19 +399,19 @@ class quests {
 					}
 					unset($qn,$qi,$e2,$e3,$e4);
 				}
-			//Задержка между выполнением квеста
+			//Р—Р°РґРµСЂР¶РєР° РјРµР¶РґСѓ РІС‹РїРѕР»РЅРµРЅРёРµРј РєРІРµСЃС‚Р°
 				if(isset($d['tr_zdr']))
 				{
 					$qlst = mysql_fetch_array(mysql_query('SELECT * FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" AND `vals` != "go" LIMIT 1'));
-					$t .= 'Задержка между выполнением задания: '.$u->timeOut($d['tr_zdr']*60*60);
+					$t .= 'Р—Р°РґРµСЂР¶РєР° РјРµР¶РґСѓ РІС‹РїРѕР»РЅРµРЅРёРµРј Р·Р°РґР°РЅРёСЏ: '.$u->timeOut($d['tr_zdr']*60*60);
 					if($qlst['time']+($d['tr_zdr']*60*60)-time()>0)
 					{
-						$t .= '<small>(Осталось: '.$u->timeOut($qlst['time']+($d['tr_zdr']*60*60)-time()).' ч.)</small>';
+						$t .= '<small>(РћСЃС‚Р°Р»РѕСЃСЊ: '.$u->timeOut($qlst['time']+($d['tr_zdr']*60*60)-time()).' С‡.)</small>';
 					}
 					$t .= '<br>';
 					unset($qlst);
 				}
-			//Переодичность квеста
+			//РџРµСЂРµРѕРґРёС‡РЅРѕСЃС‚СЊ РєРІРµСЃС‚Р°
 				if(isset($d['tr_tm1']))
 				{
 					$d['tr_tm1'] = str_replace('d',date('d'),$d['tr_tm1']);
@@ -422,35 +422,35 @@ class quests {
 					$d['tr_tm2'] = str_replace('m',date('m'),$d['tr_tm2']);
 					$d['tr_tm2'] = str_replace('y',date('y'),$d['tr_tm2']);
 					
-					$t .= 'Период квеста: '.$d['tr_tm1'].' - '.$d['tr_tm2'].'<br>';
+					$t .= 'РџРµСЂРёРѕРґ РєРІРµСЃС‚Р°: '.$d['tr_tm1'].' - '.$d['tr_tm2'].'<br>';
 				}
-			//Сколько раз можно пройти квест
+			//РЎРєРѕР»СЊРєРѕ СЂР°Р· РјРѕР¶РЅРѕ РїСЂРѕР№С‚Рё РєРІРµСЃС‚
 				if(isset($d['tr_raz']))
 				{
 					if($d['tr_raz']==-1)
 					{
-						$t .= 'Сколько еще раз можно выполнить задание: <b><small>бесконечно</small></b><br>';
+						$t .= 'РЎРєРѕР»СЊРєРѕ РµС‰Рµ СЂР°Р· РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёРµ: <b><small>Р±РµСЃРєРѕРЅРµС‡РЅРѕ</small></b><br>';
 					}else{
 						$qlst = $u->testAction('SELECT `id` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" LIMIT '.$d['tr_raz'],2);
-						$t .= 'Сколько раз можно выполнить задание: '.($d['tr_raz']-$qlst[0]).'<br>';
+						$t .= 'РЎРєРѕР»СЊРєРѕ СЂР°Р· РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёРµ: '.($d['tr_raz']-$qlst[0]).'<br>';
 					}
 					unset($qlst);
 				}
-			//Попыток пройти квест
+			//РџРѕРїС‹С‚РѕРє РїСЂРѕР№С‚Рё РєРІРµСЃС‚
 				if(isset($d['tr_raz2']))
 				{
 					$qlst = $u->testAction('SELECT `id` FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" AND `vals` != "go" AND `vals` != "win"  LIMIT '.$d['tr_raz2'],2);
-					$t .= 'Осталось попыток выполнить задание: '.($d['tr_raz2']-$qlst[0]).'<br>';
+					$t .= 'РћСЃС‚Р°Р»РѕСЃСЊ РїРѕРїС‹С‚РѕРє РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёРµ: '.($d['tr_raz2']-$qlst[0]).'<br>';
 					unset($qlst);
 				}
 				
 			if($t!='')
 			{
-				$r .= '<b>Условия задания:</b><br>'.$t.'<br>';
+				$r .= '<b>РЈСЃР»РѕРІРёСЏ Р·Р°РґР°РЅРёСЏ:</b><br>'.$t.'<br>';
 				$t = '';
 			}
 			
-		//Награда за квест
+		//РќР°РіСЂР°РґР° Р·Р° РєРІРµСЃС‚
 			$d = $this->expl($pl['win_date']);
 		
 			if(isset($d['add_eff']))
@@ -463,7 +463,7 @@ class quests {
 					$x6 = mysql_fetch_array(mysql_query('SELECT `id2`,`mname`,`img` FROM `eff_main` WHERE `id2` = "'.$x7[0].'" LIMIT 1'));
 					if(isset($x6['id2'])) {
 						$x5 .= '<img width="40" height="25" src="http://img.xcombats.com/i/eff/'.$x6['img'].'" title="'.$x6['mname'].'
-Время действия: '.$u->timeOut($x7[1]).'"> ';
+Р’СЂРµРјСЏ РґРµР№СЃС‚РІРёСЏ: '.$u->timeOut($x7[1]).'"> ';
 					}
 					$x4++;
 				}
@@ -478,25 +478,25 @@ class quests {
 			{
 				if($pl['city']!='')
 				{
-					$t .= 'Репутация '.$u->city_name[$pl['city']].': '.$d['add_rep'].'<br>';
+					$t .= 'Р РµРїСѓС‚Р°С†РёСЏ '.$u->city_name[$pl['city']].': '.$d['add_rep'].'<br>';
 				}
 			}
 			
 			if(isset($d['add_cr']))
 			{
-				$t .= 'Деньги: '.$d['add_cr'].' кр.<br>';
+				$t .= 'Р”РµРЅСЊРіРё: '.$d['add_cr'].' РєСЂ.<br>';
 			}
 		
 			if($t!='')
 			{
-				$r = '<b>Награда:</b><br>'.$t.'<br>'.$r;
+				$r = '<b>РќР°РіСЂР°РґР°:</b><br>'.$t.'<br>'.$r;
 				$t = '';
 			}
 			*/
 			
-		//Действия квеста
+		//Р”РµР№СЃС‚РІРёСЏ РєРІРµСЃС‚Р°
 			$d = $this->expl($pl['act_date']);
-			//Поговорить с NPS
+			//РџРѕРіРѕРІРѕСЂРёС‚СЊ СЃ NPS
 			if(isset($d['dlg_nps'])) {
 				$i7 = 0;
 				$x3 = explode(',',$d['dlg_nps']);
@@ -505,35 +505,35 @@ class quests {
 					if($x4[0] > 0) {
 						$x1 = mysql_fetch_array(mysql_query('SELECT `text` FROM `dungeon_dialog` WHERE `id` = "'.$x4[0].'" LIMIT 1'));
 						if(!isset($x1['text'])) {
-							$x1 = '<i>незивестно</i>';
+							$x1 = '<i>РЅРµР·РёРІРµСЃС‚РЅРѕ</i>';
 						}else{
 							$x1 = $x1['text'];
 						}
 						$x = 0;							
-						$t .= 'Поговорить с <b>'.$x1.'</b>: '.$x.'/1<br>';
+						$t .= 'РџРѕРіРѕРІРѕСЂРёС‚СЊ СЃ <b>'.$x1.'</b>: '.$x.'/1<br>';
 					}
 					$i7++;
 				}
 				unset($x1,$x3,$x4,$i7);
 			}
 				
-			//Убить игроков
+			//РЈР±РёС‚СЊ РёРіСЂРѕРєРѕРІ
 			if(isset($d['kill_user']))
 			{
 				$x = 0;
 				
-				$t .= 'Убить игроков: '.$x.'/'.$d['kill_user'].'<br>';
+				$t .= 'РЈР±РёС‚СЊ РёРіСЂРѕРєРѕРІ: '.$x.'/'.$d['kill_user'].'<br>';
 				unset($x);
 			}
 				
-			//Убить ботов
+			//РЈР±РёС‚СЊ Р±РѕС‚РѕРІ
 			if(isset($d['kill_bot'])){ 
 			    
 				
 				if( isset($d['all_kill']) && (int)$d['all_kill'] > 0 ) {
 					$x = '';
 					$ex = explode(',',$d['kill_bot']); 
-					$i = 0; # Количество циклов для каждого типа бота.
+					$i = 0; # РљРѕР»РёС‡РµСЃС‚РІРѕ С†РёРєР»РѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ С‚РёРїР° Р±РѕС‚Р°.
 					$q='';
 					while( $i < count($ex) ){
 					   $ex2 = explode('=', $ex[$i]);
@@ -574,12 +574,12 @@ class quests {
 			    if($x!='')
 			    {
 				$x = trim($x,', ');
-				$t .= 'Убить ботов: <br>'.$x.'';
+				$t .= 'РЈР±РёС‚СЊ Р±РѕС‚РѕРІ: <br>'.$x.'';
 			    }
 			    unset($x,$ex,$x2,$bot2,$ex2);
 			}
 			
-			//Собрать ресурсы
+			//РЎРѕР±СЂР°С‚СЊ СЂРµСЃСѓСЂСЃС‹
 				if(isset($d['tk_itm'])) {
 					$ex = explode(',',$d['tk_itm']);
 					$i = 0;
@@ -602,11 +602,11 @@ class quests {
 					if($x!='')
 					{
 						$x = trim($x,', ');
-						$t .= 'Собрать ресурсы: <br>'.$x.'';
+						$t .= 'РЎРѕР±СЂР°С‚СЊ СЂРµСЃСѓСЂСЃС‹: <br>'.$x.'';
 					}
 				}
 			
-			//Собирание трофеев
+			//РЎРѕР±РёСЂР°РЅРёРµ С‚СЂРѕС„РµРµРІ
 				if( isset($d['tkill_itm']) ) {
 					$ex = explode(',',$d['tkill_itm']);
 					$i = 0;
@@ -629,18 +629,18 @@ class quests {
 					if($x!='')
 					{
 						$x = trim($x,', ');
-						$t .= 'Собрать трофеи: <br>'.$x.'';
+						$t .= 'РЎРѕР±СЂР°С‚СЊ С‚СЂРѕС„РµРё: <br>'.$x.'';
 					}
 				}
 					
 			if($t!=''){
-				$r = '<br><b>Действия задания:</b><br>'.$t.'<br>'.$r;
+				$r = '<br><b>Р”РµР№СЃС‚РІРёСЏ Р·Р°РґР°РЅРёСЏ:</b><br>'.$t.'<br>'.$r;
 				$t = '';
 			}
 			
 			
 		if($r==''){
-			$r = 'Дополнительная информация по заданию отсутствует';
+			$r = 'Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ РїРѕ Р·Р°РґР°РЅРёСЋ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚';
 		}
 		return $r;
 	}
@@ -655,8 +655,8 @@ class quests {
 	
 	public function testquest(){
 		global $c, $u, $code;
-		if($u->info['battle']==0 && $u->room['name']!='Башня Смерти') {
-			//$time = mysql_fetch_array( mysql_query('SELECT * FROM `dungeon_room` WHERE `dungeon_room` = "'.$u->info['room'].'" LIMIT 1') ); // Привязка заданий к подземелью!
+		if($u->info['battle']==0 && $u->room['name']!='Р‘Р°С€РЅСЏ РЎРјРµСЂС‚Рё') {
+			//$time = mysql_fetch_array( mysql_query('SELECT * FROM `dungeon_room` WHERE `dungeon_room` = "'.$u->info['room'].'" LIMIT 1') ); // РџСЂРёРІСЏР·РєР° Р·Р°РґР°РЅРёР№ Рє РїРѕРґР·РµРјРµР»СЊСЋ!
 			// AND `room` = '.$time['id'].' 
 			$sp = mysql_query('SELECT * FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` LIKE "%start_quest%" AND `vals` = "go" LIMIT 100');
 			
@@ -664,28 +664,28 @@ class quests {
 				$pl = mysql_fetch_array(mysql_query('SELECT * FROM `quests` WHERE `id` = "'.(str_replace('start_quest','',$pl2['vars'])).'" LIMIT 1'));
 				
 				$g = 1;
-				//Действия квеста
+				//Р”РµР№СЃС‚РІРёСЏ РєРІРµСЃС‚Р°
 					$d = $this->expl($pl['act_date']);
 					
-				//Поговорить с NPS
+				//РџРѕРіРѕРІРѕСЂРёС‚СЊ СЃ NPS
 					if(isset($d['dlg_nps'])){
 						$g = 0;
 						unset($x);
 					}
 					
-				//Убить игроков
+				//РЈР±РёС‚СЊ РёРіСЂРѕРєРѕРІ
 				    if(isset($d['kill_user'])){
 					    $x = 0;
 					    if( $x < $d['kill_user']) {
 						    $g = 0;
 					    }
-					    //$d['kill_user'] - стольких нужно убить
+					    //$d['kill_user'] - СЃС‚РѕР»СЊРєРёС… РЅСѓР¶РЅРѕ СѓР±РёС‚СЊ
 					    unset($x);
 				    }
-				//Убить ботов
+				//РЈР±РёС‚СЊ Р±РѕС‚РѕРІ
 				    if(isset($d['kill_bot'])) {
 						$ex = explode(',',$d['kill_bot']);
-						$ii = 0; // Количество циклов для каждого типа бота.
+						$ii = 0; // РљРѕР»РёС‡РµСЃС‚РІРѕ С†РёРєР»РѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ С‚РёРїР° Р±РѕС‚Р°.
 						$q='';
 						while( $ii < count($ex) ) {
 							$ex2 = explode('=', $ex[$ii]);
@@ -706,7 +706,7 @@ class quests {
 						}
 						unset($x,$ex,$x2,$x3,$bot2,$ex2);
 				    }
-				//Собрать ресурсы
+				//РЎРѕР±СЂР°С‚СЊ СЂРµСЃСѓСЂСЃС‹
 					if(isset($d['tk_itm'])) {
 					    $ex = explode(',',$d['tk_itm']);
 					    $i = 0;
@@ -719,7 +719,7 @@ class quests {
 							$i++;
 					    }
 					}
-				//Собирание трофеев
+				//РЎРѕР±РёСЂР°РЅРёРµ С‚СЂРѕС„РµРµРІ
 					if(isset($d['tkill_itm'])) {
 					    $ex = explode(',',$d['tkill_itm']);
 					    $i = 0;
@@ -742,24 +742,24 @@ class quests {
 		}
 	}
 	
-	# Функция отвечает за ПРОВЕРКУ на ЗАВЕРШЕНИЕ квестов для ПОДЗЕМОК
+	# Р¤СѓРЅРєС†РёСЏ РѕС‚РІРµС‡Р°РµС‚ Р·Р° РџР РћР’Р•Р РљРЈ РЅР° Р—РђР’Р•Р РЁР•РќРР• РєРІРµСЃС‚РѕРІ РґР»СЏ РџРћР”Р—Р•РњРћРљ
 	public function questCheckEnd( $pl ) {
 		global $u, $c, $magic; 
 		$quest = mysql_fetch_array(mysql_query('SELECT * FROM `actions` WHERE `uid` = "'.$u->info['id'].'" AND `vars` = "start_quest'.$pl['id'].'" ORDER BY `time` DESC LIMIT 1'));
-		#Проверяем квест, завершен = 0 нет, 1 да.
+		#РџСЂРѕРІРµСЂСЏРµРј РєРІРµСЃС‚, Р·Р°РІРµСЂС€РµРЅ = 0 РЅРµС‚, 1 РґР°.
 		$r = 0; 
-		if($u->info['battle']==0 && $u->room['name']!='Башня Смерти') { 
+		if($u->info['battle']==0 && $u->room['name']!='Р‘Р°С€РЅСЏ РЎРјРµСЂС‚Рё') { 
 			$g = 1;
-			# Действия квеста
+			# Р”РµР№СЃС‚РІРёСЏ РєРІРµСЃС‚Р°
 			$d = $this->expl($pl['act_date']);
 
-			# Поговорить с NPS
+			# РџРѕРіРѕРІРѕСЂРёС‚СЊ СЃ NPS
 			if( isset($d['dlg_nps']) ) {
 				$g = 0;
 				unset($x);
 			}
 
-			# Убить игроков
+			# РЈР±РёС‚СЊ РёРіСЂРѕРєРѕРІ
 			if( isset($d['kill_user']) ) {
 				$x = 0;
 				if( $x < $d['kill_user']) {
@@ -768,10 +768,10 @@ class quests {
 				unset($x);
 			}
 
-			# Убить ботов
+			# РЈР±РёС‚СЊ Р±РѕС‚РѕРІ
 			if( isset($d['kill_bot']) ) { 
 				$ex = explode(',',$d['kill_bot']); 
-				$i = 0; # Количество циклов для каждого типа бота.
+				$i = 0; # РљРѕР»РёС‡РµСЃС‚РІРѕ С†РёРєР»РѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ С‚РёРїР° Р±РѕС‚Р°.
 				$q=''; 
 				while( $i < count($ex) ){
 				   $ex2 = explode('=', $ex[$i]);
@@ -802,7 +802,7 @@ class quests {
 				}
 				unset($x,$ex,$x2,$x3,$bot2,$ex2);
 			}
-			# Собрать ресурсы
+			# РЎРѕР±СЂР°С‚СЊ СЂРµСЃСѓСЂСЃС‹
 			if(isset($d['tk_itm'])) {
 				$ex = explode(',',$d['tk_itm']);
 				$i = 0;
@@ -823,7 +823,7 @@ class quests {
 					$i++;
 				}
 			}
-			# Собирание трофеев
+			# РЎРѕР±РёСЂР°РЅРёРµ С‚СЂРѕС„РµРµРІ
 			if( isset($d['tkill_itm']) ) {
 				$ex = explode(',',$d['tkill_itm']);
 				$i = 0;
@@ -858,7 +858,7 @@ class quests {
 		if( isset($quest['id']) ) {
 			$d = $this->expl($quest['act_date']);
 			$d = array_merge($d, $this->expl($quest['win_date']));
-			// Забираем ресурсы или трофеи
+			// Р—Р°Р±РёСЂР°РµРј СЂРµСЃСѓСЂСЃС‹ РёР»Рё С‚СЂРѕС„РµРё
 			if( isset($d['tk_itm']) OR isset($d['tkill_itm']) ) {
 				if( isset($d['tk_itm']) AND isset($d['tkill_itm']) ) {
 					$ex[0] = explode(',',$d['tk_itm']);
@@ -888,9 +888,9 @@ class quests {
 			}
 			$t = '';
 			
-			# Получаем репутацию за квест,
+			# РџРѕР»СѓС‡Р°РµРј СЂРµРїСѓС‚Р°С†РёСЋ Р·Р° РєРІРµСЃС‚,
 			if( isset($d['add_rep']) ) {
-				# если это убийства ботов.
+				# РµСЃР»Рё СЌС‚Рѕ СѓР±РёР№СЃС‚РІР° Р±РѕС‚РѕРІ.
 			    if( isset($d['kill_bot']) && isset($d['all_kill']) && $d['add_rep'] > 0 ){
 					$ex = explode(',', $d['kill_bot']);
 					$ii = 0;
@@ -917,9 +917,9 @@ class quests {
 					if( $u->stats['silver'] >= 2 ) {
 						$d['add_rep'] += $d['add_rep']/100*50;
 					}
-					$t .= ''.$d['add_rep'].' ед. репутации '.$u->city_name[$quest['city']].', ';
+					$t .= ''.$d['add_rep'].' РµРґ. СЂРµРїСѓС‚Р°С†РёРё '.$u->city_name[$quest['city']].', ';
 					$rep = mysql_fetch_array(mysql_query('SELECT * FROM `rep` WHERE `id` = "'.$u->info['id'].'" LIMIT 1'));
-					# Рыцарки
+					# Р С‹С†Р°СЂРєРё
 					if($rep['rep'.$quest['city']] < 10000 && $rep['rep'.$quest['city']] + $d['add_rep'] >= 10000 && $quest['kin'] != 1) {
 						$rep['rep'.$quest['city']] = 9999;
 					} elseif($rep['rep'.$quest['city']] < 24999 && $rep['rep'.$quest['city']] + $d['add_rep'] >= 24999 && $quest['kin'] != 2) {
@@ -932,7 +932,7 @@ class quests {
 			} 
 			
 			if( isset($d['add_repizlom']) ) {
-				$t .= ''.$d['add_repizlom'].' ед. репутации Излома Хаоса, ';
+				$t .= ''.$d['add_repizlom'].' РµРґ. СЂРµРїСѓС‚Р°С†РёРё РР·Р»РѕРјР° РҐР°РѕСЃР°, ';
 				$rep = mysql_fetch_array(mysql_query('SELECT * FROM `rep` WHERE `id` = "'.$u->info['id'].'" LIMIT 1'));
 				$rep['repizlom'] += $d['add_repizlom'];
 				if($rep['repizlom'] > 24999) {
@@ -952,20 +952,20 @@ class quests {
 			}
 			
 			if(isset($d['add_cr'])) {
-				$t .= ''.$d['add_cr'].' кр., ';
+				$t .= ''.$d['add_cr'].' РєСЂ., ';
 				mysql_query('UPDATE `users` SET `money` = `money`+'.$d['add_cr'].' WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			}
 			
 			if($t!='') {
 				$t = rtrim($t,', ');
-				$r = 'Задание <b>'.$quest['name'].'</b> было успешно выполнено! Вы получили награду: '.$t.'.';
+				$r = 'Р—Р°РґР°РЅРёРµ <b>'.$quest['name'].'</b> Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ РІС‹РїРѕР»РЅРµРЅРѕ! Р’С‹ РїРѕР»СѓС‡РёР»Рё РЅР°РіСЂР°РґСѓ: '.$t.'.';
 				unset($t);
 			} else {
-				$r = 'Задание <b>'.$quest['name'].'</b> было успешно выполнено!';
+				$r = 'Р—Р°РґР°РЅРёРµ <b>'.$quest['name'].'</b> Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ РІС‹РїРѕР»РЅРµРЅРѕ!';
 			}
 			
 			$r = '<small>'.$r.'</small>';
-			//Отправляем сообщение в чат
+			//РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚
 			
 			mysql_query('UPDATE `actions` SET `vals` = "win" WHERE `id` = "'.$action['id'].'" AND `vals` = "go" LIMIT 1');
 			mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$u->info['city']."','".$u->info['room']."','','".$u->info['login']."','".$r."','-1','5','0')");
@@ -979,7 +979,7 @@ class quests {
 		/*
 		if( isset($pl['id']) ) { 
 			$d = $this->expl($pl['act_date']);
-			// Забираем ресурсы
+			// Р—Р°Р±РёСЂР°РµРј СЂРµСЃСѓСЂСЃС‹
 			if( isset($d['tk_itm']) ) {
 				$ex = explode(',',$d['tk_itm']);
 				$i = 0;
@@ -991,7 +991,7 @@ class quests {
 					$i++;
 				}
 			}
-			// Забираем трофеи
+			// Р—Р°Р±РёСЂР°РµРј С‚СЂРѕС„РµРё
 			if( isset($d['tkill_itm']) ) {
 				$ex = explode(',',$d['tkill_itm']);
 				$i = 0;
@@ -1005,7 +1005,7 @@ class quests {
 			}
 			$d = array_merge($d, $this->expl($pl['win_date']));
 			$t = '';
-			if( isset($d['add_rep']) ) { // Получаем репутацию за квест, если это убийства ботов.
+			if( isset($d['add_rep']) ) { // РџРѕР»СѓС‡Р°РµРј СЂРµРїСѓС‚Р°С†РёСЋ Р·Р° РєРІРµСЃС‚, РµСЃР»Рё СЌС‚Рѕ СѓР±РёР№СЃС‚РІР° Р±РѕС‚РѕРІ.
 			    if( isset($d['kill_bot']) && isset($d['all_kill']) && $d['add_rep'] > 0 ){
 					$ex = explode(',', $d['kill_bot']);
 					$ii = 0;
@@ -1024,9 +1024,9 @@ class quests {
 			    }
 			    unset($x,$i,$ii,$ex,$x2,$bot2,$ex2);
 			    if($pl['city']!=''){
-					$t .= ''.$d['add_rep'].' ед. репутации '.$u->city_name[$pl['city']].', ';
+					$t .= ''.$d['add_rep'].' РµРґ. СЂРµРїСѓС‚Р°С†РёРё '.$u->city_name[$pl['city']].', ';
 					$rep = mysql_fetch_array(mysql_query('SELECT * FROM `rep` WHERE `id` = "'.$u->info['id'].'" LIMIT 1'));
-					// Рыцарки
+					// Р С‹С†Р°СЂРєРё
 					if($rep['rep'.$pl['city']] < 10000 && $rep['rep'.$pl['city']] + $d['add_rep'] >= 10000 && $pl['kin'] != 1) {
 						$rep['rep'.$pl['city']] = 9999;
 					} elseif($rep['rep'.$pl['city']] < 24999 && $rep['rep'.$pl['city']] + $d['add_rep'] >= 24999 && $pl['kin'] != 2) {
@@ -1039,7 +1039,7 @@ class quests {
 			}
 			
 			if(isset($d['add_repizlom'])){
-				$t .= ''.$d['add_repizlom'].' ед. репутации Излома Хаоса, ';
+				$t .= ''.$d['add_repizlom'].' РµРґ. СЂРµРїСѓС‚Р°С†РёРё РР·Р»РѕРјР° РҐР°РѕСЃР°, ';
 				$rep = mysql_fetch_array(mysql_query('SELECT * FROM `rep` WHERE `id` = "'.$u->info['id'].'" LIMIT 1'));
 				$rep['repizlom'] += $d['add_repizlom'];
 				if($rep['repizlom'] > 24999) {
@@ -1059,19 +1059,19 @@ class quests {
 			}
 			
 			if(isset($d['add_cr'])) {
-				$t .= ''.$d['add_cr'].' кр., ';
+				$t .= ''.$d['add_cr'].' РєСЂ., ';
 				mysql_query('UPDATE `users` SET `money` = `money`+'.$d['add_cr'].' WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 			}
 			
 			if($t!='') {
 				$t = rtrim($t,', ');
-				$r = 'Задание <b>'.$pl['name'].'</b> было успешно выполнено! Вы получили награду: '.$t.'.';
+				$r = 'Р—Р°РґР°РЅРёРµ <b>'.$pl['name'].'</b> Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ РІС‹РїРѕР»РЅРµРЅРѕ! Р’С‹ РїРѕР»СѓС‡РёР»Рё РЅР°РіСЂР°РґСѓ: '.$t.'.';
 				unset($t);
 			} else {
-				$r = 'Задание <b>'.$pl['name'].'</b> было успешно выполнено!';
+				$r = 'Р—Р°РґР°РЅРёРµ <b>'.$pl['name'].'</b> Р±С‹Р»Рѕ СѓСЃРїРµС€РЅРѕ РІС‹РїРѕР»РЅРµРЅРѕ!';
 			}
 			$r = '<small>'.$r.'</small>';
-			//Отправляем сообщение в чат
+			//РћС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚
 			mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$u->info['city']."','".$u->info['room']."','','".$u->info['login']."','".$r."','-1','5','0')");
 		}
 		*/

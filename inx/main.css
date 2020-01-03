@@ -197,7 +197,7 @@ a:hover {
 	text-decoration: underline;
 }
 
-/*горизонтальное меню*/
+/*РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕРµ РјРµРЅСЋ*/
 .topmenu { height: 39px; margin-bottom: 10px; margin-right:100px; margin-left:100px;}
 .topmenu, .topmenu div { height: 41px; background: url("topmenu.png") repeat-x 0 -118px; }
 .topmenu div {margin-left:-100px; margin-right:-50px; background: url("topmenu.png") no-repeat; padding: 0 0 0 2px; }

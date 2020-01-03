@@ -7,18 +7,18 @@ if(!defined('GAME'))
 if($st['usefromfile']=='veter1' && $u->info['battle'] > 0 && $u->info['hpNow'] >= 1)
 {
 	if($btl->info['team_win'] != -1 ) {
-		$u->error = 'Использовать плащ возможно только во время боя';
+		$u->error = 'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїР»Р°С‰ РІРѕР·РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ РІРѕ РІСЂРµРјСЏ Р±РѕСЏ';
 	}else{
 		
 		$bu = mysql_fetch_array(mysql_query('SELECT `id` FROM `magic_act` WHERE `uid` = "'.$u->info['id'].'" AND `date` = "'.date('d.m.Y').'" LIMIT 1'));
 		
 		if(($itm['iznosMAX']-$itm['iznosNOW']) < $u->info['level'] ) {
-			$u->error = 'Недостаточно прочности плаща... Необходимо '.$u->info['level'].' ед.!';
+			$u->error = 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂРѕС‡РЅРѕСЃС‚Рё РїР»Р°С‰Р°... РќРµРѕР±С…РѕРґРёРјРѕ '.$u->info['level'].' РµРґ.!';
 		}elseif(isset($bu['id'])) {
-			$u->error = 'Использовать плащ возможно 1 раз в день!';
+			$u->error = 'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїР»Р°С‰ РІРѕР·РјРѕР¶РЅРѕ 1 СЂР°Р· РІ РґРµРЅСЊ!';
 		}else{
 			
-				$u->error = 'Вы успешно использовали заклинание &quot;Усиленные Рефлексы&quot; (Все тактики увеличены на 25, износ предмета -'.$u->info['level'].' ед.)';
+				$u->error = 'Р’С‹ СѓСЃРїРµС€РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё Р·Р°РєР»РёРЅР°РЅРёРµ &quot;РЈСЃРёР»РµРЅРЅС‹Рµ Р РµС„Р»РµРєСЃС‹&quot; (Р’СЃРµ С‚Р°РєС‚РёРєРё СѓРІРµР»РёС‡РµРЅС‹ РЅР° 25, РёР·РЅРѕСЃ РїСЂРµРґРјРµС‚Р° -'.$u->info['level'].' РµРґ.)';
 				
 				mysql_query('UPDATE `stats` SET `tactic1` = 25 , `tactic2` = 25 , `tactic3` = 25 , `tactic4` = 25 , `tactic5` = 25 , `tactic6` = 25  WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				
@@ -31,7 +31,7 @@ if($st['usefromfile']=='veter1' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 				
 				mysql_query('UPDATE `items_users` SET `iznosNOW` = "'.$itm['iznosNOW'].'" WHERE `id` = "'.$itm['id'].'" LIMIT 1');
 				
-				//Лог боя
+				//Р›РѕРі Р±РѕСЏ
 				$lastHOD = mysql_fetch_array(mysql_query('SELECT * FROM `battle_logs` WHERE `battle` = "'.$u->info['battle'].'" ORDER BY `id_hod` DESC LIMIT 1'));
 				$id_hod = $lastHOD['id_hod'];
 				if($lastHOD['type']!=6) {
@@ -39,9 +39,9 @@ if($st['usefromfile']=='veter1' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 				}
 				$txt = '<font color=#006699>'.$txt.'</font>';
 				if($u->info['sex']==1) {
-					$txt = '{u1} применила заклинание &quot;<b>Усиленные Рефлексы</b>&quot;.';
+					$txt = '{u1} РїСЂРёРјРµРЅРёР»Р° Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b>РЈСЃРёР»РµРЅРЅС‹Рµ Р РµС„Р»РµРєСЃС‹</b>&quot;.';
 				}else{
-					$txt = '{u1} применил заклинание &quot;<b>Усиленные Рефлексы</b>&quot;.';
+					$txt = '{u1} РїСЂРёРјРµРЅРёР» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b>РЈСЃРёР»РµРЅРЅС‹Рµ Р РµС„Р»РµРєСЃС‹</b>&quot;.';
 				}
 				mysql_query('INSERT INTO `battle_logs` (`time`,`battle`,`id_hod`,`text`,`vars`,`zona1`,`zonb1`,`zona2`,`zonb2`,`type`) VALUES ("'.time().'","'.$u->info['battle'].'","'.($id_hod).'","{tm1} '.$txt.'","login1='.$u->info['login'].'||t1='.$u->info['team'].'||time1='.time().'","","","","","6")');
 			

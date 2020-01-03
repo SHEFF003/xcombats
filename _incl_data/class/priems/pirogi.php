@@ -7,27 +7,27 @@ if(!defined('GAME'))
 if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >= 1)
 {
 	if($btl->info['team_win'] != -1 ) {
-		$u->error = 'Использовать пирожки возможно только во время боя';
+		$u->error = 'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїРёСЂРѕР¶РєРё РІРѕР·РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ РІРѕ РІСЂРµРјСЏ Р±РѕСЏ';
 	}else{
 		$bu = mysql_fetch_array(mysql_query('SELECT * FROM `pirogi` WHERE `btl` = "'.$u->info['battle'].'" AND `uid` = "'.$u->info['id'].'" LIMIT 1'));
 		if(isset($bu['id'])) {
-			$u->error = 'Нельзя использовать пирожки так часто! Осталось ходов: '.$bu['hod'].'';
+			$u->error = 'РќРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїРёСЂРѕР¶РєРё С‚Р°Рє С‡Р°СЃС‚Рѕ! РћСЃС‚Р°Р»РѕСЃСЊ С…РѕРґРѕРІ: '.$bu['hod'].'';
 		}else{			
 			
-			if( $itm['item_id'] == 4752 ) { //Страницы с заклятиями
+			if( $itm['item_id'] == 4752 ) { //РЎС‚СЂР°РЅРёС†С‹ СЃ Р·Р°РєР»СЏС‚РёСЏРјРё
 				//
 				/*
-				plain_1s_magic.gif - картинка в /eff/
+				plain_1s_magic.gif - РєР°СЂС‚РёРЅРєР° РІ /eff/
 				//
-				Эффект действует на случайного участника боя (он должен быть жив)
-				Возможные касты:  
-				• прием "Тепловой удар" - магический урон. 
+				Р­С„С„РµРєС‚ РґРµР№СЃС‚РІСѓРµС‚ РЅР° СЃР»СѓС‡Р°Р№РЅРѕРіРѕ СѓС‡Р°СЃС‚РЅРёРєР° Р±РѕСЏ (РѕРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Р¶РёРІ)
+				Р’РѕР·РјРѕР¶РЅС‹Рµ РєР°СЃС‚С‹:  
+				вЂў РїСЂРёРµРј "РўРµРїР»РѕРІРѕР№ СѓРґР°СЂ" - РјР°РіРёС‡РµСЃРєРёР№ СѓСЂРѕРЅ. 
 				*/
 				mysql_query('INSERT INTO `pirogi` (`btl`,`uid`,`time`,`item_id`,`var`,`hod`) VALUES (
 					"'.$u->info['battle'].'","'.$u->info['id'].'","'.time().'","'.$itm['item_id'].'","'.$itm['name'].'","1"
 				)');
 				//
-				//$txt = '<font color=#006699><b>'.$txt.'</b></font> ['.$u->stats['hpNow'].'/'.$u->stats['hpAll'].'] ('.$txttest.' ед.)';
+				//$txt = '<font color=#006699><b>'.$txt.'</b></font> ['.$u->stats['hpNow'].'/'.$u->stats['hpAll'].'] ('.$txttest.' РµРґ.)';
 				
 				$kst = rand(0,7);
 				
@@ -45,9 +45,9 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 				//$kst = 7;
 				//
 				if(!isset($piru['id'])) {
-					$txt = '<i>(Не сработало, нет подходящей цели)</i>';
+					$txt = '<i>(РќРµ СЃСЂР°Р±РѕС‚Р°Р»Рѕ, РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РµР№ С†РµР»Рё)</i>';
 				}elseif( $kst == 0 ) {
-					//заклятье "Элементарный заряд" - за один ход наносит урон 4мя стихиями. Урон зависит от кол-ва интеллекта. Действует 1 ход.
+					//Р·Р°РєР»СЏС‚СЊРµ "Р­Р»РµРјРµРЅС‚Р°СЂРЅС‹Р№ Р·Р°СЂСЏРґ" - Р·Р° РѕРґРёРЅ С…РѕРґ РЅР°РЅРѕСЃРёС‚ СѓСЂРѕРЅ 4РјСЏ СЃС‚РёС…РёСЏРјРё. РЈСЂРѕРЅ Р·Р°РІРёСЃРёС‚ РѕС‚ РєРѕР»-РІР° РёРЅС‚РµР»Р»РµРєС‚Р°. Р”РµР№СЃС‚РІСѓРµС‚ 1 С…РѕРґ.
 					$mgp = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$piru['id'].'" AND `delete` = "0" AND `v2` = "300" LIMIT 1'));
 					//
 					$txt = '';
@@ -56,19 +56,19 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						$mgp['hod']++;
 						$txt = ' (x'.$mgp['x'].')';
 					}
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Элементарный заряд'.$txt.'</b>&quot;.';
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>Р­Р»РµРјРµРЅС‚Р°СЂРЅС‹Р№ Р·Р°СЂСЏРґ'.$txt.'</b>&quot;.';
 					if(isset($mgp['id'])) {
 						mysql_query('UPDATE `eff_users` SET `hod` = "'.$mgp['hod'].'", `x` = "'.$mgp['x'].'" WHERE `id` = "'.$mgp['id'].'" LIMIT 1');
 					}else{
 						mysql_query('INSERT INTO `eff_users` (
 						`hod`, `v2`, `img2`, `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `v1`, `user_use`
 						) VALUES (
-						"1", "300", "elemz.gif", 22, "'.$piru['id'].'", "Элементарный заряд", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
+						"1", "300", "elemz.gif", 22, "'.$piru['id'].'", "Р­Р»РµРјРµРЅС‚Р°СЂРЅС‹Р№ Р·Р°СЂСЏРґ", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
 						)');
 					}
 				}elseif( $kst == 1 ) {
-					//заклятье "Темное ранение" - наносит разовый урон и лечит вас или любого другого участника боя половиной нанесённого урона. Действует 1 ход. 
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Темное ранение</b>&quot;.';
+					//Р·Р°РєР»СЏС‚СЊРµ "РўРµРјРЅРѕРµ СЂР°РЅРµРЅРёРµ" - РЅР°РЅРѕСЃРёС‚ СЂР°Р·РѕРІС‹Р№ СѓСЂРѕРЅ Рё Р»РµС‡РёС‚ РІР°СЃ РёР»Рё Р»СЋР±РѕРіРѕ РґСЂСѓРіРѕРіРѕ СѓС‡Р°СЃС‚РЅРёРєР° Р±РѕСЏ РїРѕР»РѕРІРёРЅРѕР№ РЅР°РЅРµСЃС‘РЅРЅРѕРіРѕ СѓСЂРѕРЅР°. Р”РµР№СЃС‚РІСѓРµС‚ 1 С…РѕРґ. 
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РўРµРјРЅРѕРµ СЂР°РЅРµРЅРёРµ</b>&quot;.';
 					//
 					$txt = '';
 					if( isset($mgp['id']) ) {
@@ -76,18 +76,18 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						$mgp['hod']++;
 						$txt = ' (x'.$mgp['x'].')';
 					}
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Темное ранение'.$txt.'</b>&quot;.';
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РўРµРјРЅРѕРµ СЂР°РЅРµРЅРёРµ'.$txt.'</b>&quot;.';
 					if(isset($mgp['id'])) {
 						mysql_query('UPDATE `eff_users` SET `hod` = "'.$mgp['hod'].'", `x` = "'.$mgp['x'].'" WHERE `id` = "'.$mgp['id'].'" LIMIT 1');
 					}else{
 						mysql_query('INSERT INTO `eff_users` (
 						`hod`, `v2`, `img2`, `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `v1`, `user_use`
 						) VALUES (
-						"1", "301", "gy_slickcadavre_dot.gif", 22, "'.$piru['id'].'", "Темное ранение", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
+						"1", "301", "gy_slickcadavre_dot.gif", 22, "'.$piru['id'].'", "РўРµРјРЅРѕРµ СЂР°РЅРµРЅРёРµ", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
 						)');
 					}
 				}elseif( $kst == 2 ) {
-					//заклятье "Ядовитые язвы" - наносит урон, аналог приёма Пожирающее пламя или Отравление. Действует 3 хода. 
+					//Р·Р°РєР»СЏС‚СЊРµ "РЇРґРѕРІРёС‚С‹Рµ СЏР·РІС‹" - РЅР°РЅРѕСЃРёС‚ СѓСЂРѕРЅ, Р°РЅР°Р»РѕРі РїСЂРёС‘РјР° РџРѕР¶РёСЂР°СЋС‰РµРµ РїР»Р°РјСЏ РёР»Рё РћС‚СЂР°РІР»РµРЅРёРµ. Р”РµР№СЃС‚РІСѓРµС‚ 3 С…РѕРґР°. 
 					$mgp = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$piru['id'].'" AND `delete` = "0" AND `v2` = "299" LIMIT 1'));
 					//
 					$txt = '';
@@ -96,19 +96,19 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						$mgp['hod']++;
 						$txt = ' (x'.$mgp['x'].')';
 					}
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Ядовитые язвы'.$txt.'</b>&quot;.';
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РЇРґРѕРІРёС‚С‹Рµ СЏР·РІС‹'.$txt.'</b>&quot;.';
 					if(isset($mgp['id'])) {
 						mysql_query('UPDATE `eff_users` SET `hod` = "'.$mgp['hod'].'", `x` = "'.$mgp['x'].'" WHERE `id` = "'.$mgp['id'].'" LIMIT 1');
 					}else{
 						mysql_query('INSERT INTO `eff_users` (
 						`hod`, `v2`, `img2`, `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `v1`, `user_use`
 						) VALUES (
-						"3", "299", "gy_slickcadavre_dot.gif", 22, "'.$piru['id'].'", "Ядовитые язвы", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
+						"3", "299", "gy_slickcadavre_dot.gif", 22, "'.$piru['id'].'", "РЇРґРѕРІРёС‚С‹Рµ СЏР·РІС‹", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
 						)');
 					}
 				}elseif( $kst == 3 ) {
-					//заклятье "Шкура поглощения" - полностью поглощает магический урон. Действует 1 ход. 
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Шкура поглощения</b>&quot;.';
+					//Р·Р°РєР»СЏС‚СЊРµ "РЁРєСѓСЂР° РїРѕРіР»РѕС‰РµРЅРёСЏ" - РїРѕР»РЅРѕСЃС‚СЊСЋ РїРѕРіР»РѕС‰Р°РµС‚ РјР°РіРёС‡РµСЃРєРёР№ СѓСЂРѕРЅ. Р”РµР№СЃС‚РІСѓРµС‚ 1 С…РѕРґ. 
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РЁРєСѓСЂР° РїРѕРіР»РѕС‰РµРЅРёСЏ</b>&quot;.';
 					//
 					$txt = '';
 					if( isset($mgp['id']) ) {
@@ -116,20 +116,20 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						$mgp['hod']++;
 						$txt = ' (x'.$mgp['x'].')';
 					}
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Шкура поглощения'.$txt.'</b>&quot;.';
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РЁРєСѓСЂР° РїРѕРіР»РѕС‰РµРЅРёСЏ'.$txt.'</b>&quot;.';
 					if(isset($mgp['id'])) {
 						mysql_query('UPDATE `eff_users` SET `hod` = "'.$mgp['hod'].'", `x` = "'.$mgp['x'].'" WHERE `id` = "'.$mgp['id'].'" LIMIT 1');
 					}else{
 						mysql_query('INSERT INTO `eff_users` (
 						`hod`, `v2`, `img2`, `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `v1`, `user_use`
 						) VALUES (
-						"1", "303", "tnpb_magicshield.gif", 22, "'.$piru['id'].'", "Шкура поглощения", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
+						"1", "303", "tnpb_magicshield.gif", 22, "'.$piru['id'].'", "РЁРєСѓСЂР° РїРѕРіР»РѕС‰РµРЅРёСЏ", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
 						)');
 					}
 					//
 				}elseif( $kst == 4 ) {
-					//прием "Особенное проклятье!" - понижает статы (Сила: -10, Интуиция: -10, Ловкость: -10, Интеллект: -10).
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Особенное проклятье!</b>&quot;.';
+					//РїСЂРёРµРј "РћСЃРѕР±РµРЅРЅРѕРµ РїСЂРѕРєР»СЏС‚СЊРµ!" - РїРѕРЅРёР¶Р°РµС‚ СЃС‚Р°С‚С‹ (РЎРёР»Р°: -10, РРЅС‚СѓРёС†РёСЏ: -10, Р›РѕРІРєРѕСЃС‚СЊ: -10, РРЅС‚РµР»Р»РµРєС‚: -10).
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РћСЃРѕР±РµРЅРЅРѕРµ РїСЂРѕРєР»СЏС‚СЊРµ!</b>&quot;.';
 					//
 					$mgp = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$piru['id'].'" AND `delete` = "0" AND `v2` = "304" LIMIT 1'));
 					//
@@ -139,7 +139,7 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						$mgp['hod']++;
 						$txt = ' (x'.$mgp['x'].')';
 					}
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Особенное проклятье!'.$txt.'</b>&quot;.';
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РћСЃРѕР±РµРЅРЅРѕРµ РїСЂРѕРєР»СЏС‚СЊРµ!'.$txt.'</b>&quot;.';
 					$rnds = rand(1,5);
 					if( $rnds == 4 ) {
 						$rnds = 1;
@@ -150,12 +150,12 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						mysql_query('INSERT INTO `eff_users` (
 						`hod`, `v2`, `img2`, `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `v1`, `user_use`
 						) VALUES (
-						"100", "304", "wis_dark_souleat.gif", 22, "'.$piru['id'].'", "Особенное проклятье!", "add_s'.$rnds.'=-10", 0, "77", "priem", "'.$u->info['id'].'"
+						"100", "304", "wis_dark_souleat.gif", 22, "'.$piru['id'].'", "РћСЃРѕР±РµРЅРЅРѕРµ РїСЂРѕРєР»СЏС‚СЊРµ!", "add_s'.$rnds.'=-10", 0, "77", "priem", "'.$u->info['id'].'"
 						)');
 					}
 				}elseif( $kst == 5 ) {
-					//прием "Кровожадность" - дарит вам или противнику модификатор (Абс. мф. крита: +100). Действует 3 размена.
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Кровожадность</b>&quot;.';
+					//РїСЂРёРµРј "РљСЂРѕРІРѕР¶Р°РґРЅРѕСЃС‚СЊ" - РґР°СЂРёС‚ РІР°Рј РёР»Рё РїСЂРѕС‚РёРІРЅРёРєСѓ РјРѕРґРёС„РёРєР°С‚РѕСЂ (РђР±СЃ. РјС„. РєСЂРёС‚Р°: +100). Р”РµР№СЃС‚РІСѓРµС‚ 3 СЂР°Р·РјРµРЅР°.
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РљСЂРѕРІРѕР¶Р°РґРЅРѕСЃС‚СЊ</b>&quot;.';
 					//
 					$mgp = mysql_fetch_array(mysql_query('SELECT * FROM `eff_users` WHERE `uid` = "'.$piru['id'].'" AND `delete` = "0" AND `v2` = "305" LIMIT 1'));
 					//
@@ -165,7 +165,7 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						$mgp['hod']++;
 						$txt = ' (x'.$mgp['x'].')';
 					}
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Кровожадность'.$txt.'</b>&quot;.';
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РљСЂРѕРІРѕР¶Р°РґРЅРѕСЃС‚СЊ'.$txt.'</b>&quot;.';
 					$rnds = rand(1,5);
 					if( $rnds == 4 ) {
 						$rnds = 1;
@@ -176,12 +176,12 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						mysql_query('INSERT INTO `eff_users` (
 						`hod`, `v2`, `img2`, `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `v1`, `user_use`
 						) VALUES (
-						"3", "305", "tnbt_bloodrage.gif", 22, "'.$piru['id'].'", "Кровожадность", "add_m14=100", 0, "77", "priem", "'.$u->info['id'].'"
+						"3", "305", "tnbt_bloodrage.gif", 22, "'.$piru['id'].'", "РљСЂРѕРІРѕР¶Р°РґРЅРѕСЃС‚СЊ", "add_m14=100", 0, "77", "priem", "'.$u->info['id'].'"
 						)');
 					}
 				}elseif( $kst == 6 ) {
-					//прием "Подлечить" - лечит. Действует 1 ход. 
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Подлечить</b>&quot;.';
+					//РїСЂРёРµРј "РџРѕРґР»РµС‡РёС‚СЊ" - Р»РµС‡РёС‚. Р”РµР№СЃС‚РІСѓРµС‚ 1 С…РѕРґ. 
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РџРѕРґР»РµС‡РёС‚СЊ</b>&quot;.';
 					//
 					$txt = '';
 					if( isset($mgp['id']) ) {
@@ -189,29 +189,29 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						$mgp['hod']++;
 						$txt = ' (x'.$mgp['x'].')';
 					}
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Подлечиться'.$txt.'</b>&quot;.';
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РџРѕРґР»РµС‡РёС‚СЊСЃСЏ'.$txt.'</b>&quot;.';
 					if(isset($mgp['id'])) {
 						mysql_query('UPDATE `eff_users` SET `hod` = "'.$mgp['hod'].'", `x` = "'.$mgp['x'].'" WHERE `id` = "'.$mgp['id'].'" LIMIT 1');
 					}else{
 						mysql_query('INSERT INTO `eff_users` (
 						`hod`, `v2`, `img2`, `id_eff`, `uid`, `name`, `data`, `overType`, `timeUse`, `v1`, `user_use`
 						) VALUES (
-						"1", "302", "gg_macropus_reward.gif", 22, "'.$piru['id'].'", "Подлечиться", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
+						"1", "302", "gg_macropus_reward.gif", 22, "'.$piru['id'].'", "РџРѕРґР»РµС‡РёС‚СЊСЃСЏ", "atgm='.rand(15,25).'", 0, "77", "priem", "'.$u->info['id'].'"
 						)');
 					}
 					
 				}elseif( $kst == 7 ) {
-					//прием "Тепловой удар" - магический урон. 
+					//РїСЂРёРµРј "РўРµРїР»РѕРІРѕР№ СѓРґР°СЂ" - РјР°РіРёС‡РµСЃРєРёР№ СѓСЂРѕРЅ. 
 					ini_set('display_errors','On');
-					$txt = ' В результате персонаж &quot;{u2}&quot; был подвержен действию &quot;<b>Тепловой удар</b>&quot;.';
+					$txt = ' Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРµСЂСЃРѕРЅР°Р¶ &quot;{u2}&quot; Р±С‹Р» РїРѕРґРІРµСЂР¶РµРЅ РґРµР№СЃС‚РІРёСЋ &quot;<b>РўРµРїР»РѕРІРѕР№ СѓРґР°СЂ</b>&quot;.';
 					/*
-						Прием: Булыжник [10]
+						РџСЂРёРµРј: Р‘СѓР»С‹Р¶РЅРёРє [10]
 					*/
 					global $priem;
 					$pvr = array();
-						//Действие при клике
+						//Р”РµР№СЃС‚РІРёРµ РїСЂРё РєР»РёРєРµ
 						$pvr['hp'] = rand(15,35);
-						$pvr['hp'] = $priem->magatack( $u->info['id'], $piru['id'], $pvr['hp'], 'огонь', 1 );
+						$pvr['hp'] = $priem->magatack( $u->info['id'], $piru['id'], $pvr['hp'], 'РѕРіРѕРЅСЊ', 1 );
 						$pvr['promah_type'] = $pvr['hp'][3];
 						$pvr['promah'] = $pvr['hp'][2];
 						$pvr['krit'] = $pvr['hp'][1];
@@ -220,7 +220,7 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 						$pvr['hpNow'] = floor($btl->stats[$btl->uids[$piru['id']]]['hpNow']);
 						$pvr['hpAll'] = $btl->stats[$btl->uids[$piru['id']]]['hpAll'];
 							
-						//Используем проверку на урон приемов
+						//РСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° СѓСЂРѕРЅ РїСЂРёРµРјРѕРІ
 						$pvr['hp'] = $btl->testYronPriem( $u->info['id'], $piru['id'], 21, $pvr['hp'], 8, true );
 							
 						$pvr['hpSee'] = '-'.$pvr['hp'];
@@ -239,16 +239,16 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 							
 						$prv['text'] = $btl->addlt(1 , 19 , $btl->users[$btl->uids[$u->info['id']]]['sex'] , NULL);
 						
-						//Цвет приема
+						//Р¦РІРµС‚ РїСЂРёРµРјР°
 						if( $pvr['promah'] == false ) {
 							if( $pvr['krit'] == false ) {
 								$prv['color2'] = '006699';
-								if(isset($btl->mcolor[$btl->mname['земля']])) {
-									$prv['color2'] = $btl->mcolor[$btl->mname['земля']];
+								if(isset($btl->mcolor[$btl->mname['Р·РµРјР»СЏ']])) {
+									$prv['color2'] = $btl->mcolor[$btl->mname['Р·РµРјР»СЏ']];
 								}
 								$prv['color'] = '000000';
-								if(isset($btl->mncolor[$btl->mname['земля']])) {
-									$prv['color'] = $btl->mncolor[$btl->mname['земля']];
+								if(isset($btl->mncolor[$btl->mname['Р·РµРјР»СЏ']])) {
+									$prv['color'] = $btl->mncolor[$btl->mname['Р·РµРјР»СЏ']];
 								}
 							}else{
 								$prv['color2'] = 'FF0000';
@@ -265,27 +265,27 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 							$prv['text2'] = '{tm1} '.$prv['text'].'. <font Color='.$prv['color'].'><b>--</b></font> ['.$pvr['hpNow'].'/'.$pvr['hpAll'].']';
 						}
 						$btl->priemAddLog( $id, 1, 2, $u->info['id'], $piru['id'],
-							'<font color^^^^#'.$prv['color2'].'>Тепловой удар</font>',
+							'<font color^^^^#'.$prv['color2'].'>РўРµРїР»РѕРІРѕР№ СѓРґР°СЂ</font>',
 							$prv['text2'],
 							($btl->hodID + 1)
 						);
 						
-						//Добавляем прием
+						//Р”РѕР±Р°РІР»СЏРµРј РїСЂРёРµРј
 						//$this->addEffPr($pl,$id);
-						//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.($pvr['hp']/16).'',2,77,4,$u->info['id'],3,'оледенение',0,0,1);
+						//$this->addPriem($this->ue['id'],$pl['id'],'atgm='.($pvr['hp']/16).'',2,77,4,$u->info['id'],3,'РѕР»РµРґРµРЅРµРЅРёРµ',0,0,1);
 						
-						//Отнимаем тактики
+						//РћС‚РЅРёРјР°РµРј С‚Р°РєС‚РёРєРё
 						//$this->mintr($pl);
 					
 					unset($pvr);
 				}else{				
-					$txt = '<i>(Не сработало, Заклятие №'.$kst.')</i>';
+					$txt = '<i>(РќРµ СЃСЂР°Р±РѕС‚Р°Р»Рѕ, Р—Р°РєР»СЏС‚РёРµ в„–'.$kst.')</i>';
 				}
 				
 				if($u->info['sex']==1) {
-					$txt = '{u1} применила заклинание &quot;<b>'.$itm['name'].'</b>&quot;. '.$txt.'';
+					$txt = '{u1} РїСЂРёРјРµРЅРёР»Р° Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b>'.$itm['name'].'</b>&quot;. '.$txt.'';
 				}else{
-					$txt = '{u1} применил заклинание &quot;<b>'.$itm['name'].'</b>&quot;. '.$txt.'';
+					$txt = '{u1} РїСЂРёРјРµРЅРёР» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b>'.$itm['name'].'</b>&quot;. '.$txt.'';
 				}
 				$lastHOD = mysql_fetch_array(mysql_query('SELECT * FROM `battle_logs` WHERE `battle` = "'.$u->info['battle'].'" ORDER BY `id_hod` DESC LIMIT 1'));
 				$id_hod = $lastHOD['id_hod'];
@@ -298,7 +298,7 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 				//
 				mysql_query('UPDATE `items_users` SET `iznosNow` = `iznosNow` + 1 WHERE `id` = "'.$itm['id'].'" LIMIT 1');
 				mysql_query('DELETE FROM `items_users` WHERE `iznosNOW` >= `iznosMAX` AND `id` = "'.$itm['id'].'" LIMIT 1');
-			}elseif( $itm['item_id'] == 1028 ) { //Лог боя (целебный пирог +10% от потраченных НР)
+			}elseif( $itm['item_id'] == 1028 ) { //Р›РѕРі Р±РѕСЏ (С†РµР»РµР±РЅС‹Р№ РїРёСЂРѕРі +10% РѕС‚ РїРѕС‚СЂР°С‡РµРЅРЅС‹С… РќР )
 				//
 				mysql_query('INSERT INTO `pirogi` (`btl`,`uid`,`time`,`item_id`,`var`,`hod`) VALUES (
 					"'.$u->info['battle'].'","'.$u->info['id'].'","'.time().'","'.$itm['item_id'].'","'.$itm['name'].'","1"
@@ -330,18 +330,18 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 				}else{
 					$txt = '+'.$txt;
 				}
-				$txt = '<font color=#006699><b>'.$txt.'</b></font> ['.$u->stats['hpNow'].'/'.$u->stats['hpAll'].'] ('.$txttest.' ед.)';
+				$txt = '<font color=#006699><b>'.$txt.'</b></font> ['.$u->stats['hpNow'].'/'.$u->stats['hpAll'].'] ('.$txttest.' РµРґ.)';
 				if($u->info['sex']==1) {
-					$txt = '{u1} применила заклинание &quot;<b>'.$itm['name'].'</b>&quot; и восстановил здоровье. '.$txt.'';
+					$txt = '{u1} РїСЂРёРјРµРЅРёР»Р° Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b>'.$itm['name'].'</b>&quot; Рё РІРѕСЃСЃС‚Р°РЅРѕРІРёР» Р·РґРѕСЂРѕРІСЊРµ. '.$txt.'';
 				}else{
-					$txt = '{u1} применил заклинание &quot;<b>'.$itm['name'].'</b>&quot; и восстановил здоровье. '.$txt.'';
+					$txt = '{u1} РїСЂРёРјРµРЅРёР» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b>'.$itm['name'].'</b>&quot; Рё РІРѕСЃСЃС‚Р°РЅРѕРІРёР» Р·РґРѕСЂРѕРІСЊРµ. '.$txt.'';
 				}
 				mysql_query('INSERT INTO `battle_logs` (`time`,`battle`,`id_hod`,`text`,`vars`,`zona1`,`zonb1`,`zona2`,`zonb2`,`type`) VALUES ("'.time().'","'.$u->info['battle'].'","'.($id_hod).'","{tm1} '.$txt.'","login1='.$u->info['login'].'||t1='.$u->info['team'].'||time1='.time().'","","","","","6")');
 				//
 				mysql_query('UPDATE `items_users` SET `iznosNOW` = `iznosNOW` + 1 WHERE `id` = "'.$itm['id'].'" LIMIT 1');
 				mysql_query('DELETE FROM `items_users` WHERE `iznosNOW` >= `iznosMAX` AND `id` = "'.$itm['id'].'" LIMIT 1');
 			}elseif( $itm['item_id'] == 1029 ) {
-				//Запас маны (Восстанавливает 100 ед. маны)
+				//Р—Р°РїР°СЃ РјР°РЅС‹ (Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ 100 РµРґ. РјР°РЅС‹)
 				//
 				mysql_query('INSERT INTO `pirogi` (`btl`,`uid`,`time`,`item_id`,`var`,`hod`) VALUES (
 					"'.$u->info['battle'].'","'.$u->info['id'].'","'.time().'","'.$itm['item_id'].'","'.$itm['name'].'","1"
@@ -372,14 +372,14 @@ if($st['usefromfile']=='pirogi' && $u->info['battle'] > 0 && $u->info['hpNow'] >
 					$txt = '+'.$txt;
 				}
 				if($u->stats['mpAll'] < 1) {
-					$txt = '<font color=#006699><b>'.$txt.'</b></font> (мана отсутствует)';
+					$txt = '<font color=#006699><b>'.$txt.'</b></font> (РјР°РЅР° РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚)';
 				}else{
 					$txt = '<font color=#006699><b>'.$txt.'</b></font> ['.$u->stats['mpNow'].'/'.$u->stats['mpAll'].']';
 				}
 				if($u->info['sex']==1) {
-					$txt = '{u1} применила заклинание &quot;<b>'.$itm['name'].'</b>&quot; и восстановил ману. '.$txt.'';
+					$txt = '{u1} РїСЂРёРјРµРЅРёР»Р° Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b>'.$itm['name'].'</b>&quot; Рё РІРѕСЃСЃС‚Р°РЅРѕРІРёР» РјР°РЅСѓ. '.$txt.'';
 				}else{
-					$txt = '{u1} применил заклинание &quot;<b>'.$itm['name'].'</b>&quot; и восстановил ману. '.$txt.'';
+					$txt = '{u1} РїСЂРёРјРµРЅРёР» Р·Р°РєР»РёРЅР°РЅРёРµ &quot;<b>'.$itm['name'].'</b>&quot; Рё РІРѕСЃСЃС‚Р°РЅРѕРІРёР» РјР°РЅСѓ. '.$txt.'';
 				}
 				mysql_query('INSERT INTO `battle_logs` (`time`,`battle`,`id_hod`,`text`,`vars`,`zona1`,`zonb1`,`zona2`,`zonb2`,`type`) VALUES ("'.time().'","'.$u->info['battle'].'","'.($id_hod).'","{tm1} '.$txt.'","login1='.$u->info['login'].'||t1='.$u->info['team'].'||time1='.time().'","","","","","6")');
 				//

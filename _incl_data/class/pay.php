@@ -1,40 +1,40 @@
 <?php
 class GameDealerClass {
-	//Конфигурации
+	//РљРѕРЅС„РёРіСѓСЂР°С†РёРё
 	public $c = array(
-		/* MySQL База данных */
-			'db_name'		=>	'pay_operations', //Таблица в которую заносятся данные
+		/* MySQL Р‘Р°Р·Р° РґР°РЅРЅС‹С… */
+			'db_name'		=>	'pay_operations', //РўР°Р±Р»РёС†Р° РІ РєРѕС‚РѕСЂСѓСЋ Р·Р°РЅРѕСЃСЏС‚СЃСЏ РґР°РЅРЅС‹Рµ
 			'db_host'		=>	'localhost',
 			'db_user'		=>	'bk2connect',
 			'db_pass'		=>	'6OE7LHS1',
 			'db_base'		=>	'bk2d12base',
-		/* Настройки платежей */
-			'ip_list'		=>	array('213.133.99.53'), //Указывать через запятую (Разрешенные IP)
+		/* РќР°СЃС‚СЂРѕР№РєРё РїР»Р°С‚РµР¶РµР№ */
+			'ip_list'		=>	array('213.133.99.53'), //РЈРєР°Р·С‹РІР°С‚СЊ С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ (Р Р°Р·СЂРµС€РµРЅРЅС‹Рµ IP)
 			'key'			=>	'2c03e2f961fdc111a1b0e35f63e00453', //gamedealer key 2c03e2f961fdc111a1b0e35f63e00453 HjLyfzBGfhjkM01
-			'id'			=>	'20101' //ID проекта
+			'id'			=>	'20101' //ID РїСЂРѕРµРєС‚Р°
 	),
 	$ip = '',
-	$BACK = array(); //Результат который возвращаем в конце
+	$BACK = array(); //Р РµР·СѓР»СЊС‚Р°С‚ РєРѕС‚РѕСЂС‹Р№ РІРѕР·РІСЂР°С‰Р°РµРј РІ РєРѕРЅС†Рµ
 	
-	//Кодируем из ЮТФ-8 в Кирилицу
+	//РљРѕРґРёСЂСѓРµРј РёР· Р®РўР¤-8 РІ РљРёСЂРёР»РёС†Сѓ
 	public function in($text) {
 		return iconv("UTF-8","cp1251",$text);
 	}
 	
-	//Кодируем из Кирилицу в ЮТФ-8
+	//РљРѕРґРёСЂСѓРµРј РёР· РљРёСЂРёР»РёС†Сѓ РІ Р®РўР¤-8
 	public function out($text) {
 		return iconv("cp1251","UTF-8",$text);
 	}
 	
-	//Добавляем данные в базу данных
+	//Р”РѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…
 	public function add($type,$value,$money) {
 		mysql_query('INSERT INTO `'.$this->c['db_name'].'` (`time`,`type`,`ip`,`value`,`money`,`project`) VALUES ("'.time().'","'.mysql_real_escape_string($type).'","'.$_SERVER['HTTP_X_REAL_IP'].'","'.mysql_real_escape_string($value).'","'.mysql_real_escape_string($money).'","'.mysql_real_escape_string($this->id).'")');
 	}
 	
-	//Подключаемся к базе данных
+	//РџРѕРґРєР»СЋС‡Р°РµРјСЃСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
 	public function connect_db() {
-		$db = mysql_connect($this->c['db_host'],$this->c['db_user'],$this->c['db_pass']) or die('Ошибка подключения к MySQL серверу!');
-		mysql_select_db($this->c['db_base'],$db) or die('Ошибка подключения к базе данных!');
+		$db = mysql_connect($this->c['db_host'],$this->c['db_user'],$this->c['db_pass']) or die('РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє MySQL СЃРµСЂРІРµСЂСѓ!');
+		mysql_select_db($this->c['db_base'],$db) or die('РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…!');
 		mysql_query('SET NAMES cp1251');
 	}
 	
@@ -65,14 +65,14 @@ class GameDealerClass {
 		return $r;
 	}
 	
-	//Генерируем XML-файл
+	//Р“РµРЅРµСЂРёСЂСѓРµРј XML-С„Р°Р№Р»
 	public function backInformation() {
 		header('Content-Type: text/html/force-download');
 		echo '<?xml version="1.0" encoding="UTF-8"?>';
 		echo $this->output($this->BACK,1);
 	}
 	
-	//Проверка существования персонажа
+	//РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
 	public function test_accaunt($nick) {
 		$r = false;
 		$nick = mysql_fetch_array(mysql_query('SELECT `id` FROM `bank` WHERE `id` = "'.mysql_real_escape_string($nick).'" LIMIT 1'));
@@ -82,91 +82,91 @@ class GameDealerClass {
 		return $r;
 	}
 	
-	//Получает счет в банке по логину
+	//РџРѕР»СѓС‡Р°РµС‚ СЃС‡РµС‚ РІ Р±Р°РЅРєРµ РїРѕ Р»РѕРіРёРЅСѓ
 	public function getBank($nick) {
 		$nick = mysql_fetch_array(mysql_query('SELECT `id` FROM `users` WHERE `login` = "'.mysql_real_escape_string($nick).'" LIMIT 1'));
 		$nick = mysql_fetch_array(mysql_query('SELECT `id` FROM `bank` WHERE `uid` = "'.mysql_real_escape_string($nick['id']).'" LIMIT 1'));
 		return $nick['id'];
 	}
 	
-	//Поиск логина
+	//РџРѕРёСЃРє Р»РѕРіРёРЅР°
 	public function bank_user($nick) {
 		$nick = mysql_fetch_array(mysql_query('SELECT `id`,`uid FROM `bank` WHERE `id` = "'.mysql_real_escape_string($nick).'" LIMIT 1'));
 		$nick = mysql_fetch_array(mysql_query('SELECT `id`,`login` FROM `users` WHERE `login` = "'.mysql_real_escape_string($nick['uid']).'" LIMIT 1'));
 		return $nick['login'];
 	}
 	
-	//Начинаем обработку запросов
+	//РќР°С‡РёРЅР°РµРј РѕР±СЂР°Р±РѕС‚РєСѓ Р·Р°РїСЂРѕСЃРѕРІ
 	public function start_session() {
 		
 		$this->ip = $_SERVER['HTTP_X_REAL_IP'];		
 		
-		//Подключаемся к БД
+		//РџРѕРґРєР»СЋС‡Р°РµРјСЃСЏ Рє Р‘Р”
 		$this->connect_db();
 		
-		//Получаем данные запроса
+		//РџРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ Р·Р°РїСЂРѕСЃР°
 		//$xml = file_get_contents('php://input');		
 		
-		//Парсинг XML запроса
+		//РџР°СЂСЃРёРЅРі XML Р·Р°РїСЂРѕСЃР°
 		if(function_exists('simplexml_load_string')) {
 			$xml = simplexml_load_string($xml);
 		}else{			
-			$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','Не удалось произвести обработку запроса'))));
+			$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕРёР·РІРµСЃС‚Рё РѕР±СЂР°Р±РѕС‚РєСѓ Р·Р°РїСЂРѕСЃР°'))));
 			die($this->backInformation());
 		}
 		
 		$this->id = $xml->projectid;
 		
 		if(!in_array($this->ip,$this->c['ip_list'])) {
-			$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','Нет доступа с данного IP'))));
+			$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РќРµС‚ РґРѕСЃС‚СѓРїР° СЃ РґР°РЅРЅРѕРіРѕ IP'))));
 			die($this->backInformation());
 		}		
 		
-		//Обработка запросов
+		//РћР±СЂР°Р±РѕС‚РєР° Р·Р°РїСЂРѕСЃРѕРІ
 		if($xml->method == 'check_balance') {
 			//<sign>MD5(method+MD5(gdKey))</sign>
 			
 			$sign = md5($xml->method.md5($this->c['key']));
 			
 			if($sign == $xml->sign) {
-				//Баланс дилера
+				//Р‘Р°Р»Р°РЅСЃ РґРёР»РµСЂР°
 				$balance = 1000000;
-				$this->BACK = array(array('gdanswer',array(array('status','1'),array('desc','Баланс дилера: '.$balance),array('balance',$balance))));
+				$this->BACK = array(array('gdanswer',array(array('status','1'),array('desc','Р‘Р°Р»Р°РЅСЃ РґРёР»РµСЂР°: '.$balance),array('balance',$balance))));
 				$this->add('4','check:'.$xml->nick.':1'.$r,0);
 			}
 			
 		}elseif($xml->method	== 'check') {
 			/*
-			nick - логин персонажа	<sign>MD5(nick+method+MD5(gdKey))</sign>	*/
+			nick - Р»РѕРіРёРЅ РїРµСЂСЃРѕРЅР°Р¶Р°	<sign>MD5(nick+method+MD5(gdKey))</sign>	*/
 			
 			$sign = md5($xml->nick.$xml->method.md5($this->c['key']));
 			
 			if($sign == $xml->sign) {
 				$xml->nick = $this->in($xml->nick);
 				if($this->test_accaunt($xml->nick) == true) {
-					//Персонаж найден и зачисляем ему игровую валюту
-					$this->BACK = array(array('gdanswer',array(array('status','1'),array('desc','Банковский счет найден'))));
+					//РџРµСЂСЃРѕРЅР°Р¶ РЅР°Р№РґРµРЅ Рё Р·Р°С‡РёСЃР»СЏРµРј РµРјСѓ РёРіСЂРѕРІСѓСЋ РІР°Р»СЋС‚Сѓ
+					$this->BACK = array(array('gdanswer',array(array('status','1'),array('desc','Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ РЅР°Р№РґРµРЅ'))));
 					$this->add('3','check:'.$xml->nick.':1'.$r,0);
 				}else{
-					//Персонаж не найден
-					$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','Платеж не обработан. Банковский счет не найден.'))));
-					$this->add('-1','Персонаж не найден:pay:'.$xml->nick.':0',0);
+					//РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ
+					$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РџР»Р°С‚РµР¶ РЅРµ РѕР±СЂР°Р±РѕС‚Р°РЅ. Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ РЅРµ РЅР°Р№РґРµРЅ.'))));
+					$this->add('-1','РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ:pay:'.$xml->nick.':0',0);
 				}
 			}
 		}elseif($xml->method == 'pay') {
-			/* Проводим платеж 
-			nick - логин аккаунта , projectid - id проекта , sign , amount - деньги , payid - id платежа	*/
+			/* РџСЂРѕРІРѕРґРёРј РїР»Р°С‚РµР¶ 
+			nick - Р»РѕРіРёРЅ Р°РєРєР°СѓРЅС‚Р° , projectid - id РїСЂРѕРµРєС‚Р° , sign , amount - РґРµРЅСЊРіРё , payid - id РїР»Р°С‚РµР¶Р°	*/
 			
 			$sign = md5($xml->nick.$xml->projectid.$xml->amount.$xml->payid.$xml->method.md5($this->c['key']));
 			
 			if($sign == $xml->sign) {
 				$xml->nick = $this->in($xml->nick);
 				if($this->test_accaunt($xml->nick) == true) {
-					//Персонаж найден и зачисляем ему игровую валюту
+					//РџРµСЂСЃРѕРЅР°Р¶ РЅР°Р№РґРµРЅ Рё Р·Р°С‡РёСЃР»СЏРµРј РµРјСѓ РёРіСЂРѕРІСѓСЋ РІР°Р»СЋС‚Сѓ
 					$bank = $this->test_accaunt($xml->nick);
 					if($bank > 0) {
 						mysql_query('UPDATE `bank` SET `money2` = `money2` + '.mysql_real_escape_string($xml->amount).' WHERE `id` = "'.mysql_real_escape_string($xml->nick).'" LIMIT 1');
-						$this->BACK = array(array('gdanswer',array(array('status','1'),array('desc','Платеж прошел успешно'),array('id',$this->c['id']))));
+						$this->BACK = array(array('gdanswer',array(array('status','1'),array('desc','РџР»Р°С‚РµР¶ РїСЂРѕС€РµР» СѓСЃРїРµС€РЅРѕ'),array('id',$this->c['id']))));
 						$this->add('2','pay:'.$xml->nick.':'.$xml->projectid.':'.$xml->sign.':'.$xml->amount.':'.$xml->payid.':'.$bank['id'],$xml->amount);
 						
 						$user = mysql_fetch_array(mysql_query('SELECT `id`,`uid` FROM `bank` WHERE `id` = "'.mysql_real_escape_string($xml->nick).'" LIMIT 1'));
@@ -174,66 +174,66 @@ class GameDealerClass {
 						
 						mysql_query('UPDATE `users` SET `catch` = `catch` + '.mysql_real_escape_string(floor($xml->amount)).' WHERE `id` = "'.mysql_real_escape_string($xml->nick).'" LIMIT 1');
 						
-						$r = '<span class=date>'.date('d.m.Y H:i').'</span> Алхимик <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Enchanter</b> / Автоматическая оплата</u> сообщает: ';
+						$r = '<span class=date>'.date('d.m.Y H:i').'</span> РђР»С…РёРјРёРє <img src=http://img.xcombats.com/i/align/align50.gif width=12 height=15 /><u><b>Enchanter</b> / РђРІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ РѕРїР»Р°С‚Р°</u> СЃРѕРѕР±С‰Р°РµС‚: ';
 						
 						if($user['sex'] == 1) {
-							$r .= 'Уважаемая';
+							$r .= 'РЈРІР°Р¶Р°РµРјР°СЏ';
 						}else{
-							$r .= 'Уважаемый';
+							$r .= 'РЈРІР°Р¶Р°РµРјС‹Р№';
 						}
 						
-						$r .= ' <b>'.$user['login'].'</b>, на Ваш банковский счет №'.$bank.' зачислено '.$xml->amount.' Ekr. Благодарим Вас за покупку!';
+						$r .= ' <b>'.$user['login'].'</b>, РЅР° Р’Р°С€ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚ в„–'.$bank.' Р·Р°С‡РёСЃР»РµРЅРѕ '.$xml->amount.' Ekr. Р‘Р»Р°РіРѕРґР°СЂРёРј Р’Р°СЃ Р·Р° РїРѕРєСѓРїРєСѓ!';
 						
 						mysql_query("INSERT INTO `chat` (`new`,`city`,`room`,`login`,`to`,`text`,`time`,`type`,`toChat`) VALUES ('1','".$user['city']."','".$user['room']."','','".$user['login']."','".$r."','-1','5','0')");
 						
 					}else{
-						$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','У пользователя отсутствует банк'),array('id',$this->c['id']))));
-						$this->add('-1','У персонажа отсутствует банк:pay:'.$xml->nick.':'.$xml->projectid.':'.$xml->sign.':'.$xml->amount.':'.$xml->payid.':'.$bank['id'],$xml->amount);
+						$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РЈ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ Р±Р°РЅРє'),array('id',$this->c['id']))));
+						$this->add('-1','РЈ РїРµСЂСЃРѕРЅР°Р¶Р° РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ Р±Р°РЅРє:pay:'.$xml->nick.':'.$xml->projectid.':'.$xml->sign.':'.$xml->amount.':'.$xml->payid.':'.$bank['id'],$xml->amount);
 					}
 				}else{
-					//Персонаж не найден
-					$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','Платеж не обработан. Персонаж не найден.'))));
-					$this->add('-1','Персонаж не найден:pay:'.$xml->nick.':0',0);
+					//РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ
+					$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РџР»Р°С‚РµР¶ РЅРµ РѕР±СЂР°Р±РѕС‚Р°РЅ. РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ.'))));
+					$this->add('-1','РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ:pay:'.$xml->nick.':0',0);
 				}	
 			}else{
-				//Ошибка сигнатуры
-				$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','Ошибка сигнатуры'))));
-				$this->add('-1','Ошибка сигнатуры:pay:'.$xml->nick.':0',0);
+				//РћС€РёР±РєР° СЃРёРіРЅР°С‚СѓСЂС‹
+				$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РћС€РёР±РєР° СЃРёРіРЅР°С‚СѓСЂС‹'))));
+				$this->add('-1','РћС€РёР±РєР° СЃРёРіРЅР°С‚СѓСЂС‹:pay:'.$xml->nick.':0',0);
 			}
 		}elseif($xml->method == 'check_login') {
-			/* Проверка аккаунта
-			nick - логин аккаунта , projectid - id проекта , sign	*/
+			/* РџСЂРѕРІРµСЂРєР° Р°РєРєР°СѓРЅС‚Р°
+			nick - Р»РѕРіРёРЅ Р°РєРєР°СѓРЅС‚Р° , projectid - id РїСЂРѕРµРєС‚Р° , sign	*/
 			$sign = md5($xml->nick.$xml->method.md5($this->c['key']));
 			
 			if($sign == $xml->sign) {
 				$xml->nick = $this->in($xml->nick);
 				if($this->test_accaunt($xml->nick) == true) {
-					//Персонаж найден
-					$this->BACK = array(array('gdanswer',array(array('status','1'),array('desc','Счет найден'),array('addinfo',$this->bank_user($xml->nick)))));
+					//РџРµСЂСЃРѕРЅР°Р¶ РЅР°Р№РґРµРЅ
+					$this->BACK = array(array('gdanswer',array(array('status','1'),array('desc','РЎС‡РµС‚ РЅР°Р№РґРµРЅ'),array('addinfo',$this->bank_user($xml->nick)))));
 					$this->add('1','check_login:'.$xml->nick.':1'.$r,0);
 				}else{
-					//Персонаж не найден
-					$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','Счет не найден'))));
-					$this->add('-1','Персонаж не найден:check_login:'.$xml->nick.':0',0);
+					//РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ
+					$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РЎС‡РµС‚ РЅРµ РЅР°Р№РґРµРЅ'))));
+					$this->add('-1','РџРµСЂСЃРѕРЅР°Р¶ РЅРµ РЅР°Р№РґРµРЅ:check_login:'.$xml->nick.':0',0);
 				}
 			}else{
-				//Ошибка сигнатуры
-				$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','Ошибка сигнатуры'))));
-				$this->add('-1','Ошибка сигнатуры:pay:'.$xml->nick.':0',0);
+				//РћС€РёР±РєР° СЃРёРіРЅР°С‚СѓСЂС‹
+				$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РћС€РёР±РєР° СЃРёРіРЅР°С‚СѓСЂС‹'))));
+				$this->add('-1','РћС€РёР±РєР° СЃРёРіРЅР°С‚СѓСЂС‹:pay:'.$xml->nick.':0',0);
 			}
 		}else{
-			$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','Неизвестный тип запроса'))));
-			$this->add('-1','Неизвестный тип запроса:error_method:gamedealer',0);
+			$this->BACK = array(array('gdanswer',array(array('status','-1'),array('desc','РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї Р·Р°РїСЂРѕСЃР°'))));
+			$this->add('-1','РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї Р·Р°РїСЂРѕСЃР°:error_method:gamedealer',0);
 		}
 		
-		//Заносим информацию
-		/* Пример результата запроса
+		//Р—Р°РЅРѕСЃРёРј РёРЅС„РѕСЂРјР°С†РёСЋ
+		/* РџСЂРёРјРµСЂ СЂРµР·СѓР»СЊС‚Р°С‚Р° Р·Р°РїСЂРѕСЃР°
 			$this->BACK = array(
-				array('gdanswer',array(array('status',-100),array('desc','Описание запроса')))
+				array('gdanswer',array(array('status',-100),array('desc','РћРїРёСЃР°РЅРёРµ Р·Р°РїСЂРѕСЃР°')))
 			);
 		*/
 		
-		//Возвращаем результат
+		//Р’РѕР·РІСЂР°С‰Р°РµРј СЂРµР·СѓР»СЊС‚Р°С‚
 		$this->backInformation();
 	}
 }

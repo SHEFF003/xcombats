@@ -10,7 +10,7 @@ if($_POST['getListItems'] == true){
 	include_once('../../_incl_data/__config.php'); 
 	define('GAME',true);
 	include_once('../../_incl_data/class/__db_connect.php');
-	$items = mysql_query("SELECT id, info FROM items_main WHERE `info` LIKE 'Предмет для ботов%'");
+	$items = mysql_query("SELECT id, info FROM items_main WHERE `info` LIKE 'РџСЂРµРґРјРµС‚ РґР»СЏ Р±РѕС‚РѕРІ%'");
 	while($item = mysql_fetch_array($items)){
 		$item['info'] = explode(':',$item['info']);
 		echo $item['info'][1]." [".$item['id']."]";

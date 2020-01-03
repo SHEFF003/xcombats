@@ -5,7 +5,7 @@ if(!defined('GAME'))
 }
 
 if($pl['id'] == 223) {
-	//Ðûâîê
+	//Ð Ñ‹Ð²Ð¾Ðº
 	$btl->users[$btl->uids[$u->info['id']]]['tactic1'] += 3;
 	$btl->stats[$btl->uids[$u->info['id']]]['tactic1'] = $btl->users[$btl->uids[$u->info['id']]]['tactic1'];
 	$u->stats['tactic1'] = $btl->users[$btl->uids[$u->info['id']]]['tactic1'];

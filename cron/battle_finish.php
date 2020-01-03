@@ -8,10 +8,10 @@ include('/var/www/xcombats/data/www/xcombats.com/_incl_data/class/__user.php');
 
 /*
 
-	CRON Завершение поединка и удаление из заявок
+	CRON Р—Р°РІРµСЂС€РµРЅРёРµ РїРѕРµРґРёРЅРєР° Рё СѓРґР°Р»РµРЅРёРµ РёР· Р·Р°СЏРІРѕРє
 
 */
-$hend = 1; //Через сколько часов проверять и время бездействия
+$hend = 1; //Р§РµСЂРµР· СЃРєРѕР»СЊРєРѕ С‡Р°СЃРѕРІ РїСЂРѕРІРµСЂСЏС‚СЊ Рё РІСЂРµРјСЏ Р±РµР·РґРµР№СЃС‚РІРёСЏ
 
 $sp = mysql_query('SELECT * FROM `battle` WHERE `time_start` < "'.( time() - 3600*$hend ).'" AND `team_win` = -1 LIMIT 100');
 while( $pl = mysql_fetch_array($sp) ) {

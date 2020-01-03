@@ -16,7 +16,7 @@ class Route {
 		$uri = urldecode($url_data['path']);
 
 		$urls = array(
-			//Ëîêàöèè
+			//Ð›Ð¾ÐºÐ°Ñ†Ð¸Ð¸
 			DP . '/comission' 								=> 'comission',
 			DP . '/auction' 								=> 'auction',
 			DP . '/debuger' 								=> 'debuger',
@@ -51,12 +51,10 @@ class Route {
 	}
 	
 	public static function ErrorPage404() {
-		die('Ñòðàíèöà íå íàéäåíà');
+		die('Ð¡Ñ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°');
 	}
 	
 	public static function ErrorClass404($name) {
-		die('Ðàñøèðåíèå '. $name .' íå íàéäåíî');
+		die('Ð Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ '. $name .' Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð¾');
 	}
 }
-
-?>

@@ -10,13 +10,13 @@ if($u->room['file']=='ab/vokzal')
 	$sp = mysql_query('SELECT * FROM `vokzal` WHERE `city` = "'.$u->info['city'].'" OR `tocity` = "'.$c['city'].'"');
 	while($pl = mysql_fetch_array($sp))
 	{
-		$vz1 = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Вокзал" AND `city` = "'.$pl['city'].'" LIMIT 1'));
-		$vz2 = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Вокзал" AND `city` = "'.$pl['tocity'].'" LIMIT 1'));	
+		$vz1 = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Р’РѕРєР·Р°Р»" AND `city` = "'.$pl['city'].'" LIMIT 1'));
+		$vz2 = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Р’РѕРєР·Р°Р»" AND `city` = "'.$pl['tocity'].'" LIMIT 1'));	
 		$crm = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "'.$pl['name'].'" LIMIT 1'));
-		//period 0 - прибытие в город (стоянка), 1 - движение, 3 - прибытие в другой город (стоянка), 4 - движение (из tocity)
+		//period 0 - РїСЂРёР±С‹С‚РёРµ РІ РіРѕСЂРѕРґ (СЃС‚РѕСЏРЅРєР°), 1 - РґРІРёР¶РµРЅРёРµ, 3 - РїСЂРёР±С‹С‚РёРµ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ (СЃС‚РѕСЏРЅРєР°), 4 - РґРІРёР¶РµРЅРёРµ (РёР· tocity)
 		if($pl['time_start_go']==0)
 		{
-			//Это новая карета обновляем данные
+			//Р­С‚Рѕ РЅРѕРІР°СЏ РєР°СЂРµС‚Р° РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ
 			mysql_query('UPDATE `vokzal` SET `time_start_go` = "'.(time()+$pl['timeStop']*60).'",`time_finish_go` = "'.(time()+$pl['timeStop']*60+$pl['time_go']*60).'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 			$pl['time_start_go'] = time()+$pl['timeStop']*60;
 			$pl['time_finish_go'] = $pl['time_start_go']+$pl['time_go']*60;
@@ -24,12 +24,12 @@ if($u->room['file']=='ab/vokzal')
 		$see = 1;
 		$plc = $pl['tocity'];
 		$col = 'e6e6e6" style="color:#B7B7B7;"';	
-		$tmgo = '<small>(Прибудет в <b>'.date('H:i',$pl['time_finish_go']).'</b>)</small>';
+		$tmgo = '<small>(РџСЂРёР±СѓРґРµС‚ РІ <b>'.date('H:i',$pl['time_finish_go']).'</b>)</small>';
 		$bl = '--';
-		$bb = 'билетов нет';
+		$bb = 'Р±РёР»РµС‚РѕРІ РЅРµС‚';
 		if($pl['time_start_go']-600<time() && $pl['time_start_go']>time())
 		{
-			//можно знанимать места в карете
+			//РјРѕР¶РЅРѕ Р·РЅР°РЅРёРјР°С‚СЊ РјРµСЃС‚Р° РІ РєР°СЂРµС‚Рµ
 			if(isset($crm['id']))
 			{
 				$sr = mysql_query('SELECT `uid`,`id` FROM `items_users` WHERE `secret_id` = "'.$pl['time_start_go'].'_b'.$pl['id'].'" AND `delete` = "0" LIMIT 100');
@@ -46,27 +46,27 @@ if($u->room['file']=='ab/vokzal')
 		if((($pl['period']==0 && $u->info['city']==$pl['city']) || ($pl['period']==3 && $u->info['city']==$pl['tocity'])) && $pl['time_start_go']>time() && $pl['citygo']!=$u->info['city'])
 		{
 			$see = 1;
-			$tmgo = date('d.m.Y в H:i',$pl['time_start_go']);
+			$tmgo = date('d.m.Y РІ H:i',$pl['time_start_go']);
 			$col = 'c9c9c9';
 			$bl = $pl['bilets'];
-			$bb = '<input type="button" onClick="location=\'main.php?buy='.$pl['id'].'&sd4='.$u->info['nextAct'].'\'" value="купить билет">';
+			$bb = '<input type="button" onClick="location=\'main.php?buy='.$pl['id'].'&sd4='.$u->info['nextAct'].'\'" value="РєСѓРїРёС‚СЊ Р±РёР»РµС‚">';
 			if($pl['bilets']<=0)
 			{
-				$bb = 'билетов нет';
+				$bb = 'Р±РёР»РµС‚РѕРІ РЅРµС‚';
 			}
 		}else{
-			//отправляем карету в другой город
+			//РѕС‚РїСЂР°РІР»СЏРµРј РєР°СЂРµС‚Сѓ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ
 			if($pl['time_finish_go']<time())
 			{
-				//прибыли
+				//РїСЂРёР±С‹Р»Рё
 				if($pl['period']==0)
 				{
-					//Прибыли в город, время стоянки закончилось, и поехали
+					//РџСЂРёР±С‹Р»Рё РІ РіРѕСЂРѕРґ, РІСЂРµРјСЏ СЃС‚РѕСЏРЅРєРё Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ, Рё РїРѕРµС…Р°Р»Рё
 					mysql_query('UPDATE `vokzal` SET `period` = "1",`citygo` = "'.$pl['tocity'].'" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 					$pl['period'] = 1;
 				}elseif($pl['period']==1)
 				{
-					//приехалис в другой город, делаем там стоянку
+					//РїСЂРёРµС…Р°Р»РёСЃ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ, РґРµР»Р°РµРј С‚Р°Рј СЃС‚РѕСЏРЅРєСѓ
 					if(isset($crm['id']))
 					{
 						mysql_query('UPDATE `users` SET `city` = "'.$pl['tocity'].'",`room` = "'.$vz2['id'].'" WHERE `room` = "'.$crm['id'].'" LIMIT '.$pl['bilets_default'].'');
@@ -75,12 +75,12 @@ if($u->room['file']=='ab/vokzal')
 					$pl['period'] = 3;
 				}elseif($pl['period']==3)
 				{
-					//Прибыли в город, время стоянки закончилось, и поехали
+					//РџСЂРёР±С‹Р»Рё РІ РіРѕСЂРѕРґ, РІСЂРµРјСЏ СЃС‚РѕСЏРЅРєРё Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ, Рё РїРѕРµС…Р°Р»Рё
 					mysql_query('UPDATE `vokzal` SET `period` = "4" WHERE `id` = "'.$pl['id'].'" LIMIT 1');
 					$pl['period'] = 4;
 				}elseif($pl['period']==4)
 				{
-					//приехалис в другой город, делаем там стоянку
+					//РїСЂРёРµС…Р°Р»РёСЃ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ, РґРµР»Р°РµРј С‚Р°Рј СЃС‚РѕСЏРЅРєСѓ
 					if(isset($crm['id']))
 					{
 						mysql_query('UPDATE `users` SET `city` = "'.$pl['city'].'",`room` = "'.$vz1['id'].'" WHERE `room` = "'.$crm['id'].'" LIMIT '.$pl['bilets_default'].'');
@@ -104,9 +104,9 @@ if($u->room['file']=='ab/vokzal')
 			$cs .= '<tr>
 			<td height="30" bgcolor="#'.$col.'" align="center">'.$tmgo.'</td>
 			<td bgcolor="#'.$col.'" align="center">'.$u->city_name[$plc].'</td>
-			<td bgcolor="#'.$col.'" align="center">'.$pl['time_go'].' мин.</td>
-			<td bgcolor="#'.$col.'" align="center">'.$pl['price1'].' кр.</td>
-			<td bgcolor="#'.$col.'" align="center"> нет </td>
+			<td bgcolor="#'.$col.'" align="center">'.$pl['time_go'].' РјРёРЅ.</td>
+			<td bgcolor="#'.$col.'" align="center">'.$pl['price1'].' РєСЂ.</td>
+			<td bgcolor="#'.$col.'" align="center"> РЅРµС‚ </td>
 			<td bgcolor="#'.$col.'" align="center">'.$bl.'</td>
 			<td bgcolor="#'.$col.'" align="center">'.$bb.'</td>
 		    </tr>';
@@ -128,33 +128,33 @@ if($u->room['file']=='ab/vokzal')
 		{
 			if($buy['bilets']<=0)
 			{
-				$error = 'Билетов больше нет, загляните позже';
+				$error = 'Р‘РёР»РµС‚РѕРІ Р±РѕР»СЊС€Рµ РЅРµС‚, Р·Р°РіР»СЏРЅРёС‚Рµ РїРѕР·Р¶Рµ';
 			}elseif($u->info['money']>=$buy['price1'])
 			{
 				$u->info['money'] -= $buy['price1'];
 				$upd = mysql_query('UPDATE `users` SET `money` = "'.$u->info['money'].'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				if($upd)
 				{
-					//передаем Билет персонажу
-					$error = 'Вы заплатили '.$buy['price1'].' кр. за билет в '.$u->city_name[$buy['tocity']].'<br>Отправка в '.date('d.m.Y H:i',$buy['time_start_go']).' по серверу';
-					$ib = 'Дата отправления кареты в '.$u->city_name[$buy['tocity']].': '.date('d.m.Y в H:i',$buy['time_start_go']).'<br>Билет на имя: <b>'.$u->info['login'].'</b>';
+					//РїРµСЂРµРґР°РµРј Р‘РёР»РµС‚ РїРµСЂСЃРѕРЅР°Р¶Сѓ
+					$error = 'Р’С‹ Р·Р°РїР»Р°С‚РёР»Рё '.$buy['price1'].' РєСЂ. Р·Р° Р±РёР»РµС‚ РІ '.$u->city_name[$buy['tocity']].'<br>РћС‚РїСЂР°РІРєР° РІ '.date('d.m.Y H:i',$buy['time_start_go']).' РїРѕ СЃРµСЂРІРµСЂСѓ';
+					$ib = 'Р”Р°С‚Р° РѕС‚РїСЂР°РІР»РµРЅРёСЏ РєР°СЂРµС‚С‹ РІ '.$u->city_name[$buy['tocity']].': '.date('d.m.Y РІ H:i',$buy['time_start_go']).'<br>Р‘РёР»РµС‚ РЅР° РёРјСЏ: <b>'.$u->info['login'].'</b>';
 					$ins = mysql_query('INSERT INTO `items_users` (`1price`,`maidin`,`data`,`uid`,`item_id`,`iznosMAX`,`lastUPD`,`secret_id`,`time_create`) VALUES ("'.$buy['price1'].'","'.$u->info['city'].'","info='.$ib.'|noodet=1","'.$u->info['id'].'","866","1","'.time().'","'.$buy['time_start_go'].'_b'.$buy['id'].'","'.time().'")');
 					if($ins)
 					{
-						$error .= '<br>Предмет &quot;Билет&quot; был перемещен к Вам в инвентарь, в раздел &quot;прочее&quot;.';
+						$error .= '<br>РџСЂРµРґРјРµС‚ &quot;Р‘РёР»РµС‚&quot; Р±С‹Р» РїРµСЂРµРјРµС‰РµРЅ Рє Р’Р°Рј РІ РёРЅРІРµРЅС‚Р°СЂСЊ, РІ СЂР°Р·РґРµР» &quot;РїСЂРѕС‡РµРµ&quot;.';
 						mysql_query('UPDATE `vokzal` SET `bilets` = "'.($buy['bilets']-1).'" WHERE `id` = "'.$buy['id'].'" LIMIT 1');
 					}else{
-						$error = 'Не удалось приобрести билет';
+						$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРёРѕР±СЂРµСЃС‚Рё Р±РёР»РµС‚';
 					}
 				}else{
 					$u->info['money'] += $buy['price1'];
-					$error = 'Не удалось приобрести билет';
+					$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРёРѕР±СЂРµСЃС‚Рё Р±РёР»РµС‚';
 				}
 			}else{
-				$error = 'У Вас недостаточно денег';
+				$error = 'РЈ Р’Р°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРµРЅРµРі';
 			}
 		}else{
-			$error = 'Не удалось приобрести билет';
+			$error = 'РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРёРѕР±СЂРµСЃС‚Рё Р±РёР»РµС‚';
 		}
 	}
 	
@@ -166,7 +166,7 @@ if($u->room['file']=='ab/vokzal')
 		{
 			if($u->info['money']>=$tp['price1'])
 			{
-				$rm = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Вокзал" AND `city` = "'.$tp['toCity'].'" LIMIT 1'));
+				$rm = mysql_fetch_array(mysql_query('SELECT * FROM `room` WHERE `name` = "Р’РѕРєР·Р°Р»" AND `city` = "'.$tp['toCity'].'" LIMIT 1'));
 				if(isset($rm['id']))
 				{
 					$u->info['money'] -= $tp['price1'];
@@ -178,13 +178,13 @@ if($u->room['file']=='ab/vokzal')
 					$u->addAction((time()+$tp['time']*60),'teleport',$tp['toCity']);
 					die('<script>location="main.php";</script>');
 				}else{
-					$error = 'Нельзя телепортироваться, возможно вокзал в этом городе был разрушен...';
+					$error = 'РќРµР»СЊР·СЏ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊСЃСЏ, РІРѕР·РјРѕР¶РЅРѕ РІРѕРєР·Р°Р» РІ СЌС‚РѕРј РіРѕСЂРѕРґРµ Р±С‹Р» СЂР°Р·СЂСѓС€РµРЅ...';
 				}
 			}else{
-				$error = 'У вас недостаточно средсв';
+				$error = 'РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃРІ';
 			}
 		}else{
-			$error = 'Нельзя телепортироваться...';
+			$error = 'РќРµР»СЊР·СЏ С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊСЃСЏ...';
 		}
 	}
 	
@@ -200,12 +200,12 @@ if($u->room['file']=='ab/vokzal')
 		$cst .= '<tr>
 			<td bgcolor="#'.$col.'" align="center">'.$pl['toCity'].'</td>
 			<td bgcolor="#'.$col.'" align="center">'.$u->timeOut($pl['time']*60).'</td>
-			<td bgcolor="#'.$col.'" align="center">'.$pl['price1'].' кр.</td>';
+			<td bgcolor="#'.$col.'" align="center">'.$pl['price1'].' РєСЂ.</td>';
 			if(isset($zd['id']))
 			{
-				$cst .= '<td bgcolor="#'.$col.'" align="center">Задержка еще '.$u->timeOut($zd['time']-time()).'</td>';
+				$cst .= '<td bgcolor="#'.$col.'" align="center">Р—Р°РґРµСЂР¶РєР° РµС‰Рµ '.$u->timeOut($zd['time']-time()).'</td>';
 			}else{
-				$cst .= '<td bgcolor="#'.$col.'" align="center"><a href="?teleport='.$pl['id'].'">Поехали!</a></td>';
+				$cst .= '<td bgcolor="#'.$col.'" align="center"><a href="?teleport='.$pl['id'].'">РџРѕРµС…Р°Р»Рё!</a></td>';
 			}
 		    $cst .= '</tr>';
 	}
@@ -257,40 +257,40 @@ if($u->room['file']=='ab/vokzal')
 	{
 	?>
     <center>
-	<b>Телепортация в другие города<? if(isset($zd['id'])){ echo ' </b>(Возможна через '.$u->timeOut($zd['time']-time()).')<b>'; } ?></b>
+	<b>РўРµР»РµРїРѕСЂС‚Р°С†РёСЏ РІ РґСЂСѓРіРёРµ РіРѕСЂРѕРґР°<? if(isset($zd['id'])){ echo ' </b>(Р’РѕР·РјРѕР¶РЅР° С‡РµСЂРµР· '.$u->timeOut($zd['time']-time()).')<b>'; } ?></b>
 	</center>
 	<? if(!isset($zd['id'])){ ?>
     <br />
 	<table width="100%" border="0" cellspacing="1" cellpadding="0">
 	  <tr>
-	    <td width="25%" bgcolor="#81888e"><div align="center">пункт назначения</div></td>
-	    <td width="25%" bgcolor="#81888e"><div align="center">время задержки телепортации</div></td>
-	    <td width="25%" bgcolor="#81888e"><div align="center">цена телепортации</div></td>
-	    <td width="25%" bgcolor="#81888e"><div align="center">Телепортироваться</div></td>
+	    <td width="25%" bgcolor="#81888e"><div align="center">РїСѓРЅРєС‚ РЅР°Р·РЅР°С‡РµРЅРёСЏ</div></td>
+	    <td width="25%" bgcolor="#81888e"><div align="center">РІСЂРµРјСЏ Р·Р°РґРµСЂР¶РєРё С‚РµР»РµРїРѕСЂС‚Р°С†РёРё</div></td>
+	    <td width="25%" bgcolor="#81888e"><div align="center">С†РµРЅР° С‚РµР»РµРїРѕСЂС‚Р°С†РёРё</div></td>
+	    <td width="25%" bgcolor="#81888e"><div align="center">РўРµР»РµРїРѕСЂС‚РёСЂРѕРІР°С‚СЊСЃСЏ</div></td>
 	    </tr>
 	  <? echo $cst; ?>
 	  </table>
 	<br />
     <? } } unset($zd); ?>
-    <center><b><br />Расписание движения карет на сегодня</b></center>
+    <center><b><br />Р Р°СЃРїРёСЃР°РЅРёРµ РґРІРёР¶РµРЅРёСЏ РєР°СЂРµС‚ РЅР° СЃРµРіРѕРґРЅСЏ</b></center>
 	<br />
 	<table width="100%" border="0" cellspacing="1" cellpadding="0">
       <tr>
-        <td width="16%" bgcolor="#81888e"><div align="center">время отправления</div></td>
-        <td width="14%" bgcolor="#81888e"><div align="center">пункт назначения</div></td>
-        <td width="14%" bgcolor="#81888e"><div align="center">время в пути</div></td>
-        <td width="14%" bgcolor="#81888e"><div align="center">цена билета</div></td>
-        <td width="14%" bgcolor="#81888e"><div align="center">требуется виза</div></td>
-        <td width="14%" bgcolor="#81888e"><div align="center">осталось билетов</div></td>
-        <td width="14%" bgcolor="#81888e"><div align="center">приобрести билет</div></td>
+        <td width="16%" bgcolor="#81888e"><div align="center">РІСЂРµРјСЏ РѕС‚РїСЂР°РІР»РµРЅРёСЏ</div></td>
+        <td width="14%" bgcolor="#81888e"><div align="center">РїСѓРЅРєС‚ РЅР°Р·РЅР°С‡РµРЅРёСЏ</div></td>
+        <td width="14%" bgcolor="#81888e"><div align="center">РІСЂРµРјСЏ РІ РїСѓС‚Рё</div></td>
+        <td width="14%" bgcolor="#81888e"><div align="center">С†РµРЅР° Р±РёР»РµС‚Р°</div></td>
+        <td width="14%" bgcolor="#81888e"><div align="center">С‚СЂРµР±СѓРµС‚СЃСЏ РІРёР·Р°</div></td>
+        <td width="14%" bgcolor="#81888e"><div align="center">РѕСЃС‚Р°Р»РѕСЃСЊ Р±РёР»РµС‚РѕРІ</div></td>
+        <td width="14%" bgcolor="#81888e"><div align="center">РїСЂРёРѕР±СЂРµСЃС‚Рё Р±РёР»РµС‚</div></td>
       </tr>
       <? echo $cs; ?>
     </table>
-    <? if($tmref>600 && $tmref>0){ echo '<script>setTimer(\'location = location;\','.(1000*$tmref-600).');</script>'; } if($cs==''){ echo '<center><br>Сегодня нет свободных карет для перемещения в другие города</center>'; } ?>
+    <? if($tmref>600 && $tmref>0){ echo '<script>setTimer(\'location = location;\','.(1000*$tmref-600).');</script>'; } if($cs==''){ echo '<center><br>РЎРµРіРѕРґРЅСЏ РЅРµС‚ СЃРІРѕР±РѕРґРЅС‹С… РєР°СЂРµС‚ РґР»СЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ РІ РґСЂСѓРіРёРµ РіРѕСЂРѕРґР°</center>'; } ?>
     <br /><br />
     <small style="color:#999999;">
-    - Для отправления в другой город Вы должны быть онлайн когда будет отправляться карета<br />
-    - Если Вы опоздали на карету, тогда билет можно сдать в магазин за половину его стоимости<br />
+    - Р”Р»СЏ РѕС‚РїСЂР°РІР»РµРЅРёСЏ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕРЅР»Р°Р№РЅ РєРѕРіРґР° Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»СЏС‚СЊСЃСЏ РєР°СЂРµС‚Р°<br />
+    - Р•СЃР»Рё Р’С‹ РѕРїРѕР·РґР°Р»Рё РЅР° РєР°СЂРµС‚Сѓ, С‚РѕРіРґР° Р±РёР»РµС‚ РјРѕР¶РЅРѕ СЃРґР°С‚СЊ РІ РјР°РіР°Р·РёРЅ Р·Р° РїРѕР»РѕРІРёРЅСѓ РµРіРѕ СЃС‚РѕРёРјРѕСЃС‚Рё<br />
     </small>
 	<td width="280" valign="top">
     <TABLE cellspacing="0" cellpadding="0"><TD width="100%">&nbsp;</TD><TD>
@@ -306,7 +306,7 @@ if($u->room['file']=='ab/vokzal')
 	<table width="100%"  border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
 	<tr>
 	<td bgcolor="#D3D3D3"><img src="http://img.xcombats.com/i/move/links.gif" width="9" height="7" /></td>
-	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.267&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.267',1); ?>">Центральная Площадь</a></td>
+	<td bgcolor="#D3D3D3" nowrap><a href="#" id="greyText" class="menutop" onclick="location='main.php?loc=3.180.0.267&rnd=<? echo $code; ?>';" title="<? thisInfRm('3.180.0.267',1); ?>">Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ РџР»РѕС‰Р°РґСЊ</a></td>
 	</tr>
 	</table>
 	</td>
@@ -318,8 +318,8 @@ if($u->room['file']=='ab/vokzal')
 	  <br />
       <div align="right">
       <small>
-	  Масса: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
-	  У вас в наличии: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> кр.</b> &nbsp;
+	  РњР°СЃСЃР°: <?=$u->aves['now']?>/<?=$u->aves['max']?> &nbsp;<br />
+	  РЈ РІР°СЃ РІ РЅР°Р»РёС‡РёРё: <b style="color:#339900;"><?php echo round($u->info['money'],2); ?> РєСЂ.</b> &nbsp;
       </small>
       </div>
 	  <br />

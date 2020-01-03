@@ -29,7 +29,7 @@ class Item {
 	}
 	
 	public static function getItemUser( $id ) {
-		//uiid - id ïğåäìåòà â items_users
+		//uiid - id Ğ¿Ñ€ĞµĞ´Ğ¼ĞµÑ‚Ğ° Ğ² items_users
 		$itm = \Core\Database::query( 'SELECT `a`.*,`b`.*,`a`.`id` AS `uiid` FROM `items_users` AS `a` LEFT JOIN `items_main` AS `b` ON `b`.`id` = `a`.`item_id` WHERE `a`.`id` = :item_id LIMIT 1' , array(
 			'item_id' 	=> $id
 		) , true );

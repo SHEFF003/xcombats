@@ -14,7 +14,7 @@ define('GAME',true);
 include('../../_incl_data/class/__db_connect.php');
 
 function e($t) {
-	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (Критическая ошибка): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","-NIGHTmare-","6","1","-1")');
+	mysql_query('INSERT INTO `chat` (`text`,`city`,`to`,`type`,`new`,`time`) VALUES ("core #'.date('d.m.Y').' %'.date('H:i:s').' (РљСЂРёС‚РёС‡РµСЃРєР°СЏ РѕС€РёР±РєР°): <b>'.mysql_real_escape_string($t).'</b>","capitalcity","-NIGHTmare-","6","1","-1")');
 }
 
 /*mysql_query("LOCK TABLES
@@ -179,12 +179,12 @@ if(isset($CRON_CORE))
 		{
 			if($u->info['battle']==-1)
 			{
-				//завершаем поединок
+				//Р·Р°РІРµСЂС€Р°РµРј РїРѕРµРґРёРЅРѕРє
 				$upd = mysql_query('UPDATE `users` SET `battle` = "0",`online` = "'.time().'" WHERE `id` = "'.$u->info['id'].'" LIMIT 1');
 				if(!$upd)
 				{
 					if(!isset($CRON_CORE)) {
-						die('Ошибка завершения поединка.');
+						die('РћС€РёР±РєР° Р·Р°РІРµСЂС€РµРЅРёСЏ РїРѕРµРґРёРЅРєР°.');
 					}
 				}else{
 					echo '<script>location="main.php";</script>';
@@ -196,7 +196,7 @@ if(isset($CRON_CORE))
 				}
 			}
 		}else{
-			//получаем массив с игроками в бою
+			//РїРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ СЃ РёРіСЂРѕРєР°РјРё РІ Р±РѕСЋ
 				$btl->teamsTake();
 				
 			if(isset($_POST['useitem'])) {
@@ -206,26 +206,26 @@ if(isset($CRON_CORE))
 				}
 			}
 				
-			//заносим удары,приемы,эффекты и т.д.
-				//удар
+			//Р·Р°РЅРѕСЃРёРј СѓРґР°СЂС‹,РїСЂРёРµРјС‹,СЌС„С„РµРєС‚С‹ Рё С‚.Рґ.
+				//СѓРґР°СЂ
 					if(isset($_POST['atack']) && isset($_POST['block']))
 					{
 						$btl->addAtack();
 					}
-				//прием
+				//РїСЂРёРµРј
 					if(isset($_POST['usepriem']))
 					{
 						$priem->pruse($_POST['usepriem']);
 					}
-				//используем заклятие / пирожки
+				//РёСЃРїРѕР»СЊР·СѓРµРј Р·Р°РєР»СЏС‚РёРµ / РїРёСЂРѕР¶РєРё
 					
 					
-			//проводим действия (удары, использование приемов, если есть возможность нанести удар или использовать прием)			
+			//РїСЂРѕРІРѕРґРёРј РґРµР№СЃС‚РІРёСЏ (СѓРґР°СЂС‹, РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РїСЂРёРµРјРѕРІ, РµСЃР»Рё РµСЃС‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РЅР°РЅРµСЃС‚Рё СѓРґР°СЂ РёР»Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїСЂРёРµРј)			
 				$btl->testActions();
-			//авто-смена противника, либо просто смена противника
+			//Р°РІС‚Рѕ-СЃРјРµРЅР° РїСЂРѕС‚РёРІРЅРёРєР°, Р»РёР±Рѕ РїСЂРѕСЃС‚Рѕ СЃРјРµРЅР° РїСЂРѕС‚РёРІРЅРёРєР°
 				if($u->stats['hpNow']>=1)
 				{
-					//ручная смена
+					//СЂСѓС‡РЅР°СЏ СЃРјРµРЅР°
 					if(isset($_POST['smn']) && $_POST['smn']!='none')
 					{
 						/* ---------------- */
@@ -243,7 +243,7 @@ if(isset($CRON_CORE))
 						unset($rsm);
 						$js .= 'smena_login = \'none\';';
 					}
-					//авто-смена
+					//Р°РІС‚Рѕ-СЃРјРµРЅР°
 					if($u->info['enemy']==0 || $btl->stats[$btl->uids[$u->info['enemy']]]['hpNow']<=0 || isset($btl->ga[$u->info['id']][$u->info['enemy']]))
 					{
 						$btl->autoSmena();
@@ -251,11 +251,11 @@ if(isset($CRON_CORE))
 				}else{
 					$btl->mainStatus = 3;
 				}
-			//получаем данные о поединке
+			//РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ Рѕ РїРѕРµРґРёРЅРєРµ
 				
-			//получаем данные о логе боя
+			//РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ Рѕ Р»РѕРіРµ Р±РѕСЏ
 				
-			//Если бой сыгран - завершаем
+			//Р•СЃР»Рё Р±РѕР№ СЃС‹РіСЂР°РЅ - Р·Р°РІРµСЂС€Р°РµРј
 				if($btl->info['team_win']==-1)
 				{
 					$btl->testFinish();
@@ -272,7 +272,7 @@ if(isset($CRON_CORE))
 			
 			if(!isset($CRON_CORE)) {
 				$js .= $btl->myInfo($u->info['id'],1);
-				//выводим данные	
+				//РІС‹РІРѕРґРёРј РґР°РЅРЅС‹Рµ	
 				if($btl->e!='')
 				{
 					echo '<font color="red"><center><b>'.$btl->e.'</b></center></font>';
