@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+  db:
+    build:
+      context: ./docker/db
+    container_name: 'mariadb'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./docker/db/db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    command:
+      mysqld --innodb-flush-method=littlesync
+
+  nginx:
+    build:
+      context: ./docker/webserver/nginx
+    container_name: 'nginx'
+    volumes:
+      - ./docker/webserver/nginx/logs/:/var/log/nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - webserver
+    links:
+      - webserver
+
+  webserver:
+    build:
+      context: ./docker/webserver
+    container_name: '7.4.2-webserver'
+    restart: 'always'
+    links:
+      - db
+    volumes:
+      - ./:/var/www/html
+      - ./docker/webserver/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/webserver/apache/sites-enabled:/etc/apache2/sites-enabled
+      - ./docker/webserver/apache/logs:/var/log/apache2
