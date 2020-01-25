@@ -2,10 +2,6 @@ php_value error_reporting E_ALL
 
 #CharsetDisable On
 
-DefaultLanguage ru
-AddDefaultCharset windows-1251
-php_value default_charset "cp1251"
-
 Options -Indexes
 
 RewriteEngine On
