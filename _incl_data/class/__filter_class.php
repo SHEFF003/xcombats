@@ -276,7 +276,7 @@ class Filter {
 			}
 			$i++;
 		}
-		$txt = implode($h,':');
+		$txt = implode(':', $h);
 		$txt = str_replace(':*not_dbl_ponts*','',$txt);
 		$txt = str_replace('*not_dbl_ponts*:','',$txt);
 		$txt = str_replace('*not_dbl_ponts*','',$txt);
